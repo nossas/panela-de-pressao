@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title App Title Here
+    = stylesheet_link_tag :application
+    meta[charset="utf-8"]
+    meta[name="description" content=""]
+    meta[name="keywords" content=""]
+    meta[name="author" content=""]
+    = yield(:meta_tags)
+    = csrf_meta_tag
+    = javascript_include_tag :application
+  body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize data-action=controller.action_name.camelize
+    header
+    = yield
+    footer
