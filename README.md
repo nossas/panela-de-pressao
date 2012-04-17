@@ -1,15 +1,15 @@
 # Workshop de requisitos
-_Basicamente a história que estamos contando no workshop abaixo é a seguinte:
+Basicamente a história que estamos contando no workshop abaixo é a seguinte:
 
-O mobilizador cria a sua campanha que fica aguardando aprovação da curadoria.
+_O mobilizador cria a sua campanha que fica aguardando aprovação da curadoria._
 
-Assim que o curador aprovar a campanha, os visitantes poderão vê-la em uma lista de campanhas recentes.
+_Assim que o curador aprovar a campanha, os visitantes poderão vê-la em uma lista de campanhas recentes._
 
-Caso o visitante se interesse pela campanha ele poderá ver mais detalhes, ver a lista de engajados, ver as atualizações da campanha e o "barometro" da campanha.
+_Caso o visitante se interesse pela campanha ele poderá ver mais detalhes, ver a lista de engajados, ver as atualizações da campanha e o "barometro" da campanha._
 
-Nesse momento o visitante pode se engajar na campanha e pressionar os tomadores de decisão para que tomem alguma ação.
+_Nesse momento o visitante pode se engajar na campanha e pressionar os tomadores de decisão para que tomem alguma ação._
 
-Ao fazerem isso, os engajados passarão a receber as atualizações sobre a campanha._
+_Ao fazerem isso, os engajados passarão a receber as atualizações sobre a campanha._
 
 O MVP do projeto são todas as user stories que se encontram acima da linha roxa (sim, aquela linha foi desenhada com uma caneta roxa).
 
