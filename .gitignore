@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 config/database.yml
 db/schema.rb
+config/initializers/_env.rb
