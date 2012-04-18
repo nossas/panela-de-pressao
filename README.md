@@ -11,6 +11,6 @@ _Nesse momento o visitante pode se engajar na campanha e pressionar os tomadores
 
 _Ao fazerem isso, os engajados passarão a receber as atualizações sobre a campanha._
 
-O MVP do projeto são todas as user stories que se encontram acima da linha roxa (sim, aquela linha foi desenhada com uma caneta roxa).
+O MVP do projeto são todas as user stories que se encontram acima da linha roxa.
 
 ![Requirements Workshop](http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc7/577682_10150678198637843_536687842_9730914_16508281_n.jpg)
