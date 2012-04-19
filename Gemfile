@@ -21,7 +21,6 @@ group :test, :development do
   gem "rspec-rails", ">= 2.0.1"
   gem "shoulda-matchers"
   gem "machinist", ">= 2.0.0.beta2"
-  gem "silent-postgres"
   gem "jasmine"
 end
 

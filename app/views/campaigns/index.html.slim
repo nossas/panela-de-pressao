@@ -1,1 +1,4 @@
-| Que isso? Nenhuma campanha?!
+- if @campaigns.empty?
+  | Que isso? Nenhuma campanha?!
+- else
+  = render @campaigns

@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'machinist/active_record'
 
 User.blueprint do
@@ -9,4 +10,8 @@ Authorization.blueprint do
   user { User.make! }
   uid  { "uid#{sn}" }
   provider { 'meurio' }
+end
+
+Campaign.blueprint do
+  name { "Desarmamento Voluntário" }
 end

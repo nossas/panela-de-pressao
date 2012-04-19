@@ -164,7 +164,6 @@ GEM
       rubyzip
     shoulda-matchers (1.1.0)
       activesupport (>= 3.0.0)
-    silent-postgres (0.1.1)
     slim (1.2.0)
       temple (~> 0.4.0)
       tilt (~> 1.3.3)
@@ -212,7 +211,6 @@ DEPENDENCIES
   rails (>= 3.2)
   rspec-rails (>= 2.0.1)
   shoulda-matchers
-  silent-postgres
   slim
   slim-rails
   thin
