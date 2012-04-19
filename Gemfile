@@ -5,17 +5,25 @@ gem 'rails', '>= 3.2'
 gem 'pg'
 gem 'thin'
 gem "foreigner"
-gem "capybara", :group => [:development, :test]
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
-gem "shoulda-matchers", :group => [:development, :test]
-gem "machinist", ">= 2.0.0.beta2", :group => [:development, :test]
-gem "silent-postgres", :group => [:development, :test]
-gem "jasmine", :group => [:development, :test]
 gem "slim"
 gem "slim-rails"
-gem "compass-rails", :group => [:assets]
 gem "compass-columnal-plugin", "~> 0.1.1"
 
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
+
+group :test, :development do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem "capybara"
+  gem "rspec-rails", ">= 2.0.1"
+  gem "shoulda-matchers"
+  gem "machinist", ">= 2.0.0.beta2"
+  gem "silent-postgres"
+  gem "jasmine"
+end
+
+group :assets do
+  gem "compass-rails"
+end
