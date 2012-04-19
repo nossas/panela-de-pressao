@@ -1,6 +1,6 @@
-class CreateIssues < ActiveRecord::Migration
+class CreateCampaigns < ActiveRecord::Migration
   def change
-    create_table :issues do |t|
+    create_table :campaigns do |t|
       t.integer :user_id
       t.text :name
       t.text :description
