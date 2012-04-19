@@ -14,6 +14,7 @@ gem "jasmine", :group => [:development, :test]
 gem "slim"
 gem "slim-rails"
 gem "compass-rails", :group => [:assets]
+gem "compass-columnal-plugin", "~> 0.1.1"
 
 gem 'omniauth'
 gem 'omniauth-oauth2'
