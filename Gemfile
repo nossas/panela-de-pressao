@@ -12,6 +12,7 @@ gem "compass-columnal-plugin", "~> 0.1.1"
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
+gem 'inherited_resources'
 
 group :test, :development do
   gem 'cucumber-rails'
