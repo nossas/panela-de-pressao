@@ -7,7 +7,6 @@ gem 'thin'
 gem "foreigner"
 gem "slim"
 gem "slim-rails"
-gem "compass-columnal-plugin", "~> 0.1.1"
 
 gem 'omniauth'
 gem 'omniauth-oauth2'
@@ -25,5 +24,7 @@ group :test, :development do
 end
 
 group :assets do
+  gem "sass-rails"
   gem "compass-rails"
+  gem "compass-columnal-plugin", "~> 0.1.1"
 end
