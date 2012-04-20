@@ -3,4 +3,9 @@ class Campaign < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :organization
+
+  default_scope order("accepted_at DESC")
+
+  scope :accepted, where('accepted_at IS NOT NULL')
+  
 end
