@@ -28,3 +28,5 @@ group :assets do
   gem "compass-rails"
   gem "compass-columnal-plugin", "~> 0.1.1"
 end
+
+gem "jquery-rails"
