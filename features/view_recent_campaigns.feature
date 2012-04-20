@@ -17,3 +17,8 @@ Feature: View recent campaigns
     And there is a campaign called "Preservação da Praça XV de Novembro" accepted on "2/1/2012"
     When I go to the campaigns page
     Then I should see "Preservação da Praça XV de Novembro" before "Desarmamento Voluntário"
+  
+  Scenario: when there is an unmoderated campaign
+    Given there is an unmoderated campaign called "Desarmamento Voluntário"
+    When I go to the campaigns page
+    Then I should not see "Desarmamento Voluntário"
