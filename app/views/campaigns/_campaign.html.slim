@@ -1,2 +1,3 @@
 .threecol class="#{(@campaigns.index(campaign)+1) % 4 == 0 ? "last" : ""}"
+  = image_tag campaign.image
   = link_to campaign.name, campaign
