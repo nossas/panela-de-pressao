@@ -1,1 +1,2 @@
-span= campaign.name
+.threecol class="#{(@campaigns.index(campaign)+1) % 4 == 0 ? "last" : ""}"
+  = link_to campaign.name, campaign
