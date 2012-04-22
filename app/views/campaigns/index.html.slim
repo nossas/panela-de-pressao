@@ -1,4 +1,8 @@
-- if @campaigns.empty?
-  | Que isso? Nenhuma campanha?!
-- else
-  = render @campaigns
+.container
+  .row
+    .twelvecol= link_to "Crie a sua campanha", new_campaign_path
+  - if @campaigns.empty?
+    .row
+      .twelvecol Que isso? Nenhuma campanha?!
+  - else
+    .row= render @campaigns
