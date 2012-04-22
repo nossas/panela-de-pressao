@@ -30,3 +30,5 @@ group :assets do
 end
 
 gem "jquery-rails"
+gem 'carrierwave'
+gem "fog", "~> 1.3.1"

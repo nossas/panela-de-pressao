@@ -38,6 +38,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
@@ -64,13 +67,25 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    excon (0.13.4)
     faraday (0.7.6)
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
     ffi (1.0.11)
+    fog (1.3.1)
+      builder
+      excon (~> 0.13.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
     foreigner (1.1.6)
       activerecord (>= 3.0.0)
+    formatador (0.2.1)
     fssm (0.2.9)
     gherkin (2.9.0)
       json (>= 1.4.6)
@@ -103,6 +118,9 @@ GEM
     mime-types (1.18)
     multi_json (1.3.2)
     multipart-post (1.1.5)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.3.0)
     nokogiri (1.5.2)
     oauth2 (0.6.0)
       faraday (~> 0.7)
@@ -157,6 +175,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.9.0)
+    ruby-hmac (0.4.0)
     rubyzip (0.9.7)
     sass (3.1.15)
     sass-rails (3.2.5)
@@ -203,10 +222,12 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  carrierwave
   compass-columnal-plugin (~> 0.1.1)
   compass-rails
   cucumber-rails
   database_cleaner
+  fog (~> 1.3.1)
   foreigner
   inherited_resources
   jasmine
