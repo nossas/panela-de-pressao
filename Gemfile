@@ -15,6 +15,7 @@ gem 'inherited_resources'
 
 group :test, :development do
   gem 'cucumber-rails'
+  gem 'launchy'
   gem 'database_cleaner'
   gem "capybara"
   gem "rspec-rails", ">= 2.0.1"

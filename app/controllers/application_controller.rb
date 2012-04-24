@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   rescue_from CanCan::AccessDenied do |exception|
-    raise "CanCan::AccessDenied - #{exception.action} #{exception.subject}"
+    redirect_to new_session_path, :alert => exception.message
   end
 
   protected
