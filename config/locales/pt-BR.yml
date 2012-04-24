@@ -205,6 +205,13 @@ pt-BR:
   activerecord:
     errors:
       <<: *errors
+      models:
+        campaign:
+          attributes:
+            name:
+              blank: "Queremos saber o que você quer mudar na sua cidade!"
+            description:
+              blank: "Para uma campanha existir ela tem que ter um propósio! Porque essa campanha é importante?"
     attributes:
       campaign:
         name: "O que você quer mudar na sua cidade?"

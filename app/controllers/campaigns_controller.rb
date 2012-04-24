@@ -6,6 +6,7 @@ class CampaignsController < InheritedResources::Base
   def create
     create! do |success, failure|
       success.html { redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
+      failure.html { render :new }
     end
   end
 
