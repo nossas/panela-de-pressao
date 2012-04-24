@@ -15,4 +15,5 @@ end
 Campaign.blueprint do
   name { "Desarmamento Voluntário" }
   description { "O projeto desenvolve atividades destinadas a reduzir a violência armada." }
+  user { User.make! }
 end
