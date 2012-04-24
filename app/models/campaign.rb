@@ -9,4 +9,6 @@ class Campaign < ActiveRecord::Base
   scope :accepted, where('accepted_at IS NOT NULL')
 
   mount_uploader :image, ImageUploader
+
+  validates :name, :description, :presence => true
 end

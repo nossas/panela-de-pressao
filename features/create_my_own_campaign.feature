@@ -18,3 +18,11 @@ Feature: Create my own campaign
     When I click "Crie a sua campanha"
     Then I should be in the login page
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
+
+  @omniauth_test
+  Scenario: when I'm troll enouth to let all fields blank
+    Given I'm logged in
+    And I'm in the new campaign page
+    When I press "Criar minha campanha"
+    Then I should see "Queremos saber o que você quer mudar na sua cidade!"
+    And I should see "Para uma campanha existir ela tem que ter um propósio! Porque essa campanha é importante?"

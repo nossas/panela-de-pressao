@@ -4,7 +4,11 @@
     .twelvecol
       = form_for @campaign do |form|
         = form.label :name
+        - @campaign.errors[:name].each do |error|
+          = error
         = form.text_field :name
         = form.label :description
-        = form.text_field :description
+        - @campaign.errors[:description].each do |error| 
+          = error
+        = form.text_area :description
         = form.submit "Criar minha campanha"
