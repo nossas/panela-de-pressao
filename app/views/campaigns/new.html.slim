@@ -1,1 +1,10 @@
-| # under construction...
+.container
+  .row
+    h1.twelvecol Nova campanha
+    .twelvecol
+      = form_for @campaign do |form|
+        = form.label :name
+        = form.text_field :name
+        = form.label :description
+        = form.text_field :description
+        = form.submit "Criar minha campanha"
