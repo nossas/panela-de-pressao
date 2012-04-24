@@ -209,3 +209,6 @@ pt-BR:
       campaign:
         name: "O que você quer mudar na sua cidade?"
         description: "Porque essa campanha é importante?"
+  unauthorized:
+    create:
+      campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"

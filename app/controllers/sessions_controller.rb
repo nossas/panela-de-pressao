@@ -18,6 +18,9 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def new
+  end
+
   protected
   def auth_data
     request.env['omniauth.auth']

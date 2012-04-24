@@ -12,3 +12,9 @@ Feature: Create my own campaign
     When I press "Criar minha campanha"
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+
+  Scenario: when I'm not logged in
+    Given I'm in the campaigns page
+    When I click "Crie a sua campanha"
+    Then I should be in the login page
+    And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
