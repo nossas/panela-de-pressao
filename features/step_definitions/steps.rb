@@ -26,7 +26,7 @@ end
 
 
 Then /^I should see "([^"]*)" before "([^"]*)"$/ do |arg1, arg2|
-  page.html.should match(/#{arg1}(.)+#{arg2}/)  
+  page.html.should match(/#{arg1}(.|\s)+#{arg2}/)
 end
 
 
