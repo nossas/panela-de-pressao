@@ -25,6 +25,10 @@ Given /^I fill "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
   fill_in arg1, :with => arg2
 end
 
+Given /^I'm logged in$/ do
+  visit "/auth/facebook"
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   page.should have_content(arg1)
 end

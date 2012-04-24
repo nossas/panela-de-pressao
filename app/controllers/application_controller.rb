@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :signed_in?
 
+  rescue_from CanCan::AccessDenied do |exception|
+    raise "CanCan::AccessDenied - #{exception.action} #{exception.subject}"
+  end
+
   protected
   def render_404
     raise ActionController::RoutingError.new('Not Found')
