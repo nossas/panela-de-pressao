@@ -16,12 +16,13 @@ html
     header
       .container
         .row
-          .twelvecol
-            = image_tag "", :alt => "manifeste.se"
+          .sixcol= image_tag "", :alt => "manifeste.se", :class => "logo"
+          .sixcol.last
             - if current_user
-              = current_user.name
-              = link_to "Sair", session_path(current_user.id), :method => :delete
               = image_tag current_user.picture
+              = current_user.name
+              br
+              = link_to "Sair", session_path(current_user.id), :method => :delete
             - else
               | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
     .container
