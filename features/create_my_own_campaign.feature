@@ -29,9 +29,9 @@ Feature: Create my own campaign
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
 
   @omniauth_test
-  Scenario: when I'm troll enouth to let all fields blank
+  Scenario: when I'm troll enough to let all fields blank
     Given I'm logged in
     And I'm in the new campaign page
     When I press "Criar minha campanha"
     Then I should see "Queremos saber o que você quer mudar na sua cidade!"
-    And I should see "Para uma campanha existir ela tem que ter um propósio! Porque essa campanha é importante?"
+    And I should see "Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?"
