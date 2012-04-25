@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title App Title Here
+    title Manifeste-se! 
     = stylesheet_link_tag "application"
     = stylesheet_link_tag "1140"
     = stylesheet_link_tag "ie"
@@ -11,7 +11,6 @@ html
     meta[name="author" content=""]
     = yield(:meta_tags)
     = csrf_meta_tag
-    = javascript_include_tag "application"
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize data-action=controller.action_name.camelize
     header
       .container
@@ -31,3 +30,5 @@ html
         .twelvecol= alert
     = yield
     footer
+
+  = javascript_include_tag "application"
