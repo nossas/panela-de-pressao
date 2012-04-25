@@ -29,6 +29,10 @@ Given /^I'm logged in$/ do
   visit "/auth/facebook"
 end
 
+Given /^I attach an image to "([^"]*)"$/ do |arg1|
+  attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   page.should have_content(arg1)
 end
