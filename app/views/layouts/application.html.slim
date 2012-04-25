@@ -9,13 +9,13 @@ html
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize data-action=controller.action_name.camelize
     section.container.top
       header.row
-        .sixcol= image_tag "", size: "101x100", alt: "manifeste.se", class: "logo"
-        .sixcol.last
+        .sixcol.logo
+          = image_tag ""
+        .sixcol.last.user
           - if current_user
             = image_tag current_user.picture, size: "50x50", alt: "Avatar"
             = current_user.name
-            br
-            = link_to "Sair", session_path(current_user.id), :method => :delete
+            p= link_to "Sair", session_path(current_user.id), :method => :delete
           - else
             | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
     section.container.alerts
