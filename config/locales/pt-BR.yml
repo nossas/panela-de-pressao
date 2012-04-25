@@ -212,10 +212,13 @@ pt-BR:
               blank: "Queremos saber o que você quer mudar na sua cidade!"
             description:
               blank: "Para uma campanha existir ela tem que ter um propósio! Porque essa campanha é importante?"
+            image:
+              blank: "Uma imagem vale mais que mil palavras... e é obrigatória para a campanha :)"
     attributes:
       campaign:
         name: "O que você quer mudar na sua cidade?"
         description: "Porque essa campanha é importante?"
+        image: "Imagem"
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
