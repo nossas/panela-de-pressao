@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_path
+    redirect_to session[:restore_url] || root_path
   end
 
   def new
