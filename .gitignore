@@ -9,3 +9,4 @@ config/initializers/_env.rb
 .sass-cache/
 config/initializers/carrier_wave.rb
 config/initializers/01_envvars.rb
+public/uploads/

@@ -16,4 +16,5 @@ Campaign.blueprint do
   name { "Desarmamento Voluntário" }
   description { "O projeto desenvolve atividades destinadas a reduzir a violência armada." }
   user { User.make! }
+  image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
 end
