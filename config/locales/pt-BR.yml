@@ -211,7 +211,7 @@ pt-BR:
             name:
               blank: "Queremos saber o que você quer mudar na sua cidade!"
             description:
-              blank: "Para uma campanha existir ela tem que ter um propósio! Porque essa campanha é importante?"
+              blank: "Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?"
             image:
               blank: "Uma imagem vale mais que mil palavras... e é obrigatória para a campanha :)"
     attributes:
