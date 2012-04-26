@@ -7,6 +7,7 @@ gem 'thin'
 gem "foreigner"
 gem "slim"
 gem "slim-rails"
+gem "formtastic"
 
 gem 'omniauth'
 gem 'omniauth-oauth2'
