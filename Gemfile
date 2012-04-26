@@ -13,7 +13,7 @@ gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'inherited_resources'
 
-group :test do
+group :test, :development do
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'
