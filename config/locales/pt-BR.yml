@@ -214,11 +214,14 @@ pt-BR:
               blank: "Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?"
             image:
               blank: "Uma imagem vale mais que mil palavras... e é obrigatória para a campanha :)"
+            category:
+              blank: "Escolha o tema da sua campanha"
     attributes:
       campaign:
         name: "O que você quer mudar na sua cidade?"
         description: "Porque essa campanha é importante?"
         image: "Imagem da campanha"
+        category: "Qual o tema da sua campanha?"
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"

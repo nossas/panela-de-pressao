@@ -11,5 +11,5 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  validates :name, :description, :user_id, :image, :presence => true
+  validates :name, :description, :user_id, :image, :category_id, :presence => true
 end
