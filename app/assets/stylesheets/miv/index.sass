@@ -1,0 +1,37 @@
+@import 'columnal/grid'
+
+body
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
+  font-size: small
+  line-height: normal 
+
+img
+  background: gray
+
+h1
+  font-size: xx-large
+
+section
+  +grid-container
+  &.top
+    margin: 1em 0
+    .user
+      text-align: right
+      img
+        float: right
+        margin-left: 1em
+  header
+    +grid-row
+    .logo
+      +grid(6)
+    .user
+      +grid(6)
+      +last
+
+.alerts
+  .notice
+    +grid(12)
+  .alert
+    +grid(12)
+footer
+  +grid-container
