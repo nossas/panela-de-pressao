@@ -18,3 +18,7 @@ Campaign.blueprint do
   user { User.make! }
   image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
 end
+
+Category.blueprint do
+  name { "Categoria #{sn}" }
+end

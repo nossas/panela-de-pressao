@@ -1,32 +1,9 @@
 .container
   .row
     h1.twelvecol Nova campanha
-    = form_for @campaign, :html => { :multipart => true } do |form|
-
-      .twelvecol
-        = form.label :name
-      .twelvecol
-        - @campaign.errors[:name].each do |error|
-          = error
-      .twelvecol
-        = form.text_field :name
-
-      .twelvecol
-        = form.label :description
-      .twelvecol
-        - @campaign.errors[:description].each do |error| 
-          = error
-      .twelvecol
-        = form.text_area :description
-
-      .twelvecol
-        = form.label :image
-      .twelvecol
-        - @campaign.errors[:image].each do |error| 
-          = error
-      .twelvecol
-        = form.file_field :image
-        = form.hidden_field :image_cache
-
-      .twelvecol
-        = form.submit "Criar minha campanha"
+    = semantic_form_for @campaign do |f|
+      = f.inputs do
+        = f.input :name, :as => :string
+        = f.input :description
+        = f.input :image
+        = f.hidden_field :image_cache
