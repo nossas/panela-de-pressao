@@ -3,7 +3,7 @@ html
   head
     meta charset="utf-8"
     title= t "site.title" 
-    = stylesheet_link_tag "application", "1140", "ie"
+    = stylesheet_link_tag "application"
     = yield(:meta_tags)
     = csrf_meta_tag
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize data-action=controller.action_name.camelize
