@@ -7,6 +7,5 @@ db/schema.rb
 config/initializers/_env.rb
 *.swp
 .sass-cache/
-config/initializers/carrier_wave.rb
 config/initializers/01_envvars.rb
 public/uploads/
