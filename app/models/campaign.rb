@@ -3,6 +3,7 @@ class Campaign < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :organization
+  belongs_to :category
 
   default_scope order("accepted_at DESC")
 
