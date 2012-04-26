@@ -35,3 +35,4 @@ gem "jquery-rails"
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
 gem "cancan"
+gem "heroku"
