@@ -7,14 +7,14 @@ gem 'thin'
 gem "foreigner"
 gem "slim"
 gem "slim-rails"
-gem "formtastic"
+gem "formtastic", "~> 2.2.0"
 
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'inherited_resources'
 
-group :test, :development do
+group :test do
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'
