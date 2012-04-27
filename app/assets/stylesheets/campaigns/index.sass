@@ -1,15 +1,7 @@
-body[data-action=Index][data-controller-name=Campaigns]
-  .submenu
-    background: gray
-    padding-top: 1em
-    padding-bottom: 1em
-    margin-bottom: 2em
-    h1
-      float: left
-    a
-      float: right 
-  .threecol
-    margin-bottom: 1em
-    a
-      display: block
+@import 'columnal/grid'
 
+body[data-action=Index][data-controller-name=Campaigns]
+  .campaigns
+    +grid-row
+    .empty
+      +grid(12)

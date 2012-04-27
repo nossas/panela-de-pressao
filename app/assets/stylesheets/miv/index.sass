@@ -1,12 +1,10 @@
+@import 'compass/reset'
 @import 'columnal/grid'
 
 body
   font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
   font-size: small
   line-height: normal 
-
-img
-  background: gray
 
 h1
   font-size: xx-large
@@ -27,6 +25,7 @@ fieldset
       input,textarea
         +grid(5)
         +last
+
 section
   +grid-container
   &.top
@@ -44,10 +43,20 @@ section
       +grid(6)
       +last
 
+section.content
+  .title
+    +grid-row
+    margin-bottom: 2em
+    h1, .buttons
+      +grid(6)
+    .buttons
+      +last
+
 .alerts
   .notice
     +grid(12)
   .alert
     +grid(12)
+
 footer
   +grid-container

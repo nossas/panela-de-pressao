@@ -1,11 +1,8 @@
-.container.submenu
-  .row
-    .twelvecol
-      h1 Últimas Campanhas
-      = link_to "Crie a sua campanha", new_campaign_path
-.container
-  .row
-    - if @campaigns.empty?
-      .twelvecol Que isso? Nenhuma campanha?!
-    - else
-      = render @campaigns
+.title
+  h1 Últimas Campanhas
+  .buttons= link_to "Crie a sua campanha", new_campaign_path
+.campaigns
+  - if @campaigns.empty?
+    .no-campaigns Que isso? Nenhuma campanha?!
+  - else
+    = render @campaigns
