@@ -33,6 +33,10 @@ Given /^I attach an image to "([^"]*)"$/ do |arg1|
   attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
 end
 
+Given /^I select "([^"]*)" for "([^"]*)"$/ do |arg1, arg2|
+  select arg1, :from => arg2
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   page.should have_content(arg1)
 end
