@@ -222,6 +222,7 @@ pt-BR:
         description: "Porque essa campanha é importante?"
         image: "Imagem da campanha"
         category: "Qual o tema da sua campanha?"
+        influencers: "Alvos da campanha"
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"

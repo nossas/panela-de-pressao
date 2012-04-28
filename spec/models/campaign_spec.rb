@@ -12,6 +12,6 @@ describe Campaign do
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }
     it{ should validate_presence_of :image }
-    it{ should validate_presence_of :category_id }
+    it{ should validate_presence_of :category }
   end
 end
