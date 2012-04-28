@@ -1,1 +1,22 @@
-body[data-controller-class="CampaignsController"][data-action="New"]
+@import 'columnal/grid'
+
+body[data-controller-class="CampaignsController"][data-action="New"], body[data-controller-class="CampaignsController"]
+  form
+    +grid_row
+    overflow: visible
+    fieldset
+      +grid(8)
+      #campaign_influencers_input
+        overflow: visible
+        li
+          width: auto
+          margin-bottom: 0
+      label, input, textarea, .inline-errors
+        float: none
+        display: block
+      #campaign_submit_action, #campaign_cancel_action
+        display: inline
+      li
+        margin-bottom: 1.5em
+      .inline-errors
+        color: red

@@ -19,4 +19,4 @@
 //= require ./app.js
 //= require_tree ./app
 //= require ./init.js
-
+//= require chosen-jquery
