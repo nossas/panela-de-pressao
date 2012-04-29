@@ -223,6 +223,11 @@ pt-BR:
         image: "Imagem da campanha"
         category: "Qual o tema da sua campanha?"
         influencers: "Alvos da campanha"
+      influencer:
+        name: "Nome"
+        role: "Cargo"
+        twitter: "Usuário no Twitter"
+        facebook: "Link para página no Facebook"
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
