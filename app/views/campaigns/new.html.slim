@@ -9,7 +9,7 @@
     = f.input :image
     = f.hidden_field :image_cache
     = f.input :category
-    = f.input :influencers, :as => :select, :collection => Influencer.all, :input_html => {"data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width:350px;" }
+    = f.input :influencers, :as => :select, :collection => Influencer.all, :member_label => :to_s, :input_html => {"data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width:350px;" }
   = f.actions do
     = f.action :submit, label: "Enviar campanha para moderação", as: :button
     |  ou 
