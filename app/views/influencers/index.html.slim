@@ -12,5 +12,5 @@
           td= influencer.name
           td= influencer.role
           td= influencer.email
-          td= influencer.twitter
+          td= "@#{influencer.twitter}" if !influencer.twitter.blank?
           td= link_to "Facebook", influencer.facebook if !influencer.facebook.blank?
