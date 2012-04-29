@@ -8,9 +8,5 @@ class CreateInfluencers < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :influencers, :email, {:unique => true}
-    add_index :influencers, :twitter, {:unique => true}
-    add_index :influencers, :facebook, {:unique => true}
   end
 end

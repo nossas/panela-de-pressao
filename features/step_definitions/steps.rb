@@ -4,6 +4,8 @@ Given /^I'm in the ([^"]*)$/ do |arg1|
     visit campaigns_path
   when "new campaign page"
     visit new_campaign_path
+  when "influencers page"
+    visit influencers_path
   end
 end
 

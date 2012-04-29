@@ -1,0 +1,18 @@
+@import 'columnal/grid'
+
+body[data-controller-class="InfluencersController"]
+  .influencers
+    +grid_row
+    form
+      +grid(4)
+      label, input
+        display: block
+        float: none
+        width: auto
+      li
+        margin-bottom: 1.5em
+    table
+      +grid(8)
+      +last
+      td
+        padding: 0 .5em .5em 0
