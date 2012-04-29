@@ -3,6 +3,8 @@
 body[data-controller-class="InfluencersController"]
   .influencers
     +grid_row
+    h2
+      margin-bottom: 1em
     form
       +grid(4)
       label, input
@@ -11,8 +13,13 @@ body[data-controller-class="InfluencersController"]
         width: auto
       li
         margin-bottom: 1.5em
-    table
+    .list
       +grid(8)
       +last
-      td
-        padding: 0 .5em .5em 0
+      table
+        width: 100%
+        td
+          padding: .5em
+        tr
+          &:nth-child(odd)
+            background: #ccc

@@ -1,13 +1,16 @@
 .influencers
   = semantic_form_for @influencer do |f|
+    h2 Novo Influenciador
     = f.inputs :name, :role, :email, :twitter, :facebook
     = f.submit "Adicionar influenciador"
 
-  table
-    - Influencer.all.each do |influencer|
-      tr
-        td= influencer.name
-        td= influencer.role
-        td= influencer.email
-        td= influencer.twitter
-        td= link_to "Facebook", influencer.facebook if !influencer.facebook.blank?
+  .list
+    h2 Lista de Influenciadores
+    table
+      - Influencer.all.each do |influencer|
+        tr
+          td= influencer.name
+          td= influencer.role
+          td= influencer.email
+          td= influencer.twitter
+          td= link_to "Facebook", influencer.facebook if !influencer.facebook.blank?
