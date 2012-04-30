@@ -231,3 +231,8 @@ pt-BR:
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
+
+  email:
+    zero: "nenhum email"
+    one: "1 email"
+    other: "%{count} emails"

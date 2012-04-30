@@ -3,6 +3,7 @@ class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
   skip_load_and_authorize_resource :only => [:index, :create]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
+  before_filter :only => [:show] { @poke = Poke.new }
 
   def create
     create! do |success, failure|
