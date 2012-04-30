@@ -1,11 +1,15 @@
-Given /^I'm in the ([^"]*)$/ do |arg1|
+Given /^I'm in ([^"]*)$/ do |arg1|
   case arg1
-  when "campaigns page"
+  when "the campaigns page"
     visit campaigns_path
-  when "new campaign page"
+  when "the new campaign page"
     visit new_campaign_path
-  when "influencers page"
+  when "the influencers page"
     visit influencers_path
+  when "this campaign page"
+    visit campaign_path(@campaign)
+  else
+    raise "I don't know #{arg1}"
   end
 end
 
@@ -15,7 +19,7 @@ end
 
 
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
-  Campaign.make! name: arg1, accepted_at: Time.now
+  @campaign = Campaign.make! name: arg1, accepted_at: Time.now
 end
 
 
@@ -37,6 +41,10 @@ end
 
 Given /^I select "([^"]*)" for "([^"]*)"$/ do |arg1, arg2|
   select arg1, :from => arg2
+end
+
+Given /^there is a target with email for this campaign$/ do
+  Target.make! :campaign => @campaign
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
