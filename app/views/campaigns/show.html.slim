@@ -1,8 +1,12 @@
 #campaign
   .detail
-
     = image_tag @campaign.image.url, alt: @campaign.name
     h1= @campaign.name
     p= @campaign.description
   .action
-    
+    h2 Alvos da campanha
+    h2 Como você deseja pressionar os alvos dessa campanha?
+    = t "email", :count => @campaign.pokes.where(:kind => "email").count
+    = form_for [@campaign, @poke] do |f|
+      = f.hidden_field :kind, :value => "email"
+      = f.submit "Email"

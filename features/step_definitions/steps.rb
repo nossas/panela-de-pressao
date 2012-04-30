@@ -91,3 +91,6 @@ Then /^I should see the campaigns' ([^"]*)$/ do |arg|
   end  
 end
 
+Then /^an email should be sent$/ do
+  ActionMailer::Base.deliveries.should_not be_empty
+end

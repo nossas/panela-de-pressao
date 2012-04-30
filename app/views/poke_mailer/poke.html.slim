@@ -1,0 +1,4 @@
+= @poke.influencers.map{|i| i.name}.join(", ")
+p= raw @poke.campaign.description.gsub("\n", "<br />")
+p= link_to @poke.campaign.name, @poke.campaign
+p= "Atenciosamente, #{@poke.user.name}"

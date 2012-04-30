@@ -1,4 +1,4 @@
-ManifesteSe::Application.configure do
+,ManifesteSe::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -36,6 +36,7 @@ ManifesteSe::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :test
 
   # Enable threaded mode
   # config.threadsafe!

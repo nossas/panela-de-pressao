@@ -31,6 +31,10 @@ group :assets do
   gem "compass-columnal-plugin", "~> 0.1.1"
 end
 
+group :development do
+  gem "mailcatcher"
+end
+
 gem "jquery-rails"
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"

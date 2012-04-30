@@ -9,4 +9,10 @@ describe CampaignsController do
     it { should redirect_to campaigns_path }
     it { should set_the_flash.to "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
   end
+
+  describe "GET show" do
+    before { Campaign.stub(:find).and_return(stub_model(Campaign)) }
+    before { get :show, :id => "1" }
+    it { should assign_to(:poke) }
+  end
 end
