@@ -1,3 +1,7 @@
-= @campaign.name
-= @campaign.description
-= image_tag @campaign.image.url, size: "200x200", alt: @campaign.name
+#campaign
+  .detail
+    = image_tag @campaign.image.url, size: "200x200", alt: @campaign.name
+    = @campaign.name
+    = @campaign.description
+  .action
+    
