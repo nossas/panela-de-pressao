@@ -10,12 +10,12 @@ Given /^I'm in the ([^"]*)$/ do |arg1|
 end
 
 Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, arg2|
-  Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
+  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
 end
 
 
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
-  Campaign.make! name: arg1, accepted_at: Time.now
+  @campaign = Campaign.make! name: arg1, accepted_at: Time.now
 end
 
 
@@ -71,3 +71,15 @@ Then /^I should be in the ([^"]*)$/ do |arg1|
     page.current_path.should be_== new_session_path
   end
 end
+
+Then /^I should see the campaigns' ([^"]*)$/ do |arg|
+  case arg
+  when "name"
+    page.should have_content(@campaign.name)
+  when "description"
+    page.should have_content(@campaign.description)
+  when "image"
+    page.should have_xpath("//img[@src='#{@campaign.image.url}']")
+  end  
+end
+
