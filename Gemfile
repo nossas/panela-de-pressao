@@ -2,17 +2,31 @@ source 'http://rubygems.org'
 
 gem 'rails', '>= 3.2'
 
+# Tools
 gem 'pg'
 gem 'thin'
 gem "foreigner"
+gem 'inherited_resources'
 gem "slim"
 gem "slim-rails"
 gem "formtastic", "~> 2.2.0"
 
+# Image uplaod
+gem 'carrierwave'
+gem 'mini_magick'
+
+# Authentication
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
-gem 'inherited_resources'
+
+gem "jquery-rails"
+gem "fog", "~> 1.3.1"
+gem "cancan"
+gem "heroku"
+gem 'chosen-rails'
+gem 'coffee-rails'
+
 
 group :test do
   gem 'cucumber-rails'
@@ -31,10 +45,3 @@ group :assets do
   gem "compass-columnal-plugin", "~> 0.1.1"
 end
 
-gem "jquery-rails"
-gem 'carrierwave'
-gem "fog", "~> 1.3.1"
-gem "cancan"
-gem "heroku"
-gem 'chosen-rails'
-gem 'coffee-rails'
