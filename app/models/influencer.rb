@@ -6,6 +6,6 @@ class Influencer < ActiveRecord::Base
   validates :name, :role, :presence => true
 
   def to_s
-    "#{self.name} (#{self.role})"
+    "#{self.name}, #{self.role}"
   end
 end
