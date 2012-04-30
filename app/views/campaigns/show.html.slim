@@ -1,1 +1,8 @@
-| # under construction...
+#campaign
+  .detail
+
+    = image_tag @campaign.image.url, alt: @campaign.name
+    h1= @campaign.name
+    p= @campaign.description
+  .action
+    
