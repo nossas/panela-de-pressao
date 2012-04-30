@@ -1,0 +1,14 @@
+@import 'columnal/grid'
+
+body[data-controller-class="CampaignsController"][data-action="Show"]
+  #campaign
+    +grid_row
+    .detail, .action
+      background: #dedede
+    .detail
+      +grid(8)
+    .action
+      height: 20px
+      +grid(4)
+      +last
+
