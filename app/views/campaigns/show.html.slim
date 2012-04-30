@@ -1,7 +1,8 @@
 #campaign
   .detail
-    = image_tag @campaign.image.url, size: "200x200", alt: @campaign.name
-    = @campaign.name
-    = @campaign.description
+
+    = image_tag @campaign.image.url, alt: @campaign.name
+    h1= @campaign.name
+    p= @campaign.description
   .action
     
