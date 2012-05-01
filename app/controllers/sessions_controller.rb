@@ -1,6 +1,5 @@
+# coding: utf-8
 class SessionsController < ApplicationController
-  #skip_authorization_check
-
   def create
     unless @auth = Authorization.find_from_hash(auth_data)
       # Create a new user or add an auth to existing user, depending on
@@ -10,7 +9,13 @@ class SessionsController < ApplicationController
 
     # Log the authorizing user in.
     self.current_user = @auth.user
-    redirect_to session[:restore_url] || root_path
+
+    if session[:poke]
+      poke = Poke.create session.delete(:poke).merge(:user_id => current_user.id)
+      redirect_to poke.campaign, :notice => "Agora sim, pressão neles!"
+    else
+      redirect_to session[:restore_url] || root_path
+    end
   end
 
   def destroy

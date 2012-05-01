@@ -5,6 +5,7 @@ class Ability
     can :read, Campaign
     if !user.nil?
       can :create, Campaign
+      can :create, Poke
     end
 
     # Define abilities for the passed in user here. For example:

@@ -231,6 +231,7 @@ pt-BR:
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
+      poke: "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
 
   email:
     zero: "nenhum email"
