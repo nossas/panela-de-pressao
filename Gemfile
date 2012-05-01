@@ -19,6 +19,7 @@ gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 gem "jquery-rails"
 gem "fog", "~> 1.3.1"
