@@ -10,7 +10,7 @@ html
     section.top
       header
         .logo
-          = image_tag ""
+          h2=link_to "Seu Rio", root_path
         .user
           - if current_user
             = image_tag current_user.picture, size: "50x50", alt: "Avatar"
@@ -26,4 +26,4 @@ html
       = yield
     footer
 
-  = javascript_include_tag "application"
+    = javascript_include_tag "application"
