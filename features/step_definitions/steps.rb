@@ -36,7 +36,11 @@ Given /^I'm logged in$/ do
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
-  attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
+  if arg1 == "Imagem da campanha"
+    attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
+  elsif arg1 == "Avatar"
+    attach_file arg1, File.dirname(__FILE__) + "/../support/influencer.jpg"
+  end
 end
 
 Given /^I select "([^"]*)" for "([^"]*)"$/ do |arg1, arg2|

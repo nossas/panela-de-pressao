@@ -7,6 +7,7 @@ Feature: Add new influencers
     Given I'm in the influencers page
     And I fill "Nome" with "Eduardo Paes"
     And I fill "Cargo" with "Prefeito"
+    And I attach an image to "Avatar"
     And I fill "Email" with "eduardopaes@meurio.org.br"
     And I fill "Twitter" with "eduardopaes_"
     And I fill "Facebook" with "eduardopaesRJ"

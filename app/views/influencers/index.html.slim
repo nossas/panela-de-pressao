@@ -2,6 +2,7 @@
   = semantic_form_for @influencer do |f|
     h2 Novo Influenciador
     = f.inputs :name, :role, :email, :twitter, :facebook
+    = f.input :avatar, :as => :file
     = f.submit "Adicionar influenciador"
 
   .list
@@ -9,6 +10,7 @@
     table
       - Influencer.all.each do |influencer|
         tr
+          td= image_tag influencer.avatar
           td= influencer.name
           td= influencer.role
           td= influencer.email
