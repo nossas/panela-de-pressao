@@ -5,3 +5,8 @@ pt-BR:
       description: "Lance sua campanha"
       keywords: "random, keywords, for, a, while"
       author: "Meu Rio - contato@meurio.org.br"
+  campaign:
+    time:
+      created_at: "Criado em %{time}"
+      updated_at: "Atualizado há %{time} atrás"
+
