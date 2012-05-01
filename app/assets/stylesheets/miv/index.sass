@@ -1,17 +1,35 @@
 @import 'compass/reset'
 @import 'columnal/grid'
 @import 'chosen'
+@import 'colors'
 
 body
   font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
   font-size: small
   line-height: normal 
+  background: url("http://www.3quarks.com/images/backgrounds/Texture0203.jpg")
 
 h1
   font-size: xx-large
+  font-family: 'Londrina Solid', cursive
+  color: gray
+  letter-spacing: .1em
 
 h2
   font-size: x-large
+
+a
+  color: $blue
+
+a[href="/auth/meurio"], a[href="/auth/facebook"]
+  text-decoration: none
+  font-weight: bold
+
+a[href="/auth/meurio"]
+  color: $mr_green
+
+a[href="/auth/facebook"]
+  color: $fb_blue
 
 fieldset
   ol
@@ -38,21 +56,33 @@ section
         margin-left: 1em
   header
     +grid-row
+    img
+      margin: 0
     .logo
       +grid(6)
+      img
+        width: 50px
+        float: left
     .user
       +grid(6)
       +last
+      img
+        border: 1px solid $yellow
 
 section.content
   .title
     +grid-row
     margin-bottom: 2em
+    padding-bottom: 1em
+    border-bottom: 1px dashed gray
     h1, .buttons
       +grid(6)
     .buttons
       +last
       text-align: right
+
+footer
+  +grid-container
 
 .alerts
   .notice
@@ -60,11 +90,25 @@ section.content
   .alert
     +grid(12)
 
-footer
-  +grid-container
-
 .row
   +grid_row
       
 .inline-errors
   color: red
+
+.btn
+  background: lighten($green, 20%)
+  +background-image(linear-gradient(lighten($green, 20%), $green))
+  color: white
+  text-decoration: none
+  padding: .5em
+  display: inline-block
+  text-transform: uppercase
+  font-weight: bold
+  border: 1px solid $green
+  +box-shadow(lighten($green, 40%) 0 1px 1px inset, gray 0 1px 1px)
+  +text-shadow(darken($green, 20%) 0 -1px 1px)
+  +border-radius(.25em)
+  &:active
+    margin-top: 1px
+    +box-shadow(lighten($green, 40%) 0 1px 1px inset)

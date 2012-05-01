@@ -1,6 +1,7 @@
 .campaign class="#{(@campaigns.index(campaign)+1) % 4 == 0 ? "last" : ""}"
-  = image_tag campaign.image
-  = link_to campaign.name, campaign
-  small por #{campaign.user.name}
+  .campaign_details
+    = image_tag campaign.image
+    = link_to campaign.name, campaign
+    small por #{campaign.user.name}
 - if (@campaigns.index(campaign)+1) % 4 == 0
   .clear
