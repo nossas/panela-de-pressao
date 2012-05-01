@@ -26,3 +26,10 @@ Feature: Poke targets by email
     Then I should see "1 email"
     And an email should be sent
     And I should see "Agora sim, pressão neles!"
+
+  @omniauth_test
+  Scenario: when there is no email to target
+    Given I'm logged in
+    And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
+    When I'm in this campaign page
+    Then I should not see "nenhum email"
