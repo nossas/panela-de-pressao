@@ -15,11 +15,12 @@
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
     .text
       p
-        = @campaign.description
+        = raw @campaign.description.gsub("\n", "<br />")
   .action
     h2 Alvos da campanha
     h2 Como você deseja pressionar os alvos dessa campanha?
-    = t "email", :count => @campaign.pokes.where(:kind => "email").count
-    = form_for [@campaign, @poke] do |f|
-      = f.hidden_field :kind, :value => "email"
-      = f.submit "Email"
+    - if !@campaign.influencers.where("email IS NOT NULL").empty?
+      = t "email", :count => @campaign.pokes.where(:kind => "email").count
+      = form_for [@campaign, @poke] do |f|
+        = f.hidden_field :kind, :value => "email"
+        = f.submit "Email"
