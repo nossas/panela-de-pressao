@@ -19,10 +19,11 @@ html
             p= link_to "Sair", session_path(current_user.id), :method => :delete
           - else
             | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
-    section.alerts
+    section
       .row
-        .notice= notice
-        .alert= alert
+        .alerts
+          .notice= notice
+          .alert= alert
     section.content
       = yield
     footer

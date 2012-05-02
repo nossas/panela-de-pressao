@@ -14,12 +14,14 @@ h1
   font-family: 'Londrina Solid', cursive
   color: gray
   letter-spacing: .1em
+  +text-shadow(white 0 1px 1px)
 
 h2
   font-size: x-large
   font-family: 'Londrina Solid', cursive
   color: gray
   letter-spacing: .1em
+  +text-shadow(white 0 1px 1px)
 
 a
   color: $blue
@@ -98,10 +100,16 @@ input[type="text"], input[type="email"], textarea
     background: lighten($yellow, 35%)
 
 .alerts
+  +grid(12)
+  margin-bottom: 1em
+  color: gray
+  +text-shadow(white 0 1px 1px)
   .notice
-    +grid(12)
+    padding-left: 20px
+    background: url("http://icons.iconarchive.com/icons/pixelmixer/basic/16/tick-icon.png") left no-repeat
   .alert
-    +grid(12)
+    padding-left: 20px
+    background: url("http://icons.iconarchive.com/icons/pixelmixer/basic/16/block-icon.png") left no-repeat
 
 .row
   +grid_row
@@ -109,19 +117,29 @@ input[type="text"], input[type="email"], textarea
 .inline-errors
   color: red
 
-.btn
-  background: lighten($green, 20%)
-  +background-image(linear-gradient(lighten($green, 20%), $green))
+@mixin btn($color)
+  background: lighten($color, 20%)
+  +background-image(linear-gradient(lighten($color, 20%), $color))
   color: white
   text-decoration: none
   padding: .5em
   display: inline-block
   text-transform: uppercase
   font-weight: bold
-  border: 1px solid $green
-  +box-shadow(lighten($green, 40%) 0 1px 1px inset, gray 0 1px 1px)
-  +text-shadow(darken($green, 20%) 0 -1px 1px)
+  border: 1px solid $color
+  +box-shadow(lighten($color, 40%) 0 1px 1px inset, gray 0 1px 1px)
+  +text-shadow(darken($color, 20%) 0 -1px 1px)
   +border-radius(.25em)
   &:active
-    margin-top: 1px
-    +box-shadow(lighten($green, 40%) 0 1px 1px inset)
+    position: relative
+    top: 1px
+    +box-shadow(lighten($color, 40%) 0 1px 1px inset)
+
+.btn
+  +btn($green)
+
+.btn_fb
+  +btn($fb_blue)
+
+.btn_mr
+  +btn($mr_green)
