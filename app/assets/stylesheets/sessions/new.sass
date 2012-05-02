@@ -1,0 +1,23 @@
+@import 'columnal/grid'
+
+body[data-action="New"][data-controller-name="Sessions"]
+  a[href="/auth/meurio"]
+    color: white
+  
+  a[href="/auth/facebook"]
+    color: white
+  
+  .user
+    display: none
+  
+  .row
+    overflow: visible
+    .login_buttons
+      +grid(12)
+      text-align: center
+
+  .alerts
+    font-size: x-large
+    text-align: center
+    .notice, .alert
+      background: none
