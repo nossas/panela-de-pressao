@@ -11,6 +11,6 @@
     = f.input :category
     = f.input :influencers, :as => :select, :collection => Influencer.all, :member_label => :to_s, :input_html => {"data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width:350px;" }
   = f.actions do
-    = f.action :submit, label: "Enviar campanha para moderação", as: :button
+    = f.action :submit, label: "Enviar campanha para moderação", as: :button, button_html: {class: "btn"}
     |  ou 
     = f.action :cancel, label: "Cancelar", as: :link
