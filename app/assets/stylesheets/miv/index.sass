@@ -87,6 +87,16 @@ section.content
 footer
   +grid-container
 
+input[type="text"], input[type="email"], textarea
+  font-size: medium
+  border: none
+  padding: .5em
+  +border-radius(.25em)
+  +box-shadow(gray 0 1px 1px inset)
+  &:focus
+    outline: none
+    background: lighten($yellow, 35%)
+
 .alerts
   .notice
     +grid(12)
