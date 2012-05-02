@@ -234,6 +234,6 @@ pt-BR:
       poke: "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
 
   email:
-    zero: "nenhum email"
-    one: "1 email"
-    other: "%{count} emails"
+    zero: "nenhum email foi enviado ainda"
+    one: "<span class='counter'>1</span> email já foi enviado"
+    other: "<span class='counter'>%{count}</span> emails já foram enviados"

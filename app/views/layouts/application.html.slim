@@ -22,8 +22,10 @@ html
     section
       .row
         .alerts
-          .notice= notice
-          .alert= alert
+          - if notice
+            .notice= notice
+          - if alert
+            .alert= alert
     section.content
       = yield
     footer
