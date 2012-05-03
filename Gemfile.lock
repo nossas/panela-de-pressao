@@ -59,7 +59,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-columnal-plugin (0.1.1)
+    compass-columnal-plugin (0.1.2)
       compass (>= 0.10.0)
     compass-rails (1.0.1)
       compass (~> 0.12.0)
@@ -222,7 +222,7 @@ GEM
       rspec (~> 2.9.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.7)
-    sass (3.1.15)
+    sass (3.1.16)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -280,7 +280,7 @@ DEPENDENCIES
   carrierwave
   chosen-rails
   coffee-rails
-  compass-columnal-plugin (~> 0.1.1)
+  compass-columnal-plugin (~> 0.1.2)
   compass-rails
   cucumber-rails
   database_cleaner

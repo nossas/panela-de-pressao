@@ -1,16 +1,38 @@
-.title
-  h1 Nova Campanha
-  .buttons
-
-= semantic_form_for @campaign do |f|
-  = f.inputs do
-    = f.input :name, :as => :string
-    = f.input :description
-    = f.input :image
-    = f.hidden_field :image_cache
-    = f.input :category
-    = f.input :influencers, :as => :select, :collection => Influencer.all, :member_label => :to_s, :input_html => {"data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width:350px;" }
-  = f.actions do
-    = f.action :submit, label: "Enviar campanha para moderação", as: :button, button_html: {class: "btn"}
-    |  ou 
-    = f.action :cancel, label: "Cancelar", as: :link
+.new_campaign
+  .motivate
+    .image= image_tag "http://www.citypictures.net/data/media/175/Rio_de_Janeiro_Corcovado_panorama_2_brazil.jpg"
+    .text
+      p Juntos, estamos mudando o jeito que o mundo funciona. Trazendo a política das pessoas empoderadas para pressionar assuntos diversos do Rio de Janeiro.
+      p Esta é sua chance de criar e compartilhar uma campanha sobre um assunto que é importante para você, e vencer. Pode ser no seu quintal, vizinhança ou cidade.
+      p E você não precisa de experiência ou conhecimento. Você simplesmente precisa saber porquê é importante. Todo o restante nós podemos lhe ajudar a aprender ao longo do caminho.
+      p Equipe Seu Rio ;)
+  .form
+    = form_for @campaign do |f|
+      h1 Comece a sua petição
+      ol
+        li.field_row
+          = f.label :name
+          .field.name
+            .field_bg= f.text_field :name
+          .inline-errors= @campaign.errors[:name].join(", ")
+        li.field_row
+          = f.label :description
+          .field.description
+            .field_bg= f.text_area :description
+          .inline-errors= @campaign.errors[:description].join(", ")
+        li.field_row
+          = f.label :image
+          .field
+            = f.file_field :image
+            .inline-errors= @campaign.errors[:image].join(", ")
+          = f.hidden_field :image_cache
+        li.field_row
+          = f.label :category
+          .field
+            = f.select :category, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
+            .inline-errors= @campaign.errors[:category].join(", ")
+        li.field_row.influencers
+          = f.label :influencers
+          .field.influencers= f.select :influencers, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+        li.field_row
+          .action= f.submit "Enviar campanha para moderação", :class => "btn"

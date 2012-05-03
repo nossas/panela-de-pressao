@@ -38,24 +38,12 @@ a[href="/auth/meurio"]
 a[href="/auth/facebook"]
   color: $fb_blue
 
-fieldset
-  ol
-    list-style: none
-    padding: 0
-    margin: 0
-    li
-      +grid-row
-      list-style: none
-      label
-        +grid(5)
-      input,textarea
-        +grid(5)
-        +last
-
 section
   +grid-container
   &.top
-    margin: 1em 0
+    padding: 1em 0
+    margin-bottom: 1em
+    background: rgba(gray, .15)
     .user
       text-align: right
       img
