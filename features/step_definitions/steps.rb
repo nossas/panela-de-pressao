@@ -47,8 +47,8 @@ Given /^I select "([^"]*)" for "([^"]*)"$/ do |arg1, arg2|
   select arg1, :from => arg2
 end
 
-Given /^there is a target with email for this campaign$/ do
-  Target.make! :campaign => @campaign
+Given /^there is a target for this campaign$/ do
+  @target = Target.make! :campaign => @campaign
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
@@ -97,4 +97,8 @@ end
 
 Then /^an email should be sent$/ do
   ActionMailer::Base.deliveries.should_not be_empty
+end
+
+Then /^an email poke should be added to the target$/ do
+  @target.reload.pokes_by_email.should be_== 1
 end

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
     if session[:poke]
       poke = Poke.create session.delete(:poke).merge(:user_id => current_user.id)
-      redirect_to poke.campaign, :notice => "Agora sim, pressão neles!"
+      redirect_to poke.campaign, :notice => "Agora sim, seu email foi enviado aos alvos da campanha! Pressão neles!"
     else
       redirect_to session[:restore_url] || root_path
     end
