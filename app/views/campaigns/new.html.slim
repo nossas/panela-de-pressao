@@ -32,7 +32,7 @@
             = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
             .inline-errors= @campaign.errors[:category].join(", ")
         li.field_row.influencers
-          = f.label :influencers
-          .field.influencers= f.select :influencers, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+          = f.label :influencer_ids
+          .field.influencers= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
         li.field_row
           .action= f.submit "Enviar campanha para moderação", :class => "btn"
