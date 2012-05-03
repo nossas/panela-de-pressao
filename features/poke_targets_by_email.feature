@@ -7,17 +7,18 @@ Feature: Poke targets by email
   Scenario: when I'm logged in
     Given I'm logged in
     And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
-    And there is a target with email for this campaign
+    And there is a target for this campaign
     And I'm in this campaign page
     When I press "Email"
-    Then I should see "1 email"
+    Then I should see "1 email já foi enviado"
     And an email should be sent
-    And I should see "Pressão neles!"
+    And an email poke should be added to the target
+    And I should see "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
 
   @omniauth_test
   Scenario: when I'm not logged in
     Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
-    And there is a target with email for this campaign
+    And there is a target for this campaign
     And I'm in this campaign page
     When I press "Email"
     Then I should be in the login page
@@ -25,7 +26,8 @@ Feature: Poke targets by email
     When I click "Entrar via Facebook"
     Then I should see "1 email"
     And an email should be sent
-    And I should see "Agora sim, pressão neles!"
+    And an email poke should be added to the target
+    And I should see "Agora sim, seu email foi enviado aos alvos da campanha! Pressão neles!"
 
   @omniauth_test
   Scenario: when there is no email to target

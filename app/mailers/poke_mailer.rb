@@ -4,7 +4,7 @@ class PokeMailer < ActionMailer::Base
   def poke(the_poke)
     @poke = the_poke
     mail(
-      :to => the_poke.influencers.map{|i| "\"#{i.name}\" <#{i.email}>"}, 
+      :to => the_poke.campaign.targets.map{|t| "\"#{t.influencer.name}\" <#{t.influencer.email}>"}, 
       :subject => the_poke.campaign.name,
       :from => "\"#{the_poke.user.name}\" <#{the_poke.user.email}>"
     )
