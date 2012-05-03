@@ -8,14 +8,20 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 #   Transporte público
 [
-  'Educação',
-  'Saúde',
-  'Segurança pública',
-  'Meio ambiente',
-  'Esportes e lazer',
-  'Cultura',
-  'Conservação',
-  'Turismo'
+  "Indústria, Comércio e Emprego",
+  "Ciência e Tecnologia",
+  "Direitos Humanos",
+  "Educação",
+  "Esportes, Lazer e Cultura",
+  "Orçamento e Fiscalização Financeira",
+  "Saúde e Drogas",
+  "Crianças e adolescentes",
+  "Pessoas de terceira idade",
+  "Meio Ambiente e Direitos dos Animais",
+  "Defesa do Consumidor",
+  "Obras Públicas e Infraestrutura",
+  "Transportes e Trânsito",
+  "Turismo"
 ].each do |category|
   Category.create! :name => category
 end
