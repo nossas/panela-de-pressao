@@ -4,6 +4,6 @@ class Target < ActiveRecord::Base
   belongs_to :campaign
   
   def increase_pokes_by_email
-    self.update_attributes(:pokes_by_email => self.pokes_by_email + 1) if !self.influencer.email.blank?
+    self.update_attributes(:pokes_by_email => self.pokes_by_email.to_i + 1) if !self.influencer.email.blank?
   end
 end
