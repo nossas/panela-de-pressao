@@ -11,9 +11,13 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
         span
           font-weight: bold
           font-style: normal
-      img
-        border: 5px white solid
-        +border-radius(0)
+      .image
+        background: white
+        padding: .5em
+        margin-bottom: 1em
+        img
+          +border-radius(0)
+          margin: 0
     .action
       +grid(4)
       +last
