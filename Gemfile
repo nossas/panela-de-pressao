@@ -43,7 +43,7 @@ end
 group :assets do
   gem "sass-rails"
   gem "compass-rails"
-  gem "compass-columnal-plugin", "~> 0.1.1"
+  gem "compass-columnal-plugin", "~> 0.1.2"
 end
 
 group :development do
