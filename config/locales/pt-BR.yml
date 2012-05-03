@@ -222,7 +222,7 @@ pt-BR:
         description: "Porque essa campanha é importante?"
         image: "Imagem da campanha"
         category_id: "Qual o tema da sua campanha?"
-        influencers: "Alvos da campanha"
+        influencer_ids: "Alvos da campanha"
       influencer:
         name: "Nome"
         role: "Cargo"
