@@ -1,18 +1,16 @@
 #campaign
   .detail
-    .category
-      = @campaign.category.name
-    .name  
-      h1
-        = @campaign.name
-    .user
-      .name
-        = @campaign.user.name
-      .timestamp
-        = t 'campaign.time.created_at', time: @campaign.created_at.strftime("%d %B %Y")
-        = t 'campaign.time.updated_at', time: time_ago_in_words(@campaign.updated_at)
-    .image  
-      = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+    h1= @campaign.name
+    .info
+      | Uma campanha sobre 
+      span= @campaign.category.name
+      | , por 
+      span= @campaign.user.name
+      | , criada em 
+      span= l @campaign.created_at, :format => :short
+      |  e atualizada há 
+      span= time_ago_in_words(@campaign.updated_at)
+    .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
     .text
       p
         = raw @campaign.description.gsub("\n", "<br />")
