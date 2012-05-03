@@ -221,7 +221,7 @@ pt-BR:
         name: "O que você quer mudar na sua cidade?"
         description: "Porque essa campanha é importante?"
         image: "Imagem da campanha"
-        category: "Qual o tema da sua campanha?"
+        category_id: "Qual o tema da sua campanha?"
         influencers: "Alvos da campanha"
       influencer:
         name: "Nome"

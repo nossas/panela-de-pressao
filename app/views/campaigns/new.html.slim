@@ -27,9 +27,9 @@
             .inline-errors= @campaign.errors[:image].join(", ")
           = f.hidden_field :image_cache
         li.field_row
-          = f.label :category
+          = f.label :category_id
           .field
-            = f.select :category, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
+            = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
             .inline-errors= @campaign.errors[:category].join(", ")
         li.field_row.influencers
           = f.label :influencers
