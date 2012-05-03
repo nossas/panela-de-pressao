@@ -1,27 +1,43 @@
 @import 'columnal/grid'
 
 body[data-controller-class="CampaignsController"][data-action="Show"]
-  #campaign
-    +grid_row
-    .detail
-      +grid(8)
-      .info
-        font-style: italic
-        margin-bottom: 1em
-        span
-          font-weight: bold
-          font-style: normal
-      .image
-        background: white
-        padding: .5em
-        margin-bottom: 1em
-        img
-          +border-radius(0)
-          margin: 0
-    .action
-      +grid(4)
+#campaign
+  +grid_row
+  .detail
+    +grid(8)
+    .navigation
+      +grid(9)
+    .category
+      +grid(3)
       +last
-      img
-        margin: 0 1em 1em 0
-      span.counter
+      text-align: right
+    .headline
+      font-size: x-small
+      line-height: 2.3em
+      .user
+        img
+          float: left
+          margin-right: 5px
+        +grid(5)
+      .time
+        +grid(7)
+        +last
+        text-align: right
+    .info
+      font-style: italic
+      margin-bottom: 1em
+      span
         font-weight: bold
+        font-style: normal
+    .image
+      margin-bottom: 1em
+      img
+        border: 4px solid white
+        +border-radius(0)
+  .action
+    +grid(4)
+    +last
+    img
+      margin: 0 1em 1em 0
+    span.counter
+      font-weight: bold

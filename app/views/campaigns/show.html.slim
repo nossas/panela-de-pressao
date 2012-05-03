@@ -1,19 +1,28 @@
 #campaign
   .detail
-    h1= @campaign.name
-    .info
-      | Uma campanha sobre 
-      span= @campaign.category.name
-      | , por 
-      span= @campaign.user.name
-      | , criada em 
-      span= l @campaign.created_at, :format => :short
-      |  e atualizada há 
-      span= time_ago_in_words(@campaign.updated_at)
-    .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+    .breadcrumb
+      .navigation
+        | Início > Campanhas
+      .category
+        = @campaign.category.name
+    h1.name
+      = @campaign.name
+    .headline
+      .user
+        = image_tag @campaign.user.picture, size: "20x20"
+        = @campaign.user.name
+      .time= t 'campaign.headline_html', date: l(@campaign.created_at, format: :short), time: time_ago_in_words(@campaign.updated_at)
+    .image
+      = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
     .text
-      p
-        = raw @campaign.description.gsub("\n", "<br />")
+      p= raw @campaign.description.gsub("\n", "<br />")
+
+
+
+
+
+
+
   .action
     h2 Alvos da campanha
     - @campaign.influencers.each do |influencer|
