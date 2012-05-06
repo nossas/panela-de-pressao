@@ -17,12 +17,6 @@
     .text
       p= raw @campaign.description.gsub("\n", "<br />")
 
-
-
-
-
-
-
   .action
     h2 Alvos da campanha
     - @campaign.influencers.each do |influencer|

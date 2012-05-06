@@ -35,6 +35,8 @@ describe Authorization do
       its(:uid) { should == mr['uid'] }
       its(:provider) { should == mr['provider'] }
       its(:user) { should == @user }
+      its(:token) { should == mr['credentials']['token'] }
+      its(:secret) { should == mr['credentials']['secret'] }
     end
     context "When the user doesn't exists, create one" do
       mr = MEURIO_HASH
@@ -42,6 +44,8 @@ describe Authorization do
       its(:uid) { should == mr['uid'] }
       its(:provider) { should == mr['provider'] }
       its(:user) { should_not == nil }
+      its(:token) { should == mr['credentials']['token'] }
+      its(:secret) { should == mr['credentials']['secret'] }
     end
   end
 end
