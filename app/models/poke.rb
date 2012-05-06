@@ -1,6 +1,7 @@
 class Poke < ActiveRecord::Base
   attr_accessible :campaign_id, :kind, :user_id
   after_create :send_email, :if => Proc.new {self.email?}
+  after_create :send_tweet, :if => Proc.new {self.twitter?}
   after_create :update_targets
   belongs_to :campaign
   belongs_to :user
@@ -18,6 +19,9 @@ class Poke < ActiveRecord::Base
   private
   def send_email
     PokeMailer.poke(self).deliver
+  end
+
+  def send_tweet
   end
 
   def update_targets
