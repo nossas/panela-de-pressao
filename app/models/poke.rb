@@ -7,6 +7,10 @@ class Poke < ActiveRecord::Base
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
 
+  def twitter?
+    self.kind == 'twitter'
+  end
+
   def email?
     self.kind == "email"
   end
