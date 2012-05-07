@@ -22,6 +22,7 @@ class Poke < ActiveRecord::Base
   end
 
   def send_tweet
+    Twitter.update("test tweet")
   end
 
   def update_targets
