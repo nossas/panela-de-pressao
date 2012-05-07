@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
     end
 
     if session[:poke]
+      return redirect_to '/auth/twitter' unless twitter_auth
       redirect_to create_from_session_campaign_pokes_path(:campaign_id => session[:poke][:campaign_id])
     else
       redirect_to session[:restore_url] || root_path

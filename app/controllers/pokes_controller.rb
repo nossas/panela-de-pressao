@@ -7,17 +7,13 @@ class PokesController < InheritedResources::Base
     session[:poke] = params[:poke].merge(:campaign_id => params[:campaign_id]) if current_user.nil? && params[:poke]
   end
 
-  before_filter do
-    params[:poke] ||= {}
-    params[:poke][:user_id] = current_user.id
-  end
-  
   def create_from_session
     params[:poke] = session.delete(:poke)
     create
   end
 
   def create
+    @poke = Poke.new params[:poke].merge(:user_id => current_user.id, :campaign_id => params[:campaign_id])
     create! do |success, failure|
       success.html { redirect_to @campaign, :notice => "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!" }
     end
