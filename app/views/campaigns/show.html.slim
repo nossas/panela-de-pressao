@@ -31,7 +31,8 @@
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "twitter"
         = f.submit "Via Twitter", :class => "btn_twitter"
-        |  | Em breve!
+        |  | 
+        = raw(t "twitter", :count => @campaign.pokes.where(:kind => "twitter").count)
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "facebook"
         = f.submit "Via Facebook", :class => "btn_fb", :disabled => true
