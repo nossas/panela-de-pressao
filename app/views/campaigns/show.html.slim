@@ -1,3 +1,9 @@
+- content_for :meta_tags do
+  meta property="og:title" content=@campaign.name
+  meta property="og:image" content=@campaign.image.url
+  meta property="og:url" content=campaign_url(@campaign)
+  meta property="og:description" content=@campaign.description
+
 #campaign
   .detail
     .breadcrumb
@@ -16,13 +22,6 @@
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
     .text
       p= raw @campaign.description.gsub("\n", "<br />")
-
-
-
-
-
-
-
   .action
     h2 Alvos da campanha
     - @campaign.influencers.each do |influencer|
@@ -40,5 +39,6 @@
         |  | Em breve!
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "facebook"
-        = f.submit "Via Facebook", :class => "btn_fb", :disabled => true
-        |  | Em breve!
+        = f.submit "Via Facebook", :class => "btn_fb"
+        |  | 
+        = raw(t "facebook", :count => @campaign.pokes.where(:kind => "facebook").count)

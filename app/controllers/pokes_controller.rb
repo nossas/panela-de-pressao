@@ -6,7 +6,10 @@ class PokesController < InheritedResources::Base
   def create
     resource.user = current_user
     create! do |success, failure|
-      success.html { redirect_to @campaign, :notice => "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!" }
+      success.html do
+        redirect_to @campaign, :notice => "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!" if resource.email?
+        redirect_to @campaign, :notice => "Uma nova mensagem foi postada no seu mural do Facebook, é isso aí! Pressão neles!" if resource.facebook?
+      end
     end
   end
 end

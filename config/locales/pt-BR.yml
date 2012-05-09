@@ -237,3 +237,7 @@ pt-BR:
     zero: "nenhum email foi enviado ainda"
     one: "<span class='counter'>1</span> email já foi enviado"
     other: "<span class='counter'>%{count}</span> emails já foram enviados"
+  facebook:
+    zero: "ninguém compartilhou ainda"
+    one: "<span class='counter'>1</span> pessoa já compartilhou"
+    other: "<span class='counter'>%{count}</span> pessoas já compartilharam"

@@ -12,7 +12,7 @@ Feature: Poke targets by email
     When I press "Email"
     Then I should see "1 email já foi enviado"
     And an email should be sent
-    And an email poke should be added to the target
+    And a email poke should be added to the target
     And I should see "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
 
   @omniauth_test
@@ -26,7 +26,7 @@ Feature: Poke targets by email
     When I click "Entrar via Facebook"
     Then I should see "1 email"
     And an email should be sent
-    And an email poke should be added to the target
+    And a email poke should be added to the target
     And I should see "Agora sim, seu email foi enviado aos alvos da campanha! Pressão neles!"
 
   @omniauth_test
