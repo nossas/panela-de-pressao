@@ -29,8 +29,12 @@ class Poke < ActiveRecord::Base
   def send_facebook_post
     campaign_url = Rails.application.routes.url_helpers.campaign_url(campaign)
     campaign.targets.each do |t| 
-      Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(nil, {:link => campaign_url}, t.influencer.facebook)
-      t.increase_pokes_by_facebook
+      begin
+        Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(nil, {:link => campaign_url}, t.influencer.facebook)
+        t.increase_pokes_by_facebook
+      rescue
+        puts "#{t.influencer.name} Facebook page is blocked"
+      end
     end
     Koala::Facebook::API.new(user.facebook_authorization.token).put_connections("me", "links", :link => campaign_url)
   end
