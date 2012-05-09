@@ -57,3 +57,4 @@ gem "cancan"
 gem "heroku"
 gem 'chosen-rails'
 gem 'coffee-rails'
+gem "koala"
