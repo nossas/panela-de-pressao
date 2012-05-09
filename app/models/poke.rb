@@ -1,12 +1,16 @@
 class Poke < ActiveRecord::Base
   attr_accessible :campaign_id, :kind, :user_id
   after_create :send_email, :if => Proc.new {self.email?}
-  after_create :post_on_facebook, :if => Proc.new {self.facebook?}
-  after_create :update_targets
+  after_create :send_facebook_post, :if => Proc.new {self.facebook?}
+  after_create :send_tweet, :if => Proc.new {self.twitter?}
   belongs_to :campaign
   belongs_to :user
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
+
+  def twitter?
+    self.kind == 'twitter'
+  end
 
   def email?
     self.kind == "email"
@@ -19,25 +23,22 @@ class Poke < ActiveRecord::Base
   private
   def send_email
     PokeMailer.poke(self).deliver
+    self.campaign.targets.each {|t| t.increase_pokes_by_email}
   end
 
-  def post_on_facebook
-    if !Rails.env.test? 
-      campaign.influencers.each do |i| 
-        begin
-          Koala::Facebook::API.new(user.facebook_authorization.token).put_connections(i.facebook, "links", :link => Rails.application.routes.url_helpers.campaign_url(campaign))
-        rescue
-        end
-      end
-      begin
-        Koala::Facebook::API.new(user.facebook_authorization.token).put_connections("me", "links", :link => Rails.application.routes.url_helpers.campaign_url(campaign))
-      rescue
-      end
+  def send_facebook_post
+    campaign_url = Rails.application.routes.url_helpers.campaign_url(campaign)
+    campaign.targets.each do |t| 
+      Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(nil, {:link => campaign_url}, t.influencer.facebook)
+      t.increase_pokes_by_facebook
     end
+    Koala::Facebook::API.new(user.facebook_authorization.token).put_connections("me", "links", :link => campaign_url)
   end
 
-  def update_targets
-    self.campaign.targets.each {|t| t.increase_pokes_by_email} if email?
-    self.campaign.targets.each {|t| t.increase_pokes_by_facebook} if facebook?
+  def send_tweet
+    self.campaign.targets.each do |t|
+      Twitter.update("@#{t.influencer.twitter} #{self.campaign.description}")
+      t.increase_pokes_by_twitter
+    end
   end
 end

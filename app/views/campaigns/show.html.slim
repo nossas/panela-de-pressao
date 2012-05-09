@@ -22,6 +22,7 @@
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
     .text
       p= raw @campaign.description.gsub("\n", "<br />")
+
   .action
     h2 Alvos da campanha
     - @campaign.influencers.each do |influencer|
@@ -35,8 +36,9 @@
         = raw(t "email", :count => @campaign.pokes.where(:kind => "email").count)
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "twitter"
-        = f.submit "Via Twitter", :class => "btn_twitter", :disabled => true
-        |  | Em breve!
+        = f.submit "Via Twitter", :class => "btn_twitter"
+        |  | 
+        = raw(t "twitter", :count => @campaign.pokes.where(:kind => "twitter").count)
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "facebook"
         = f.submit "Via Facebook", :class => "btn_fb"

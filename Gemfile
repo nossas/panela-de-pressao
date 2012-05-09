@@ -27,9 +27,10 @@ gem "cancan"
 gem "heroku"
 gem 'chosen-rails'
 gem 'coffee-rails'
+gem 'twitter'
 
-
-group :test do
+# We need development here to make rake spec work
+group :test, :development do
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'

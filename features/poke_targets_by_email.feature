@@ -27,7 +27,7 @@ Feature: Poke targets by email
     Then I should see "1 email"
     And an email should be sent
     And a email poke should be added to the target
-    And I should see "Agora sim, seu email foi enviado aos alvos da campanha! Pressão neles!"
+    And I should see "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
 
   @omniauth_test
   Scenario: when there is no email to target

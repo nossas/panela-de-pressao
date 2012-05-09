@@ -10,6 +10,8 @@ Authorization.blueprint do
   user { User.make! }
   uid  { "uid#{sn}" }
   provider { 'meurio' }
+  token { 'lsjdljasdljas' }
+  secret { 'sjdkahjskd' }
 end
 
 Campaign.blueprint do
