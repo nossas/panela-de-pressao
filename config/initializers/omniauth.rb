@@ -19,6 +19,6 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :meurio, ENV["MEURIO_ID"], ENV["MEURIO_SECRET"]
-  provider :facebook, ENV["FB_ID"], ENV["FB_SECRET"]
+  provider :facebook, ENV["FB_ID"], ENV["FB_SECRET"], :scope => "email,publish_stream"
   provider :twitter, ENV["TWITTER_ID"], ENV["TWITTER_SECRET"]
 end
