@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
           :picture => hash['info']['image_url'] || hash['info']['image']
           )
   end
+
+  def facebook_authorization
+    Authorization.where(:provider => "facebook").first
+  end
 end
