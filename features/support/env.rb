@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'cucumber/rspec/doubles'
 require "#{Rails.root}/spec/support/blueprints.rb" 
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In

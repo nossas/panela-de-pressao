@@ -233,6 +233,10 @@ pt-BR:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
       poke: "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
 
+  twitter:
+    zero: "nenhum tweet foi enviado ainda"
+    one: "<span class='counter'>1</span> tweet já foi enviado"
+    other: "<span class='counter'>%{count}</span> tweets já foram enviados"
   email:
     zero: "nenhum email foi enviado ainda"
     one: "<span class='counter'>1</span> email já foi enviado"

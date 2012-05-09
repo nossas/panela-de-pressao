@@ -3,7 +3,7 @@ Feature: Poke targets by Facebook
   As a citizen
   I want to poke targets by Facebook
 
-  @omniauth_test
+  @omniauth_test @koala
   Scenario: when I'm logged in with my Facebook account
     Given I'm logged in
     And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
