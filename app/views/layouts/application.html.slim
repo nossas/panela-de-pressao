@@ -17,6 +17,7 @@ html
             = image_tag current_user.picture, size: "50x50", alt: "Avatar"
             = current_user.name
             p= link_to "Sair", session_path(current_user.id), :method => :delete
+            p= link_to "Criar uma organização", new_organization_path
           - else
             | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
     section

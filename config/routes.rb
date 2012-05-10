@@ -1,6 +1,8 @@
 ManifesteSe::Application.routes.draw do
+
   match '/auth/:provider/callback',   :to => 'sessions#create'
   resources :sessions, :only => [:new, :destroy]
+  resources :organizations, only: [:new, :index, :show, :create]
   resources :campaigns, :only => [:index, :show, :new, :create] do
     resources :pokes, :only => [:create] do
       collection do

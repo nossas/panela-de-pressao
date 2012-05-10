@@ -6,6 +6,7 @@ class Ability
     if !user.nil?
       can :create, Campaign
       can :create, Poke
+      can :create, Organization
     end
 
     # Define abilities for the passed in user here. For example:
