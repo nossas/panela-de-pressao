@@ -32,7 +32,7 @@ class Poke < ActiveRecord::Base
       begin
         Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(nil, {:link => campaign_url}, t.influencer.facebook)
         t.increase_pokes_by_facebook
-      rescue e
+      rescue Exception => e
         puts e.message
       end
     end
