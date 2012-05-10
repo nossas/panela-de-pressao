@@ -7,7 +7,7 @@ class OrganizationsController < InheritedResources::Base
   
   def create
     create! do |success, failure|
-      success.html { redirect_to organizations_path, :notice => "O registro da sua organização tem de ser validado, aguarde nosso contato." }
+      success.html { redirect_to organizations_path, :notice => "Sua organização foi criada! Que tal criar campanhas envolvendo usa organização?" }
       failure.html { render :new }
     end
   end
