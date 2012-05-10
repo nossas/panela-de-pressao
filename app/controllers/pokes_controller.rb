@@ -7,9 +7,9 @@ class PokesController < InheritedResources::Base
     session[:poke] = params[:poke].merge(:campaign_id => params[:campaign_id])
   end
 
-  before_filter(:only => [:create], :if => Proc.new { request.post? }) do
-    require_facebook_auth if params[:poke][:kind] == "facebook"
-    require_twitter_auth if params[:poke][:kind] == "twitter"
+  before_filter :only => [:create] do
+    require_facebook_auth if session[:poke][:kind] == "facebook"
+    require_twitter_auth if session[:poke][:kind] == "twitter"
   end
 
   def create

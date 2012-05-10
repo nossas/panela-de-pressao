@@ -59,8 +59,9 @@ Given /^I have a Twitter authorization$/ do
   Authorization.make! :user => Authorization.find_by_uid("536687842").user, :provider => "twitter"
 end
 
-Given /^there is a target for this campaign without Facebook$/ do
-  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:facebook => "")
+Given /^there is a target for this campaign without ([^"]*)$/ do |arg1|
+  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:facebook => "") if arg1 == "Facebook"
+  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:twitter => "") if arg1 == "Twitter"
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
@@ -86,6 +87,8 @@ end
 Then /^I should not see "([^"]*)"$/ do |arg1|
   if arg1 == "the Facebook poke button"
     page.should_not have_button("Via Facebook")
+  elsif arg1 == "the Twitter poke button"
+    page.should_not have_button("Via Twitter")
   else
     page.should_not have_content(arg1)
   end
