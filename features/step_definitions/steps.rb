@@ -59,12 +59,16 @@ Given /^I have a Twitter authorization$/ do
   Authorization.make! :user => Authorization.find_by_uid("536687842").user, :provider => "twitter"
 end
 
+Given /^there is a target for this campaign without Facebook$/ do
+  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:facebook => "")
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   page.should have_content(arg1)
 end
 
-When /^I go to the ([^"]*)$/ do |arg1|
-  step "I'm in the #{arg1}"
+When /^I go to ([^"]*)$/ do |arg1|
+  step "I'm in #{arg1}"
 end
 
 When /^I press "([^"]*)"$/ do |arg1|
@@ -80,7 +84,11 @@ Then /^I should see "([^"]*)" before "([^"]*)"$/ do |arg1, arg2|
 end
 
 Then /^I should not see "([^"]*)"$/ do |arg1|
-  page.should_not have_content(arg1)
+  if arg1 == "the Facebook poke button"
+    page.should_not have_button("Via Facebook")
+  else
+    page.should_not have_content(arg1)
+  end
 end
 
 Then /^I should be in the ([^"]*)$/ do |arg1|
