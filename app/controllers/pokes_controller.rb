@@ -3,14 +3,13 @@ class PokesController < InheritedResources::Base
   load_and_authorize_resource :only => [:create]
   belongs_to :campaign
 
-  prepend_before_filter(:only => [:create]) do 
+  prepend_before_filter(:only => [:create], :if => Proc.new { request.post? }) do 
     session[:poke] = params[:poke].merge(:campaign_id => params[:campaign_id])
-    require_facebook_auth if params[:poke][:kind] == "facebook"
-    require_twitter_auth if params[:poke][:kind] == "twitter"
   end
 
-  def create_from_session
-    create
+  before_filter(:only => [:create], :if => Proc.new { request.post? }) do
+    require_facebook_auth if params[:poke][:kind] == "facebook"
+    require_twitter_auth if params[:poke][:kind] == "twitter"
   end
 
   def create
