@@ -28,7 +28,7 @@
     - @campaign.influencers.each do |influencer|
       = image_tag influencer.avatar, :title => influencer.name
     h2 Como você deseja pressionar os alvos dessa campanha?
-    - if !@campaign.influencers.where("email IS NOT NULL").empty?
+    - if !@campaign.influencers.where("email != ''").empty?
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "email"
         = f.submit "Via Email", :class => "btn"
@@ -39,6 +39,7 @@
         = f.submit "Via Twitter", :class => "btn_twitter"
         |  | 
         = raw(t "twitter", :count => @campaign.pokes.where(:kind => "twitter").count)
+    - if !@campaign.influencers.where("facebook != ''").empty?
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "facebook"
         = f.submit "Via Facebook", :class => "btn_fb"

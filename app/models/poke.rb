@@ -32,16 +32,19 @@ class Poke < ActiveRecord::Base
       begin
         Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(nil, {:link => campaign_url}, t.influencer.facebook)
         t.increase_pokes_by_facebook
-      rescue
-        puts "#{t.influencer.name} Facebook page is blocked"
+      rescue Exception => e
+        puts e.message
       end
     end
-    Koala::Facebook::API.new(user.facebook_authorization.token).put_connections("me", "links", :link => campaign_url)
   end
 
   def send_tweet
-    self.campaign.targets.each do |t|
-      Twitter.update("@#{t.influencer.twitter} #{self.campaign.description}")
+    Twitter.configure do |c|
+      c.oauth_token = user.twitter_authorization.token
+      c.oauth_token_secret = user.twitter_authorization.secret
+    end
+    self.campaign.targets.select{|t| !t.influencer.twitter.blank?}.each do |t|
+      Twitter.update("@#{t.influencer.twitter} #{self.campaign.name.truncate(100)}: #{self.campaign.short_url}")
       t.increase_pokes_by_twitter
     end
   end

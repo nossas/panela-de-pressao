@@ -6,7 +6,7 @@ ManifesteSe::Application.routes.draw do
   resources :campaigns, :only => [:index, :show, :new, :create] do
     resources :pokes, :only => [:create] do
       collection do
-        get :create_from_session
+        get :create_from_session, :to => "pokes#create"
       end
     end
   end

@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids
+  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids, :short_url
   
   belongs_to :user
   belongs_to :organization
