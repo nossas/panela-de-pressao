@@ -41,7 +41,7 @@ class Poke < ActiveRecord::Base
 
   def send_tweet
     self.campaign.targets.each do |t|
-      Twitter.update("@#{t.influencer.twitter} #{self.campaign.description}")
+      Twitter.update("@#{t.influencer.twitter} #{self.campaign.name.truncate(100)}: #{self.campaign.short_url}")
       t.increase_pokes_by_twitter
     end
   end
