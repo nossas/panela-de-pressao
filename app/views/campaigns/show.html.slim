@@ -39,6 +39,7 @@
         = f.submit "Via Twitter", :class => "btn_twitter"
         |  | 
         = raw(t "twitter", :count => @campaign.pokes.where(:kind => "twitter").count)
+    - if !@campaign.influencers.where("facebook != ''").empty?
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "facebook"
         = f.submit "Via Facebook", :class => "btn_fb"
