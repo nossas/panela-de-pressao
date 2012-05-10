@@ -25,5 +25,13 @@ class ApplicationController < ActionController::Base
     @current_user = user
     session[:user_id] = user.id
   end
+
+  def require_facebook_auth
+    return redirect_to "/auth/facebook" unless current_user.facebook_authorization
+  end
+
+  def require_twitter_auth
+    return redirect_to "/auth/twitter" unless current_user.twitter_authorization
+  end
 end
 

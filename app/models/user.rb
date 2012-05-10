@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   end
 
   def facebook_authorization
-    Authorization.where(:provider => "facebook").first
+    authorizations.where(:provider => "facebook").first
+  end
+
+  def twitter_authorization
+    authorizations.where(:provider => "twitter").first
   end
 end

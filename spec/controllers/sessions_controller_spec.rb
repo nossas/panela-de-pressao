@@ -12,17 +12,8 @@ describe SessionsController do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook] 
     end
 
-    context "with poke but no twitter auth" do
+    context "with poke" do
       before do
-        session[:poke] = poke.merge(:kind => "twitter")
-        get :create, :provider => 'facebook'
-      end
-      it{ should redirect_to '/auth/twitter' }
-    end
-
-    context "with poke and twitter auth" do
-      before do
-        Authorization.make! :provider => 'twitter', :user => user
         session[:poke] = poke
         get :create, :provider => 'facebook'
       end

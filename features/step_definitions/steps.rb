@@ -35,6 +35,10 @@ Given /^I'm logged in$/ do
   visit "/auth/facebook"
 end
 
+Given /^I'm logged in with Meu Rio$/ do
+  visit "/auth/meurio"
+end
+
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
   if arg1 == "Imagem da campanha"
     attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
@@ -49,6 +53,10 @@ end
 
 Given /^there is a target for this campaign$/ do
   @target = Target.make! :campaign => @campaign
+end
+
+Given /^I have a Twitter authorization$/ do
+  Authorization.make! :user => Authorization.find_by_uid("536687842").user, :provider => "twitter"
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
