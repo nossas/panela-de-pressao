@@ -36,7 +36,6 @@ class Poke < ActiveRecord::Base
         puts e.message
       end
     end
-    Koala::Facebook::API.new(user.facebook_authorization.token).put_connections("me", "links", :link => campaign_url)
   end
 
   def send_tweet
