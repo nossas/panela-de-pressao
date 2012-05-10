@@ -9,7 +9,5 @@ Feature: Create an Organization
     And I'm in the campaigns page
     And I click "Criar uma organização"
     And I fill "Nome" with "MeuRio"
-    And I fill "CNPJ" with "00.000.000/0000-10"
-    And I fill "Endereço" with "Rua do Russel"
     When I press "Registrar minha organização"
-    Then I should see "O registro da sua organização tem de ser validado, aguarde nosso contato."
+    Then I should see "Sua organização foi criada! Que tal criar campanhas envolvendo usa organização?"
