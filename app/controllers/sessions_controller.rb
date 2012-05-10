@@ -9,17 +9,8 @@ class SessionsController < ApplicationController
 
     # Log the authorizing user in.
     self.current_user = @auth.user
-
-    # Authorize twitter
-    if twitter_auth = @auth.user.authorizations.where(:provider => 'twitter').first
-      Twitter.configure do |c|
-        c.oauth_token = twitter_auth.token
-        c.oauth_token_secret = twitter_auth.secret
-      end
-    end
-
+   
     if session[:poke]
-      return redirect_to '/auth/twitter' if session[:poke][:kind] == "twitter" && !twitter_auth
       redirect_to create_from_session_campaign_pokes_path(:campaign_id => session[:poke][:campaign_id])
     else
       redirect_to session[:restore_url] || root_path
