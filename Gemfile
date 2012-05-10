@@ -28,6 +28,7 @@ gem "heroku"
 gem 'chosen-rails'
 gem 'coffee-rails'
 gem 'twitter'
+gem 'bitly'
 
 # We need development here to make rake spec work
 group :test, :development do
