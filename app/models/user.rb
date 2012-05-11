@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessible :admin
   has_many :authorizations
   has_many :campaigns
   has_many :organizations, :foreign_key => "owner_id"
