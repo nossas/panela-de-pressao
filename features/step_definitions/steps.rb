@@ -17,11 +17,13 @@ Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, a
   @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
 end
 
-
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: Time.now
 end
 
+Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
+  @campaign = Campaign.make! name: arg1, accepted_at: nil
+end
 
 Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
   Campaign.make! name: arg1, accepted_at: nil 
@@ -37,6 +39,11 @@ end
 
 Given /^I'm logged in with Meu Rio$/ do
   visit "/auth/meurio"
+end
+
+Given /^I'm logged in as admin$/ do
+  visit "/auth/facebook"
+  Authorization.find_by_uid("536687842").user.update_attributes :admin => true
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|

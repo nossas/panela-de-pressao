@@ -7,7 +7,7 @@ describe PokesController do
   describe "POST create" do
 
     context "when it's logged in" do
-      before { controller.stub(:current_user).and_return(mock_model(User)) }
+      before { controller.stub(:current_user).and_return(stub_model(User)) }
       
       context "when it's an email poke" do
         before { Poke.any_instance.stub(:save) }
