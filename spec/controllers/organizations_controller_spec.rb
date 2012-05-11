@@ -11,7 +11,7 @@ describe OrganizationsController do
 
   describe "GET 'new'" do
     it "returns http success" do
-      controller.stub(:current_user).and_return(mock_model(User))
+      controller.stub(:current_user).and_return(stub_model(User))
       get 'new'
       response.should be_success
     end

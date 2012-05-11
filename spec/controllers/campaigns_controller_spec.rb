@@ -20,7 +20,7 @@ describe CampaignsController do
 
   describe "GET show" do
     before do 
-      Campaign.stub(:find).and_return(stub_model(Campaign))
+      Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => Time.now))
       get :show, :id => "1"
     end
     it { should assign_to(:poke) }

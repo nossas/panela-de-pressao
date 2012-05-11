@@ -6,3 +6,8 @@
     .no-campaigns Que isso? Nenhuma campanha?!
   - else
     = render @campaigns
+
+.campaigns
+  - if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
+    h2 Campanhas aguardando moderação
+    = render @campaigns_awaiting_moderation

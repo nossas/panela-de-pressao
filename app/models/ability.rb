@@ -2,8 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Campaign
-    if !user.nil?
+
+    can :read, Campaign, Campaign.accepted do |campaign|
+      campaign.accepted_at
+    end
+
+    if user && user.admin?
+      can :manage, :all
+    elsif user
       can :create, Campaign
       can :create, Poke
       can :create, Organization
