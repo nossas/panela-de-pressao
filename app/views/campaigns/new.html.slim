@@ -7,32 +7,5 @@
       p E você não precisa de experiência ou conhecimento. Você simplesmente precisa saber porquê é importante. Todo o restante nós podemos lhe ajudar a aprender ao longo do caminho.
       p Equipe Seu Rio ;)
   .form
-    = form_for @campaign do |f|
-      h1 Comece a sua petição
-      ol
-        li.field_row
-          = f.label :name
-          .field.name
-            .field_bg= f.text_field :name
-          .inline-errors= @campaign.errors[:name].join(", ")
-        li.field_row
-          = f.label :description
-          .field.description
-            .field_bg= f.text_area :description
-          .inline-errors= @campaign.errors[:description].join(", ")
-        li.field_row
-          = f.label :image
-          .field
-            = f.file_field :image
-            .inline-errors= @campaign.errors[:image].join(", ")
-          = f.hidden_field :image_cache
-        li.field_row
-          = f.label :category_id
-          .field
-            = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
-            .inline-errors= @campaign.errors[:category].join(", ")
-        li.field_row.influencers
-          = f.label :influencer_ids
-          .field.influencers= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
-        li.field_row
-          .action= f.submit "Enviar campanha para moderação", :class => "btn"
+    h1 Comece a sua petição
+    = render :partial => "form"

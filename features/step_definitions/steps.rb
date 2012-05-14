@@ -8,6 +8,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit influencers_path
   when "this campaign page"
     visit campaign_path(@campaign)
+  when "this campaign editing page"
+    visit edit_campaign_path(@campaign)
   else
     raise "I don't know #{arg1}"
   end
@@ -25,8 +27,8 @@ Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: nil
 end
 
-Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
-  Campaign.make! name: arg1, accepted_at: nil 
+Given /^I own a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
+  @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => Authorization.find_by_uid("536687842").user
 end
 
 Given /^I fill "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
@@ -96,17 +98,23 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_button("Via Facebook")
   elsif arg1 == "the Twitter poke button"
     page.should_not have_button("Via Twitter")
+  elsif arg1 == "the accept campaign button"
+    page.should_not have_button("Aceitar campanha")
   else
     page.should_not have_content(arg1)
   end
 end
 
-Then /^I should be in the ([^"]*)$/ do |arg1|
+Then /^I should be in ([^"]*)$/ do |arg1|
   case arg1
-  when "campaigns page"
+  when "the campaigns page"
     page.current_path.should be_== campaigns_path
-  when "login page"
+  when "the login page"
     page.current_path.should be_== new_session_path
+  when "this campain page"
+    page.current_path.should be_== campaign_path(@campaign)
+  else
+    raise "I don't know '#{arg1}'"
   end
 end
 
@@ -128,4 +136,8 @@ end
 Then /^a ([^"]*) poke should be added to the target$/ do |arg1|
   @target.reload.pokes_by_email.should be_== 1 if arg1 == "email"
   @target.reload.pokes_by_facebook.should be_== 1 if arg1 == "facebook"
+end
+
+Then /^this campaign should be accepted$/ do
+  @campaign.reload.should be_accepted
 end

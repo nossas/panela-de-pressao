@@ -13,6 +13,7 @@ class Ability
       can :create, Campaign
       can :create, Poke
       can :create, Organization
+      can :update, Campaign, :user_id => user.id
     end
 
     # Define abilities for the passed in user here. For example:

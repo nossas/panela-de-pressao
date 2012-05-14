@@ -19,6 +19,6 @@ Feature: View recent campaigns
     Then I should see "Preservação da Praça XV de Novembro" before "Desarmamento Voluntário"
   
   Scenario: when there is an unmoderated campaign
-    Given there is an unmoderated campaign called "Desarmamento Voluntário"
+    Given there is a campaign called "Desarmamento Voluntário" awaiting moderation
     When I go to the campaigns page
     Then I should not see "Desarmamento Voluntário"

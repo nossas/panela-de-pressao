@@ -25,4 +25,18 @@ describe CampaignsController do
     end
     it { should assign_to(:poke) }
   end
+
+  describe "PUT accept" do
+    before { Campaign.stub(:find).and_return(mock_model(Campaign, :update_attribute => true)) }
+    context "when I'm admin" do
+      before { controller.stub(:current_user).and_return(mock_model(User, :admin? => true)) }
+      before { put :accept, :campaign_id => "1" }
+      it { should_not redirect_to(new_session_path) }
+    end
+    context "when I'm not admin" do
+      before { controller.stub(:current_user).and_return(mock_model(User, :admin? => false)) }
+      before { put :accept, :campaign_id => "1" }
+      it { should redirect_to(new_session_path) }
+    end
+  end
 end

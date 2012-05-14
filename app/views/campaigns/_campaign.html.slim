@@ -1,7 +1,7 @@
 .campaign class="#{(campaign_counter + 1) % 4 == 0 ? "last" : ""}"
   .campaign_details
-    = link_to image_tag(campaign.image), campaign
-    = link_to campaign.name, campaign
+    = link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
+    = link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)
     small por #{campaign.user.name}
 - if (campaign_counter + 1) % 4 == 0
   .clear

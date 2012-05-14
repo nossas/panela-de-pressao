@@ -19,4 +19,8 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates :name, :description, :user_id, :image, :category, :presence => true
+
+  def accepted?
+    !accepted_at.nil?
+  end
 end
