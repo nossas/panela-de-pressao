@@ -32,6 +32,10 @@ Given /^I own a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => Authorization.find_by_uid("536687842").user
 end
 
+Given /^I own a campaign called "([^"]*)"$/ do |arg1|
+  @campaign = Campaign.make! name: arg1, :user => Authorization.find_by_uid("536687842").user, :accepted_at => Time.now
+end
+
 Given /^I fill "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
   fill_in arg1, :with => arg2
 end
