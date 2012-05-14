@@ -23,6 +23,9 @@
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
     .text
       p= raw @campaign.description.gsub("\n", "<br />")
+    hr
+    - if @campaign.posts.count > 0
+      h1 Atualizações
 
   .action
     h2 Alvos da campanha
