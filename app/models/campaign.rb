@@ -7,6 +7,7 @@ class Campaign < ActiveRecord::Base
   has_many :targets
   has_many :influencers, :through => :targets
   has_many :pokes
+  has_many :posts
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers

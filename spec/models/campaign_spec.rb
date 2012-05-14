@@ -5,6 +5,9 @@ describe Campaign do
     it{ should belong_to :user }
     it{ should belong_to :organization }
     it{ should belong_to :category }
+    it{ should have_many :posts }
+    it{ should have_many :pokes }
+    it{ should have_many :influencers }
   end
 
   describe "validations" do
