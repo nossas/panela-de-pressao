@@ -11,7 +11,7 @@ Feature: accept a campaign
     And I'm in this campaign editing page
     Then I should not see "the create campaign button"
     When I press "Aceitar campanha"
-    Then I should be in this campain page
+    Then I should be in this campaign page
     And I should see "Está valendo, campanha no ar!"
     And this campaign should be accepted
     And an email should be sent
