@@ -17,6 +17,12 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
+  def accept
+    Campaign.find(params[:campaign_id]).update_attribute :accepted_at, Time.now
+    params[:id] = params[:campaign_id]
+    show(:notice => "Está valendo, campanha no ar!")
+  end
+
   protected
   def collection
     @campaigns ||= end_of_association_chain.accepted
