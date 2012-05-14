@@ -15,7 +15,7 @@
       .field
         = f.file_field :image
         .inline-errors= @campaign.errors[:image].join(", ")
-      = image_tag @campaign.image
+      = image_tag @campaign.image if @campaign.persisted?
       = f.hidden_field :image_cache
     li.field_row
       = f.label :category_id
