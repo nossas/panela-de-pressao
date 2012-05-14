@@ -24,7 +24,7 @@
     .text
       p= raw @campaign.description.gsub("\n", "<br />")
     hr
-    - if @campaign.posts.count > 0
+    - if @campaign.posts.count > 0 || can?(:manage, Post)
       h1 Atualizações
 
   .action
