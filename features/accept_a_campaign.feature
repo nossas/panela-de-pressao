@@ -14,6 +14,7 @@ Feature: accept a campaign
     Then I should be in this campain page
     And I should see "Está valendo, campanha no ar!"
     And this campaign should be accepted
+    And an email should be sent
 
   @omniauth_test
   Scenario: when I own a campaign awaiting moderation
