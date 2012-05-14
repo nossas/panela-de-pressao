@@ -38,6 +38,11 @@ a[href="/auth/meurio"]
 a[href="/auth/facebook"]
   color: $fb_blue
 
+label
+  color: gray
+  font-weight: bold
+  +text-shadow(white 0 1px 1px)
+
 section
   +grid-container
   &.top
@@ -132,6 +137,9 @@ input[type="text"], input[type="email"], textarea
 
 .btn
   +btn($green)
+
+.btn_blue
+  +btn($blue)
 
 .btn_fb
   +btn($fb_blue)
