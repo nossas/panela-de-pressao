@@ -103,6 +103,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_button("Aceitar campanha")
   elsif arg1 == "the create campaign button"
     page.should_not have_button("Enviar campanha para moderação")
+  elsif arg1 == "the edit campaign button"
+    page.should_not have_link("Editar campanha")
   else
     page.should_not have_content(arg1)
   end

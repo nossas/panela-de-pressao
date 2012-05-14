@@ -14,3 +14,11 @@ Feature: edit a campaign
     When I press "Salvar campanha"
     Then I should be in this campaign page
     And I should see "Fim à Escravidão no Brasil"
+
+  @omniauth_test
+  Scenario: when I'm not admin
+    Given I'm logged in
+    And there is a campaign called "Salve a praça Nossa Senhora da Paz"
+    And I'm in the campaigns page
+    When I click "Salve a praça Nossa Senhora da Paz"
+    Then I should not see "the edit campaign button"
