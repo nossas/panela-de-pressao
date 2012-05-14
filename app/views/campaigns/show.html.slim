@@ -13,7 +13,7 @@
         = @campaign.category.name
     h1.name
       = @campaign.name
-    .buttons= link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn"
+    .buttons= link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn" if can?(:edit, @campaign)
     .headline
       .user
         = image_tag @campaign.user.picture, size: "20x20"
