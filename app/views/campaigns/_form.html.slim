@@ -15,6 +15,7 @@
       .field
         = f.file_field :image
         .inline-errors= @campaign.errors[:image].join(", ")
+      = image_tag @campaign.image
       = f.hidden_field :image_cache
     li.field_row
       = f.label :category_id
@@ -25,8 +26,9 @@
       = f.label :influencer_ids
       .field.influencers= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
     li.field_row
-      .action= f.submit "Enviar campanha para moderação", :class => "btn"
+      - if @campaign.new_record?
+        .action= f.submit "Enviar campanha para moderação", :class => "btn"
 
 - if @campaign.persisted? && @current_user.admin?
   = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-    .action= f.submit "Aceitar campanha", :class => "btn"
+    .action= f.submit "Aceitar campanha", :class => "btn_blue"
