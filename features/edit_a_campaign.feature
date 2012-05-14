@@ -10,7 +10,8 @@ Feature: edit a campaign
     And I'm in the campaigns page
     And I click "Salve a praça Nossa Senhora da Paz"
     And I click "Editar campanha"
-    And I fill "O que você quer mudar na sua cidade?" with "Fim à Escravidão no Brasil"
+    Then I should not see "the accept campaign button"
+    Given I fill "O que você quer mudar na sua cidade?" with "Fim à Escravidão no Brasil"
     When I press "Salvar campanha"
     Then I should be in this campaign page
     And I should see "Fim à Escravidão no Brasil"
@@ -30,7 +31,8 @@ Feature: edit a campaign
     And I'm in the campaigns page
     And I click "Salve a praça Nossa Senhora da Paz"
     And I click "Editar campanha"
-    And I fill "O que você quer mudar na sua cidade?" with "Fim à Escravidão no Brasil"
+    Then I should not see "the accept campaign button"
+    Given I fill "O que você quer mudar na sua cidade?" with "Fim à Escravidão no Brasil"
     When I press "Salvar campanha"
     Then I should be in this campaign page
     And I should see "Fim à Escravidão no Brasil"
