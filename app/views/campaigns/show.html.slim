@@ -26,6 +26,10 @@
     hr
     - if @campaign.posts.count > 0 || can?(:manage, Post)
       h1 Atualizações
+      - if can?(:manage, Post)
+        = form_for [@campaign, @post] do |f|
+          = f.text_area :content
+          = f.submit "Salvar atualização", :class => "btn"
 
   .action
     h2 Alvos da campanha
