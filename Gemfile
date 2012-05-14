@@ -10,6 +10,7 @@ gem 'inherited_resources'
 gem "slim"
 gem "slim-rails"
 gem "formtastic", "~> 2.2.0"
+gem "auto_html"
 
 # Image uplaod
 gem 'carrierwave'
