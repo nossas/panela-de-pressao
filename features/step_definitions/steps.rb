@@ -1,3 +1,4 @@
+# coding: utf-8
 Given /^I'm in ([^"]*)$/ do |arg1|
   case arg1
   when "the campaigns page"
@@ -100,6 +101,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_button("Via Twitter")
   elsif arg1 == "the accept campaign button"
     page.should_not have_button("Aceitar campanha")
+  elsif arg1 == "the create campaign button"
+    page.should_not have_button("Enviar campanha para moderação")
   else
     page.should_not have_content(arg1)
   end

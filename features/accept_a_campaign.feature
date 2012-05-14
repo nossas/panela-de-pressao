@@ -9,6 +9,7 @@ Feature: accept a campaign
     And there is a campaign called "Salve a praça Nossa Senhora da Paz" awaiting moderation
     And I'm in the campaigns page
     And I'm in this campaign editing page
+    Then I should not see "the create campaign button"
     When I press "Aceitar campanha"
     Then I should be in this campain page
     And I should see "Está valendo, campanha no ar!"
