@@ -26,8 +26,7 @@
       = f.label :influencer_ids
       .field.influencers= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
     li.field_row
-      - if @campaign.new_record?
-        .action= f.submit "Enviar campanha para moderação", :class => "btn"
+      .action= f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn"
 
 - if @campaign.persisted? && @current_user.admin?
   = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
