@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
      html_escape
      image
      youtube(:width => 400, :height => 250)
+     vimeo(:width => 400, :height => 250)
+     redcarpet
      link :target => "_blank", :rel => "nofollow"
      simple_format
    end
