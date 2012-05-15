@@ -19,7 +19,9 @@ describe PostsController do
       post :create, :campaign_id => campaign.id, :post => {:content => 'this is a test'}
     end
   
-    it{ should redirect_to campaign_posts_path(:campaign_id => campaign.id) }
+    it("@post should not be nil"){ assigns(:post).should_not be_nil }
+    it("@posts should not be nil"){ assigns(:posts).should_not be_nil }
+    its(:status){ should == 200 }
   end
 
   describe "DELETE destroy" do

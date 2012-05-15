@@ -206,6 +206,10 @@ pt-BR:
     errors:
       <<: *errors
       models:
+        post:
+          attributes:
+            content:
+              blank: "Você deve preencher o conteúdo da atualização, conte as novidades da campanha!"
         campaign:
           attributes:
             name:
