@@ -8,7 +8,7 @@ class Campaign < ActiveRecord::Base
   has_many :influencers, :through => :targets
   has_many :pokes
   has_many :posts
-  before_save { CampaignMailer.campaign_accepted(self).deliver }
+  before_save { CampaignMailer.campaign_accepted(self).deliver if accepted_at_changed? && persisted? }
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers
