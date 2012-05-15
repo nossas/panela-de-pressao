@@ -332,6 +332,7 @@ DEPENDENCIES
   omniauth-twitter
   pg
   rails (>= 3.2)
+  redcarpet
   rspec-rails (>= 2.0.1)
   sass-rails
   shoulda-matchers
