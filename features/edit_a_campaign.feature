@@ -28,8 +28,7 @@ Feature: edit a campaign
   Scenario: when I'm the campaign's owner
     Given I'm logged in
     And I own a campaign called "Salve a praça Nossa Senhora da Paz"
-    And I'm in the campaigns page
-    And I click "Salve a praça Nossa Senhora da Paz"
+    And I'm in this campaign page
     And I click "Editar campanha"
     Then I should not see "the accept campaign button"
     Given I fill "O que você quer mudar na sua cidade?" with "Fim à Escravidão no Brasil"
