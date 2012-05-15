@@ -7,8 +7,9 @@ class Post < ActiveRecord::Base
    auto_html_for :content do
      html_escape
      image
-     youtube(:width => 400, :height => 250)
-     vimeo(:width => 400, :height => 250)
+     youtube(:width => '100%', :height => 350)
+     vimeo(:width => '100%', :height => 350)
+     google_map(:width => '100%', :height => 350, :link_text => 'ver mapa maior')
      redcarpet
      link :target => "_blank", :rel => "nofollow"
      simple_format
