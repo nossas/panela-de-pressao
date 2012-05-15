@@ -15,6 +15,7 @@ Feature: edit a campaign
     When I press "Salvar campanha"
     Then I should be in this campaign page
     And I should see "Fim à Escravidão no Brasil"
+    And no email should be sent
 
   @omniauth_test
   Scenario: when I'm not admin
@@ -35,3 +36,4 @@ Feature: edit a campaign
     When I press "Salvar campanha"
     Then I should be in this campaign page
     And I should see "Fim à Escravidão no Brasil"
+    And no email should be sent
