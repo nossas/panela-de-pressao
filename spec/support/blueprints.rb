@@ -38,3 +38,8 @@ Influencer.blueprint do
   facebook { "http://www.facebook.com/eduardopaesRJ" }
   role { "Prefeito" }
 end
+
+Post.blueprint do
+  campaign { Campaign.make! }
+  content { "testing posts" }
+end

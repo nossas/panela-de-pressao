@@ -27,9 +27,11 @@
     - if @campaign.posts.count > 0 || can?(:manage, Post)
       h1 Atualizações
       - if can?(:manage, Post)
-        = form_for [@campaign, @post] do |f|
+        = form_for [@campaign, @post], :remote => true do |f|
           = f.text_area :content
           = f.submit "Salvar atualização", :class => "btn"
+          = image_tag 'loader.gif', :class => 'loader'
+      .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
 
   .action
     h2 Alvos da campanha
