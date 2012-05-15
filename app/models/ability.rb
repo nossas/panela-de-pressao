@@ -6,6 +6,7 @@ class Ability
     can :read, Campaign, Campaign.accepted do |campaign|
       campaign.accepted_at
     end
+    can :read, Post
 
     if user && user.admin?
       can :manage, :all
