@@ -16,21 +16,27 @@ gem "redcarpet"
 # Image uplaod
 gem 'carrierwave'
 gem 'mini_magick'
+gem "fog", "~> 1.3.1"
 
 # Authentication
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-
-gem "jquery-rails"
-gem "fog", "~> 1.3.1"
 gem "cancan"
-gem "heroku"
+
+# Stuff
+gem "jquery-rails"
 gem 'chosen-rails'
 gem 'coffee-rails'
 gem 'twitter'
 gem 'bitly'
+gem "koala"
+
+group :development do
+  gem "mailcatcher"
+  gem "heroku"
+end
 
 # We need development here to make rake spec work
 group :test, :development do
@@ -50,15 +56,3 @@ group :assets do
   gem "compass-columnal-plugin", "~> 0.1.2"
 end
 
-group :development do
-  gem "mailcatcher"
-end
-
-gem "jquery-rails"
-gem 'carrierwave'
-gem "fog", "~> 1.3.1"
-gem "cancan"
-gem "heroku"
-gem 'chosen-rails'
-gem 'coffee-rails'
-gem "koala"

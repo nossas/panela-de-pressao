@@ -3,5 +3,8 @@ class Organization < ActiveRecord::Base
 
   belongs_to :owner, :class_name => "User"
 
-  attr_accessible :name
+  attr_accessible :name, :avatar
+
+
+  mount_uploader :avatar, AvatarUploader
 end
