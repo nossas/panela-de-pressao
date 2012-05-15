@@ -4,6 +4,8 @@
 body[data-action=Index][data-controller-name=Campaigns]
   .campaigns
     +grid-row
+    h2
+      +grid(12)
     overflow: visible
     .empty
       +grid(12)
@@ -19,7 +21,7 @@ body[data-action=Index][data-controller-name=Campaigns]
         padding: .5em
         img
           +border-radius(0 0 0 0)
-          margin: 0
+          margin: 0 0 .25em 0
         a
           color: white
           font-weight: bold
@@ -27,9 +29,5 @@ body[data-action=Index][data-controller-name=Campaigns]
           +text-shadow(gray 0 -1px 1px)
     .campaign.last
       +last
-  small
-    display: block
-    font-style: italic
-    font-size: x-small
   a[href="/campaigns/new"]
     font-size: medium
