@@ -1,4 +1,4 @@
-ul
+ul data-errors=(@post && @post.errors.to_json)
   - for post in @posts do
     li
       = post.content_html

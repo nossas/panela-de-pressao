@@ -5,14 +5,14 @@ class PostsController < ApplicationController
   belongs_to :campaign
 
   def create
-    create! do |format|
-      format.html{ return redirect_to campaign_posts_path(:campaign_id => @campaign.id) }
+    create! do
+      return index
     end
   end
 
   def index
     index! do
-      return render :layout => false
+      return render :index, :layout => false
     end
   end
 

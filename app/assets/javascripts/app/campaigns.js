@@ -2,17 +2,26 @@ App.Campaigns = {
   Post: Backbone.View.extend({
     el: 'form.new_post',
     events: {
-      'ajax:beforeSend' : 'showLoader',
+      'ajax:beforeSend' : 'onBeforeSend',
       'ajax:success' : 'onAjaxSuccess'
     },
     
     onAjaxSuccess: function(event, data){
+      var form = $(this.el);
       this.posts.html(data);
       this.el.reset();
       this.$('.loader').hide();
+      var errors = this.posts.find('ul').data('errors');
+      if(errors){
+        $.each(errors, function(key, val){
+          var message = val.join(", ");
+          form.append($('<div>').addClass('inline-errors').html(message));
+        });
+      }
     },
 
-    showLoader: function(){
+    onBeforeSend: function(){
+      this.$('.inline-errors').remove();
       this.$('.loader').show();
     },
 
