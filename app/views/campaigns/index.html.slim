@@ -12,7 +12,7 @@
     h2 Minhas campanhas
     = render current_user.campaigns
 
-.campaigns
-  - if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
+- if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
+  .campaigns
     h2 Campanhas aguardando moderação
     = render @campaigns_awaiting_moderation
