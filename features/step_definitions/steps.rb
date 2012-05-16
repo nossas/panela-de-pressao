@@ -91,7 +91,15 @@ When /^I press "([^"]*)"$/ do |arg1|
 end
 
 When /^I click "([^"]*)"$/ do |arg1|
-  click_link arg1
+  if arg1 == "Pressionar via email"
+    page.execute_script("$('form:has(input[value=\"email\"])').submit();")
+  elsif arg1 == "Pressionar via Facebook"
+    page.execute_script("$('form:has(input[value=\"facebook\"])').submit();")
+  elsif arg1 == "Pressionar via Twitter"
+    page.execute_script("$('form:has(input[value=\"twitter\"])').submit();")
+  else
+    click_link arg1
+  end
 end
 
 Then /^I should see "([^"]*)" before "([^"]*)"$/ do |arg1, arg2|
@@ -99,9 +107,7 @@ Then /^I should see "([^"]*)" before "([^"]*)"$/ do |arg1, arg2|
 end
 
 Then /^I should not see "([^"]*)"$/ do |arg1|
-  if arg1 == "the Facebook poke button"
-    page.should_not have_button("Via Facebook")
-  elsif arg1 == "the Twitter poke button"
+  if arg1 == "the Twitter poke button"
     page.should_not have_button("Via Twitter")
   elsif arg1 == "the accept campaign button"
     page.should_not have_button("Aceitar campanha")
@@ -109,6 +115,10 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_button("Enviar campanha para moderação")
   elsif arg1 == "the edit campaign button"
     page.should_not have_link("Editar campanha")
+  elsif arg1 == "the email poke form"
+    page.should_not have_css("form:has(input[value='email'])")
+  elsif arg1 == "the Facebook poke button"
+    page.should_not have_css("form:has(input[value='facebook'])")
   else
     page.should_not have_content(arg1)
   end

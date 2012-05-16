@@ -5,7 +5,7 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
   section.campaign_header
     padding: 1em 0
     background: $blue
-    +background-image(linear-gradient($blue, lighten($blue, 20%)))
+    +background-image(linear-gradient($blue, lighten($blue, 30%)))
     .category_and_name
       +grid(7)
       .category
@@ -55,6 +55,8 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
     margin-top: 1.5em
     .campaign_details
       +grid(7)
+      img, .edit_campaign, .campaign_description
+        margin-bottom: 1em
     .campaign_panel
       +grid(5)
       +last
