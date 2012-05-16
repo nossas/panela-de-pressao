@@ -37,6 +37,11 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
     .buttons
       margin-bottom: 1em
     form.new_post 
+      .content
+        +grid-subcolumn(8, 4)
+      .preview
+        +grid-subcolumn(8, 4)
+        +last
       textarea#post_content
         width: 100%
         height: 164px
