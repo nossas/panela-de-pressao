@@ -28,7 +28,11 @@
       h1 Atualizações
       - if can?(:manage, Post)
         = form_for [@campaign, @post], :remote => true do |f|
-          = f.text_area :content
+          .row
+            .content
+              = f.text_area :content
+            .preview
+              = image_tag 'loader.gif', :class => 'loader'
           = f.submit "Salvar atualização", :class => "btn"
           = image_tag 'loader.gif', :class => 'loader'
       .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
