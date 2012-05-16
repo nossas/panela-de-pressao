@@ -1,4 +1,42 @@
 App.Campaigns = {
+  PostContent: Backbone.View.extend({
+    el: 'textarea#post_content',
+
+    events: {
+      'keyup' : 'onKeyup'
+    },
+
+    onKeyup: function(event){
+      var value = this.root.val();
+      if(this.t){
+        window.clearTimeout(this.t);
+      }
+      if(value != this.oldValue){
+        this.oldValue = value;
+        this.t = window.setTimeout(this.onTimeout, 1000);
+      }
+    },
+
+    onTimeout: function(event){
+      var matches = this.oldValue.match(/http:\S*/);
+      if(matches && matches.length > 0){
+        $('.preview .loader').show();
+        $.get('http://api.embed.ly/1/oembed?url=' + encodeURIComponent(matches[0])).success(this.onEmbedlySuccess);
+      }
+    },
+
+    onEmbedlySuccess: function(data){
+      $('.preview .loader').hide();
+      console.log(data);
+    },
+
+    initialize: function(){
+      _.bindAll(this);
+      this.root = $(this.el);
+      this.oldValue = this.root.val();
+    }
+  }),
+
   Post: Backbone.View.extend({
     el: 'form.new_post',
     events: {
@@ -51,6 +89,7 @@ App.Campaigns = {
       var that = this;
       this.posts = this.$('.posts');
       this.postForm = new App.Campaigns.Post({posts: this.posts});
+      this.postContent = new App.Campaigns.PostContent(); 
       $.get(this.posts.data('path')).success(function(data){
         that.posts.html(data);
       });

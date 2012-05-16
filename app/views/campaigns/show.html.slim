@@ -37,10 +37,14 @@ section.campaign_content
       = t 'campaign.headline_html', date: l(@campaign.created_at, format: :short), time: time_ago_in_words(@campaign.updated_at)
       = raw @campaign.description.gsub("\n", "<br />")
       - if @campaign.posts.count > 0 || can?(:manage, Post)
-        h2 Atualizações
+        h1 Atualizações
         - if can?(:manage, Post)
           = form_for [@campaign, @post], :remote => true do |f|
-            = f.text_area :content
+            .row
+              .content
+                = f.text_area :content
+              .preview
+                = image_tag 'loader.gif', :class => 'loader'
             = f.submit "Salvar atualização", :class => "btn"
             = image_tag 'loader.gif', :class => 'loader'
         .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)

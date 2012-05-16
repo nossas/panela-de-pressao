@@ -58,3 +58,29 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
     .campaign_panel
       +grid(5)
       +last
+
+  form.new_post 
+    .content
+      +grid-subcolumn(8, 4)
+    .preview
+      +grid-subcolumn(8, 4)
+      +last
+    textarea#post_content
+      width: 100%
+      height: 164px
+      margin-bottom: 1em
+  .posts ul li
+    margin: 1em 0
+    h1
+      font-size: x-large
+      font-family: 'Londrina Solid', cursive
+      color: gray
+      letter-spacing: .1em
+      margin-bottom: .25em
+      +text-shadow(white 0 1px 1px)
+    h2
+      font-size: large
+      color: gray
+      letter-spacing: .1em
+      margin-bottom: .25em
+      +text-shadow(white 0 1px 1px)
