@@ -7,6 +7,7 @@ body
   font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
   font-size: small
   line-height: normal 
+  background: url("bg.png")
 
 h1
   font-size: xx-large
@@ -14,12 +15,10 @@ h1
   +text-shadow(black 0 -1px 1px)
 
 h2
-  font-size: x-large
-  font-family: 'Londrina Solid', cursive
-  color: gray
-  letter-spacing: .1em
-  margin-bottom: .25em
-  +text-shadow(white 0 1px 1px)
+  font-size: medium
+  color: $orange
+  text-transform: uppercase
+  margin-bottom: 1em
 
 em
   font-weight: bold
@@ -41,6 +40,9 @@ label
   color: gray
   font-weight: bold
   +text-shadow(white 0 1px 1px)
+
+strong
+  font-weight: bold
 
 section
   +grid-container
@@ -72,20 +74,10 @@ section
       +last
       text-align: right
       img
-        border: 1px solid $yellow
         float: right
         margin-left: 1em
-
-section.content
-  .title
-    +grid-row
-    margin-bottom: 2em
-    border-bottom: 1px dashed gray
-    h1, .buttons
-      +grid(6)
-    .buttons
-      +last
-      text-align: right
+  &.content
+    margin-top: 2em
 
 footer
   +grid-container
@@ -107,9 +99,11 @@ input[type="text"], input[type="email"], textarea
   .notice
     padding-left: 22px
     background: url("http://icons.iconarchive.com/icons/pixelmixer/basic/16/tick-icon.png") left no-repeat
+    margin-top: 1em
   .alert
     padding-left: 22px
     background: url("http://icons.iconarchive.com/icons/pixelmixer/basic/16/block-icon.png") left no-repeat
+    margin-top: 1em
 
 .row
   +grid_row

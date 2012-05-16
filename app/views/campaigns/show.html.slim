@@ -32,12 +32,14 @@ section.campaign_header
 section.campaign_content
   .row
     .campaign_details
-      = link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn" if can?(:edit, @campaign)
+      = link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
-      = t 'campaign.headline_html', date: l(@campaign.created_at, format: :short), time: time_ago_in_words(@campaign.updated_at)
-      = raw @campaign.description.gsub("\n", "<br />")
+      .campaign_description
+        p
+          strong= "Criada em #{l(@campaign.created_at, format: :short)}"
+        = raw @campaign.description.gsub("\n", "<br />")
       - if @campaign.posts.count > 0 || can?(:manage, Post)
-        h1 Atualizações
+        h2 Atualizações da campanha
         - if can?(:manage, Post)
           = form_for [@campaign, @post], :remote => true do |f|
             .row
@@ -49,6 +51,6 @@ section.campaign_content
             = image_tag 'loader.gif', :class => 'loader'
         .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
     .campaign_panel
-      h2 Alvos da campanha
+      h2 Quem decide isso
       - @campaign.influencers.each do |influencer|
         = image_tag influencer.avatar, :title => influencer.name

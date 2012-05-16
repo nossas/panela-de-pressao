@@ -36,6 +36,12 @@ App.Campaigns = {
       this.oldValue = this.root.val();
     }
   }),
+  
+  Poke: Backbone.View.extend({
+    events: {
+      'click a' : function(){ this.el.submit(); }
+    }
+  }),
 
   Post: Backbone.View.extend({
     el: 'form.new_post',
@@ -90,6 +96,9 @@ App.Campaigns = {
       this.posts = this.$('.posts');
       this.postForm = new App.Campaigns.Post({posts: this.posts});
       this.postContent = new App.Campaigns.PostContent(); 
+      this.fbPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='email'])"});
+      this.twPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='twitter'])"});
+      this.emPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='facebook'])"});
       $.get(this.posts.data('path')).success(function(data){
         that.posts.html(data);
       });
