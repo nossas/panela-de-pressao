@@ -6,6 +6,7 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
     padding: 1em 0
     background: $blue
     +background-image(linear-gradient($blue, lighten($blue, 30%)))
+    border-top: 1px solid darken($blue, 10%)
     .category_and_name
       +grid(7)
       .category
@@ -16,6 +17,10 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
       text-align: center
       +grid(5)
       +last
+      .poke_title
+        color: $yellow
+        text-transform: uppercase
+        +text-shadow(black 0 1px 1px)
       form
         display: inline-block
         a

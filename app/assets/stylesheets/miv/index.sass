@@ -26,16 +26,6 @@ em
 a
   color: $blue
 
-a[href="/auth/meurio"], a[href="/auth/facebook"]
-  text-decoration: none
-  font-weight: bold
-
-a[href="/auth/meurio"]
-  color: $mr_green
-
-a[href="/auth/facebook"]
-  color: $fb_blue
-
 label
   color: gray
   font-weight: bold
@@ -48,10 +38,11 @@ section
   +grid-container
   &.header
     padding: 1em 0
-    background: $orange
-    border-bottom: 1px solid $orange
+    background: lighten($orange, 5%)
+    border-bottom: 1px solid lighten($orange, 20%)
     color: white
-    +background-image(linear-gradient($orange, lighten($orange, 10%)))
+    +text-shadow(black 0 1px 1px)
+    line-height: 50px
     img
       margin: 0
     .logo
@@ -61,7 +52,6 @@ section
         float: left
     .menu
       +grid(6)
-      +text-shadow(black 0 1px 1px)
       span
         display: inline-block
         margin: 0 1em
@@ -69,6 +59,9 @@ section
         color: white
         text-decoration: none
         text-transform: uppercase
+        &.btn
+          padding: 0 1em
+          font-size: medium
     .user
       +grid(4)
       +last
@@ -76,6 +69,19 @@ section
       img
         float: right
         margin-left: 1em
+      p
+        padding: 0
+        line-height: normal
+        a
+          +text-shadow(none)
+      a[href="/auth/meurio"], a[href="/auth/facebook"]
+        text-decoration: none
+        font-weight: bold
+        +text-shadow(none)
+      a[href="/auth/meurio"]
+        color: darken($mr_green, 5%)
+      a[href="/auth/facebook"]
+        color: $fb_blue
   &.content
     margin-top: 2em
 
