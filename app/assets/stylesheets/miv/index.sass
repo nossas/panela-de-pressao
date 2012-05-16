@@ -7,15 +7,11 @@ body
   font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
   font-size: small
   line-height: normal 
-  background: url("http://www.3quarks.com/images/backgrounds/Texture0203.jpg")
 
 h1
   font-size: xx-large
-  font-family: 'Londrina Solid', cursive
-  color: gray
-  letter-spacing: .1em
-  margin-bottom: .25em
-  +text-shadow(white 0 1px 1px)
+  color: white
+  +text-shadow(black 0 -1px 1px)
 
 h2
   font-size: x-large
@@ -48,29 +44,37 @@ label
 
 section
   +grid-container
-  &.top
+  &.header
     padding: 1em 0
-    margin-bottom: 1em
-    background: rgba(gray, .15)
-    .user
-      text-align: right
-      img
-        float: right
-        margin-left: 1em
-  header
-    +grid-row
+    background: $orange
+    border-bottom: 1px solid $orange
+    color: white
+    +background-image(linear-gradient($orange, lighten($orange, 10%)))
     img
       margin: 0
     .logo
-      +grid(6)
+      +grid(2)
       img
         width: 50px
         float: left
-    .user
+    .menu
       +grid(6)
+      +text-shadow(black 0 1px 1px)
+      span
+        display: inline-block
+        margin: 0 1em
+      a
+        color: white
+        text-decoration: none
+        text-transform: uppercase
+    .user
+      +grid(4)
       +last
+      text-align: right
       img
         border: 1px solid $yellow
+        float: right
+        margin-left: 1em
 
 section.content
   .title
@@ -98,7 +102,6 @@ input[type="text"], input[type="email"], textarea
 
 .alerts
   +grid(12)
-  margin-bottom: 1em
   color: gray
   +text-shadow(white 0 1px 1px)
   .notice
@@ -139,10 +142,10 @@ input[type="text"], input[type="email"], textarea
     +text-shadow(darken(gray, 20%) 0 -1px 1px)
 
 .btn
-  +btn($green)
+  +btn($blue)
 
 .btn_blue
-  +btn($blue)
+  +btn($yellow)
 
 .btn_fb
   +btn($fb_blue)

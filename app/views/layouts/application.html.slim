@@ -9,9 +9,13 @@ html
     = yield(:meta_tags)
     = csrf_meta_tag
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize data-action=controller.action_name.camelize
-    section.top
-      header
+    section.header
+      .row
         .logo=link_to image_tag("meurio.png"), root_path
+        .menu
+          = link_to "Crie a sua campanha", new_campaign_path, :class => "btn"
+          span |
+          = link_to "Todas as campanhas", campaigns_path
         .user
           - if current_user
             = image_tag current_user.picture, size: "50x50", alt: "Avatar"
@@ -27,8 +31,6 @@ html
             .notice= notice
           - if alert
             .alert= alert
-    section.content
-      = yield
+    = yield
     footer
-
     = javascript_include_tag "application"

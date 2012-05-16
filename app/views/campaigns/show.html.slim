@@ -4,55 +4,47 @@
   meta property="og:url" content=campaign_url(@campaign)
   meta property="og:description" content=@campaign.description
 
-#campaign
-  .detail
-    .breadcrumb
-      .navigation
-        | Início > Campanhas
-      .category
-        = @campaign.category.name
-    h1.name
-      = @campaign.name
-    .buttons= link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn" if can?(:edit, @campaign)
-    .headline
-      .user
-        = image_tag @campaign.user.picture, size: "20x20"
-        = @campaign.user.name
-      .time= t 'campaign.headline_html', date: l(@campaign.created_at, format: :short), time: time_ago_in_words(@campaign.updated_at)
-    .image
-      = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
-    .text
-      p= raw @campaign.description.gsub("\n", "<br />")
-    hr
-    - if @campaign.posts.count > 0 || can?(:manage, Post)
-      h1 Atualizações
-      - if can?(:manage, Post)
-        = form_for [@campaign, @post], :remote => true do |f|
-          = f.text_area :content
-          = f.submit "Salvar atualização", :class => "btn"
-          = image_tag 'loader.gif', :class => 'loader'
-      .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
+section.campaign_header
+  .row
+    .category_and_name
+      .category= @campaign.category.name
+      h1.name= @campaign.name
+    .poke_buttons
+      - if !@campaign.influencers.where("email != ''").empty?
+        = form_for [@campaign, @poke] do |f|
+          = f.hidden_field :kind, :value => "email"
+          = link_to "#" do
+            span.counter= @campaign.pokes.where(:kind => "email").count
+            span.email e-mail
+      - if !@campaign.influencers.where("twitter != ''").empty?
+        = form_for [@campaign, @poke] do |f|
+          = f.hidden_field :kind, :value => "twitter"
+          = link_to "#" do
+            span.counter= @campaign.pokes.where(:kind => "twitter").count
+            span.twitter twitter
+      - if !@campaign.influencers.where("facebook != ''").empty?
+        = form_for [@campaign, @poke] do |f|
+          = f.hidden_field :kind, :value => "facebook"
+          = link_to "#" do
+            span.counter= @campaign.pokes.where(:kind => "facebook").count
+            span.facebook facebook
 
-  .action
-    h2 Alvos da campanha
-    - @campaign.influencers.each do |influencer|
-      = image_tag influencer.avatar, :title => influencer.name
-    h2 Como você deseja pressionar os alvos dessa campanha?
-    - if !@campaign.influencers.where("email != ''").empty?
-      = form_for [@campaign, @poke] do |f|
-        = f.hidden_field :kind, :value => "email"
-        = f.submit "Via Email", :class => "btn"
-        |  | 
-        = raw(t "email", :count => @campaign.pokes.where(:kind => "email").count)
-    - if !@campaign.influencers.where("twitter != ''").empty?
-      = form_for [@campaign, @poke] do |f|
-        = f.hidden_field :kind, :value => "twitter"
-        = f.submit "Via Twitter", :class => "btn_twitter"
-        |  | 
-        = raw(t "twitter", :count => @campaign.pokes.where(:kind => "twitter").count)
-    - if !@campaign.influencers.where("facebook != ''").empty?
-      = form_for [@campaign, @poke] do |f|
-        = f.hidden_field :kind, :value => "facebook"
-        = f.submit "Via Facebook", :class => "btn_fb"
-        |  | 
-        = raw(t "facebook", :count => @campaign.pokes.where(:kind => "facebook").count)
+section.campaign_content
+  .row
+    .campaign_details
+      = link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn" if can?(:edit, @campaign)
+      = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+      = t 'campaign.headline_html', date: l(@campaign.created_at, format: :short), time: time_ago_in_words(@campaign.updated_at)
+      = raw @campaign.description.gsub("\n", "<br />")
+      - if @campaign.posts.count > 0 || can?(:manage, Post)
+        h2 Atualizações
+        - if can?(:manage, Post)
+          = form_for [@campaign, @post], :remote => true do |f|
+            = f.text_area :content
+            = f.submit "Salvar atualização", :class => "btn"
+            = image_tag 'loader.gif', :class => 'loader'
+        .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
+    .campaign_panel
+      h2 Alvos da campanha
+      - @campaign.influencers.each do |influencer|
+        = image_tag influencer.avatar, :title => influencer.name
