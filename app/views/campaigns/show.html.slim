@@ -10,6 +10,7 @@ section.campaign_header
       .category= @campaign.category.name
       h1.name= @campaign.name
     .poke_buttons
+      .poke_title Pressione agora
       - if !@campaign.influencers.where("email != ''").empty?
         = form_for [@campaign, @poke] do |f|
           = f.hidden_field :kind, :value => "email"
