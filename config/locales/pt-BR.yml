@@ -233,6 +233,8 @@ pt-BR:
         role: "Cargo"
         twitter: "Usuário no Twitter"
         facebook: "Link para página no Facebook"
+      organization:
+        name: "Nome"
 
   unauthorized:
     create:

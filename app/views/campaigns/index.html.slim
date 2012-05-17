@@ -1,17 +1,18 @@
-.title
-  h1 Últimas Campanhas
-.campaigns
-  - if @campaigns.empty?
-    .no-campaigns Que isso? Nenhuma campanha?!
-  - else
-    = render @campaigns
-
-- if current_user && current_user.campaigns.any?
+section.content
+  .row
+    h1 Últimas Campanhas
   .campaigns
-    h2 Minhas campanhas
-    = render current_user.campaigns
-
-- if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
-  .campaigns
-    h2 Campanhas aguardando moderação
-    = render @campaigns_awaiting_moderation
+    - if @campaigns.empty?
+      .no-campaigns Que isso? Nenhuma campanha?!
+    - else
+      = render @campaigns
+  
+  - if current_user && current_user.campaigns.any?
+    .campaigns
+      h2 Minhas campanhas
+      = render current_user.campaigns
+  
+  - if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
+    .campaigns
+      h2 Campanhas aguardando moderação
+      = render @campaigns_awaiting_moderation
