@@ -65,6 +65,23 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
     .campaign_panel
       +grid(5)
       +last
+      .targets
+        img
+          width: 50px
+          margin-right: 1em
+      .pokes_counter
+        font-size: large
+        text-align: center
+        background: lighten($orange, 5%)
+        color: white
+        padding: 1em
+        margin-bottom: 1em
+        +text-shadow(black 0 1px 1px)
+        +box-shadow(black 0 2px 4px)
+        +background-image(linear-gradient($orange, lighten($orange, 10%)))
+        +border-radius(.5em)
+        span
+          font-size: xx-large
 
   form.new_post 
     .content

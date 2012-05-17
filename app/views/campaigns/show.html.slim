@@ -52,6 +52,8 @@ section.campaign_content
             = image_tag 'loader.gif', :class => 'loader'
         .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
     .campaign_panel
-      h2 Quem decide isso
-      - @campaign.influencers.each do |influencer|
-        = image_tag influencer.avatar, :title => influencer.name
+      .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.count)
+      .targets
+        h2 Quem decide isso
+        - @campaign.influencers.each do |influencer|
+          = image_tag influencer.avatar, :title => influencer.name

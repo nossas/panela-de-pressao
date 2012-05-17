@@ -237,15 +237,7 @@ pt-BR:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
       poke: "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
 
-  twitter:
-    zero: "nenhum tweet foi enviado ainda"
-    one: "<span class='counter'>1</span> tweet já foi enviado"
-    other: "<span class='counter'>%{count}</span> tweets já foram enviados"
-  email:
-    zero: "nenhum email foi enviado ainda"
-    one: "<span class='counter'>1</span> email já foi enviado"
-    other: "<span class='counter'>%{count}</span> emails já foram enviados"
-  facebook:
-    zero: "nenhum post foi compartilhado ainda"
-    one: "<span class='counter'>1</span> post compartilhado"
-    other: "<span class='counter'>%{count}</span> posts compartilhados"
+  pokes_counter:
+    zero: "<span>nenhuma</span> mensagem enviada"
+    one: "<span>1</span> mensagem enviada"
+    other: "<span>%{count}</span> mensagens enviadas"
