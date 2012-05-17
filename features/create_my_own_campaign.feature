@@ -14,6 +14,20 @@ Feature: Create my own campaign
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+  
+  @omniauth_test
+  Scenario: When I'm smart enough to successfully fill the new campaign form that has an organization as co-creator/partner
+    Given I'm logged in
+    And I've created an organization called "MeuRio"
+    And I'm in the new campaign page
+    And I fill "O que você quer mudar na sua cidade?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
+    And I fill "Porque essa campanha é importante?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I attach an image to "Imagem da campanha"
+    And I select "Educação" for "Qual o tema da sua campanha?"
+    And I select "MeuRio" for "Quem está por trás?"
+    When I press "Enviar campanha para moderação"
+    Then I should be in the campaigns page
+    And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."   
 
   @omniauth_test
   Scenario: when I'm not logged in

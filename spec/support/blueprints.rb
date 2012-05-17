@@ -43,3 +43,9 @@ Post.blueprint do
   campaign { Campaign.make! }
   content { "testing posts" }
 end
+
+Organization.blueprint do
+  name { "MeuRio" }
+  owner { User.make! }
+  avatar { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
+end
