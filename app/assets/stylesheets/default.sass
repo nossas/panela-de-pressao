@@ -35,6 +35,20 @@ label
 strong
   font-weight: bold
 
+form
+  .field_bg
+    background: white
+    padding: .5em
+    +border-radius(.25em)
+    +box-shadow(gray 0 -1px 1px)
+    input, textarea
+      +box-shadow(none)
+      background: white
+      padding: 0
+      width: 100%
+    textarea
+      height: 200px
+
 section
   +grid-container
   &.header
