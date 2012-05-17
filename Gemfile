@@ -36,6 +36,7 @@ gem "koala"
 group :development do
   gem "mailcatcher"
   gem "heroku"
+  gem "taps"
 end
 
 # We need development here to make rake spec work
