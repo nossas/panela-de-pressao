@@ -30,7 +30,7 @@ describe PostsController do
       delete :destroy, :campaign_id => campaign.id, :id => @post.id
     end
   
-    it{ should redirect_to campaign_posts_path(:campaign_id => campaign.id) }
+    its(:status){ should == 200 }
   end
 
 end
