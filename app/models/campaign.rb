@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids, :short_url
+  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, :partners_attributes
   
   belongs_to :user
   belongs_to :organization
@@ -13,6 +13,7 @@ class Campaign < ActiveRecord::Base
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers
+  accepts_nested_attributes_for :partners
 
   default_scope order("accepted_at DESC")
 
@@ -21,7 +22,7 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  validates :name, :description, :user_id, :image, :category, :presence => true
+  validates :name, :description, :user_id, :image, :partners, :category, :presence => true
 
   def accepted?
     !accepted_at.nil?
