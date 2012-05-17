@@ -4,11 +4,10 @@ html
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     title= t "site.title" 
-    = stylesheet_link_tag "application"
-    link href='http://fonts.googleapis.com/css?family=Londrina+Solid' rel='stylesheet' type='text/css'
+    = stylesheet_link_tag "application", "http://fonts.googleapis.com/css?family=Londrina+Solid"
     = yield(:meta_tags)
     = csrf_meta_tag
-  body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize data-action=controller.action_name.camelize
+    body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
     section.header
       .row
         .logo=link_to image_tag("seurio_logo.png"), root_path
