@@ -1,7 +1,4 @@
-@import 'columnal/grid'
-@import 'colors'
-
-body[data-controller-class="CampaignsController"][data-action="New"], body[data-controller-class="CampaignsController"]
+body.campaigns_new
   .new_campaign
     +grid_row
     overflow: visible
@@ -46,7 +43,7 @@ body[data-controller-class="CampaignsController"][data-action="New"], body[data-
           #campaign_influencers_chzn
             margin-bottom: 1em
 
-body[data-controller-class="CampaignsController"][data-action="Edit"]
+body.campaigns_edit
   .form
     +grid_row
     form
@@ -56,7 +53,7 @@ body[data-controller-class="CampaignsController"][data-action="Edit"]
       img
         margin: 1em 0 0 0
 
-body[data-controller-class="CampaignsController"][data-action="Show"]
+body.campaigns_show
   .preview
     .title
       font-weight: bold
@@ -144,10 +141,9 @@ body[data-controller-class="CampaignsController"][data-action="Show"]
         span
           font-size: xx-large
   form.new_post 
-    .content
+    .content, .preview
       +grid-subcolumn(8, 4)
     .preview
-      +grid-subcolumn(8, 4)
       +last
     textarea#post_content
       width: 100%
@@ -200,7 +196,7 @@ body[data-action=Index][data-controller-name=Campaigns]
     .campaign.last
       +last
 
-body[data-action="New"][data-controller-name="Sessions"]
+body.sessions_new
   a[href="/auth/meurio"]
     color: white  
   a[href="/auth/facebook"]
@@ -217,7 +213,7 @@ body[data-action="New"][data-controller-name="Sessions"]
     .notice, .alert
       background: none
 
-body[data-controller-class="InfluencersController"]
+body.influencers_index
   .influencers
     +grid_row
     h2
