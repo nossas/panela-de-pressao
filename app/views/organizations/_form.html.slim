@@ -1,7 +1,13 @@
-= semantic_form_for @organization do |f|
-  = f.inputs name: "Dados da Organização" do
-    = f.input :name, label: "Nome", as: :string
-    = f.input :avatar, as: :file
-  = f.actions do
-   = f.action :submit, as: :button, label: "Registrar minha organização"
-   = f.action :cancel, as: :link, label: "Cancelar"
+= form_for @organization do |f|
+  ol
+    li.field_row
+      = f.label :name
+      .field_name
+        .field_bg= f.text_field :name
+    li.field_row
+      = f.label :avatar
+      .field
+        = f.file_field :avatar
+
+    li.field_row
+      .action= f.submit @organization.new_record? ? "Cadastrar organização" : "Salvar organização", :class => "btn"
