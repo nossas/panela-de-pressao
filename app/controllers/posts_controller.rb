@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   def destroy
     destroy! do |format|
-      format.html{ return redirect_to campaign_posts_path(:campaign_id => @campaign.id) }
+      return index
     end
   end
 end

@@ -18,25 +18,47 @@ App.Campaigns = {
     },
 
     onTimeout: function(event){
-      var matches = this.oldValue.match(/http:\S*/);
-      if(matches && matches.length > 0){
-        $('.preview .loader').show();
-        $.get('http://api.embed.ly/1/oembed?url=' + encodeURIComponent(matches[0])).success(this.onEmbedlySuccess);
+      if($.trim(this.previewData.html()) == ''){
+        var matches = this.oldValue.match(/http:\S*/);
+        if(matches && matches.length > 0){
+          this.preview.find('.loader').show();
+          this.previewData.hide();
+          this.preview.find('.remove_preview').hide();
+          this.root.data('url', matches[0]);
+          $.get('http://api.embed.ly/1/oembed?url=' + encodeURIComponent(matches[0]))
+          .complete(this.onEmbedlyComplete)
+          .success(this.onEmbedlySuccess);
+        }
       }
     },
 
-    onEmbedlySuccess: function(data){
-      $('.preview .loader').hide();
-      console.log(data);
+    onEmbedlyComplete: function(data){
+      this.preview.find('.loader').hide();
+      this.previewData.show();
     },
 
-    initialize: function(){
+    onEmbedlySuccess: function(data){
+      data = JSON.parse(data);
+      this.previewData.html('');
+      this.previewData.append(
+        $('<a>').addClass('title').attr('href', data.url).attr('target', '_blank').html(data.title)
+      ).append(
+      $('<div>').addClass('description').html(data.description)
+      ).append(
+      $('<img>').addClass('thumbnail').attr('src', data.thumbnail_url)
+      );
+      this.preview.find('.remove_preview').show();
+    },
+
+    initialize: function(options){
       _.bindAll(this);
+      this.preview = options.preview;
+      this.previewData = this.preview.find('.preview_data');
       this.root = $(this.el);
       this.oldValue = this.root.val();
     }
   }),
-  
+
   Poke: Backbone.View.extend({
     events: {
       'click a' : function(){ this.el.submit(); }
@@ -46,10 +68,17 @@ App.Campaigns = {
   Post: Backbone.View.extend({
     el: 'form.new_post',
     events: {
-      'ajax:beforeSend' : 'onBeforeSend',
-      'ajax:success' : 'onAjaxSuccess'
+      'ajax:before' : 'onBefore',
+      'ajax:success' : 'onAjaxSuccess',
+      'click .remove_preview' : 'removePreview'
     },
-    
+
+    removePreview: function(event){
+      this.previewData.html('');
+      $(event.target).hide();
+      return false;
+    },
+
     onAjaxSuccess: function(event, data){
       var form = $(this.el);
       this.posts.html(data);
@@ -64,13 +93,18 @@ App.Campaigns = {
       }
     },
 
-    onBeforeSend: function(){
+    onBefore: function(){
       this.$('.inline-errors').remove();
       this.$('.loader').show();
+      var post = this.$('textarea#post_content');
+      post.val(
+        post.val().replace(post.data('url'), '') + '<br/>' + this.previewData.html()
+      );
     },
 
     initialize: function(options){
       this.posts = options.posts;
+      this.previewData = this.$('.preview_data');
     }
   }),
 
@@ -94,8 +128,9 @@ App.Campaigns = {
     initialize: function(){
       var that = this;
       this.posts = this.$('.posts');
+      this.preview = this.$('.preview');
       this.postForm = new App.Campaigns.Post({posts: this.posts});
-      this.postContent = new App.Campaigns.PostContent(); 
+      this.postContent = new App.Campaigns.PostContent({preview: this.preview}); 
       this.fbPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='email'])"});
       this.twPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='twitter'])"});
       this.emPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='facebook'])"});

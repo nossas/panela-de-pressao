@@ -48,6 +48,8 @@ section.campaign_content
                 = f.text_area :content
               .preview
                 = image_tag 'loader.gif', :class => 'loader'
+                .preview_data
+                = link_to 'Remover visualização', '#', :class => 'remove_preview'
             = f.submit "Salvar atualização", :class => "btn"
             = image_tag 'loader.gif', :class => 'loader'
         .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
