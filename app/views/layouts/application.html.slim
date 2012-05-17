@@ -8,28 +8,33 @@ html
     = yield(:meta_tags)
     = csrf_meta_tag
     body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
-    section.header
-      .row
-        .logo=link_to image_tag("seurio_logo.png"), root_path
-        .menu
-          = link_to "Crie a sua campanha", new_campaign_path, :class => "btn"
-          span |
-          = link_to "Todas as campanhas", campaigns_path
-        .user
-          - if current_user
-            = image_tag current_user.picture, size: "50x50", alt: "Avatar"
-            p= current_user.name
-            p= link_to "Sair", session_path(current_user.id), :method => :delete
-            p= link_to "Criar uma organização", new_organization_path
-          - else
-            | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
-    section
-      .row
-        .alerts
-          - if notice
-            .notice= notice
-          - if alert
-            .alert= alert
-    = yield
-    footer
+      header
+        .row
+          .logo=link_to image_tag("seurio_logo.png"), root_path
+          .menu
+            = link_to "Crie a sua campanha", new_campaign_path, :class => "btn"
+            span |
+            = link_to "Todas as campanhas", campaigns_path
+          .user
+            - if current_user
+              = image_tag current_user.picture, size: "50x50", alt: "Avatar"
+              p= current_user.name
+              p= link_to "Sair", session_path(current_user.id), :method => :delete
+              p= link_to "Criar uma organização", new_organization_path
+            - else
+              | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
+      section
+        .row
+          .alerts
+            - if notice
+              .notice= notice
+            - if alert
+              .alert= alert
+      = yield
+      footer
+        .row
+          .links
+            = link_to "Facebook", "http://www.facebook.com/meurio"
+            = link_to "Twitter", "http://twitter.com/#!/meu_rio"
+            = link_to "Meu Rio", "http://meurio.org.br/"
     = javascript_include_tag "application"

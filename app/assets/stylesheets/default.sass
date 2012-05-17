@@ -4,17 +4,17 @@ body
   line-height: normal 
   background: url("bg.png")
 
-h1
-  font-size: x-large
-  color: $orange
+h1, h2
+  color: gray
   text-transform: uppercase
   margin-bottom: 1em
+  +text-shadow(white 0 1px 1px)
+
+h1
+  font-size: x-large
 
 h2
   font-size: medium
-  color: $orange
-  text-transform: uppercase
-  margin-bottom: 1em
 
 em
   font-weight: bold
@@ -44,59 +44,69 @@ form
     textarea
       height: 200px
 
-section
+header, footer
   +grid-container
-  &.header
-    padding: 1em 0
-    background: lighten($orange, 5%)
-    border-bottom: 1px solid lighten($orange, 20%)
-    color: white
-    +text-shadow(black 0 1px 1px)
-    line-height: 50px
+  padding: 1em 0
+  background: lighten($orange, 5%)
+  border-bottom: 1px solid lighten($orange, 20%)
+  border-top: 1px solid darken($orange, 5%)
+  color: white
+  +text-shadow(black 0 1px 1px)
+  line-height: 50px
+
+header
+  img
+    margin: 0
+  .logo
+    +grid(2)
     img
-      margin: 0
-    .logo
-      +grid(2)
-      img
-        height: 50px
-        float: left
-    .menu
-      +grid(6)
-      span
-        display: inline-block
-        margin: 0 1em
+      height: 50px
+      float: left
+  .menu
+    +grid(6)
+    span
+      display: inline-block
+      margin: 0 1em
+    a
+      color: white
+      text-decoration: none
+      text-transform: uppercase
+      &.btn
+        padding: 0 1em
+        font-size: medium
+  .user
+    +grid(4)
+    +last
+    text-align: right
+    img
+      float: right
+      margin-left: 1em
+    p
+      padding: 0
+      line-height: normal
       a
-        color: white
-        text-decoration: none
-        text-transform: uppercase
-        &.btn
-          padding: 0 1em
-          font-size: medium
-    .user
-      +grid(4)
-      +last
-      text-align: right
-      img
-        float: right
-        margin-left: 1em
-      p
-        padding: 0
-        line-height: normal
-        a
-          +text-shadow(none)
-      a[href="/auth/meurio"], a[href="/auth/facebook"]
-        text-decoration: none
-        font-weight: bold
         +text-shadow(none)
-      a[href="/auth/meurio"]
-        color: darken($mr_green, 5%)
-      a[href="/auth/facebook"]
-        color: $fb_blue
-  &.content
-    margin-top: 2em
+    a[href="/auth/meurio"], a[href="/auth/facebook"]
+      text-decoration: none
+      font-weight: bold
+      +text-shadow(none)
+    a[href="/auth/meurio"]
+      color: darken($mr_green, 5%)
+    a[href="/auth/facebook"]
+      color: $fb_blue
+
+section.content
+  +grid_container
+  padding-top: 2em
+  padding-bottom: 2em
+  border-top: solid darken(#dddddd, 10%) 1px
+  border-bottom: solid white 1px
 
 footer
-  +grid-container
+  .links
+    +grid(12)
+    a[href="http://meurio.org.br/"]
+      float: right
 
 input[type="text"], input[type="email"], textarea
   font-size: medium

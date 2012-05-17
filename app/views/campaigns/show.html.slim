@@ -30,7 +30,7 @@ section.campaign_header
             span.counter= @campaign.pokes.where(:kind => "facebook").count
             span.facebook facebook
 
-section.campaign_content
+section.content
   .row
     .campaign_details
       = link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)

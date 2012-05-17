@@ -1,7 +1,6 @@
 body.campaigns_new
   .new
     +grid_row
-    overflow: visible
     .motivate
       +grid(6)
       .image
@@ -39,7 +38,6 @@ body.campaigns_new
         +grid-row
         margin-bottom: 1em
         &.influencers
-          overflow: visible
           #campaign_influencers_chzn
             margin-bottom: 1em
 
@@ -54,6 +52,9 @@ body.campaigns_edit
         margin: 1em 0 0 0
 
 body.campaigns_show
+  h1
+    color: white
+    +text-shadow(black 0 -1px 1px)
   .preview
     .title
       font-weight: bold
@@ -114,8 +115,7 @@ body.campaigns_show
           span.twitter
             background: $twitter_blue
             +background-image(linear-gradient(lighten($twitter_blue, 30%), $twitter_blue))
-  section.campaign_content
-    margin-top: 1.5em
+  section.content
     .campaign_details
       +grid(7)
       img, .edit_campaign, .campaign_description
@@ -172,7 +172,6 @@ body[data-action=Index][data-controller-name=Campaigns]
     +grid-row
     h2
       +grid(12)
-    overflow: visible
     .empty
       +grid(12)
     .campaign
