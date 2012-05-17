@@ -27,4 +27,8 @@ class Campaign < ActiveRecord::Base
   def accepted?
     !accepted_at.nil?
   end
+
+  def pokers
+    pokes.map{|p| p.user}.uniq
+  end
 end

@@ -59,3 +59,8 @@ section.content
         h2 Quem decide isso
         - @campaign.influencers.each do |influencer|
           = image_tag influencer.avatar, :title => influencer.name
+      - if @campaign.pokers.any?
+        .pokers
+          h2 Quem participou
+          - @campaign.pokers.each do |poker|
+            = image_tag poker.picture, :title => poker.name

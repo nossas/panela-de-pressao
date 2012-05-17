@@ -82,8 +82,16 @@ Given /^there is a target for this campaign without ([^"]*)$/ do |arg1|
   @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:twitter => "") if arg1 == "Twitter"
 end
 
+Given /^there is a poker called "(.*?)"$/ do |arg1|
+  @poke = Poke.make! :campaign => @campaign
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
-  page.should have_content(arg1)
+  if arg1 == "the poker avatar"
+    page.should have_css("img[src='/assets/pic.png']")
+  else
+    page.should have_content(arg1)
+  end
 end
 
 When /^I go to ([^"]*)$/ do |arg1|
