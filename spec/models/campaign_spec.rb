@@ -17,4 +17,20 @@ describe Campaign do
     it{ should validate_presence_of :image }
     it{ should validate_presence_of :category }
   end
+
+  describe "#pokers" do
+    context "when there is no poke" do
+      its(:pokers) { should be_empty }
+    end
+    context "when there is one poke" do
+      let(:poker) { mock_model(User) }
+      before { subject.stub(:pokes).and_return([mock_model(Poke, :user => poker)]) }
+      its(:pokers) { should be_== [poker] }
+    end
+    context "when there is two pokes of the same guy" do
+      let(:poker) { mock_model(User) }
+      before { subject.stub(:pokes).and_return([mock_model(Poke, :user => poker), mock_model(Poke, :user => poker)]) }
+      its(:pokers) { should be_== [poker] }
+    end
+  end
 end

@@ -4,6 +4,7 @@ require 'machinist/active_record'
 User.blueprint do
   name { "Test User" }
   email { "foo#{sn}@bar.com" }
+  picture { "pic.png" }
 end
 
 Authorization.blueprint do
@@ -54,4 +55,10 @@ end
 CampaignPartner.blueprint do
   organization  { Organization.make! }
   user          { User.make! }
+end
+
+Poke.blueprint do
+  campaign { Campaign.make! }
+  user { User.make! }
+  kind { "facebook" }
 end
