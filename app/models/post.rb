@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
    belongs_to :campaign
    validates_presence_of :campaign_id, :content
+   default_scope order("created_at DESC")
 
    auto_html_for :content do
      youtube(:width => '100%', :height => 350)

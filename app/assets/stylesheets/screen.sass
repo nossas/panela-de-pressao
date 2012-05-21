@@ -141,14 +141,35 @@ body.campaigns_show
         span
           font-size: xx-large
   form.new_post 
+    +grid-subcolumn(8, 8)
+    margin-bottom: 1em
     .content, .preview
-      +grid-subcolumn(8, 4)
-    .preview
-      +last
-    textarea#post_content
-      width: 100%
-      height: 164px
+      +grid-subcolumn(8, 8)
+    .content
       margin-bottom: 1em
+    .preview
+      position: relative
+      .image
+        +grid-subcolumn(8, 1)
+      .title_and_description
+        +grid-subcolumn(8, 7)
+        +last
+        margin-bottom: 1em
+        .title
+          margin-bottom: .5em
+      .remove_preview
+        position: absolute
+        right: 0
+        top: 0
+        width: 16px
+        height: 0
+        padding-top: 16px
+        background: url("http://icons.iconarchive.com/icons/custom-icon-design/mini/16/Close-icon.png")
+        overflow: hidden
+    .actions
+      text-align: right
+      +grid-subcolumn(8, 8)
+      +last
   .posts ul li
     margin: 1em 0
     h1

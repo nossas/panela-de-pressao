@@ -35,7 +35,7 @@ form
     background: white
     padding: .5em
     +border-radius(.25em)
-    +box-shadow(gray 0 -1px 1px)
+    +box-shadow(gray 0 1px 1px inset)
     input, textarea
       +box-shadow(none)
       background: white
@@ -117,6 +117,9 @@ input[type="text"], input[type="email"], textarea
   &:focus
     outline: none
 
+input[type="submit"]
+  margin: 0
+
 .alerts
   +grid(12)
   color: gray
@@ -177,5 +180,10 @@ input[type="text"], input[type="email"], textarea
 
 .loader
   display: none
-  width: 30px
-  height: 30px
+  width: 16px
+  height: 16px
+
+hr
+  border: none
+  border-top: 1px dashed gray
+  margin-bottom: 2em

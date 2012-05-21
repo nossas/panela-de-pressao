@@ -40,12 +40,11 @@ App.Campaigns = {
     onEmbedlySuccess: function(data){
       data = JSON.parse(data);
       this.previewData.html('');
-      this.previewData.append(
-        $('<a>').addClass('title').attr('href', data.url).attr('target', '_blank').html(data.title)
-      ).append(
-      $('<div>').addClass('description').html(data.description)
-      ).append(
-      $('<img>').addClass('thumbnail').attr('src', data.thumbnail_url)
+      this.previewData
+      .append($('<div>').addClass('image').append($('<img>').addClass('thumbnail').attr('src', data.thumbnail_url)))
+      .append($('<div>').addClass('title_and_description')
+        .append($('<a>').addClass('title').attr('href', data.url).attr('target', '_blank').html(data.title))
+        .append($('<div>').addClass('description').html(data.description))
       );
       this.preview.find('.remove_preview').show();
     },

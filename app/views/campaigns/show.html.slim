@@ -39,19 +39,18 @@ section.content
         p
           strong= "Criada em #{l(@campaign.created_at, format: :short)}"
         = raw @campaign.description.gsub("\n", "<br />")
+      hr
       - if @campaign.posts.count > 0 || can?(:manage, Post)
         h2 Atualizações da campanha
         - if can?(:manage, Post)
           = form_for [@campaign, @post], :remote => true do |f|
-            .row
-              .content
-                = f.text_area :content
-              .preview
-                = image_tag 'loader.gif', :class => 'loader'
-                .preview_data
-                = link_to 'Remover visualização', '#', :class => 'remove_preview'
-            = f.submit "Salvar atualização", :class => "btn"
-            = image_tag 'loader.gif', :class => 'loader'
+            .content
+              .field_bg= f.text_area :content
+            .preview
+              = image_tag 'loader.gif', :class => 'loader'
+              .preview_data
+              = link_to 'Remover visualização', '#', :class => 'remove_preview'
+            .actions= f.submit "Publicar atualização", :class => "btn"
         .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
     .campaign_panel
       .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.count)
