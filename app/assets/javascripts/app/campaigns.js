@@ -76,7 +76,7 @@ App.Campaigns = {
 
     removePreview: function(event){
       this.previewData.html('');
-      $(event.target).hide();
+      this.removePreviewLink.hide();
       return false;
     },
 
@@ -84,7 +84,7 @@ App.Campaigns = {
       var form = $(this.el);
       this.posts.html(data);
       this.el.reset();
-      this.$('.loader').hide();
+      this.loader.hide();
       var errors = this.posts.find('ul').data('errors');
       if(errors){
         $.each(errors, function(key, val){
@@ -96,7 +96,7 @@ App.Campaigns = {
 
     onBefore: function(){
       this.$('.inline-errors').remove();
-      this.$('.loader').show();
+      this.loader.show();
       var post = this.$('textarea#post_content');
       post.val(
         post.val().replace(post.data('url'), '') + '<br/>' + this.previewData.html()
@@ -106,6 +106,8 @@ App.Campaigns = {
     initialize: function(options){
       this.posts = options.posts;
       this.previewData = this.$('.preview_data');
+      this.removePreviewLink = this.$('.remove_preview');
+      this.loader = this.$('.loader');
     }
   }),
 
