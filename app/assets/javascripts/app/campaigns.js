@@ -21,9 +21,9 @@ App.Campaigns = {
       if($.trim(this.previewData.html()) == ''){
         var matches = this.oldValue.match(/http:\S*/);
         if(matches && matches.length > 0){
-          this.preview.find('.loader').show();
+          this.loader.show();
           this.previewData.hide();
-          this.preview.find('.remove_preview').hide();
+          this.removePreview.hide();
           this.root.data('url', matches[0]);
           $.get('http://api.embed.ly/1/oembed?url=' + encodeURIComponent(matches[0]))
           .complete(this.onEmbedlyComplete)
@@ -33,7 +33,7 @@ App.Campaigns = {
     },
 
     onEmbedlyComplete: function(data){
-      this.preview.find('.loader').hide();
+      this.loader.hide();
       this.previewData.show();
     },
 
@@ -46,13 +46,15 @@ App.Campaigns = {
         .append($('<a>').addClass('title').attr('href', data.url).attr('target', '_blank').html(data.title))
         .append($('<div>').addClass('description').html(data.description))
       );
-      this.preview.find('.remove_preview').show();
+      this.removePreview.show();
     },
 
     initialize: function(options){
       _.bindAll(this);
       this.preview = options.preview;
       this.previewData = this.preview.find('.preview_data');
+      this.loader = this.preview.find('.loader');
+      this.removePreview = this.preview.find('.remove_preview');
       this.root = $(this.el);
       this.oldValue = this.root.val();
     }
