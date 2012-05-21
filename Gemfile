@@ -41,6 +41,7 @@ end
 
 # We need development here to make rake spec work
 group :test, :development do
+  gem 'rake'
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'database_cleaner'
