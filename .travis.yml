@@ -5,7 +5,7 @@ rvm:
 before_script:
   - "cp config/database.sample.yml config/database.yml"
   - "psql -c 'create role seurio SUPERUSER LOGIN;' postgres"
-  - "psql -c 'create database seurio_test;' -U catarse postgres"
+  - "psql -c 'create database seurio_test;' -U seurio postgres"
   - "sh -e /etc/init.d/xvfb start"
 
 env:
