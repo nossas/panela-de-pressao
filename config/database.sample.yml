@@ -11,9 +11,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: manifeste.se_development
+  database: seurio_development
   pool: 5
-  username: manifeste.se
+  username: seurio
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -37,15 +37,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: manifeste.se_test
+  database: seurio_test
   pool: 5
-  username: manifeste.se
+  username: seurio
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: manifeste.se_production
+  database: seurio_production
   pool: 5
-  username: manifeste.se
+  username: seurio
   password:

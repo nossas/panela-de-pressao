@@ -3,7 +3,7 @@ Feature: Create my own campaign
   As a mobilizer
   I want to create my own campaign
 
-  @omniauth_test
+  @omniauth_test @bitly
   Scenario: when I'm smart enough to successfully fill the new campaign form
     Given I'm logged in
     And I'm in the new campaign page
@@ -15,7 +15,7 @@ Feature: Create my own campaign
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
   
-  @omniauth_test
+  @omniauth_test @bitly
   Scenario: When I'm smart enough to successfully fill the new campaign form that has an organization as co-creator/partner
     Given I'm logged in
     And I've created an organization called "MeuRio"
@@ -29,7 +29,7 @@ Feature: Create my own campaign
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."   
 
-  @omniauth_test
+  @omniauth_test @bitly
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
     And I click "Crie a sua campanha"
