@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/meurio/seurio.png?branch=master)](http://travis-ci.org/meurio/seurio)
+
 # Workshop de requisitos
 Basicamente a história que estamos contando no workshop abaixo é a seguinte:
 
