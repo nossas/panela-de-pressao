@@ -21,7 +21,6 @@ Campaign.blueprint do
   user { User.make! }
   image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
   category { Category.make! }
-  partners { [ CampaignPartner.make! ] }
 end
 
 Category.blueprint do
@@ -50,11 +49,6 @@ Organization.blueprint do
   name { "MeuRio" }
   owner { User.make! }
   avatar { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
-end
-
-CampaignPartner.blueprint do
-  organization  { Organization.make! }
-  user          { User.make! }
 end
 
 Poke.blueprint do
