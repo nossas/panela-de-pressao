@@ -92,6 +92,9 @@ App.Campaigns = {
           form.append($('<div>').addClass('inline-errors').html(message));
         });
       }
+      else{
+        this.removePreview();
+      }
     },
 
     onBefore: function(){
