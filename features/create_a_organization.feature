@@ -11,4 +11,4 @@ Feature: Create an Organization
     And I fill "Nome" with "MeuRio"
     And I attach an image to "Avatar"
     When I press "Cadastrar organização"
-    Then I should see "Sua organização foi criada! Que tal criar campanhas envolvendo usa organização?"
+    Then I should see "MeuRio"
