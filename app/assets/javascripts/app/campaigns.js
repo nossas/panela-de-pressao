@@ -85,15 +85,13 @@ App.Campaigns = {
       this.posts.html(data);
       this.el.reset();
       this.loader.hide();
+      this.removePreview();
       var errors = this.posts.find('ul').data('errors');
       if(errors){
         $.each(errors, function(key, val){
           var message = val.join(", ");
           form.append($('<div>').addClass('inline-errors').html(message));
         });
-      }
-      else{
-        this.removePreview();
       }
     },
 
