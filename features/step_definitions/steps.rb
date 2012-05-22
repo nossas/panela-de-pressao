@@ -86,6 +86,10 @@ Given /^there is a poker called "(.*?)"$/ do |arg1|
   @poke = Poke.make! :campaign => @campaign
 end
 
+Given /^I check "(.*?)"$/ do |arg1|
+  check(arg1)
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   if arg1 == "the poker avatar"
     page.should have_css("img[src='/assets/pic.png']")

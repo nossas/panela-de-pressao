@@ -22,11 +22,12 @@
       .field
         = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
         .inline-errors= @campaign.errors[:category].join(", ")
-    li.field_row
-      = f.fields_for :partners, @campaign do |p|
-        = p.label :organization_id 
-        .field
-          = p.select :organization_id, current_user.organizations.map { |o| [o.name, o.id] }, include_blank: true, class: "chzn-select"
+    - if current_user.organizations.any?
+      li.field_row.organizations
+        label Organizações que apoiam:
+        - current_user.organizations.each do |organization|
+          = check_box_tag "campaign[organization_ids][]", organization.id, @campaign.organizations.include?(organization), :id => "campaign_organization_ids_#{organization.id}"
+          = label_tag "campaign_organization_ids_#{organization.id}", organization.name
     li.field_row.influencers
       = f.label :influencer_ids
       .field.influencers= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"

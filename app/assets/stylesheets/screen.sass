@@ -22,7 +22,8 @@ body.campaigns_new
       +grid(6)
       +last
       label
-        +grid-subcolumn(6, 2)
+        &[for="campaign_image"], &[for="campaign_category_id"]
+          +grid-subcolumn(6, 2)
         &[for="campaign_description"], &[for="campaign_name"], &[for="campaign_influencers"]
           +grid-subcolumn(6, 6)
           margin-bottom: .5em
@@ -50,6 +51,11 @@ body.campaigns_edit
         margin-bottom: 1em
       img
         margin: 1em 0 0 0
+
+body.campaigns_new, body.campaigns_edit
+  li.organizations
+    label
+      margin-right: 1em
 
 body.campaigns_show
   section.campaign_header
