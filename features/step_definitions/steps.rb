@@ -161,6 +161,7 @@ Then /^I should see the campaigns' ([^"]*)$/ do |arg|
 end
 
 Then /^an email should be sent$/ do
+  sleep(1)
   ActionMailer::Base.deliveries.should_not be_empty
 end
 
