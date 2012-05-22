@@ -27,7 +27,12 @@ describe("Campaigns.Post", function(){
     beforeEach(function(){
       spyOn(view.posts, "html");
       spyOn(view.loader, "hide");
+      spyOn(view, "removePreview");
       view.onAjaxSuccess({}, 'test data');
+    });
+
+    it("should remove the preview", function(){
+      expect(view.removePreview).toHaveBeenCalled();
     });
 
     it("should load data into posts", function(){
