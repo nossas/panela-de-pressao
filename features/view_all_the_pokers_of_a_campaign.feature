@@ -7,11 +7,11 @@ Feature: view all the pokers
     Given there is a campaign called "Guerreiros campeões"
     And I'm in the campaigns page
     When I click "Guerreiros campeões"
-    Then I should not see "Quem participou"
+    Then I should not see "Quem já pressionou"
 
   Scenario: when there is a poker
     Given there is a campaign called "Guerreiros campeões"
     And there is a poker called "Marcelinho"
     When I go to this campaign page
-    Then I should see "Quem participou"
+    Then I should see "Quem já pressionou"
     And I should see "the poker avatar"

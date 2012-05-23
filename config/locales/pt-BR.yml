@@ -245,3 +245,8 @@ pt-BR:
     zero: "<span>nenhuma</span> mensagem enviada"
     one: "<span>1</span> mensagem enviada"
     other: "<span>%{count}</span> mensagens enviadas"
+
+  notice:
+    email: "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
+    facebook: "Uma nova mensagem foi postada no seu mural do Facebook, é isso aí! Pressão neles!"
+    twitter: "Mais um tweet para a campanha, é isso aí! Pressão neles!"
