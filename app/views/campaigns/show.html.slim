@@ -38,11 +38,6 @@ section.content
         - @campaign.influencers.each do |influencer|
           = image_tag influencer.avatar, :title => influencer.name
 
-      .supporters
-        h2 Quem faz acontecer
-        - @campaign.organizations.each do |org|
-          = image_tag org.avatar.url, title: org.name
-
       .poke_buttons#poke_buttons
         h2 Como você prefere pressionar quem decide isso?
         = flash[:poke_notice]
@@ -66,6 +61,12 @@ section.content
               span.facebook facebook
         p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
         .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.count)
+    
+      .supporters
+        h2 Quem faz acontecer
+        - @campaign.organizations.each do |org|
+          = image_tag org.avatar.url, title: org.name, size: "50x50"
+
 
       - if @campaign.pokers.any?
         .pokers
