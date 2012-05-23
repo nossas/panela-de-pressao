@@ -61,7 +61,6 @@ body.campaigns_show
   section.campaign_header
     padding: 1em 0
     background: $blue
-    +background-image(linear-gradient($blue, lighten($blue, 30%)))
     border-top: 1px solid darken($blue, 10%)
     .category_and_name
       +grid(7)
@@ -72,49 +71,7 @@ body.campaigns_show
       h1
         color: white
         +text-shadow(black 0 -1px 1px)
-    .poke_buttons
-      text-align: center
-      +grid(5)
-      +last
-      .poke_title
-        color: $yellow
-        text-transform: uppercase
-        +text-shadow(black 0 1px 1px)
-      form
-        display: inline-block
-        a
-          display: inline-block
-          margin: 1em
-          width: 70px
-          color: black
-          text-decoration: none
-          +box-shadow(black 0 2px 4px)
-          +border-radius(.5em)
-          &:active  
-            position: relative
-            top: 1px
-            +border-radius(.5em)
-            +box-shadow(black 0 1px 2px)
-          span.counter
-            font-size: large
-            background: white
-            display: block
-            padding: .5em
-            +border-radius(.5em .5em 0 0)
-          span.email, span.facebook, span.twitter
-            padding: .5em
-            display: block
-            color: white
-            +border-radius(0 0 .5em .5em)
-          span.email
-            background: black
-            +background-image(linear-gradient(lighten(black, 30%), black))
-          span.facebook
-            background: $fb_blue
-            +background-image(linear-gradient(lighten($fb_blue, 30%), $fb_blue))
-          span.twitter
-            background: $twitter_blue
-            +background-image(linear-gradient(lighten($twitter_blue, 30%), $twitter_blue))
+        margin: 0
   section.content
     .campaign_details
       +grid(7)
@@ -175,6 +132,8 @@ body.campaigns_show
     .campaign_panel
       +grid(5)
       +last
+      .poke_buttons, .pokers
+        margin-bottom: 2em
       .targets, .pokers
         img
           width: 50px
@@ -185,13 +144,57 @@ body.campaigns_show
         background: lighten($orange, 5%)
         color: white
         padding: 1em
-        margin-bottom: 1em
-        +text-shadow(black 0 1px 1px)
-        +box-shadow(black 0 2px 4px)
-        +background-image(linear-gradient($orange, lighten($orange, 10%)))
         +border-radius(.5em)
         span
           font-size: xx-large
+      .poke_buttons
+        text-align: center
+        h2
+          text-align: left
+        .poke_title
+          color: $yellow
+          text-transform: uppercase
+          +text-shadow(black 0 1px 1px)
+        p
+          margin-bottom: 1em
+          color: gray
+          text-align: left
+        form
+          display: inline-block
+          a
+            display: inline-block
+            margin: 1em
+            width: 70px
+            color: black
+            text-decoration: none
+            +box-shadow(black 0 1px 4px)
+            +border-radius(.5em)
+            &:active  
+              position: relative
+              top: 1px
+              +border-radius(.5em)
+              +box-shadow(black 0 0 2px)
+            span.counter
+              font-size: large
+              background: white
+              display: block
+              padding: .5em
+              +border-radius(.5em .5em 0 0)
+            span.email, span.facebook, span.twitter
+              padding: .5em
+              display: block
+              color: white
+              +border-radius(0 0 .5em .5em)
+            span.email
+              background: black
+              +background-image(linear-gradient(lighten(black, 30%), black))
+            span.facebook
+              background: $fb_blue
+              +background-image(linear-gradient(lighten($fb_blue, 30%), $fb_blue))
+            span.twitter
+              background: $twitter_blue
+              +background-image(linear-gradient(lighten($twitter_blue, 30%), $twitter_blue))
+
 
 body[data-action=Index][data-controller-name=Campaigns]
   h1
