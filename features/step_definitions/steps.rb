@@ -20,6 +20,16 @@ Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, a
   @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
 end
 
+Given /^there is a campaign called "(.*?)" with an organization "(.*?)" as supporter accepted on "(.*?)"$/ do |arg1, arg2, arg3|
+  @organization = Organization.make! name: arg2
+  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg3), organizations: [@organization]
+
+end
+
+Then /^I should see an avatar from organization "(.*?)"$/ do |arg1|
+  page.should have_xpath("//img[@title='#{arg1}']")
+end
+
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: Time.now
 end
