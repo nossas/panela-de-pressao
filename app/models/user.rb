@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   end
 
   def pokes_counter
-    attributes['pokes_counter']
+    attributes['pokes_count']
   end
 end
