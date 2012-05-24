@@ -23,6 +23,9 @@ Campaign.blueprint do
   category { Category.make! }
   organizations(0)
   pokes(0)
+  email_text { "teste" }
+  facebook_text { "teste" }
+  twitter_text { "teste" }
 end
 
 Category.blueprint do
