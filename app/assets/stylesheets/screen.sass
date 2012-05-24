@@ -8,6 +8,8 @@ body.campaigns_new, body.campaigns_create
     padding-bottom: 2em
     margin-bottom: 2em
     border-bottom: 1px solid lighten(gray, 20%)
+    &:last-child
+      border-bottom: none
     .field, .campaign_twitter_text_status
       margin-bottom: 1em
     .label_and_field
@@ -15,6 +17,11 @@ body.campaigns_new, body.campaigns_create
       label
         display: block
         margin-bottom: .5em
+    &.organizations
+      small
+        margin-bottom: 1em
+      label
+        margin-right: 1em
     .tip
       +grid(5)
       +last

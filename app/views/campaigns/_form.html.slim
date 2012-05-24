@@ -76,7 +76,7 @@
 
     - if current_user.organizations.any?
       .field_row.organizations
-        label Organizações que apoiam:
+        small Organizações que apoiam:
         .field
           - current_user.organizations.each do |organization|
             = check_box_tag "campaign[organization_ids][]", organization.id, @campaign.organizations.include?(organization), :id => "campaign_organization_ids_#{organization.id}"
