@@ -8,6 +8,8 @@ body.campaigns_new, body.campaigns_create
     padding-bottom: 2em
     margin-bottom: 2em
     border-bottom: 1px solid lighten(gray, 20%)
+    .field, .campaign_twitter_text_status
+      margin-bottom: 1em
     .label_and_field
       +grid(7)
       label
@@ -22,6 +24,8 @@ body.campaigns_new, body.campaigns_create
         padding: 1em
         +border-radius(.4em)
         color: $green_btn
+  .charleft
+    display: none
 
 body.campaigns_show
   section.campaign_header
