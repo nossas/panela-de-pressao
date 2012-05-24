@@ -228,6 +228,9 @@ pt-BR:
         category_id: "Qual o tema da sua campanha?"
         influencer_ids: "Alvos da campanha"
         organization_id: "Quem está por trás?"
+        email_text: "Texto do email"
+        facebook_text: "Texto do compartilhamento do Facebook"
+        twitter_text: "Texto do tweet"
       influencer:
         name: "Nome"
         role: "Cargo"

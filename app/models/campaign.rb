@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, :organization_ids
+  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, :organization_ids, :email_text, :facebook_text, :twitter_text
   
   belongs_to :user
   belongs_to :category
@@ -21,13 +21,13 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  validates :name, :description, :user_id, :image, :category, :presence => true
+  validates :name, :description, :user_id, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
 
   def accepted?
     !accepted_at.nil?
   end
 
   def pokers
-    pokes.map{|p| p.user}.uniq
+    User.joins(:pokes).where("pokes.campaign_id = #{id}").uniq
   end
 end
