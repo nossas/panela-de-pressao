@@ -61,6 +61,7 @@
         = f.label :twitter_text
         .field
           .field_bg= f.text_field :twitter_text
+        small.campaign_twitter_text_status
         .inline-errors= @campaign.errors[:twitter_text].join(", ")
       .tip
         span Exemplo: "Não cortem as árvores da Nossa Sra da Paz por uma estação de metrô"
@@ -75,7 +76,7 @@
 
     - if current_user.organizations.any?
       .field_row.organizations
-        label Organizações que apoiam:
+        small Organizações que apoiam:
         .field
           - current_user.organizations.each do |organization|
             = check_box_tag "campaign[organization_ids][]", organization.id, @campaign.organizations.include?(organization), :id => "campaign_organization_ids_#{organization.id}"
