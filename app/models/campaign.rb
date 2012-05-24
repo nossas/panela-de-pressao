@@ -22,6 +22,7 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates :name, :description, :user_id, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
+  validates_length_of :twitter_text, :maximum => 100
 
   def accepted?
     !accepted_at.nil?
