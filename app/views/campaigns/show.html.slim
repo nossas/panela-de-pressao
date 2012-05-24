@@ -61,15 +61,27 @@ section.content
               span.facebook facebook
         p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
         .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.count)
-    
-      .supporters
-        h2 Quem faz acontecer
-        - @campaign.organizations.each do |org|
-          = image_tag org.avatar.url, title: org.name, size: "50x50"
+      - if @campaign.organizations.any? 
+        .supporters
+          h2 Quem faz acontecer
+          ol
+            - @campaign.organizations.each do |org|
+              li= image_tag org.avatar.url, title: org.name, size: "50x50"
 
 
       - if @campaign.pokers.any?
         .pokers
-          h2 Quem já pressionou
-          - @campaign.pokers.each do |poker|
-            = image_tag poker.picture, :title => poker.name
+          h2 Quem participou
+          ol
+            - @campaign.pokers.each do |poker|
+              li= image_tag poker.picture, :title => poker.name
+
+        .more_active_pokers
+          h2 Participantes mais ativos
+          ol
+            - @campaign.more_active_pokers.each do |poker|
+              li
+                = image_tag poker.picture, title: poker.name
+                = poker.name
+                = poker.pokes.size
+

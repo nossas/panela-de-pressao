@@ -23,12 +23,19 @@ end
 Given /^there is a campaign called "(.*?)" with an organization "(.*?)" as supporter accepted on "(.*?)"$/ do |arg1, arg2, arg3|
   @organization = Organization.make! name: arg2
   @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg3), organizations: [@organization]
-
 end
 
-Then /^I should see an avatar from organization "(.*?)"$/ do |arg1|
+Given /^there is (\d+) pokers for this campaign$/ do |arg1|
+  @pokes = []
+  arg1.to_i.times do 
+    @pokes << Poke.make!(campaign: @campaign, user: User.make!)
+  end
+end
+
+Given /^I should see an avatar from organization "(.*?)"$/ do |arg1|
   page.should have_xpath("//img[@title='#{arg1}']")
 end
+
 
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: Time.now
@@ -44,6 +51,13 @@ end
 
 Given /^I own a campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, :user => Authorization.find_by_uid("536687842").user, :accepted_at => Time.now
+end
+
+Given /^there is 1 poker called "(.*?)" that poked (\d+) times$/ do |name, quant|
+  @poker = User.make! name: name 
+  quant.to_i.times do
+    Poke.make! campaign: @campaign, user: @poker
+  end
 end
 
 Given /^I fill "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
@@ -190,4 +204,13 @@ end
 
 Then /^this campaign should be accepted$/ do
   @campaign.reload.should be_accepted
+end
+
+
+Then /^I should see a list of (\d+) recent pokers$/ do |arg1|
+ page.should have_css("div.pokers ol li", count: arg1.to_i)
+end
+
+Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2, arg3|
+  page.body.should =~ /#{arg1}.*#{arg2}.*#{arg3}/m
 end
