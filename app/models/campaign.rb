@@ -28,15 +28,16 @@ class Campaign < ActiveRecord::Base
   end
 
   def pokers
-    User.joins(:pokes).where("pokes.campaign_id = #{id}").uniq
+    User.joins(:pokes).
+      select("users.*, (
+             SELECT COUNT(p.*) FROM pokes p 
+             WHERE p.user_id = users.id
+             AND p.campaign_id = #{self.id}
+            ) as pokes_count").
+      where(["pokes.campaign_id = ?", self.id]).uniq
   end 
 
   def more_active_pokers 
-    User.find_by_sql("                 
-      SELECT DISTINCT u.*, 
-        (SELECT COUNT(*) FROM pokes WHERE pokes.user_id = u.id) AS pokes_counter
-      FROM users u 
-      INNER JOIN pokes ON pokes.campaign_id = #{self.id}                 
-    ")
+    pokers.order('pokes_count DESC') 
   end
 end

@@ -212,5 +212,5 @@ Then /^I should see a list of (\d+) recent pokers$/ do |arg1|
 end
 
 Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2, arg3|
-  page.body.should =~ /#{arg1}.*#{arg2}.*#{arg3}/m
+  page.should have_css("div.more_active_pokers", text: /#{arg1}.*#{arg2}.*#{arg3}/)
 end

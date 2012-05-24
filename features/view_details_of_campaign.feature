@@ -33,4 +33,4 @@ Feature: View a campaign's detail
     When I go to the campaigns page
     And I click "Desarmamento Voluntário"
     Then I should see "Participantes mais ativos"
-    Then I should see a list with order "Luiz", "Babuíno", "Mahadesh"
+    Then I should see a list with order "Luiz", "Mahadesh", "Babuíno"
