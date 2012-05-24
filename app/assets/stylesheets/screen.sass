@@ -1,4 +1,4 @@
-body.campaigns_new, body.campaigns_create
+body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_update
   h1, small
     +grid(12)
   small
@@ -8,11 +8,20 @@ body.campaigns_new, body.campaigns_create
     padding-bottom: 2em
     margin-bottom: 2em
     border-bottom: 1px solid lighten(gray, 20%)
+    &:last-child
+      border-bottom: none
+    .field, .campaign_twitter_text_status
+      margin-bottom: 1em
     .label_and_field
       +grid(7)
       label
         display: block
         margin-bottom: .5em
+    &.organizations
+      small
+        margin-bottom: 1em
+      label
+        margin-right: 1em
     .tip
       +grid(5)
       +last
@@ -22,6 +31,8 @@ body.campaigns_new, body.campaigns_create
         padding: 1em
         +border-radius(.4em)
         color: $green_btn
+  .charleft
+    display: none
 
 body.campaigns_show
   section.campaign_header
