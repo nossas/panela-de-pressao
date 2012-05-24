@@ -1,61 +1,27 @@
-body.campaigns_new
-  .new
-    +grid_row
-    .motivate
-      +grid(6)
-      .image
-        padding: 5px
-        background: white
-        margin: 0 0 1em 0
-        img
-          +border-radius(0)
-          margin: 0
-      .text
-        background: rgba(gray, .1)
-        padding: 1em
-        +box-shadow(gray 0 0 5px)
-        p
-          margin-bottom: 1em
-          &:last-child
-            margin-bottom: 0
-    .form
-      +grid(6)
-      +last
+body.campaigns_new, body.campaigns_create
+  h1, small
+    +grid(12)
+  small
+    margin-bottom: 2em
+  .field_row
+    +grid(12)
+    padding-bottom: 2em
+    margin-bottom: 2em
+    border-bottom: 1px solid lighten(gray, 20%)
+    .label_and_field
+      +grid(7)
       label
-        &[for="campaign_image"], &[for="campaign_category_id"]
-          +grid-subcolumn(6, 2)
-        &[for="campaign_description"], &[for="campaign_name"], &[for="campaign_influencers"]
-          +grid-subcolumn(6, 6)
-          margin-bottom: .5em
-      .field
-        +grid-subcolumn(6, 4)
-        +last
-        &.description, &.name, &.influencers
-          +grid-subcolumn(6, 6) 
-      .action
-        +grid-subcolumn(6, 6)
-        +last
-      li.field_row
-        +grid-row
-        margin-bottom: 1em
-        &.influencers
-          #campaign_influencers_chzn
-            margin-bottom: 1em
-
-body.campaigns_edit
-  .form
-    +grid_row
-    form
-      +grid(6)
-      li.field_row
-        margin-bottom: 1em
-      img
-        margin: 1em 0 0 0
-
-body.campaigns_new, body.campaigns_edit
-  li.organizations
-    label
-      margin-right: 1em
+        display: block
+        margin-bottom: .5em
+    .tip
+      +grid(5)
+      +last
+      span
+        display: block
+        background: $yellow
+        padding: 1em
+        +border-radius(.4em)
+        color: $green_btn
 
 body.campaigns_show
   section.campaign_header

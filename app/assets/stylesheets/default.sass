@@ -1,5 +1,7 @@
+$columnal-grid-width: 980px
+
 body
-  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
+  font-family: Arial, Arial, Helvetica, sans-serif
   font-size: small
   line-height: normal 
   background: url("bg.png")
@@ -9,6 +11,7 @@ h1, h2
   text-transform: uppercase
   margin-bottom: 1em
   +text-shadow(white 0 1px 1px)
+  font-family: 'Cantarell', sans-serif
 
 h1
   font-size: x-large
@@ -22,6 +25,10 @@ em
 a
   color: $blue
 
+small
+  color: gray
+  font-style: italic
+
 label
   color: gray
   font-weight: bold
@@ -34,8 +41,9 @@ form
   .field_bg
     background: white
     padding: .5em
+    border: 2px solid #066
     +border-radius(.25em)
-    +box-shadow(gray 0 1px 1px inset)
+    +box-shadow(lighten(gray, 20%) 0 1px 1px)
     input, textarea
       +box-shadow(none)
       background: white
@@ -147,10 +155,9 @@ input[type="submit"]
   padding: .5em
   display: inline-block
   text-transform: uppercase
-  font-weight: bold
-  border: 1px solid $color
+  font-size: large
+  border: none
   +box-shadow(lighten($color, 40%) 0 1px 1px inset, gray 0 1px 1px)
-  +text-shadow(darken($color, 20%) 0 -1px 1px)
   +border-radius(.25em)
   &:active
     position: relative
@@ -164,7 +171,7 @@ input[type="submit"]
     +text-shadow(darken(gray, 20%) 0 -1px 1px)
 
 .btn
-  +btn($blue)
+  +btn($green_btn)
 
 .btn_blue
   +btn($yellow)
@@ -187,3 +194,12 @@ hr
   border: none
   border-top: 1px dashed gray
   margin-bottom: 2em
+
+.chzn-container
+  .chzn-choices
+    border: none
+    background: none
+    +box-shadow(none)
+    input.default
+      margin: 0
+      padding: 0

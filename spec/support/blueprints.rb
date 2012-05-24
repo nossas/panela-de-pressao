@@ -22,6 +22,9 @@ Campaign.blueprint do
   image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
   category { Category.make! }
   organizations(1)
+  email_text { "teste" }
+  facebook_text { "teste" }
+  twitter_text { "teste" }
 end
 
 Category.blueprint do

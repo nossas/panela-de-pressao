@@ -1,37 +1,87 @@
 = form_for @campaign do |f|
-  ol
-    li.field_row
-      = f.label :name
-      .field.name
-        .field_bg= f.text_field :name
-      .inline-errors= @campaign.errors[:name].join(", ")
-    li.field_row
-      = f.label :description
-      .field.description
-        .field_bg= f.text_area :description
-      .inline-errors= @campaign.errors[:description].join(", ")
-    li.field_row
-      = f.label :image
-      .field
-        = f.file_field :image
+
+    .field_row
+      .label_and_field
+        = f.label :name
+        .field.name
+          .field_bg= f.text_field :name
+        .inline-errors= @campaign.errors[:name].join(", ")
+      .tip
+        span Exemplo: "Não cortem as árvores da Nossa Sra da Paz por uma estação de metrô"
+
+    .field_row
+      .label_and_field
+        = f.label :description
+        .field.description
+          .field_bg= f.text_area :description
+        .inline-errors= @campaign.errors[:description].join(", ")
+      .tip 
+        span Conte pra gente o problema, o que os tomadores de decisão podem fazer para resolver o problema e como essa campanha pode resolver esse problema. Seja breve porém explique claramente a sua causa.
+
+    .field_row
+      .label_and_field
+        = f.label :image
+        .field
+          = f.file_field :image
         .inline-errors= @campaign.errors[:image].join(", ")
-      = image_tag @campaign.image if @campaign.persisted?
-      = f.hidden_field :image_cache
-    li.field_row
-      = f.label :category_id
-      .field
-        = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
+        = image_tag @campaign.image if @campaign.persisted?
+        = f.hidden_field :image_cache
+      .tip 
+        span Uma imagem vale mais que mil palavras. Escolha uma para sua campanha.
+
+    .field_row
+      .label_and_field
+        = f.label :category_id
+        .field
+          = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
         .inline-errors= @campaign.errors[:category].join(", ")
+      .tip
+        span Escolha o tema principal da sua campanha, mesmo que ela possa ter vários
+
+    .field_row
+      .label_and_field
+        = f.label :email_text
+        .field
+          .field_bg= f.text_area :email_text
+        .inline-errors= @campaign.errors[:email_text].join(", ")
+      .tip 
+        span Conte pra gente o problema, o que os tomadores de decisão podem fazer para resolver o problema e como essa campanha pode resolver esse problema. Seja breve porém explique claramente a sua causa.
+
+    .field_row
+      .label_and_field
+        = f.label :facebook_text
+        .field
+          .field_bg= f.text_area :facebook_text
+        .inline-errors= @campaign.errors[:facebook_text].join(", ")
+      .tip 
+        span Conte pra gente o problema, o que os tomadores de decisão podem fazer para resolver o problema e como essa campanha pode resolver esse problema. Seja breve porém explique claramente a sua causa.
+
+    .field_row
+      .label_and_field
+        = f.label :twitter_text
+        .field
+          .field_bg= f.text_field :twitter_text
+        .inline-errors= @campaign.errors[:twitter_text].join(", ")
+      .tip
+        span Exemplo: "Não cortem as árvores da Nossa Sra da Paz por uma estação de metrô"
+
+    .field_row.influencers
+      .label_and_field
+        = f.label :influencer_ids
+        .field.influencers
+          .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+      .tip 
+        span Digite o nome de alguém na esfera pública que possa ajudar na sua causa. Iremos pressioná-lo juntos.
+
     - if current_user.organizations.any?
-      li.field_row.organizations
+      .field_row.organizations
         label Organizações que apoiam:
-        - current_user.organizations.each do |organization|
-          = check_box_tag "campaign[organization_ids][]", organization.id, @campaign.organizations.include?(organization), :id => "campaign_organization_ids_#{organization.id}"
-          = label_tag "campaign_organization_ids_#{organization.id}", organization.name
-    li.field_row.influencers
-      = f.label :influencer_ids
-      .field.influencers= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
-    li.field_row
+        .field
+          - current_user.organizations.each do |organization|
+            = check_box_tag "campaign[organization_ids][]", organization.id, @campaign.organizations.include?(organization), :id => "campaign_organization_ids_#{organization.id}"
+            = label_tag "campaign_organization_ids_#{organization.id}", organization.name
+
+    .field_row
       .action= f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn"
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
