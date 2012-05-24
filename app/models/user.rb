@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :authorizations
   has_many :campaigns
   has_many :organizations, :foreign_key => "owner_id"
+  has_many :pokes
+
   validates_presence_of :email, :name
 
   def self.create_from_hash!(hash)
@@ -19,5 +21,9 @@ class User < ActiveRecord::Base
 
   def twitter_authorization
     authorizations.where(:provider => "twitter").first
+  end
+
+  def pokes_counter
+    attributes['pokes_counter']
   end
 end

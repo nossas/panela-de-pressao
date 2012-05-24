@@ -29,5 +29,14 @@ class Campaign < ActiveRecord::Base
 
   def pokers
     pokes.map{|p| p.user}.uniq
+  end 
+
+  def more_active_pokers 
+    User.find_by_sql("                 
+      SELECT DISTINCT u.*, 
+        (SELECT COUNT(*) FROM pokes WHERE pokes.user_id = u.id) AS pokes_counter
+      FROM users u 
+      INNER JOIN pokes ON pokes.campaign_id = #{self.id}                 
+    ")
   end
 end

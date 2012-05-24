@@ -7,7 +7,8 @@ class Poke < ActiveRecord::Base
   belongs_to :user
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
-
+  
+  default_scope order('updated_at DESC') 
   def twitter?
     self.kind == 'twitter'
   end
