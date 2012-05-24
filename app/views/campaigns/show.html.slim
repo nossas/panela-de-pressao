@@ -74,7 +74,8 @@ section.content
           h2 Quem participou
           ol
             - @campaign.pokers.each do |poker|
-              li= image_tag poker.picture, :title => poker.name
+              li
+                = image_tag poker.picture, :title => poker.name
 
         .more_active_pokers
           h2 Participantes mais ativos
@@ -82,5 +83,6 @@ section.content
             - @campaign.more_active_pokers.each do |poker|
               li
                 = image_tag poker.picture, title: poker.name
-                = poker.name
+                p= poker.name
+                p= poker.pokes_count
 
