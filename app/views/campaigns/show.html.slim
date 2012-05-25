@@ -25,13 +25,15 @@ section.content
         - if can?(:manage, Post)
           = form_for [@campaign, @post], :remote => true do |f|
             .content
-              .field_bg= f.text_area :content
+              .field_bg
+                = f.text_area :content
             .preview
               = image_tag 'loader.gif', :class => 'loader'
               .preview_data
               = link_to 'Remover visualização', '#', :class => 'remove_preview'
-            .actions= f.submit "Publicar atualização", :class => "btn"
-        .posts data-path=campaign_posts_path(campaign_id: @campaign.id)
+            .actions
+              = f.submit "Publicar atualização", :class => "btn"
+        .posts[data-path=campaign_posts_path(campaign_id: @campaign.id)]
     .campaign_panel
       .targets
         h2 Quem decide isso
@@ -45,31 +47,13 @@ section.content
         h2 Como você prefere pressionar quem decide isso?
         = flash[:poke_notice]
 
-        - unless @campaign.not_empty_influencer(:email).empty?
-          = form_for [@campaign, @poke] do |f|
-            = f.hidden_field :kind, :value => "email"
-            = link_to "#" do
-              span.counter= @campaign.pokes_by(:email).size
-              span.email e-mail
-
-
-
-        - unless @campaign.not_empty_influencer(:twitter).empty?
-          = form_for [@campaign, @poke] do |f|
-            = f.hidden_field :kind, :value => "twitter"
-            = link_to "#" do
-              span.counter= @campaign.pokes_by(:twitter).size
-              span.twitter twitter
-
-        - unless @campaign.not_empty_influencer(:facebook).empty?
-          = form_for [@campaign, @poke] do |f|
-            = f.hidden_field :kind, :value => "facebook"
-            = link_to "#" do
-              span.counter= @campaign.pokes_by(:facebook).size
-              span.facebook facebook
+        = render :partial => "poke_form", :locals => { :poke =>  "email" }
+        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
+        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
 
         p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
-        .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.size)
+        .pokes_counter
+          = t("pokes_counter_html", :count => @campaign.pokes.size)
       - if @campaign.organizations.any? 
         .supporters
           h2 Quem faz acontecer
