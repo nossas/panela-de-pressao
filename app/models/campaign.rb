@@ -28,6 +28,22 @@ class Campaign < ActiveRecord::Base
     !accepted_at.nil?
   end
 
+  def influencers
+    Influencer.joins(:targets).where(['targets.campaign_id = ?', self.id])
+  end
+
+  def not_empty_influencer(opt = :email)
+    self.influencers.select { |a| a.send(opt.to_s) == "" }    
+  end
+
+  def pokes
+    Poke.where(['pokes.campaign_id = ?', self.id])
+  end
+
+  def pokes_by(opt = :email)
+    self.pokes.select { |a| a.kind == opt.to_s }
+  end
+
   def pokers
     User.joins(:pokes).
       select("users.*, (
@@ -39,6 +55,8 @@ class Campaign < ActiveRecord::Base
   end 
 
   def more_active_pokers 
-    pokers.order('pokes_count DESC') 
+    pokers.sort { |a,b| b.pokes_count.to_i <=> a.pokes_count.to_i  } 
   end
+
+
 end
