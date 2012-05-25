@@ -33,7 +33,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def not_empty_influencer(opt = :email)
-    self.influencers.select { |a| a.send(opt.to_s) == "" }    
+    self.influencers.select { |a| a.send(opt.to_s) != "" }    
   end
 
   def pokes
