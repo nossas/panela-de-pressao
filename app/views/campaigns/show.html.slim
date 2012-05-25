@@ -7,7 +7,7 @@
 section.campaign_header
   .row
     .category_and_name
-      .category= @campaign.category.name
+      span.category= @campaign.category.name
       h1.name= @campaign.name
 
 section.content
@@ -20,7 +20,7 @@ section.content
           strong= "Criada em #{l(@campaign.created_at, format: :short)}"
         = raw @campaign.description.gsub("\n", "<br />")
       hr
-      - if @campaign.posts.count > 0 || can?(:manage, Post)
+      - if @campaign.posts.size > 0 || can?(:manage, Post)
         h2 Atualizações da campanha
         - if can?(:manage, Post)
           = form_for [@campaign, @post], :remote => true do |f|
@@ -31,36 +31,45 @@ section.content
               .preview_data
               = link_to 'Remover visualização', '#', :class => 'remove_preview'
             .actions= f.submit "Publicar atualização", :class => "btn"
-        .posts data-path=campaign_posts_path(:campaign_id => @campaign.id)
+        .posts data-path=campaign_posts_path(campaign_id: @campaign.id)
     .campaign_panel
       .targets
         h2 Quem decide isso
-        - @campaign.influencers.each do |influencer|
-          = image_tag influencer.avatar, :title => influencer.name
+        ol
+          - @campaign.influencers.each do |influencer|
+            li
+              p= image_tag influencer.avatar, :title => influencer.name
+              p= influencer.name
 
       .poke_buttons#poke_buttons
         h2 Como você prefere pressionar quem decide isso?
         = flash[:poke_notice]
-        - if !@campaign.influencers.where("email != ''").empty?
+
+        - unless @campaign.not_empty_influencer(:email).empty?
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "email"
             = link_to "#" do
-              span.counter= @campaign.pokes.where(:kind => "email").count
+              span.counter= @campaign.pokes_by(:email).size
               span.email e-mail
-        - if !@campaign.influencers.where("twitter != ''").empty?
+
+
+
+        - unless @campaign.not_empty_influencer(:twitter).empty?
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "twitter"
             = link_to "#" do
-              span.counter= @campaign.pokes.where(:kind => "twitter").count
+              span.counter= @campaign.pokes_by(:twitter).size
               span.twitter twitter
-        - if !@campaign.influencers.where("facebook != ''").empty?
+
+        - unless @campaign.not_empty_influencer(:facebook).empty?
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "facebook"
             = link_to "#" do
-              span.counter= @campaign.pokes.where(:kind => "facebook").count
+              span.counter= @campaign.pokes_by(:facebook).size
               span.facebook facebook
+
         p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
-        .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.count)
+        .pokes_counter= raw t("pokes_counter", :count => @campaign.pokes.size)
       - if @campaign.organizations.any? 
         .supporters
           h2 Quem faz acontecer
