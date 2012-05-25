@@ -244,7 +244,7 @@ pt-BR:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
       poke: "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
 
-  pokes_counter:
+  pokes_counter_html:
     zero: "<span>nenhuma</span> mensagem enviada"
     one: "<span>1</span> mensagem enviada"
     other: "<span>%{count}</span> mensagens enviadas"

@@ -7,4 +7,4 @@ pt-BR:
       author: "Meu Rio - contato@meurio.org.br"
   campaign:
     headline_html: "Criada em <span>%{date}</span>, atualizada há <span>%{time}</span> atrás"
-
+    show:
