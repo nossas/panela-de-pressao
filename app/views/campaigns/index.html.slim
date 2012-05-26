@@ -1,12 +1,8 @@
 section.content
-  .row
-    h1 Últimas Campanhas
   .campaigns
-    - if @campaigns.empty?
-      .no-campaigns Que isso? Nenhuma campanha?!
-    - else
-      = render @campaigns
-  
+    h1 Últimas Campanhas
+    = render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
+    = render @campaigns[1..-1] if @campaigns.size > 1
   - if current_user && current_user.campaigns.any?
     .campaigns
       h2 Minhas campanhas

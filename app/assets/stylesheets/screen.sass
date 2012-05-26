@@ -180,11 +180,31 @@ body.campaigns_show
               +background-image(linear-gradient(lighten($twitter_blue, 30%), $twitter_blue))
 
 
-body[data-action=Index][data-controller-name=Campaigns]
+body.campaigns_index
   h1
     +grid(12)
   .campaigns
     +grid-row
+    .highlight_campaign
+      padding-bottom: 2em
+      margin-bottom: 2em
+      border-bottom: lighten(gray, 30%) 1px solid
+      +grid(12)
+      .highlight_image
+        +grid(6)
+        img
+          margin: 0
+      .highlight_details
+        +grid(6)
+        +last
+        .campaign_time, .campaign_description
+          margin-bottom: 1em
+        .campaign_title
+          font-size: x-large
+        .campaign_time
+          color: gray
+        .campaign_buttons
+          text-align: right
     h2
       +grid(12)
     .empty

@@ -1,0 +1,10 @@
+.highlight_campaign
+  .highlight_image
+    = image_tag campaign.image
+  .highlight_details
+    .campaign_title= link_to campaign.name, campaign
+    .campaign_time= "há #{distance_of_time_in_words_to_now campaign.created_at} atrás"
+    .campaign_description
+      = campaign.description.truncate(400)
+      = raw " #{link_to "Ver mais", campaign}"
+    .campaign_buttons= link_to "Participe agora", campaign, :class => "btn"
