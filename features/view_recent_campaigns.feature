@@ -3,10 +3,6 @@ Feature: View recent campaigns
   As a visitor
   I want to view recent campaigns
 
-  Scenario: when there is no campaign
-    Given I'm in the campaigns page
-    Then I should see "Que isso? Nenhuma campanha?!"
-
   Scenario: when there is one campaign
     Given there is a campaign called "Desarmamento Voluntário"
     When I go to the campaigns page
