@@ -8,6 +8,14 @@ html
     = yield(:meta_tags)
     = csrf_meta_tag
     body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
+      - if notice
+        section.notice
+          .row
+            span= notice
+      - if alert
+        section.alert
+          .row
+            span= alert
       header
         .row
           .logo=link_to image_tag("seurio_logo.png"), root_path
@@ -23,13 +31,6 @@ html
               p= link_to "Criar uma organização", new_organization_path
             - else
               | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
-      section
-        .row
-          .alerts
-            - if notice
-              .notice= notice
-            - if alert
-              .alert= alert
       = yield
       footer
         .row

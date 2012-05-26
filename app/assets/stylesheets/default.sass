@@ -128,18 +128,19 @@ input[type="text"], input[type="email"], textarea
 input[type="submit"]
   margin: 0
 
-.alerts
-  +grid(12)
-  color: gray
-  +text-shadow(white 0 1px 1px)
-  .notice
-    padding-left: 22px
-    background: url("http://icons.iconarchive.com/icons/pixelmixer/basic/16/tick-icon.png") left no-repeat
-    margin-top: 1em
-  .alert
-    padding-left: 22px
-    background: url("http://icons.iconarchive.com/icons/pixelmixer/basic/16/block-icon.png") left no-repeat
-    margin-top: 1em
+section.notice
+  background: $blue
+  border-bottom: dashed 1px darken($blue, 20%)
+
+section.alert
+  background: $red
+  border-bottom: dashed 1px darken($red, 20%)
+
+section.notice, section.alert
+  span
+    +grid(12)
+    color: white
+    padding: 1em 0
 
 .row
   +grid_row
