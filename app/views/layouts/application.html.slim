@@ -22,7 +22,7 @@ html
           .menu
             = link_to "Crie a sua campanha", new_campaign_path, :class => "btn"
             span |
-            = link_to "Todas as campanhas", campaigns_path
+            = link_to "Ver campanhas", campaigns_path
           .user
             - if current_user
               = image_tag current_user.picture, size: "50x50", alt: "Avatar"
