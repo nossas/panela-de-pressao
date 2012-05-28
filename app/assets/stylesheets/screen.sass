@@ -181,8 +181,25 @@ body.campaigns_show
 
 
 body.campaigns_index
-  h1
-    +grid(12)
+  section.about
+    +grid_container
+    background: $blue
+    padding-top: 2em
+    padding-bottom: 2em
+    border-top: darken($blue, 30%)  1px solid
+    color: white
+    h1
+      color: white
+      +text-shadow(none)
+    .text
+      +grid(6)
+      p
+        margin-bottom: 1em
+      a
+        font-size: small
+    .video
+      +grid(6)
+      +last
   .campaigns
     +grid-row
     padding-bottom: 1em
@@ -222,7 +239,45 @@ body.campaigns_index
         font-size: small
     .campaign.last
       +last
+  .latest_posts
+    +grid(6)
+    .post
+      position: relative
+      margin-bottom: 1em
+      padding-bottom: 1em
+      border-bottom: 1px solid lighten(gray, 30%)
+      +grid-subcolumn(6, 6)
+      br
+        display: none
+      .image
+        +grid-subcolumn(6, 1)
+        img
+          margin-bottom: 0
+      .title_and_description
+        +grid-subcolumn(6, 5)
+        +last
+        .title
+          margin-bottom: .5em
+      .remove_preview
+        position: absolute
+        right: 0
+        top: 0
+        width: 16px
+        height: 0
+        padding-top: 16px
+        background: url("http://icons.iconarchive.com/icons/custom-icon-design/mini/16/Close-icon.png")
+        overflow: hidden
+        display: none
+      .post_campaign
+        color: gray
+        font-size: small
+        font-style: italic
 
+  .latest_pokes
+    +grid(3)
+  .facebook_widget
+    +grid(3)
+    +last
 body.sessions_new
   a[href="/auth/meurio"]
     color: white  

@@ -1,6 +1,16 @@
+section.about
+  .row
+    .text
+      h1 Como funciona?
+      p Comece a sua campanha, mobilize pessoas interessadas, realize a mudança!
+      = link_to "Comece a sua campanha", new_campaign_path, :class => "btn"
+      |  ou participe das campanhas abaixo
+    .video
+      iframe width="100%" height="315" src="http://www.youtube.com/embed/zSiHjMU-MUo" frameborder="0"
+
 section.content
   .campaigns
-    h1 Últimas Campanhas
+    h2 Últimas Campanhas
     = render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
     = render @campaigns[1..-1] if @campaigns.size > 1
   - if current_user && current_user.campaigns.any?
@@ -12,3 +22,12 @@ section.content
     .campaigns
       h2 Campanhas aguardando moderação
       = render @campaigns_awaiting_moderation
+  .row
+    .latest_posts
+      h2 Últimas atualizações
+      = render Post.limit(2)
+    .latest_pokes
+      h2 Últimas participações
+    .facebook_widget 
+      #fb-root
+      .fb-like data-href="http://meurio.org.br/" data-width="100%" data-show-faces="true" data-stream="true" data-header="true"
