@@ -1,0 +1,4 @@
+.poke
+  = image_tag poke.user.picture
+  .poke_user_name= poke.user.name
+  .poke_campaign_link= raw "em #{link_to poke.campaign.name, poke.campaign}"
