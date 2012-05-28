@@ -28,6 +28,7 @@ section.content
       = render Post.limit(2)
     .latest_pokes
       h2 Últimas participações
+      = render Poke.limit(5)
     .facebook_widget 
       #fb-root
-      .fb-like data-href="http://meurio.org.br/" data-width="100%" data-show-faces="true" data-stream="true" data-header="true"
+      .fb-like data-href="http://meurio.org.br/" data-width="217px" data-show-faces="true" data-stream="true" data-header="true"
