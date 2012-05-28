@@ -160,7 +160,8 @@ section.notice, section.alert
   text-transform: uppercase
   font-size: large
   border: none
-  +box-shadow(lighten($color, 40%) 0 1px 1px inset, gray 0 1px 1px)
+  +text-shadow(black 0 1px 1px)
+  +box-shadow(lighten($color, 40%) 0 1px 1px inset, black 0 1px 1px)
   +border-radius(.25em)
   &:active
     position: relative
@@ -170,7 +171,7 @@ section.notice, section.alert
     background: lighten(gray, 20%)
     +background-image(linear-gradient(lighten(gray, 20%), gray))
     border: 1px solid gray
-    +box-shadow(lighten(gray, 40%) 0 1px 1px inset, gray 0 1px 1px)
+    +box-shadow(lighten(gray, 40%) 0 1px 1px inset, black 0 1px 1px)
     +text-shadow(darken(gray, 20%) 0 -1px 1px)
 
 .btn
