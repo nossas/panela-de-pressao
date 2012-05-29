@@ -35,14 +35,14 @@ section.content
               = f.submit "Publicar atualização", :class => "btn"
         .posts[data-path=campaign_posts_path(campaign_id: @campaign.id)]
     .campaign_panel
-      .targets
+      .targets.influencers
         h2 Quem decide isso
         ol
           - @campaign.influencers.each do |influencer|
             li
               = image_tag influencer.avatar, :title => influencer.name
-              p= influencer.name
-              span= influencer.role
+              p.name= influencer.name
+              span.role= influencer.role
 
       .poke_buttons#poke_buttons
         h2 Como você prefere pressionar quem decide isso?
