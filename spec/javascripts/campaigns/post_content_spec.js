@@ -105,33 +105,62 @@ describe("Campaigns.PostContent", function(){
   });
 
   describe("#onEmbedlySuccess", function(){
-    var data = {
-      thumbnail_url: 'http://thumbnail.com',
-      url: 'http://url.com',
-      title: 'test title',
-      description: 'test description'
-    };
-    var fakeEmbedlyData = JSON.stringify(data);
+    describe("with html", function(){
+      var data = {
+        thumbnail_url: 'http://thumbnail.com',
+        html: '<iframe></iframe>',
+        url: 'http://url.com',
+        title: 'test title',
+        description: 'test description'
+      };
+      var fakeEmbedlyData = JSON.stringify(data);
 
-    beforeEach(function(){
-      spyOn(view.previewData, "html").andCallThrough();
-      spyOn(view.removePreview, "show");
-      view.onEmbedlySuccess(fakeEmbedlyData);
+      beforeEach(function(){
+        spyOn(view.previewData, "html").andCallThrough();
+        spyOn(view.removePreview, "show");
+        view.onEmbedlySuccess(fakeEmbedlyData);
+      });
+
+      it("should copy embedly data to previewData", function(){
+        expect(view.previewData.find('.image img').length).toEqual(0);
+        expect(view.previewData.find('.image iframe').length).toEqual(1);
+        expect(view.previewData.find('.title_and_description a.title').attr('href')).toEqual(data.url);
+        expect(view.previewData.find('.title_and_description a.title').html()).toEqual(data.title);
+        expect(view.previewData.find('.title_and_description .description').html()).toEqual(data.description);
+      });
     });
 
-    it("should clear the previewData", function(){
-      expect(view.previewData.html).toHaveBeenCalledWith('');
+    describe("without html", function(){
+      var data = {
+        thumbnail_url: 'http://thumbnail.com',
+        url: 'http://url.com',
+        title: 'test title',
+        description: 'test description'
+      };
+      var fakeEmbedlyData = JSON.stringify(data);
+
+      beforeEach(function(){
+        spyOn(view.previewData, "html").andCallThrough();
+        spyOn(view.removePreview, "show");
+        view.onEmbedlySuccess(fakeEmbedlyData);
+      });
+
+
+      it("should clear the previewData", function(){
+        expect(view.previewData.html).toHaveBeenCalledWith('');
+      });
+
+      it("should copy embedly data to previewData", function(){
+        expect(view.previewData.find('.image img').attr('src')).toEqual(data.thumbnail_url);
+        expect(view.previewData.find('.title_and_description a.title').attr('href')).toEqual(data.url);
+        expect(view.previewData.find('.title_and_description a.title').html()).toEqual(data.title);
+        expect(view.previewData.find('.title_and_description .description').html()).toEqual(data.description);
+      });
+
+      it("should show removePreview", function(){
+        expect(view.removePreview.show).toHaveBeenCalled();
+      });
     });
 
-    it("should copy embedly data to previewData", function(){
-      expect(view.previewData.find('.image img').attr('src')).toEqual(data.thumbnail_url);
-      expect(view.previewData.find('.title_and_description a.title').attr('href')).toEqual(data.url);
-      expect(view.previewData.find('.title_and_description a.title').html()).toEqual(data.title);
-      expect(view.previewData.find('.title_and_description .description').html()).toEqual(data.description);
-    });
-
-    it("should show removePreview", function(){
-      expect(view.removePreview.show).toHaveBeenCalled();
-    });
   });
 });
