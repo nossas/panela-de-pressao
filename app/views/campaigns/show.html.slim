@@ -40,8 +40,9 @@ section.content
         ol
           - @campaign.influencers.each do |influencer|
             li
-              p= image_tag influencer.avatar, :title => influencer.name
+              = image_tag influencer.avatar, :title => influencer.name
               p= influencer.name
+              span= influencer.role
 
       .poke_buttons#poke_buttons
         h2 Como você prefere pressionar quem decide isso?
