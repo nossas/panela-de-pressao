@@ -40,8 +40,10 @@ App.Campaigns = {
     onEmbedlySuccess: function(data){
       data = JSON.parse(data);
       this.previewData.html('');
+
+      var embed = data.html ? $(data.html).attr('width', '100%').attr('height', '100%') : $('<img>').addClass('thumbnail').attr('src', data.thumbnail_url);
       this.previewData
-      .append($('<div>').addClass('image').append($('<img>').addClass('thumbnail').attr('src', data.thumbnail_url)))
+      .append($('<div>').addClass('image').append(embed))
       .append($('<div>').addClass('title_and_description')
         .append($('<a>').addClass('title').attr('href', data.url).attr('target', '_blank').html(data.title))
         .append($('<div>').addClass('description').html(data.description))
