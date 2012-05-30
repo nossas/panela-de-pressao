@@ -9,4 +9,15 @@ class Influencer < ActiveRecord::Base
   def to_s
     "#{self.name}, #{self.role}"
   end
+
+  def facebook_url
+    "https://facebook.com/profile.php?id=#{self.facebook}"
+  end
+
+  def twitter_url
+    "http://twitter.com/#{self.twitter}"
+  end
+
+
 end
+

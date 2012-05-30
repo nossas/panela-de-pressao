@@ -44,6 +44,11 @@ section.content
               p.name= influencer.name
               span.role= influencer.role
 
+              ul
+                li= link_to "facebook", influencer.facebook_url
+                li= link_to "twitter", influencer.twitter_url
+                li= mail_to influencer.email, "email"
+
       .poke_buttons#poke_buttons
         h2 Como você prefere pressionar quem decide isso?
         = flash[:poke_notice]
