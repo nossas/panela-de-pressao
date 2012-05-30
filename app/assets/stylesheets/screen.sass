@@ -46,7 +46,8 @@ body.campaigns_show
         color: white
         +text-shadow(black 0px 1px 1px)
         margin: 5px 0
-        font-size: 2.2em
+        font-size: 1.8em
+
   section.content
     .campaign_details
       +grid(7)
@@ -112,8 +113,6 @@ body.campaigns_show
         color: $orange
       .poke_buttons, .pokers
         margin-bottom: 2em
-
-
       .pokers
         overflow: hidden
         ol li 
@@ -125,17 +124,35 @@ body.campaigns_show
           line-height: 10px
         .role
           font-size: 0.8em
-          color: $blue
+          color: lighten($blue, 25%)
+        ul li
+          display: inline-block
+          margin-right: 1em
+          font-size: 0.7em
+          a
+            color: white
+
       .more_active_pokers, .pokers, .targets
         li
           overflow: hidden
         img
           float: left
-          padding-right: 10px
-      .targets, .pokers
+          margin-right: 1em
+          border: 3px solid lighten($mr_green, 2%)
+      .targets, .pokers, .more_active_pokers
         img
           width: 50px
-          margin-right: 1em
+      .targets
+        ol
+          +border-radius(4px)
+          background: $blue
+          width: 95%
+          padding: 10px
+          color: rgb(255, 203, 116)
+          text-shadow: 1px 1px 1px #666
+          margin-bottom: 1.5em
+        img 
+          border: 3px solid $orange
       .pokes_counter
         font-size: large
         text-align: center
