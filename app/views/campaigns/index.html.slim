@@ -24,8 +24,8 @@ section.content
       = render @campaigns_awaiting_moderation
   .row
     .latest_posts
-      h2 Últimas atualizações
-      = render Post.limit(2)
+      h2 Última atualização
+      = render Post.first if Post.first
     .latest_pokes
       h2 Últimas participações
       = render Poke.limit(5)
