@@ -20,12 +20,10 @@ h2
   font-size: medium
 
 em
-  font-weight: bold
+  font-style: italic
 
 a
   color: $blue
-
-.content a
   text-decoration: none
   &:hover
     border-bottom: 1px solid $blue
@@ -168,6 +166,8 @@ section.notice, section.alert
   +text-shadow(black 0 1px 1px)
   +box-shadow(lighten($color, 40%) 0 1px 1px inset, black 0 1px 1px)
   +border-radius(.25em)
+  &:hover
+    border: none
   &:active
     position: relative
     top: 1px

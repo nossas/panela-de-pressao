@@ -1,4 +1,7 @@
 .poke
   = image_tag poke.user.picture
-  .poke_user_name= poke.user.name
-  .poke_campaign_link= raw "em #{link_to poke.campaign.name, poke.campaign}"
+  .poke_user_name
+    strong= poke.user.name
+    em  apoiou:
+  .poke_campaign_link= link_to poke.campaign.name, poke.campaign
+  .poke_created_at= l(poke.created_at, :format => :short)
