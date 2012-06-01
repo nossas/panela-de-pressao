@@ -6,8 +6,6 @@ class Post < ActiveRecord::Base
    default_scope order("created_at DESC")
 
    auto_html_for :content do
-     youtube(:width => '100%', :height => 350)
-     vimeo(:width => '100%', :height => 350)
      google_map(:width => '100%', :height => 350, :link_text => 'ver mapa maior')
      redcarpet
      simple_format
