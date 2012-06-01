@@ -57,14 +57,12 @@ body.campaigns_show
         position: relative
         +grid-subcolumn(7, 7)
         .image
-          +grid-subcolumn(7, 3)
+          float: left
+          max-width: 200px
+          margin: 0 1em 0 0
           img
-            margin-bottom: 0
-        .title_and_description
-          +grid-subcolumn(7, 4)
-          +last
-          .title
-            margin-bottom: .5em
+            margin: 0
+            float: left
         .remove_preview
           margin-right: -17px
           position: absolute
@@ -279,17 +277,15 @@ body.campaigns_index
       padding-bottom: 1em
       border-bottom: 1px solid lighten(gray, 30%)
       +grid-subcolumn(5, 5)
+      .image
+        float: left
+        max-width: 200px
+        margin: 0 1em 0 0
+        img
+          margin: 0
+          float: left
       br
         display: none
-      .image
-        +grid-subcolumn(5, 1)
-        img
-          margin-bottom: 0
-      .title_and_description
-        +grid-subcolumn(5, 4)
-        +last
-        .title
-          margin-bottom: .5em
       .post_campaign
         color: gray
         font-size: small
