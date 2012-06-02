@@ -30,33 +30,34 @@ body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_u
     display: none
 
 body.campaigns_show
-  h2
-    color: $darkorange
-    font-size: 1.4em
-  .header
-    +grid(12)
-    margin-bottom: 2em
-    .updated
-      color: gray
-      font-size: 0.8em
-    .category
-      color: $darkorange 
-      font-size: 0.7em
-      text-transform: uppercase
-    .name
-      color: $blue
-      margin: 5px 0
-      font-size: 2.1em
-      font-weight: 600
-      line-height: .9em
-  .campaign_description
-    color: #333
-    border-bottom: 1px solid lighten($orange, 15%)
-    padding: 1.8em 0
-    p
-      padding-bottom: 1em
   section.content
-    .campaign_details
+    .campaign
+      h2
+        color: $darkorange
+        font-size: 1.4em
+    .header
+      +grid(12)
+      margin-bottom: 2em
+      .updated
+        color: gray
+        font-size: 0.8em
+      .category
+        color: $darkorange 
+        font-size: 0.7em
+        text-transform: uppercase
+      .name
+        color: $blue
+        margin: 5px 0
+        font-size: 2.1em
+        font-weight: 600
+        line-height: .9em
+    .description, .influencers_response, .updates
+      color: #333
+      border-bottom: 1px dashed lighten($orange, 15%)
+      padding: 1.8em 0
+      p
+        padding-bottom: 1em
+    .details
       +grid(7)
       img, .edit_campaign, .campaign_description
         margin-bottom: 1em
