@@ -100,7 +100,8 @@ section.content
           ol
             - @campaign.pokers.each do |poker|
               li
-                = image_tag poker.picture, :title => poker.name
+                = image_tag poker.picture
+                span= poker.name
 
         .more_active_pokers
           h2 Participantes mais ativos

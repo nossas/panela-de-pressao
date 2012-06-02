@@ -176,11 +176,31 @@ body.campaigns_show
         .privacy
           font-size: small
       .pokers
-        margin-bottom: 2em
-      .pokers
+        padding-bottom: 2em
         overflow: hidden
         ol li 
           float: left
+          position: relative
+          overflow: visible
+          margin: 0 1em 1em 0
+          img
+            margin: 0
+          &:hover
+            span
+              display: block
+            img
+              border-color: $orange
+          span
+            position: absolute
+            z-index: 10000
+            background: white
+            border: 1px solid $orange
+            padding: .25em
+            color: $orange
+            font-size: small
+            display: none
+            top: 50px
+            width: 100px
       .targets
         .name
           text-transform: uppercase
