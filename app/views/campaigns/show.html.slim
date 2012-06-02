@@ -52,7 +52,7 @@ section.content
         .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
         p
           | Pressione 
-          strong= @campaign.influencers.map{|i| i.name}.join(", ")
+          = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
           |  usando:
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
