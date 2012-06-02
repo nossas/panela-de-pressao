@@ -34,7 +34,18 @@ section.content
             .actions
               = f.submit "Publicar atualização", :class => "btn"
         .posts[data-path=campaign_posts_path(campaign_id: @campaign.id)]
+    
     .campaign_panel
+      .poke_buttons#poke_buttons
+        h2 Como você prefere pressionar quem decide isso?
+        = flash[:poke_notice]
+        = render :partial => "poke_form", :locals => { :poke =>  "email" }
+        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
+        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
+        p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
+        .pokes_counter
+          = t("pokes_counter_html", :count => @campaign.pokes.size)
+
       .targets.influencers
         h2 Quem decide isso
         ol
@@ -43,30 +54,17 @@ section.content
               = image_tag influencer.avatar, :title => influencer.name
               p.name= influencer.name
               span.role= influencer.role
-
               ul
                 li= link_to "facebook", influencer.facebook_url
                 li= link_to "twitter", influencer.twitter_url
                 li= mail_to influencer.email, "email"
 
-      .poke_buttons#poke_buttons
-        h2 Como você prefere pressionar quem decide isso?
-        = flash[:poke_notice]
-
-        = render :partial => "poke_form", :locals => { :poke =>  "email" }
-        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
-        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
-
-        p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
-        .pokes_counter
-          = t("pokes_counter_html", :count => @campaign.pokes.size)
       - if @campaign.organizations.any? 
         .supporters
           h2 Quem faz acontecer
           ol
             - @campaign.organizations.each do |org|
               li= image_tag org.avatar.url, title: org.name, size: "50x50"
-
 
       - if @campaign.pokers.any?
         .pokers
@@ -84,4 +82,3 @@ section.content
                 = image_tag poker.picture, title: poker.name
                 p= poker.name
                 p= poker.pokes_count
-
