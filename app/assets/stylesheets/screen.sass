@@ -124,13 +124,15 @@ body.campaigns_show
       +grid(5)
       +last
 
+      .targets, .poke_buttons
+        margin-bottom: 4em
+
       .poke_buttons
         color: #ffffcc
         padding: 1em
         +border-radius(.5em)
         background: $orange
         text-align: center
-        margin-bottom: 1em
         .pokes_counter
           font-size: large
           text-align: center
@@ -179,7 +181,7 @@ body.campaigns_show
         overflow: hidden
         ol li 
           float: left
-      .influencers
+      .targets
         .name
           text-transform: uppercase
           font-size: .9em
@@ -193,6 +195,23 @@ body.campaigns_show
           font-size: 0.7em
           a
             color: white
+        ol
+          +border-radius(4px)
+          background: darken($blue, 10%)
+          padding: 1em
+          margin-bottom: 1em
+          color: $orange
+          a
+            color: lighten($blue, 25%)
+          li.target
+            border-bottom: 1px solid $blue
+            padding-bottom: 1em
+            margin-bottom: 1em
+            img 
+              border: 2px solid $orange
+              margin: 0 1em 0 0
+          li:last-child
+            text-align: center
       .more_active_pokers, .pokers, .targets
         li
           overflow: hidden
@@ -203,17 +222,6 @@ body.campaigns_show
       .targets, .pokers, .more_active_pokers
         img
           width: 50px
-      .targets
-        ol
-          +border-radius(4px)
-          background: $blue
-          width: 95%
-          padding: 10px
-          color: rgb(255, 203, 116)
-          text-shadow: 1px 1px 1px #666
-          margin-bottom: 1.5em
-        img 
-          border: 3px solid $orange
 
 body.campaigns_index
   section.about
