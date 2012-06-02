@@ -7,15 +7,14 @@
 section.content
   .row
     .campaign_details
-      .category_and_name
+      .header
         span.category= @campaign.category.name
         h1.name= @campaign.name
-
+        span.updated= "Criada em #{l(@campaign.created_at, format: :short)} - atualizada há #{time_ago_in_words(@campaign.updated_at)}"
       /= link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
       .campaign_description
         p
-          strong= "Criada em #{l(@campaign.created_at, format: :short)}"
         = raw @campaign.description.gsub("\n", "<br />")
       hr
       - if @campaign.posts.size > 0 || can?(:manage, Post)

@@ -30,18 +30,22 @@ body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_u
     display: none
 
 body.campaigns_show
-  .category_and_name
+  .header
     +grid(12)
-    .category
-      color: $yellow
-      text-transform: none
-      +text-shadow(black 0 1px 1px)
+    margin-bottom: 2em
+    .updated
+      color: gray
       font-size: 0.8em
-    h1
-      color: white
-      +text-shadow(black 0px 1px 1px)
+    .category
+      color: darken($orange, 15%)
+      font-size: 0.7em
+      text-transform: uppercase
+    .name
+      color: $blue
       margin: 5px 0
-      font-size: 1.8em
+      font-size: 2.1em
+      font-weight: 600
+      line-height: .9em
 
   section.content
     .campaign_details
