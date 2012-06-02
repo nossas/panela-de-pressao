@@ -19,10 +19,6 @@ describe PokesController do
           post :create, :poke => {:kind => "email"}, :campaign_id => "1"
           should redirect_to "/campaigns/1"
         end
-        it "should set the flash message" do
-          post :create, :poke => {:kind => "email"}, :campaign_id => "1"
-          should set_the_flash.to("Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!")
-        end
       end
 
       context "when it's a Twitter poke" do
@@ -40,10 +36,6 @@ describe PokesController do
           post :create, :poke => {:kind => "twitter"}, :campaign_id => "1"
           should redirect_to "/campaigns/1"
         end
-        it "should set the flash message" do
-          post :create, :poke => {:kind => "twitter"}, :campaign_id => "1"
-          should set_the_flash.to("Mais um tweet para a campanha, é isso aí! Pressão neles!")
-        end
       end
 
       context "when it's a Facebook poke" do
@@ -60,10 +52,6 @@ describe PokesController do
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "facebook"}, :campaign_id => "1"
           should redirect_to "/campaigns/1"
-        end
-        it "should set the flash message" do
-          post :create, :poke => {:kind => "facebook"}, :campaign_id => "1"
-          should set_the_flash.to("Uma nova mensagem foi postada no seu mural do Facebook, é isso aí! Pressão neles!")
         end
       end
     end
