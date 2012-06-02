@@ -92,22 +92,15 @@ section.content
           h2 Quem faz acontecer
           ol
             - @campaign.organizations.each do |org|
-              li= image_tag org.avatar.url, title: org.name, size: "50x50"
+              li
+                = image_tag org.avatar.url, size: "50x50"
+                span= org.name
 
       - if @campaign.pokers.any?
         .pokers
-          h2 Quem participou
+          h2= "Quem participou (#{@campaign.influencers.count})"
           ol
             - @campaign.pokers.each do |poker|
               li
                 = image_tag poker.picture
                 span= poker.name
-
-        .more_active_pokers
-          h2 Participantes mais ativos
-          ol
-            - @campaign.more_active_pokers.each do |poker|
-              li
-                = image_tag poker.picture, title: poker.name
-                p= poker.name
-                p= poker.pokes_count
