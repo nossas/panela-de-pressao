@@ -35,14 +35,11 @@ section.content
     
     .campaign_panel
       .poke_buttons#poke_buttons
-        h2 Como você prefere pressionar quem decide isso?
-        = flash[:poke_notice]
+        .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
         = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
         p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
-        .pokes_counter
-          = t("pokes_counter_html", :count => @campaign.pokes.size)
 
       .targets.influencers
         h2 Quem decide isso
