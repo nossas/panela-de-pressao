@@ -33,7 +33,8 @@ section.content
 
       .updates
         - if @campaign.posts.size > 0 || can?(:manage, Post)
-          h2 Atualizações da campanha
+          h2 
+            | Atualizações da campanha (#{@campaign.posts.size})
           - if can?(:manage, Post)
             = form_for [@campaign, @post], :remote => true do |f|
               .content
