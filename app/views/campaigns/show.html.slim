@@ -54,14 +54,14 @@ section.content
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
         = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
         .email_text
-          span Mensagem enviada por e-mail
-          = @campaign.email_text
+          span Mensagem que será enviada por e-mail
+          = raw @campaign.email_text.gsub("\n", "<br />")
         .twitter_text
-          span Mensagem enviada no tweet
-          = @campaign.twitter_text
+          span Mensagem que será compartilhada no Twitter
+          = raw @campaign.twitter_text.gsub("\n", "<br />")
         .facebook_text
-          span Mensagem enviada no mural
-          = @campaign.facebook_text
+          span Mensagem que será compartilhada no Facebook
+          = raw @campaign.facebook_text.gsub("\n", "<br />")
         - if current_user && current_user.has_poked(@campaign)
           .congrats
             span Parabéns!
