@@ -35,7 +35,9 @@ body.campaigns_show
       h2
         color: $darkorange
         font-size: 1.4em
-      .edit
+      .details
+        +grid(7)
+
     .header
       +grid(12)
       margin-bottom: 2em
@@ -65,8 +67,6 @@ body.campaigns_show
         font-size: .8em
         color: gray
         text-align: center
-    .details
-      +grid(7)
       img, .edit_campaign, .campaign_description
         margin-bottom: 1em
       .preview, .post
