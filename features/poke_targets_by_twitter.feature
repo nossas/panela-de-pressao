@@ -11,7 +11,8 @@ Feature: Poke targets by Twitter
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via Twitter"
-    Then I should see "Mais um tweet para a campanha, é isso aí! Pressão neles!"
+    Then I should see "PARABÉNS!"
+    And I should see "Você acaba de colaborar para uma cidade melhor."
     And a twitter poke should be added to the target
 
   @omniauth_test @twitter @javascript
@@ -21,7 +22,8 @@ Feature: Poke targets by Twitter
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via Twitter"
-    Then I should see "Mais um tweet para a campanha, é isso aí! Pressão neles!"
+    Then I should see "PARABÉNS!"
+    And I should see "Você acaba de colaborar para uma cidade melhor."
     And a tweet poke should be added to the target
 
   @omniauth_test @twitter @javascript
@@ -33,7 +35,8 @@ Feature: Poke targets by Twitter
     Then I should see "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
     And I should be in the login page
     When I click "Entrar via Facebook"
-    Then I should see "Mais um tweet para a campanha, é isso aí! Pressão neles!"
+    Then I should see "PARABÉNS!"
+    And I should see "Você acaba de colaborar para uma cidade melhor."
     And a tweet poke should be added to the target
   
   @omniauth_test
