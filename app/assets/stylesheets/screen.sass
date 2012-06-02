@@ -175,12 +175,32 @@ body.campaigns_show
               margin-bottom: 0
         .privacy
           font-size: small
-      .pokers
-        margin-bottom: 2em
-      .pokers
+      .pokers, .supporters
+        padding-bottom: 2em
         overflow: hidden
         ol li 
           float: left
+          position: relative
+          overflow: visible
+          margin: 0 1em 1em 0
+          img
+            margin: 0
+          &:hover
+            span
+              display: block
+            img
+              border-color: $orange
+          span
+            position: absolute
+            z-index: 10000
+            background: white
+            border: 1px solid $orange
+            padding: .25em
+            color: $orange
+            font-size: small
+            display: none
+            top: 50px
+            width: 100px
       .targets
         .name
           text-transform: uppercase
@@ -188,7 +208,7 @@ body.campaigns_show
           line-height: 10px
         .role
           font-size: 0.8em
-          color: lighten($blue, 25%)
+          color: lighten($blue, 5%)
         ul li
           display: inline-block
           margin-right: 1em
@@ -212,13 +232,13 @@ body.campaigns_show
               margin: 0 1em 0 0
           li:last-child
             text-align: center
-      .more_active_pokers, .pokers, .targets
+      .more_active_pokers, .pokers, .targets, .supporters
         li
           overflow: hidden
         img
           float: left
           margin-right: 1em
-          border: 3px solid lighten($mr_green, 2%)
+          border: 2px solid lighten($mr_green, 2%)
       .targets, .pokers, .more_active_pokers
         img
           width: 50px

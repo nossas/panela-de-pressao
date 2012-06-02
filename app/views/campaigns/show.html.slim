@@ -27,7 +27,7 @@ section.content
         p
           | Ainda não houve resposta dos alvos da campanha. Cobre novamente deles:
         p.poke
-          = link_to "Pressionar os alvos", "#poke_buttons", class: :btn
+          = link_to "Pressionar os alvos", "#", class: :btn
         p.contact
           | Você é um dos nossos alvos? Dê sua resposta atrás de #{mail_to "resposta@seurio.org.br", "resposta@seurio.org.br"}
 
@@ -93,21 +93,15 @@ section.content
           h2 Quem faz acontecer
           ol
             - @campaign.organizations.each do |org|
-              li= image_tag org.avatar.url, title: org.name, size: "50x50"
+              li
+                = image_tag org.avatar.url, size: "50x50"
+                span= org.name
 
       - if @campaign.pokers.any?
         .pokers
-          h2 Quem participou
+          h2= "Quem participou (#{@campaign.influencers.count})"
           ol
             - @campaign.pokers.each do |poker|
               li
-                = image_tag poker.picture, :title => poker.name
-
-        .more_active_pokers
-          h2 Participantes mais ativos
-          ol
-            - @campaign.more_active_pokers.each do |poker|
-              li
-                = image_tag poker.picture, title: poker.name
-                p= poker.name
-                p= poker.pokes_count
+                = image_tag poker.picture
+                span= poker.name
