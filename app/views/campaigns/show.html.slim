@@ -62,6 +62,11 @@ section.content
         .facebook_text
           span Mensagem enviada no mural
           = @campaign.facebook_text
+        - if current_user && current_user.has_poked(@campaign)
+          .congrats
+            span Parabéns!
+            p Você acaba de colaborar para uma cidade melhor.
+            p Mas não pare agora! Você deve continuar enviando novas mensagens para pressionar quem decide a responder suas demandas.
         .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
 
       .targets.influencers

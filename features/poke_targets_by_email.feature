@@ -10,7 +10,8 @@ Feature: Poke targets by email
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via email"
-    Then I should see "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
+    Then I should see "PARABÉNS!"
+    And I should see "Você acaba de colaborar para uma cidade melhor."
     And a email poke should be added to the target
     And an email should be sent
 
@@ -25,7 +26,8 @@ Feature: Poke targets by email
     When I click "Entrar via Facebook"
     Then an email should be sent
     And a email poke should be added to the target
-    And I should see "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
+    Then I should see "PARABÉNS!"
+    And I should see "Você acaba de colaborar para uma cidade melhor."
 
   @omniauth_test
   Scenario: when there is no email to target

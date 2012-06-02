@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def pokes_counter
     attributes['pokes_count']
   end
+
+  def has_poked campaign
+    pokes.where(:campaign_id => campaign.id).any?
+  end
 end
