@@ -13,10 +13,12 @@ section.content
         span.updated= "Criada em #{l(@campaign.created_at, format: :short)} - atualizada há #{time_ago_in_words(@campaign.updated_at)}"
       /= link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+
       .campaign_description
-        p
-        = raw @campaign.description.gsub("\n", "<br />")
-      hr
+        h2 Porque isso é importante
+        p= raw @campaign.description.gsub("\n", "<br />")
+
+      .campaign_updates
       - if @campaign.posts.size > 0 || can?(:manage, Post)
         h2 Atualizações da campanha
         - if can?(:manage, Post)
