@@ -155,6 +155,8 @@ App.Campaigns = {
       $("form.email").mouseout(function(){ $(".email_text").hide(); })
       $("form.facebook").mouseout(function(){ $(".facebook_text").hide(); })
       $("form.twitter").mouseout(function(){ $(".twitter_text").hide(); })
+
+      $("a[href='#']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
     }
   })
 };
