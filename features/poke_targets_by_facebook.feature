@@ -10,7 +10,7 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via Facebook"
-    Then I should see "PARABÉNS!"
+    Then I should see "Parabéns!"
     And I should see "Você acaba de colaborar para uma cidade melhor."
     And a facebook poke should be added to the target
 
@@ -21,7 +21,7 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via Facebook"
-    Then I should see "PARABÉNS!"
+    Then I should see "Parabéns!"
     And I should see "Você acaba de colaborar para uma cidade melhor."
     And a facebook poke should be added to the target
     
@@ -34,7 +34,7 @@ Feature: Poke targets by Facebook
     Then I should see "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
     And I should be in the login page
     When I click "Entrar via Facebook"
-    Then I should see "PARABÉNS!"
+    Then I should see "Parabéns!"
     And I should see "Você acaba de colaborar para uma cidade melhor."
     And a facebook poke should be added to the target
 
