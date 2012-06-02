@@ -73,11 +73,11 @@ section.content
             p Mas não pare agora! Você deve continuar enviando novas mensagens para pressionar quem decide a responder suas demandas.
         .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
 
-      .targets.influencers
+      .targets
         h2 Quem decide isso
         ol
           - @campaign.influencers.each do |influencer|
-            li
+            li.target
               = image_tag influencer.avatar, :title => influencer.name
               p.name= influencer.name
               span.role= influencer.role
@@ -85,6 +85,7 @@ section.content
                 li= link_to "facebook", influencer.facebook_url
                 li= link_to "twitter", influencer.twitter_url
                 li= mail_to influencer.email, "email"
+          li= link_to "esquecemos de alguém?", "mailto:contato@seurio.org.br"
 
       - if @campaign.organizations.any? 
         .supporters
