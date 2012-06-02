@@ -30,25 +30,34 @@ body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_u
     display: none
 
 body.campaigns_show
-  .header
-    +grid(12)
-    margin-bottom: 2em
-    .updated
-      color: gray
-      font-size: 0.8em
-    .category
-      color: darken($orange, 15%)
-      font-size: 0.7em
-      text-transform: uppercase
-    .name
-      color: $blue
-      margin: 5px 0
-      font-size: 2.1em
-      font-weight: 600
-      line-height: .9em
-
   section.content
-    .campaign_details
+    .campaign
+      h2
+        color: $darkorange
+        font-size: 1.4em
+    .header
+      +grid(12)
+      margin-bottom: 2em
+      .updated
+        color: gray
+        font-size: 0.8em
+      .category
+        color: $darkorange 
+        font-size: 0.7em
+        text-transform: uppercase
+      .name
+        color: $blue
+        margin: 5px 0
+        font-size: 2.1em
+        font-weight: 600
+        line-height: .9em
+    .description, .influencers_response, .updates
+      color: #333
+      border-bottom: 1px dashed lighten($orange, 15%)
+      padding: 1.8em 0
+      p
+        padding-bottom: 1em
+    .details
       +grid(7)
       img, .edit_campaign, .campaign_description
         margin-bottom: 1em
@@ -106,8 +115,7 @@ body.campaigns_show
     .campaign_panel
       +grid(5)
       +last
-      h2
-        color: $orange
+
       .poke_buttons
         color: #ffffcc
         padding: 1em
