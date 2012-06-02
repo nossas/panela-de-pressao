@@ -94,7 +94,7 @@ section.content
           ol
             - @campaign.organizations.each do |org|
               li
-                = image_tag org.avatar.url, size: "50x50"
+                = image_tag org.avatar.url, size: "50x50", title: org.name
                 span= org.name
 
       - if @campaign.pokers.any?
