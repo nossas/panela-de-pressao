@@ -143,6 +143,18 @@ App.Campaigns = {
       $.get(this.posts.data('path')).success(function(data){
         that.posts.html(data);
       });
+
+      $(".email_text").hide();
+      $(".facebook_text").hide();
+      $(".twitter_text").hide();
+
+      $("form.email").mouseover(function(){ $(".email_text").show(); })
+      $("form.facebook").mouseover(function(){ $(".facebook_text").show(); })
+      $("form.twitter").mouseover(function(){ $(".twitter_text").show(); })
+      
+      $("form.email").mouseout(function(){ $(".email_text").hide(); })
+      $("form.facebook").mouseout(function(){ $(".facebook_text").hide(); })
+      $("form.twitter").mouseout(function(){ $(".twitter_text").hide(); })
     }
   })
 };

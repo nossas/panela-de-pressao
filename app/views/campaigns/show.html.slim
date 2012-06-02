@@ -40,7 +40,16 @@ section.content
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
         = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
-        p= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
+        .email_text
+          span Mensagem enviada por e-mail
+          = @campaign.email_text
+        .twitter_text
+          span Mensagem enviada no tweet
+          = @campaign.twitter_text
+        .facebook_text
+          span Mensagem enviada no mural
+          = @campaign.facebook_text
+        .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
 
       .targets.influencers
         h2 Quem decide isso
