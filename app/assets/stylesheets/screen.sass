@@ -105,11 +105,38 @@ body.campaigns_show
       h2
         color: $orange
       .poke_buttons
+        padding: 1em
+        +border-radius(.5em)
         background: $orange
+        text-align: center
         .pokes_counter
-          color: lighten($orange, 25%)
-          font-size: x-large
+          color: lighten($orange, 35%)
+          font-size: large
           text-align: center
+          border-bottom: 1px solid lighten($orange, 35%)
+          padding-bottom: .5em
+          margin-bottom: 1em
+          +text-shadow(black 0 1px 1px)
+          span
+            font-size: xx-large
+        form
+          display: inline-block
+          margin-left: 2em
+          padding: 1em
+          +border-radius(.5em .5em 0 0)
+          &.email
+            margin: 0
+          &:hover
+            background: lighten($orange, 35%)
+          a
+            display: inline-block
+            height: 50px
+            width: 50px
+            background: white
+            color: black
+            font-size: x-large
+            &:hover
+              border: none
       .pokers
         margin-bottom: 2em
       .pokers
