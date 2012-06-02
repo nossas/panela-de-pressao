@@ -50,6 +50,10 @@ section.content
     .campaign_panel
       .poke_buttons#poke_buttons
         .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
+        p
+          | Pressione 
+          strong= @campaign.influencers.map{|i| i.name}.join(", ")
+          |  usando:
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
         = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
