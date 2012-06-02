@@ -116,29 +116,29 @@ body.campaigns_show
       +last
 
       .poke_buttons
+        color: #ffffcc
         padding: 1em
         +border-radius(.5em)
         background: $orange
         text-align: center
+        margin-bottom: 1em
         .pokes_counter
-          color: lighten($orange, 35%)
           font-size: large
           text-align: center
-          border-bottom: 1px solid lighten($orange, 35%)
+          border-bottom: 1px solid #ffffcc
           padding-bottom: .5em
-          margin-bottom: 1em
+          margin-bottom: .5em
           +text-shadow(black 0 1px 1px)
           span
             font-size: xx-large
         form
           display: inline-block
-          margin-left: 2em
           padding: 1em
           +border-radius(.5em .5em 0 0)
           &.email
             margin: 0
           &:hover
-            background: lighten($orange, 35%)
+            background: #ffcc66
           a
             display: inline-block
             height: 50px
@@ -148,6 +148,19 @@ body.campaigns_show
             font-size: x-large
             &:hover
               border: none
+        .email_text, .facebook_text, .twitter_text
+          background: #ffcc66
+          text-align: left
+          padding: 1em
+          +border-radius(.5em)
+          color: gray
+          margin-bottom: 1em
+          span
+            text-transform: uppercase
+            color: #a7470e
+            display: block
+        .privacy
+          font-size: small
       .pokers
         margin-bottom: 2em
       .pokers
