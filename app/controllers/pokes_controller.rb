@@ -15,7 +15,7 @@ class PokesController < InheritedResources::Base
   def create
     @poke = Poke.new session.delete(:poke).merge(:user_id => current_user.id)
     create! do |success, failure|
-      success.html { redirect_to @campaign, :flash => {:poke_notice => t("notice.#{resource.kind}")}, :anchor => "poke_buttons" }
+      success.html { redirect_to @campaign, :anchor => "poke_buttons" }
     end
   end
 end

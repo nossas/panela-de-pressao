@@ -109,7 +109,7 @@ body.campaigns_show
       +last
       h2
         color: $orange
-      .poke_buttons, .pokers
+      .pokers
         margin-bottom: 2em
       .pokers
         overflow: hidden
@@ -129,7 +129,6 @@ body.campaigns_show
           font-size: 0.7em
           a
             color: white
-
       .more_active_pokers, .pokers, .targets
         li
           overflow: hidden
@@ -151,63 +150,6 @@ body.campaigns_show
           margin-bottom: 1.5em
         img 
           border: 3px solid $orange
-      .pokes_counter
-        font-size: large
-        text-align: center
-        background: lighten($orange, 5%)
-        color: white
-        padding: 1em
-        +border-radius(.5em)
-        span
-          font-size: xx-large
-      .poke_buttons
-        text-align: center
-        h2
-          text-align: left
-        .poke_title
-          color: $yellow
-          text-transform: uppercase
-          +text-shadow(black 0 1px 1px)
-        p
-          margin-bottom: 1em
-          color: gray
-          text-align: left
-        form
-          display: inline-block
-          a
-            display: inline-block
-            margin: 1em
-            width: 70px
-            color: black
-            text-decoration: none
-            +box-shadow(black 0 1px 4px)
-            +border-radius(.5em)
-            &:active  
-              position: relative
-              top: 1px
-              +border-radius(.5em)
-              +box-shadow(black 0 0 2px)
-            span.counter
-              font-size: large
-              background: white
-              display: block
-              padding: .5em
-              +border-radius(.5em .5em 0 0)
-            span.email, span.facebook, span.twitter
-              padding: .5em
-              display: block
-              color: white
-              +border-radius(0 0 .5em .5em)
-            span.email
-              background: black
-              +background-image(linear-gradient(lighten(black, 30%), black))
-            span.facebook
-              background: $fb_blue
-              +background-image(linear-gradient(lighten($fb_blue, 30%), $fb_blue))
-            span.twitter
-              background: $twitter_blue
-              +background-image(linear-gradient(lighten($twitter_blue, 30%), $twitter_blue))
-
 
 body.campaigns_index
   section.about
