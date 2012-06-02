@@ -30,23 +30,18 @@ body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_u
     display: none
 
 body.campaigns_show
-  section.campaign_header
-    padding: 1em 0
-    background: $blue
-    border-top: 1px solid darken($blue, 10%)
-    .category_and_name
-      padding: 10px 0
-      +grid(12)
-      .category
-        color: $yellow
-        text-transform: none
-        +text-shadow(black 0 1px 1px)
-        font-size: 0.8em
-      h1
-        color: white
-        +text-shadow(black 0px 1px 1px)
-        margin: 5px 0
-        font-size: 1.8em
+  .category_and_name
+    +grid(12)
+    .category
+      color: $yellow
+      text-transform: none
+      +text-shadow(black 0 1px 1px)
+      font-size: 0.8em
+    h1
+      color: white
+      +text-shadow(black 0px 1px 1px)
+      margin: 5px 0
+      font-size: 1.8em
 
   section.content
     .campaign_details
