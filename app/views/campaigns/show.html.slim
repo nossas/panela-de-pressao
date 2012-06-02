@@ -4,16 +4,14 @@
   meta property="og:url" content=campaign_url(@campaign)
   meta property="og:description" content=@campaign.description
 
-section.campaign_header
-  .row
-    .category_and_name
-      span.category= @campaign.category.name
-      h1.name= @campaign.name
-
 section.content
   .row
     .campaign_details
-      = link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)
+      .category_and_name
+        span.category= @campaign.category.name
+        h1.name= @campaign.name
+
+      /= link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)
       = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
       .campaign_description
         p
