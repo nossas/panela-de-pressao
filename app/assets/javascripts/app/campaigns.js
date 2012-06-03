@@ -156,7 +156,7 @@ App.Campaigns = {
       $("form.facebook").mouseout(function(){ $(".facebook_text").hide(); })
       $("form.twitter").mouseout(function(){ $(".twitter_text").hide(); })
 
-      $("a[href='#']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
+      $("a[href='#poke_buttons']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
     }
   })
 };
