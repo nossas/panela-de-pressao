@@ -183,7 +183,7 @@ body.campaigns_show
             font-size: x-large
             &:hover
               border: none
-        .email_text, .facebook_text, .twitter_text, .congrats
+        .email_text, .facebook_text, .twitter_text, .congrats, .share
           background: #ffcc66
           text-align: left
           padding: 1em
@@ -193,10 +193,18 @@ body.campaigns_show
           span
             color: #a7470e
             display: block
+            margin-bottom: .25em
           p
             margin-bottom: 1em
             &:last-child
               margin-bottom: 0
+        .share
+          margin: 1em 0 0 0
+          a, g:plusone, .fb-like
+            display: block
+            float: left
+          .fb-like
+            top: 3px
         .privacy
           font-size: small
       .pokers, .supporters

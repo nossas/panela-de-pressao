@@ -73,6 +73,12 @@ section.content
             p Você acaba de colaborar para uma cidade melhor.
             p Mas não pare agora! Você deve continuar enviando novas mensagens para pressionar quem decide a responder suas demandas.
         .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
+        - if current_user && current_user.has_poked(@campaign)
+          .share
+            span Compartilhe
+            a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" Tweetar
+            g:plusone size="medium"
+            .fb-like data-href=request.url data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
 
       .targets
         h2 Quem decide isso
