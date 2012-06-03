@@ -99,7 +99,7 @@ section.content
 
       - if @campaign.pokers.any?
         .pokers
-          h2= "Quem participou (#{@campaign.influencers.count})"
+          h2= "Quem participou (#{@campaign.pokers.length})"
           ol
             - @campaign.pokers.each do |poker|
               li
