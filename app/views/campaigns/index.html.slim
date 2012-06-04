@@ -28,10 +28,10 @@ section.content
   .row
     .latest_posts
       h2 Última atualização
-      = render Post.first if Post.first
+      = render Post.limit(5)
     .latest_pokes
       h2 Últimas participações
       = render Poke.limit(5)
     .facebook_widget 
       #fb-root
-      .fb-like-box data-href="http://meurio.org.br/" data-width="217" data-show-faces="true" data-stream="false" data-header="false"
+      .fb-like-box data-href="http://meurio.org.br/" data-width="308" data-show-faces="true" data-stream="false" data-header="false"
