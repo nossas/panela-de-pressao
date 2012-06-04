@@ -284,17 +284,17 @@ body.campaigns_index
     color: white
     h1
       color: white
+      text-align: center
       +text-shadow(none)
-    .text
-      +grid(6)
-      margin-bottom: 1em
-      p
-        margin-bottom: 1em
-      a
-        font-size: small
-    .video
-      +grid(6)
-      +last
+    .step
+      +grid(4)
+      &.last
+        +last
+      h2
+        color: $orange
+        text-align: center
+        margin: 0
+        +text-shadow(none)
   .campaigns
     +grid-row
     padding-bottom: 1em
