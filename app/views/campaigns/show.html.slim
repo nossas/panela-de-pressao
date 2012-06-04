@@ -84,7 +84,8 @@ section.content
             .fb-like data-href=request.url data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
 
       .targets
-        h2 Quem decide isso
+        .titles
+          h2 Quem decide isso
         ol
           - @campaign.influencers.each do |influencer|
             li.target
@@ -99,7 +100,8 @@ section.content
 
       - if @campaign.organizations.any? 
         .supporters
-          h2 Quem faz acontecer
+          .titles
+            h2 Quem faz acontecer
           ol
             - @campaign.organizations.each do |org|
               li
@@ -108,7 +110,8 @@ section.content
 
       - if @campaign.pokers.any?
         .pokers
-          h2= "Quem participou (#{@campaign.pokers.length})"
+          .titles
+            h2= "Quem participou (#{@campaign.pokers.length})"
           ol
             - @campaign.pokers.each do |poker|
               li
