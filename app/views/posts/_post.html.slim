@@ -1,0 +1,5 @@
+.post
+  .campaign= raw "em #{link_to post.campaign.name, post.campaign}"
+  .created_at= l(post.created_at)
+  = post.content_html
+  span.action= link_to 'Remover atualização', campaign_post_path(:campaign_id => post.campaign.id, :id => post.id), :method => :delete, :remote => true, :class => 'remove-post', :confirm => 'Confirma a exclusão da atualização?' if can?(:manage, Post)

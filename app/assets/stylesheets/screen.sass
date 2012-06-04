@@ -70,6 +70,13 @@ body.campaigns_show
     .updates
       border: none
       .preview, .post
+        border-bottom: 1px solid lighten(gray, 30%)
+        padding-bottom: .8em
+        margin-bottom: 1em
+        &:last-child
+          border: none
+        .campaign
+          display: none
         .title
           font-weight: bold
         .description
@@ -81,7 +88,10 @@ body.campaigns_show
         img
           float: left
           max-width: 90px
-          padding: 0 10px 10px 0
+          padding: 20px 10px 0 10px
+          margin: 0
+        iframe
+          height: 20em
         .remove_preview
           margin-right: -17px
           position: absolute
@@ -93,6 +103,25 @@ body.campaigns_show
           background: url("http://icons.iconarchive.com/icons/custom-icon-design/mini/16/Close-icon.png")
           overflow: hidden
           display: none
+        .title_and_description
+          background: white
+          padding: 1em
+          border: 1px solid lighten($darkorange, 35%)
+          +border-radius(6px)
+        span.action
+          float: right
+          font-size: .7em
+          margin: 1em
+          a
+            color: white 
+            background: darken(red, 20%)
+            +border-radius(6px)
+            padding: .6em
+            &:hover 
+              border: none
+        .created_at
+          font-size: .7em
+          color: gray
       form.new_post 
         +grid-subcolumn(7, 7)
         margin-bottom: 2em
@@ -113,37 +142,7 @@ body.campaigns_show
           padding: 0
         br
           display: none
-        .post
-          border-bottom: 1px solid lighten(gray, 30%)
-          padding-bottom: .8em
-          margin-bottom: 1em
-          &:last-child
-            border: none
-          img
-            padding: 20px 10px 0 10px
-            margin: 0
-          .title_and_description
-            background: white
-            padding: 1em
-            width: 94%
-            border: 1px solid lighten($darkorange, 35%)
-            +border-radius(6px)
-        span.action
-          float: right
-          font-size: .7em
-          margin: 1em
-          a
-            color: white 
-            background: darken(red, 20%)
-            +border-radius(6px)
-            padding: .6em
-            &:hover 
-              border: none
-
-        span.created_at
-          font-size: .7em
-          color: gray
-
+        .post, .preview
     .campaign_panel
       +grid(5)
       +last
@@ -338,21 +337,22 @@ body.campaigns_index
   .latest_posts
     +grid(5)
     .post
-      position: relative
-      +grid-subcolumn(5, 5)
+      .created_at
+        font-size: small
+        font-style: italic
+        color: gray
       .image
-        float: left
-        max-width: 200px
-        margin: 0 1em 0 0
-        img
-          margin: 0
-          float: left
+        display: none
       br
         display: none
       .post_campaign
         color: gray
         font-size: small
         font-style: italic
+      .remove-post
+        display: none
+      .campaign
+        color: gray
   .latest_pokes
     +grid(4)
     .poke

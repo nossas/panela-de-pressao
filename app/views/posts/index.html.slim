@@ -1,6 +1,1 @@
-ul data-errors=(@post && @post.errors.to_json)
-  - for post in @posts do
-    li.post
-      span.created_at= l(post.created_at)
-      = post.content_html
-      span.action= link_to 'Remover atualização', campaign_post_path(:campaign_id => @campaign.id, :id => post.id), :method => :delete, :remote => true, :class => 'remove-post', :confirm => 'Confirma a exclusão da atualização?' if can?(:manage, Post)
+= render @posts
