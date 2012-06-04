@@ -335,34 +335,20 @@ body.campaigns_index
     .campaign.last
       +last
   .latest_posts
-    +grid(6)
+    +grid(4)
     .post
+      margin: 0 0 1em 0
+      line-height: normal
       .created_at
         font-size: small
         font-style: italic
         color: gray
-      .image
-        max-width: 200px
-        float: left
-        margin: 1em 1em 0 0
-        img
-          margin: 0
-      br
+      br, .title_and_description, .remove-post, .image, p
         display: none
-      .title_and_description
-        margin-top: 1em
-      .post_campaign
-        color: gray
-        font-size: small
-        font-style: italic
-      .remove-post
+      .campaign span
         display: none
-      .campaign
-        color: gray
-      .created_at
-        margin-bottom: 1em
   .latest_pokes
-    +grid(3)
+    +grid(4)
     .poke
       font-size: small
       margin-bottom: 1em
@@ -377,7 +363,7 @@ body.campaigns_index
       .poke_created_at
         color: gray
   .facebook_widget
-    +grid(3)
+    +grid(4)
     +last
 body.sessions_new
   a[href="/auth/meurio"]

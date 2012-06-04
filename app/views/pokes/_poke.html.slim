@@ -4,4 +4,4 @@
     strong= poke.user.name
     em  apoiou:
   .poke_campaign_link= link_to poke.campaign.name, poke.campaign
-  .poke_created_at= l(poke.created_at, :format => :short)
+  .poke_created_at= "há #{distance_of_time_in_words_to_now poke.created_at} atrás"
