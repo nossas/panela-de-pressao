@@ -16,7 +16,8 @@ section.about
 
 section.content
   .campaigns
-    h2 Últimas Campanhas
+    .titles
+      h2 Últimas Campanhas
     = render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
     = render @campaigns[1..-1] if @campaigns.size > 1
   - if current_user && current_user.campaigns.any?

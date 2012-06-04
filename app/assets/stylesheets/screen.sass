@@ -249,7 +249,7 @@ body.campaigns_show
             color: white
         ol
           +border-radius(4px)
-          background: darken($blue, 10%)
+          background: darken($blockblue, 10%)
           padding: 1em
           margin-bottom: 1em
           color: $orange
@@ -275,6 +275,17 @@ body.campaigns_show
           width: 50px
 
 body.campaigns_index
+  .titles
+    +mobile-hide
+    background: image-url('bg_titles.gif') repeat-x 0 4px
+    overflow: auto 
+    margin: 1em 0
+    h2
+      color: $darkorange
+      background: image-url('bg.png') -10px 
+      width: 180px !important
+      text-transform: uppercase
+      font-size: 1em
   section.about
     +mobile-hide
     +grid_container
@@ -287,8 +298,8 @@ body.campaigns_index
     h1
       color: white
       text-align: center
-      font-size: xx-large
       line-height: normal
+      font-size: 2.5em
       +text-shadow(none)
     .step
       +grid(4)
