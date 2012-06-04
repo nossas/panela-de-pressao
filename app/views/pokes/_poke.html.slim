@@ -1,6 +1,6 @@
 .poke
-  = image_tag poke.user.picture
-  .poke_user_name
+  .user
+    = image_tag poke.user.picture
     strong= poke.user.name
     em  apoiou:
   .poke_campaign_link= link_to poke.campaign.name, poke.campaign
