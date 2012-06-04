@@ -92,13 +92,29 @@ header
     text-align: right
     font-size: small
     img
-      float: right
-      margin-left: 1em
-    p
-      padding: 0
+      margin: 0 .5em 0 0
+      vertical-align: middle
+      position: relative
+      bottom: 2px
+    .user_panel
+      display: inline-block
+      +background-image(linear-gradient($orange, darken($orange, 25%)))
+      border: 1px solid darken($orange, 25%)
+      margin: 0 0 2px 1.5em
       line-height: normal
+      padding: .5em 1em
+      +border-radius(5px)
+      +box-shadow(darken($orange, 25%) 0 -1px 1px, lighten($orange, 50%) 0 1px 1px)
       a
-        +text-shadow(none)
+        color: lighten($orange, 25%)
+        margin-right: 1em
+        font-size: medium
+        &:last-child
+          margin-right: 0
+        &:hover
+          color: white
+          text-decoration: none
+          +text-shadow(white 0 0 5px)
     a[href="/auth/meurio"], a[href="/auth/facebook"]
       text-decoration: none
       font-weight: bold

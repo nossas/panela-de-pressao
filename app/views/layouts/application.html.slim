@@ -25,10 +25,11 @@ html
             = link_to "Ver campanhas", campaigns_path
           .user
             - if current_user
-              = image_tag current_user.picture, size: "50x50", alt: "Avatar"
-              p= current_user.name
-              p= link_to "Sair", session_path(current_user.id), :method => :delete
-              p= link_to "Criar uma organização", new_organization_path
+              = image_tag current_user.picture, size: "20x20", alt: "Avatar"
+              = current_user.name
+              .user_panel
+                = link_to "", new_organization_path, :class => "icon-globe", :title => "Criar uma organização"
+                = link_to "", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
               | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
       = yield
