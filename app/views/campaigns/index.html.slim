@@ -32,7 +32,7 @@ section.content
   .row
     .latest_posts
       h2 Última atualização
-      = render Post.limit(5)
+      = render Post.order('row_number() OVER (PARTITION BY campaign_id), created_at DESC').limit(5)
     .latest_pokes
       h2 Últimas participações
       = render Poke.limit(5)
