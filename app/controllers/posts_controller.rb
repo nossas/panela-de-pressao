@@ -21,4 +21,9 @@ class PostsController < ApplicationController
       return index
     end
   end
+
+  protected
+  def collection
+    @posts = end_of_association_chain.order('created_at DESC')
+  end
 end
