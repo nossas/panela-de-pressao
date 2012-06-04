@@ -335,16 +335,22 @@ body.campaigns_index
     .campaign.last
       +last
   .latest_posts
-    +grid(5)
+    +grid(6)
     .post
       .created_at
         font-size: small
         font-style: italic
         color: gray
       .image
-        display: none
+        max-width: 200px
+        float: left
+        margin: 1em 1em 0 0
+        img
+          margin: 0
       br
         display: none
+      .title_and_description
+        margin-top: 1em
       .post_campaign
         color: gray
         font-size: small
@@ -353,8 +359,10 @@ body.campaigns_index
         display: none
       .campaign
         color: gray
+      .created_at
+        margin-bottom: 1em
   .latest_pokes
-    +grid(4)
+    +grid(3)
     .poke
       font-size: small
       margin-bottom: 1em
