@@ -109,11 +109,13 @@ header
         color: lighten($orange, 25%)
         margin-right: 1em
         font-size: medium
+        +transition(.5s)
         &:last-child
           margin-right: 0
         &:hover
           color: white
           text-decoration: none
+          +transition(.5s)
           +text-shadow(white 0 0 5px)
     a[href="/auth/meurio"], a[href="/auth/facebook"]
       text-decoration: none
