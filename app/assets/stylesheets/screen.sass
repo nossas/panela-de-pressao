@@ -274,18 +274,12 @@ body.campaigns_show
         img
           width: 50px
 
-body.campaigns_index
+body.campaigns_index 
   .titles
     +mobile-hide
-    background: image-url('bg_titles.gif') repeat-x 0 4px
-    overflow: auto 
-    margin: 1em 0
     h2
-      color: $darkorange
-      background: image-url('bg.png') -10px 
-      width: 180px !important
-      text-transform: uppercase
-      font-size: 1em
+      width: 20% !important
+      margin-bottom: 1em !important
   section.about
     +mobile-hide
     +grid_container
@@ -365,7 +359,6 @@ body.campaigns_index
       line-height: normal
       .created_at
         font-size: small
-        font-style: italic
         color: gray
       br, .title_and_description, .remove-post, .image, p
         display: none
