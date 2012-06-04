@@ -37,8 +37,11 @@ html
       footer
         .row
           .links
-            = link_to "Facebook", "http://www.facebook.com/meurio"
-            = link_to "Twitter", "http://twitter.com/#!/meu_rio"
-            = link_to "Meu Rio", "http://meurio.org.br/"
+            = link_to "http://www.facebook.com/meurio" do
+              = image_tag "seurio_bottom_facebook.jpeg"
+            = link_to "http://twitter.com/#!/meu_rio" do
+              = image_tag "seurio_bottom_twitter.jpeg"
+            = link_to "http://meurio.org.br/" do
+              = image_tag "seurio_bottom_logo_meurio.jpeg"
       #fb-root
     = javascript_include_tag "application"
