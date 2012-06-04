@@ -5,6 +5,7 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     title= yield(:title)
     = stylesheet_link_tag "application"
+    = favicon_link_tag "logo_seurio.jpg", type: "image/jpg"
     = yield(:meta_tags)
     = csrf_meta_tag
     body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
