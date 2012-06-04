@@ -288,6 +288,7 @@ body.campaigns_index
       color: white
       text-align: center
       font-size: xx-large
+      line-height: normal
       +text-shadow(none)
     .step
       +grid(4)
@@ -299,9 +300,10 @@ body.campaigns_index
       &.last
         +last
       h2
-        color: white
+        color: darken($blue, 15%)
+        font-weight: bold
         margin: 0
-        +text-shadow(none)
+        +text-shadow(lighten($blue, 50%) 0 1px 1px)
   .campaigns
     +grid-row
     padding-bottom: 1em
@@ -311,13 +313,14 @@ body.campaigns_index
       padding-bottom: 2em
       margin-bottom: 2em
       border-bottom: lighten(gray, 30%) 1px solid
+      overflow: hidden
       +grid(12)
       .highlight_image
-        +grid(6)
+        +grid-subcolumn(12, 6)
         img
           margin: 0
       .highlight_details
-        +grid(6)
+        +grid-subcolumn(12, 6)
         +last
         .campaign_time, .campaign_description
           margin-bottom: 1em
