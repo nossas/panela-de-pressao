@@ -4,7 +4,7 @@ html
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     meta name="facebook_app_id" content=ENV["FB_ID"]
-    meta name="facebook_redirect_uri" content="http://#{request.host}:#{request.port}/close.html"
+    meta name="facebook_redirect_uri" content="http://#{request.host}/close.html"
     title= yield(:title)
     = stylesheet_link_tag "application"
     = favicon_link_tag "logo_seurio.jpg", type: "image/jpg"
