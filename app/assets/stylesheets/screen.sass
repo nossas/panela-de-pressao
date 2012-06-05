@@ -70,9 +70,7 @@ body.campaigns_show
     .updates
       border: none
       .preview, .post
-        border-bottom: 1px solid lighten(gray, 30%)
-        padding-bottom: .8em
-        margin-bottom: 1em
+        margin-bottom: 3em
         &:last-child
           border: none
         .campaign
@@ -90,8 +88,11 @@ body.campaigns_show
           max-width: 90px
           padding: 20px 10px 0 10px
           margin: 0
+        p
+          color: gray
         iframe
           height: 20em
+          margin-top: 1em
         .remove_preview
           margin-right: -17px
           position: absolute
@@ -107,6 +108,7 @@ body.campaigns_show
           background: white
           padding: 1em
           border: 1px solid lighten($darkorange, 35%)
+          margin-top: 1em
           +border-radius(6px)
         span.action
           float: right
@@ -119,9 +121,24 @@ body.campaigns_show
             padding: .6em
             &:hover 
               border: none
-        .created_at
-          font-size: .7em
-          color: gray
+        .created_at_and_share
+          overflow: hidden
+          font-size: small
+          border-bottom: 1px solid $orange
+          margin-bottom: 1em
+          color: $orange
+          .created_at
+            float: left
+          .share
+            float: right
+            span
+              margin-right: 1em
+            a
+              font-size: medium
+              color: gray
+              &:hover
+                text-decoration: none
+                color: $fb_blue
       form.new_post 
         +grid-subcolumn(7, 7)
         margin-bottom: 2em
@@ -357,9 +374,6 @@ body.campaigns_index
     .post
       margin: 0 0 1em 0
       line-height: normal
-      .created_at
-        font-size: small
-        color: gray
       br, .title_and_description, .remove-post, .image, p
         display: none
       .campaign span
