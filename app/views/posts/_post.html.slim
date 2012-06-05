@@ -5,6 +5,6 @@
   .created_at_and_share
     .created_at= "há #{distance_of_time_in_words_to_now post.created_at} atrás"
     .share
-      = link_to "", "#post_#{post.id}", "class" => "popup icon-facebook", "data-link" => CGI.escape(campaign_url(post.campaign, :anchor => "post_#{post.id}")), "data-picture" => post.campaign.image, "data-name" => CGI.escape("Atualização na campanha '#{post.campaign.name}'"), "data-caption" => CGI.escape(post.content[0..999])
+      = link_to "", "#post_#{post.id}", "class" => "popup icon-facebook", "data-link" => CGI.escape(campaign_url(post.campaign, :anchor => "posts_title")), "data-picture" => post.campaign.image, "data-name" => CGI.escape("Atualização na campanha '#{post.campaign.name}'"), "data-caption" => CGI.escape(post.content[0..999])
   = post.content_html
   span.action= link_to 'Remover atualização', campaign_post_path(:campaign_id => post.campaign.id, :id => post.id), :method => :delete, :remote => true, :class => 'remove-post', :confirm => 'Confirma a exclusão da atualização?' if can?(:manage, Post)

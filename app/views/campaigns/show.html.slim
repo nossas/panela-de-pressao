@@ -36,7 +36,7 @@ section.content
 
       .updates
         - if @campaign.posts.size > 0 || can?(:manage, Post)
-          h2 
+          h2#posts_title
             | Atualizações da campanha (#{@campaign.posts.size})
           - if can?(:manage, Post)
             = form_for [@campaign, @post], :remote => true do |f|
