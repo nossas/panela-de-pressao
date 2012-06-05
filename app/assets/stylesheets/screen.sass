@@ -163,10 +163,8 @@ body.campaigns_show
     .campaign_panel
       +grid(5)
       +last
-
       .targets, .poke_buttons
         margin-bottom: 4em
-
       .poke_buttons
         color: #ffffcc
         padding: 1em
@@ -184,21 +182,23 @@ body.campaigns_show
             font-size: xx-large
         form
           display: inline-block
-          padding: 1em
           +border-radius(.5em .5em 0 0)
-          &.email
-            margin: 0
           &:hover
             background: #ffcc66
           a
-            display: inline-block
-            height: 50px
-            width: 50px
-            background: white
+            display: block
+            height: 95px
+            width: 95px
             color: black
             font-size: x-large
+            span
+              position: relative
+              top: 17px
             &:hover
-              border: none
+              text-decoration: none
+            &:active
+              span
+                top: 23px
         .email_text, .facebook_text, .twitter_text, .congrats, .share
           background: #ffcc66
           text-align: left
@@ -290,6 +290,32 @@ body.campaigns_show
       .targets, .pokers, .more_active_pokers
         img
           width: 50px
+    form a
+      background: url(poke_buttons.png) no-repeat top left
+      &.email
+        background-position: 0 0
+        width: 95px
+        height: 95px
+        &:hover
+          background-position: 0 -145px
+        &:active
+          background-position: 0 -290px
+      &.facebook
+        background-position: 0 -435px
+        width: 95px
+        height: 95px
+        &:hover
+          background-position: 0 -580px
+        &:active
+          background-position: 0 -725px
+      &.twitter
+        background-position: 0 -870px
+        width: 95px
+        height: 95px
+        &:hover
+          background-position: 0 -1015px
+        &:active
+          background-position: 0 -1160px
 
 body.campaigns_index 
   .titles
