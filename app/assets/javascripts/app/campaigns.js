@@ -142,6 +142,16 @@ App.Campaigns = {
       this.emPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='facebook'])"});
       $.get(this.posts.data('path')).success(function(data){
         that.posts.html(data);
+        $("a.popup").click(function(e){ window.open(
+          "http://www.facebook.com/dialog/feed?" +
+          "app_id=" + $("meta[name='facebook_app_id']").attr("content") + 
+            "&link=" + $(e.target).data("link") + 
+            "&picture=" + $(e.target).data("picture") +
+            "&name=" + $(e.target).data("name") +
+            "&caption=" + $(e.target).data("caption") +
+            "&redirect_uri=" + $("meta[name='facebook_redirect_uri']").attr("content") +
+            "&display=popup", "mywindow", "height=300, width=500"
+        );});
       });
 
       $(".email_text").hide();

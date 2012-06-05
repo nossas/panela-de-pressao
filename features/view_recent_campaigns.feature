@@ -8,12 +8,6 @@ Feature: View recent campaigns
     When I go to the campaigns page
     Then I should see "Desarmamento Voluntário"
   
-  Scenario: when there is more than one campaign
-    Given there is a campaign called "Desarmamento Voluntário" accepted on "1/1/2012"
-    And there is a campaign called "Preservação da Praça XV de Novembro" accepted on "2/1/2012"
-    When I go to the campaigns page
-    Then I should see "Preservação da Praça XV de Novembro" before "Desarmamento Voluntário"
-  
   Scenario: when there is an unmoderated campaign
     Given there is a campaign called "Desarmamento Voluntário" awaiting moderation
     When I go to the campaigns page
