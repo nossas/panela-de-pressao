@@ -22,7 +22,7 @@ Feature: Poke targets by email
     And I'm in this campaign page
     When I click "Pressionar via email"
     Then I should see "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
-    And I should be in the login page
+    And I should be in the campaigns page
     When I click "Entrar via Facebook"
     Then an email should be sent
     And a email poke should be added to the target

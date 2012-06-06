@@ -58,7 +58,7 @@ describe PokesController do
 
     context "when it's not logged in" do
       before { post :create, :poke => {:kind => "twitter"}, :campaign_id => "1" }
-      it { should redirect_to(new_session_path) }
+      it { should redirect_to(campaigns_path + "#login") }
     end
 
   end
