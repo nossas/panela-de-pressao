@@ -32,7 +32,7 @@ Feature: Poke targets by Facebook
     And I'm in this campaign page
     When I click "Pressionar via Facebook"
     Then I should see "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
-    And I should be in the login page
+    And I should be in the campaigns page
     When I click "Entrar via Facebook"
     Then I should see "Parabéns!"
     And I should see "Você acaba de colaborar para uma cidade melhor."

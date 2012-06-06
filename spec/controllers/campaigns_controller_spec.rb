@@ -32,12 +32,12 @@ describe CampaignsController do
     context "when I'm admin" do
       before { controller.stub(:current_user).and_return(mock_model(User, :admin? => true)) }
       before { put :accept, :campaign_id => "1" }
-      it { should_not redirect_to(new_session_path) }
+      it { should_not redirect_to(campaigns_path + "#login") }
     end
     context "when I'm not admin" do
       before { controller.stub(:current_user).and_return(mock_model(User, :admin? => false)) }
       before { put :accept, :campaign_id => "1" }
-      it { should redirect_to(new_session_path) }
+      it { should redirect_to(campaigns_path + "#login") }
     end
   end
 end

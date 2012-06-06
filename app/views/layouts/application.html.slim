@@ -46,4 +46,11 @@ html
             = link_to "http://meurio.org.br/" do
               = image_tag "seurio_bottom_logo_meurio.jpeg"
       #fb-root
+      #login
+        h1 Login
+        p= flash[:login_alert]
+        .buttons
+          = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
+          |  ou 
+          = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
     = javascript_include_tag "application"
