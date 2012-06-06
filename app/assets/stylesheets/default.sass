@@ -206,7 +206,7 @@ section.notice, section.alert
   &:hover
     border: none
     cursor: pointer
-    +background-image(linear-gradient(lighten($green_btn, 20%), $green_btn))
+    +background-image(linear-gradient(lighten($color, 25%), lighten($color, 5%)))
     text-decoration: none
   &:active
     position: relative
@@ -263,3 +263,15 @@ hr
     margin-bottom: 0
 
 .fb-like
+
+#login
+  display: none
+
+.popup
+  color: gray
+  h1
+    margin-bottom: .5em
+  p
+    margin-bottom: 1em
+  .buttons
+    text-align: center

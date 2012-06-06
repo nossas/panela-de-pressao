@@ -39,7 +39,7 @@ Feature: Create my own campaign
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
     And I click "Crie a sua campanha"
-    Then I should be in the login page
+    Then I should be in the campaigns page
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
     Given I click "Entrar via Facebook"
     And I fill "O que você quer mudar na sua cidade?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"

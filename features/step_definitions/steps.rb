@@ -168,8 +168,6 @@ Then /^I should be in ([^"]*)$/ do |arg1|
   case arg1
   when "the campaigns page"
     page.current_path.should be_== campaigns_path
-  when "the login page"
-    page.current_path.should be_== new_session_path
   when "this campaign page"
     page.current_path.should be_== campaign_path(@campaign)
   else
