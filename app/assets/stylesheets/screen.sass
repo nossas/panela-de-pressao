@@ -361,24 +361,19 @@ body.campaigns_index
     color: white
     h1
       color: white
-      text-align: center
-      line-height: normal
-      font-size: 2.5em
       +text-shadow(none)
-    .step
-      +grid(4)
-      text-align: center
-      img
-        margin: 0
-        +border-radius(5px)
-        +box-shadow(black 0 1px 1px)
-      &.last
-        +last
-      h2
-        color: darken($blue, 15%)
-        font-weight: bold
-        margin: 0
-        +text-shadow(lighten($blue, 50%) 0 1px 1px)
+    .text
+      +grid(6)
+      a.btn
+        font-size: x-large
+        line-height: 2em
+      p
+        margin-bottom: 1em
+        &:last-child
+          margin-bottom: 0
+    .image
+      +grid(6)
+      +last
   .campaigns
     +grid-row
     padding-bottom: 1em
