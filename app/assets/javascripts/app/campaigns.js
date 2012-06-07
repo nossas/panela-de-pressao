@@ -148,7 +148,7 @@ App.Campaigns = {
             "&link=" + $(e.target).data("link") + 
             "&picture=" + $(e.target).data("picture") +
             "&name=" + $(e.target).data("name") +
-            "&caption=" + $(e.target).data("caption") +
+            "&description=" + $(e.target).data("description") +
             "&redirect_uri=" + $("meta[name='facebook_redirect_uri']").attr("content") +
             "&display=popup", "mywindow", "height=300, width=500"
         );});
