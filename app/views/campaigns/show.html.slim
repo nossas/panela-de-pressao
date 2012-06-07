@@ -36,7 +36,7 @@ section.content
 
       .updates
         - if @campaign.posts.size > 0 || can?(:manage, Post)
-          h2#posts_title
+          h2
             | Atualizações da campanha (#{@campaign.posts.size})
           - if can?(:manage, Post)
             = form_for [@campaign, @post], :remote => true do |f|
@@ -49,7 +49,7 @@ section.content
                 = link_to 'Remover visualização', '#', :class => 'remove_preview'
               .actions
                 = f.submit "Publicar atualização", :class => "btn"
-          .posts[data-path=campaign_posts_path(campaign_id: @campaign.id)]
+          #posts.posts[data-path=campaign_posts_path(campaign_id: @campaign.id)]
       
     .campaign_panel
       .poke_buttons#poke_buttons
