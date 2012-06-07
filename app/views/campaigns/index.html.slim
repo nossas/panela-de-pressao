@@ -31,7 +31,7 @@ section.content
       = render @campaigns_awaiting_moderation
   .row
     .latest_posts
-      h2 Última atualização
+      h2 Últimas atualizações
       = render Post.select("DISTINCT ON (campaign_id) *").limit(5)
     .latest_pokes
       h2 Últimas participações
