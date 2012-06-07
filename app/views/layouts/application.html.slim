@@ -11,57 +11,56 @@ html
     = favicon_link_tag "logo_seurio.jpg", type: "image/jpg"
     = yield(:meta_tags)
     = csrf_meta_tag
-    body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
-      - if notice
-        section.notice
-          .row
-            span= notice
-      - if alert
-        section.alert
-          .row
-            span= alert
-      header
-        .row
-          .logo=link_to image_tag("seurio_logo.png"), root_path
-          .menu
-            = link_to "Crie a sua campanha", new_campaign_path
-            span |
-            = link_to "Ver campanhas", campaigns_path
-          .user
-            - if current_user
-              = image_tag current_user.picture, size: "20x20", alt: "Avatar"
-              = current_user.name
-              .user_panel
-                = link_to "", new_organization_path, :class => "icon-users", :title => "Criar uma organização"
-                = link_to "", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
-            - else
-              | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
-      = yield
-      footer
-        .row
-          .links
-            = link_to "http://www.facebook.com/meurio" do
-              = image_tag "seurio_bottom_facebook.jpeg"
-            = link_to "http://twitter.com/#!/meu_rio" do
-              = image_tag "seurio_bottom_twitter.jpeg"
-            = link_to "http://meurio.org.br/" do
-              = image_tag "seurio_bottom_logo_meurio.jpeg"
-      #fb-root
-      #login
-        h1 Login
-        p= flash[:login_alert]
-        .buttons
-          = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
-          |  ou 
-          = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
-    = javascript_include_tag "application"
     javascript:
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-26278513-4']);
       _gaq.push(['_trackPageview']);
-    
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+  body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
+    - if notice
+      section.notice
+        .row
+          span= notice
+    - if alert
+      section.alert
+        .row
+          span= alert
+    header
+      .row
+        .logo=link_to image_tag("seurio_logo.png"), root_path
+        .menu
+          = link_to "Crie a sua campanha", new_campaign_path
+          span |
+          = link_to "Ver campanhas", campaigns_path
+        .user
+          - if current_user
+            = image_tag current_user.picture, size: "20x20", alt: "Avatar"
+            = current_user.name
+            .user_panel
+              = link_to "", new_organization_path, :class => "icon-users", :title => "Criar uma organização"
+              = link_to "", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
+          - else
+            | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
+    = yield
+    footer
+      .row
+        .links
+          = link_to "http://www.facebook.com/meurio" do
+            = image_tag "seurio_bottom_facebook.jpeg"
+          = link_to "http://twitter.com/#!/meu_rio" do
+            = image_tag "seurio_bottom_twitter.jpeg"
+          = link_to "http://meurio.org.br/" do
+            = image_tag "seurio_bottom_logo_meurio.jpeg"
+    #fb-root
+    #login
+      h1 Login
+      p= flash[:login_alert]
+      .buttons
+        = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
+        |  ou 
+        = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
+  = javascript_include_tag "application"
