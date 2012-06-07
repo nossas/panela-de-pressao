@@ -85,18 +85,20 @@ section.content
 
       .targets
         .titles
-          h2 Quem decide isso
+          h2
+            | Quem decide isso (#{@campaign.influencers.length})
         ol
           - @campaign.influencers.each do |influencer|
             li.target
-              = image_tag influencer.avatar, :title => influencer.name
-              p.name= influencer.name
-              span.role= influencer.role
-              ul
-                li= link_to "facebook", influencer.facebook_url
-                li= link_to "twitter", influencer.twitter_url
-                li= mail_to influencer.email, "email"
-          li= link_to "esquecemos de alguém?", "mailto:contato@seurio.org.br"
+              .info
+                = image_tag influencer.avatar, :title => influencer.name
+                p.name= influencer.name
+                span.role= influencer.role
+              ul.social
+                li.fb[class=(influencer.facebook_url.blank? ? "inactive" : "active")]= link_to "facebook", influencer.facebook_url, title: "Página no facebook"
+                li.tw[class=(influencer.twitter_url.blank? ? "inactive" : "active")]= link_to "twitter", influencer.twitter_url, title: "Perfil no twitter"
+                li.ml[class=(influencer.email.blank? ? "inactive" : "active")]= mail_to influencer.email, "email", title: "E-mail de contato"
+          li= link_to "Esquecemos de alguém?", "mailto:contato@seurio.org.br"
 
       - if @campaign.organizations.any? 
         .supporters
@@ -111,7 +113,8 @@ section.content
       - if @campaign.pokers.any?
         .pokers
           .titles
-            h2= "Quem participou (#{@campaign.pokers.length})"
+            h2
+              |Quem participou (#{@campaign.pokers.length})
           ol
             - @campaign.pokers.each do |poker|
               li

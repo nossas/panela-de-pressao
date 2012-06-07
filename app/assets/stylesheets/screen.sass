@@ -257,7 +257,9 @@ body.campaigns_show
           line-height: 10px
         .role
           font-size: 0.8em
-          color: lighten($blue, 5%)
+          color: #98CCCC
+          text-transform: uppercase
+          font-size: .7em
         ul li
           display: inline-block
           margin-right: 1em
@@ -266,18 +268,43 @@ body.campaigns_show
             color: white
         ol
           +border-radius(4px)
-          background: darken($blockblue, 10%)
+          background: #006666
           padding: 1em
           margin-bottom: 1em
           color: $orange
           a
             color: lighten($blue, 25%)
           li.target
-            border-bottom: 1px solid $blue
+            border-bottom: 1px solid #13A3A3
             padding-bottom: 1em
             margin-bottom: 1em
             img 
               margin: 0 1em 0 0
+            .info
+              float: left
+              width: 78%
+            .social
+              width: 21%
+              float: right
+              li 
+                background: image-url('target_social_icons.png') no-repeat
+                width: 13px
+                height: 13px
+                +transition(.5s)
+                &.fb
+                  background-position: 0 0
+                &.tw
+                  background-position: -62px 0 
+                &.ml
+                  background-position: -31px 0
+                &.inactive, &:hover
+                  opacity: .6
+                a
+                  display: block
+                  width: 15px
+                  height: 15px
+                  text-indent: -999px
+              
           li:last-child
             text-align: center
       .more_active_pokers, .pokers, .targets, .supporters
