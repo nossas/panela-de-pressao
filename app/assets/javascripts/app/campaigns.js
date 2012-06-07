@@ -152,6 +152,7 @@ App.Campaigns = {
             "&redirect_uri=" + $("meta[name='facebook_redirect_uri']").attr("content") +
             "&display=popup", "mywindow", "height=300, width=500"
         );});
+        if(location.hash == "#posts"){ location = location; }
       });
 
       $(".email_text").hide();
