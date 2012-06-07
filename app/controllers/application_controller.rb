@@ -2,14 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :signed_in?
 
-  before_filter { |controller| 
-    if controller.controller_name != "sessions" && !request.xhr? && !(controller.controller_name == "campaigns" && controller.action_name == "index")
-      session[:restore_url] = request.url 
-    end
-  }
+  before_filter { |controller| session[:restore_url] = request.url if controller.controller_name != "sessions" && !request.xhr? && session.delete(:access_denied_redirect).nil? }
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to campaigns_path + "#login", :flash => {:login_alert => exception.message}
+    session[:access_denied_redirect] = true
+    redirect_to request.env["HTTP_REFERER"] + "#login", :flash => {:login_alert => exception.message}
   end
 
   protected
