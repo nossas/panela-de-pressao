@@ -222,15 +222,15 @@ pt-BR:
               blank: "Escolha o tema da sua campanha"
     attributes:
       campaign:
-        name: "O que você quer mudar na sua cidade?"
-        description: "Porque essa campanha é importante?"
-        image: "Imagem da campanha"
+        name: "Qual é o título da sua campanha?"
+        description: "Por que essa campanha é importante pro Rio?"
+        image: "Imagem de campanha"
         category_id: "Qual o tema da sua campanha?"
-        influencer_ids: "Alvos da campanha"
+        influencer_ids: "Escolha os alvos de sua campanha"
         organization_id: "Quem está por trás?"
-        email_text: "Texto do email"
-        facebook_text: "Texto do compartilhamento do Facebook"
-        twitter_text: "Texto do tweet"
+        email_text: "Texto do email que será enviado para os alvos da campanha"
+        facebook_text: "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha"
+        twitter_text: "Texto do tweet que será enviado, mencionando os alvos da campanha"
       influencer:
         name: "Nome"
         role: "Cargo"
