@@ -87,6 +87,12 @@ header
         padding: 0 1em
         font-size: medium
   .user
+    a
+      color: white
+      padding: 4px 
+      +border-radius(2px)
+      +text-shadow(0 0 1px #333)
+      &:hover 
     +grid(5)
     +last
     text-align: right
@@ -117,14 +123,6 @@ header
           text-decoration: none
           +transition(.5s)
           +text-shadow(white 0 0 5px)
-    a[href="/auth/meurio"], a[href="/auth/facebook"]
-      text-decoration: none
-      font-weight: bold
-      +text-shadow(none)
-    a[href="/auth/meurio"]
-      color: darken($mr_green, 5%)
-    a[href="/auth/facebook"]
-      color: $fb_blue
 
 section.content
   +grid_container

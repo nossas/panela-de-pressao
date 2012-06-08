@@ -35,10 +35,10 @@ Feature: Create my own campaign
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."   
 
-  @omniauth_test @bitly
+  @omniauth_test @bitly @javascript
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
-    And I click "Comece uma campanha"
+    And I click "Comece a sua campanha!"
     Then I should be in the campaigns page
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
     Given I click "Entrar via Facebook"
