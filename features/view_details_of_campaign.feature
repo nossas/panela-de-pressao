@@ -23,3 +23,16 @@ Feature: View a campaign's detail
     When I go to this campaign page
     Then I should see "Quem está pressionando os alvos"
     Then I should see a list of 5 recent pokers
+
+  Scenario: when the campaign doesn't have organization
+    Given there is a campaign created by "Luiz Fonseca" with no partnership
+    When I go to this campaign page
+    Then I should see "Quem faz acontecer"
+    And I should see "Luiz Fonseca"
+
+  Scenario: when the campaign have an organization
+    Given there is a campaign created by "Luiz Fonseca" with a partnership with "Associação dos moradores de São Conrado"
+    When I go to this campaign page
+    Then I should see "Quem faz acontecer"
+    And I should see "Associação dos moradores de São Conrado"
+    And I should not see "Luiz Fonseca"

@@ -97,15 +97,18 @@ section.content
                 li.ml[class=(influencer.email.blank? ? "inactive" : "active")]= mail_to influencer.email, "email", title: "E-mail de contato"
           li= link_to "Esquecemos de alguém?", "mailto:contato@seurio.org.br"
 
-      - if @campaign.organizations.any? 
-        .supporters
-          .titles
-            h2 Quem faz acontecer
-          ol
-            - @campaign.organizations.each do |org|
-              li
-                = image_tag org.avatar.url, size: "50x50", title: org.name
-                span= org.name
+      .supporters
+        .titles
+          h2 Quem faz acontecer
+        ol
+          - @campaign.organizations.each do |org|
+            li
+              = image_tag org.avatar.url, size: "50x50", title: org.name
+              span= org.name
+          - if @campaign.organizations.empty?
+            li
+              = image_tag @campaign.user.picture, size: "50x50", title: @campaign.user.name
+              span= @campaign.user.name
 
       - if @campaign.pokers.any?
         .pokers

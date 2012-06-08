@@ -16,6 +16,14 @@ Given /^I'm in ([^"]*)$/ do |arg1|
   end
 end
 
+Given /^there is a campaign created by "(.*?)" with no partnership$/ do |arg1|
+  @campaign = Campaign.make! :user => User.make!(:name => "Luiz Fonseca"), :accepted_at => Time.now
+end
+
+Given /^there is a campaign created by "(.*?)" with a partnership with "(.*?)"$/ do |arg1, arg2|
+  @campaign = Campaign.make! :user => User.make!(:name => "Luiz Fonseca"), :accepted_at => Time.now, :organizations => [Organization.make!(:name => arg2)]
+end
+
 Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, arg2|
   @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
 end
