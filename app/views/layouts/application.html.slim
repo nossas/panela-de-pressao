@@ -33,9 +33,10 @@ html
       .row
         .logo=link_to image_tag("seurio_logo.png"), root_path
         .menu
-          = link_to "Comece uma campanha", new_campaign_path
-          span |
-          = link_to "Todas as campanhas", campaigns_path
+          .links
+            = link_to "Comece uma campanha", new_campaign_path
+            span |
+            = link_to "Todas as campanhas", campaigns_path
         .user
           - if current_user
             = image_tag current_user.picture, size: "20x20", alt: "Avatar"
