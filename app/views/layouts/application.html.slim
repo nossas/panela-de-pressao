@@ -33,9 +33,10 @@ html
       .row
         .logo=link_to image_tag("seurio_logo.png"), root_path
         .menu
-          = link_to "Comece uma campanha", new_campaign_path
-          span |
-          = link_to "Todas as campanhas", campaigns_path
+          .links
+            = link_to "Comece uma campanha", new_campaign_path
+            span |
+            = link_to "Todas as campanhas", campaigns_path
         .user
           - if current_user
             = image_tag current_user.picture, size: "20x20", alt: "Avatar"
@@ -44,7 +45,7 @@ html
               = link_to "", new_organization_path, :class => "icon-users", :title => "Criar uma organização"
               = link_to "", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
           - else
-            | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
+            = link_to "Entre ou Cadastre-se", "#login"
     = yield
     footer
       .row
