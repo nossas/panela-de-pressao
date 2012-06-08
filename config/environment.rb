@@ -5,7 +5,7 @@ require File.expand_path('../application', __FILE__)
 ManifesteSe::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => "app4264065@heroku.com",
+  :user_name => ENV["SENDGRID_USERNAME"],
   :password => ENV["SENDGRID_PASSWORD"],
   :domain => "seurio.org.br",
   :address => "smtp.sendgrid.net",
