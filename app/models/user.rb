@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     authorizations.where(:provider => "facebook").first
   end
 
+  def facebook_url
+    "https://facebook.com/profile.php?id=#{self.facebook_authorization.uid}"
+  end
+
   def twitter_authorization
     authorizations.where(:provider => "twitter").first
   end

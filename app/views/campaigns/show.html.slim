@@ -118,5 +118,5 @@ section.content
           ol
             - @campaign.pokers.each do |poker|
               li
-                = image_tag poker.picture
+                = link_to image_tag(poker.picture), poker.facebook_url, target: "_blank"
                 span= poker.name
