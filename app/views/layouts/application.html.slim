@@ -44,7 +44,7 @@ html
               = link_to "", new_organization_path, :class => "icon-users", :title => "Criar uma organização"
               = link_to "", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
           - else
-            | Entre com a sua conta do #{link_to "Meu Rio", "/auth/meurio"} ou do #{link_to "Facebook", "/auth/facebook"}
+            = link_to "Entre ou Cadastre-se", "#login"
     = yield
     footer
       .row
