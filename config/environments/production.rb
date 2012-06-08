@@ -36,7 +36,6 @@ ManifesteSe::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :test
 
   # Enable threaded mode
   # config.threadsafe!
@@ -47,5 +46,5 @@ ManifesteSe::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  default_url_options[:host] = "seurio.herokuapp.com"
+  default_url_options[:host] = "seurio.org.br"
 end

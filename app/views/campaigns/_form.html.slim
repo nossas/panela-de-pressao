@@ -94,7 +94,8 @@
     .field_row
       .action
         = f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn"
-        - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
-          |  ou 
-          = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-            = f.submit "Aceitar campanha", :class => "btn"
+
+- if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
+  |  ou 
+  = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
+    = f.submit "Aceitar campanha", :class => "btn"
