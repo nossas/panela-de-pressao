@@ -1,7 +1,23 @@
+var Routes = Backbone.Router.extend({
+
+  routes: {
+    "login" : "login",
+  },
+
+  login: function(){
+    App.Common.showLoginBox();
+    this.navigate("");
+  }
+});
+
 var App = window.App = {
   // Put other existing namespaces here
   Common: {
     init: function(){
+      var route = new Routes();     
+      Backbone.history.start();
+
+
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
@@ -38,12 +54,12 @@ var App = window.App = {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-      if(location.hash == "#login"){
-        $.facebox.settings.closeImage = '/assets/closelabel.png';
-        $.facebox.settings.loadingImage = '/assets/loading.gif';
-        $.facebox({ div: '#login' });
-        $("#login").remove();
-      }
+    },
+
+    showLoginBox: function(){
+      $.facebox.settings.closeImage = '/assets/closelabel.png';
+      $.facebox.settings.loadingImage = '/assets/loading.gif';
+      $.facebox({ div: '#login' });
     },
 
     finish: function(){
