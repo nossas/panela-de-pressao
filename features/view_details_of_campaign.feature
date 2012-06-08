@@ -21,5 +21,5 @@ Feature: View a campaign's detail
     Given there is a campaign called "Desarmamento Voluntário" with an organization "MeuRio" as supporter accepted on "1/1/2012"
     And there is 5 pokers for this campaign
     When I go to this campaign page
-    Then I should see "Quem participou"
+    Then I should see "Quem está pressionando os alvos"
     Then I should see a list of 5 recent pokers

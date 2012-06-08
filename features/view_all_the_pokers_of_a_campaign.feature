@@ -13,5 +13,5 @@ Feature: view all the pokers
     Given there is a campaign called "Guerreiros campeões"
     And there is a poker called "Marcelinho"
     When I go to this campaign page
-    Then I should see "Quem participou"
+    Then I should see "Quem está pressionando os alvos"
     And I should see "the poker avatar"

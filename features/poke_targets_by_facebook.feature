@@ -10,8 +10,8 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via Facebook"
-    Then I should see "Parabéns!"
-    And I should see "Você acaba de colaborar para uma cidade melhor."
+    Then I should see "Boa!"
+    And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a facebook poke should be added to the target
 
   @omniauth_test @koala @javascript
@@ -21,8 +21,8 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I'm in this campaign page
     When I click "Pressionar via Facebook"
-    Then I should see "Parabéns!"
-    And I should see "Você acaba de colaborar para uma cidade melhor."
+    Then I should see "Boa!"
+    And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a facebook poke should be added to the target
     
   @omniauth_test @koala @javascript
@@ -34,8 +34,8 @@ Feature: Poke targets by Facebook
     Then I should see "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
     And I should be in this campaign page
     When I click "Entrar via Facebook"
-    Then I should see "Parabéns!"
-    And I should see "Você acaba de colaborar para uma cidade melhor."
+    Then I should see "Boa!"
+    And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a facebook poke should be added to the target
 
   @omniauth_test

@@ -7,7 +7,7 @@
           .field_bg= f.text_field :name
         .inline-errors= @campaign.errors[:name].join(", ")
       .tip
-        span Exemplo: "Não cortem as árvores da Nossa Sra da Paz por uma estação de metrô"
+        span Exemplo: "Salvem as árvores do Centro da Cidade"
 
     .field_row
       .label_and_field
@@ -16,7 +16,9 @@
           .field_bg= f.text_area :description
         .inline-errors= @campaign.errors[:description].join(", ")
       .tip 
-        span Conte pra gente o problema, o que os tomadores de decisão podem fazer para resolver o problema e como essa campanha pode resolver esse problema. Seja breve porém explique claramente a sua causa.
+        span
+          p Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.
+          p Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.
 
     .field_row
       .label_and_field
@@ -27,7 +29,7 @@
         = image_tag @campaign.image if @campaign.persisted?
         = f.hidden_field :image_cache
       .tip 
-        span Uma imagem vale mais que mil palavras. Escolha uma para sua campanha.
+        span Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua campanha.
 
     .field_row
       .label_and_field
@@ -45,7 +47,7 @@
           .field_bg= f.text_area :email_text
         .inline-errors= @campaign.errors[:email_text].join(", ")
       .tip 
-        span Conte pra gente o problema, o que os tomadores de decisão podem fazer para resolver o problema e como essa campanha pode resolver esse problema. Seja breve porém explique claramente a sua causa.
+        span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
 
     .field_row
       .label_and_field
@@ -54,7 +56,7 @@
           .field_bg= f.text_area :facebook_text
         .inline-errors= @campaign.errors[:facebook_text].join(", ")
       .tip 
-        span Conte pra gente o problema, o que os tomadores de decisão podem fazer para resolver o problema e como essa campanha pode resolver esse problema. Seja breve porém explique claramente a sua causa.
+        span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
 
     .field_row
       .label_and_field
@@ -64,7 +66,7 @@
         small.campaign_twitter_text_status
         .inline-errors= @campaign.errors[:twitter_text].join(", ")
       .tip
-        span Exemplo: "Não cortem as árvores da Nossa Sra da Paz por uma estação de metrô"
+        span Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets.
 
     .field_row.influencers
       .label_and_field
@@ -72,7 +74,14 @@
         .field.influencers
           .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
       .tip 
-        span Digite o nome de alguém na esfera pública que possa ajudar na sua causa. Iremos pressioná-lo juntos.
+        span 
+          p= raw "Se você não encontrou o alvo da campanha, envie um email para #{link_to "alvos@seurio.org.br", "mailto:alvos@seurio.org.br"} com os seguintes dados dos seus alvos:"
+          ul
+            li Nome e Sobrenome
+            li Cargo
+            li Email
+            li= raw "Link para página pública de Facebook (não pode ser perfil pessoal por questões de privacidade). Ex.: #{link_to "facebook.com/eduardopaesRJ", "http://www.facebook.com/eduardopaesRJ"}"
+            li= raw "Link para perfil no Twitter. Ex.: twitter.com/eduardopaes_"
 
     - if current_user.organizations.any?
       .field_row.organizations
