@@ -4,10 +4,9 @@
 section.about
   .row
     .text
-      h1 Veja como fazer o Rio de Janeiro melhor e participe agora!
-      p Crie uma campanha para a cidade
-      p Encontre quem pode mudar isso
-      p Chame seus amigos e mude o Rio
+      h1 O canal direto para construir o Rio de Janeiro que você quer.
+      p O Seu Rio permite que você crie a sua campanha, aponte os problemas da cidade e convide os cidadãos para falar diretamente com quem pode resolver o que está errado.
+      p Aqui o papo é reto, você é quem fala por email, twitter e Facebook com quem é responsável pela administração da cidade.
       p= link_to "Comece a sua campanha!", new_campaign_path, :class => "btn"
     .image
       = image_tag "home_destaque_passo_01.png"
@@ -15,7 +14,7 @@ section.about
 section.content
   .campaigns
     .titles
-      h2 Últimas Campanhas
+      h2 Campanhas Recentes
     = render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
     = render @campaigns[1..-1] if @campaigns.size > 1
   - if current_user && current_user.campaigns.any?
@@ -29,10 +28,10 @@ section.content
       = render @campaigns_awaiting_moderation
   .row
     .latest_posts
-      h2 Últimas atualizações
+      h2 O que está acontecendo
       = render Post.select("DISTINCT ON (campaign_id) *").limit(5)
     .latest_pokes
-      h2 Últimas participações
+      h2 Quem está fazendo acontecer
       = render Poke.limit(5)
     .facebook_widget 
       #fb-root

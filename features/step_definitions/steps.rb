@@ -82,7 +82,7 @@ Given /^I'm logged in as admin$/ do
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
-  if arg1 == "Imagem da campanha"
+  if arg1 == "Imagem de campanha"
     attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
   elsif arg1 == "Avatar"
     attach_file arg1, File.dirname(__FILE__) + "/../support/influencer.jpg"

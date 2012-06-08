@@ -7,12 +7,12 @@ Feature: Create my own campaign
   Scenario: when I'm smart enough to successfully fill the new campaign form
     Given I'm logged in
     And I'm in the new campaign page
-    And I fill "O que você quer mudar na sua cidade?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
-    And I fill "Porque essa campanha é importante?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do email" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do compartilhamento do Facebook" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do tweet" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I attach an image to "Imagem da campanha"
+    And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
+    And I fill "Por que essa campanha é importante pro Rio?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do tweet que será enviado, mencionando os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I attach an image to "Imagem de campanha"
     And I select "Educação" for "Qual o tema da sua campanha?"
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
@@ -23,12 +23,12 @@ Feature: Create my own campaign
     Given I'm logged in
     And I've created an organization called "MeuRio"
     And I'm in the new campaign page
-    And I fill "O que você quer mudar na sua cidade?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
-    And I fill "Porque essa campanha é importante?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do email" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do compartilhamento do Facebook" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do tweet" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I attach an image to "Imagem da campanha"
+    And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
+    And I fill "Por que essa campanha é importante pro Rio?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do tweet que será enviado, mencionando os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I attach an image to "Imagem de campanha"
     And I select "Educação" for "Qual o tema da sua campanha?"
     And I check "MeuRio"
     When I press "Enviar campanha para moderação"
@@ -38,16 +38,16 @@ Feature: Create my own campaign
   @omniauth_test @bitly @javascript
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
-    And I click "Crie a sua campanha"
+    And I click "Comece uma campanha"
     Then I should be in the campaigns page
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
     Given I click "Entrar via Facebook"
-    And I fill "O que você quer mudar na sua cidade?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
-    And I fill "Porque essa campanha é importante?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do email" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do compartilhamento do Facebook" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "Texto do tweet" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I attach an image to "Imagem da campanha"
+    And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
+    And I fill "Por que essa campanha é importante pro Rio?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do tweet que será enviado, mencionando os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I attach an image to "Imagem de campanha"
     And I select "Educação" for "Qual o tema da sua campanha?"
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
