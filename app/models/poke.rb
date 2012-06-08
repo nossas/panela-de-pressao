@@ -45,7 +45,7 @@ class Poke < ActiveRecord::Base
       c.oauth_token_secret = user.twitter_authorization.secret
     end
     self.campaign.targets.select{|t| !t.influencer.twitter.blank?}.each do |t|
-      Twitter.update("@#{t.influencer.twitter} #{self.campaign.name.truncate(100)}: #{self.campaign.short_url}")
+      Twitter.update("@#{t.influencer.twitter} #{self.campaign.twitter_text}: #{self.campaign.short_url}")
       t.increase_pokes_by_twitter
     end
   end
