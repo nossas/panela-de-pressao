@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def facebook_url
-    "https://facebook.com/profile.php?id=#{self.facebook_authorization.uid}"
+    "https://facebook.com/profile.php?id=#{self.facebook_authorization.uid}" if self.facebook_authorization
   end
 
   def twitter_authorization
