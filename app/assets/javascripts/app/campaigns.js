@@ -154,18 +154,36 @@ App.Campaigns = {
         );});
         if(location.hash == "#posts"){ location = location; }
       });
-
       $(".email_text").hide();
       $(".facebook_text").hide();
       $(".twitter_text").hide();
 
-      $("form.email").mouseover(function(){ $(".email_text").show(); })
-      $("form.facebook").mouseover(function(){ $(".facebook_text").show(); })
-      $("form.twitter").mouseover(function(){ $(".twitter_text").show(); })
-      
-      $("form.email").mouseout(function(){ $(".email_text").hide(); })
-      $("form.facebook").mouseout(function(){ $(".facebook_text").hide(); })
-      $("form.twitter").mouseout(function(){ $(".twitter_text").hide(); })
+      $("form.email").mouseover(function(){ 
+        $(".email_text").show(); 
+        $("form.email").addClass("selected");
+        $(".facebook_text").hide();
+        $("form.facebook").removeClass("selected");
+        $(".twitter_text").hide();
+        $("form.twitter").removeClass("selected");
+      });
+
+      $("form.facebook").mouseover(function(){
+        $(".email_text").hide(); 
+        $("form.email").removeClass("selected");
+        $(".facebook_text").show();
+        $("form.facebook").addClass("selected");
+        $(".twitter_text").hide();
+        $("form.twitter").removeClass("selected");
+      });
+
+      $("form.twitter").mouseover(function(){
+        $(".email_text").hide(); 
+        $("form.email").removeClass("selected");
+        $(".facebook_text").hide();
+        $("form.facebook").removeClass("selected");
+        $(".twitter_text").show();
+        $("form.twitter").addClass("selected");
+      });
 
       $("a[href='#poke_buttons']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
     }
