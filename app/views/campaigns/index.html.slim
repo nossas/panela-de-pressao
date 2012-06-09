@@ -14,27 +14,27 @@ section.about
       = image_tag "home_destaque_passo_03.png"
 
 section.content
-  #campaigns_list.campaigns
-    .titles
-      h2 Campanhas Recentes
-    = render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
-    = render @campaigns[1..-1] if @campaigns.size > 1
-  - if current_user && current_user.campaigns.any?
-    .campaigns
-      h2 Minhas campanhas
-      = render current_user.campaigns
-  
-  - if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
-    .campaigns
-      h2 Campanhas aguardando moderação
-      = render @campaigns_awaiting_moderation
+  .row= render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
   .row
-    .latest_posts
-      h2 O que está acontecendo
-      = render Post.select("DISTINCT ON (campaign_id) *").limit(5)
-    .latest_pokes
-      h2 Quem está fazendo acontecer
-      = render Poke.limit(5)
-    .facebook_widget 
-      #fb-root
-      .fb-like-box data-href="http://www.facebook.com/meurio" data-width="308" data-show-faces="true" data-stream="false"
+    #campaigns_list
+      .campaigns
+        .titles
+          h2 Campanhas Recentes
+        = render @campaigns[1..-1] if @campaigns.size > 1
+      - if current_user && current_user.campaigns.any?
+        .campaigns
+          .titles
+            h2 Minhas campanhas
+          = render current_user.campaigns
+      - if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
+        .campaigns
+          .titles
+            h2 Campanhas aguardando moderação
+          = render @campaigns_awaiting_moderation
+    .latest_pokes_and_facebook_widget
+      .latest_pokes
+        h2 Quem está apoiando:
+        = render Poke.limit(5)
+      .facebook_widget 
+        #fb-root
+        .fb-like-box data-href="http://www.facebook.com/meurio" data-width="221" data-show-faces="true" data-stream="false"
