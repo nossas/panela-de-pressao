@@ -17,6 +17,8 @@ Feature: Create my own campaign
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+    And an email called "Recebemos a sua campanha" should be sent
+    And an email called "Campanha aguardando moderação" should be sent
   
   @omniauth_test @bitly
   Scenario: when I have an organization to associate
@@ -34,6 +36,8 @@ Feature: Create my own campaign
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."   
+    And an email called "Recebemos a sua campanha" should be sent
+    And an email called "Campanha aguardando moderação" should be sent
 
   @omniauth_test @bitly @javascript
   Scenario: when I'm not logged in
@@ -52,6 +56,8 @@ Feature: Create my own campaign
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+    And an email called "Recebemos a sua campanha" should be sent
+    And an email called "Campanha aguardando moderação" should be sent
 
   @omniauth_test
   Scenario: when I'm troll enough to let all fields blank
