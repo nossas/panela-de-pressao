@@ -208,6 +208,11 @@ Then /^an email called "(.*?)" should be sent$/ do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.subject == arg1}.should_not be_empty
 end
 
+Then /^no email called "(.*?)" should be sent$/ do |arg1|
+  sleep(1)
+  ActionMailer::Base.deliveries.select{|d| d.subject == arg1}.should be_empty
+end
+
 Then /^no email should be sent$/ do
   ActionMailer::Base.deliveries.should be_empty
 end
