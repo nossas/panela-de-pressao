@@ -58,14 +58,12 @@ section.content
           = raw @campaign.facebook_text.gsub("\n", "<br />")
         - if flash[:poke_create]
           .congrats= raw flash[:poke_create]
-        .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
         - if current_user && current_user.has_poked(@campaign)
           .share
-            span Você já participou desta campanha.
-            p Agora compartilhe com seus amigos:
             a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
             g:plusone size="medium"
             .fb-like data-href=request.url data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
+        .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
 
       .targets
         .titles
