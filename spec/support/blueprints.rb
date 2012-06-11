@@ -45,11 +45,6 @@ Influencer.blueprint do
   role { "Prefeito" }
 end
 
-Post.blueprint do
-  campaign { Campaign.make! }
-  content { "testing posts" }
-end
-
 Organization.blueprint do
   name { "MeuRio" }
   owner { User.make! }

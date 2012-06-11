@@ -24,7 +24,6 @@ describe CampaignsController do
       get :show, :id => "1"
     end
     it { should assign_to(:poke) }
-    it { assigns(:post).new_record?.should be_true }
   end
 
   describe "PUT accept" do

@@ -44,7 +44,9 @@ body.campaigns_show
         font-size: 1.4em
       .details
         +grid(7)
-
+        .updates
+          border: none
+          +grid-subcolumn(7, 7)
     .header
       +grid-subcolumn(7, 7)
       margin-bottom: 2em
@@ -74,99 +76,6 @@ body.campaigns_show
         font-size: .8em
         color: gray
         text-align: center
-    .updates
-      border: none
-      .preview, .post
-        margin-bottom: 3em
-        &:last-child
-          border: none
-        .campaign
-          display: none
-        .title
-          font-weight: bold
-        .description
-          border: none
-          padding: .7em 0
-          font-size: .9em
-        position: relative
-        +grid-subcolumn(7, 7)
-        img
-          float: left
-          max-width: 90px
-          padding: 20px 10px 0 10px
-          margin: 0
-        p
-          color: gray
-        iframe
-          height: 20em
-          margin-top: 1em
-        .remove_preview
-          margin-right: -17px
-          position: absolute
-          right: 0
-          top: 0
-          width: 16px
-          height: 0
-          padding-top: 16px
-          background: url("http://icons.iconarchive.com/icons/custom-icon-design/mini/16/Close-icon.png")
-          overflow: hidden
-          display: none
-        .title_and_description
-          background: white
-          padding: 1em
-          border: 1px solid lighten($darkorange, 35%)
-          margin-top: 1em
-          +border-radius(6px)
-        span.action
-          float: right
-          font-size: .7em
-          margin: 1em
-          a
-            color: white 
-            background: darken(red, 20%)
-            +border-radius(6px)
-            padding: .6em
-            &:hover 
-              border: none
-        .created_at_and_share
-          overflow: hidden
-          font-size: small
-          border-bottom: 1px solid $orange
-          margin-bottom: 1em
-          color: $orange
-          .created_at
-            float: left
-          .share
-            float: right
-            span
-              margin-right: 1em
-            a
-              font-size: medium
-              color: gray
-              &:hover
-                text-decoration: none
-                color: $fb_blue
-      form.new_post 
-        +grid-subcolumn(7, 7)
-        margin-bottom: 2em
-        .content, .preview
-          +grid-subcolumn(7, 7)
-        .content
-          margin-bottom: 1em
-        .actions
-          +grid-subcolumn(7, 7)
-          +last
-        .preview
-          .title_and_description
-            margin-bottom: 1em
-      .posts
-        +grid-subcolumn(7, 7)
-        p
-          margin: 0
-          padding: 0
-        br
-          display: none
-        .post, .preview
     .campaign_panel
       +grid(5)
       +last
@@ -359,9 +268,6 @@ body.campaigns_index
         display: none
   .titles
     +mobile-hide
-    h2
-      width: 20% !important
-      margin-bottom: 1em !important
   section.about
     +mobile-hide
     +grid_container
@@ -398,79 +304,66 @@ body.campaigns_index
     .image
       +grid(6)
       +last
-  .campaigns
-    +grid-row
-    padding-bottom: 1em
-    margin-bottom: 1em
-    border-bottom: 1px solid lighten(gray, 20%)
-    .highlight_campaign
-      padding-bottom: 2em
-      margin-bottom: 2em
-      border-bottom: lighten(gray, 30%) 1px solid
-      overflow: hidden
-      +grid(12)
-      .highlight_image
-        +grid-subcolumn(12, 6)
-        img
-          margin: 0
-      .highlight_details
-        +grid-subcolumn(12, 6)
-        +last
-        .campaign_time, .campaign_description
-          margin-bottom: 1em
-        .campaign_title
-          font-size: x-large
-        .campaign_time
-          color: gray
-        .campaign_buttons
-          text-align: right
-    h2
-      +grid(12)
-    .empty
-      +grid(12)
-    .campaign
-      +grid(3)
-      margin-bottom: 1.5em
-      line-height: normal
+  .highlight_campaign
+    margin-bottom: 2em
+    overflow: hidden
+    +grid(12)
+    .highlight_image
+      +grid-subcolumn(12, 6)
       img
         margin: 0
-      small
-        display: block
-        font-size: small
-    .campaign.last
+    .highlight_details
+      +grid-subcolumn(12, 6)
       +last
-  .latest_posts, .latest_pokes, .facebook_widget
-    +mobile-hide
-  .latest_posts
-    +grid(4)
-    .post
-      margin: 0 0 1em 0
-      line-height: normal
-      br, .title_and_description, .remove-post, .image, p, .share
-        display: none
-      .campaign span
-        display: none
-      .created_at
+      .campaign_time, .campaign_description
+        margin-bottom: 1em
+      .campaign_title
+        font-size: x-large
+      .campaign_time
         color: gray
-        font-size: small
-  .latest_pokes
-    +grid(4)
-    .poke
-      font-size: small
-      margin-bottom: 1em
-      line-height: normal
-      +grid-subcolumn(4, 4)
-      .user
-        overflow: hidden
+      .campaign_buttons
+        text-align: right
+  #campaigns_list
+    +grid(9)
+    .campaigns
+      +grid-subcolumn(9, 9)
+      margin-bottom: 2em
+      .campaign
+        +grid-subcolumn(9, 3)
+        margin-bottom: 1.5em
+        line-height: normal
         img
-          width: 20px
-          float: left
-          margin: 0 .5em 0 0
-      .poke_created_at
-        color: gray
-  .facebook_widget
-    +grid(4)
+          margin: 0
+        small
+          display: block
+          font-size: small
+      .campaign.last
+        +last
+  .latest_pokes_and_facebook_widget
+    +grid(3)
     +last
+    .latest_pokes
+      +grid-subcolumn(3, 3)
+      +last
+      +mobile-hide
+      margin-bottom: 2em
+      .poke
+        font-size: small
+        margin-bottom: 1em
+        line-height: normal
+        +grid-subcolumn(3, 3)
+        .user
+          overflow: hidden
+          img
+            width: 20px
+            float: left
+            margin: 0 .5em 0 0
+        .poke_created_at
+          color: gray
+    .facebook_widget
+      +grid-subcolumn(3, 3)
+      +last
+      +mobile-hide
 
 body.influencers_index
   .influencers

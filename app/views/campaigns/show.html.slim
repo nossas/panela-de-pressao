@@ -35,21 +35,8 @@ section.content
           | Você é um dos nossos alvos? Dê sua resposta atrás de #{mail_to "resposta@seurio.org.br", "resposta@seurio.org.br"}
 
       .updates
-        - if @campaign.posts.size > 0 || can?(:manage, Post)
-          h2
-            | Atualizações da campanha (#{@campaign.posts.size})
-          - if can?(:manage, Post)
-            = form_for [@campaign, @post], :remote => true do |f|
-              .content
-                .field_bg
-                  = f.text_area :content
-              .preview
-                = image_tag 'loader.gif', :class => 'loader'
-                .preview_data
-                = link_to 'Remover visualização', '#', :class => 'remove_preview'
-              .actions
-                = f.submit "Publicar atualização", :class => "btn"
-          #posts.posts[data-path=campaign_posts_path(campaign_id: @campaign.id)]
+        h2 Atualizações da campanha
+        .fb-comments data-href=campaign_url(@campaign) data-num-posts="10" width="567"
       
     .campaign_panel
       .poke_buttons#poke_buttons

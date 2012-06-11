@@ -17,7 +17,6 @@ var App = window.App = {
       var route = new Routes();     
       Backbone.history.start();
 
-
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
@@ -28,7 +27,7 @@ var App = window.App = {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=419565954732160";
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=" + $("meta[name='facebook_app_id']").attr('content');
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
 

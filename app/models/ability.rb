@@ -6,7 +6,6 @@ class Ability
     can :read, Campaign, Campaign.accepted do |campaign|
       campaign.accepted_at
     end
-    can :read, Post
 
     if user && user.admin?
       can :manage, :all
@@ -15,7 +14,6 @@ class Ability
       can :create, Poke
       can :create, Organization
       can :update, Campaign, :user_id => user.id
-      can :manage, Post, :campaign => {:user_id => user.id}
     end
   end
 end
