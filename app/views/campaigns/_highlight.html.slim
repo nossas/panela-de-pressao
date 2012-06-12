@@ -2,6 +2,8 @@
   .highlight_image
     = image_tag campaign.image
   .highlight_details
+    .campaign_category
+      h5= campaign.category.name
     .campaign_title
       h3= link_to campaign.name, campaign
     .campaign_time= "há #{distance_of_time_in_words_to_now campaign.accepted_at} atrás"
