@@ -6,7 +6,7 @@ class OrganizationsController < InheritedResources::Base
 
   def create
     create! do |success, failure|
-      success.html { redirect_to root_path, :notice => "A organização #{@organization.name} foi criada!" }
+      success.html { redirect_to session.delete(:redirect_url) || root_path, :notice => "A organização #{@organization.name} foi criada!" }
     end
   end
 end

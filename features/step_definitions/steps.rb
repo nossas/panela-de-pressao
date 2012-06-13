@@ -182,6 +182,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== campaigns_path
   when "this campaign page"
     page.current_path.should be_== campaign_path(@campaign)
+  when "the new campaign page"
+    page.current_path.should be_== new_campaign_path
   else
     raise "I don't know '#{arg1}'"
   end

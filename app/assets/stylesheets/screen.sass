@@ -1,5 +1,5 @@
 body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_update
-  h1, small
+  h1, small, .new_organization
     +grid(12)
   small
     margin-bottom: 2em
@@ -34,6 +34,17 @@ body.campaigns_new, body.campaigns_create, body.campaigns_edit, body.campaigns_u
           &:last-child
             margin-bottom: 0
   .charleft
+    display: none
+  .new_organization
+    margin-bottom: 2em
+    span
+      padding: .5em
+      color: gray
+      display: block
+      border: 2px dashed $orange
+      background: white
+      text-align: center
+  section.notice
     display: none
 
 body.campaigns_show
