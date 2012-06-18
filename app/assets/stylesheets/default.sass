@@ -90,6 +90,12 @@ header
       padding: 4px 
       +border-radius(2px)
       &:hover 
+      &[href="auth/facebook"]
+        color: $fb_blue
+        font-weight: bold
+      &[href="auth/meurio"]
+        color: darken($mr_green, 10%)
+        font-weight: bold
     +grid(5)
     +last
     text-align: right
