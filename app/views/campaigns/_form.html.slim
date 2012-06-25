@@ -75,13 +75,7 @@
           .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
       .tip 
         span 
-          p= raw "Se você não encontrou o alvo da campanha, envie um email para #{link_to "alvos@seurio.org.br", "mailto:alvos@seurio.org.br"} com os seguintes dados dos seus alvos:"
-          ul
-            li Nome e Sobrenome
-            li Cargo
-            li Email
-            li= raw "Link para página pública de Facebook (não pode ser perfil pessoal por questões de privacidade). Ex.: #{link_to "facebook.com/eduardopaesRJ", "http://www.facebook.com/eduardopaesRJ"}"
-            li= raw "Link para perfil no Twitter. Ex.: twitter.com/eduardopaes_"
+          p= raw "Se você não encontrou o alvo da campanha na lista ao lado, #{link_to 'clique aqui', 'https://docs.google.com/a/engage.is/spreadsheet/viewform?formkey=dHl4ak1SSlVtNy1KVDJhb2VUVTNqSEE6MQ'} e cadastre:"
 
     - if current_user.organizations.any?
       .field_row.organizations
