@@ -1,0 +1,4 @@
+pt-BR:
+  user:
+    show:
+      what_user_did: "O que o %{user} já fez no Panela de Pressão"

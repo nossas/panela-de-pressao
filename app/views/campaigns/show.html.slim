@@ -92,7 +92,7 @@ section.content
               span= org.name
           - if @campaign.organizations.empty?
             li
-              = image_tag @campaign.user.picture, size: "50x50", title: @campaign.user.name
+              = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
               span= @campaign.user.name
 
       - if @campaign.pokers.any?
@@ -103,5 +103,5 @@ section.content
           ol
             - @campaign.pokers.each do |poker|
               li
-                = link_to image_tag(poker.picture), poker.facebook_url, target: "_blank"
+                = link_to image_tag(poker.picture), user_path(poker), target: "_blank", title: poker.name
                 span= poker.name
