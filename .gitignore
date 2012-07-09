@@ -10,3 +10,4 @@ config/initializers/_env.rb
 config/initializers/01_envvars.rb
 public/uploads/
 logfile
+.DS_Store
