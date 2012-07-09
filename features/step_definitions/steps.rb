@@ -150,9 +150,27 @@ When /^I click "([^"]*)"$/ do |arg1|
       click_on arg1
     end
   else
-    click_on arg1
+    click_on(arg1)
   end
 end
+
+
+When /^I click "(.*?)" within ([^"]*)$/ do |arg1, arg2|
+  case arg2
+  when "highlight campaign"
+    within('.highlight_campaign') do
+      click_on arg1
+    end
+  else
+    raise "I don't know what do to with this."
+  end
+end
+
+
+When /^I click on the "(.*?)" avatar$/ do |arg1|
+  find(:xpath, "//a[@title=\"#{arg1}\"]").click
+end
+
 
 Then /^I should see "([^"]*)" before "([^"]*)"$/ do |arg1, arg2|
   page.html.should match(/#{arg1}(.|\s)+#{arg2}/)

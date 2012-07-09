@@ -26,12 +26,16 @@ class User < ActiveRecord::Base
   def twitter_authorization
     authorizations.where(:provider => "twitter").first
   end
-
+  
   def pokes_counter
     attributes['pokes_count']
   end
 
   def has_poked campaign
     pokes.where(:campaign_id => campaign.id).any?
+  end
+
+  def poked_campaigns
+    self.pokes.map(&:campaign).uniq
   end
 end
