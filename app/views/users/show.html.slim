@@ -1,4 +1,8 @@
 h1= t "user.show.what_user_did", user: @user.name
 
-
 ul
+  - timeline_objects(@user).each do |object|
+    li
+      p= raw object.link
+      p= raw object.date
+

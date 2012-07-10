@@ -2,3 +2,7 @@ pt-BR:
   user:
     show:
       what_user_did: "O que o %{user} já fez no Panela de Pressão"
+  notification:
+    campaign:
+      poked: "Pressionou a campanha %{link}"
+      created: "Criou a campanha %{link}"
