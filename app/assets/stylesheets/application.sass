@@ -1,11 +1,27 @@
-// This file handle how css should load.
-
 @import compass/reset
 @import columnal/grid
 @import facebox
 @import chosen
-@import colors
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600')
-@import icomoon
-@import default
-@import screen
+
+section
+  +grid-container
+
+.row
+  +grid-row
+
+section.login, section.header, section.highlight
+  padding: 1em 0
+
+section.header
+  +box-shadow(0px 5px 20px -5px lighten(gray, 25%) inset)
+  background: lighten(gray, 45%)
+
+section.highlight
+
+body
+  &.campaigns
+    &#index
+    &#show
+  &.users
+    &#show
+    &#edit
