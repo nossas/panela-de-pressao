@@ -21,7 +21,7 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-  body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class="#{controller.controller_name.downcase}_#{controller.action_name.downcase}" data-action=controller.action_name.camelize
+  body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
     - if notice
       section.notice
         .row
@@ -30,14 +30,8 @@ html
       section.alert
         .row
           span= alert
-    header
+    section.login
       .row
-        .logo=link_to image_tag("seurio_logo.png"), root_path
-        .menu
-          .links
-            = link_to "Comece uma campanha", new_campaign_path
-            span |
-            = link_to "Todas as campanhas", campaigns_path
         .user
           - if current_user
             = image_tag current_user.picture, size: "20x20", alt: "Avatar"
@@ -47,6 +41,15 @@ html
               = link_to "", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
           - else
             = raw "Entre com a sua conta do #{link_to "Meu Rio", "auth/meurio"} ou do #{link_to "Facebook", "auth/facebook"}"
+    section.header
+      .row
+        .logo=link_to image_tag("seurio_logo.png"), root_path
+        .menu
+          .links
+            = link_to "Comece uma campanha", new_campaign_path
+            span |
+            = link_to "Todas as campanhas", campaigns_path
+    section.highlight
     = yield
     footer
       .row
