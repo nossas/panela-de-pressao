@@ -11,6 +11,8 @@ pt-BR:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
       create_and_edit: "Crie/Edite seu perfil"
+      member_since: "Membro desde %{since}"
+      save: "Salvar"
   notification:
     campaign:
       poked_html: "<a href='%{link}'> Pressionou a campanha %{name} via %{through} </a>"
