@@ -1,12 +1,19 @@
-section.content
-
-  aside
+section.content.row
+  aside.left
     h2= t "user.show.create_and_edit"
     = image_tag @user.picture
+    ul
+      li
+        strong= t "activerecord.attributes.user.name"
+        span= @user.name
+      li
+        strong= t "activerecord.attributes.user.email"
+        span= @user.email
+      li
+        strong= t "activerecord.attributes.user.about_me"
+        span= @user.about_me
 
-
-
-  article.main
+  article.right
     h1= t "user.show.what_user_did", user: @user.name
     ul
       - timeline_objects(@user).each do |object|
