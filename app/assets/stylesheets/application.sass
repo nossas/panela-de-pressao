@@ -2,8 +2,15 @@
 @import columnal/grid
 @import facebox
 @import chosen
+@import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
 
 $yellow: #ffe576
+$mr_green: #059146
+$fb_blue: #3b5998
+
+
+h1, h2 
+  font-family: "Londrina Solid"
 
 section
   +grid-container
@@ -18,7 +25,34 @@ aside.left
   +grid-row
 
 section.login, section.header, section.highlight
-  padding: 1em 0
+  padding: .5em 0
+
+section.login
+  line-height: 40px
+  font-size: x-small
+  a[href="auth/meurio"], a[href="auth/facebook"]
+    font-size: small
+    font-family: 'Londrina Solid', cursive
+    text-decoration: none
+    text-transform: uppercase
+    color: white
+    padding: 1px 15px
+    +border-radius(5px)
+    letter-spacing: 1px
+    margin: 0 5px
+  a[href="auth/meurio"]
+    background: $mr_green
+  a[href="auth/facebook"]
+    background: $fb_blue
+    margin-right: 0
+  .meurio
+    float: left
+    text-transform: uppercase
+    img
+      float: left
+      margin-right: 10px
+  .user
+    float: right
 
 section.header
   +box-shadow(0 15px 30px -20px lighten(black, 25%) inset)
@@ -38,12 +72,12 @@ section.highlight_teeths
   content: " "
   display: block
 
-
-
-body.campaigns
-  &#index
-    
-  &#show
-body.users
-  &#show
-  &#edit
+body
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif
+  font-size: small
+  &.campaigns
+    &#index
+    &#show
+  &.users
+    &#show
+    &#edit
