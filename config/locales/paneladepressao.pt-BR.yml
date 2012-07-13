@@ -1,4 +1,6 @@
 pt-BR:
+  time:
+    some_time_ago: "Há %{time} atrás"
   user:
     show:
       what_user_did: "O que o %{user} já fez no Panela de Pressão"
