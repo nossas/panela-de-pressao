@@ -1,7 +1,7 @@
 - content_for :title do
   | Seu Rio
 
-section.about
+//section.about
   .row
     .text
       h1 O canal direto para construir o Rio de Janeiro que você quer.
@@ -13,28 +13,32 @@ section.about
     .image
       = image_tag "home_destaque_passo_03.png"
 
-section.content
-  .row= render :partial => "highlight", :locals => {:campaign => @campaigns[0]} if @campaigns.size > 0
-  .row
-    #campaigns_list
-      .campaigns
-        .titles
-          h2 Campanhas Recentes
-        = render @campaigns[1..-1] if @campaigns.size > 1
-      - if current_user && current_user.campaigns.any?
-        .campaigns
-          .titles
-            h2 Minhas campanhas
-          = render current_user.campaigns
-      - if !@campaigns_awaiting_moderation.empty? && can?(:manage, @campaigns_awaiting_moderation)
-        .campaigns
-          .titles
-            h2 Campanhas aguardando moderação
-          = render @campaigns_awaiting_moderation
-    .latest_pokes_and_facebook_widget
-      .latest_pokes
-        h2 Quem está apoiando:
-        = render Poke.limit(5)
-      .facebook_widget 
-        #fb-root
-        .fb-like-box data-href="http://www.facebook.com/meurio" data-width="221" data-show-faces="true" data-stream="false"
+section.content.row
+  article.left
+    
+    - if not @campaigns_awaiting_moderation.empty? and can?(:manage, @campaigns_awaiting_moderation)
+      h2= t "home.text.campaigns_waiting_for_moderation"
+      hr
+      ul.capaigns_list.awaiting
+        = render @campaigns_awaiting_moderation
+
+    - if current_user and current_user.campaigns.any?
+      h2= t "home.text.my_campaigns"
+      hr
+      ul.campaigns_list.mine
+        = render current_user.campaigns
+   
+    h2= t "home.text.discover_new_campaigns"
+    hr
+    ul.campaigns_list.all
+      = render @campaigns
+    
+  aside.right
+    h2= t "home.text.who_supports"
+    ol.pokes_list.recent
+      = render Poke.limit(5)
+
+
+  .facebook_widget 
+    #fb-root
+    .fb-like-box data-href="http://www.facebook.com/meurio" data-width="221" data-show-faces="true" data-stream="false"

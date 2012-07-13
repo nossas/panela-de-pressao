@@ -1,4 +1,10 @@
 pt-BR:
+  home:
+    text:
+      discover_new_campaigns: "Descubra novas campanhas"
+      campaigns_waiting_for_moderation: "Campanhas aguardando moderação"
+      my_campaigns: "Minhas campanhas"
+      who_supports: "Quem apoia"
   time:
     some_time_ago: "Há %{time} atrás"
   user:
