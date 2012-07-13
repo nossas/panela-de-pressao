@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
     authorizations.where(:provider => "facebook").first
   end
 
+
+  def picture
+    return "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=large" if self.facebook_authorization
+  end
+
   def facebook_url
     "https://facebook.com/profile.php?id=#{self.facebook_authorization.uid}" if self.facebook_authorization
   end
@@ -33,9 +38,5 @@ class User < ActiveRecord::Base
 
   def has_poked campaign
     pokes.where(:campaign_id => campaign.id).any?
-  end
-
-  def poked_campaigns
-    self.pokes.map(&:campaign).uniq
   end
 end
