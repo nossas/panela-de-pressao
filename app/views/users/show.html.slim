@@ -1,8 +1,16 @@
-h1= t "user.show.what_user_did", user: @user.name
+section.content
 
-ul
-  - timeline_objects(@user).each do |object|
-    li
-      p= raw object.link
-      p= raw object.date
+  aside
+    h2= t "user.show.create_and_edit"
+    = image_tag @user.picture
+
+
+
+  article.main
+    h1= t "user.show.what_user_did", user: @user.name
+    ul
+      - timeline_objects(@user).each do |object|
+        li
+          p= raw object.link
+          p= raw object.date
 
