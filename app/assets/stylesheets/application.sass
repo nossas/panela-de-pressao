@@ -12,6 +12,10 @@ $fb_blue: #3b5998
 img
   margin: 0
 
+hr
+  border: 1px dashed lighten($yellow, 10%)
+  
+
 body
   font-family: Lucida Grande, sans-serif
   font-size: .9em
@@ -48,7 +52,7 @@ a
   text-decoration: none
   +transition(0.3s)
   &:hover
-    color: darken($yellow, 30%)
+    text-decoration: underline
 div.logo a img:hover
   opacity: .8
 section
@@ -56,7 +60,7 @@ section
 
 article.right
   background: lighten(gray, 48%)
-  border-left: 1px solid lighten(gray, 40%)
+  border-left: 1px solid lighten(gray, 35%)
   position: relative
   min-height: 400px
   +grid(9)
@@ -153,12 +157,38 @@ body
     &#show
       strong
         display: block
+      .image, ul.details
+        margin: 1em
+      .image
+        img
+          +box-shadow(0 0 .4em gray)
+          padding: .5em
       ul.details
       ul.timeline
         margin-top: 2em
+        +border-radius(4px)
         li
-          opacity: .5
           +transition(.2s)
+          text-indent: 3em
+          padding: 1.4em
+          background: white 
+          border: 1px solid lighten(gray, 45%)
+          h4
+            font-weight: 200
+            line-height: .8em
+          p
+            font-size: .7em
+            font-style: italic
+            font-color: lighten(gray, 20%)
+            margin: 0
           &:hover
-            opacity: 1
+            +box-shadow(0 4px .5em gray)
+          &.poke, &.campaign
+            background-position: 10px 5px
+            background-size: 4% 75%
+            background-repeat: no-repeat          
+          &.poke
+            background-image: url('icon-press-2.svg')
+          &.campaign 
+            background-image: url('icon-campaign-2.svg')
     &#edit
