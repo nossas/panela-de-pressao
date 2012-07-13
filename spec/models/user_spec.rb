@@ -12,12 +12,20 @@ describe User do
   end
 
 
-  describe "#poked_campaigns" do
-    context "User has poked one campaign" do
-      let(:poke) { Poke.make! }
-      subject { poke.user }
-      
-      its(:poked_campaigns) { should be_== [poke.campaign] }
+  describe "#picture" do
+    context "When the user is logged in through facebook" do
+      let(:user) { Authorization.make!(provider: "facebook", uid: "01").user }
+      it "should return its large picture url" do
+        user.picture.should be_== "http://graph.facebook.com/01/picture?type=large"
+      end
     end
+    context "When the user is logged in through meurio" do
+      let(:user) { Authorization.make!(provider: "meurio", uid: "01").user }
+      it "should not return a picture url from facebook" do
+        user.picture.should_not be_== "http://graph.facebook.com/01/picture?type=large"
+      end
+    end
+    
   end
+
 end
