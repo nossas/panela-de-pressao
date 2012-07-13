@@ -42,7 +42,7 @@ end
 # We need development here to make rake spec work
 group :test, :development do
   gem 'rake'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'database_cleaner'
   gem "capybara", :git => "https://github.com/jnicklas/capybara.git"

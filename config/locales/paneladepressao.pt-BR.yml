@@ -7,5 +7,5 @@ pt-BR:
       create_and_edit: "Crie/Edite seu perfil"
   notification:
     campaign:
-      poked: "Pressionou a campanha %{link}"
-      created: "Criou a campanha %{link}"
+      poked_html: "<a href='%{link}'> Pressionou a campanha %{name} via %{through} </a>"
+      created_html: "<a href='%{link}'> Criou a campanha %{name}</a>"

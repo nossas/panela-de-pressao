@@ -1,12 +1,12 @@
 section.content.row
   aside.left
-    h2= t "user.show.create_and_edit"
-    = image_tag @user.picture
+    /h2= t "user.show.create_and_edit"
+    .image= image_tag @user.picture
     ul.details
-      li
+      //li
         strong= t "activerecord.attributes.user.name"
         span= @user.name
-      li
+      //li
         strong= t "activerecord.attributes.user.email"
         span= @user.email
       li
@@ -19,7 +19,7 @@ section.content.row
       hr
       ul.timeline
         - timeline_objects(@user).each do |obj|
-          li
-            h4= raw obj.link
-            p[class=obj.kind]= t "time.some_time_ago", time: time_ago_in_words(obj.date)
+          li[class=obj.kind]
+            h4= raw obj.link 
+            p= t "time.some_time_ago", time: time_ago_in_words(obj.date)
 
