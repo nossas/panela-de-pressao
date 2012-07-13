@@ -13,6 +13,6 @@ ManifesteSe::Application.routes.draw do
     end
   end
   resources :influencers, :only => [:index, :create]
-  resources :users, only: [:show]
+  resources :users, only: [:show, :update]
   root :to => 'campaigns#index'
 end
