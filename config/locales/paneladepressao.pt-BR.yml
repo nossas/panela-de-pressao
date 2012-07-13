@@ -3,7 +3,7 @@ pt-BR:
     some_time_ago: "Há %{time} atrás"
   user:
     show:
-      what_user_did: "O que o %{user} já fez no Panela de Pressão"
+      what_user_did: "O que %{user} já fez no Panela de Pressão?"
       create_and_edit: "Crie/Edite seu perfil"
   notification:
     campaign:
