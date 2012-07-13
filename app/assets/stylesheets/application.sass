@@ -15,20 +15,22 @@ section
   +grid-row
 
 section.login, section.header, section.highlight
-  padding: .5em 0
+  padding: 1em 0
 
 section.login
   line-height: 40px
   font-size: x-small
+  a[href="auth/meurio"], a[href="auth/facebook"], .meurio
+    text-transform: uppercase
   a[href="auth/meurio"], a[href="auth/facebook"]
     font-size: small
     font-family: 'Londrina Solid', cursive
     text-decoration: none
     text-transform: uppercase
+    letter-spacing: 1px
     color: white
     padding: 1px 15px
     +border-radius(5px)
-    letter-spacing: 1px
     margin: 0 5px
   a[href="auth/meurio"]
     background: $mr_green
@@ -37,7 +39,6 @@ section.login
     margin-right: 0
   .meurio
     float: left
-    text-transform: uppercase
     img
       float: left
       margin-right: 10px
@@ -48,11 +49,14 @@ section.header
   +box-shadow(0 15px 30px -20px lighten(black, 25%) inset)
   background: lighten(gray, 45%)
   border-bottom: 1px solid lighten(gray, 10%)
+  .logo
+    float: left
+  .share
+    float: right
 
 section.highlight
   +background-image(radial-gradient($yellow 0%, darken($yellow, 25%) 80%))
   +box-shadow(0 15px 30px -20px lighten(black, 10%) inset)
-  height: 50px
 
 section.highlight_tooths
   background-color: transparent
