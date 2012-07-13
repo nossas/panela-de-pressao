@@ -238,6 +238,10 @@ pt-BR:
         facebook: "Link para página no Facebook"
       organization:
         name: "Nome"
+      user:
+        name: "Nome"
+        email: "E-mail"
+        about_me: "Sobre mim"
 
   unauthorized:
     create:
