@@ -53,6 +53,8 @@ var App = window.App = {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
+      $("#login").hide();
+
     },
 
     showLoginBox: function(){
