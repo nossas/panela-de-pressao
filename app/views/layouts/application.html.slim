@@ -32,6 +32,9 @@ html
           span= alert
     section.login
       .row
+        .meurio
+          = image_tag "seurio_bottom_logo_meurio.jpeg"
+          | apresenta:
         .user
           - if current_user
             = image_tag current_user.picture, size: "20x20", alt: "Avatar"
