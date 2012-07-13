@@ -1,6 +1,6 @@
 module Notification
   class User
-    attr_accessor :link, :date
+    attr_accessor :link, :kind, :date
   end
 end
 
@@ -12,12 +12,14 @@ module UsersHelper
       b = Notification::User.new
       b.link = I18n.t('notification.campaign.poked', link: link_to(poke.campaign.name, campaign_path(poke.campaign)))
       b.date = poke.created_at
+      b.kind = "poke"
       a << b
     end
     user.campaigns.each do |campaign|
       b = Notification::User.new
       b.link = I18n.t('notification.campaign.created', link: link_to(campaign.name, campaign_path(campaign)))
       b.date = campaign.created_at
+      b.kind = "campaign"
       a << b
     end
 

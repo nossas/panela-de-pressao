@@ -18,8 +18,8 @@ section.content.row
       h2= t "user.show.what_user_did", user: @user.name
       hr
       ul.timeline
-        - timeline_objects(@user).each do |object|
+        - timeline_objects(@user).each do |obj|
           li
-            h4= raw object.link
-            p= t "time.some_time_ago", time: time_ago_in_words(object.date)
+            h4= raw obj.link
+            p[class=obj.kind]= t "time.some_time_ago", time: time_ago_in_words(obj.date)
 
