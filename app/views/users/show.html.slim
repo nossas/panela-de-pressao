@@ -2,7 +2,7 @@ section.content.row
   aside.left
     h2= t "user.show.create_and_edit"
     = image_tag @user.picture
-    ul
+    ul.details
       li
         strong= t "activerecord.attributes.user.name"
         span= @user.name
@@ -14,10 +14,12 @@ section.content.row
         span= @user.about_me
 
   article.right
-    h1= t "user.show.what_user_did", user: @user.name
-    ul
-      - timeline_objects(@user).each do |object|
-        li
-          p= raw object.link
-          p= t "time.some_time_ago", time: time_ago_in_words(object.date)
+    .inside
+      h2= t "user.show.what_user_did", user: @user.name
+      hr
+      ul.timeline
+        - timeline_objects(@user).each do |object|
+          li
+            h4= raw object.link
+            p= t "time.some_time_ago", time: time_ago_in_words(object.date)
 
