@@ -19,5 +19,5 @@ section.content.row
       - timeline_objects(@user).each do |object|
         li
           p= raw object.link
-          p= raw object.date
+          p= t "time.some_time_ago", time: time_ago_in_words(object.date)
 
