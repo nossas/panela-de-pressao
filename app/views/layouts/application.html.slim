@@ -52,15 +52,17 @@ html
     section.highlight= yield :highlight
     section.highlight_teeths
     = yield
-    footer
+    section.footer_teeths
+    section.footer
       .row
         .links
+          = link_to "Quem somos", "http://meurio.org.br/paginas/sobre_nos"
+          = link_to "Contate-nos", "mailto:contato@meurio.org.br"
+        .social
           = link_to "http://www.facebook.com/meurio" do
             = image_tag "seurio_bottom_facebook.jpeg"
           = link_to "http://twitter.com/#!/meu_rio" do
             = image_tag "seurio_bottom_twitter.jpeg"
-          = link_to "http://meurio.org.br/" do
-            = image_tag "seurio_bottom_logo_meurio.jpeg"
     #fb-root
     #login
       h1 Login
