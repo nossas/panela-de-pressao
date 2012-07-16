@@ -38,11 +38,11 @@ section.content.row
           = render current_user.campaigns
       
   aside.right
-    h2= t "home.text.who_supports"
-    ol.pokes_list.recent
-      = render Poke.limit(5)
-
-
-  .facebook_widget 
-    #fb-root
-    .fb-like-box data-href="http://www.facebook.com/meurio" data-width="221" data-show-faces="true" data-stream="false"
+    .content
+      h2= t "home.text.who_supports"
+      ol.pokes_list.recent
+        = render Poke.limit(5)
+      h2 No Facebook
+      .facebook_widget 
+        #fb-root
+        .fb-like-box data-href="http://www.facebook.com/meurio" data-width="200" data-show-faces="true" data-stream="false" data-header="false"

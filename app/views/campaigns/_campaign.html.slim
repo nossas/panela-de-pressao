@@ -5,7 +5,10 @@
     .campaign_title
       h3= link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)
     .campaign_category= campaign.category.name
-    .campaign_description= truncate(campaign.description, :length => 200, :separator => ' ')
+    .campaign_description
+      = truncate(campaign.description, :length => 200, :separator => ' ')
+      |  
+      = link_to "continue lendo", campaign
     - unless campaign.accepted?
       span.campaign_awaiting_moderation aguardando moderação
     - if campaign.pokers.any?
