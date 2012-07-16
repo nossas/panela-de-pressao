@@ -1,8 +1,15 @@
 pt-BR:
+  site:
+    title: "MeuRio - Panela de Pressão"
   home:
+    highlight:
+      header: "O canal direto para construir o Rio que você quer."
+      headline: "O Panela de Pressão permite que você crie a sua campanha, aponte os problemas da cidade e convide os cidadãos para falar diretamente com quem pode resolver o que está errado."
+      headline_2: "Aqui o papo é reto, você é quem fala por email, twitter e Facebook com quem é responsável pela administração da cidade."
     text:
       discover_new_campaigns: "Descubra novas campanhas"
       campaigns_waiting_for_moderation: "Campanhas aguardando moderação"
+      waiting_for_moderation: "Aguardando moderação"
       my_campaigns: "Minhas campanhas"
       who_supports: "Quem apoia"
   time:
