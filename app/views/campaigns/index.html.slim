@@ -4,8 +4,8 @@
 - content_for :highlight do
   .row
     .about
-      h1 O canal direto para construir o Rio de Janeiro que você quer.
-      p O Seu Rio permite que você crie a sua campanha, aponte os problemas da cidade e convide os cidadãos para falar diretamente com quem pode resolver o que está errado.
+      h1 O canal direto para construir o Rio que você quer.
+      p O Panela de Pressão permite que você crie a sua campanha, aponte os problemas da cidade e convide os cidadãos para falar diretamente com quem pode resolver o que está errado.
       p Aqui o papo é reto, você é quem fala por email, twitter e Facebook com quem é responsável pela administração da cidade.
       p
         = link_to "Comece a sua campanha!", new_campaign_path, :class => "btn"
@@ -18,24 +18,25 @@
 
 section.content.row
   article.left
-    
-    - if not @campaigns_awaiting_moderation.empty? and can?(:manage, @campaigns_awaiting_moderation)
-      h2= t "home.text.campaigns_waiting_for_moderation"
-      hr
-      ul.capaigns_list.awaiting
-        = render @campaigns_awaiting_moderation
-
-    - if current_user and current_user.campaigns.any?
-      h2= t "home.text.my_campaigns"
-      hr
-      ul.campaigns_list.mine
-        = render current_user.campaigns
-   
-    h2= t "home.text.discover_new_campaigns"
+    h2#campaigns_list= t "home.text.discover_new_campaigns"
     hr
     ul.campaigns_list.all
-      = render @campaigns
-    
+      = render @campaigns 
+
+    - if not @campaigns_awaiting_moderation.empty? and can?(:manage, @campaigns_awaiting_moderation)
+      .campaigns_awaiting_moderation
+        h2= t "home.text.campaigns_waiting_for_moderation"
+        hr
+        ul.campaigns_list.awaiting
+          = render @campaigns_awaiting_moderation
+
+    - if current_user and current_user.campaigns.any?
+      .my_campaigns
+        h2= t "home.text.my_campaigns"
+        hr
+        ul.campaigns_list.mine
+          = render current_user.campaigns
+      
   aside.right
     h2= t "home.text.who_supports"
     ol.pokes_list.recent

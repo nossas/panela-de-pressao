@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
   end
 
 
-  def picture
-    return "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=large" if self.facebook_authorization
+  def picture options = {:type => "large"}
+    return "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
   end
 
   def facebook_url
