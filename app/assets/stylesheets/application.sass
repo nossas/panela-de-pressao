@@ -12,16 +12,19 @@ $fb_blue: #3b5998
 @import chosen
 @import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
 
-.campaigns_awaiting_moderation, .my_campaigns
+.campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], aside
   +mobile-hide
+
+.logo_and_share, .links_and_social
+  +grid(12)
 
 img
   margin: 0
   +border-radius(0)
 
 hr
-  border: 1px dashed lighten($yellow, 10%)
-  
+  border-top: none
+  border-bottom: 2px dotted lighten($yellow, 10%)
 
 body
   font-family: Lucida Grande, sans-serif
@@ -46,6 +49,7 @@ h1
 
 h2
   font-size: 1.8em
+  margin-bottom: .5em
 
 h3
   font-size: 1.5em
@@ -84,7 +88,6 @@ section
   display: inline-block
   margin: 1px
   position: relative
-  +transition(.5s)
   +box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 2px 2px)
   +border-radius(5px)
   +text-shadow(black 0 1px 1px)
@@ -107,19 +110,19 @@ article
     +grid(9)
     +last
   &.left
-    +grid(9)
+    +grid(8)
     background: white
-    border-right: 1px solid lighten(gray, 35%)
     
 aside
   &.left
     +grid(3)
   &.right
-    background: lighten(gray, 48%)
+    +grid(4)
     +last
-
-article.left, aside
-  padding-top: 2em
+    .content
+      background: lighten(gray, 48%)
+      border-left: 1px solid lighten(gray, 35%)
+      padding: 0 1em
 
 .inside
   padding: 1em
@@ -127,7 +130,7 @@ article.left, aside
   +grid-row
 
 section.login, section.header, section.highlight, section.footer
-  padding: 1em 0
+  padding: 1.5em 0
 
 section.login, section.footer
   line-height: 40px
@@ -151,6 +154,8 @@ section.login
     margin-right: 0
   a:hover
     opacity: .8
+  .meurio_and_user
+    +grid(12)
   .meurio
     float: left
     img
@@ -158,6 +163,12 @@ section.login
       margin-right: 10px
   .user
     float: right
+    line-height: 20px
+    margin-top: 10px
+    img
+      margin-right: 1em
+      width: 20px
+      float: left
 
 section.header
   +box-shadow(0 15px 18px -20px lighten(black, 25%) inset)
@@ -183,7 +194,7 @@ section.highlight_teeths, section.footer_teeths
   display: block
 
 section.footer_teeths
-  background-position-y: 5px
+  background-position: 0 5px
 
 section.footer
   .links
@@ -217,7 +228,7 @@ body
             padding-top: 76px
             width: 152px
             overflow: hidden
-            display: inline-block
+            float: right
             vertical-align: middle
             margin-left: 1em
         .campaign
@@ -240,10 +251,11 @@ body
                 color: white
                 text-decoration: none
       ul.list
+        margin-bottom: 5em
         .campaign
           +grid-subcolumn(9, 9)
           padding: 2em 0
-          +box-shadow(white 5em 0 10em 0 inset, white -5em 0 10em 0 inset, black 0 1em 1em -1em inset)
+          +box-shadow(white 10em 0 10em 0 inset, white -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
           &:first-child
             +box-shadow(none)
           .image
@@ -263,6 +275,7 @@ body
               color: gray
               margin-bottom: 1em
             span.is_waiting_moderation
+              line-height: normal
               background: gray
               color: white
               display: inline-block
@@ -281,6 +294,28 @@ body
                 margin-right: .6em
               span.who 
                 display: block
+      .pokes_list
+        font-size: .8em
+        line-height: normal
+        margin-bottom: 5em
+        .poke
+          padding-top: 2em
+          margin-top: 2em
+          +box-shadow(lighten(gray, 48%) 5em 0 10em 0 inset, lighten(gray, 48%) -5em 0 10em 0 inset, black 0 1em 1em -1em inset)
+          &:first-child
+            padding-top: 0
+            margin-top: 0
+            +box-shadow(none)
+          .user
+            overflow: hidden
+            line-height: 20px
+            margin-bottom: .25em
+            img
+              width: 20px
+              float: left
+              margin-right: .5em
+          .poke_created_at
+            color: $orange
     &#show
   &.users
     &#show

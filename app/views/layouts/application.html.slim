@@ -32,37 +32,39 @@ html
           span= alert
     section.login
       .row
-        .meurio
-          = image_tag "seurio_bottom_logo_meurio.jpeg"
-          | apresenta:
-        .user
-          - if current_user
-            = image_tag current_user.picture, size: "20x20", alt: "Avatar"
-            = current_user.name
-            .user_panel
-              = link_to "", new_organization_path, :class => "icon-users", :title => "Criar uma organização"
+        .meurio_and_user
+          .meurio
+            = image_tag "seurio_bottom_logo_meurio.jpeg"
+            | apresenta:
+          .user
+            - if current_user
+              = image_tag current_user.picture, alt: "Avatar"
+              = current_user.name
+              |  | 
               = link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
-          - else
-            = raw "Entre com a sua conta do #{link_to "Meu Rio", "auth/meurio"} ou do #{link_to "Facebook", "auth/facebook"}"
+            - else
+              = raw "Entre com a sua conta do #{link_to "Meu Rio", "auth/meurio"} ou do #{link_to "Facebook", "auth/facebook"}"
     section.header
       .row
-        .logo=link_to image_tag("seurio_logo.png"), root_path
-        .share
-          .fb-like data-href="http://seurio.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"
+        .logo_and_share
+          .logo=link_to image_tag("seurio_logo.png"), root_path
+          .share
+            .fb-like data-href="http://seurio.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"
     section.highlight= yield :highlight
     section.highlight_teeths
     = yield
     section.footer_teeths
     section.footer
       .row
-        .links
-          = link_to "Quem somos", "http://meurio.org.br/paginas/sobre_nos"
-          = link_to "Contate-nos", "mailto:contato@meurio.org.br"
-        .social
-          = link_to "http://www.facebook.com/meurio" do
-            = image_tag "seurio_bottom_facebook.jpeg"
-          = link_to "http://twitter.com/#!/meu_rio" do
-            = image_tag "seurio_bottom_twitter.jpeg"
+        .links_and_social
+          .links
+            = link_to "Quem somos", "http://meurio.org.br/paginas/sobre_nos"
+            = link_to "Contate-nos", "mailto:contato@meurio.org.br"
+          .social
+            = link_to "http://www.facebook.com/meurio" do
+              = image_tag "seurio_bottom_facebook.jpeg"
+            = link_to "http://twitter.com/#!/meu_rio" do
+              = image_tag "seurio_bottom_twitter.jpeg"
     #fb-root
     #login
       h1 Login
