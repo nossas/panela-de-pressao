@@ -4,7 +4,7 @@
 @import chosen
 @import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
 
-$yellow: #ffe576
+$yellow: #fbca3f
 $green: #009546
 $mr_green: #059146
 $fb_blue: #3b5998
@@ -33,6 +33,7 @@ h1, h2
 
 h1
   font-size: 2.2em
+  margin-bottom: .5em
 
 h2
   font-size: 1.8em
@@ -43,22 +44,44 @@ h3
 h4 
   font-size: 1em
 
-
 strong
   font-weight: bold
+
+p
+  margin-bottom: 1em
 
 a
   color: $green
   text-decoration: none
-  +transition(0.3s)
   &:hover
     text-decoration: underline
+  &.btn
+    color: white
+    background: $green
+    font-family: "Londrina Solid"
+    text-transform: uppercase
+    font-size: 1.5em
+    padding: .5em 1em
+    border: 1px solid $green
+    letter-spacing: 1px
+    display: inline-block
+    margin: 1px
+    position: relative
+    +box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 2px 2px)
+    +border-radius(5px)
+    +text-shadow(black 0 1px 1px)
+    +background-image(linear-gradient(lighten($green, 10%), $green))
+    &:hover
+      text-decoration: none
+    &:active
+      top: 1px
+      +box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 1px 2px)
+
 div.logo a img:hover
   opacity: .8
+
 section
   +grid-container
-
-
 
 article
   &.right
@@ -127,14 +150,14 @@ section.header
     float: right
 
 section.highlight, section.footer
-  +background-image(radial-gradient($yellow 0%, darken($yellow, 25%) 80%))
+  +background-image(radial-gradient(lighten($yellow, 20%) 0%, $yellow 80%))
 
 section.highlight
   +box-shadow(0 15px 20px -20px lighten(black, 20%) inset)
 
 section.highlight_teeths, section.footer_teeths
   background-color: transparent
-  +background-image(linear-gradient(45deg, darken($yellow, 25%) 25%, transparent 25%, transparent 75%, darken($yellow, 25%) 75%, darken($yellow, 25%)), linear-gradient(-45deg, darken($yellow, 25%) 25%, transparent 25%, transparent 75%, darken($yellow, 25%) 75%, darken($yellow, 25%)))
+  +background-image(linear-gradient(45deg, $yellow 25%, transparent 25%, transparent 75%, $yellow 75%, $yellow), linear-gradient(-45deg, $yellow 25%, transparent 25%, transparent 75%, $yellow 75%, $yellow))
   background-size: 10px 10px
   height: 5px
   content: " "
@@ -163,6 +186,42 @@ section.footer
 body
   &.campaigns
     &#index
+      .highlight
+        .about
+          color: darken(gray, 10%)
+          +grid(6)
+          h1
+            line-height: normal
+            font-size: 3em
+          a[href="#campaigns_list"]
+            background: url("/assets/home_participe.png")
+            height: 0
+            padding-top: 76px
+            width: 152px
+            overflow: hidden
+            display: inline-block
+            vertical-align: middle
+            margin-left: 1em
+        .campaign
+          +grid(6)
+          +last
+          .campaign_info
+            position: relative
+            background: white
+            padding: 10px
+            border: 1px solid lighten(gray, 20%)
+            .name
+              position: absolute
+              bottom: 10px
+              background: rgba(0, 0, 0, .75)
+              padding: .5em
+              font-family: "Londrina Solid"
+              font-size: 1.5em
+              letter-spacing: 1px
+              text-transform: uppercase
+              a
+                color: white
+                text-decoration: none
     &#show
   &.users
     &#show
