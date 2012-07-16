@@ -17,11 +17,11 @@ Given /^I'm in ([^"]*)$/ do |arg1|
 end
 
 Given /^there is a campaign created by "(.*?)" with no partnership$/ do |arg1|
-  @campaign = Campaign.make! :user => User.make!(:name => "Luiz Fonseca"), :accepted_at => Time.now
+  @campaign = Campaign.make! :user => User.make!(:name => arg1), :accepted_at => Time.now
 end
 
 Given /^there is a campaign created by "(.*?)" with a partnership with "(.*?)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! :user => User.make!(:name => "Luiz Fonseca"), :accepted_at => Time.now, :organizations => [Organization.make!(:name => arg2)]
+  @campaign = Campaign.make! :user => User.make!(:name => arg1), :accepted_at => Time.now, :organizations => [Organization.make!(:name => arg2)]
 end
 
 Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, arg2|
@@ -123,8 +123,15 @@ Given /^I check "(.*?)"$/ do |arg1|
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
-  if arg1 == "the poker avatar"
+  case arg1
+  when "the poker avatar"
     page.should have_css("img[src='/assets/pic.png']")
+  when "user[name]"
+    page.should have_css('input[name="user[name]"]')
+  when "user[email]"
+    page.should have_css('input[name="user[email]"]')
+  when "user[about_me]"
+    page.should have_css('textarea[name="user[about_me]"]')
   else
     page.should have_content(arg1)
   end
@@ -157,8 +164,8 @@ end
 
 When /^I click "(.*?)" within ([^"]*)$/ do |arg1, arg2|
   case arg2
-  when "highlight campaign"
-    within('.highlight_campaign') do
+  when "campaigns list"
+    within('.campaigns_list') do
       click_on arg1
     end
   else
@@ -177,18 +184,21 @@ Then /^I should see "([^"]*)" before "([^"]*)"$/ do |arg1, arg2|
 end
 
 Then /^I should not see "([^"]*)"$/ do |arg1|
-  if arg1 == "the Twitter poke button"
+  case arg1
+  when "the Twitter poke button"
     page.should_not have_button("Via Twitter")
-  elsif arg1 == "the accept campaign button"
+  when "the accept campaign button"
     page.should_not have_button("Aceitar campanha")
-  elsif arg1 == "the create campaign button"
+  when "the create campaign button"
     page.should_not have_button("Enviar campanha para moderação")
-  elsif arg1 == "the edit campaign button"
+  when "the edit campaign button"
     page.should_not have_link("Editar campanha")
-  elsif arg1 == "the email poke form"
+  when "the email poke form"
     page.should_not have_css("form:has(input[value='email'])")
-  elsif arg1 == "the Facebook poke button"
+  when "the Facebook poke button"
     page.should_not have_css("form:has(input[value='facebook'])")
+  when "user[email]"
+    page.should_not have_css('input[name="user[email]"]')
   else
     page.should_not have_content(arg1)
   end
@@ -248,7 +258,7 @@ end
 
 
 Then /^I should see a list of (\d+) recent pokers$/ do |arg1|
- page.should have_css("div.pokers ol li", count: arg1.to_i)
+  page.should have_css("div.pokers ol li", count: arg1.to_i)
 end
 
 Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2, arg3|

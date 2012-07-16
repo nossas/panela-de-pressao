@@ -7,9 +7,20 @@ Feature: View a member profile
     Given there is a campaign called "Queremos bicicletários em todo o planeta!"
     And there is 1 poker called "Luiz Fonseca" that poked 34 times
     And I'm in the campaigns page
-    When I click "Queremos bicicletários em todo o planeta!" within highlight campaign
+    When I click "Queremos bicicletários em todo o planeta!" within campaigns list 
     And I click on the "Luiz Fonseca" avatar
-    Then I should see "O que o Luiz Fonseca já fez no Panela de Pressão"
+    Then I should see "O que Luiz Fonseca já fez no Panela de Pressão?"
     And I should see "Pressionou a campanha Queremos bicicletários em todo o planeta!" 
-
-
+    And I should not see "user[email]"
+  
+  @omniauth_test
+  Scenario: I'm a logged user and I want to see my profile
+    Given there is a campaign created by "Luiz Fonseca" with no partnership
+    And I'm logged in
+    And I'm in the campaigns page
+    When I click "Desarmamento Voluntário" within campaigns list
+    And I click on the "Luiz Fonseca" avatar
+    Then I should see "O que Luiz Fonseca já fez no Panela de Pressão?"
+    And I should see "user[name]"
+    And I should see "user[email]"
+    And I should see "user[about_me]"
