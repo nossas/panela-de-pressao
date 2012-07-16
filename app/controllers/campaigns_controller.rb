@@ -6,6 +6,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:update] { params[:campaign][:organization_ids] ||= [] }
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:index] { @campaigns_awaiting_moderation = Campaign.where("accepted_at IS NULL") }
+  before_filter :only => [:index] { @highlight_campaign = Campaign.first }
 
   def create
     create! do |success, failure|
