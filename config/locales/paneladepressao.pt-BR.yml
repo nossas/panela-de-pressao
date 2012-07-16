@@ -20,7 +20,7 @@ pt-BR:
     some_time_ago: "Há %{time} atrás"
 
   campaign:
-    description_html: "%{text} | %{more}"
+    description_html: "%{text} %{more}"
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
