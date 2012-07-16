@@ -1,6 +1,6 @@
 section.content.row
   aside.left
-    h2= t "user.show.create_and_edit" if can?(:update, @user)
+    h3= t "user.show.create_and_edit" if can?(:update, @user)
     .image= image_tag @user.picture
     ul.details[class=(current_user == @user ? "logged" : "not_logged")]
       = form_for @user do |f|

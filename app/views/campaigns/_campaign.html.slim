@@ -1,15 +1,18 @@
 .campaign
-  .campaign_image
-    .image= link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
-  .campaign_details
-    .campaign_title
-      h3= link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)
-    .campaign_category= campaign.category.name
-    .campaign_description= truncate(campaign.description, :length => 200, :separator => ' ')
+  .image
+    .img= link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
+  .details
+    h3.title
+      = link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)
+    span.category
+      = campaign.category.name
+    p.description
+      = truncate(campaign.description, :length => 200, :separator => ' ')
     - unless campaign.accepted?
-      span.campaign_awaiting_moderation aguardando moderação
+      span.is_waiting_moderation
+        = t 'home.text.waiting_for_moderation'
     - if campaign.pokers.any?
-      .campaign_pokers
-        label Quem apoia
+      .pokers
+        span.who= t 'home.text.who_supports'
         - campaign.pokers.each do |poker|
-          = link_to image_tag(poker.picture(:type => "small")), poker
+          = link_to image_tag(poker.picture(:type => "square")), poker
