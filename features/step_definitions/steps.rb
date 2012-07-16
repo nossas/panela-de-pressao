@@ -156,8 +156,8 @@ When /^I click "([^"]*)"$/ do |arg1|
     within("#facebox") do
       click_on arg1
     end
-  else
-    click_on(arg1)
+  else 
+    click_link(arg1)
   end
 end
 
