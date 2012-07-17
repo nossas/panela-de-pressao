@@ -6,7 +6,7 @@ section.content.row
       = form_for @user do |f|
         li
           = f.label :name
-          = f.text_field :name, disabled: (:disabled if is_current_user?(@user))
+          = f.text_field :name, disabled: ("disabled" if is_current_user?(@user))
           span.member_since
             = t "user.show.member_since", since: l(@user.created_at, :format => :short)
           hr
@@ -15,10 +15,9 @@ section.content.row
           li
             = f.label :email
             = f.text_field :email
-        - if @user.about_me
-          li
-            = f.label :about_me
-            = f.text_area :about_me
+        li
+          = f.label :about_me
+          = f.text_area :about_me
 
 
         - if is_current_user?(@user)
