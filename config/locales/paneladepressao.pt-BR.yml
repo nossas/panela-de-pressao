@@ -22,6 +22,10 @@ pt-BR:
 
   campaign:
     description_html: "%{text} %{more}"
+    new:  
+      title: "Nova campanha"
+      header: "Crie sua campanha"
+      small: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua."
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"

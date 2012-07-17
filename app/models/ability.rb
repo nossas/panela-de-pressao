@@ -14,7 +14,7 @@ class Ability
       can :create, Campaign
       can :create, Poke
       can :update, Campaign, :user_id => user.id
-      can :update, User, id: user
+      can :update, User, id: user.id
     end
 
   end
