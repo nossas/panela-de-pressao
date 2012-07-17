@@ -21,7 +21,6 @@ Campaign.blueprint do
   user { User.make! }
   image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
   category { Category.make! }
-  organizations(0)
   pokes(0)
   email_text { "teste" }
   facebook_text { "teste" }
@@ -43,12 +42,6 @@ Influencer.blueprint do
   twitter { "eduardopaes_" }
   facebook { "http://www.facebook.com/eduardopaesRJ" }
   role { "Prefeito" }
-end
-
-Organization.blueprint do
-  name { "MeuRio" }
-  owner { User.make! }
-  avatar { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
 end
 
 Poke.blueprint do

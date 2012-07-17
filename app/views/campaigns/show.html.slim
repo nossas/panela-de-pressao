@@ -86,14 +86,9 @@ section.content
         .titles
           h2 Quem faz acontecer
         ol
-          - @campaign.organizations.each do |org|
-            li
-              = link_to image_tag(org.avatar.url, size: "50x50", title: org.name), org.link, target: "_blank"
-              span= org.name
-          - if @campaign.organizations.empty?
-            li
-              = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
-              span= @campaign.user.name
+          li
+            = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
+            span= @campaign.user.name
 
       - if @campaign.pokers.any?
         .pokers

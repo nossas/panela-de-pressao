@@ -5,7 +5,6 @@ ManifesteSe::Application.routes.draw do
   get '/auth/meurio',   as: :meurio_connect
 
   resources :sessions, :only => [:destroy]
-  resources :organizations, only: [:new, :index, :show, :create]
   resources :campaigns, :only => [:index, :show, :new, :create, :edit, :update] do
     put :accept, :to => "campaigns#accept"
     resources :posts, :only => [:create, :index, :destroy]
