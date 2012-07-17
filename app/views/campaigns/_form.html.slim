@@ -1,25 +1,19 @@
-= form_for @campaign do |f|
-
+article.left
+  h1= t 'campaign.new.header'
+  small= t 'campaign.new.small'
+  = form_for @campaign do |f|
     .field_row
       .label_and_field
         = f.label :name
         .field.name
           .field_bg= f.text_field :name
         .inline-errors= @campaign.errors[:name].join(", ")
-      .tip
-        span Exemplo: "Salvem as árvores do Centro da Cidade"
-
     .field_row
       .label_and_field
         = f.label :description
         .field.description
           .field_bg= f.text_area :description
         .inline-errors= @campaign.errors[:description].join(", ")
-      .tip 
-        span
-          p Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.
-          p Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.
-
     .field_row
       .label_and_field
         = f.label :image
@@ -28,36 +22,24 @@
         .inline-errors= @campaign.errors[:image].join(", ")
         = image_tag @campaign.image if @campaign.persisted?
         = f.hidden_field :image_cache
-      .tip 
-        span Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua campanha.
-
     .field_row
       .label_and_field
         = f.label :category_id
         .field
           = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
         .inline-errors= @campaign.errors[:category].join(", ")
-      .tip
-        span Escolha o tema principal da sua campanha, mesmo que ela possa ter vários
-
     .field_row
       .label_and_field
         = f.label :email_text
         .field
           .field_bg= f.text_area :email_text
         .inline-errors= @campaign.errors[:email_text].join(", ")
-      .tip 
-        span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
-
     .field_row
       .label_and_field
         = f.label :facebook_text
         .field
           .field_bg= f.text_area :facebook_text
         .inline-errors= @campaign.errors[:facebook_text].join(", ")
-      .tip 
-        span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
-
     .field_row
       .label_and_field
         = f.label :twitter_text
@@ -65,21 +47,50 @@
           .field_bg= f.text_field :twitter_text
         small.campaign_twitter_text_status
         .inline-errors= @campaign.errors[:twitter_text].join(", ")
-      .tip
-        span Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets.
-
     .field_row.influencers
       .label_and_field
         = f.label :influencer_ids
         .field.influencers
           .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
-      .tip 
-        span 
-          p= raw "Se você não encontrou o alvo da campanha na lista ao lado, #{link_to 'clique aqui', 'https://docs.google.com/a/engage.is/spreadsheet/viewform?formkey=dHl4ak1SSlVtNy1KVDJhb2VUVTNqSEE6MQ'} e cadastre:"
-
     .field_row
       .action
         = f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn"
+
+aside.right
+  .content
+    .tip
+      span Exemplo: "Salvem as árvores do Centro da Cidade"
+    .tip 
+      span
+        p Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.
+        p Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.
+    .tip 
+      span Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua campanha.
+    .tip
+      span Escolha o tema principal da sua campanha, mesmo que ela possa ter vários
+    .tip 
+      span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
+    .tip 
+      span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
+    .tip
+      span Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets.
+    .tip 
+      span 
+        p= raw "Se você não encontrou o alvo da campanha na lista ao lado, #{link_to 'clique aqui', 'https://docs.google.com/a/engage.is/spreadsheet/viewform?formkey=dHl4ak1SSlVtNy1KVDJhb2VUVTNqSEE6MQ'} e cadastre:"
+
+
+
+
+
+
+   
+
+
+    
+
+
+
+
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
   |  ou 

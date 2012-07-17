@@ -1,8 +1,5 @@
 - content_for :title do
-  | Nova campanha
+  = t 'campaing.new.title'
 
-section.content
-  .row
-    h1 Crie sua campanha
-    small Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua.
-    = render :partial => "form"
+section.content.row
+  = render :partial => "form"
