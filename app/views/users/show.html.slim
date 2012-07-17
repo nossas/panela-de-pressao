@@ -1,26 +1,27 @@
 section.content.row
   aside.left
-    h3= t "user.show.create_and_edit" if can?(:update, @user)
+    h3= t "user.show.create_and_edit" if is_current_user(@user)
     .image= image_tag @user.picture
-    ul.details[class=(current_user == @user ? "logged" : "not_logged")]
+    ul.details[class=(is_current_user(@user) ? "logged" : "not_logged")]
       = form_for @user do |f|
         li
           = f.label :name
-          = f.text_field :name, disabled: :disabled if not can?(:update, @user)
+          = f.text_field :name, disabled: (:disabled if is_current_user(@user))
           span.member_since
             = t "user.show.member_since", since: l(@user.created_at, :format => :short)
           hr
 
-        - if can?(:update, @user)
+        - if is_current_user(@user)
           li
             = f.label :email
             = f.text_field :email
-        li
-          = f.label :about_me
-          = f.text_area :about_me
+        - if @user.about_me
+          li
+            = f.label :about_me
+            = f.text_area :about_me
 
 
-        - if can?(:update, @user)
+        - if is_current_user(@user)
           li
             = f.submit class: "btn green", value: t("user.show.save")
 

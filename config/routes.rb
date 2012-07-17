@@ -1,6 +1,9 @@
 ManifesteSe::Application.routes.draw do
 
   match '/auth/:provider/callback',   :to => 'sessions#create'
+  get '/auth/facebook', as: :facebook_connect
+  get '/auth/meurio',   as: :meurio_connect
+
   resources :sessions, :only => [:destroy]
   resources :organizations, only: [:new, :index, :show, :create]
   resources :campaigns, :only => [:index, :show, :new, :create, :edit, :update] do

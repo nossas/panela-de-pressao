@@ -43,7 +43,7 @@ html
               |  | 
               = link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
-              = raw "Entre com a sua conta do #{link_to "Meu Rio", "auth/meurio"} ou do #{link_to "Facebook", "auth/facebook"}"
+              = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_url, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_url, class: 'fb'}"
     section.header
       .row
         .logo_and_share
