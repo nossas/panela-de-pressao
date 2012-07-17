@@ -4,8 +4,7 @@ class CampaignsController < InheritedResources::Base
   skip_load_and_authorize_resource :only => [:index, :create]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
-  before_filter :only => [:index] { @campaigns_awaiting_moderation = Campaign.where("accepted_at IS NULL") }
-  before_filter :only => [:index] { @highlight_campaign = Campaign.first }
+  before_filter :only => [:index] { @highlight_campaign = Campaign.accepted.first }
 
   def create
     create! do |success, failure|
@@ -24,8 +23,20 @@ class CampaignsController < InheritedResources::Base
     show(:notice => "Está valendo, campanha no ar!")
   end
 
+  def index
+    if params[:user_id]
+      render :user_index
+    end
+  end
+
   protected
   def collection
-    @campaigns ||= end_of_association_chain.accepted
+    if params[:user_id]
+      @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
+    elsif current_user && current_user.admin?
+      @campaigns ||= Campaign.all
+    else
+      @campaigns ||= end_of_association_chain.accepted
+    end
   end
 end

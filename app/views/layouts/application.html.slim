@@ -39,7 +39,9 @@ html
           .user
             - if current_user
               = image_tag current_user.picture, alt: "Avatar"
-              = current_user.name
+              = link_to current_user.name, current_user
+              |  | 
+              = link_to "Minhas campanhas", user_campaigns_path(current_user)
               |  | 
               = link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else

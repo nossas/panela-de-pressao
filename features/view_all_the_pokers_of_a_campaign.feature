@@ -14,4 +14,3 @@ Feature: view all the pokers
     And there is a poker called "Marcelinho"
     When I go to this campaign page
     Then I should see "Quem está pressionando os alvos"
-    And I should see "the poker avatar"
