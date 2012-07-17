@@ -10,6 +10,7 @@ pt-BR:
       participate: "Ou participe das campanhas abaixo"
     text:
       discover_new_campaigns: "Descubra novas campanhas"
+      user_campaigns: "Campanhas criadas por %{user_name}"
       campaigns_waiting_for_moderation: "Campanhas aguardando moderação"
       waiting_for_moderation: "Aguardando moderação"
       my_campaigns: "Minhas campanhas"

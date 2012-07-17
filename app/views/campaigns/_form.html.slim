@@ -85,3 +85,4 @@
   |  ou 
   = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
     = f.submit "Aceitar campanha", :class => "btn"
+  = link_to "Remover campanha", @campaign, :method => :delete, :class => "btn"

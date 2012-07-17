@@ -1,0 +1,5 @@
+section.content.row
+  article.campaigns.wide
+    h2= t "home.text.user_campaigns", :user_name => current_user.name
+    hr
+    ul.list.all= render collection

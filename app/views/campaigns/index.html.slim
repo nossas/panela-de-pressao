@@ -23,23 +23,8 @@ section.content.row
   article.left.campaigns
     h2= t "home.text.discover_new_campaigns"
     hr
-    ul.list.all
-      = render @campaigns 
-
-    - if not @campaigns_awaiting_moderation.empty? and can?(:manage, @campaigns_awaiting_moderation)
-      .campaigns_awaiting_moderation
-        h2= t "home.text.campaigns_waiting_for_moderation"
-        hr
-        ul.list.awaiting
-          = render @campaigns_awaiting_moderation
-
-    - if current_user and current_user.campaigns.any?
-      .my_campaigns
-        h2= t "home.text.my_campaigns"
-        hr
-        ul.list.mine
-          = render current_user.campaigns
-      
+    ul.list.all= render collection
+     
   aside.right
     .content
       h2= t "home.text.who_supports"
