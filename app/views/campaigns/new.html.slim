@@ -5,8 +5,4 @@ section.content
   .row
     h1 Crie sua campanha
     small Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua.
-    - if notice
-      .new_organization
-        span= "#{notice} Agora crie a sua campanha..."
-
     = render :partial => "form"
