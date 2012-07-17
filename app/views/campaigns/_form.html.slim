@@ -77,14 +77,6 @@
         span 
           p= raw "Se você não encontrou o alvo da campanha na lista ao lado, #{link_to 'clique aqui', 'https://docs.google.com/a/engage.is/spreadsheet/viewform?formkey=dHl4ak1SSlVtNy1KVDJhb2VUVTNqSEE6MQ'} e cadastre:"
 
-    - if current_user.organizations.any?
-      .field_row.organizations
-        small Organizações que apoiam:
-        .field
-          - current_user.organizations.each do |organization|
-            = check_box_tag "campaign[organization_ids][]", organization.id, @campaign.organizations.include?(organization), :id => "campaign_organization_ids_#{organization.id}"
-            = label_tag "campaign_organization_ids_#{organization.id}", organization.name
-
     .field_row
       .action
         = f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn"

@@ -13,7 +13,6 @@ class Ability
     if user
       can :create, Campaign
       can :create, Poke
-      can :create, Organization
       can :update, Campaign, :user_id => user.id
       can :update, User, id: user
     end

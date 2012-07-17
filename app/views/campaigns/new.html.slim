@@ -5,11 +5,6 @@ section.content
   .row
     h1 Crie sua campanha
     small Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua.
-    - if current_user.organizations.empty?
-      .new_organization
-        span
-          | Você representa alguma organização? Então 
-          = link_to "crie a sua organização clicando aqui!", new_organization_path(:redirect_url => request.url)
     - if notice
       .new_organization
         span= "#{notice} Agora crie a sua campanha..."
