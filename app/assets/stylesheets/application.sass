@@ -283,10 +283,14 @@ body
               padding: .5em
               +border-radius(.5em)
             .pokers
-              span.who, img
-                width: 30px
+              ul li
                 float: left
+              span.who, li.plus a, img
+                width: 30px
+              span.who
                 font-family: "Londrina Solid"
+              span.who, img
+                float: left
                 line-height: .9em
                 font-size: 1.2em
                 text-transform: uppercase
@@ -294,6 +298,15 @@ body
                 margin-right: .6em
               span.who 
                 display: block
+              .plus
+                a
+                  display: block
+                  height: 30px
+                  background: $green
+                  color: white
+                  font-size: 1.2em
+                  line-height: 1.6em
+                  text-align: center
       .pokes_list
         font-size: .8em
         line-height: normal

@@ -14,5 +14,8 @@
     - if campaign.pokers.any?
       .pokers
         span.who= t 'home.text.who_supports'
-        - campaign.pokers.each do |poker|
-          = link_to image_tag(poker.picture(:type => "square")), poker
+        ul
+          - campaign.pokers.limit(8).each do |poker|
+            li= link_to image_tag(poker.picture(:type => "square")), poker
+          li.plus= link_to "+", campaign
+
