@@ -33,9 +33,10 @@ section.content.row
       .targets
         | Escolha um canal para fazer pressão em: 
         = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
-      = render :partial => "poke_form", :locals => { :poke =>  "email" }
-      = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
-      = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
+      .buttons
+        = render :partial => "poke_form", :locals => { :poke =>  "email" }
+        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
+        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
       .email_text
         span Email que será enviado para os alvos:
         = raw @campaign.email_text.gsub("\n", "<br />")
@@ -46,12 +47,13 @@ section.content.row
         span Mensagem que será postada no mural dos alvos:
         = raw @campaign.facebook_text.gsub("\n", "<br />")
       - if flash[:poke_create]
-        .congrats= raw flash[:poke_create]
+        #congrats= raw flash[:poke_create]
       - if current_user && current_user.has_poked(@campaign)
+        hr
         .share
-          a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
+          .fb-like data-href=request.url data-send="false" data-layout="button_count" data-show-faces="false"
           g:plusone size="medium"
-          .fb-like data-href=request.url data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
+          a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
       .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
     .content
       .targets
@@ -70,20 +72,13 @@ section.content.row
                 = link_to "", influencer.twitter_url, title: "Perfil no twitter", :class => "icon-twitter"
                 = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-email"
       .supporters
-        .titles
-          h2 Quem faz acontecer
-        ol
-          li
-            = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
-            span= @campaign.user.name
-
+        h2 Quem faz acontecer
+        = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
+      
       - if @campaign.pokers.any?
         .pokers
-          .titles
-            h2
-              | Quem está pressionando os alvos (#{@campaign.pokers.length})
-          ol
-            - @campaign.pokers.each do |poker|
-              li
-                = link_to image_tag(poker.picture), user_path(poker), target: "_blank", title: poker.name
-                span= poker.name
+          h2 
+            | Quem está pressionando 
+            span= "(#{@campaign.pokers.length})"
+          - @campaign.pokers.each do |poker|
+            = link_to image_tag(poker.picture), user_path(poker), title: poker.name

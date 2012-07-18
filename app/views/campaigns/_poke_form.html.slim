@@ -1,5 +1,5 @@
 - unless @campaign.not_empty_influencer(poke.to_sym).empty?
   = form_for [@campaign, @poke], :html => {:class => poke} do |f|
     = f.hidden_field :kind, :value => poke
-    = link_to "#", :class => poke do
+    = link_to "#", :class => "poke_btn #{poke}" do
      span= @campaign.pokes_by(poke).size
