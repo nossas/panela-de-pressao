@@ -21,6 +21,7 @@
 	font-family: 'IcoMoon';
 	font-style: normal;
 	speak: none;
+  padding-right: 3px;
 }
 .icon-facebook:before {
 	content: "\21";
@@ -30,4 +31,10 @@
 }
 .icon-email:before {
 	content: "\23";
+}
+.icon-home:before {
+	content: "\24";
+}
+.icon-pencil:before {
+	content: "\25";
 }
