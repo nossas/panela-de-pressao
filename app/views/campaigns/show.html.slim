@@ -7,96 +7,87 @@
   meta property="og:url" content=campaign_url(@campaign)
   meta property="og:description" content=@campaign.description
 
-section.content
-  .campaign.row
-    .details
-      .header
-        span.category
-          = @campaign.category.name
-        h1.name
-          = @campaign.name
-        span.updated
-          = "Criada em #{l(@campaign.created_at, format: :short)} - atualizada há #{time_ago_in_words(@campaign.updated_at)}"
-      .image
-        = image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
-      .edit
-        = link_to "Editar campanha", edit_campaign_path(@campaign), :class => "btn edit_campaign" if can?(:edit, @campaign)
-      .description
-        h2 Porque isso é importante
-        p= raw @campaign.description.gsub("\n", "<br />")
+- content_for :highlight do
+  .row
+    .home_link
+      = link_to "Voltar à home", root_path
+      = link_to "Editar campanha", edit_campaign_path(@campaign) if can?(:edit, @campaign)
+    .new_campaign_btn= link_to "Crie sua campanha agora", new_campaign_path, :class => "btn"
 
-      .influencers_response
-        h2 Resposta pública dos Alvos de Campanha
-        p
-          | Ainda não houve resposta dos alvos da campanha. Cobre novamente deles:
-        p.poke
-          = link_to "Pressionar os alvos", "#poke_buttons", class: :btn
-        p.contact
-          | Você é um dos nossos alvos? Dê sua resposta atrás de #{mail_to "resposta@seurio.org.br", "resposta@seurio.org.br"}
+section.content.row
+  article.left
+    .category= @campaign.category.name
+    h1= @campaign.name
+    .created_at= "Criada em #{l(@campaign.created_at, format: :short)}"
 
-      .updates
-        h2 Atualizações da campanha
-        .fb-comments data-href=campaign_url(@campaign) data-num-posts="10" width="567"
-      
-    .campaign_panel
-      .poke_buttons#poke_buttons
-        .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
-        p
-          | Escolha um canal para fazer pressão em: 
-          = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
-        = render :partial => "poke_form", :locals => { :poke =>  "email" }
-        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
-        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
-        .email_text
-          span Email que será enviado para os alvos:
-          = raw @campaign.email_text.gsub("\n", "<br />")
-        .twitter_text
-          span Tweet que será enviado para os alvos:
-          = raw @campaign.twitter_text.gsub("\n", "<br />")
-        .facebook_text
-          span Mensagem que será postada no mural dos alvos:
-          = raw @campaign.facebook_text.gsub("\n", "<br />")
-        - if flash[:poke_create]
-          .congrats= raw flash[:poke_create]
-        - if current_user && current_user.has_poked(@campaign)
-          .share
-            a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
-            g:plusone size="medium"
-            .fb-like data-href=request.url data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
-        .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
+    .tabs#tabs
+      = link_to "A campanha", campaign_path(@campaign, :section => "description"), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
+      = link_to "Respostas", campaign_path(@campaign, :section => "answers"), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to "Comentários", campaign_path(@campaign, :section => "comments"), :class => "#{params[:section] == "comments" ? 'selected' : ''}"
 
-      .targets
-        .titles
-          h2
-            | Alvo de campanha (#{@campaign.influencers.length})
-        ol
-          - @campaign.influencers.each do |influencer|
-            li.target
-              .info
-                = image_tag influencer.avatar, :title => influencer.name
-                p.name= influencer.name
-                span.role= influencer.role
-              ul.social
-                li.fb[class=(influencer.facebook_url.blank? ? "inactive" : "active")]= link_to "facebook", influencer.facebook_url, title: "Página no facebook"
-                li.tw[class=(influencer.twitter_url.blank? ? "inactive" : "active")]= link_to "twitter", influencer.twitter_url, title: "Perfil no twitter"
-                li.ml[class=(influencer.email.blank? ? "inactive" : "active")]= mail_to influencer.email, "email", title: "E-mail de contato"
-          li= link_to "Esquecemos de alguém?", "mailto:contato@seurio.org.br"
+    = render :partial => params[:section] || "description"
 
-      .supporters
-        .titles
-          h2 Quem faz acontecer
-        ol
-          li
-            = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
-            span= @campaign.user.name
-
-      - if @campaign.pokers.any?
-        .pokers
+  aside.right
+    .content
+      .campaign_panel
+        .poke_buttons#poke_buttons
+          .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
+          p
+            | Escolha um canal para fazer pressão em: 
+            = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
+          = render :partial => "poke_form", :locals => { :poke =>  "email" }
+          = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
+          = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
+          .email_text
+            span Email que será enviado para os alvos:
+            = raw @campaign.email_text.gsub("\n", "<br />")
+          .twitter_text
+            span Tweet que será enviado para os alvos:
+            = raw @campaign.twitter_text.gsub("\n", "<br />")
+          .facebook_text
+            span Mensagem que será postada no mural dos alvos:
+            = raw @campaign.facebook_text.gsub("\n", "<br />")
+          - if flash[:poke_create]
+            .congrats= raw flash[:poke_create]
+          - if current_user && current_user.has_poked(@campaign)
+            .share
+              a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
+              g:plusone size="medium"
+              .fb-like data-href=request.url data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
+          .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
+  
+        .targets
           .titles
             h2
-              | Quem está pressionando os alvos (#{@campaign.pokers.length})
+              | Alvo de campanha (#{@campaign.influencers.length})
           ol
-            - @campaign.pokers.each do |poker|
-              li
-                = link_to image_tag(poker.picture), user_path(poker), target: "_blank", title: poker.name
-                span= poker.name
+            - @campaign.influencers.each do |influencer|
+              li.target
+                .info
+                  = image_tag influencer.avatar, :title => influencer.name
+                  p.name= influencer.name
+                  span.role= influencer.role
+                ul.social
+                  li.fb[class=(influencer.facebook_url.blank? ? "inactive" : "active")]= link_to "facebook", influencer.facebook_url, title: "Página no facebook"
+                  li.tw[class=(influencer.twitter_url.blank? ? "inactive" : "active")]= link_to "twitter", influencer.twitter_url, title: "Perfil no twitter"
+                  li.ml[class=(influencer.email.blank? ? "inactive" : "active")]= mail_to influencer.email, "email", title: "E-mail de contato"
+            li= link_to "Esquecemos de alguém?", "mailto:contato@seurio.org.br"
+  
+        .supporters
+          .titles
+            h2 Quem faz acontecer
+          ol
+            li
+              = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
+              span= @campaign.user.name
+  
+        - if @campaign.pokers.any?
+          .pokers
+            .titles
+              h2
+                | Quem está pressionando os alvos (#{@campaign.pokers.length})
+            ol
+              - @campaign.pokers.each do |poker|
+                li
+                  = link_to image_tag(poker.picture), user_path(poker), target: "_blank", title: poker.name
+                  span= poker.name

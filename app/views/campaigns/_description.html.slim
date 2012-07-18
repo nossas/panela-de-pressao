@@ -1,0 +1,4 @@
+.image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+.description
+  h2 Porque isso é importante
+  p= raw @campaign.description.gsub("\n", "<br />")
