@@ -57,20 +57,18 @@ section.content.row
       .targets
         .titles
           h2
-            | Alvo de campanha (#{@campaign.influencers.length})
+            | Alvo de campanha 
+            span= "(#{@campaign.influencers.length})"
         ol
           - @campaign.influencers.each do |influencer|
             li.target
               .info
                 = image_tag influencer.avatar, :title => influencer.name
-                p.name= influencer.name
-                span.role= influencer.role
-              ul.social
-                li.fb[class=(influencer.facebook_url.blank? ? "inactive" : "active")]= link_to "facebook", influencer.facebook_url, title: "Página no facebook"
-                li.tw[class=(influencer.twitter_url.blank? ? "inactive" : "active")]= link_to "twitter", influencer.twitter_url, title: "Perfil no twitter"
-                li.ml[class=(influencer.email.blank? ? "inactive" : "active")]= mail_to influencer.email, "email", title: "E-mail de contato"
-          li= link_to "Esquecemos de alguém?", "mailto:contato@seurio.org.br"
-
+                .name= influencer.name
+              .social
+                = link_to "", influencer.facebook_url, title: "Página no facebook", :class => "icon-facebook"
+                = link_to "", influencer.twitter_url, title: "Perfil no twitter", :class => "icon-twitter"
+                = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-email"
       .supporters
         .titles
           h2 Quem faz acontecer

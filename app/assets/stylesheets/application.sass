@@ -10,6 +10,7 @@ $fb_blue: #3b5998
 @import columnal/grid
 @import facebox
 @import chosen
+@import icomoon
 @import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], aside
@@ -421,6 +422,43 @@ body
               color: $green
               display: block
               margin-bottom: 1em
+        .targets
+          h2
+            span
+              color: $orange
+          ol
+            margin-bottom: 2em
+            li.target
+              overflow: hidden
+              margin-bottom: 1em
+              .info
+                float: left
+                width: 65%
+                margin-right: 5%
+                img
+                  width: 40px
+                  height: 40px
+                  float: left
+                  margin-right: .5em
+                .name, .role
+                  font-size: .8em
+                  line-height: 20px
+                .name
+                  font-weight: bold
+                  color: $green
+                .role
+                  color: $orange
+              .social
+                width: 30%
+                float: left
+                line-height: 40px
+                text-align: right
+                a
+                  font-size: 1.25em
+                  color: lighten(gray, 20%)
+                  margin-right: .5em
+                  &:hover
+                    text-decoration: none
   &.users
     &#show
       h3
