@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     session[:access_denied_redirect] = true
-    redirect_to request.env["HTTP_REFERER"] + "#login", :flash => {:login_alert => exception.message}
+    redirect_to "#{request.env["HTTP_REFERER"]}#login", :flash => {:login_alert => exception.message}
   end
 
   protected

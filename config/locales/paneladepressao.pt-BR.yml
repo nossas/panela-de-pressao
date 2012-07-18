@@ -14,7 +14,7 @@ pt-BR:
       campaigns_waiting_for_moderation: "Campanhas aguardando moderação"
       waiting_for_moderation: "Aguardando moderação"
       my_campaigns: "Minhas campanhas"
-      who_supports: "Quem apoia"
+      who_supports: "Quem pressiona"
       continue_reading: "continue lendo"
       on_facebook: "No facebook"
   time:
@@ -24,12 +24,12 @@ pt-BR:
     description_html: "%{text} %{more}"
     new:  
       title: "Nova campanha"
-      header: "Crie sua campanha"
+      header: "Crie/Edite sua campanha"
       small: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua."
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
-      create_and_edit: "Crie/Edite seu perfil"
+      create_and_edit: "Edite seu perfil"
       member_since: "Membro desde %{since}"
       save: "Salvar"
   notification:
