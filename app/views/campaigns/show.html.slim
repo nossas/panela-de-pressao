@@ -10,8 +10,8 @@
 - content_for :highlight do
   .row
     .home_link
-      = link_to "Voltar à home", root_path
-      = link_to "Editar campanha", edit_campaign_path(@campaign) if can?(:edit, @campaign)
+      = link_to "Voltar à home", root_path, :class => "icon-home"
+      = link_to "Editar esta campanha", edit_campaign_path(@campaign), :class => "icon-pencil" if can?(:edit, @campaign)
     .new_campaign_btn= link_to "Crie sua campanha agora", new_campaign_path, :class => "btn"
 
 section.content.row
