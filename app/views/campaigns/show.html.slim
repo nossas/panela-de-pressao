@@ -54,12 +54,12 @@ section.content.row
           .fb-like data-href=request.url data-send="false" data-layout="button_count" data-show-faces="false"
           g:plusone size="medium"
           a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
-      .privacy= raw "O Seu Rio protege a #{link_to "sua privacidade", "#"}."
+      .privacy= raw "O Panela protege #{link_to "sua privacidade", "#"}."
     .content
       .targets
         .titles
           h2
-            | Alvo de campanha 
+            | Alvos da campanha 
             span= "(#{@campaign.influencers.length})"
         ol
           - @campaign.influencers.each do |influencer|
@@ -78,7 +78,7 @@ section.content.row
       - if @campaign.pokers.any?
         .pokers
           h2 
-            | Quem está pressionando 
+            | Quem apoia 
             span= "(#{@campaign.pokers.length})"
           - @campaign.pokers.each do |poker|
             = link_to image_tag(poker.picture), user_path(poker), title: poker.name

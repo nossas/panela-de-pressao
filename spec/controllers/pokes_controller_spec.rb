@@ -17,7 +17,7 @@ describe PokesController do
         end
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "email"}, :campaign_id => "1"
-          should redirect_to "/campaigns/1#poke_buttons"
+          should redirect_to "/campaigns/1#congrats"
         end
       end
 
@@ -34,7 +34,7 @@ describe PokesController do
         end
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "twitter"}, :campaign_id => "1"
-          should redirect_to "/campaigns/1#poke_buttons"
+          should redirect_to "/campaigns/1#congrats"
         end
       end
 
@@ -51,7 +51,7 @@ describe PokesController do
         end
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "facebook"}, :campaign_id => "1"
-          should redirect_to "/campaigns/1#poke_buttons"
+          should redirect_to "/campaigns/1#congrats"
         end
       end
     end
