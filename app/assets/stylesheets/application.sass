@@ -45,7 +45,7 @@ h1, h2
 
 h1
   font-size: 2.2em
-  margin-bottom: .5em
+  margin-bottom: .25em
 
 h2
   font-size: 1.8em
@@ -86,8 +86,9 @@ section
   border: 1px solid $green
   letter-spacing: 1px
   display: inline-block
-  margin: 1px
+  margin: 3px 0
   position: relative
+  text-align: center
   +box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 2px 2px)
   +border-radius(5px)
   +text-shadow(black 0 1px 1px)
@@ -114,6 +115,7 @@ article
   &.left
     +grid(8)
     background: white
+    padding: 1em 0
     
 aside
   &.left
@@ -124,7 +126,7 @@ aside
     .content
       background: lighten(gray, 48%)
       border-left: 1px solid lighten(gray, 35%)
-      padding: 0 1em
+      padding: 1em
 
 .inside
   padding: 1em
@@ -217,6 +219,9 @@ section.footer
 
 body
   &.campaigns
+    .category
+      color: $orange
+      font-size: .8em
     &#index
       .highlight
         .about
@@ -269,10 +274,8 @@ body
           .details
             +grid-subcolumn(9, 6)
             +last
-            .category, .description, .is_waiting_moderation
+            .description, .is_waiting_moderation
               font-size: .8em
-            .category
-              color: $orange
             .description
               color: gray
               margin-bottom: 1em
@@ -332,6 +335,58 @@ body
           .poke_created_at
             color: $orange
     &#show
+      .highlight
+        .home_link
+          +grid(8)
+          line-height: 51px
+          a
+            margin-right: 1em
+        .new_campaign_btn
+          +grid(4)
+          +last
+          .btn
+            display: block
+      article.left
+        h1
+          line-height: normal
+        h2
+          color: $orange
+          font-family: Lucida Grande, sans-serif
+          font-size: 1em
+          border-bottom: 2px dotted $orange
+        .created_at
+          color: gray
+          margin-bottom: 2em
+        .tabs
+          border-bottom: 1px solid gray
+          margin-bottom: 2em
+          a
+            color: white
+            background: $green
+            display: inline-block
+            padding: .5em 2em
+            margin-right: .5em
+            text-transform: uppercase
+            font-size: .8em
+            border: 1px solid gray
+            border-bottom: none
+            position: relative
+            top: 1px
+            +border-radius(5px 5px 0 0)
+            &.selected
+              background: white
+              color: gray
+        .image, p
+          margin-bottom: 2em
+        .poke
+          +grid-subcolumn(8, 4)
+          .btn
+            display: block
+        .contact
+          color: $orange
+          line-height: 26px
+          +grid-subcolumn(8, 4)
+          +last
   &.users
     &#show
       h3
