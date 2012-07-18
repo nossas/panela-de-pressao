@@ -387,6 +387,40 @@ body
           line-height: 26px
           +grid-subcolumn(8, 4)
           +last
+      aside.right
+        .poke_buttons
+          margin-top: 2em
+          padding: 1em
+          background: $yellow
+          border: 1px solid darken($yellow, 20%)
+          +box-shadow(lighten($yellow, 30%) 1px 0 1px inset)
+          +border-radius(0 10px 10px 0)
+          .pokes_counter
+            color: $green
+            text-align: center
+            padding: .5em
+            span
+              display: block
+              font-size: 3em
+              text-align: center
+              font-family: "Londrina Solid"
+          .pokes_counter, .email_text, .facebook_text, .twitter_text
+            background: white
+            line-height: normal
+            margin-bottom: .5em
+            +box-shadow(black 1px 1px 2px)
+            +border-radius(5px)
+          .targets, .privacy
+            text-align: center  
+          .targets, .privacy, .email_text, .facebook_text, .twitter_text
+            color: gray
+            font-size: .8em
+            line-height: normal
+            padding: 1em
+            span
+              color: $green
+              display: block
+              margin-bottom: 1em
   &.users
     &#show
       h3
