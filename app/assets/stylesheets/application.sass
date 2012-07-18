@@ -221,6 +221,35 @@ section.footer
       float: right
       margin-left: 10px
 
+form#new_poke
+  display: inline-block
+  margin-right: 1em
+  &:last-child
+    margin-right: 0
+  a.poke_btn
+    display: inline-block
+    background: url(/assets/poke_btns_sprite.png) no-repeat top left
+    width: 72px
+    height: 71px
+    &:hover
+      text-decoration: none
+    &.email
+      background-position: 0 0
+      &:hover
+        background-position: 0 -121px
+    &.facebook
+      background-position: 0 -242px
+      &:hover
+        background-position: 0 -363px
+    &.twitter
+      background-position: 0 -484px
+      &:hover
+        background-position: 0 -605px
+    span
+      color: black
+      font-size: 1.5em
+      line-height: 35px
+
 body
   &.campaigns
     .category
@@ -409,15 +438,18 @@ body
               font-size: 3em
               text-align: center
               font-family: "Londrina Solid"
-          .pokes_counter, .email_text, .facebook_text, .twitter_text
+          .pokes_counter, .email_text, .facebook_text, .twitter_text, #congrats
             background: white
             line-height: normal
             margin-bottom: .5em
             +box-shadow(black 1px 1px 2px)
             +border-radius(5px)
+          .buttons
+            text-align: center
+            margin-bottom: 1em
           .targets, .privacy
             text-align: center  
-          .targets, .privacy, .email_text, .facebook_text, .twitter_text
+          .targets, .privacy, .email_text, .facebook_text, .twitter_text, #congrats
             color: gray
             font-size: .8em
             line-height: normal
@@ -426,10 +458,22 @@ body
               color: $green
               display: block
               margin-bottom: 1em
-        .targets
+          #congrats
+            span
+              font-size: 2em
+          .share
+            text-align: center
+            iframe, .fb-like
+              display: inline-block
+              width: 80px
+            .fb-like
+              position: relative
+              top: -3px
+        .targets, .pokers
           h2
             span
               color: $orange
+        .targets
           ol
             margin-bottom: 2em
             li.target
@@ -463,6 +507,15 @@ body
                   margin-right: .5em
                   &:hover
                     text-decoration: none
+        .supporters, .pokers
+          padding: 2em 0
+          overflow: hidden
+          +box-shadow(lighten(gray, 48%) 5em 0 5em 0 inset, lighten(gray, 48%) -5em 0 5em 0 inset, black 0 1em 1em -1em inset)
+          img
+            width: 40px
+            height: 40px
+            float: left
+            margin-right: .5em
     &#new, &#edit
       color: lighten(gray, 5%)
       .action
