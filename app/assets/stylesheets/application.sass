@@ -134,17 +134,24 @@ aside
 
 .inside
   padding: 1em
+
 .row
   +grid-row
 
-section.login, section.header, section.highlight, section.footer
+.clear
+  clear: both
+
+section.header, section.highlight, section.footer
   padding: 1.5em 0
 
 section.login, section.footer
   line-height: 40px
 
 section.login
-  font-size: x-small
+  font-size: .8em
+  padding: .5em 0
+  .row
+    overflow: visible
   a.mr, a.fb, .meurio
     text-transform: uppercase
   a.mr, a.fb
@@ -165,6 +172,7 @@ section.login
   .meurio_and_user
     +grid(12)
   .meurio
+    font-size: .7em
     float: left
     img
       float: left
@@ -173,10 +181,39 @@ section.login
     float: right
     line-height: 20px
     margin-top: 10px
+    position: relative
     img
       margin-right: 1em
       width: 20px
-      float: left
+      float: left 
+    .icon-triangle
+      display: inline
+      margin-left: 1em
+      padding: 1em .7em 1em 1em
+      color: gray
+      &:before
+        font-size: 1.5em
+      &:hover
+        background: lighten(gray, 20%)
+        color: white
+        .options
+          display: block
+      .options
+        right: 0
+        top: 25px
+        display: none
+        position: absolute
+        background: white
+        padding: 1em
+        z-index: 1000
+        line-height: normal
+        border: 1px solid lighten(gray, 20%)
+        a
+          color: gray
+          display: block
+          margin-bottom: .5em
+          &:last-child
+            margin: 0
 
 section.header
   +box-shadow(0 15px 18px -20px lighten(black, 25%) inset)

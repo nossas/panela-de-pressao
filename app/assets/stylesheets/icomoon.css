@@ -38,3 +38,15 @@
 .icon-pencil:before {
 	content: "\25";
 }
+.icon-user:before {
+	content: "\26";
+}
+.icon-comments:before {
+	content: "\27";
+}
+.icon-exit:before {
+	content: "\28";
+}
+.icon-triangle:before {
+	content: "\29";
+}
