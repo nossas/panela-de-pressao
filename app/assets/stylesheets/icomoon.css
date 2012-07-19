@@ -50,3 +50,9 @@
 .icon-triangle:before {
 	content: "\29";
 }
+.icon-checkmark:before {
+	content: "\2a";
+}
+.icon-warning:before {
+	content: "\2b";
+}
