@@ -4,12 +4,8 @@
 - content_for :highlight do
   .row
     .about
-      h1
-        = t 'home.highlight.header' 
-      p
-        = t 'home.highlight.headline' 
-      p
-        = t 'home.highlight.headline_2'
+      h1= t 'home.highlight.header' 
+      p.headline= t 'home.highlight.headline' 
       p
         = link_to t("home.highlight.start"), new_campaign_path, :class => "btn"
         = link_to t("home.highlight.participate"), "#campaigns_list"
@@ -24,6 +20,7 @@ section.content.row
     h2= t "home.text.discover_new_campaigns"
     hr
     ul.list.all= render collection
+    hr
      
   aside.right
     .content
@@ -32,5 +29,4 @@ section.content.row
         = render Poke.limit(5)
       h2= t 'home.text.on_facebook'
       .facebook_widget 
-        .fb-like-box data-href="http://www.facebook.com/meurio" data-width="221" data-show-faces="true" data-stream="false"
-
+        .fb-like-box data-href="http://www.facebook.com/meurio" data-width="221" data-show-faces="true" data-stream="false" data-header="false"

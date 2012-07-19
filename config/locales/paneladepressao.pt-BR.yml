@@ -3,10 +3,10 @@ pt-BR:
     title: "Panela de Pressão"
   home:
     highlight:
-      header: "O canal direto para construir o Rio que você quer."
-      headline: "O Panela de Pressão permite que você crie a sua campanha, aponte os problemas da cidade e convide os cidadãos para falar diretamente com quem pode resolver o que está errado."
+      header: "O melhor utensílio de pressão popular da sua cozinha."
+      headline: "Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. E na pressão tudo é mais rápido. Nossa receita é simples: você aponta um problema, convoca outras pessoas que desejam a mesma mudança e pressiona diretamente os responsáveis pela administração da cidade, por email, Twitter ou Facebook."
       headline_2: "Aqui o papo é reto, você é quem fala por email, twitter e Facebook com quem é responsável pela administração da cidade."
-      start: "Comece a sua campanha!"
+      start: "Crie sua campanha!"
       participate: "Ou participe das campanhas abaixo"
     text:
       discover_new_campaigns: "Descubra novas campanhas"
@@ -21,7 +21,6 @@ pt-BR:
     some_time_ago: "Há %{time} atrás"
 
   campaign:
-    description_html: "%{text} %{more}"
     new:  
       title: "Nova campanha"
       header: "Crie/Edite sua campanha"

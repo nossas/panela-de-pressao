@@ -143,6 +143,13 @@ aside
 .clear
   clear: both
 
+section.highlight
+  h1
+    font-size: 2.5em
+  .btn
+    font-size: 1.5em
+    padding: .5em 1em
+
 section.header, section.highlight, section.footer
   padding: 1.5em 0
 
@@ -161,7 +168,7 @@ section.login
     font-family: 'Londrina Solid', cursive
     letter-spacing: 1px
     color: white
-    padding: 1px 15px
+    padding: 4px 15px
     +border-radius(5px)
     margin: 0 5px
   a.mr
@@ -224,6 +231,7 @@ section.header
   .logo
     float: left
   .share
+    margin-top: 20px
     float: right
 
 section.highlight, section.footer
@@ -309,7 +317,10 @@ body
             overflow: hidden
             float: right
             vertical-align: middle
-            margin-left: 1em
+            margin-right: 70px
+            margin-top: -5px
+          p.headline
+            margin-bottom: 2em
         .campaign
           +grid(6)
           +last
@@ -319,6 +330,7 @@ body
             padding: 10px
             border: 1px solid lighten(gray, 20%)
             .name
+              font-family: "Londrina Solid"
               position: absolute
               bottom: 10px
               background: rgba(0, 0, 0, .75)
@@ -342,7 +354,7 @@ body
             .img
               background: white
               border: 1px solid lighten(gray, 20%)
-              padding: 1em
+              padding: .5em
           .details
             +grid-subcolumn(9, 6)
             +last
@@ -411,7 +423,7 @@ body
       .highlight
         .home_link
           +grid(8)
-          line-height: 39px
+          line-height: 45px
           a
             margin-right: 2em
         .new_campaign_btn

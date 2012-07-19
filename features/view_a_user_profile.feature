@@ -19,7 +19,7 @@ Feature: View a member profile
     And I'm logged in
     And I'm in the campaigns page
     When I click "Desarmamento Voluntário"
-    And I click "Nícolas Iensen"
+    And I click "Meu Perfil"
     Then I should see "O que Nícolas Iensen já fez no Panela de Pressão?"
     And I should see "user[name]"
     And I should see "user[email]"
