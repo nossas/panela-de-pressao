@@ -526,7 +526,7 @@ body
       .field_row
         +transition(1s)
         padding: 2em .8em
-        overflow: auto 
+        overflow: hidden 
         +box-shadow(white 10em 0 10em 0 inset, white -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
         &.first, &.last
           +box-shadow(none)
@@ -546,14 +546,31 @@ body
             color: #333
             line-height: 1.4em
             font-size: .7em
-            margin: 8em 0 11em 0
+            margin: 8em 0 11em 1em
             +border-radius(6px)
+            &::before
+              content: ""
+              display: block
+              height: 0
+              width: 0
+              border: 10px solid lighten($yellow, 5%)
+              border-color: transparent lighten($yellow,5%) transparent transparent
+              border-width: 10px 10px 10px 0
+              position: absolute
+              margin-top: 1em
+              left: 1.5em
+            &.text
+              &::before
+                margin-top: 2.1em
             &.first
-              margin: 13em 0 12em 0
+              margin-top: 13em
+              margin-bottom: 12em
             &.marked
-              margin: 15em 0 10em 0
+              margin-top: 15em
+              margin-bottom: 10em
               &.second
-                margin: 25em 0 16em 0
+                margin-top: 25em
+                margin-bottom: 16em
             span
               display: block
               padding: 1em
