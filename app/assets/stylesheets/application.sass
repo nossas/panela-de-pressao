@@ -77,6 +77,9 @@ div.logo a img:hover
 section
   +grid-container
 
+#login
+  background: black
+
 .btn
   color: white
   background: $green
@@ -171,25 +174,37 @@ section.alert
 section.login, section.footer
   line-height: 40px
 
+a[href="/auth/facebook"], a[href="/auth/meurio"]
+  text-transform: uppercase
+  font-family: 'Londrina Solid', cursive
+  letter-spacing: 1px
+  color: white
+  padding: 4px 15px
+  +border-radius(5px)
+
+a[href="/auth/meurio"]
+  background: $mr_green
+
+a[href="/auth/facebook"]
+  background: $fb_blue
+
+.popup
+  h1
+    line-height: normal
+  .buttons
+    text-align: center
+
 section.login
   font-size: .8em
   padding: .5em 0
   .row
     overflow: visible
-  a.mr, a.fb, .meurio
+  .meurio
     text-transform: uppercase
   a.mr, a.fb
     font-size: small
-    font-family: 'Londrina Solid', cursive
-    letter-spacing: 1px
-    color: white
-    padding: 4px 15px
-    +border-radius(5px)
     margin: 0 5px
-  a.mr
-    background: $mr_green
   a.fb
-    background: $fb_blue
     margin-right: 0
   a:hover
     opacity: .8
