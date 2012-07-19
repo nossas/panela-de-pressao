@@ -25,11 +25,11 @@ html
     - if notice
       section.notice
         .row
-          .message.icon-checkmark Teste
+          .message.icon-checkmark= notice
     - if alert
       section.alert
         .row
-          .message.icon-warning Teste
+          .message.icon-warning= alert
     section.login
       .row
         .meurio_and_user
@@ -46,7 +46,7 @@ html
                   = link_to "Minhas Campanhas", user_campaigns_path(current_user), :class => "icon-comments"
                   = link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
-              = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_url, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_url, class: 'fb'}"
+              = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}"
         .clear
     section.header
       .row
