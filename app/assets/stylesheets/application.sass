@@ -10,6 +10,7 @@ $fb_blue: #3b5998
 @import columnal/grid
 @import facebox
 @import chosen
+@import icomoon
 @import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], aside
@@ -67,7 +68,7 @@ a
   color: $green
   text-decoration: none
   &:hover
-    text-decoration: underline
+    color: lighten($green, 5%)
 
 
 div.logo a img:hover
@@ -86,7 +87,6 @@ section
   border: 1px solid $green
   letter-spacing: 1px
   display: inline-block
-  margin: 3px 0
   position: relative
   text-align: center
   //+box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 2px 2px)
@@ -99,6 +99,7 @@ section
     border: 1px solid lighten(gray, 20%)
     text-shadow: 0 1px 1px white 
   &:hover 
+    color: white
     cursor: pointer
     text-decoration: none
     opacity: .9
@@ -219,6 +220,35 @@ section.footer
     a
       float: right
       margin-left: 10px
+
+form#new_poke
+  display: inline-block
+  margin-right: 1em
+  &:last-child
+    margin-right: 0
+  a.poke_btn
+    display: inline-block
+    background: url(/assets/poke_btns_sprite.png) no-repeat top left
+    width: 72px
+    height: 71px
+    &:hover
+      text-decoration: none
+    &.email
+      background-position: 0 0
+      &:hover
+        background-position: 0 -121px
+    &.facebook
+      background-position: 0 -242px
+      &:hover
+        background-position: 0 -363px
+    &.twitter
+      background-position: 0 -484px
+      &:hover
+        background-position: 0 -605px
+    span
+      color: black
+      font-size: 1.5em
+      line-height: 35px
 
 body
   &.campaigns
@@ -342,9 +372,9 @@ body
       .highlight
         .home_link
           +grid(8)
-          line-height: 51px
+          line-height: 39px
           a
-            margin-right: 1em
+            margin-right: 2em
         .new_campaign_btn
           +grid(4)
           +last
@@ -372,14 +402,16 @@ body
             margin-right: .5em
             text-transform: uppercase
             font-size: .8em
-            border: 1px solid gray
-            border-bottom: none
             position: relative
             top: 1px
+            +box-shadow(black 0 -5px 10px -5px inset)
             +border-radius(5px 5px 0 0)
             &.selected
+              border: 1px solid gray
+              border-bottom: none
               background: white
               color: gray
+              +box-shadow(none)
         .image, p
           margin-bottom: 2em
         .poke
@@ -408,15 +440,18 @@ body
               font-size: 3em
               text-align: center
               font-family: "Londrina Solid"
-          .pokes_counter, .email_text, .facebook_text, .twitter_text
+          .pokes_counter, .email_text, .facebook_text, .twitter_text, #congrats
             background: white
             line-height: normal
             margin-bottom: .5em
             +box-shadow(black 1px 1px 2px)
             +border-radius(5px)
+          .buttons
+            text-align: center
+            margin-bottom: 1em
           .targets, .privacy
             text-align: center  
-          .targets, .privacy, .email_text, .facebook_text, .twitter_text
+          .targets, .privacy, .email_text, .facebook_text, .twitter_text, #congrats
             color: gray
             font-size: .8em
             line-height: normal
@@ -425,6 +460,65 @@ body
               color: $green
               display: block
               margin-bottom: 1em
+          #congrats
+            span
+              font-size: 2em
+          .share
+            text-align: center
+            iframe, .fb-like
+              display: inline-block
+              width: 80px
+            .fb-like
+              position: relative
+              top: -3px
+        .targets, .pokers
+          h2
+            span
+              color: $orange
+        .targets
+          ol
+            margin-bottom: 2em
+            li.target
+              overflow: hidden
+              margin-bottom: 1em
+              .info
+                float: left
+                width: 65%
+                margin-right: 5%
+                img
+                  width: 40px
+                  height: 40px
+                  float: left
+                  margin-right: .5em
+                .name, .role
+                  font-size: .8em
+                  line-height: 20px
+                .name
+                  font-weight: bold
+                  color: $green
+                .role
+                  color: $orange
+              .social
+                width: 30%
+                float: left
+                line-height: 40px
+                text-align: right
+                a
+                  font-size: 1.25em
+                  color: lighten(gray, 20%)
+                  margin-right: .5em
+                  &:hover
+                    text-decoration: none
+                    color: $green
+        .supporters, .pokers
+          padding: 2em 0
+          overflow: hidden
+          +box-shadow(lighten(gray, 48%) 5em 0 5em 0 inset, lighten(gray, 48%) -5em 0 5em 0 inset, black 0 1em 1em -1em inset)
+          img
+            width: 40px
+            height: 40px
+            float: left
+            margin-right: .5em
     &#new, &#edit
       color: lighten(gray, 5%)
       .field_row
