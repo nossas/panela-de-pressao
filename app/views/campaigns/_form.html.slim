@@ -58,9 +58,9 @@ article.left
         = f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn submit"
 aside.right
   .content
-    .tip
+    .tip.first
       span Exemplo: "Salvem as árvores do Centro da Cidade"
-    .tip 
+    .tip.text 
       span
         p Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.
         p Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.
@@ -68,29 +68,15 @@ aside.right
       span Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua campanha.
     .tip
       span Escolha o tema principal da sua campanha, mesmo que ela possa ter vários
-    .tip 
+    .tip.marked.text
       span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
-    .tip 
+    .tip.marked.second.text
       span Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha.
-    .tip
+    .tip.marked.text
       span Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets.
-    .tip 
+    .tip.last 
       span 
         p= raw "Se você não encontrou o alvo da campanha na lista ao lado, #{link_to 'clique aqui', 'https://docs.google.com/a/engage.is/spreadsheet/viewform?formkey=dHl4ak1SSlVtNy1KVDJhb2VUVTNqSEE6MQ'} e cadastre:"
-
-
-
-
-
-
-   
-
-
-    
-
-
-
-
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
   |  ou 

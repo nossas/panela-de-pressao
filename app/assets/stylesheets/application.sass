@@ -98,6 +98,8 @@ section
     color: lighten(gray, 10%)
     border: 1px solid lighten(gray, 20%)
     text-shadow: 0 1px 1px white 
+    &:hover
+      color: inherit 
   &:hover 
     color: white
     cursor: pointer
@@ -556,12 +558,16 @@ body
             height: 40px
             float: left
             margin-right: .5em
-    &#new, &#edit
+    &#new, &#edit, &#create
       color: lighten(gray, 5%)
+      .inline-errors
+        color: red
+        font-size: .7em
+        text-align: center
       .field_row
         +transition(1s)
         padding: 2em .8em
-        overflow: auto 
+        overflow: hidden 
         +box-shadow(white 10em 0 10em 0 inset, white -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
         &.first, &.last
           +box-shadow(none)
@@ -577,11 +583,35 @@ body
         .content
           .tip
             width: 90%
-            background: lighten($yellow, 10%)
+            background: lighten($yellow, 5%)
             color: #333
+            line-height: 1.4em
             font-size: .7em
+            margin: 8em 0 11em 1em
             +border-radius(6px)
-            vertical-align: center
+            &::before
+              content: ""
+              display: block
+              height: 0
+              width: 0
+              border: 10px solid lighten($yellow, 5%)
+              border-color: transparent lighten($yellow,5%) transparent transparent
+              border-width: 10px 10px 10px 0
+              position: absolute
+              margin-top: 1em
+              left: 1.5em
+            &.text
+              &::before
+                margin-top: 2.1em
+            &.first
+              margin-top: 13em
+              margin-bottom: 12em
+            &.marked
+              margin-top: 15em
+              margin-bottom: 10em
+              &.second
+                margin-top: 25em
+                margin-bottom: 16em
             span
               display: block
               padding: 1em
