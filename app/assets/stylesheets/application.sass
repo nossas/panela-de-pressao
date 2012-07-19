@@ -153,6 +153,21 @@ section.highlight
 section.header, section.highlight, section.footer
   padding: 1.5em 0
 
+section.notice, section.alert
+  .message
+    +grid(12)
+    color: white
+    &:before
+      padding-right: 1em
+
+section.notice
+  background: $green
+  border-bottom: 1px dashed darken($green, 20%)
+
+section.alert
+  background: $orange
+  border-bottom: 1px dashed darken($orange, 20%)
+
 section.login, section.footer
   line-height: 40px
 
