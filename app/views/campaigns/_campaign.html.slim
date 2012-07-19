@@ -7,7 +7,7 @@
     span.category
       = campaign.category.name
     p.description
-      = t 'campaign.description_html', text: truncate(campaign.description, :length => 200, :separator => ' '), more: link_to(t("home.text.continue_reading"), campaign)
+      = truncate(campaign.description, :length => 200, :separator => ' ')
     - unless campaign.accepted?
       span.is_waiting_moderation
         = t 'home.text.waiting_for_moderation'

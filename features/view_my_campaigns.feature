@@ -7,6 +7,6 @@ Feature: view my campaigns
   Scenario: when I have a campaign
     Given I'm logged in
     And I own a campaign called "Salve a praça Nossa Senhora da Paz" awaiting moderation
-    When I click "Minhas campanhas"
-    Then I should see "Minhas campanhas"
+    When I click "Minhas Campanhas"
+    Then I should see "Campanhas criadas por Nícolas Iensen"
     And I should see "Salve a praça Nossa Senhora da Paz"
