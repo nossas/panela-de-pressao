@@ -25,6 +25,16 @@ pt-BR:
       title: "Nova campanha"
       header: "Crie/Edite sua campanha"
       small: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua."
+      form:
+        tips: 
+          title: 'Exemplo: "Salvem as árvores do Centro da Cidade"'
+          why_important_html: "<p>Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.</p><p>Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.</p>" 
+          image: "Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua campanha."
+          theme: "Escolha o tema principal da sua campanha, mesmo que ela possa ter vários"
+          email_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha."
+          face_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha."
+          tweet_text: " Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets."
+          targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
