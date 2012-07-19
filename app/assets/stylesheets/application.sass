@@ -13,11 +13,47 @@ $fb_blue: #3b5998
 @import icomoon
 @import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
 
-.campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], aside
+.campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], aside, .meurio_and_user .user, .logo_and_share .share, section.footer
   +mobile-hide
 
-.logo_and_share, .links_and_social
+section
+  +grid-container
+
+.row
+  +grid-row
+
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message
   +grid(12)
+
+article.right
+  +grid(9)
+
+article.left, .home_link
+  +grid(8)
+
+.highlight .about, .highlight .campaign
+  +grid(6)
+
+aside.right, .new_campaign_btn
+  +grid(4)
+
+aside.left
+  +grid(3)
+
+ul.list .campaign
+  +grid-subcolumn(9, 9)
+
+ul.list .campaign .image
+  +grid-subcolumn(9, 3)
+
+ul.list .campaign .details
+  +grid-subcolumn(9, 6)
+
+article.left .poke, article.left .contact
+  +grid-subcolumn(8, 4)
+
+article.right, aside.right, .highlight .campaign, ul.list .campaign .details, .new_campaign_btn, article.left .contact
+  +last
 
 img
   margin: 0
@@ -70,12 +106,8 @@ a
   &:hover
     color: lighten($green, 5%)
 
-
 div.logo a img:hover
   opacity: .8
-
-section
-  +grid-container
 
 #login
   background: black
@@ -113,25 +145,15 @@ section
     //+box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 1px 2px)   
 
 article
-  &.wide
-    +grid(12)
   &.right
     background: lighten(gray, 48%)
     border-left: 1px solid lighten(gray, 35%)
     min-height: 400px
-    +grid(9)
-    +last
   &.left
-    +grid(8)
     background: white
-    padding: 1em 0
-    
+ 
 aside
-  &.left
-    +grid(3)
   &.right
-    +grid(4)
-    +last
     .content
       background: lighten(gray, 48%)
       border-left: 1px solid lighten(gray, 35%)
@@ -139,9 +161,6 @@ aside
 
 .inside
   padding: 1em
-
-.row
-  +grid-row
 
 .clear
   clear: both
@@ -158,7 +177,6 @@ section.header, section.highlight, section.footer
 
 section.notice, section.alert
   .message
-    +grid(12)
     color: white
     &:before
       padding-right: 1em
@@ -208,8 +226,6 @@ section.login
     margin-right: 0
   a:hover
     opacity: .8
-  .meurio_and_user
-    +grid(12)
   .meurio
     font-size: .7em
     float: left
@@ -336,7 +352,6 @@ body
       .highlight
         .about
           color: darken(gray, 10%)
-          +grid(6)
           h1
             line-height: normal
           a[href="#campaigns_list"]
@@ -352,8 +367,6 @@ body
           p.headline
             margin-bottom: 2em
         .campaign
-          +grid(6)
-          +last
           .info
             position: relative
             background: white
@@ -374,20 +387,16 @@ body
       ul.list
         margin-bottom: 5em
         .campaign
-          +grid-subcolumn(9, 9)
           padding: 2em 0
           +box-shadow(white 10em 0 10em 0 inset, white -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
           &:first-child
             +box-shadow(none)
           .image
-            +grid-subcolumn(9, 3)
             .img
               background: white
               border: 1px solid lighten(gray, 20%)
               padding: .5em
           .details
-            +grid-subcolumn(9, 6)
-            +last
             .description, .is_waiting_moderation
               font-size: .8em
             .description
@@ -452,13 +461,10 @@ body
     &#show
       .highlight
         .home_link
-          +grid(8)
           line-height: 45px
           a
             margin-right: 2em
         .new_campaign_btn
-          +grid(4)
-          +last
           .btn
             display: block
       article.left
@@ -496,14 +502,11 @@ body
         .image, p
           margin-bottom: 2em
         .poke
-          +grid-subcolumn(8, 4)
           .btn
             display: block
         .contact
           color: $orange
           line-height: 26px
-          +grid-subcolumn(8, 4)
-          +last
       aside.right
         .poke_buttons
           margin-top: 2em
