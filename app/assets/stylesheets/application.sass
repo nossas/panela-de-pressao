@@ -540,11 +540,18 @@ body
         .content
           .tip
             width: 90%
-            background: lighten($yellow, 10%)
+            background: lighten($yellow, 5%)
             color: #333
+            line-height: 1.4em
             font-size: .7em
+            margin: 8em 0 11em 0
             +border-radius(6px)
-            vertical-align: center
+            &.first
+              margin: 13em 0 12em 0
+            &.marked
+              margin: 15em 0 10em 0
+              &.second
+                margin: 25em 0 16em 0
             span
               display: block
               padding: 1em
