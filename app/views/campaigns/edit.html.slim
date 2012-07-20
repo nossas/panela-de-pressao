@@ -4,9 +4,7 @@
       = link_to "Voltar à home", root_path, :class => "icon-home"
 
 - content_for :title do
-  | Editar campanha
-
+  = t 'campaign.new.header'
 section.content
   .row
-    h1 Editar campanha
     = render :partial => "form"

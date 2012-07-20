@@ -1,12 +1,18 @@
 pt-BR:
   site:
     title: "Panela de Pressão"
+  link:
+    click_here: "clique aqui"
   actions:
     create: "Crie sua campanha!"
     edit: "Editar esta campanha"
     delete: "Excluir esta campanha"
     back_home: "Voltar à home"
     channel: "Escolha um canal para fazer pressão em:"
+    send_to_moderation: "Enviar campanha para moderação"
+    save: "Salvar campanha"
+    cancel: "Cancelar"
+    accept: "Aceitar campanha"
   home:
     highlight:
       header: "O melhor utensílio de pressão popular da sua cozinha."
@@ -33,6 +39,7 @@ pt-BR:
       header: "Crie/Edite sua campanha"
       small: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua."
       form:
+        choose_targets: "Escolha os alvos da campanha..."
         tips: 
           title: 'Exemplo: "Salvem as árvores do Centro da Cidade"'
           why_important_html: "<p>Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.</p><p>Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.</p>" 
