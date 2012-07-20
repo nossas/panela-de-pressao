@@ -38,13 +38,13 @@ html
             | apresenta:
           .user
             - if current_user
-              = image_tag current_user.picture, alt: "Avatar"
-              = current_user.name
+              span= image_tag current_user.picture, alt: "avatar", size: "20x20"
+              span= current_user.name
               .icon-triangle
-                .options
-                  = link_to "Meu Perfil", current_user, :class => "icon-user"
-                  = link_to "Minhas Campanhas", user_campaigns_path(current_user), :class => "icon-comments"
-                  = link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
+                ul.options
+                  li= link_to "Meu Perfil", current_user, :class => "icon-user"
+                  li= link_to "Minhas Campanhas", user_campaigns_path(current_user), :class => "icon-comments"
+                  li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
               = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}"
         .clear
