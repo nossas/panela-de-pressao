@@ -620,7 +620,7 @@ body
             height: 40px
             float: left
             margin-right: .5em
-    &#new, &#edit, &#create
+    &#new, &#create, &#edit
       color: lighten(gray, 5%)
       .inline-errors
         color: red
@@ -746,9 +746,9 @@ body
               font-weight: bold
               color: $green
             textarea
+              width: 91%
               max-width: 91% 
               max-height: 6em
-    
             &.logged
               input[type="text"], textarea
                 border: 1px solid lighten(gray, 30%)
@@ -772,7 +772,7 @@ body
                 font-style: italic
                 font-size: 1em
                 color: lighten(gray, 10%)
-      ul.timeline
+      .timeline
         margin-top: 2em
         +border-radius(4px)
         li
