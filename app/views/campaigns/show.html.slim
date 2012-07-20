@@ -30,7 +30,7 @@ section.content.row
     .poke_buttons#poke_buttons
       .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
       .targets
-        | Escolha um canal para fazer pressão em: 
+        = t 'actions.channel'
         = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
       .buttons
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
@@ -73,7 +73,7 @@ section.content.row
       - if @campaign.pokers.any?
         .pokers
           h2 
-            | Quem pressiona 
+            = t 'home.text.who_supports' 
             span= "(#{@campaign.pokers.length})"
           - @campaign.pokers.each do |poker|
             = link_to image_tag(poker.picture(type: :square)), user_path(poker), title: poker.name
