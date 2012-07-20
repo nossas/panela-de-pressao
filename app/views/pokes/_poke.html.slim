@@ -2,6 +2,6 @@
   .user
     = image_tag poke.user.picture(:type => "small")
     strong= link_to poke.user.name, user_path(poke.user)
-    em  apoiou:
+    em  pressionou:
   .poke_campaign_link= link_to poke.campaign.name, poke.campaign
   .poke_created_at= "há #{distance_of_time_in_words_to_now poke.created_at} atrás"

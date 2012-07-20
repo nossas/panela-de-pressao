@@ -1,4 +1,7 @@
 .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+.share
+  .fb-like data-href=request.url data-send="false" data-layout="button_count" data-show-faces="false"
+  a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
 .description
   h2 Porque isso é importante
   p= raw @campaign.description.gsub("\n", "<br />")

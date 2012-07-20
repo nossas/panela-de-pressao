@@ -48,18 +48,12 @@ section.content.row
         = raw @campaign.facebook_text.gsub("\n", "<br />")
       - if flash[:poke_create]
         #congrats= raw flash[:poke_create]
-      - if current_user && current_user.has_poked(@campaign)
-        hr
-        .share
-          .fb-like data-href=request.url data-send="false" data-layout="button_count" data-show-faces="false"
-          g:plusone size="medium"
-          a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
       .privacy= raw "O Panela protege #{link_to "sua privacidade", "#"}."
     .content
       .targets
         .titles
           h2
-            | Alvos da campanha 
+            | Pressionados 
             span= "(#{@campaign.influencers.length})"
         ol
           - @campaign.influencers.each do |influencer|
@@ -68,17 +62,17 @@ section.content.row
                 = image_tag influencer.avatar, :title => influencer.name
                 .name= influencer.name
               .social
-                = link_to "", influencer.facebook_url, title: "Página no facebook", :class => "icon-facebook"
-                = link_to "", influencer.twitter_url, title: "Perfil no twitter", :class => "icon-twitter"
+                = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook"
+                = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter"
                 = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-email"
       .supporters
-        h2 Quem faz acontecer
+        h2 Quem cozinha
         = link_to image_tag(@campaign.user.picture, size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
       
       - if @campaign.pokers.any?
         .pokers
           h2 
-            | Quem apoia 
+            | Quem pressiona 
             span= "(#{@campaign.pokers.length})"
           - @campaign.pokers.each do |poker|
             = link_to image_tag(poker.picture), user_path(poker), title: poker.name

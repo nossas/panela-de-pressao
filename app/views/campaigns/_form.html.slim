@@ -52,6 +52,7 @@ article.left
         = f.label :influencer_ids
         .field.influencers
           .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+      .clear
     .field_row.last
       .action
         = link_to "Cancelar", root_path, class: 'btn gray cancel'
