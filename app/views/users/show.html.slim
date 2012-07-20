@@ -7,7 +7,11 @@ section.content.row
     .image
       = image_tag @user.picture
     ul.details[class=(is_current_user?(@user) ? "logged" : "not_logged")]
-      = form_for @user do |f|
+      = form_for @user, multipart: true do |f|
+        - if is_current_user?(@user)
+          li
+            = f.file_field :file 
+
         li
           = f.label :name
           = f.text_field :name, disabled: ("disabled" unless is_current_user?(@user))
@@ -20,11 +24,12 @@ section.content.row
             = f.label :email
             = f.text_field :email
         li
+          = f.label :about_me if is_current_user?(@user)
           = f.text_area :about_me, disabled: ("disabled" unless is_current_user?(@user))
 
 
         - if is_current_user?(@user)
-          li
+          li.actions
             = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right

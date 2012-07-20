@@ -242,6 +242,8 @@ pt-BR:
         name: "Nome"
         email: "E-mail"
         about_me: "Sobre mim"
+        picture: "Imagem"
+        file: "Imagem"
 
   unauthorized:
     create:
