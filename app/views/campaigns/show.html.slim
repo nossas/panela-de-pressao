@@ -8,22 +8,21 @@
   meta property="og:description" content=@campaign.description
 
 - content_for :highlight do
-  .row
-    .home_link
-      = link_to "Voltar à home", root_path, :class => "icon-home"
-      = link_to "Editar esta campanha", edit_campaign_path(@campaign), :class => "icon-pencil" if can?(:edit, @campaign)
-    .new_campaign_btn= link_to "Crie sua campanha agora", new_campaign_path, :class => "btn"
+  = render partial: "partials/highlight_home"
 
 section.content.row
   article.left
-    .category= @campaign.category.name
-    h1= @campaign.name
-    .created_at= "Criada em #{l(@campaign.created_at, format: :short)}"
+    .category
+      = @campaign.category.name
+    h1
+      = @campaign.name
+    .created_at
+      = t 'time.created_at', time: l(@campaign.created_at, format: :short)
 
     .tabs#tabs
-      = link_to "A campanha", campaign_path(@campaign, :section => "description"), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
-      = link_to "Respostas", campaign_path(@campaign, :section => "answers"), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
-      = link_to "Comentários", campaign_path(@campaign, :section => "comments"), :class => "#{params[:section] == "comments" ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.campaign'), campaign_path(@campaign, :section => "description"), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.answers'), campaign_path(@campaign, :section => "answers"), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.comments'), campaign_path(@campaign, :section => "comments"), :class => "#{params[:section] == "comments" ? 'selected' : ''}"
 
     = render :partial => params[:section] || "description"
 
@@ -38,14 +37,17 @@ section.content.row
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
         = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
       .email_text
-        span Email que será enviado para os alvos:
-        = raw @campaign.email_text.gsub("\n", "<br />")
+        span 
+          = t 'campaign.show.pokes.email'
+        = simple_format @campaign.email_text
       .twitter_text
-        span Tweet que será enviado para os alvos:
-        = raw @campaign.twitter_text.gsub("\n", "<br />")
+        span
+          = t 'campaign.show.pokes.twitter'
+        = simple_format @campaign.twitter_text
       .facebook_text
-        span Mensagem que será postada no mural dos alvos:
-        = raw @campaign.facebook_text.gsub("\n", "<br />")
+        span
+          = t 'campaign.show.pokes.facebook'
+        = simple_format @campaign.facebook_text
       - if flash[:poke_create]
         #congrats= raw flash[:poke_create]
       - if current_user && current_user.has_poked(@campaign)
@@ -54,13 +56,12 @@ section.content.row
           .fb-like data-href=request.url data-send="false" data-layout="button_count" data-show-faces="false"
           g:plusone size="medium"
           a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
-      .privacy= raw "O Panela protege #{link_to "sua privacidade", "#"}."
+      .privacy
+        = t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "#")
     .content
       .targets
         .titles
-          h2
-            | Alvos da campanha 
-            span= "(#{@campaign.influencers.length})"
+          h2= t 'campaign.show.targets', count: @campaign.influencers.length
         ol
           - @campaign.influencers.each do |influencer|
             li.target

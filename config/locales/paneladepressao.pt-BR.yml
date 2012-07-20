@@ -1,6 +1,12 @@
 pt-BR:
   site:
     title: "Panela de Pressão"
+  actions:
+    create: "Crie sua campanha!"
+    edit: "Editar esta campanha"
+    delete: "Excluir esta campanha"
+    back_home: "Voltar à home"
+    channel: "Escolha um canal para fazer pressão em:"
   home:
     highlight:
       header: "O melhor utensílio de pressão popular da sua cozinha."
@@ -19,6 +25,7 @@ pt-BR:
       on_facebook: "No facebook"
   time:
     some_time_ago: "Há %{time} atrás"
+    created_at: "Criado em %{time}"
 
   campaign:
     new:  
@@ -35,6 +42,18 @@ pt-BR:
           face_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha."
           tweet_text: " Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets."
           targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
+    show:
+      your_privacy: "sua privacidade"
+      privacy_html: "O Panela protege %{link}"
+      targets_html: "Alvos da campanha <span>(%{count})</span>"
+      tabs:
+        campaign: "A campanha"
+        answers: "Respostas"
+        comments: "Comentários"
+      pokes:
+        email: "Email que será enviado para os alvos:"
+        twitter: "Tweet que será enviado para os alvos:"
+        facebook: "Mensagem que será postada no mural dos alvos:"
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
