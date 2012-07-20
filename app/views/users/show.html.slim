@@ -1,7 +1,9 @@
 section.content.row
   aside.left
-    h3= t "user.show.create_and_edit" if is_current_user?(@user)
-    .image= image_tag @user.picture
+    - if is_current_user?(@user)
+      h3= t "user.show.create_and_edit"
+    .image
+      = image_tag @user.picture
     ul.details[class=(is_current_user?(@user) ? "logged" : "not_logged")]
       = form_for @user do |f|
         li
@@ -22,7 +24,7 @@ section.content.row
 
         - if is_current_user?(@user)
           li
-            = f.submit class: "btn green", value: t("user.show.save")
+            = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right
     .inside
