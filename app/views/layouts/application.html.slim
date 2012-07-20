@@ -34,7 +34,7 @@ html
       .row
         .meurio_and_user
           .meurio
-            = image_tag "seurio_bottom_logo_meurio.jpeg"
+            = link_to image_tag("seurio_bottom_logo_meurio.jpeg"), "http://meurio.org.br/"
             | apresenta:
           .user
             - if current_user
@@ -54,6 +54,7 @@ html
           .logo=link_to image_tag("seurio_logo.png"), root_path
           .share
             .fb-like data-href="http://seurio.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"
+        .clear
     section.highlight= yield :highlight
     section.highlight_teeths
     = yield
