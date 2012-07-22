@@ -1,6 +1,6 @@
 .poke
   .user
-    = image_tag poke.user.picture(:type => "small")
+    = image_tag poke.user.picture(:type => "square"), size: "30x30"
     strong= link_to poke.user.name, user_path(poke.user)
     em  pressionou:
   .poke_campaign_link= link_to poke.campaign.name, poke.campaign
