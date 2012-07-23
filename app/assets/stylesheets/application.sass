@@ -151,7 +151,6 @@ article
     min-height: 400px
   &.left
     background: white
-    
  
 aside
   &.right
@@ -207,17 +206,6 @@ a[href="/auth/meurio"]
 a[href="/auth/facebook"]
   background: $fb_blue
 
-
-.highlight
-  .home_link
-    line-height: 45px
-    a
-      margin-right: 2em
-  .new_campaign_btn
-    .btn
-      display: block
-
-
 .popup
   h1
     line-height: normal
@@ -247,17 +235,16 @@ section.login
   .user
     float: right
     line-height: 20px
-    margin-top: 5px
+    margin-top: 10px
     position: relative
-    span
-      line-height: .7em
     img
       margin-right: 1em
+      width: 20px
       float: left 
     .icon-triangle
       display: inline
-      margin-left: .3em
-      padding: 1em .6em 1em .6em
+      margin-left: 1em
+      padding: 1em .7em 1em 1em
       color: gray
       &:before
         font-size: 1.5em
@@ -274,16 +261,8 @@ section.login
         background: white
         padding: 1em
         z-index: 1000
-        font-size: .9em
+        line-height: normal
         border: 1px solid lighten(gray, 20%)
-        li
-          margin-bottom: .5em
-          padding: .6em .5em
-          &:hover 
-            color: white !important
-            background: #666
-            a
-              color: white
         a
           color: gray
           display: block
@@ -344,7 +323,7 @@ form#new_poke
     margin-right: 0
   a.poke_btn
     display: inline-block
-    background: image-url('poke_btns_sprite.png') no-repeat top left
+    background: url(/assets/poke_btns_sprite.png) no-repeat top left
     width: 72px
     height: 71px
     &:hover
@@ -444,7 +423,7 @@ body
           h1
             line-height: normal
           a[href="#campaigns_list"]
-            background: image-url('home_participe.png')
+            background: url("/assets/home_participe.png")
             height: 0
             padding-top: 76px
             width: 152px
@@ -492,11 +471,20 @@ body
             line-height: 20px
             margin-bottom: .25em
             img
+              width: 20px
               float: left
               margin-right: .5em
           .poke_created_at
             color: $orange
     &#show
+      .highlight
+        .home_link
+          line-height: 45px
+          a
+            margin-right: 2em
+        .new_campaign_btn
+          .btn
+            display: block
       article.left
         h1
           line-height: normal
@@ -633,10 +621,7 @@ body
             height: 40px
             float: left
             margin-right: .5em
-    &#new, &#create, &#edit
-      h1
-        padding: 1em 0 .5em
-
+    &#new, &#edit, &#create
       color: lighten(gray, 5%)
       .inline-errors
         color: red
@@ -708,9 +693,6 @@ body
         font-size: 1.1em
         +box-shadow(inset 0 1px 2px lighten(gray, 15%))
         +border-radius(5px)
-      .influencers
-        input
-          +box-shadow(none)
       textarea
         height: 200px
       h1
@@ -754,39 +736,44 @@ body
             img
               +box-shadow(0 0 .4em gray)
               padding: .5em
-          label
-            display: block
-            font-weight: bold
-            color: $green
-          textarea, input[type='file'], input[type='text']
-            width: 96%
-            max-height: 6em
-            font-size: .8em
-            color: #333
-          &.logged
-            input[type="text"], textarea, input[type='file']
-              border: 1px solid lighten(gray, 30%)
-              padding: .5em
-              margin: .9em 0
-              +border-radius(4px)
-              +box-shadow(inset 0 0 2px lighten(gray, 40%))
-           
-          &.not_logged
-            input, textarea
-              border: none
-              margin: 0
-            label[for='user_name']
-              display: none
-            input[name='user[name]']
-              font-family: "Londrina Solid"
-              font-size: 1.6em
-              letter-spacing: 1px
-            textarea
+          ul.details
+            span.member_since
+              font-size: .7em
+              color: lighten(gray, 15%)
+            hr
               border: 1px solid lighten(gray, 40%)
-              padding: .6em
-              font-size: .9em
-              +border-radius(6px)
-      .timeline
+            label
+              display: block
+              font-weight: bold
+              color: $green
+            textarea
+              max-width: 91% 
+              max-height: 6em
+    
+            &.logged
+              input[type="text"], textarea
+                border: 1px solid lighten(gray, 30%)
+                padding: .5em
+                margin: .9em 0
+                font-size: 1em
+                +border-radius(4px)
+                +box-shadow(inset 0 0 2px lighten(gray, 40%))
+    
+            &.not_logged
+              input, textarea
+                border: none
+                margin: 0
+              label[for='user_name']
+                display: none
+              input[name='user[name]']
+                font-family: "Londrina Solid"
+                font-size: 1.6em
+                letter-spacing: 1px
+              textarea
+                font-style: italic
+                font-size: 1em
+                color: lighten(gray, 10%)
+      ul.timeline
         margin-top: 2em
         +border-radius(4px)
         li
