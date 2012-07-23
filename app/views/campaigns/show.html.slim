@@ -30,7 +30,7 @@ section.content.row
     .poke_buttons#poke_buttons
       .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
       .targets
-        | Escolha um canal para fazer pressão em: 
+        = t 'actions.channel'
         = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
       .buttons
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
@@ -50,7 +50,8 @@ section.content.row
         = simple_format @campaign.facebook_text
       - if flash[:poke_create]
         #congrats= raw flash[:poke_create]
-      .privacy= raw "O Panela protege #{link_to "sua privacidade", "#"}."
+      .privacy
+        = t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "#")
     .content
       .targets
         .titles
@@ -73,7 +74,7 @@ section.content.row
       - if @campaign.pokers.any?
         .pokers
           h2 
-            | Quem pressiona 
-            span= "(#{@campaign.pokers.length})"
+            = t 'home.text.who_supports' 
+            span= " (#{@campaign.pokers.length})"
           - @campaign.pokers.each do |poker|
             = link_to image_tag(poker.picture(type: :square)), user_path(poker), title: poker.name

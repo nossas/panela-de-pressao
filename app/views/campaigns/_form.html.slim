@@ -7,19 +7,19 @@ article.left
         = f.label :name
         .field.name
           .field_bg= f.text_field :name
-        .inline-errors= @campaign.errors[:name].join(", ")
+        .inline-errors= @campaign.errors[:name].to_sentence
     .field_row
       .label_and_field
         = f.label :description
         .field.description
           .field_bg= f.text_area :description
-        .inline-errors= @campaign.errors[:description].join(", ")
+        .inline-errors= @campaign.errors[:description].to_sentence
     .field_row
       .label_and_field
         = f.label :image
         .field
           = f.file_field :image
-        .inline-errors= @campaign.errors[:image].join(", ")
+        .inline-errors= @campaign.errors[:image].to_sentence
         = image_tag @campaign.image if @campaign.persisted?
         = f.hidden_field :image_cache
     .field_row
@@ -27,36 +27,36 @@ article.left
         = f.label :category_id
         .field
           = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
-        .inline-errors= @campaign.errors[:category].join(", ")
+        .inline-errors= @campaign.errors[:category].to_sentence
     .field_row
       .label_and_field
         = f.label :email_text
         .field
           .field_bg= f.text_area :email_text
-        .inline-errors= @campaign.errors[:email_text].join(", ")
+        .inline-errors= @campaign.errors[:email_text].to_sentence
     .field_row
       .label_and_field
         = f.label :facebook_text
         .field
           .field_bg= f.text_area :facebook_text
-        .inline-errors= @campaign.errors[:facebook_text].join(", ")
+        .inline-errors= @campaign.errors[:facebook_text].to_sentence
     .field_row
       .label_and_field
         = f.label :twitter_text
         .field
           .field_bg= f.text_field :twitter_text
         small.campaign_twitter_text_status
-        .inline-errors= @campaign.errors[:twitter_text].join(", ")
+        .inline-errors= @campaign.errors[:twitter_text].to_sentence
     .field_row.influencers
       .label_and_field
         = f.label :influencer_ids
         .field.influencers
-          .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, "data-placeholder" => "Escolha os alvos da campanha...", :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+          .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
       .clear
     .field_row.last
       .action
-        = link_to "Cancelar", root_path, class: 'btn gray cancel'
-        = f.submit @campaign.new_record? ? "Enviar campanha para moderação" : "Salvar campanha", :class => "btn submit"
+        = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'
+        = f.submit @campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save'), :class => "btn submit"
 aside.right
   .content
     .tip.first
@@ -74,10 +74,10 @@ aside.right
     .tip.marked.text
       span= t 'campaign.new.form.tips.tweet_text'
     .tip.last 
-      span= t 'campaign.new.form.tips.targets_html', link: link_to('clique aqui', 'http://bit.ly/SJZBx7')
+      span= t 'campaign.new.form.tips.targets_html', link: link_to(t('link.click_here'), 'http://bit.ly/SJZBx7')
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
   |  ou 
   = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-    = f.submit "Aceitar campanha", :class => "btn"
-  = link_to "Remover campanha", @campaign, :method => :delete, :class => "btn"
+    = f.submit t('actions.accept'), :class => "btn submit"
+  = link_to t('actions.delete'), @campaign, :method => :delete, :class => "btn cancel"
