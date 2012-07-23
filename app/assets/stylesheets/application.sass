@@ -415,6 +415,15 @@ form#new_poke
       line-height: 1.6em
       text-align: center
 
+body.campaigns#show, body.users#show, body.campaigns#update
+  .highlight
+    .home_link
+      line-height: 45px
+      a
+        margin-right: 2em
+    .new_campaign_btn
+      .btn
+        display: block
 
 body
   &.campaigns
@@ -480,14 +489,6 @@ body
           .poke_created_at
             color: $orange
     &#show
-      .highlight
-        .home_link
-          line-height: 45px
-          a
-            margin-right: 2em
-        .new_campaign_btn
-          .btn
-            display: block
       article.left
         h1
           line-height: normal
@@ -624,7 +625,7 @@ body
             float: left
             margin-right: .5em
             margin-bottom: .5em
-    &#new, &#edit, &#create
+    &#new, &#edit, &#create, &#update
       h1
         margin: .4em
       small
