@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :name, :picture, :about_me
+  attr_accessible :admin, :email, :name, :picture, :about_me, :file
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
 
   validates_presence_of :email, :name
+
+  mount_uploader :file, ImageUploader
 
   def self.create_from_hash!(hash)
     create!(
@@ -18,9 +20,8 @@ class User < ActiveRecord::Base
     authorizations.where(:provider => "facebook").first
   end
 
-
   def picture options = {:type => "large"}
-    return "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
+    self.file.profile.url || "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
   end
 
   def facebook_url

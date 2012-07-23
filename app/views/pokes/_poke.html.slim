@@ -1,7 +1,8 @@
 .poke
   .user
-    = image_tag poke.user.picture(:type => "small")
+    = image_tag poke.user.picture(:type => "square"), size: "15x15"
     strong= link_to poke.user.name, user_path(poke.user)
     em  pressionou:
   .poke_campaign_link= link_to poke.campaign.name, poke.campaign
-  .poke_created_at= "há #{distance_of_time_in_words_to_now poke.created_at} atrás"
+  .poke_created_at
+    = t 'time.some_time_ago', time: distance_of_time_in_words_to_now(poke.created_at)
