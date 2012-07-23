@@ -263,12 +263,13 @@ section.login
         z-index: 1000
         line-height: normal
         border: 1px solid lighten(gray, 20%)
-        a
-          color: gray
-          display: block
+        li
           margin-bottom: .5em
           &:last-child
             margin: 0
+        a
+          color: gray
+          display: block
 
 section.header
   +box-shadow(0 15px 18px -20px lighten(black, 25%) inset)
@@ -445,6 +446,7 @@ body
               font-family: "Londrina Solid"
               position: absolute
               bottom: 10px
+              margin-right: 10px
               background: rgba(0, 0, 0, .75)
               padding: .5em
               font-size: 1.5em
