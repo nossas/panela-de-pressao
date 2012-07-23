@@ -24,6 +24,8 @@ class Campaign < ActiveRecord::Base
   validates :name, :description, :user_id, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_length_of :twitter_text, :maximum => 100
 
+  validates_format_of :map_embed, with: /^<iframe([^&]+)src=\"https:\/\/(maps.google.com\/maps)|(google.com\/maps)([^&]+).*$/
+
   def accepted?
     !accepted_at.nil?
   end
