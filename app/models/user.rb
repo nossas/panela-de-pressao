@@ -20,8 +20,12 @@ class User < ActiveRecord::Base
     authorizations.where(:provider => "facebook").first
   end
 
-  def picture options = {:type => "large"}
-    self.file.profile.url || "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
+  def pic options = {:type => "large"}
+    self.file.profile.url || self.facebook_pic(:type => options[:type]) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+  end
+
+  def facebook_pic options = {:type => "large"}
+    "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
   end
 
   def facebook_url

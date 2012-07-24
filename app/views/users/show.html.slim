@@ -5,7 +5,7 @@ section.content.row
     - if is_current_user?(@user)
       h3= t "user.show.create_and_edit"
     .image
-      = image_tag @user.picture
+      = image_tag @user.pic
     ul.details[class=(is_current_user?(@user) ? "logged" : "not_logged")]
       = form_for @user, multipart: true do |f|
         - if is_current_user?(@user)
