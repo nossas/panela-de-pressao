@@ -1,5 +1,7 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :description, :name, :user_id, :accepted_at, :image, :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, :email_text, :facebook_text, :twitter_text
+  attr_accessible :description, :name, :user_id, :accepted_at, :image, 
+    :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
+    :email_text, :facebook_text, :twitter_text, :map_embed, :map_description
   
   belongs_to :user
   belongs_to :category
@@ -24,7 +26,7 @@ class Campaign < ActiveRecord::Base
   validates :name, :description, :user_id, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_length_of :twitter_text, :maximum => 100
 
-  validates_format_of :map_embed, with: /^<iframe([^&]+)src=\"https:\/\/(maps.google.com\/maps)|(google.com\/maps)([^&]+).*$/
+  validates_format_of :map_embed, with: /^<iframe([^&]+)src=\"https:\/\/(maps.google.com\/maps)|(google.com\/maps)([^&]+).*$/, on: :save
 
   def accepted?
     !accepted_at.nil?
