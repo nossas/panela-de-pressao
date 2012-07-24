@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def pic options = {:type => "large"}
-    self.file.profile.url || self.facebook_pic(:type => options[:type]) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+    self.file.url || self.facebook_pic(:type => options[:type]) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
   end
 
   def facebook_pic options = {:type => "large"}
