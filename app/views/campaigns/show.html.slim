@@ -70,7 +70,7 @@ section.content.row
                 = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-email"
       .supporters
         h2 Quem cozinha
-        = link_to image_tag(@campaign.user.picture(:type => :square), size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
+        = link_to image_tag(@campaign.user.pic(:type => :square), size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
       - if @campaign.pokers.any?
         .pokers
           h2 
@@ -78,4 +78,4 @@ section.content.row
             span= " (#{@campaign.pokers.length})"
           ul
             - @campaign.pokers.each do |poker|
-              li= link_to image_tag(poker.picture(type: :square)), user_path(poker), title: poker.name
+              li= link_to image_tag(poker.pic(type: :square)), user_path(poker), title: poker.name

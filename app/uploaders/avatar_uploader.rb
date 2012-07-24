@@ -15,12 +15,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file if not Rails.env.production?
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [120, 120]
+  # process :resize_to_fill => [120, 120]
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  version :square do
+    process resize_to_fill: [100, 100]
+  end
+
+  version :large do
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
