@@ -56,6 +56,7 @@ pt-BR:
       privacy_html: "O Panela protege %{link}"
       targets_html: "Alvos da campanha <span>(%{count})</span>"
       tabs:
+        map: "Mapa"
         campaign: "A campanha"
         answers: "Respostas"
         comments: "Comentários"
