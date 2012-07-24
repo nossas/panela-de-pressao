@@ -44,7 +44,7 @@ html
             | apresenta:
           .user
             - if current_user
-              span= image_tag current_user.pic(:type => "square"), alt: "avatar", size: "20x20"
+              span= image_tag current_user.pic(:type => "square"), alt: "avatar"
               span= current_user.name
               .icon-triangle
                 ul.options
