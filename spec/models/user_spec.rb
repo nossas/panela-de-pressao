@@ -12,7 +12,7 @@ describe User do
 
   describe "#pic" do
     context "when the user uploaded a picture" do
-      before { subject.stub_chain(:file, :url).and_return("profile.jpg") }
+      before { subject.stub_chain(:file, :large, :url).and_return("profile.jpg") }
       its(:pic){ should be_== "profile.jpg" }
     end
     context "when the user have a picture from Facebook" do
