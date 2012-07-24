@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :name
 
-  mount_uploader :file, ImageUploader
+  mount_uploader :file, AvatarUploader
 
   def self.create_from_hash!(hash)
     create!(
@@ -20,8 +20,17 @@ class User < ActiveRecord::Base
     authorizations.where(:provider => "facebook").first
   end
 
-  def picture options = {:type => "large"}
-    self.file.profile.url || "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
+  def pic options = {:type => "large"}
+    type = options[:type]
+    self.carrierwave_pic(:type => type) || self.facebook_pic(:type => type) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+  end
+
+  def carrierwave_pic options = {:type => "large"}
+    self.file.send(options[:type]).url
+  end
+
+  def facebook_pic options = {:type => "large"}
+    "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
   end
 
   def facebook_url
