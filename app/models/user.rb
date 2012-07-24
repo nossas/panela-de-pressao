@@ -21,7 +21,12 @@ class User < ActiveRecord::Base
   end
 
   def pic options = {:type => "large"}
-    self.file.url || self.facebook_pic(:type => options[:type]) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+    type = options[:type]
+    self.carrierwave_pic(:type => type) || self.facebook_pic(:type => type) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+  end
+
+  def carrierwave_pic options = {:type => "large"}
+    self.file.send(options[:type]).url
   end
 
   def facebook_pic options = {:type => "large"}
