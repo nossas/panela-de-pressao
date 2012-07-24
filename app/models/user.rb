@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :name
 
-  mount_uploader :file, ImageUploader
+  mount_uploader :file, AvatarUploader
 
   def self.create_from_hash!(hash)
     create!(
