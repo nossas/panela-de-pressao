@@ -40,6 +40,8 @@ pt-BR:
       small: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua."
       form:
         choose_targets: "Escolha os alvos da campanha..."
+        map:
+          header: "Sua campanha usa uma mapa?"
         tips: 
           title: 'Exemplo: "Salvem as árvores do Centro da Cidade"'
           why_important_html: "<p>Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.</p><p>Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.</p>" 
@@ -53,7 +55,10 @@ pt-BR:
       your_privacy: "sua privacidade"
       privacy_html: "O Panela protege %{link}"
       targets_html: "Alvos da campanha <span>(%{count})</span>"
+      map:
+        header: "Sobre o mapa"
       tabs:
+        map: "Mapa"
         campaign: "A campanha"
         answers: "Respostas"
         comments: "Comentários"
