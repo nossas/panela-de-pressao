@@ -55,6 +55,8 @@ pt-BR:
       your_privacy: "sua privacidade"
       privacy_html: "O Panela protege %{link}"
       targets_html: "Alvos da campanha <span>(%{count})</span>"
+      map:
+        header: "Sobre o mapa"
       tabs:
         map: "Mapa"
         campaign: "A campanha"
