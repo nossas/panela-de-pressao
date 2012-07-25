@@ -69,5 +69,5 @@ pt-BR:
       save: "Salvar"
   notification:
     campaign:
-      poked_html: "<a href='%{link}'> Pressionou a campanha %{name} via %{through} </a>"
-      created_html: "<a href='%{link}'> Criou a campanha %{name}</a>"
+      poked_html: "Pressionou a campanha <a href='%{link}'>%{name}</a> via %{through}"
+      created_html: "Criou a campanha <a href='%{link}'>%{name}</a>"
