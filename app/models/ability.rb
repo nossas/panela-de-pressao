@@ -7,10 +7,10 @@ class Ability
     can :read, Campaign, Campaign.accepted do |campaign|
       campaign.accepted_at
     end
-    if user and user.admin?
+
+    if user && user.admin?
       can :manage, :all
-    end
-    if user
+    elsif user
       can :create, Campaign
       can :create, Poke
       can :update, Campaign, :user_id => user.id
