@@ -5,6 +5,22 @@ App.Campaigns = {
     }
   }),
 
+  Edit: Backbone.View.extend({
+    el: 'body',
+
+    events: {
+      'click .showmap': 'showMap'
+    },
+
+    showMap: function(event){
+      event.preventDefault();
+      var cur = $(event);
+      console.log(cur);
+      $('.hidden').fadeToggle();
+    }
+
+  }),
+
   Show: Backbone.View.extend({
     el: 'body',
 
