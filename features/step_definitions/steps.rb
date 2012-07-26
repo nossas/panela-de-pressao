@@ -250,3 +250,7 @@ end
 Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2, arg3|
   page.should have_css("div.more_active_pokers", text: /#{arg1}.*#{arg2}.*#{arg3}/)
 end
+
+When /^I open my profile options$/ do
+  page.execute_script("$('.options').show();")
+end
