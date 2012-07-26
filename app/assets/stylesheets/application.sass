@@ -18,7 +18,8 @@ $fb_blue: #3b5998
 
 section
   +grid-container
-
+.hidden
+  display: none
 .row
   +grid-row
 
@@ -135,6 +136,13 @@ div.logo a img:hover
     text-shadow: 0 1px 1px white 
     &:hover
       color: inherit 
+  &.red
+    +background-image(linear-gradient(lighten(red, 45%), lighten(red, 30%)))
+    color: white
+    border: 1px solid lighten(red, 20%)
+    text-shadow: 0 1px 1px white     
+    &:hover
+      color: inherit
   &:hover 
     color: white
     cursor: pointer
