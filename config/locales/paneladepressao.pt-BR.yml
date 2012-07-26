@@ -41,7 +41,7 @@ pt-BR:
       form:
         choose_targets: "Escolha os alvos da campanha..."
         map:
-          header: "Sua campanha usa uma mapa?"
+          header: "Sua campanha usa um mapa?"
         tips: 
           title: 'Exemplo: "Salvem as árvores do Centro da Cidade"'
           why_important_html: "<p>Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.</p><p>Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.</p>" 
