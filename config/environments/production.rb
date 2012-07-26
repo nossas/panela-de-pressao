@@ -46,13 +46,13 @@ ManifesteSe::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  default_url_options[:host] = "seurio.org.br"
+  default_url_options[:host] = "paneladepressao.org.br"
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV["SENDGRID_USERNAME"],
     :password => ENV["SENDGRID_PASSWORD"],
-    :domain => "seurio.org.br",
+    :domain => "paneladepressao.org.br",
     :address => "smtp.sendgrid.net",
     :port => 587,
     :authentication => :plain,
