@@ -13,6 +13,7 @@ pt-BR:
     save: "Salvar campanha"
     cancel: "Cancelar"
     accept: "Aceitar campanha"
+    export: "Exportar pressionadores"
   home:
     highlight:
       header: "O melhor utensílio de pressão popular da sua cozinha."
