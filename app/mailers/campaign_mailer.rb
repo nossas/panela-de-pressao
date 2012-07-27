@@ -7,16 +7,16 @@ class CampaignMailer < ActionMailer::Base
     mail(
       :to => campaign.user.email,
       :subject => "Sua campanha foi aprovada!",
-      :from => "contato@seurio.com.br"
+      :from => "contato@paneladepressao.org.br"
     )
   end
 
   def campaign_awaiting_moderation campaign
     @campaign = campaign
     mail(
-      :to => "curadoria@seurio.com.br",
+      :to => "curadoria@paneladepressao.org.br",
       :subject => "Campanha aguardando moderação",
-      :from => "contato@seurio.com.br"
+      :from => "contato@paneladepressao.org.br"
     )
   end
 
@@ -25,7 +25,7 @@ class CampaignMailer < ActionMailer::Base
     mail(
       :to => campaign.user.email,
       :subject => "Recebemos a sua campanha",
-      :from => "contato@seurio.com.br"
+      :from => "contato@paneladepressao.org.br"
     )
   end
 
