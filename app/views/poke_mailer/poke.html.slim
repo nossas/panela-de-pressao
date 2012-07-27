@@ -1,4 +1,2 @@
-p= @poke.campaign.targets.map{|t| t.influencer.name}.join(", ")
 p= raw simple_format(@poke.campaign.email_text)
-p= link_to @poke.campaign.name, @poke.campaign
-p= "Atenciosamente, #{@poke.user.name}"
+p= link_to @poke.campaign.name, campaign_url(@poke.campaign)
