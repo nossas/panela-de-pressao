@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :campaigns
   has_many :pokes
 
+  scope :by_campaign_id, lambda {|id| Campaign.find(id).pokers }
+
   validates_presence_of :email, :name
 
   mount_uploader :file, AvatarUploader

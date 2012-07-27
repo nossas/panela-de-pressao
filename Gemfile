@@ -32,6 +32,7 @@ gem 'coffee-rails'
 gem 'twitter'
 gem 'bitly'
 gem "koala"
+gem "has_scope"
 
 group :development do
   gem "mailcatcher"
