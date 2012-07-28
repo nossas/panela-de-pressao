@@ -56,3 +56,6 @@
 .icon-warning:before {
 	content: "\2b";
 }
+.icon-file-excel:before {
+	content: "\2c";
+}

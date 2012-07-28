@@ -32,5 +32,5 @@ ManifesteSe::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  default_url_options[:host] = "seurio.com.br"
+  default_url_options[:host] = "paneladepressao.org.br"
 end

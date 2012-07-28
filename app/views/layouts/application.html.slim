@@ -50,6 +50,7 @@ html
                 ul.options
                   li= link_to "Meu Perfil", current_user, :class => "icon-user"
                   li= link_to "Minhas Campanhas", user_campaigns_path(current_user), :class => "icon-comments"
+                  li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
                   li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
               = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}"
