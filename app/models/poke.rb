@@ -24,6 +24,7 @@ class Poke < ActiveRecord::Base
   private
   def send_email
     PokeMailer.poke(self).deliver
+    PokeMailer.thanks(self).deliver
     self.campaign.targets.each {|t| t.increase_pokes_by_email}
   end
 
@@ -42,6 +43,7 @@ class Poke < ActiveRecord::Base
         puts e.message
       end
     end
+    PokeMailer.thanks(self).deliver
   end
 
   def send_tweet
@@ -57,5 +59,6 @@ class Poke < ActiveRecord::Base
         puts e.message
       end
     end
+    PokeMailer.thanks(self).deliver
   end
 end

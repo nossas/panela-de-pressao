@@ -13,7 +13,8 @@ Feature: Poke targets by email
     Then I should see "Boa!"
     And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a email poke should be added to the target
-    And an email should be sent
+    And an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
+    And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
   @omniauth_test @javascript
   Scenario: when I'm not logged in
@@ -24,7 +25,8 @@ Feature: Poke targets by email
     Then I should see "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
     And I should be in this campaign page
     When I click "Entrar via Facebook"
-    Then an email should be sent
+    Then an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
+    And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
     And a email poke should be added to the target
     Then I should see "Boa!"
     And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"

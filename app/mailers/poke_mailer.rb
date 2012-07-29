@@ -9,4 +9,13 @@ class PokeMailer < ActionMailer::Base
       :from => "\"#{the_poke.user.name}\" <#{the_poke.user.email}>"
     )
   end
+
+  def thanks(the_poke)
+    @poke = the_poke
+    mail(
+      :to => @poke.user.email,
+      :subject => "Valeu por apoiar a campanha: #{@poke.campaign.name}",
+      :from => "contato@paneladepressao.org.br"
+    )
+  end
 end
