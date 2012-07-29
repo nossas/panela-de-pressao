@@ -233,6 +233,7 @@ pt-BR:
         twitter_text: "Texto do tweet que será enviado, mencionando os alvos da campanha"
         map_embed: "Código de Embed do Google Maps"
         map_description: "Descreva o mapa!"
+        pokers_email: "Email para quem pressiona"
       influencer:
         name: "Nome"
         role: "Cargo"

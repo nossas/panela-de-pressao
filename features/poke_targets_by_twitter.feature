@@ -14,6 +14,7 @@ Feature: Poke targets by Twitter
     Then I should see "Boa!"
     And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a twitter poke should be added to the target
+    And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
   @omniauth_test @twitter @javascript
   Scenario: when I haven't a Twitter authorization
@@ -25,6 +26,7 @@ Feature: Poke targets by Twitter
     Then I should see "Boa!"
     And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a tweet poke should be added to the target
+    And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
   @omniauth_test @twitter @javascript
   Scenario: when I'm not logged in
@@ -38,6 +40,7 @@ Feature: Poke targets by Twitter
     Then I should see "Boa!"
     And I should see "Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
     And a tweet poke should be added to the target
+    And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
   
   @omniauth_test
   Scenario: when targets have no Twitter

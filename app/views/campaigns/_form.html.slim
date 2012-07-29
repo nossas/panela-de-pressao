@@ -52,6 +52,12 @@ article.left
         = f.label :influencer_ids
         .field.influencers
           .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+    .field_row
+      .label_and_field
+        = f.label :pokers_email
+        .field
+          .field_bg= f.text_area :pokers_email
+        .inline-errors= @campaign.errors[:pokers_email].to_sentence
     .field_row.map
       h2= t 'campaign.new.form.map.header'
       = link_to "Adicionar mapa", "#", class: "btn showmap"
