@@ -7,6 +7,8 @@ class Poke < ActiveRecord::Base
   belongs_to :user
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
+
+  before_create { PokeMailer.thanks(self).deliver unless self.user.has_poked(self.campaign) }
   
   default_scope order('updated_at DESC') 
   def twitter?
@@ -24,7 +26,6 @@ class Poke < ActiveRecord::Base
   private
   def send_email
     PokeMailer.poke(self).deliver
-    PokeMailer.thanks(self).deliver
     self.campaign.targets.each {|t| t.increase_pokes_by_email}
   end
 
@@ -43,7 +44,6 @@ class Poke < ActiveRecord::Base
         puts e.message
       end
     end
-    PokeMailer.thanks(self).deliver
   end
 
   def send_tweet
@@ -59,6 +59,5 @@ class Poke < ActiveRecord::Base
         puts e.message
       end
     end
-    PokeMailer.thanks(self).deliver
   end
 end
