@@ -229,6 +229,11 @@ Then /^no email called "(.*?)" should be sent$/ do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.subject == arg1}.should be_empty
 end
 
+Then /^an email called "(.*?)" should be sent once$/ do |arg1|
+  sleep(1)
+  ActionMailer::Base.deliveries.select{|d| d.subject == arg1}.should have(1).email
+end
+
 Then /^no email should be sent$/ do
   ActionMailer::Base.deliveries.should be_empty
 end
@@ -253,4 +258,8 @@ end
 
 When /^I open my profile options$/ do
   page.execute_script("$('.options').show();")
+end
+
+Given /^I already poked this campaign$/ do
+  Poke.make! :campaign => @campaign, :user => User.find_by_email("nicolas@engage.is")
 end
