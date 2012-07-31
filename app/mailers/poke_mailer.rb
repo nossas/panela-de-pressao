@@ -1,3 +1,5 @@
+#coding: utf-8
+
 class PokeMailer < ActionMailer::Base
   default from: "from@example.com"
 
