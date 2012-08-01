@@ -1,10 +1,4 @@
 App.Campaigns = {
-  Poke: Backbone.View.extend({
-    events: {
-      'click a' : function(){ this.el.submit(); }
-    }
-  }),
-
   Edit: Backbone.View.extend({
     el: 'body',
 
@@ -25,14 +19,11 @@ App.Campaigns = {
     el: 'body',
 
     initialize: function(){
-      this.fbPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='email'])"});
-      this.twPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='twitter'])"});
-      this.emPokeForm = new App.Campaigns.Poke({el: "form:has(input[value='facebook'])"});
       $(".email_text").hide();
       $(".facebook_text").hide();
       $(".twitter_text").hide();
 
-      $("form.email").mouseover(function(){ 
+      $(".poke_btn.email").mouseover(function(){ 
         $(".email_text").show(); 
         $("form.email").addClass("selected");
         $(".facebook_text").hide();
@@ -41,7 +32,7 @@ App.Campaigns = {
         $("form.twitter").removeClass("selected");
       });
 
-      $("form.facebook").mouseover(function(){
+      $(".poke_btn.facebook").mouseover(function(){
         $(".email_text").hide(); 
         $("form.email").removeClass("selected");
         $(".facebook_text").show();
@@ -50,7 +41,7 @@ App.Campaigns = {
         $("form.twitter").removeClass("selected");
       });
 
-      $("form.twitter").mouseover(function(){
+      $(".poke_btn.twitter").mouseover(function(){
         $(".email_text").hide(); 
         $("form.email").removeClass("selected");
         $(".facebook_text").hide();
@@ -58,6 +49,10 @@ App.Campaigns = {
         $(".twitter_text").show();
         $("form.twitter").addClass("selected");
       });
+
+      $(".poke_btn.email").click(function(){ $("form.email").submit(); });
+      $(".poke_btn.facebook").click(function(){ $("form.facebook").submit(); });
+      $(".poke_btn.twitter").click(function(){ $("form.twitter").submit(); });
 
       $("a[href='#poke_buttons']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
     }
