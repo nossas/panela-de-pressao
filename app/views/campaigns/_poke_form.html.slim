@@ -1,5 +1,9 @@
-- unless @campaign.not_empty_influencer(poke.to_sym).empty?
-  = form_for [@campaign, @poke], :html => {:class => poke} do |f|
-    = f.hidden_field :kind, :value => poke
-    = link_to "#", :class => "poke_btn #{poke}" do
-     span= @campaign.pokes_by(poke).size
+= form_for [@campaign, @poke], :html => {:class => poke} do |f|
+  = f.hidden_field :kind, :value => poke
+  div class="#{poke}_text"
+    span= t "campaign.show.pokes.#{poke}"
+    - if poke == "twitter"
+      = simple_format @campaign.send("#{poke}_text")
+    - else
+      = f.label :custom_message
+      = f.text_area :custom_message, :value => @campaign.send("#{poke}_text")
