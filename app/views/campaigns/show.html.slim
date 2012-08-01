@@ -20,10 +20,10 @@ section.content.row
       = t 'time.created_at', time: l(@campaign.created_at, format: :short)
 
     .tabs#tabs
-      = link_to t('campaign.show.tabs.campaign'), campaign_path(@campaign, :section => "description"), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
-      = link_to t('campaign.show.tabs.map'), campaign_path(@campaign, :section => "map"), :class => "#{params[:section] == "map" ? 'selected' : ''}" if @campaign.map_embed.present?
-      = link_to t('campaign.show.tabs.answers'), campaign_path(@campaign, :section => "answers"), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
-      = link_to t('campaign.show.tabs.comments'), campaign_path(@campaign, :section => "comments"), :class => "#{params[:section] == "comments" ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.campaign'), description_campaign_path(@campaign), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.map'),      map_campaign_path(@campaign), :class => "#{params[:section] == "map" ? 'selected' : ''}" if @campaign.map_embed?
+      = link_to t('campaign.show.tabs.answers'),  answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.comments'), comments_campaign_path(@campaign), :class => "#{params[:section] == "comments" ? 'selected' : ''}"
 
     = render :partial => params[:section] || "description"
 
