@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Poke < ActiveRecord::Base
   attr_accessible :campaign_id, :kind, :user_id, :custom_message
   after_create :send_email, :if => Proc.new {self.email?}
