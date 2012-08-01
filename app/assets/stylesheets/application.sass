@@ -518,11 +518,12 @@ body
           font-size: 2.0em
           letter-spacing: 1px
         h2
+          visibility: hidden
           color: lighten($orange, 5%)
           font-size: .8em
           font-family: "Lucida Grande"
           border-bottom: 1px dashed $orange
-          margin-bottom: 3em
+          margin-bottom: 1em
         small
           display: none
         .created_at
@@ -577,8 +578,7 @@ body
         .description
           color: #555
           a
-            color: lighten(blue, 10%)
-            text-decoration: underline
+            color: darken($green, 5%)
             &:hover
               color: $green
       aside.right
