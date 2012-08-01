@@ -63,8 +63,8 @@ section.content.row
           - @campaign.influencers.each do |influencer|
             li.target
               .info
-                = image_tag influencer.avatar, :title => influencer.name
-                .name= influencer.name
+                = link_to image_tag(influencer.avatar, :title => influencer.name), influencer_path(influencer)
+                .name= link_to influencer.name, influencer_path(influencer)
                 .role= influencer.role
               .social
                 = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook"
