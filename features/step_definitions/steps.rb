@@ -180,9 +180,9 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
   when "the edit campaign button"
     page.should_not have_link("Editar campanha")
   when "the email poke form"
-    page.should_not have_css("form:has(input[value='email'])")
+    page.should_not have_css(".poke_btn.email")
   when "the Facebook poke button"
-    page.should_not have_css("form:has(input[value='facebook'])")
+    page.should_not have_css(".poke_btn.facebook")
   when "user[email]"
     page.should_not have_css('input[name="user[email]"]')
   else
@@ -262,4 +262,12 @@ end
 
 Given /^I already poked this campaign$/ do
   Poke.make! :campaign => @campaign, :user => User.find_by_email("nicolas@engage.is")
+end
+
+Given /^I pass over the email poke button$/ do
+  page.execute_script("$('.email_text').show();")
+end
+
+Given /^I pass over the facebook poke button$/ do
+  page.execute_script("$('.facebook_text').show();")
 end

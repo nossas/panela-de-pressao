@@ -34,21 +34,18 @@ section.content.row
         = t 'actions.channel'
         = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
       .buttons
+        - unless @campaign.not_empty_influencer(:email).empty?
+          .poke_btn.email
+            span= @campaign.pokes_by("email").size
+        - unless @campaign.not_empty_influencer(:twitter).empty?
+          .poke_btn.twitter
+            span= @campaign.pokes_by("twitter").size
+        - unless @campaign.not_empty_influencer(:facebook).empty?
+          .poke_btn.facebook
+            span= @campaign.pokes_by("facebook").size
         = render :partial => "poke_form", :locals => { :poke =>  "email" }
         = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
         = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
-      .email_text
-        span 
-          = t 'campaign.show.pokes.email'
-        = simple_format @campaign.email_text
-      .twitter_text
-        span
-          = t 'campaign.show.pokes.twitter'
-        = simple_format @campaign.twitter_text
-      .facebook_text
-        span
-          = t 'campaign.show.pokes.facebook'
-        = simple_format @campaign.facebook_text
       - if flash[:poke_create]
         #congrats= raw flash[:poke_create]
       .privacy
