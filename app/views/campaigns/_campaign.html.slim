@@ -15,7 +15,7 @@
       .pokers
         span.who= t 'home.text.who_supports'
         ul
-          - campaign.pokers.limit(8).each do |poker|
+          - campaign.pokers.shuffle[0..7].each do |poker|
             li= link_to image_tag(poker.pic(:type => "square"), size: "30x30"), poker
           li.plus= link_to "+", campaign
 
