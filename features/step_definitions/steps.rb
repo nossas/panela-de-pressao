@@ -105,6 +105,11 @@ Given /^there is a target for this campaign$/ do
   @target = Target.make! :campaign => @campaign
 end
 
+Given /^there is a target for this campaign called "(.*?)"$/ do |arg1|
+  @target = Target.make! campaign: @campaign, influencer: Influencer.make!(name: arg1)
+end
+
+
 Given /^I have a Twitter authorization$/ do
   Authorization.make! :user => Authorization.find_by_uid("536687842").user, :provider => "twitter"
 end
