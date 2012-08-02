@@ -6,7 +6,7 @@ Feature: Add new influencers
   Scenario: when I fill all the required fields
     Given I'm in the new influencer page
     And I fill "Nome" with "Eduardo Paes"
-    And I fill "Cargo" with "Prefeito"
+    And I fill "Descrição" with "Prefeito"
     And I attach an image to "Avatar"
     And I fill "Email" with "eduardopaes@meurio.org.br"
     And I fill "Twitter" with "eduardopaes_"
