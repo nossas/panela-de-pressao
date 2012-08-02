@@ -1,17 +1,15 @@
+- content_for :highlight do
+  .row
+    .links= link_to "Novo influenciador", new_influencer_path, :class => "icon-contact"
+
 section.content
-  .influencers
-    = semantic_form_for @influencer do |f|
-      h2 Novo Influenciador
-      = f.inputs :name, :role, :email, :twitter, :facebook
-      = f.input :avatar, :as => :file
-      = f.submit "Adicionar influenciador", :class => "btn"
-  
-    .list
+  .row  
+    .influencers_list
       h2 Lista de Influenciadores
       table
         - Influencer.all.each do |influencer|
           tr
-            td= image_tag influencer.avatar
+            td= image_tag influencer.avatar.square
             td= influencer.name
             td= influencer.role
             td= influencer.email

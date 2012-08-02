@@ -11,6 +11,7 @@ describe User do
   end
 
   describe "#pic" do
+    before { subject.stub_chain(:file, :large, :url).and_return(nil) }
     context "when the user uploaded a picture" do
       before { subject.stub_chain(:file, :large, :url).and_return("profile.jpg") }
       its(:pic){ should be_== "profile.jpg" }

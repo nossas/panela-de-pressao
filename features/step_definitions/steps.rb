@@ -7,6 +7,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit new_campaign_path
   when "the influencers page"
     visit influencers_path
+  when "the new influencer page"
+    visit new_influencer_path
   when "this campaign page"
     visit campaign_path(@campaign)
   when "this campaign editing page"

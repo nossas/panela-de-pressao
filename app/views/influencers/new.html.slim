@@ -1,0 +1,7 @@
+section.content
+  .row  
+    = semantic_form_for @influencer do |f|
+      h2 Novo Influenciador
+      = f.inputs :name, :role, :email, :twitter, :facebook
+      = f.input :avatar, :as => :file
+      = f.submit "Adicionar influenciador", :class => "btn"
