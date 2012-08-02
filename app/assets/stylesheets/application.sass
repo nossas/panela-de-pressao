@@ -12,6 +12,7 @@ $fb_blue: #3b5998
 @import chosen
 @import icomoon
 @import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700')
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
@@ -65,7 +66,7 @@ hr
   border-bottom: 2px dotted lighten($yellow, 10%)
 
 body
-  font-family: Lucida Grande, sans-serif
+  font-family: "Open Sans", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
   font-size: .9em
   line-height: 1.6em
 
@@ -179,8 +180,18 @@ section.highlight
   .btn
     font-size: 1.5em
     padding: .5em 1em
+  .new_campaign_btn
+    .btn
+      font-size: 1.5em
+      padding: none
+      margin-top: .2em
+      +border-radius(0px !important)
+      +box-shadow(none !important)
 
-section.header, section.highlight, section.footer
+section.content
+  margin-top: .8em
+
+section.header, section.footer
   padding: 1.5em 0
 
 section.notice, section.alert
@@ -294,7 +305,7 @@ section.header
     float: right
 
 section.highlight, section.footer
-  +background-image(radial-gradient(lighten($yellow, 20%) 0%, $yellow 80%))
+  +background-image(radial-gradient(lighten($yellow, 10%) 0%, $yellow 75%))
 
 section.highlight
   +box-shadow(0 15px 20px -20px lighten(black, 20%) inset)
@@ -426,7 +437,7 @@ section.footer
 body.campaigns#show, body.users#show, body.campaigns#update
   .highlight
     .home_link
-      line-height: 45px
+      line-height: 3.5em
       a
         margin-right: 2em
     .new_campaign_btn
@@ -437,6 +448,7 @@ body
   &.campaigns
     &#index
       .highlight
+        padding: 1.5em 0
         .about
           color: darken(gray, 10%)
           h1
@@ -501,37 +513,61 @@ body
       article.left
         h1
           line-height: normal
+          font-size: 2.0em
+          letter-spacing: 1px
         h2
-          color: $orange
-          font-family: Lucida Grande, sans-serif
-          font-size: 1em
-          border-bottom: 2px dotted $orange
+          visibility: hidden
+          color: lighten($orange, 5%)
+          font-size: .8em
+          font-family: "Lucida Grande"
+          border-bottom: 1px dashed $orange
+          margin-bottom: 0
+        small
+          display: none
         .created_at
-          color: gray
-          margin-bottom: 2em
+          color: lighten(gray, 15%)
+          visibility: hidden
+          margin-top: -8px
+          font-size: .8em
+          margin-bottom: 0 
         .tabs
-          border-bottom: 1px solid gray
+          border-bottom: 1px solid lighten(gray, 25%)
           margin-bottom: 2em
           a
-            color: white
+            color: darken(white, 5%)
             background: $green
             display: inline-block
-            padding: .5em 2em
-            margin-right: .5em
+            padding: .6em 3em
+            margin-right: .4em
             text-transform: uppercase
-            font-size: .8em
+            font-size: .7em
             position: relative
             top: 1px
             +box-shadow(black 0 -5px 10px -5px inset)
             +border-radius(5px 5px 0 0)
+            +transition(0.5s)
+            +text-shadow(0 0 1px black)
             &.selected
-              border: 1px solid gray
+              border: 1px solid lighten(gray, 25%)
+              +box-shadow(1px 1px 3px gray)
               border-bottom: none
               background: white
               color: gray
               +box-shadow(none)
-        p, .share
-          margin-bottom: 2em
+              &:hover
+                background: none
+            &:hover
+              background: lighten($green, 5%)
+            &.comments
+              span
+                background: darken($green, 15%)
+                padding: .1em .2em
+                margin: 0 4px
+                +border-radius(8px)
+                color: white
+        .image
+          img
+            border: 2px solid lighten(gray, 35%)
         .share
           iframe, .fb-like
             display: inline-block
@@ -545,6 +581,12 @@ body
         .contact
           color: $orange
           line-height: 26px
+        .description
+          color: #555
+          a
+            color: darken($green, 5%)
+            &:hover
+              color: $green
       aside.right
         .poke_buttons
           margin-top: 2em

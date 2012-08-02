@@ -20,11 +20,13 @@ section.content.row
       = t 'time.created_at', time: l(@campaign.created_at, format: :short)
 
     .tabs#tabs
-      = link_to t('campaign.show.tabs.campaign'), campaign_path(@campaign, :section => "description"), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
-      = link_to t('campaign.show.tabs.map'), campaign_path(@campaign, :section => "map"), :class => "#{params[:section] == "map" ? 'selected' : ''}" if @campaign.map_embed.present?
-      = link_to t('campaign.show.tabs.answers'), campaign_path(@campaign, :section => "answers"), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
-      = link_to t('campaign.show.tabs.comments'), campaign_path(@campaign, :section => "comments"), :class => "#{params[:section] == "comments" ? 'selected' : ''}"
-
+      = link_to t('campaign.show.tabs.campaign'), description_campaign_path(@campaign), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.map'),      map_campaign_path(@campaign), :class => "#{params[:section] == "map" ? 'selected' : ''}" if @campaign.map_embed?
+      = link_to t('campaign.show.tabs.answers'),  answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to(comments_campaign_path(@campaign), :class => "#{params[:section] == "comments" ? 'selected comments' : 'comments'}") do
+        = t('campaign.show.tabs.comments') 
+        span
+          fb:comments-count[href=campaign_url(@campaign)]
     = render :partial => params[:section] || "description"
 
   aside.right
@@ -60,8 +62,8 @@ section.content.row
           - @campaign.influencers.each do |influencer|
             li.target
               .info
-                = image_tag influencer.avatar, :title => influencer.name
-                .name= influencer.name
+                = link_to image_tag(influencer.avatar, :title => influencer.name), influencer_path(influencer)
+                .name= link_to influencer.name, influencer_path(influencer)
                 .role= influencer.role
               .social
                 = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook"
