@@ -24,7 +24,7 @@ section
 .row
   +grid-row
 
-.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links
   +grid(12)
 
 article.right
@@ -54,7 +54,7 @@ aside.left
 article.left .poke, article.left .contact
   +grid-subcolumn(8, 4)
 
-article.right, aside.right, .highlight .campaign, .list .campaign .details, .new_campaign_btn, article.left .contact
+article.right, aside.right, .highlight .campaign, .list .campaign .details, .new_campaign_btn, article.left .contact, .influencers_list
   +last
 
 img
@@ -107,6 +107,16 @@ a
   text-decoration: none
   &:hover
     color: lighten($green, 5%)
+
+table
+  img
+    float: left
+  td
+    padding: .5em
+  tr:nth-child(even)
+    background: lighten($yellow, 35%)
+  tr:nth-child(odd)
+    background: lighten($yellow, 30%)
 
 div.logo a img:hover
   opacity: .8
@@ -187,6 +197,8 @@ section.highlight
       margin-top: .2em
       +border-radius(0px !important)
       +box-shadow(none !important)
+  .links
+    padding: 1em 0
 
 section.content
   margin-top: .8em
@@ -857,3 +869,11 @@ body
             background-image: url('icon-press-2.svg')
           &.campaign 
             background-image: url('icon-campaign-2.svg')
+
+body.influencers#index
+  .influencers_list
+    margin-bottom: 2em
+    table
+      width: 100%
+      img
+        width: 25px
