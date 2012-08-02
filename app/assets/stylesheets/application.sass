@@ -30,10 +30,10 @@ section
 article.right
   +grid(9)
 
-article.left, .home_link
+article.left, .home_link 
   +grid(8)
 
-.highlight .about, .highlight .campaign
+.highlight .about, .highlight .campaign, form#new_influencer
   +grid(6)
 
 aside.right, .new_campaign_btn
@@ -108,6 +108,15 @@ a
   &:hover
     color: lighten($green, 5%)
 
+input[type='text'], textarea, input[type="email"]
+  outline: none
+  border: 2px solid lighten(gray, 40%)
+  padding: .6em .5em
+  font-size: 1.1em
+  color: lighten(gray, 10%)
+  &:focus
+    border: 2px solid $orange
+
 table
   img
     float: left
@@ -120,6 +129,21 @@ table
 
 div.logo a img:hover
   opacity: .8
+
+li.error
+  input
+    border-color: red
+
+p.inline-errors
+  color: red
+  font-size: .8em
+
+p.inline-hints
+  color: gray
+  font-size: .8em
+
+p.inline-hints, p.inline-errors
+  margin: 0
 
 #login
   background: black
@@ -774,13 +798,6 @@ body
         margin-right: 2em
       input[type='text'], textarea
         width: 98%
-        outline: none
-        border: 2px solid lighten(gray, 40%)
-        padding: .6em .5em
-        font-size: 1.1em
-        color: lighten(gray, 10%)
-        &:focus
-          border: 2px solid $orange
       textarea
         height: 200px
       h1
@@ -889,3 +906,10 @@ body.influencers#index
       width: 100%
       img
         width: 25px
+
+body.influencers#new, body.influencers#create
+  input[type='text'], input[type='email']
+    +box-sizing("border-box")
+    width: 100%
+  li.input, .btn
+    margin-bottom: 2em

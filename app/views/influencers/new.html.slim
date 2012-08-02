@@ -2,6 +2,12 @@ section.content
   .row  
     = semantic_form_for @influencer do |f|
       h2 Novo Influenciador
-      = f.inputs :name, :role, :email, :twitter, :facebook
-      = f.input :avatar, :as => :file
-      = f.submit "Adicionar influenciador", :class => "btn"
+      = f.inputs do
+        = f.input :name, :hint => "Pode ser uma empresa, orgão público ou até uma pessoa"
+        = f.input :role
+        = f.input :email, :hint => "Ex: ouvidoria@meurio.org.br"
+        = f.input :twitter, :hint => "Ex: @meurio"
+        = f.input :facebook, :hint => "Ex: facebook.com/meurio"
+        = f.input :avatar, :as => :file
+      = f.actions do
+        = f.submit "Adicionar influenciador", :class => "btn"
