@@ -4,10 +4,10 @@ section.content
       h2 Novo Influenciador
       = f.inputs do
         = f.input :name, :hint => "Pode ser uma empresa, orgão público ou até uma pessoa"
-        = f.input :role
+        = f.input :role, :hint => "Ex: Prefeito, ONG, Prestadora de serviços de transporte"
         = f.input :email, :hint => "Ex: ouvidoria@meurio.org.br"
         = f.input :twitter, :hint => "Ex: @meurio"
-        = f.input :facebook, :hint => "Ex: facebook.com/meurio"
+        = f.input :facebook_url, :hint => "Ex: facebook.com/meurio"
         = f.input :avatar, :as => :file
       = f.actions do
         = f.submit "Adicionar influenciador", :class => "btn"
