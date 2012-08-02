@@ -5,8 +5,16 @@ ManifesteSe::Application.routes.draw do
   get '/auth/meurio',   as: :meurio_connect
 
   resources :sessions, :only => [:destroy]
-  resources :campaigns, :only => [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :campaigns do
+    member do
+      get :comments,    defaults: { section: "comments" },     as: :comments,      to: "campaigns#show"
+      get :map,         defaults: { section: "map" },          as: :map,           to: "campaigns#show"
+      get :answers,     defaults: { section: "answers" },      as: :answers,       to: "campaigns#show"
+      get :description, defaults: { section: "description" },  as: :description,   to: "campaigns#show"
+    end
+
     put :accept, :to => "campaigns#accept"
+
     resources :posts, :only => [:create, :index, :destroy]
     resources :pokes, :only => [:create] do
       collection do
@@ -14,7 +22,7 @@ ManifesteSe::Application.routes.draw do
       end
     end
   end
-  resources :influencers, :only => [:index, :create]
+  resources :influencers, :only => [:index, :create, :show]
   resources :users, only: [:show, :update, :index] do
     resources :campaigns, :only => [:index]
   end
