@@ -247,6 +247,8 @@ pt-BR:
         about_me: "Sobre mim"
         picture: "Imagem"
         file: "Imagem"
+      poke:
+        custom_message: "Você pode personalizar a sua mensagem"
 
   unauthorized:
     create:
