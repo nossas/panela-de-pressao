@@ -34,7 +34,7 @@ section.content.row
       .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
       .targets
         = t 'actions.channel'
-        = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
+        /= raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
       .buttons
         - unless @campaign.not_empty_influencer(:email).empty?
           .poke_btn.email
