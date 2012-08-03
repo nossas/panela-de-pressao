@@ -19,7 +19,7 @@ class Influencer < ActiveRecord::Base
   end
 
   def facebook_user
-    /facebook\.com\/(.+)/.match(self.facebook_url)[1]
+    /facebook\.com\/(.+)/.match(self.facebook_url)[1] if !self.facebook_url.blank?
   end
 end
 
