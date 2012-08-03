@@ -1,11 +1,11 @@
 - content_for :highlight do
   .row
-    .links= link_to "Novo influenciador", new_influencer_path, :class => "icon-contact"
+    .links= link_to "Novo alvo", new_influencer_path, :class => "icon-contact"
 
 section.content
   .row  
     .influencers_list
-      h2 Lista de Influenciadores
+      h2 Lista de Alvos
       table
         - Influencer.all.each do |influencer|
           tr
