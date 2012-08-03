@@ -4,6 +4,8 @@ section.content.row
   aside.left
     - if can?(:manage, @influencer)
       h3= t "user.show.create_and_edit"
+    - else
+      h3= @influencer.name
     .image
       = image_tag @influencer.avatar
     ul.details[class=(can?(:edit, @influencer) ? "logged" : "not_logged")]
@@ -22,8 +24,8 @@ section.content.row
           = f.label :twitter
           = f.text_field :twitter 
         li
-          = f.label :facebook
-          = f.text_field :facebook
+          = f.label :facebook_url
+          = f.text_field :facebook_url
         hr
         - if can?(:edit, @influencer)
           li.actions
