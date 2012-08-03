@@ -13,5 +13,6 @@ section.content
             td= influencer.name
             td= influencer.role
             td= influencer.email
-            td= "@#{influencer.twitter}" if !influencer.twitter.blank?
-            td= link_to "Facebook", influencer.facebook if !influencer.facebook.blank?
+            td
+              = link_to "", "http://twitter.com/#{influencer.twitter}", :class => "icon-twitter" if !influencer.twitter.blank?
+              = link_to "", influencer.facebook_url, :class => "icon-facebook" if !influencer.facebook_url.blank?
