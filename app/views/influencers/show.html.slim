@@ -11,20 +11,23 @@ section.content.row
         - if can?(:edit, @influencer)
           li
             = f.file_field :avatar
-
         li
           = f.label :name
           = f.text_field :name
-          /span.member_since
-            = t "user.show.member_since", since: l(@influencer.created_at, :format => :short)
-          hr
-
-          li
-            = f.label :email
-            = f.text_field :email
-          - if can?(:edit, @influencer)
-            li.actions
-              = f.submit class: "btn submit green", value: t("user.show.save")
+        hr
+        li
+          = f.label :email
+          = f.text_field :email
+        li
+          = f.label :twitter
+          = f.text_field :twitter 
+        li
+          = f.label :facebook
+          = f.text_field :facebook
+        hr
+        - if can?(:edit, @influencer)
+          li.actions
+            = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right
     .inside
