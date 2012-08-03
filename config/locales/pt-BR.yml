@@ -236,9 +236,9 @@ pt-BR:
         pokers_email: "Email para quem pressiona"
       influencer:
         name: "Nome"
-        role: "Cargo"
+        role: "Descrição"
         twitter: "Usuário no Twitter"
-        facebook: "Página no Facebook"
+        facebook_url: "Página no Facebook"
       organization:
         name: "Nome"
       user:
