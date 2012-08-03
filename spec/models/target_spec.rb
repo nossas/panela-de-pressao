@@ -39,7 +39,7 @@ describe Target do
 
   describe "#increase_pokes_by_facebook" do
     context "when there is facebook" do
-      before { subject.stub_chain(:influencer, :facebook).and_return "http://www.facebook.com/eduardopaesRJ" }
+      before { subject.stub_chain(:influencer, :facebook_id).and_return "1" }
       it "should update facebook pokes" do
         subject.should_receive(:update_attributes).with({:pokes_by_facebook => 1})
         subject.increase_pokes_by_facebook
@@ -47,7 +47,7 @@ describe Target do
     end
 
     context "when there isn't facebook" do
-      before { subject.stub_chain(:influencer, :facebook).and_return "" }
+      before { subject.stub_chain(:influencer, :facebook_id).and_return "" }
       it "should not update facebook pokes" do
         subject.should_not_receive(:update_attributes)
         subject.increase_pokes_by_facebook
