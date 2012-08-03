@@ -12,6 +12,6 @@ class Target < ActiveRecord::Base
   end
 
   def increase_pokes_by_facebook
-    self.update_attributes(:pokes_by_facebook => self.pokes_by_facebook.to_i + 1) if !self.influencer.facebook.blank?
+    self.update_attributes(:pokes_by_facebook => self.pokes_by_facebook.to_i + 1) if !self.influencer.facebook_id.blank?
   end
 end

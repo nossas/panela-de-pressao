@@ -40,7 +40,7 @@ class Poke < ActiveRecord::Base
     end
     campaign.targets.each do |t| 
       begin
-        Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.custom_message, {:link => campaign_url}, t.influencer.facebook)
+        Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.custom_message, {:link => campaign_url}, t.influencer.facebook_id)
         t.increase_pokes_by_facebook
       rescue Exception => e
         puts e.message
