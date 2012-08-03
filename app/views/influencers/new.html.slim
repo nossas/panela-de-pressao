@@ -1,7 +1,7 @@
 section.content
   .row  
     = semantic_form_for @influencer do |f|
-      h2 Novo Influenciador
+      h2 Novo Alvo
       = f.inputs do
         = f.input :name, :hint => "Pode ser uma empresa, orgão público ou até uma pessoa"
         = f.input :role, :hint => "Ex: Prefeito, ONG, Prestadora de serviços de transporte"
@@ -10,4 +10,4 @@ section.content
         = f.input :facebook_url, :hint => "Ex: facebook.com/meurio"
         = f.input :avatar, :as => :file
       = f.actions do
-        = f.submit "Adicionar influenciador", :class => "btn"
+        = f.submit "Adicionar alvo", :class => "btn"
