@@ -5,6 +5,7 @@ User.blueprint do
   name { "Test User" }
   email { "foo#{sn}@bar.com" }
   picture { "pic.png" }
+  admin { false } 
 end
 
 Authorization.blueprint do

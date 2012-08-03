@@ -2,28 +2,29 @@
   = render partial: 'partials/highlight_home'
 section.content.row
   aside.left
-    - if is_current_user?(@influencer)
+    - if can?(:manage, @influencer)
       h3= t "user.show.create_and_edit"
     .image
       = image_tag @influencer.avatar
-    ul.details[class=(is_current_user?(@influencer) ? "logged" : "not_logged")]
+    ul.details[class=(can?(:edit, @influencer) ? "logged" : "not_logged")]
       = form_for @influencer, multipart: true do |f|
-        li
-          = f.file_field :avatar
+        - if can?(:edit, @influencer)
+          li
+            = f.file_field :avatar
 
         li
           = f.label :name
           = f.text_field :name
-          span.member_since
+          /span.member_since
             = t "user.show.member_since", since: l(@influencer.created_at, :format => :short)
           hr
 
           li
             = f.label :email
             = f.text_field :email
-
-          li.actions
-            = f.submit class: "btn submit green", value: t("user.show.save")
+          - if can?(:edit, @influencer)
+            li.actions
+              = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right
     .inside

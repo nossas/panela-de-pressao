@@ -22,7 +22,8 @@ ManifesteSe::Application.routes.draw do
       end
     end
   end
-  resources :influencers, :only => [:index, :create, :show, :new]
+  resources :influencers, except: [:destroy]
+
   resources :users, only: [:show, :update, :index] do
     resources :campaigns, :only => [:index]
   end
