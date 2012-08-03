@@ -632,15 +632,18 @@ body
           +box-shadow(lighten($yellow, 30%) 1px 0 1px inset)
           +border-radius(0 10px 10px 0)
           .pokes_counter
-            color: $green
+            color: darken(gray, 20%) 
             text-align: center
             padding: .5em
+            background: none !important
+            border-bottom: 1px solid lighten($yellow, 18%)
+            margin-bottom: 2em
             span
               display: block
               font-size: 3em
               text-align: center
               font-family: "Londrina Solid"
-          .pokes_counter, .email_text, .facebook_text, .twitter_text, #congrats
+          .email_text, .facebook_text, .twitter_text, #congrats
             background: white
             line-height: normal
             margin-bottom: .5em
