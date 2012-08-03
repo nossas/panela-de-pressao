@@ -4,6 +4,8 @@ section.content.row
   aside.left
     - if is_current_user?(@influencer)
       h3= t "user.show.create_and_edit"
+    - else
+      h3= @influencer.name
     .image
       = image_tag @influencer.avatar
     ul.details[class=(is_current_user?(@influencer) ? "logged" : "not_logged")]

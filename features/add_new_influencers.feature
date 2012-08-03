@@ -9,8 +9,8 @@ Feature: Add new influencers
     And I fill "Descrição" with "Prefeito"
     And I attach an image to "Avatar"
     And I fill "Email" with "eduardopaes@meurio.org.br"
-    And I fill "Twitter" with "eduardopaes_"
-    And I fill "Facebook" with "eduardopaesRJ"
+    And I fill "Twitter" with "@eduardopaes_"
+    And I fill "Facebook" with "http://www.facebook.com/eduardopaesRJ"
     When I press "Adicionar influenciador"
     Then I should see "Eduardo Paes"
 
