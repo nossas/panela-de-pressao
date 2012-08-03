@@ -8,7 +8,7 @@ class Influencer < ActiveRecord::Base
   validates :email, :format => {:with => /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/}, :allow_blank => true
   default_scope order("name")
   mount_uploader :avatar, AvatarUploader
-  before_save { self.facebook_id = Koala::Facebook::API.new.get_object(self.facebook_user)["id"] }
+  before_save { self.facebook_id = Koala::Facebook::API.new.get_object(self.facebook_user)["id"] if self.facebook_user }
 
   def to_s
     "#{self.name}, #{self.role}"
