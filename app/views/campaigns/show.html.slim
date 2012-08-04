@@ -66,8 +66,8 @@ section.content.row
                 .name= link_to influencer.name, influencer_path(influencer)
                 .role= influencer.role
               .social
-                = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook"
-                = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter"
+                = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
+                = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
                 = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-email"
       .supporters
         h2 Quem cozinha
