@@ -238,7 +238,7 @@ pt-BR:
         name: "Nome"
         role: "Descrição"
         twitter: "Usuário no Twitter"
-        facebook_url: "Link para página no Facebook"
+        facebook_url: "Página no Facebook"
       organization:
         name: "Nome"
       user:
