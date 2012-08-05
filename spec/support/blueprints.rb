@@ -50,5 +50,5 @@ end
 Poke.blueprint do
   campaign { Campaign.make! }
   user { User.make! }
-  kind { "facebook" }
+  kind { "email" }
 end
