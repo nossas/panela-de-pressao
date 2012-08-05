@@ -31,27 +31,39 @@ section.content.row
 
   aside.right
     .poke_buttons#poke_buttons
-      .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
-      .targets
-        = t 'actions.channel'
-        /= raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
-      .buttons
-        - unless @campaign.not_empty_influencer(:email).empty?
-          .poke_btn.email
-            span= @campaign.pokes_by("email").size
-        - unless @campaign.not_empty_influencer(:twitter).empty?
-          .poke_btn.twitter
-            span= @campaign.pokes_by("twitter").size
-        - unless @campaign.not_empty_influencer(:facebook).empty?
-          .poke_btn.facebook
-            span= @campaign.pokes_by("facebook").size
-        = render :partial => "poke_form", :locals => { :poke =>  "email" }
-        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
-        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
+      .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size, :to => raw(@campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence))
+      hr
+      = form_for [@campaign, @poke] do |f|
+        = f.hidden_field :kind, :value => "email"
+        = f.submit "Pressionar!", :class => "btn"
+      - if current_user && current_user.has_poked(@campaign)
+        .social_pokes
+          p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "facebook"
+            = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "twitter"
+            = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
+      - else
+        hr
+      /
+        .buttons
+          - unless @campaign.not_empty_influencer(:email).empty?
+            .poke_btn.email
+              span= @campaign.pokes_by("email").size
+          - unless @campaign.not_empty_influencer(:twitter).empty?
+            .poke_btn.twitter
+              span= @campaign.pokes_by("twitter").size
+          - unless @campaign.not_empty_influencer(:facebook).empty?
+            .poke_btn.facebook
+              span= @campaign.pokes_by("facebook").size
+          = render :partial => "poke_form", :locals => { :poke =>  "email" }
+          = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
+          = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
       - if flash[:poke_create]
         #congrats= raw flash[:poke_create]
-      .privacy
-        = t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
+      .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
     .content
       .targets
         .titles
@@ -80,3 +92,13 @@ section.content.row
           ul
             - @campaign.pokers.each do |poker|
               li= link_to image_tag(poker.pic(type: :square)), user_path(poker), title: poker.name
+
+- if flash[:facebook_poke_notice]
+  #facebook_poke_notice
+    h1= flash[:facebook_poke_notice]
+    p Continue atento à campanha e pressione cada vez mais!
+
+- if flash[:twitter_poke_notice]
+  #twitter_poke_notice
+    h1= flash[:twitter_poke_notice]
+    p Continue atento à campanha e pressione cada vez mais!

@@ -67,7 +67,7 @@ pt-BR:
           targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
     show:
       your_privacy: "sua privacidade"
-      privacy_html: "O Panela protege %{link}"
+      privacy_html: "O Panela protege %{link}."
       targets_html: "Alvos da campanha <span>(%{count})</span>"
       map:
         header: "Sobre o mapa"

@@ -54,7 +54,11 @@ var App = window.App = {
       })();
 
       $("#login").hide();
+      $("#facebook_poke_notice").hide();
+      $("#twitter_poke_notice").hide();
 
+      if($("#facebook_poke_notice").length){ $.facebox({ div: '#facebook_poke_notice' }).reveal(); }
+      if($("#twitter_poke_notice").length){ $.facebox({ div: '#twitter_poke_notice' }).reveal(); }
     },
 
     showLoginBox: function(){

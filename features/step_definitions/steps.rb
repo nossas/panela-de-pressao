@@ -139,6 +139,10 @@ Then /^I should see "([^"]*)"$/ do |arg1|
     page.should have_css('input[name="user[email]"]')
   when "user[about_me]"
     page.should have_css('textarea[name="user[about_me]"]')
+  when "Pressionar pelo Facebook"
+    page.should have_css('input[type="submit"].facebook_poke')
+  when "Pressionar pelo Twitter"
+    page.should have_css('input[type="submit"].twitter_poke')
   else
     page.should have_content(arg1)
   end
