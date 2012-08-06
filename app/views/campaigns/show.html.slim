@@ -35,18 +35,16 @@ section.content.row
       hr
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "email"
-        = f.submit "Pressionar!", :class => "btn"
+        = f.submit "Pressionar!", :class => "btn email_poke"
+      hr
       - if current_user && current_user.has_poked(@campaign)
-        .social_pokes
-          p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
-          = form_for [@campaign, @poke] do |f|
-            = f.hidden_field :kind, :value => "facebook"
-            = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
-          = form_for [@campaign, @poke] do |f|
-            = f.hidden_field :kind, :value => "twitter"
-            = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
-      - else
-        hr
+        p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
+        = form_for [@campaign, @poke] do |f|
+          = f.hidden_field :kind, :value => "facebook"
+          = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
+        = form_for [@campaign, @poke] do |f|
+          = f.hidden_field :kind, :value => "twitter"
+          = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
       /
         .buttons
           - unless @campaign.not_empty_influencer(:email).empty?
