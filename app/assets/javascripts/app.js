@@ -64,11 +64,11 @@ var App = window.App = {
       if($("#twitter_poke_notice").length){ $.facebox({ div: '#twitter_poke_notice' }).reveal(); }
 
       $('a[rel*=facebox]').facebox()
+      $.facebox.settings.closeImage = '/assets/closelabel.png';
+      $.facebox.settings.loadingImage = '/assets/loading.gif';
     },
 
     showLoginBox: function(){
-      $.facebox.settings.closeImage = '/assets/closelabel.png';
-      $.facebox.settings.loadingImage = '/assets/loading.gif';
       $.facebox({ div: '#login' });
     },
 
