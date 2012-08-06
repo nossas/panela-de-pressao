@@ -33,7 +33,7 @@ section.content.row
     .poke_buttons#poke_buttons
       .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size, :to => raw(@campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence))
       hr
-      p Participe dessa panela você também:
+      p Participe dessa campanha você também:
       = form_for [@campaign, @poke] do |f|
         = f.hidden_field :kind, :value => "email"
         = f.submit "Pressionar!", :class => "btn email_poke"
