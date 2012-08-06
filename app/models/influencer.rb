@@ -34,7 +34,11 @@ class Influencer < ActiveRecord::Base
 
   private
     def setup_facebook_id
-      self.facebook_id = Koala::Facebook::API.new.get_object(self.facebook_user)["id"] if self.facebook_user
+      if self.facebook_url.include?("pages")
+        self.facebook_id = /facebook\.com\/pages\/.+\/([0-9]+)/.match(self.facebook_url)[1]
+      else
+        self.facebook_id = Koala::Facebook::API.new.get_object(self.facebook_user)["id"] if self.facebook_user
+      end
     end
 end
 
