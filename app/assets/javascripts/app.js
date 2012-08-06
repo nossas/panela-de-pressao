@@ -53,6 +53,9 @@ var App = window.App = {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
+      $.facebox.settings.closeImage = '/assets/closelabel.png';
+      $.facebox.settings.loadingImage = '/assets/loading.gif';
+
       $("#login").hide();
       $("#facebook_poke_notice").hide();
       $("#twitter_poke_notice").hide();
@@ -64,8 +67,6 @@ var App = window.App = {
       if($("#twitter_poke_notice").length){ $.facebox({ div: '#twitter_poke_notice' }).reveal(); }
 
       $('a[rel*=facebox]').facebox()
-      $.facebox.settings.closeImage = '/assets/closelabel.png';
-      $.facebox.settings.loadingImage = '/assets/loading.gif';
     },
 
     showLoginBox: function(){
