@@ -26,7 +26,7 @@ Feature: Add new influencers
   @omniauth_test @javascript
   Scenario: when I'm not logged in
     Given I'm in the influencers page
-    And I click "Novo alvo"
+    And I click "Adicionar alvo"
     And I click "Entrar via Facebook"
     And I fill "Nome" with "Eduardo Paes"
     And I fill "Descrição" with "Prefeito"
