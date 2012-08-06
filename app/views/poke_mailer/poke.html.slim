@@ -1,3 +1,3 @@
-p= raw simple_format(@poke.custom_message)
+p= raw simple_format(@poke.campaign.email_text)
 p= link_to @poke.campaign.name, campaign_url(@poke.campaign)
 p Atenciosamente #{@poke.user.name}
