@@ -636,6 +636,11 @@ body
           line-height: normal
           +box-shadow(lighten(#ffde5d, 30%) 1px 0 1px inset)
           +border-radius(0 10px 10px 0)
+          form
+            a
+              display: block
+            a[href="#facebook_poke_message"]
+              margin-bottom: 1em
           hr
             border: none
             border-top: 1px solid darken(#ffde5d, 25%)
@@ -657,13 +662,11 @@ body
             border: none
           .email_poke
             font-size: 2em
-            padding: .5em 3em
+            padding: .5em 1em
           .facebook_poke
             background: #0060c6
           .twitter_poke
             background: #82bbce
-          .facebook_poke, .twitter_poke
-            margin-bottom: 1em
         .targets, .pokers
           h2
             span
