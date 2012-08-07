@@ -1,3 +1,5 @@
+- content_for :title do
+  = @influencer.name
 - content_for :highlight do
   = render partial: 'partials/highlight_home'
 section.content.row
@@ -7,29 +9,29 @@ section.content.row
     - else
       h3= @influencer.name
     .image
-      = image_tag @influencer.avatar
-    ul.details[class=(can?(:edit, @influencer) ? "logged" : "not_logged")]
-      = form_for @influencer, multipart: true do |f|
-        - if can?(:edit, @influencer)
-          li
-            = f.file_field :avatar
-        li
-          = f.label :name
-          = f.text_field :name
-        hr
-        li
-          = f.label :email
-          = f.text_field :email
-        li
-          = f.label :twitter
-          = f.text_field :twitter 
-        li
-          = f.label :facebook_url
-          = f.text_field :facebook_url
-        hr
-        - if can?(:edit, @influencer)
-          li.actions
-            = f.submit class: "btn submit green", value: t("user.show.save")
+      = image_tag @influencer.avatar.url
+    = form_for @influencer, multipart: true, html: { class: (can?(:edit, @influencer) ? "" : "not_logged") } do |f|
+      - if can?(:edit, @influencer)
+        p
+          = f.file_field :avatar
+      p
+        = f.label :name
+        = f.text_field :name, disabled: (can?(:edit, @influencer) ? "" : "disabled")
+      hr
+      p
+        = f.label :email
+        = f.text_field :email, disabled: (can?(:edit, @influencer) ? "" : "disabled")
+      p
+        = f.label :twitter
+        = f.text_field :twitter , disabled: (can?(:edit, @influencer) ? "" : "disabled")
+      p
+        = f.label :facebook_url
+        = f.text_field :facebook_url, disabled: (can?(:edit, @influencer) ? "" : "disabled")
+
+      hr
+      - if can?(:edit, @influencer)
+        p.actions
+          = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right
     .inside
