@@ -7,7 +7,8 @@
         .answer_created_at= l answer.created_at, :format => :short
         .answer_text= simple_format answer.text
   .warning Se você for um dos alvos da campanha, deixe a sua resposta através do email: #{mail_to "resposta@paneladepressao.org.br", "resposta@paneladepressao.org.br"}
-  = form_for [@campaign, @answer] do |form|
-    = form.label :text
-    = form.text_area :text
-    = form.submit "Postar reposta", :class => "btn"
+  - if can? :update, @campaign
+    = form_for [@campaign, @answer] do |form|
+      = form.label :text
+      = form.text_area :text
+      = form.submit "Postar reposta", :class => "btn"
