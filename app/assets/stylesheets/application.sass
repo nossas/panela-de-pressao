@@ -158,9 +158,8 @@ p.inline-hints, p.inline-errors
   border: 1px solid $green
   letter-spacing: 1px
   display: inline-block
-  position: relative
   text-align: center
-  //+box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 2px 2px)
+  margin: 0
   +border-radius(5px)
   +text-shadow(0 1px 1px darken($green, 15%))
   +background-image(linear-gradient(lighten($green, 15%), $green))  
@@ -183,9 +182,6 @@ p.inline-hints, p.inline-errors
     cursor: pointer
     text-decoration: none
     opacity: .9
-  &:active
-    top: 1px
-    //+box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 1px 2px)   
 
 article
   &.right
@@ -194,6 +190,7 @@ article
     min-height: 400px
   &.left
     background: white
+    padding-bottom: 2em
  
 aside
   &.right
@@ -624,6 +621,24 @@ body
             color: darken($green, 5%)
             &:hover
               color: $green
+        .campaign_answer
+          border-bottom: dashed 1px $orange
+          margin-bottom: 1em
+          padding-bottom: 1em
+          .answer_created_at
+            color: $orange
+            font-size: .8em
+          .answer_text
+            color: gray
+            p
+              margin: 0
+        form.new_answer
+          label
+            display: none
+          textarea
+            width: 100%
+            +box-sizing("border-box")
+            height: 200px
       aside.right
         .poke_buttons
           color: darken(gray, 10%)

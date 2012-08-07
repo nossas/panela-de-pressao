@@ -9,6 +9,7 @@ class Campaign < ActiveRecord::Base
   has_many :influencers, :through => :targets
   has_many :pokes
   has_many :posts
+  has_many :answers
   before_save { CampaignMailer.campaign_accepted(self).deliver if accepted_at_changed? && persisted? }
   after_create { CampaignMailer.campaign_awaiting_moderation(self).deliver }
   after_create { CampaignMailer.we_received_your_campaign(self).deliver }
