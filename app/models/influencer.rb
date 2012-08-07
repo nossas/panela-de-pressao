@@ -1,5 +1,5 @@
 class Influencer < ActiveRecord::Base
-  attr_accessible :email, :facebook_url, :facebook_id, :name, :twitter, :role, :avatar, :avatar_cache
+  attr_accessible :email, :facebook_url, :facebook_id, :name, :twitter, :role, :avatar, :avatar_cache, :about
 
   has_many :targets
   has_many :campaigns, :through => :targets
@@ -34,6 +34,7 @@ class Influencer < ActiveRecord::Base
 
   private
     def setup_facebook_id
+      return unless self.facebook_url?
       if self.facebook_url.include?("pages")
         self.facebook_id = /facebook\.com\/pages\/.+\/([0-9]+)/.match(self.facebook_url)[1]
       else
