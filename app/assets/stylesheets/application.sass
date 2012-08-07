@@ -497,6 +497,11 @@ section.footer
 body
   &.campaigns
     &#index
+      article.left
+        +grid(9)
+      aside.right
+        +grid(3)
+        +last
       .highlight
         padding: 1.5em 0
         .about
@@ -559,6 +564,7 @@ body
               margin-right: .5em
           .poke_created_at
             color: $orange
+            font-size: .8em
     &#show
       article.left
         h1
