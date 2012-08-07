@@ -9,7 +9,7 @@ Feature: post an answer of a target
     And there is a campaign called "A Vida das Ariranhas"
     And I'm in this campaign page
     And I click "Respostas"
-    And I fill "Resposta do alvo" with "Viva la vida!"
+    And I fill "Nova resposta" with "Viva la vida!"
     When I press "Postar reposta"
     Then I should be in the answers page of the campaign
     And I should see "Viva la vida!"
