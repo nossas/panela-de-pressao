@@ -164,6 +164,7 @@ p.inline-hints, p.inline-errors
   text-align: center
   +border-radius(5px)
   +background-image(linear-gradient(lighten($green, 15%), $green))  
+  +transition(.1s)
   text-shadow: 1px 1px 2px darken(gray, 25%)
   &.gray
     +background-image(linear-gradient(lighten(gray, 45%), lighten(gray, 30%)))
@@ -177,18 +178,18 @@ p.inline-hints, p.inline-errors
     &:hover
       color: inherit
   &:hover 
-    color: white
+    color: white 
     cursor: pointer
     text-decoration: none
-    opacity: .9
+    text-shadow: none 
   &:active
     top: 1px
 
 article
   &.right
     background: lighten(gray, 48%)
-    border-left: 1px solid lighten(gray, 35%)
     min-height: 400px
+    +box-shadow(inset 1px 0 0 lighten(gray, 35%))
   &.left
     background: white
  
@@ -825,7 +826,7 @@ body
   &.users, &.influencers
     &#show
       article.right
-        +grid(8)
+        +grid(9)
         +last
       aside.left
         +grid(3)

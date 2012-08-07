@@ -16,17 +16,20 @@ section.content.row
           = f.file_field :avatar
       p
         = f.label :name
-        = f.text_field :name, disabled: (can?(:edit, @influencer) ? "" : "disabled")
+        = f.text_field :name, disabled: :disabled unless can?(:edit, @influencer)
       hr
-      p
-        = f.label :email
-        = f.text_field :email, disabled: (can?(:edit, @influencer) ? "" : "disabled")
-      p
-        = f.label :twitter
-        = f.text_field :twitter , disabled: (can?(:edit, @influencer) ? "" : "disabled")
-      p
-        = f.label :facebook_url
-        = f.text_field :facebook_url, disabled: (can?(:edit, @influencer) ? "" : "disabled")
+      - if @influencer.email?
+        p
+          = f.label :email
+          = f.text_field :email, disabled: (can?(:edit, @influencer) ? "" : "disabled")
+      - if @influencer.twitter?
+        p
+          = f.label :twitter
+          = f.text_field :twitter , disabled: (can?(:edit, @influencer) ? "" : "disabled")
+      - if @influencer.facebook_url?
+        p
+          = f.label :facebook_url
+          = f.text_field :facebook_url, disabled: (can?(:edit, @influencer) ? "" : "disabled")
 
       hr
       - if can?(:edit, @influencer)
