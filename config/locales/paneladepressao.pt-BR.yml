@@ -4,7 +4,7 @@ pt-BR:
   link:
     click_here: "clique aqui"
   actions:
-    create: "Crie sua campanha!"
+    create: "Crie sua campanha agora >"
     edit: "Editar esta campanha"
     delete: "Excluir esta campanha"
     back_home: "Voltar à home"
