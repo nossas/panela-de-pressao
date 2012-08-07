@@ -13,3 +13,22 @@ Feature: post an answer of a target
     When I press "Postar reposta"
     Then I should be in the answers page of the campaign
     And I should see "Viva la vida!"
+
+  @omniauth_test
+  Scenario: when I'm the campaign's creator
+    Given I'm logged in
+    And I own a campaign called "A Vida das Ariranhas"
+    And I'm in this campaign page
+    And I click "Respostas"
+    And I fill "Nova resposta" with "Viva la vida!"
+    When I press "Postar reposta"
+    Then I should be in the answers page of the campaign
+    And I should see "Viva la vida!"
+
+  @omniauth_test
+  Scenario: when I'm not the campaign's creator
+    Given I'm logged in
+    And there is a campaign called "A Vida das Ariranhas"
+    And I'm in this campaign page
+    When I click "Respostas"
+    Then I should not see "the answer form"
