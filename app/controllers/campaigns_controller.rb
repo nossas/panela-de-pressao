@@ -4,6 +4,7 @@ class CampaignsController < InheritedResources::Base
   skip_load_and_authorize_resource :only => [:index, :create]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
+  before_filter :only => [:show] { @answer = Answer.new }
   before_filter :only => [:index] { @highlight_campaign = Campaign.accepted.first }
 
   def create

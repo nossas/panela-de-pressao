@@ -21,6 +21,7 @@ ManifesteSe::Application.routes.draw do
         get :create_from_session, :to => "pokes#create"
       end
     end
+    resources :answers, :only => [:create]
   end
   resources :influencers, except: [:destroy]
 

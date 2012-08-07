@@ -19,7 +19,9 @@ section.content.row
     .tabs#tabs
       = link_to t('campaign.show.tabs.campaign'), description_campaign_path(@campaign), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
       = link_to t('campaign.show.tabs.map'),      map_campaign_path(@campaign), :class => "#{params[:section] == "map" ? 'selected' : ''}" if @campaign.map_embed?
-      = link_to t('campaign.show.tabs.answers'),  answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}" do
+        = t('campaign.show.tabs.answers')
+        span= @campaign.answers.count
       = link_to(comments_campaign_path(@campaign), :class => "#{params[:section] == "comments" ? 'selected comments' : 'comments'}") do
         = t('campaign.show.tabs.comments') 
         span

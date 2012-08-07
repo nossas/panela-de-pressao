@@ -249,6 +249,8 @@ pt-BR:
         file: "Imagem"
       poke:
         custom_message: "Você pode personalizar a sua mensagem"
+      answer:
+        text: "Nova resposta"
 
   unauthorized:
     create:
