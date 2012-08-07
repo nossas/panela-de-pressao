@@ -53,7 +53,7 @@ html
                   li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
                   li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
-              = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}"
+              | Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}
         .clear
     section.header
       .row
@@ -85,4 +85,4 @@ html
         = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
         |  ou 
         = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
-  = javascript_include_tag "application"
+    = javascript_include_tag "application"
