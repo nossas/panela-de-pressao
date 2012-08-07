@@ -40,6 +40,11 @@ group :development do
   gem "taps"
 end
 
+group :production do
+  gem 'dalli'
+end
+
+
 # We need development here to make rake spec work
 group :test, :development do
   gem 'rake'
