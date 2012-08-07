@@ -81,6 +81,7 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     daemons (1.1.8)
+    dalli (1.1.2)
     dalli (2.1.0)
     database_cleaner (0.8.0)
     diff-lcs (1.1.3)

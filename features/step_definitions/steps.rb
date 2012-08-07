@@ -196,6 +196,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css(".poke_btn.facebook")
   when "user[email]"
     page.should_not have_css('input[name="user[email]"]')
+  when "the answer form"
+    page.should_not have_css("form.new_answer")
   else
     page.should_not have_content(arg1)
   end
@@ -209,6 +211,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== campaign_path(@campaign)
   when "the new campaign page"
     page.current_path.should be_== new_campaign_path
+  when "the answers page of the campaign"
+    page.current_path.should be_== answers_campaign_path(@campaign)
   else
     raise "I don't know '#{arg1}'"
   end
