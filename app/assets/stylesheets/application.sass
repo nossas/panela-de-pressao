@@ -64,7 +64,7 @@ img
 
 hr
   border-top: none
-  border-bottom: 2px dotted lighten($yellow, 10%)
+  border-bottom: 1px dashed $orange
 
 body
   font-family: "Open Sans", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
@@ -160,8 +160,8 @@ p.inline-hints, p.inline-errors
   border: 1px solid $green
   letter-spacing: 1px
   display: inline-block
-  position: relative
   text-align: center
+  margin: 0
   +border-radius(5px)
   +background-image(linear-gradient(lighten($green, 15%), $green))  
   +transition(.1s)
@@ -192,6 +192,7 @@ article
     +box-shadow(inset 1px 0 0 lighten(gray, 35%))
   &.left
     background: white
+    padding-bottom: 2em
  
 aside
   &.right
@@ -404,6 +405,15 @@ section.footer
       font-size: 1.5em
       line-height: 35px
 
+.warning
+  background: lighten($orange, 25%)
+  padding: .5em
+  text-align: center
+  line-height: normal
+  margin-bottom: 1em
+  border: 2px dashed $orange
+  color: darken($orange, 40%)
+
 .category
   color: $orange
   font-size: .8em
@@ -611,13 +621,12 @@ body
                 background: none
             &:hover
               background: lighten($green, 5%)
-            &.comments
-              span
-                background: darken($green, 15%)
-                padding: .1em .2em
-                margin: 0 4px
-                +border-radius(8px)
-                color: white
+            span
+              background: darken($green, 15%)
+              padding: 1px 7px
+              margin: 0 4px
+              +border-radius(8px)
+              color: white
         .image
           img
             border: 2px solid lighten(gray, 35%)
@@ -640,6 +649,31 @@ body
             color: darken($green, 5%)
             &:hover
               color: $green
+        .influencers_response
+          small
+            display: block
+            color: gray
+            font-style: italic
+            text-align: center
+            margin-bottom: 1em
+          .campaign_answer
+            border-bottom: dashed 1px $orange
+            margin-bottom: 1em
+            padding-bottom: 1em
+            .answer_created_at
+              color: $orange
+              font-size: .8em
+            .answer_text
+              color: gray
+              p
+                margin: 0
+          form.new_answer
+            label
+              display: block
+            textarea
+              width: 100%
+              +box-sizing("border-box")
+              height: 200px
       aside.right
         .poke_buttons
           color: darken(gray, 10%)

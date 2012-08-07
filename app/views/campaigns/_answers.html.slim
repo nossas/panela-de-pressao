@@ -1,7 +1,14 @@
 .influencers_response
-  h2 Resposta pública dos Alvos de Campanha
-  p 
-    | Ainda não houve resposta dos alvos da campanha. 
-    strong Cobre novamente deles:
-  .poke= link_to "Pressionar os alvos", "#poke_buttons", class: :btn
-  .contact Você é um dos nossos alvos? Dê sua resposta atrás de #{mail_to "resposta@paneladepressao.org.br", "resposta@paneladepressao.org.br"}
+  - if @campaign.answers.empty?
+    small Ainda não houve resposta dos alvos da campanha...
+  - else
+    - @campaign.answers.each do |answer|
+      .campaign_answer
+        .answer_created_at= l answer.created_at, :format => :short
+        .answer_text= simple_format answer.text
+  .warning Se você for um dos alvos da campanha, deixe a sua resposta através do email: #{mail_to "resposta@paneladepressao.org.br", "resposta@paneladepressao.org.br"}
+  - if can? :update, @campaign
+    = form_for [@campaign, @answer] do |form|
+      = form.label :text
+      = form.text_area :text
+      = form.submit "Postar reposta", :class => "btn"
