@@ -1,3 +1,5 @@
+- content_for :title do
+  = @user.name
 - content_for :highlight do
   = render partial: 'partials/highlight_home'
 section.content.row
@@ -6,31 +8,29 @@ section.content.row
       h3= t "user.show.create_and_edit"
     .image
       = image_tag @user.pic
-    ul.details[class=(is_current_user?(@user) ? "logged" : "not_logged")]
-      = form_for @user, multipart: true do |f|
-        - if is_current_user?(@user)
-          li
-            = f.file_field :file 
+    = form_for @user, multipart: true, html: { class: (is_current_user?(@user) ? "logged" : "not_logged") } do |f|
+      - if is_current_user?(@user)
+        p= f.file_field :file 
 
-        li
-          = f.label :name
-          = f.text_field :name, disabled: ("disabled" unless is_current_user?(@user))
-          span.member_since
-            = t "user.show.member_since", since: l(@user.created_at, :format => :short)
-          hr
+      p
+        = f.label :name
+        = f.text_field :name, disabled: ("disabled" unless is_current_user?(@user))
+        span.member_since
+          = t "user.show.member_since", since: l(@user.created_at, :format => :short)
+        hr
 
-        - if is_current_user?(@user)
-          li
-            = f.label :email
-            = f.text_field :email
-        li
-          = f.label :about_me if is_current_user?(@user)
-          = f.text_area :about_me, disabled: ("disabled" unless is_current_user?(@user))
+      - if is_current_user?(@user)
+        p
+          = f.label :email
+          = f.text_field :email
+      p
+        = f.label :about_me if is_current_user?(@user)
+        = f.text_area :about_me, disabled: ("disabled" unless is_current_user?(@user))
 
 
-        - if is_current_user?(@user)
-          li.actions
-            = f.submit class: "btn submit green", value: t("user.show.save")
+      - if is_current_user?(@user)
+        p.actions
+          = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right
     .inside
