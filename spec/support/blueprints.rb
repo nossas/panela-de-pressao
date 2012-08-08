@@ -45,6 +45,7 @@ Influencer.blueprint do
   twitter { "@eduardopaes_" }
   facebook_url { "http://www.facebook.com/eduardopaesRJ" }
   role { "Prefeito" }
+  about { "Ele é candidato a prefeitura." }
 end
 
 Poke.blueprint do
