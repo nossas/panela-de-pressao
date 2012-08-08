@@ -24,6 +24,12 @@ class CampaignsController < InheritedResources::Base
     show(:notice => "Está valendo, campanha no ar!")
   end
 
+  def finish
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.update_attributes :finished_at => Time.now
+    redirect_to @campaign
+  end
+
   def index
     if params[:user_id]
       render :user_index

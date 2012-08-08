@@ -14,6 +14,7 @@ ManifesteSe::Application.routes.draw do
     end
 
     put :accept, :to => "campaigns#accept"
+    put :finish, :to => "campaigns#finish"
 
     resources :posts, :only => [:create, :index, :destroy]
     resources :pokes, :only => [:create] do
