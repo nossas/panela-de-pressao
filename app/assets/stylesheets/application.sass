@@ -24,7 +24,7 @@ section
 .row
   +grid-row
 
-.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at
   +grid(12)
 
 article.right
@@ -579,6 +579,18 @@ body
             color: $orange
             font-size: .8em
     &#show
+      .finished_at
+        span
+          background: lighten($green, 10%)
+          color: darken($green, 10%)
+          border: 1px dashed darken($green, 10%)
+          text-align: center
+          padding: .5em
+          font-size: 1.5em
+          display: block
+          margin-bottom: 1em
+          strong
+            color: white
       article.left
         h1
           line-height: normal

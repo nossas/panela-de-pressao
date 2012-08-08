@@ -62,3 +62,6 @@
 .icon-contact:before {
 	content: "\2d";
 }
+.icon-trophy:before {
+	content: "\2e";
+}

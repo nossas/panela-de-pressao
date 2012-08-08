@@ -11,6 +11,12 @@
   = render partial: "partials/highlight_home"
 
 section.content.row
+  - if @campaign.finished_at
+    .finished_at 
+      span 
+        strong Vitória!
+        |  Esta campanha foi encerrada há 
+        = distance_of_time_in_words_to_now(@campaign.finished_at)
   article.left
     .category
       = @campaign.category.name
@@ -31,25 +37,26 @@ section.content.row
   aside.right
     .poke_buttons#poke_buttons
       .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size, :to => raw(@campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence))
-      hr
-      - if current_user.nil? || !current_user.has_poked(@campaign)
-        p Participe dessa campanha você também:
-        = form_for [@campaign, @poke] do |f|
-          = f.hidden_field :kind, :value => "email"
-          = f.submit "Pressionar por Email", :class => "btn email_poke"
-          = link_to "Ver mensagem", "#email_poke_message", :rel => "facebox"
-      - else
-        p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
-        = form_for [@campaign, @poke] do |f|
-          = f.hidden_field :kind, :value => "facebook"
-          = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
-          = link_to "Ver mensagem", "#facebook_poke_message", :rel => "facebox"
-        = form_for [@campaign, @poke] do |f|
-          = f.hidden_field :kind, :value => "twitter"
-          = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
-          = link_to "Ver mensagem", "#twitter_poke_message", :rel => "facebox"
-      hr
-      .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
+      - if @campaign.finished_at.nil?
+        hr
+        - if current_user.nil? || !current_user.has_poked(@campaign)
+          p Participe dessa campanha você também:
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "email"
+            = f.submit "Pressionar por Email", :class => "btn email_poke"
+            = link_to "Ver mensagem", "#email_poke_message", :rel => "facebox"
+        - else
+          p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "facebook"
+            = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
+            = link_to "Ver mensagem", "#facebook_poke_message", :rel => "facebox"
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "twitter"
+            = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
+            = link_to "Ver mensagem", "#twitter_poke_message", :rel => "facebox"
+        hr
+        .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
     .content
       .targets
         .titles

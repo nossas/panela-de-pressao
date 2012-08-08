@@ -14,6 +14,7 @@ pt-BR:
     cancel: "Cancelar"
     accept: "Aceitar campanha"
     export: "Exportar pressionadores"
+    finish: "Encerrar campanha"
   emails:
     trusteeship: "curadoria@paneladepressao.org.br"
     contact: "contato@paneladepressao.org.br"

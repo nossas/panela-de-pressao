@@ -198,6 +198,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css('input[name="user[email]"]')
   when "the answer form"
     page.should_not have_css("form.new_answer")
+  when "the pokes buttons"
+    page.should_not have_css("form.new_poke")
   else
     page.should_not have_content(arg1)
   end
