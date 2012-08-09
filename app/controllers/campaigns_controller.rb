@@ -4,6 +4,7 @@ class CampaignsController < InheritedResources::Base
   skip_load_and_authorize_resource :only => [:index, :create]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
+  before_filter :only => [:show] { @answer = Answer.new }
   before_filter :only => [:index] { @highlight_campaign = Campaign.accepted.first }
 
   def create
@@ -21,6 +22,12 @@ class CampaignsController < InheritedResources::Base
     Campaign.find(params[:campaign_id]).update_attribute :accepted_at, Time.now
     params[:id] = params[:campaign_id]
     show(:notice => "Está valendo, campanha no ar!")
+  end
+
+  def finish
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.update_attributes :finished_at => Time.now
+    redirect_to @campaign
   end
 
   def index

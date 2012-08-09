@@ -2,6 +2,7 @@
   = @campaign.name
 
 - content_for :meta_tags do
+  meta name="description" content=truncate(@campaign.description)
   meta property="og:title" content=@campaign.name
   meta property="og:image" content=@campaign.image.url
   meta property="og:url" content=campaign_url(@campaign)
@@ -11,18 +12,23 @@
   = render partial: "partials/highlight_home"
 
 section.content.row
+  - if @campaign.finished_at
+    .finished_at 
+      span 
+        strong Vitória!
+        |  Esta campanha foi encerrada há 
+        = distance_of_time_in_words_to_now(@campaign.finished_at)
   article.left
     .category
       = @campaign.category.name
     h1
       = @campaign.name
-    .created_at
-      = t 'time.created_at', time: l(@campaign.created_at, format: :short)
-
     .tabs#tabs
       = link_to t('campaign.show.tabs.campaign'), description_campaign_path(@campaign), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
       = link_to t('campaign.show.tabs.map'),      map_campaign_path(@campaign), :class => "#{params[:section] == "map" ? 'selected' : ''}" if @campaign.map_embed?
-      = link_to t('campaign.show.tabs.answers'),  answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}" do
+        = t('campaign.show.tabs.answers')
+        span= @campaign.answers.count
       = link_to(comments_campaign_path(@campaign), :class => "#{params[:section] == "comments" ? 'selected comments' : 'comments'}") do
         = t('campaign.show.tabs.comments') 
         span
@@ -31,27 +37,27 @@ section.content.row
 
   aside.right
     .poke_buttons#poke_buttons
-      .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size)
-      .targets
-        = t 'actions.channel'
-        = raw @campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence
-      .buttons
-        - unless @campaign.not_empty_influencer(:email).empty?
-          .poke_btn.email
-            span= @campaign.pokes_by("email").size
-        - unless @campaign.not_empty_influencer(:twitter).empty?
-          .poke_btn.twitter
-            span= @campaign.pokes_by("twitter").size
-        - unless @campaign.not_empty_influencer(:facebook).empty?
-          .poke_btn.facebook
-            span= @campaign.pokes_by("facebook").size
-        = render :partial => "poke_form", :locals => { :poke =>  "email" }
-        = render :partial => "poke_form", :locals => { :poke =>  "twitter" }
-        = render :partial => "poke_form", :locals => { :poke =>  "facebook" }
-      - if flash[:poke_create]
-        #congrats= raw flash[:poke_create]
-      .privacy
-        = t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
+      .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size, :to => raw(@campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence))
+      - if @campaign.finished_at.nil?
+        hr
+        - if current_user.nil? || !current_user.has_poked(@campaign)
+          p Participe dessa campanha você também:
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "email"
+            = f.submit "Pressionar por Email", :class => "btn email_poke"
+            = link_to "Ver mensagem", "#email_poke_message", :rel => "facebox"
+        - else
+          p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "facebook"
+            = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
+            = link_to "Ver mensagem", "#facebook_poke_message", :rel => "facebox"
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "twitter"
+            = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
+            = link_to "Ver mensagem", "#twitter_poke_message", :rel => "facebox"
+        hr
+        .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
     .content
       .targets
         .titles
@@ -66,8 +72,8 @@ section.content.row
                 .name= link_to influencer.name, influencer_path(influencer)
                 .role= influencer.role
               .social
-                = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook"
-                = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter"
+                = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
+                = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
                 = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-email"
       .supporters
         h2 Quem cozinha
@@ -80,3 +86,25 @@ section.content.row
           ul
             - @campaign.pokers.each do |poker|
               li= link_to image_tag(poker.pic(type: :square)), user_path(poker), title: poker.name
+
+- if flash[:facebook_poke_notice]
+  #facebook_poke_notice
+    h1= flash[:facebook_poke_notice]
+    p Continue atento à campanha e pressione cada vez mais!
+
+- if flash[:twitter_poke_notice]
+  #twitter_poke_notice
+    h1= flash[:twitter_poke_notice]
+    p Continue atento à campanha e pressione cada vez mais!
+
+#email_poke_message
+  h1 Email que será enviado aos pressionados
+  p= simple_format @campaign.email_text
+
+#facebook_poke_message
+  h1 Mensagem que será postada na página de Facebook dos pressionados
+  p= simple_format @campaign.facebook_text
+
+#twitter_poke_message
+  h1 Tweet que será enviado aos pressionados
+  p= simple_format @campaign.twitter_text

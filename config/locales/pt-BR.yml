@@ -236,9 +236,9 @@ pt-BR:
         pokers_email: "Email para quem pressiona"
       influencer:
         name: "Nome"
-        role: "Cargo"
+        role: "Descrição"
         twitter: "Usuário no Twitter"
-        facebook: "Link para página no Facebook"
+        facebook_url: "Página no Facebook"
       organization:
         name: "Nome"
       user:
@@ -249,6 +249,8 @@ pt-BR:
         file: "Imagem"
       poke:
         custom_message: "Você pode personalizar a sua mensagem"
+      answer:
+        text: "Nova resposta"
 
   unauthorized:
     create:
@@ -257,8 +259,8 @@ pt-BR:
 
   pokes_counter_html:
     zero: "<span>nenhuma</span> mensagem enviada"
-    one: "<span>1</span> mensagem enviada"
-    other: "<span>%{count}</span> mensagens enviadas"
+    one: "<span>1</span> já foi enviada para pressionar %{to}"
+    other: "<span>%{count}</span> mensagens já foram enviadas para pressionar %{to}"
 
   notice:
     email: "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"

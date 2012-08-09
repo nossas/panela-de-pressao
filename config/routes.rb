@@ -14,6 +14,7 @@ ManifesteSe::Application.routes.draw do
     end
 
     put :accept, :to => "campaigns#accept"
+    put :finish, :to => "campaigns#finish"
 
     resources :posts, :only => [:create, :index, :destroy]
     resources :pokes, :only => [:create] do
@@ -21,8 +22,10 @@ ManifesteSe::Application.routes.draw do
         get :create_from_session, :to => "pokes#create"
       end
     end
+    resources :answers, :only => [:create]
   end
-  resources :influencers, :only => [:index, :create, :show]
+  resources :influencers, except: [:destroy]
+
   resources :users, only: [:show, :update, :index] do
     resources :campaigns, :only => [:index]
   end

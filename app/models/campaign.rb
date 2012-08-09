@@ -1,7 +1,8 @@
 class Campaign < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :accepted_at, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
-    :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, :pokers_email
+    :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
+    :pokers_email, :finished_at
   
   belongs_to :user
   belongs_to :category
@@ -9,6 +10,7 @@ class Campaign < ActiveRecord::Base
   has_many :influencers, :through => :targets
   has_many :pokes
   has_many :posts
+  has_many :answers
   before_save { CampaignMailer.campaign_accepted(self).deliver if accepted_at_changed? && persisted? }
   after_create { CampaignMailer.campaign_awaiting_moderation(self).deliver }
   after_create { CampaignMailer.we_received_your_campaign(self).deliver }
@@ -62,5 +64,7 @@ class Campaign < ActiveRecord::Base
     pokers.sort { |a,b| b.pokes_count.to_i <=> a.pokes_count.to_i  } 
   end
 
-
+  def finished?
+    !self.finished_at.nil?
+  end
 end

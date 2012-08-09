@@ -2,11 +2,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     can :read, User
+    can :read, Influencer
     can :read, Campaign, Campaign.accepted do |campaign|
       campaign.accepted_at
     end
+    can :read, Influencer
 
     if user && user.admin?
       can :manage, :all
@@ -15,7 +16,7 @@ class Ability
       can :create, Poke
       can :update, Campaign, :user_id => user.id
       can :update, User, id: user.id
+      can :manage, Influencer
     end
-
   end
 end

@@ -30,11 +30,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   version :large do
   end
 
-   def default_url
-     # For Rails 3.1+ asset pipeline compatibility:
-     # asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-    "http://i.imgur.com/nQTE7.png"
-   end
+   #def default_url
+     ## For Rails 3.1+ asset pipeline compatibility:
+     ## asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+    #"http://i.imgur.com/nQTE7.png"
+   #end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
