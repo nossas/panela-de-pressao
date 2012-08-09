@@ -1,6 +1,9 @@
 .campaign
   .image
-    .img= link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
+    .img
+      = link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
+      - if campaign.finished?
+        .finished Vitória
   .details
     h3.title
       = link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)
@@ -16,6 +19,6 @@
         span.who= t 'home.text.who_supports'
         ul
           - campaign.pokers.shuffle[0..7].each do |poker|
-            li= link_to image_tag(poker.pic(:type => "square"), size: "30x30"), poker
+            li= link_to image_tag(poker.pic(:type => :square), size: "30x30"), poker
           li.plus= link_to "+", campaign
 

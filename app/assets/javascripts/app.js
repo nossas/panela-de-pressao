@@ -53,13 +53,23 @@ var App = window.App = {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-      $("#login").hide();
+      $.facebox.settings.closeImage = '/assets/closelabel.png';
+      $.facebox.settings.loadingImage = '/assets/loading.gif';
 
+      $("#login").hide();
+      $("#facebook_poke_notice").hide();
+      $("#twitter_poke_notice").hide();
+      $("#email_poke_message").hide();
+      $("#facebook_poke_message").hide();
+      $("#twitter_poke_message").hide();
+
+      if($("#facebook_poke_notice").length){ $.facebox({ div: '#facebook_poke_notice' }).reveal(); }
+      if($("#twitter_poke_notice").length){ $.facebox({ div: '#twitter_poke_notice' }).reveal(); }
+
+      $('a[rel*=facebox]').facebox()
     },
 
     showLoginBox: function(){
-      $.facebox.settings.closeImage = '/assets/closelabel.png';
-      $.facebox.settings.loadingImage = '/assets/loading.gif';
       $.facebox({ div: '#login' });
     },
 

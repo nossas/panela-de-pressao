@@ -1,19 +1,39 @@
 pt-BR:
   site:
     title: "Panela de Pressão"
+    keywords: "petição, pública, pressão, pressionar, rio de janeiro, política, mobilização, panela de pressão"
+    description: "Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. Pressione diretamente os responsáveis pela administração da cidade."
+    fb_description: "Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. E na pressão tudo é mais rápido. Nossa receita é simples: você aponta um problema, convoca outras pessoas que desejam a mesma mudança e pressiona diretamente os responsáveis pela administração da cidade, por email, Twitter ou Facebook."
+    author: "Meu Rio - contato@meurio.org.br"
+    image: "http://i.imgur.com/sIpeM.gif"
+    url: "http://paneladepressao.org.br"
   link:
     click_here: "clique aqui"
   actions:
-    create: "Crie sua campanha!"
+    create: "Crie sua campanha agora >"
     edit: "Editar esta campanha"
     delete: "Excluir esta campanha"
     back_home: "Voltar à home"
-    channel: "Escolha um canal para fazer pressão em: "
+    channel: "Escolha um canal para fazer pressão: "
     send_to_moderation: "Enviar campanha para moderação"
     save: "Salvar campanha"
     cancel: "Cancelar"
     accept: "Aceitar campanha"
     export: "Exportar pressionadores"
+    finish: "Encerrar campanha"
+  emails:
+    trusteeship: "curadoria@paneladepressao.org.br"
+    contact: "contato@paneladepressao.org.br"
+    influencer:
+      subject:
+        created: "Um novo alvo foi cadastrado no Panela de Pressão"
+        edited: "O alvo %{target} foi alterado no Panela de Pressão"
+      body:
+        created_html: "Um novo alvo foi cadastrado (%{target}) no PDP, para ver acesse a url: %{url}"
+        edited_html: "Olá, o alvo %{target} foi alterado! Para ver o que mudou %{url}"
+
+    poke:
+      thanks: ""
   home:
     highlight:
       header: "O melhor utensílio de pressão popular da sua cozinha."
@@ -54,13 +74,13 @@ pt-BR:
           targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
     show:
       your_privacy: "sua privacidade"
-      privacy_html: "O Panela protege %{link}"
+      privacy_html: "O Panela protege %{link}."
       targets_html: "Alvos da campanha <span>(%{count})</span>"
       map:
         header: "Sobre o mapa"
       tabs:
         map: "Mapa"
-        campaign: "A campanha"
+        campaign: "Campanha"
         answers: "Respostas"
         comments: "Comentários"
       pokes:

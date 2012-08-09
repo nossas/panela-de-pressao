@@ -2,21 +2,24 @@ doctype html
 html
   head
     meta charset="utf-8"
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-    meta name="facebook_app_id" content=ENV["FB_ID"]
-    meta property="fb:app_id" content=ENV["FB_ID"]
-    meta name="facebook_redirect_uri" content="http://#{request.host}/close.html"
-    meta name="google-site-verification" content="YqyNtEWvyBDpCxBnPYuCFUeM0wLMhe9gB0I4vnz3A_k"
+    meta name="viewport"                  content="width=device-width, initial-scale=1.0"
+    meta name="facebook_app_id"           content=ENV["FB_ID"]
+    meta property="fb:app_id"             content=ENV["FB_ID"]
+    meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
+    meta name="google-site-verification"  content="YqyNtEWvyBDpCxBnPYuCFUeM0wLMhe9gB0I4vnz3A_k"
+    meta name="keywords"                  content=t('site.keywords')
+    meta name="author"                    content=t('site.author')
     title= yield(:title)
     = stylesheet_link_tag "application"
     = favicon_link_tag "favicon.png"
     - if content_for?(:meta_tags)
       = yield(:meta_tags)
     - else
-      meta property="og:title" content="Panela de Pressão"
-      meta property="og:image" content="https://fbcdn-photos-a.akamaihd.net/photos-ak-snc7/v85006/111/130536417070695/app_1_130536417070695_224017680.gif"
-      meta property="og:url" content="http://paneladepressao.org.br/"
-      meta property="og:description" content="Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. E na pressão tudo é mais rápido. Nossa receita é simples: você aponta um problema, convoca outras pessoas que desejam a mesma mudança e pressiona diretamente os responsáveis pela administração da cidade, por email, Twitter ou Facebook."
+      meta name="description"         content=t('site.description')
+      meta property="og:title"        content=t('site.title')
+      meta property="og:image"        content=t('site.image')
+      meta property="og:url"          content=t('site.url')
+      meta property="og:description"  content=t('site.fb_description')
     = csrf_meta_tag
     javascript:
       var _gaq = _gaq || [];
@@ -53,7 +56,7 @@ html
                   li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
                   li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
-              = raw "Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}"
+              | Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}
         .clear
     section.header
       .row
@@ -85,4 +88,4 @@ html
         = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
         |  ou 
         = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
-  = javascript_include_tag "application"
+    = javascript_include_tag "application"

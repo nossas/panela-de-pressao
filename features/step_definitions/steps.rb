@@ -7,6 +7,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit new_campaign_path
   when "the influencers page"
     visit influencers_path
+  when "the new influencer page"
+    visit new_influencer_path
   when "this campaign page"
     visit campaign_path(@campaign)
   when "this campaign editing page"
@@ -137,6 +139,10 @@ Then /^I should see "([^"]*)"$/ do |arg1|
     page.should have_css('input[name="user[email]"]')
   when "user[about_me]"
     page.should have_css('textarea[name="user[about_me]"]')
+  when "Pressionar pelo Facebook"
+    page.should have_css('input[type="submit"].facebook_poke')
+  when "Pressionar pelo Twitter"
+    page.should have_css('input[type="submit"].twitter_poke')
   else
     page.should have_content(arg1)
   end
@@ -190,6 +196,10 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css(".poke_btn.facebook")
   when "user[email]"
     page.should_not have_css('input[name="user[email]"]')
+  when "the answer form"
+    page.should_not have_css("form.new_answer")
+  when "the pokes buttons"
+    page.should_not have_css("form.new_poke")
   else
     page.should_not have_content(arg1)
   end
@@ -203,6 +213,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== campaign_path(@campaign)
   when "the new campaign page"
     page.current_path.should be_== new_campaign_path
+  when "the answers page of the campaign"
+    page.current_path.should be_== answers_campaign_path(@campaign)
   else
     raise "I don't know '#{arg1}'"
   end

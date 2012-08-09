@@ -1,35 +1,52 @@
+- content_for :title do
+  = @influencer.name
 - content_for :highlight do
   = render partial: 'partials/highlight_home'
 section.content.row
   aside.left
-    - if is_current_user?(@influencer)
-      h3= t "user.show.create_and_edit"
     .image
-      = image_tag @influencer.avatar
-    ul.details[class=(is_current_user?(@influencer) ? "logged" : "not_logged")]
-      = form_for @influencer, multipart: true do |f|
-        li
+      = image_tag @influencer.avatar.url
+    h3= @influencer.name
+    = form_for @influencer, multipart: true, html: { class: (can?(:edit, @influencer) ? "" : "not_logged") } do |f|
+      - if can?(:edit, @influencer)
+        p
           = f.file_field :avatar
+      p
+        = f.label :name
+        = f.text_field :name, disabled: (can?(:edit, @influencer) ? false : "disabled")
+      p
+        = f.label :role
+        = f.text_field :role, disabled: (can?(:edit, @influencer) ? false : "disabled")
+      hr
+      p
+        = f.label :email
+        = f.text_field :email, disabled: (can?(:edit, @influencer) ? false : "disabled")
+      p
+        = f.label :twitter
+        = f.text_field :twitter , disabled: (can?(:edit, @influencer) ? false : "disabled")
+      p
+        = f.label :facebook_url
+        = f.text_field :facebook_url, disabled: (can?(:edit, @influencer) ? false : "disabled")
 
-        li
-          = f.label :name
-          = f.text_field :name
-          span.member_since
-            = t "user.show.member_since", since: l(@influencer.created_at, :format => :short)
-          hr
-
-          li
-            = f.label :email
-            = f.text_field :email
-
-          li.actions
-            = f.submit class: "btn submit green", value: t("user.show.save")
+      hr
+      - if can?(:edit, @influencer)
+        p.actions
+          = f.submit class: "btn submit green", value: t("user.show.save")
 
   article.right
     .inside
-      h2
-        |Campanhas onde #{@influencer.name} foi pressionado 
-      hr
-      .list= render @influencer.campaigns 
+      .about
+        - unless can? :edit, @influencer
+          p= simple_format @influencer.about
+        - else
+          = form_for @influencer, html: { class: (can?(:edit, @influencer) ? "" : "not_logged") } do |f|
+            = f.text_area :about, class: 'about', disabled: ("disabled" unless can?(:edit, @influencer))
+            - if can? :edit, @influencer
+              = f.submit class: "btn submit green", value: t("user.show.save")
+      .campaigns
+        h2
+          |Campanhas onde #{@influencer.name} foi pressionado 
+        hr
+        .list= render @influencer.campaigns.accepted
 
 

@@ -11,3 +11,4 @@ Feature: View an influencer profile
     And I click "Eduardo Paes"
     Then I should see "Campanhas onde Eduardo Paes foi pressionado"
     And I should see "A taça do mundo é nossa"
+    And I should see "Ele é candidato a prefeitura."

@@ -24,21 +24,22 @@ section
 .row
   +grid-row
 
-.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at
   +grid(12)
 
 article.right
   +grid(9)
+  +last
 
-article.left, .home_link
+article.left, .home_link 
   +grid(8)
 
-.highlight .about, .highlight .campaign
+.highlight .about, .highlight .campaign, form#new_influencer
   +grid(6)
 
 aside.right, .new_campaign_btn
   +grid(4)
-
+  +last
 aside.left
   +grid(3)
 
@@ -54,7 +55,7 @@ aside.left
 article.left .poke, article.left .contact
   +grid-subcolumn(8, 4)
 
-article.right, aside.right, .highlight .campaign, .list .campaign .details, .new_campaign_btn, article.left .contact
+article.right, aside.right, .highlight .campaign, .list .campaign .details, .new_campaign_btn, article.left .contact, .influencers_list
   +last
 
 img
@@ -63,7 +64,7 @@ img
 
 hr
   border-top: none
-  border-bottom: 2px dotted lighten($yellow, 10%)
+  border-bottom: 1px dashed $orange
 
 body
   font-family: "Open Sans", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
@@ -108,8 +109,42 @@ a
   &:hover
     color: lighten($green, 5%)
 
+input[type='text'], textarea, input[type="email"], input[type="url"]
+  outline: none
+  border: 2px solid lighten(gray, 40%)
+  padding: .6em .5em
+  font-size: 1.1em
+  color: lighten(gray, 10%)
+  &:focus
+    border: 2px solid $orange
+
+table
+  img
+    float: left
+  td
+    padding: .5em
+  tr:nth-child(even)
+    background: lighten($yellow, 35%)
+  tr:nth-child(odd)
+    background: lighten($yellow, 30%)
+
 div.logo a img:hover
   opacity: .8
+
+li.error
+  input
+    border-color: red
+
+p.inline-errors
+  color: red
+  font-size: .8em
+
+p.inline-hints
+  color: gray
+  font-size: .8em
+
+p.inline-hints, p.inline-errors
+  margin: 0
 
 #login
   background: black
@@ -119,54 +154,53 @@ div.logo a img:hover
   background: $green
   font-family: "Londrina Solid"
   text-transform: uppercase
+  font-weight: 300
   font-size: 1.3em
   padding: .4em .8em
   border: 1px solid $green
   letter-spacing: 1px
   display: inline-block
-  position: relative
   text-align: center
-  //+box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 2px 2px)
+  margin: 0
   +border-radius(5px)
-  +text-shadow(0 1px 1px darken($green, 15%))
   +background-image(linear-gradient(lighten($green, 15%), $green))  
+  +transition(.1s)
+  text-shadow: 1px 1px 2px darken(gray, 25%)
   &.gray
     +background-image(linear-gradient(lighten(gray, 45%), lighten(gray, 30%)))
     color: lighten(gray, 10%)
     border: 1px solid lighten(gray, 20%)
-    text-shadow: 0 1px 1px white 
     &:hover
       color: inherit 
   &.red
     +background-image(linear-gradient(lighten(red, 45%), lighten(red, 30%)))
-    color: white
     border: 1px solid lighten(red, 20%)
-    text-shadow: 0 1px 1px white     
     &:hover
       color: inherit
   &:hover 
-    color: white
+    color: white 
     cursor: pointer
     text-decoration: none
-    opacity: .9
+    text-shadow: none 
   &:active
     top: 1px
-    //+box-shadow(lighten($green, 15%) 0 1px 0 inset, black 0 1px 2px)   
 
 article
   &.right
     background: lighten(gray, 48%)
-    border-left: 1px solid lighten(gray, 35%)
     min-height: 400px
+    +box-shadow(inset 1px 0 0 lighten(gray, 35%))
   &.left
     background: white
+    padding-bottom: 2em
  
 aside
   &.right
+    background: lighten(gray, 48%)
+    height: 100% !important
     .content
-      background: lighten(gray, 48%)
       border-left: 1px solid lighten(gray, 35%)
-      padding: 1em
+      padding: 0 1em 1em 1em
 
 .inside
   padding: 1em
@@ -187,6 +221,8 @@ section.highlight
       margin-top: .2em
       +border-radius(0px !important)
       +box-shadow(none !important)
+  .links
+    padding: 1em 0
 
 section.content
   margin-top: .8em
@@ -228,12 +264,13 @@ a[href="/auth/facebook"]
 .popup
   h1
     line-height: normal
+    color: $green
   .buttons
     text-align: center
 
 section.login
   font-size: .8em
-  padding: .5em 0
+  padding: .2em 0 
   .row
     overflow: visible
   .meurio
@@ -250,7 +287,8 @@ section.login
     float: left
     img
       float: left
-      margin-right: 10px
+      margin-right: .4em
+      height: auto !important 
   .user
     float: right
     line-height: 20px
@@ -319,6 +357,7 @@ section.highlight_teeths, section.footer_teeths
   display: block
 
 section.footer_teeths
+  margin-top: 4em
   background-position: 0 5px
 
 section.footer
@@ -366,6 +405,15 @@ section.footer
       font-size: 1.5em
       line-height: 35px
 
+.warning
+  background: lighten($orange, 25%)
+  padding: .5em
+  text-align: center
+  line-height: normal
+  margin-bottom: 1em
+  border: 2px dashed $orange
+  color: darken($orange, 40%)
+
 .category
   color: $orange
   font-size: .8em
@@ -392,6 +440,21 @@ section.footer
         background: white
         border: 1px solid lighten(gray, 20%)
         padding: .5em
+        overflow: hidden
+        position: relative
+        .finished
+          position: absolute
+          background: $green
+          color: white
+          font-family: "Londrina Solid"
+          text-transform: uppercase
+          font-size: 2em
+          line-height: normal
+          padding: 0 40px
+          top: 25px
+          left: -40px
+          +box-shadow(black 0 0 10px)
+          +rotate(-45deg)
     .details
       .description, .is_waiting_moderation
         font-size: .8em
@@ -434,19 +497,39 @@ section.footer
       line-height: 1.6em
       text-align: center
 
-body.campaigns#show, body.users#show, body.campaigns#update
+#show, #update
   .highlight
+    line-height: 2.6em
     .home_link
-      line-height: 3.5em
       a
         margin-right: 2em
+        font-size: .9em
+      a.home
+        &::before
+          content: "‹ "
+          font-size: 1.4em
     .new_campaign_btn
-      .btn
-        display: block
+      text-align: center
+      a
+        color: white
+        letter-spacing: 1px
+        text-transform: uppercase
+        font-family: "Londrina Solid"
+        font-size: 1.4em
+        text-shadow: 1px 1px 2px darken(gray, 25%)
+        +transition(.1s)
+        &:hover
+          color: darken($green, 5%)
+          text-shadow: none
 
 body
   &.campaigns
     &#index
+      article.left
+        +grid(9)
+      aside.right
+        +grid(3)
+        +last
       .highlight
         padding: 1.5em 0
         .about
@@ -454,7 +537,7 @@ body
           h1
             line-height: normal
           a[href="#campaigns_list"]
-            background: url("/assets/home_participe.png")
+            background: image-url("home_participe.png")
             height: 0
             padding-top: 76px
             width: 152px
@@ -509,27 +592,35 @@ body
               margin-right: .5em
           .poke_created_at
             color: $orange
+            font-size: .8em
     &#show
+      .finished_at
+        span
+          background: $green
+          color: $yellow
+          text-align: center
+          padding: .25em
+          line-height: normal
+          font-size: 2em
+          display: block
+          margin-bottom: 1em
+          font-family: "Londrina Solid"
+          text-transform: uppercase
+          +text-shadow(darken($green, 20%) 1px 1px 2px)
       article.left
         h1
           line-height: normal
           font-size: 2.0em
           letter-spacing: 1px
+          margin-bottom: 1em
         h2
           visibility: hidden
           color: lighten($orange, 5%)
           font-size: .8em
-          font-family: "Lucida Grande"
           border-bottom: 1px dashed $orange
           margin-bottom: 0
         small
           display: none
-        .created_at
-          color: lighten(gray, 15%)
-          visibility: hidden
-          margin-top: -8px
-          font-size: .8em
-          margin-bottom: 0 
         .tabs
           border-bottom: 1px solid lighten(gray, 25%)
           margin-bottom: 2em
@@ -558,13 +649,15 @@ body
                 background: none
             &:hover
               background: lighten($green, 5%)
+            span
+              background: darken($green, 15%)
+              padding: 1px 7px
+              margin: 0 4px
+              +border-radius(8px)
+              color: white
             &.comments
               span
-                background: darken($green, 15%)
-                padding: .1em .2em
-                margin: 0 4px
-                +border-radius(8px)
-                color: white
+                padding: 1px 2px
         .image
           img
             border: 2px solid lighten(gray, 35%)
@@ -587,60 +680,77 @@ body
             color: darken($green, 5%)
             &:hover
               color: $green
+        .influencers_response
+          small
+            display: block
+            color: gray
+            font-style: italic
+            text-align: center
+            margin-bottom: 1em
+          .campaign_answer
+            border-bottom: dashed 1px $orange
+            margin-bottom: 1em
+            padding-bottom: 1em
+            .answer_created_at
+              color: $orange
+              font-size: .8em
+            .answer_text
+              color: gray
+              p
+                margin: 0
+          form.new_answer
+            label
+              display: block
+            textarea
+              width: 100%
+              +box-sizing("border-box")
+              height: 200px
       aside.right
         .poke_buttons
+          color: darken(gray, 10%)
+          font-size: .8em
           margin-top: 2em
           padding: 1em
-          background: $yellow
-          border: 1px solid darken($yellow, 20%)
-          +box-shadow(lighten($yellow, 30%) 1px 0 1px inset)
+          background: #ffde5d
+          border: 1px solid darken(#ffde5d, 20%)
+          text-align: center
+          line-height: normal
+          +box-shadow(lighten(#ffde5d, 30%) 1px 0 1px inset)
           +border-radius(0 10px 10px 0)
+          form
+            a
+              display: block
+            a[href="#facebook_poke_message"]
+              margin-bottom: 1em
+          hr
+            border: none
+            border-top: 1px solid darken(#ffde5d, 25%)
+            border-bottom: 1px solid lighten(#ffde5d, 25%)
+            margin: 1.5em 0
           .pokes_counter
-            color: $green
-            text-align: center
             padding: .5em
+            background: white
+            +border-radius(5px)
+            +box-shadow(black 1px 1px 2px)
             span
               display: block
-              font-size: 3em
+              font-size: 4em
               text-align: center
               font-family: "Londrina Solid"
-          .pokes_counter, .email_text, .facebook_text, .twitter_text, #congrats
-            background: white
-            line-height: normal
-            margin-bottom: .5em
-            +box-shadow(black 1px 1px 2px)
-            +border-radius(5px)
-          .buttons
-            text-align: center
-            margin-bottom: 1em
-            form
-              margin-top: 1em
-              text-align: left
-          label[for="poke_custom_message"]
-            display: block
-            margin-bottom: 1em
-          textarea
-            width: 100%
-            +box-sizing("border-box")
-            +border-radius(10px)
+              line-height: normal
+          .btn
+            background: $green
             border: none
-            +box-shadow(lighten(gray, 10%) 0 1px 5px inset)
-            padding: 1em
-            height: 400px
-            outline: none
-          .targets, .privacy
-            text-align: center  
-          .targets, .privacy, .email_text, .facebook_text, .twitter_text, #congrats
-            color: gray
-            font-size: .8em
-            line-height: normal
-            padding: 1em
-            span
-              color: $green
-              display: block
-          #congrats
-            span
-              font-size: 2em
+            +transition(.1s)
+            &:hover 
+              background: darken($orange, 15%)
+          .email_poke
+            font-size: 2em
+            padding: .5em 1em
+          .facebook_poke
+            background: #0060c6
+          .twitter_poke
+            background: #82bbce
         .targets, .pokers
           h2
             span
@@ -653,7 +763,7 @@ body
               margin-bottom: 1em
               .info
                 float: left
-                width: 65%
+                width: 60%
                 margin-right: 5%
                 img
                   width: 40px
@@ -670,7 +780,7 @@ body
                   color: $orange
                   font-size: .6em
               .social
-                width: 30%
+                width: 35%
                 float: left
                 line-height: 40px
                 text-align: right
@@ -761,12 +871,6 @@ body
         margin-right: 2em
       input[type='text'], textarea
         width: 98%
-        outline: none
-        border: 1px solid lighten(gray, 45%)
-        padding: .6em .5em
-        font-size: 1.1em
-        +box-shadow(inset 0 1px 2px lighten(gray, 15%))
-        +border-radius(5px)
       textarea
         height: 200px
       h1
@@ -784,22 +888,36 @@ body
       .influencers
         input
           +box-shadow(none)
-  &.users
+  &.users, &.influencers
     &#show
+      .about
+        overflow: hidden
+        margin-bottom: 1em
+      .submit
+        float: right
       article.right
-        background: white 
+        +grid(9)
+        +last
+        textarea
+          width: 100%
+          height: 200px
+          +box-sizing("border-box")
+        form.not_logged
+          textarea
+            height:  10% !important
+            background: none
+            border: none
       aside.left
+        +grid(3)
         h3
-          padding: 1em 0 0 .6em
+          padding-top: 1em
         strong
           display: block
-        .image, ul.details
-          margin: 1em
         .image
           img
             +box-shadow(0 0 .4em gray)
             padding: .5em
-        ul.details
+        form
           span.member_since
             font-size: .7em
             color: lighten(gray, 15%)
@@ -820,15 +938,14 @@ body
             max-width: 91% 
             max-height: 6em
   
-          &.logged
-            input[type="text"], textarea
-              border: 1px solid lighten(gray, 30%)
-              padding: .5em
-              margin: .9em 0
-              font-size: 1em
-              +border-radius(4px)
-              +box-shadow(inset 0 0 2px lighten(gray, 40%))
-  
+          input[type="text"], textarea
+            border: 1px solid lighten(gray, 30%)
+            padding: .5em
+
+            margin: .9em 0
+            font-size: .8em
+            +border-radius(4px)
+            +box-shadow(inset 0 0 2px lighten(gray, 40%))
           &.not_logged
             input, textarea
               border: none
@@ -843,7 +960,8 @@ body
               font-style: italic
               font-size: 1em
               color: lighten(gray, 10%)
-
+            
+      
       ul.timeline
         margin-top: 2em
         +border-radius(4px)
@@ -867,3 +985,22 @@ body
             background-image: url('icon-press-2.svg')
           &.campaign 
             background-image: url('icon-campaign-2.svg')
+
+body.influencers#index
+  .influencers_list
+    margin-bottom: 2em
+    table
+      width: 100%
+      img
+        width: 25px
+    .icon-twitter, .icon-facebook
+      display: block
+      float: left
+      margin-right: .5em
+
+body.influencers#new, body.influencers#create
+  input[type='text'], input[type='email'], input[type="url"]
+    +box-sizing("border-box")
+    width: 100%
+  li.input, .btn
+    margin-bottom: 2em

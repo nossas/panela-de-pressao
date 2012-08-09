@@ -16,7 +16,8 @@ class PokesController < InheritedResources::Base
     @poke = Poke.new session.delete(:poke).merge(:user_id => current_user.id)
     create! do |success, failure|
       success.html do
-        flash[:poke_create] = "<span>Boa!</span>Você acaba de colaborar com uma causa que você acredita e que pode fazer a diferença para o Rio. Agora ajude a espalhar essa ideia. Não se esqueca que você pode pressionar quantas vezes quiser!"
+        flash[:facebook_poke_notice] = "Muito bom! Você pressionou pelo Facebook." if resource.kind == "facebook"
+        flash[:twitter_poke_notice] = "Muito bom! Você pressionou pelo Twitter." if resource.kind == "twitter"
         redirect_to :action => "show", :controller => "campaigns", :id => @campaign.id
       end
     end
