@@ -45,7 +45,7 @@ section.content.row
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "email"
             = f.submit "Pressionar por Email", :class => "btn email_poke"
-            = link_to "Ver mensagem", "#email_poke_message", :rel => "facebox"
+            = link_to "Ver/personalizar email", "#email_poke_message", :rel => "facebox"
         - else
           p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
           = form_for [@campaign, @poke] do |f|
@@ -99,7 +99,11 @@ section.content.row
 
 #email_poke_message
   h1 Email que será enviado aos pressionados
-  p= simple_format @campaign.email_text
+  = form_for [@campaign, @poke] do |f|
+    = f.hidden_field :kind, :value => "email"
+    = f.label :custom_message
+    = f.text_area :custom_message, :value => @campaign.email_text
+    .actions= f.submit "Pressionar por Email", :class => "btn"
 
 #facebook_poke_message
   h1 Mensagem que será postada na página de Facebook dos pressionados

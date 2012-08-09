@@ -11,7 +11,7 @@ Feature: finish a campaign
     When I click "Encerrar campanha"
     Then I should be in this campaign page
     And I should see "Vitória! Esta campanha foi encerrada"
-    And I should not see "the pokes buttons"
+    And I should not see "the pokes buttons" in "the right sidebar"
 
   Scenario: I'm not logged in
     Given there is a campaign called "Save the Whales!"

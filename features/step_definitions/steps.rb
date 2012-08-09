@@ -288,3 +288,28 @@ end
 Given /^I pass over the facebook poke button$/ do
   page.execute_script("$('.facebook_text').show();")
 end
+
+When /^I press "(.*?)" at "(.*?)"$/ do |arg1, arg2|
+  if arg2 == "the lightbox"
+    within("#facebox") do
+      click_button arg1
+    end
+  else
+    raise "I don't know what to do with '#{arg2}'"
+  end
+end
+
+Then /^I should not see "(.*?)" in "(.*?)"$/ do |arg1, arg2|
+  if arg2 == "the right sidebar"
+    within("aside.right") do
+      should_not have_content(arg1)
+    end
+  else
+    raise "I don't know what to do with '#{arg2}'"
+  end
+end
+
+Then /^a email saying "(.*?)" should be sent$/ do |arg1|
+  sleep(1)
+  ActionMailer::Base.deliveries.select{|d| d.body.include? arg1}.should_not be_empty
+end
