@@ -248,7 +248,7 @@ pt-BR:
         picture: "Imagem"
         file: "Imagem"
       poke:
-        custom_message: "Você pode personalizar a sua mensagem"
+        custom_message: "Mensagem"
       answer:
         text: "Nova resposta"
 

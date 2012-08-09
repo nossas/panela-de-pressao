@@ -25,6 +25,13 @@ class Poke < ActiveRecord::Base
     self.kind == "facebook"
   end
 
+  def message
+    return self.custom_message unless self.custom_message.blank?
+    return self.campaign.email_text if self.email?
+    return self.campaign.facebook_text if self.facebook?
+    return self.campaign.twitter_text if self.twitter?
+  end
+
   private
   def send_email
     PokeMailer.poke(self).deliver
