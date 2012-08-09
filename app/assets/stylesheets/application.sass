@@ -581,14 +581,17 @@ body
     &#show
       .finished_at
         span
-          background: lighten(desaturate($green, 50%), 50%)
-          color: darken($green, 10%)
+          background: $green
+          color: $yellow
           text-align: center
           padding: .25em
-          font-size: 1.25em
+          line-height: normal
+          font-size: 2em
           display: block
           margin-bottom: 1em
-          +border-radius(3px)
+          font-family: "Londrina Solid"
+          text-transform: uppercase
+          +text-shadow(darken($green, 20%) 1px 1px 2px)
       article.left
         h1
           line-height: normal
