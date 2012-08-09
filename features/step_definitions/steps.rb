@@ -13,6 +13,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit campaign_path(@campaign)
   when "this campaign editing page"
     visit edit_campaign_path(@campaign)
+  when "this target page"
+    visit influencer_path(@target.influencer)
   else
     raise "I don't know #{arg1}"
   end
