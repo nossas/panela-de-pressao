@@ -1,6 +1,8 @@
 .campaign
   .image
-    .img= link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
+    .img
+      = link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
+      .finished Vitória
   .details
     h3.title
       = link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)

@@ -440,6 +440,21 @@ section.footer
         background: white
         border: 1px solid lighten(gray, 20%)
         padding: .5em
+        overflow: hidden
+        position: relative
+        .finished
+          position: absolute
+          background: $green
+          color: white
+          font-family: "Londrina Solid"
+          text-transform: uppercase
+          font-size: 2em
+          line-height: normal
+          padding: 0 40px
+          top: 25px
+          left: -40px
+          +box-shadow(black 0 0 10px)
+          +rotate(-45deg)
     .details
       .description, .is_waiting_moderation
         font-size: .8em
