@@ -45,17 +45,17 @@ section.content.row
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "email"
             = f.submit "Pressionar por Email", :class => "btn email_poke"
-            = link_to "Ver/personalizar email", "#email_poke_message", :rel => "facebox"
+            = link_to "Ver/personalizar email", "#email_poke_message", :rel => "facebox[.email_poke_message]"
         - else
           p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "facebook"
             = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
-            = link_to "Ver mensagem", "#facebook_poke_message", :rel => "facebox"
+            = link_to "Ver/personalizar mensagem", "#facebook_poke_message", :rel => "facebox[.facebook_poke_message]"
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "twitter"
             = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
-            = link_to "Ver mensagem", "#twitter_poke_message", :rel => "facebox"
+            = link_to "Ver mensagem", "#twitter_poke_message", :rel => "facebox[.twitter_poke_message]"
         hr
         .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
     .content
@@ -103,11 +103,15 @@ section.content.row
     = f.hidden_field :kind, :value => "email"
     = f.label :custom_message
     = f.text_area :custom_message, :value => @campaign.email_text
-    .actions= f.submit "Pressionar por Email", :class => "btn"
+    = f.submit "Pressionar por Email", :class => "btn"
 
 #facebook_poke_message
   h1 Mensagem que será postada na página de Facebook dos pressionados
-  p= simple_format @campaign.facebook_text
+  = form_for [@campaign, @poke] do |f|
+    = f.hidden_field :kind, :value => "facebook"
+    = f.label :custom_message
+    = f.text_area :custom_message, :value => @campaign.facebook_text
+    = f.submit "Pressionar pelo Facebook", :class => "btn"
 
 #twitter_poke_message
   h1 Tweet que será enviado aos pressionados
