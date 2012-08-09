@@ -2,6 +2,7 @@
   = @campaign.name
 
 - content_for :meta_tags do
+  meta name="description" content=@campaign.description.truncate
   meta property="og:title" content=@campaign.name
   meta property="og:image" content=@campaign.image.url
   meta property="og:url" content=campaign_url(@campaign)
