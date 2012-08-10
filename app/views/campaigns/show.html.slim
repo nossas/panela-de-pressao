@@ -41,22 +41,29 @@ section.content.row
       .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.size, :to => raw(@campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence))
       - if @campaign.finished_at.nil?
         hr
-        - if current_user.nil? || !current_user.has_poked(@campaign)
-          p Participe dessa campanha você também:
-          = form_for [@campaign, @poke] do |f|
-            = f.hidden_field :kind, :value => "email"
-            = f.submit "Pressionar por Email", :class => "btn email_poke"
-            = link_to "Ver/personalizar email", "#email_poke_message", :rel => "facebox[.email_poke_message]"
+        - if current_user and current_user.has_poked(@campaign)
+          p Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!
         - else
-          p Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?
+          p Participe dessa campanha:
+        .poke_options
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "facebook"
+            span.count= @campaign.pokes_by(:facebook).length
             = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
-            = link_to "Ver/personalizar mensagem", "#facebook_poke_message", :rel => "facebox[.facebook_poke_message]"
+            = link_to "Ver/personalizar mensagem", "#facebook_poke_message", class: "message_link", :rel => "facebox[.facebook_poke_message]"
+
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "twitter"
+            span.count= @campaign.pokes_by(:twitter).length
             = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
-            = link_to "Ver mensagem", "#twitter_poke_message", :rel => "facebox[.twitter_poke_message]"
+            = link_to "Ver mensagem", "#twitter_poke_message", class: "message_link", :rel => "facebox[.twitter_poke_message]"
+          p
+
+          = form_for [@campaign, @poke] do |f|
+            = f.hidden_field :kind, :value => "email"
+            span.count= @campaign.pokes_by(:email).length
+            = f.submit "Pressionar por Email", :class => "btn email_poke"
+            = link_to "Ver/personalizar email", "#email_poke_message", class: "message_link", :rel => "facebox[.email_poke_message]"
         hr
         .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
     .content
