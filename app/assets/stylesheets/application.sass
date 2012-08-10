@@ -721,13 +721,32 @@ body
             +transition(.1s)
             &:hover 
               background: darken($orange, 15%)
+          .facebook_poke, .email_poke, .twitter_poke, span.count
+            padding: .8em 1em
+            font-size: 1.4em
+            width: 81%
+            +border-radius(0 6px 6px 0)
           .email_poke
-            font-size: 2em
-            padding: .5em 1em
+            background: darken(gray, 20%)
           .facebook_poke
             background: #0060c6
+            margin-top: .4em
           .twitter_poke
-            background: #82bbce
+            background: darken(#82bbce, 15%)
+          span.count
+            background: white
+            width: 10%
+            display: inline-block
+            padding: .7em .4em
+            font-weight: bold
+            +border-radius(6px 0 0 6px)
+          a.message_link
+            font-size: .9em
+            margin: .4em 0
+          .poke_options
+            background: lighten($yellow, 1%)
+            padding: .8em 0
+            +box-shadow(inset 0 0 2px lighten(gray, 25%))
         .targets, .pokers
           h2
             span
