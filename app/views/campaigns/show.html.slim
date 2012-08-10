@@ -7,6 +7,7 @@
   meta property="og:image" content=@campaign.image.url
   meta property="og:url" content=campaign_url(@campaign)
   meta property="og:description" content=@campaign.description
+  meta property="og:type" content="paneladepressao:campanha"
 
 - content_for :highlight do
   = render partial: "partials/highlight_home"
