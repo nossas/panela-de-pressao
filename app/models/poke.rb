@@ -70,6 +70,7 @@ class Poke < ActiveRecord::Base
     if self.user.facebook_authorization
       begin
         campaign_url = Rails.application.routes.url_helpers.campaign_url(self.campaign)
+        puts "::: Activity for #{campaign_url}"
         Koala::Facebook::API.new(self.user.facebook_authorization.token).put_connections("me", "paneladepressao:apoiar", :campanha => campaign_url)
       rescue Exception => e
         puts e.message
