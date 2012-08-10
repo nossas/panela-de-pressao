@@ -11,6 +11,7 @@ class Poke < ActiveRecord::Base
   has_many :influencers, :through => :targets
 
   before_create { PokeMailer.thanks(self).deliver unless self.user.has_poked(self.campaign) }
+  before_create :post_facebook_activity
   
   default_scope order('updated_at DESC') 
   def twitter?
@@ -40,11 +41,6 @@ class Poke < ActiveRecord::Base
 
   def send_facebook_post
     campaign_url = Rails.application.routes.url_helpers.campaign_url(campaign)
-    begin
-      Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.message, {:link => campaign_url})
-    rescue Exception => e
-      puts e.message
-    end
     campaign.targets.each do |t| 
       begin
         Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook)
@@ -69,4 +65,16 @@ class Poke < ActiveRecord::Base
       end
     end
   end
+
+  def post_facebook_activity
+    if self.user.facebook_authorization
+      begin
+        campaign_url = Rails.application.routes.url_helpers.campaign_url(self.campaign)
+        Koala::Facebook::API.new(self.user.facebook_authorization.token).put_connections("me", "paneladepressao:apoiar", :object => campaign_url)
+      rescue Exception => e
+        puts e.message
+      end
+    end
+  end
+
 end
