@@ -728,11 +728,17 @@ body
             +border-radius(0 6px 6px 0)
           .email_poke
             background: darken(gray, 20%)
+            &:hover
+              background: darken(gray, 5%)
           .facebook_poke
-            background: #0060c6
+            background: $fb_blue
             margin-top: .4em
+            &:hover
+              background: lighten($fb_blue, 10%)
           .twitter_poke
             background: darken(#82bbce, 15%)
+            &:hover
+              background: darken(#82bbce, 5%)
           span.count
             background: white
             width: 10%
