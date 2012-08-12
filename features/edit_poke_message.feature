@@ -12,7 +12,7 @@ Feature: edit poke message
     And I click "Ver/personalizar email"
     And I fill "Mensagem" with "A rainha precisa da gente!"
     When I press "Pressionar por Email" at "the lightbox"
-    Then I should see "Ótimo! Agora que você já pressionou por e-mail, que tal aumentar essa pressão?"
+    Then I should see "Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!"
     And I should see "Pressionar pelo Facebook"
     And I should see "Pressionar pelo Twitter"
     And a email poke should be added to the target
