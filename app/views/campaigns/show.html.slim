@@ -48,20 +48,20 @@ section.content.row
         .poke_options
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "facebook"
-            span.count= number_to_human(@campaign.pokes_by(:facebook).count, :units => {:unit => "", :thousand => "m"}).gsub(" ", "")
+            span.count= number_to_human(@campaign.pokes_by(:facebook).count, :units => {:unit => "", :thousand => "k"}).gsub(" ", "")
             = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
             = link_to "Ver/personalizar mensagem", "#facebook_poke_message", class: "message_link", :rel => "facebox[.facebook_poke_message]"
 
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "twitter"
-            span.count= number_to_human(@campaign.pokes_by(:twitter).count, :units => {:unit => "", :thousand => "m"}).gsub(" ", "")
+            span.count= number_to_human(@campaign.pokes_by(:twitter).count, :units => {:unit => "", :thousand => "k"}).gsub(" ", "")
             = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
             = link_to "Ver mensagem", "#twitter_poke_message", class: "message_link", :rel => "facebox[.twitter_poke_message]"
           p
 
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "email"
-            span.count= number_to_human(@campaign.pokes_by(:email).count, :units => {:unit => "", :thousand => "m"}).gsub(" ", "")
+            span.count= number_to_human(@campaign.pokes_by(:email).count, :units => {:unit => "", :thousand => "k"}).gsub(" ", "")
             = f.submit "Pressionar por Email", :class => "btn email_poke"
             = link_to "Ver/personalizar email", "#email_poke_message", class: "message_link", :rel => "facebox[.email_poke_message]"
         hr
