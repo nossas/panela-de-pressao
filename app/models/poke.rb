@@ -41,9 +41,9 @@ class Poke < ActiveRecord::Base
 
   def send_facebook_post
     campaign_url = Rails.application.routes.url_helpers.campaign_url(campaign)
-    campaign.targets.each do |t| 
+    campaign.targets_with_facebook.each do |t| 
       begin
-        Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook)
+        Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook_id)
         t.increase_pokes_by_facebook
       rescue Exception => e
         puts e.message
@@ -56,7 +56,7 @@ class Poke < ActiveRecord::Base
       c.oauth_token = user.twitter_authorization.token
       c.oauth_token_secret = user.twitter_authorization.secret
     end
-    self.campaign.targets.select{|t| !t.influencer.twitter.blank?}.each do |t|
+    self.campaign.targets_with_twitter.each do |t|
       begin
         Twitter.update("#{self.campaign.twitter_text}: #{self.campaign.short_url} #{t.influencer.twitter}")
         t.increase_pokes_by_twitter
