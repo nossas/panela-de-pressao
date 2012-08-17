@@ -30,6 +30,12 @@ ManifesteSe::Application.configure do
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
+  
+
+  # Enabling serving of assets
+  config.assets.digest = true
+  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
