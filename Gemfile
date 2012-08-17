@@ -12,7 +12,6 @@ gem "slim-rails"
 gem "formtastic", "~> 2.2.0"
 gem "auto_html"
 gem "redcarpet"
-gem 'newrelic_rpm'
 
 # Image uplaod
 gem 'carrierwave'
@@ -43,6 +42,7 @@ end
 
 group :production do
   gem 'dalli'
+  gem 'newrelic_rpm'
 end
 
 
