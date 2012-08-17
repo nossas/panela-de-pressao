@@ -31,4 +31,24 @@ describe Campaign do
       campaign.should have(0).error_on(:map_embed)
     end
   end
+
+  describe "#targets_with_facebook" do
+    context "when there is no target with Facebook" do
+      its(:targets_with_facebook){ should be_empty }
+    end
+    context "when there is one target with Facebook" do
+      before { subject.stub(:targets).and_return([stub_model(Target, :influencer => stub_model(Influencer, :facebook_id => "14"))]) }
+      its(:targets_with_facebook){ should have(1).target }
+    end
+  end
+  
+  describe "#targets_with_twitter" do
+    context "when there is no target with Twitter" do
+      its(:targets_with_twitter){ should be_empty }
+    end
+    context "when there is one target with Twitter" do
+      before { subject.stub(:targets).and_return([stub_model(Target, :influencer => stub_model(Influencer, :twitter => "@nicolasiensen"))]) }
+      its(:targets_with_twitter){ should have(1).target }
+    end
+  end
 end
