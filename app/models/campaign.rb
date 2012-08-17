@@ -11,9 +11,9 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :posts
   has_many :answers
-  before_save { CampaignMailer.campaign_accepted(self).deliver if accepted_at_changed? && persisted? }
-  after_create { CampaignMailer.campaign_awaiting_moderation(self).deliver }
-  after_create { CampaignMailer.we_received_your_campaign(self).deliver }
+  before_save { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
+  after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
+  after_create { CampaignMailer.delay.we_received_your_campaign(self) }
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers

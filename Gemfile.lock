@@ -83,6 +83,11 @@ GEM
     daemons (1.1.8)
     dalli (1.1.2)
     database_cleaner (0.8.0)
+    delayed_job (3.0.3)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.3.2)
+      activerecord (> 2.1.0)
+      delayed_job (~> 3.0.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -323,6 +328,7 @@ DEPENDENCIES
   cucumber-rails
   dalli
   database_cleaner
+  delayed_job_active_record
   fog (~> 1.3.1)
   foreigner
   formtastic (~> 2.2.0)
