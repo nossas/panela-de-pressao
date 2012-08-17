@@ -4,4 +4,4 @@
   a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
 .description
   p
-    = simple_format(@campaign.description)
+    = simple_format(@campaign.description, {}, sanitize: false)
