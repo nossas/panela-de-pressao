@@ -67,4 +67,12 @@ class Campaign < ActiveRecord::Base
   def finished?
     !self.finished_at.nil?
   end
+
+  def targets_with_facebook
+    self.targets.select{|target| !target.influencer.facebook_id.blank?}
+  end
+
+  def targets_with_twitter
+    self.targets.select{|target| !target.influencer.twitter.blank?}
+  end
 end
