@@ -3,4 +3,5 @@
   .fb-like data-href=request.url data-send="false" data-layout="button_count" data-show-faces="false"
   a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="pt" data-url=@campaign.short_url Tweetar
 .description
-  p= simple_format @campaign.description
+  p
+    = simple_format(@campaign.description)
