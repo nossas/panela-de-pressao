@@ -4,7 +4,7 @@ class Poke < ActiveRecord::Base
   attr_accessible :campaign_id, :kind, :user_id, :custom_message
   after_create :send_email, :if => Proc.new {self.email?}
   after_create :send_facebook_post, :if => Proc.new {self.facebook?}
-  after_create :send_tweet, :if => Proc.new {self.twitter?}
+  after_create :if => Proc.new {self.twitter?} { self.delay.send_tweet }
   belongs_to :campaign
   belongs_to :user
   has_many :targets, :through => :campaign
@@ -58,7 +58,7 @@ class Poke < ActiveRecord::Base
     end
     self.campaign.targets_with_twitter.each do |t|
       begin
-        Twitter.delay.update("#{self.campaign.twitter_text}: #{self.campaign.short_url} #{t.influencer.twitter}")
+        Twitter.update("#{self.campaign.twitter_text}: #{self.campaign.short_url} #{t.influencer.twitter}")
         t.increase_pokes_by_twitter
       rescue Exception => e
         puts e.message
