@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/meurio/seurio.png?branch=master)](http://travis-ci.org/meurio/seurio)
+[![Build Status](https://secure.travis-ci.org/meurio/seurio.png?branch=master)](http://travis-ci.org/meurio/seurio) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/meurio/panela-de-pressao)
 
 # Workshop de requisitos
 Basicamente a história que estamos contando no workshop abaixo é a seguinte:
