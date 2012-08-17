@@ -13,8 +13,8 @@ class Influencer < ActiveRecord::Base
   # Callbacks
 
   before_save :setup_facebook_id 
-  after_create { InfluencerMailer.created(self).deliver }
-  after_update { InfluencerMailer.edited(self).deliver  }
+  after_create { InfluencerMailer.delay.created(self) }
+  after_update { InfluencerMailer.delay.edited(self) }
 
   default_scope order("name")
 

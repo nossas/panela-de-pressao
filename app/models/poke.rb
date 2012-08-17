@@ -10,7 +10,7 @@ class Poke < ActiveRecord::Base
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
 
-  before_create { PokeMailer.thanks(self).deliver unless self.user.has_poked(self.campaign) }
+  before_create { PokeMailer.delay.thanks(self) unless self.user.has_poked(self.campaign) }
   before_create :post_facebook_activity
   
   default_scope order('updated_at DESC') 
@@ -35,7 +35,7 @@ class Poke < ActiveRecord::Base
 
   private
   def send_email
-    PokeMailer.poke(self).deliver
+    PokeMailer.delay.poke(self)
     self.campaign.targets.each {|t| t.increase_pokes_by_email}
   end
 
@@ -43,7 +43,7 @@ class Poke < ActiveRecord::Base
     campaign_url = Rails.application.routes.url_helpers.campaign_url(campaign)
     campaign.targets_with_facebook.each do |t| 
       begin
-        Koala::Facebook::API.new(user.facebook_authorization.token).put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook_id)
+        Koala::Facebook::API.new(user.facebook_authorization.token).delay.put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook_id)
         t.increase_pokes_by_facebook
       rescue Exception => e
         puts e.message
@@ -58,7 +58,7 @@ class Poke < ActiveRecord::Base
     end
     self.campaign.targets_with_twitter.each do |t|
       begin
-        Twitter.update("#{self.campaign.twitter_text}: #{self.campaign.short_url} #{t.influencer.twitter}")
+        Twitter.delay.update("#{self.campaign.twitter_text}: #{self.campaign.short_url} #{t.influencer.twitter}")
         t.increase_pokes_by_twitter
       rescue Exception => e
         puts e.message
@@ -70,7 +70,7 @@ class Poke < ActiveRecord::Base
     if self.user.facebook_authorization
       begin
         campaign_url = Rails.application.routes.url_helpers.campaign_url(self.campaign)
-        Koala::Facebook::API.new(self.user.facebook_authorization.token).put_connections("me", "paneladepressao:apoiar", :campanha => campaign_url)
+        Koala::Facebook::API.new(self.user.facebook_authorization.token).delay.put_connections("me", "paneladepressao:apoiar", :campanha => campaign_url)
       rescue Exception => e
         puts "Post Facebook activity failed: #{e.message}"
       end
