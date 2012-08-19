@@ -51,7 +51,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def pokers
-    @pokers ||= User.joins(:pokes).
+    User.joins(:pokes).
       select("users.*, (
              SELECT COUNT(p.*) FROM pokes p 
              WHERE p.user_id = users.id
