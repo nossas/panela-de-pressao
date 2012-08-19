@@ -1,7 +1,7 @@
 # coding: utf-8
 
 class Poke < ActiveRecord::Base
-  attr_accessible :campaign_id, :kind, :user_id, :custom_message, :created_at
+  attr_accessible :campaign_id, :kind, :user_id, :custom_message
   after_create :send_email, :if => Proc.new {self.email?}
   after_create :send_facebook_post, :if => Proc.new {self.facebook?}
   after_create :if => Proc.new {self.twitter?} { self.delay.send_tweet }
