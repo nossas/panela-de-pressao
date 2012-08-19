@@ -10,10 +10,28 @@ class Poke < ActiveRecord::Base
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
 
+  validates_presence_of :campaign 
+  validates_presence_of :user 
+  validates_presence_of :kind
+
+  validate :poked_recently?, on: :create
+
   before_create { PokeMailer.thanks(self) unless self.user.has_poked(self.campaign) }
   before_create :post_facebook_activity
   
   default_scope order('updated_at DESC') 
+
+
+
+  def poked_recently?
+    errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently')) unless any_recent_pokes?.blank? 
+  end
+
+  def any_recent_pokes?
+    pokes = Poke.where(user_id: self.user_id, campaign_id: self.campaign_id)
+    pokes.select { |poke| poke.created_at > Time.now - 15.minutes }
+  end
+
   def twitter?
     self.kind == 'twitter'
   end
@@ -76,5 +94,4 @@ class Poke < ActiveRecord::Base
       end
     end
   end
-
 end
