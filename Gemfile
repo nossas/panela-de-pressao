@@ -46,15 +46,17 @@ group :production do
   gem 'newrelic_rpm'
 end
 
+group :test, :development do
+  gem 'rake'
+  gem "rspec-rails", ">= 2.0.1"
+end
 
 # We need development here to make rake spec work
 group :test, :development do
-  gem 'rake'
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'database_cleaner'
   gem "capybara", "~> 1.1.2"
-  gem "rspec-rails", ">= 2.0.1"
   gem "shoulda-matchers"
   gem "machinist", ">= 2.0.0.beta2"
   gem "jasmine"
