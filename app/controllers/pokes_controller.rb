@@ -20,7 +20,10 @@ class PokesController < InheritedResources::Base
         flash[:twitter_poke_notice] = "Muito bom! Você pressionou pelo Twitter." if resource.kind == "twitter"
         redirect_to campaign_path(@campaign)
       end
-      failure.html { redirect_to campaign_url(@campaign) }
+      failure.html do
+        flash[:facebook_poke_notice] = @poke.errors.to_sentence
+        redirect_to campaign_url(@campaign)
+      end
     end
   end
 end
