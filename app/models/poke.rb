@@ -1,7 +1,7 @@
 # coding: utf-8
 
 class Poke < ActiveRecord::Base
-  attr_accessible :campaign_id, :kind, :user_id, :custom_message
+  attr_accessible :campaign_id, :kind, :user_id, :custom_message, :created_at
   after_create :send_email, :if => Proc.new {self.email?}
   after_create :send_facebook_post, :if => Proc.new {self.facebook?}
   after_create :if => Proc.new {self.twitter?} { self.send_tweet }
@@ -10,8 +10,8 @@ class Poke < ActiveRecord::Base
   has_many :targets, :through => :campaign
   has_many :influencers, :through => :targets
 
-  validates_presence_of :campaign 
-  validates_presence_of :user 
+  validates_presence_of :campaign
+  validates_presence_of :user
   validates_presence_of :kind
 
   validate :poked_recently?, on: :create
@@ -24,11 +24,11 @@ class Poke < ActiveRecord::Base
 
 
   def poked_recently?
-    errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently')) unless any_recent_pokes?.blank? 
+    errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently')) if not any_recent_pokes?.blank? 
   end
 
   def any_recent_pokes?
-    pokes = Poke.where(user_id: self.user_id, campaign_id: self.campaign_id)
+    pokes = Poke.where(user_id: self.user_id, campaign_id: self.campaign_id, kind: self.kind)
     pokes.select { |poke| poke.created_at > Time.now - 15.minutes }
   end
 
