@@ -21,8 +21,8 @@ class PokesController < InheritedResources::Base
         redirect_to campaign_path(@campaign)
       end
       failure.html do
-        flash[:facebook_poke_notice] = @poke.errors.to_sentence
-        redirect_to campaign_url(@campaign)
+        flash[:alert] = @poke.errors.full_messages.to_sentence
+        redirect_to campaign_path(@campaign)
       end
     end
   end
