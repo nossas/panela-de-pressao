@@ -51,13 +51,9 @@ class Campaign < ActiveRecord::Base
   end
 
   def pokers
-    User.joins(:pokes).
-      select("users.*, (
-             SELECT COUNT(p.*) FROM pokes p 
-             WHERE p.user_id = users.id
-             AND p.campaign_id = #{self.id} ORDER BY RANDOM()
-            ) as pokes_count").
-      where(["pokes.campaign_id = ?", self.id]).uniq
+    User
+      .joins(:pokes)
+      .where(["pokes.campaign_id = ?", self.id]).uniq
   end 
 
   def more_active_pokers 
