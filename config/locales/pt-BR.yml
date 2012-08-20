@@ -223,7 +223,7 @@ pt-BR:
         poke:
           attributes:
             created_at: 
-              poked_recently: "Você já pressionou recentemente. Aguarde 15 minutinhos para pressionar novamente por este canal :)."
+              poked_recently: "Você já pressionou recentemente. Aguarde um tempinho para pressionar novamente por este canal :)."
     attributes:
       campaign:
         name: "Qual é o título da sua campanha?"
