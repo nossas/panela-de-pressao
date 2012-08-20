@@ -53,7 +53,7 @@ class Campaign < ActiveRecord::Base
   def pokers
     User
       .joins(:pokes)
-      .where(["pokes.campaign_id = ?", self.id]).uniq
+      .where(["pokes.campaign_id = ?", self.id]).order('created_at DESC').uniq
   end 
 
   def more_active_pokers 
