@@ -220,6 +220,10 @@ pt-BR:
               blank: "Uma imagem vale mais que mil palavras... e é obrigatória para a campanha :)"
             category:
               blank: "Escolha o tema da sua campanha"
+        poke:
+          attributes:
+            created_at: 
+              poked_recently: "Você já pressionou recentemente. Aguarde 15 minutinhos para pressionar novamente por este canal :)."
     attributes:
       campaign:
         name: "Qual é o título da sua campanha?"
