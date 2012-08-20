@@ -5,7 +5,7 @@ Feature: View a member profile
 
   Scenario: I'm a visitor and I see an user who poked 1 campaign multiple times
     Given there is a campaign called "Queremos bicicletários em todo o planeta!"
-    And there is 1 poker called "Luiz Fonseca" that poked 34 times
+    And there is 1 poker called "Luiz Fonseca" that poked 1 times
     And I'm in the campaigns page
     When I click "Queremos bicicletários em todo o planeta!"
     And I click on the "Luiz Fonseca" avatar
