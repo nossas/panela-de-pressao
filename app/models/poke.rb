@@ -29,7 +29,7 @@ class Poke < ActiveRecord::Base
 
   def any_recent_pokes?
     pokes = Poke.where(user_id: self.user_id, campaign_id: self.campaign_id, kind: self.kind)
-    pokes.select { |poke| poke.created_at > Time.now - 15.minutes }
+    pokes.select { |poke| poke.created_at > Time.now - 1.day }
   end
 
   def twitter?
