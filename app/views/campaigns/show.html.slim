@@ -95,15 +95,13 @@ section.content.row
             - @campaign.pokers.each do |poker|
               li= link_to image_tag(poker.pic(type: :square)), user_path(poker), title: poker.name
 
-- if flash[:facebook_poke_notice]
-  #facebook_poke_notice
-    h1= flash[:facebook_poke_notice]
-    p Continue atento à campanha e pressione cada vez mais!
-
-- if flash[:twitter_poke_notice]
-  #twitter_poke_notice
-    h1= flash[:twitter_poke_notice]
-    p Continue atento à campanha e pressione cada vez mais!
+- if flash[:poke_notice]
+  #poke_notice
+    h1 Muito bom! Você acaba de colocar mais pressão nessa panela.
+    p Agora compartilhe essa campanha com seus amigos!
+    .share
+      a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
+      .fb-like data-href=request.url data-layout="button_count" data-show-faces="false"
 
 #email_poke_message
   h1 Email que será enviado aos pressionados

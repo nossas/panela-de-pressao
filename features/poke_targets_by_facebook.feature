@@ -11,7 +11,7 @@ Feature: Poke targets by Facebook
     And I already poked this campaign
     And I'm in this campaign page
     When I press "Pressionar pelo Facebook"
-    Then I should see "Muito bom! Você pressionou pelo Facebook."
+    Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a facebook poke should be added to the target
 
   @omniauth_test @koala @javascript
@@ -22,5 +22,15 @@ Feature: Poke targets by Facebook
     And I already poked this campaign
     And I'm in this campaign page
     When I press "Pressionar pelo Facebook"
-    Then I should see "Muito bom! Você pressionou pelo Facebook."
+    Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a facebook poke should be added to the target
+    
+  @omniauth_test @javascript @koala
+  Scenario: when I poke a campaign twice
+    Given I'm logged in
+    And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
+    And there is a target for this campaign
+    And I already poked this campaign
+    And I'm in this campaign page
+    When I press "Pressionar pelo Facebook"
+    Then an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent once

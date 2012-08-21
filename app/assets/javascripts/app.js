@@ -57,14 +57,12 @@ var App = window.App = {
       $.facebox.settings.loadingImage = '/assets/loading.gif';
 
       $("#login").hide();
-      $("#facebook_poke_notice").hide();
-      $("#twitter_poke_notice").hide();
+      $("#poke_notice").hide();
       $("#email_poke_message").hide();
       $("#facebook_poke_message").hide();
       $("#twitter_poke_message").hide();
 
-      if($("#facebook_poke_notice").length){ $.facebox({ div: '#facebook_poke_notice' }).reveal(); }
-      if($("#twitter_poke_notice").length){ $.facebox({ div: '#twitter_poke_notice' }).reveal(); }
+      if($("#poke_notice").length){ $.facebox({ div: '#poke_notice' }).reveal(); }
 
       $('a[rel*=facebox]').facebox()
     },
