@@ -729,6 +729,11 @@ body
             font-size: 1.3em
             width: 76%
             +border-radius(0 6px 6px 0)
+            &:disabled
+              background: lighten(gray, 20%)
+              &:hover
+                background: lighten(gray, 20%)
+                +text-shadow(1px 1px 2px #404040)
           .email_poke
             background: darken(gray, 20%)
             &:hover

@@ -49,20 +49,29 @@ section.content.row
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "facebook"
             span.count= number_to_human(@campaign.pokes_by(:facebook).count, :units => {:unit => "", :thousand => "k"}).gsub(" ", "")
-            = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
+            - if @current_user.nil? || @current_user.can_poke?(@campaign, :with => "facebook")
+              = f.submit "Pressionar pelo Facebook", :class => "btn facebook_poke"
+            - else
+              = f.submit "Facebook pressionado!", :class => "btn facebook_poke", :disabled => "disabled"
             = link_to "Ver/personalizar mensagem", "#facebook_poke_message", class: "message_link", :rel => "facebox[.facebook_poke_message]"
 
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "twitter"
             span.count= number_to_human(@campaign.pokes_by(:twitter).count, :units => {:unit => "", :thousand => "k"}).gsub(" ", "")
-            = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
+            - if @current_user.nil? || @current_user.can_poke?(@campaign, :with => "twitter")
+              = f.submit "Pressionar pelo Twitter", :class => "btn twitter_poke"
+            - else
+              = f.submit "Twitter pressionado!", :class => "btn twitter_poke", :disabled => "disabled"
             = link_to "Ver mensagem", "#twitter_poke_message", class: "message_link", :rel => "facebox[.twitter_poke_message]"
           p
 
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "email"
             span.count= number_to_human(@campaign.pokes_by(:email).count, :units => {:unit => "", :thousand => "k"}).gsub(" ", "")
-            = f.submit "Pressionar por Email", :class => "btn email_poke"
+            - if @current_user.nil? || @current_user.can_poke?(@campaign, :with => "email")
+              = f.submit "Pressionar por Email", :class => "btn email_poke"
+            - else
+              = f.submit "Email pressionado!", :class => "btn email_poke", :disabled => "disabled"
             = link_to "Ver/personalizar email", "#email_poke_message", class: "message_link", :rel => "facebox[.email_poke_message]"
         hr
         .privacy= t 'campaign.show.privacy_html', link: link_to(t('campaign.show.your_privacy'), "http://meurio.org.br/paginas/privacidade")
