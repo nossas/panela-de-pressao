@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
   end
 
   def has_poked campaign
-    pokes.where(:campaign_id => campaign.id).any?
+    self.pokes.where(:campaign_id => campaign.id).any?
+  end
+
+  def can_poke? campaign, options = {}
+    self.pokes.where("campaign_id = ? AND kind = ? AND created_at >= ?", campaign.id, options[:with], Time.now - 1.day).count == 0
   end
 end

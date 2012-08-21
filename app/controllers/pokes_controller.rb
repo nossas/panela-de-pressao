@@ -20,7 +20,7 @@ class PokesController < InheritedResources::Base
         redirect_to campaign_path(@campaign)
       end
       failure.html do
-        flash[:alert] = @poke.errors.full_messages.to_sentence
+        flash[:alert] = "Você já pressionou recentemente. Aguarde um tempinho para pressionar novamente por este canal :)"
         redirect_to campaign_path(@campaign)
       end
     end
