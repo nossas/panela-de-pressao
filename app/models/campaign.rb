@@ -47,7 +47,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def pokes_by(opt = :email)
-    self.pokes.select { |a| a.kind == opt.to_s }
+    self.pokes.where(:kind => opt)
   end
 
   def pokers
