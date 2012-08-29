@@ -1,5 +1,5 @@
 p Atenção curadoria!
-p= raw "Uma nova campanha chamada #{link_to @campaign.name, edit_campaign_path(@campaign)} está aguardando a sua moderação."
+p= raw "Uma nova campanha chamada #{link_to @campaign.name, edit_campaign_url(@campaign)} está aguardando a sua moderação."
 p
   | O criador da campanha se chama 
   strong= @campaign.user.name
