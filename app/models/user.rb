@@ -24,19 +24,11 @@ class User < ActiveRecord::Base
 
   def pic options = {:type => "large"}
     type = options[:type]
-    @pic ||= self.carrierwave_pic(:type => type) || self.facebook_pic(:type => type) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+    self.carrierwave_pic(:type => type) || self.picture.try{|p| p.gsub("square", type.to_s)} || "http://meurio.org.br/assets/avatar_blank.png"
   end
 
   def carrierwave_pic options = {:type => "large"}
     self.file.send(options[:type]).url
-  end
-
-  def facebook_pic options = {:type => "large"}
-    "http://graph.facebook.com/#{self.facebook_authorization.uid}/picture?type=#{options[:type]}" if self.facebook_authorization
-  end
-
-  def facebook_url
-    "https://facebook.com/profile.php?id=#{self.facebook_authorization.uid}" if self.facebook_authorization
   end
 
   def twitter_authorization
