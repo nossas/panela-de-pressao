@@ -16,10 +16,6 @@ describe User do
       before { subject.stub_chain(:file, :large, :url).and_return("profile.jpg") }
       its(:pic){ should be_== "profile.jpg" }
     end
-    context "when the user have a picture from Facebook" do
-      before { subject.stub(:facebook_pic).and_return("facebook.jpg") }
-      its(:pic){ should be_== "facebook.jpg" }
-    end
     context "when the user have a picture from somewhere" do
       before { subject.stub(:picture).and_return("picture.jpg") }
       its(:pic){ should be_== "picture.jpg" }
