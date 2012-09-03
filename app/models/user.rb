@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   def pic options = {:type => "large"}
     type = options[:type]
-    self.carrierwave_pic(:type => type) || self.facebook_pic(:type => type) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
+    @pic ||= self.carrierwave_pic(:type => type) || self.facebook_pic(:type => type) || self.picture || "http://meurio.org.br/assets/avatar_blank.png"
   end
 
   def carrierwave_pic options = {:type => "large"}
