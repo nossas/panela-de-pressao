@@ -8,11 +8,11 @@ Feature: export all users
     Given I'm logged in as admin
     And I'm in the campaigns page
     When I open my profile options
-    Then I should see "Exportar todos os usuários"
+    Then I should see "Exportar"
 
   @omniauth_test @javascript
   Scenario: when I'm not an admin
     Given I'm logged in
     And I'm in the campaigns page
     When I open my profile options
-    Then I should not see "Exportar todos os usuários"
+    Then I should not see "Exportar"

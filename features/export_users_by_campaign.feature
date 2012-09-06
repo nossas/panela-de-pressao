@@ -8,9 +8,9 @@ Feature: export users by campaign
     Given I'm logged in as admin
     And there is a campaign called "Salve a Amazônia"
     When I go to this campaign page
-    Then I should see "Exportar pressionadores"
+    Then I should see "Exportar"
 
   Scenario: when I'm not admin
     Given there is a campaign called "Salve a Amazônia"
     When I go to this campaign page
-    Then I should not see "Exportar pressionadores"
+    Then I should not see "Exportar"
