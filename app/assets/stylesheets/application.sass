@@ -418,7 +418,6 @@ section.footer
         position: relative
         .finished
           position: absolute
-          background: $green
           color: white
           font-family: "Londrina Solid"
           text-transform: uppercase
@@ -429,6 +428,10 @@ section.footer
           left: -40px
           +box-shadow(black 0 0 10px)
           +rotate(-45deg)
+          &.succeed
+            background: $green
+          &.unsucceed
+            background: desaturate(red, 40%)
     .details
       .description, .is_waiting_moderation
         font-size: .8em

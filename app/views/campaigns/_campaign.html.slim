@@ -3,7 +3,10 @@
     .img
       = link_to image_tag(campaign.image), campaign.accepted? ? campaign : edit_campaign_path(campaign)
       - if campaign.finished?
-        .finished Vitória
+        - if campaign.succeed?
+          .finished.succeed Vitória
+        - else
+          .finished.unsucceed Não deu
   .details
     h3.title
       = link_to campaign.name, campaign.accepted? ? campaign : edit_campaign_path(campaign)
