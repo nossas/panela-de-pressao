@@ -29,7 +29,7 @@
 .icon-twitter:before {
 	content: "\22";
 }
-.icon-email:before {
+.icon-mail:before {
 	content: "\23";
 }
 .icon-home:before {
@@ -62,6 +62,9 @@
 .icon-contact:before {
 	content: "\2d";
 }
-.icon-trophy:before {
+.icon-thumbs-up:before {
 	content: "\2e";
+}
+.icon-thumbs-down:before {
+	content: "\2f";
 }
