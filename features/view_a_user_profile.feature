@@ -13,13 +13,13 @@ Feature: View a member profile
     And I should see "Pressionou a campanha Queremos bicicletários em todo o planeta!" 
     And I should not see "user[email]"
   
-  @omniauth_test
+  @omniauth_test @koala
   Scenario: I'm a logged user and I want to see my profile
     Given there is a campaign created by "Luiz Fonseca" with no partnership
     And I'm logged in
     And I'm in the campaigns page
     When I click "Desarmamento Voluntário"
-    And I click "Meu Perfil"
+    And I click "Meu perfil"
     Then I should see "O que Nícolas Iensen já fez no Panela de Pressão?"
     And I should see "user[name]"
     And I should see "user[email]"

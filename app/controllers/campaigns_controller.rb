@@ -36,12 +36,14 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
+  def unmoderated
+    @campaigns = Campaign.unmoderated
+  end
+
   protected
   def collection
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
-    elsif current_user && current_user.admin?
-      @campaigns ||= Campaign.all
     else
       @campaigns ||= end_of_association_chain.accepted
     end

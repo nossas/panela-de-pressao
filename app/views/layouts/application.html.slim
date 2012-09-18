@@ -49,10 +49,11 @@ html
             - if current_user
               span= image_tag current_user.pic(:type => "square"), alt: "avatar"
               span= current_user.name
-              .icon-triangle
+              .icon-cog
                 ul.options
-                  li= link_to "Meu Perfil", current_user, :class => "icon-user"
-                  li= link_to "Minhas Campanhas", user_campaigns_path(current_user), :class => "icon-comments"
+                  li= link_to "Meu perfil", current_user, :class => "icon-user"
+                  li= link_to "Minhas campanhas", user_campaigns_path(current_user), :class => "icon-comments"
+                  li= link_to "Moderar campanhas", unmoderated_campaigns_path, :class => "icon-blocked" if can? :moderate, Campaign
                   li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
                   li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
             - else
