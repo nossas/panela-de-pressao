@@ -24,8 +24,9 @@ section
 .row
   +grid-row
 
-.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at, body.campaigns#unmoderated article.left
   +grid(12)
+  +last
 
 article.right
   +grid(9)
@@ -302,7 +303,7 @@ section.login
       width: 25px
       height: 25px
       float: left 
-    .icon-triangle
+    .icon-cog
       display: inline
       margin-left: 1em
       padding: 1em .7em 1em 1em
@@ -336,7 +337,7 @@ section.login
 section.header
   +box-shadow(0 15px 18px -20px lighten(black, 25%) inset)
   background: lighten(gray, 47%)
-  border-bottom: 1px solid lighten(gray, 10%)
+  border-bottom: 1px solid lighten(gray, 40%)
   .row
     overflow: visible
   .logo

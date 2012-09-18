@@ -4,6 +4,8 @@ ManifesteSe::Application.routes.draw do
   get '/auth/facebook', as: :facebook_connect
   get '/auth/meurio',   as: :meurio_connect
 
+  get "/campaigns/unmoderated", :to => "campaigns#unmoderated", :as => :unmoderated_campaigns
+
   resources :sessions, :only => [:destroy]
   resources :campaigns do
     member do

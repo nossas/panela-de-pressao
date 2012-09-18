@@ -3,7 +3,7 @@ Feature: Add new influencers
   As an admin
   I want to add new influencers
 
-  @omniauth_test
+  @omniauth_test @koala
   Scenario: when I fill all the required fields
     Given I'm in the new influencer page
     And I'm logged in
@@ -23,7 +23,7 @@ Feature: Add new influencers
     When I press "Adicionar alvo"
     Then I should see "não pode ficar em branco"
 
-  @omniauth_test @javascript
+  @omniauth_test @javascript @koala
   Scenario: when I'm not logged in
     Given I'm in the influencers page
     And I click "Adicionar alvo"

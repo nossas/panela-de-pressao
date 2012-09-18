@@ -217,6 +217,9 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== new_campaign_path
   when "the answers page of the campaign"
     page.current_path.should be_== answers_campaign_path(@campaign)
+  when "the unmoderated campaigns page"
+    sleep 1
+    page.current_path.should be_== unmoderated_campaigns_path
   else
     raise "I don't know '#{arg1}'"
   end
@@ -314,4 +317,8 @@ end
 Then /^a email saying "(.*?)" should be sent$/ do |arg1|
   sleep(1)
   ActionMailer::Base.deliveries.select{|d| d.body.include? arg1}.should_not be_empty
+end
+
+Given /^there is an unmoderated campaign called "(.*?)"$/ do |arg1|
+  @campaign = Campaign.make! :name => arg1, :accepted_at => nil
 end
