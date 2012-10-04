@@ -1,15 +1,4 @@
 App.Campaigns = {
-  Index: Backbone.View.extend({
-    el: 'body',
-
-    events: {
-      'change form.featured input': 'submitForm'
-    },
-
-    submitForm: function(event) {
-      $(event.target).closest('form').submit();
-    }
-  }),
   Edit: Backbone.View.extend({
     el: 'body',
 
@@ -29,6 +18,9 @@ App.Campaigns = {
   Show: Backbone.View.extend({
     el: 'body',
 
+    events: {
+      'change form.featured input': 'submitForm'
+    },
     initialize: function(){
       $(".email_text").hide();
       $(".facebook_text").hide();
@@ -66,6 +58,10 @@ App.Campaigns = {
       $(".poke_btn.twitter").click(function(){ $("form.twitter").submit(); });
 
       $("a[href='#poke_buttons']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
+    },
+
+    submitForm: function(event) {
+      $(event.target).closest('form').submit();
     }
   })
 };
