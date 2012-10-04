@@ -5,7 +5,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
-  before_filter :only => [:index] { @highlight_campaign = Campaign.featured.first }
+  before_filter :only => [:index] { @highlight_campaign = Campaign.featured.first || Campaign.accepted.first }
 
   def create
     create! do |success, failure|
