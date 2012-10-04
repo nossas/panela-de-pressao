@@ -224,7 +224,16 @@ section.highlight
       +box-shadow(none !important)
   .links
     padding: 1em 0
-
+  form.featured
+    display: inline-block
+    label
+      color: $green 
+      &:hover
+        cursor: pointer
+        color: black
+        font-weight: bold
+    input
+      text-indent: -9999px
 section.content
   margin-top: .8em
 
@@ -447,14 +456,7 @@ section.footer
         line-height: normal 
         padding: .5em
         +border-radius(.5em)
-    form.featured
-      label
-        font-size: .7em
-        color: lighten(gray, 15%)
-        &:hover
-          cursor: pointer
-          color: black
-          font-weight: bold
+
 .pokers
   ul li
     float: left

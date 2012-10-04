@@ -21,7 +21,7 @@ class Campaign < ActiveRecord::Base
   default_scope order("accepted_at DESC")
 
   scope :accepted, where('accepted_at IS NOT NULL')
-  scope :unmoderated, where(accepted: nil)
+  scope :unmoderated, where(accepted_at: nil)
   scope :featured, where(featured: true)
 
   mount_uploader :image, ImageUploader
