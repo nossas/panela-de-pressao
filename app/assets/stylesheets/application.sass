@@ -447,6 +447,14 @@ section.footer
         line-height: normal 
         padding: .5em
         +border-radius(.5em)
+    form.featured
+      label
+        font-size: .7em
+        color: lighten(gray, 15%)
+        &:hover
+          cursor: pointer
+          color: black
+          font-weight: bold
 .pokers
   ul li
     float: left
@@ -526,12 +534,14 @@ body
             margin-top: -5px
           p.headline
             margin-bottom: 2em
+
         .campaign
           .info
             position: relative
             background: white
             padding: 10px
             border: 1px solid lighten(gray, 20%)
+
             .name
               font-family: "Londrina Solid"
               position: absolute
