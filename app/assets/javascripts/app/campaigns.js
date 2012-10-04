@@ -1,4 +1,15 @@
 App.Campaigns = {
+  Index: Backbone.View.extend({
+    el: 'body',
+
+    events: {
+      'change form.featured input': 'submitForm'
+    },
+
+    submitForm: function(event) {
+      $(event.target).closest('form').submit();
+    }
+  }),
   Edit: Backbone.View.extend({
     el: 'body',
 
