@@ -2,7 +2,7 @@ class Campaign < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :accepted_at, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
-    :pokers_email, :finished_at, :succeed, :featured
+    :pokers_email, :finished_at, :succeed
   
   belongs_to :user
   belongs_to :category
@@ -22,7 +22,7 @@ class Campaign < ActiveRecord::Base
 
   scope :accepted, where('accepted_at IS NOT NULL')
   scope :unmoderated, where(accepted_at: nil)
-  scope :featured, where(featured: true)
+  scope :featured, where('featured_at IS NOT NULL').order('finished_at DESC')
 
   mount_uploader :image, ImageUploader
 

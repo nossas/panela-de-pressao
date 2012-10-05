@@ -30,6 +30,13 @@ class CampaignsController < InheritedResources::Base
     redirect_to @campaign
   end
 
+  def feature
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.featured_at = params[:featured] == "true" ? Time.now : nil 
+    @campaign.save!
+    redirect_to :back and return
+  end
+
   def index
     if params[:user_id]
       render :user_index

@@ -9,11 +9,11 @@ Feature: Put a campaign on featured mode
     Given I'm logged in as admin
     And there is a campaign called "Save the Whales!"
     And I'm in this campaign page
-    And I should see "Destaque?"
-    When I check "Destaque?"
+    And I should see "Destaque"
+    When I click "Destaque"
     Then I should be in this campaign page
 
   Scenario: I'm not logged in as admin
     Given there is a campaign called "Save the Whales!"
     When I go to this campaign page
-    Then I should not see "Destaque?"
+    Then I should not see "Destaque"
