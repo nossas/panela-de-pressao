@@ -42,9 +42,7 @@ html
     section.login
       .row
         .meurio_and_user
-          .meurio
-            = link_to image_tag("seurio_bottom_logo_meurio.jpeg"), "http://meurio.org.br/"
-            | apresenta:
+          .meurio= link_to image_tag("seurio_bottom_logo_meurio.jpeg"), "http://meurio.org.br/"
           .user
             - if current_user
               span= image_tag current_user.pic(:type => "square"), alt: "avatar"
