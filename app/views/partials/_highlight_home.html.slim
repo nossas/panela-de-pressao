@@ -1,7 +1,7 @@
 .row
   .home_link
     = link_to "Home", root_path, :class => "home"
-    - if @campaign.present?
+    - if @campaign.present? and controller.action_name == 'show'
       = link_to "Destaque", campaign_feature_path(@campaign, featured: (@campaign.featured_at.nil?)), method: :put, class: "#{@campaign.featured_at.nil? ? 'icon-star' : 'icon-star-3'}" if can?(:feature, @campaign)
       = link_to "Editar", edit_campaign_path(@campaign), :class => "icon-pencil" if can?(:edit, @campaign)
       = link_to "Exportar", users_path(:format => :csv, :by_campaign_id => @campaign.id), :class => "icon-file-excel" if can?(:export, User)
