@@ -1,98 +1,85 @@
-article.left
-  h1= t 'campaign.new.header'
-  small= t 'campaign.new.small'
-  = form_for @campaign do |f|
-    .field_row.first
-      .label_and_field
-        = f.label :name
-        .field.name
-          .field_bg= f.text_field :name
-        .inline-errors= @campaign.errors[:name].to_sentence
-    .field_row
-      .label_and_field
-        = f.label :description
-        .field.description
-          .field_bg= f.text_area :description
-        .inline-errors= @campaign.errors[:description].to_sentence
-    .field_row
-      .label_and_field
-        = f.label :image
-        .field
-          = f.file_field :image
-        .inline-errors= @campaign.errors[:image].to_sentence
-        = image_tag @campaign.image if @campaign.persisted?
-        = f.hidden_field :image_cache
-    .field_row
-      .label_and_field
-        = f.label :category_id
-        .field
-          = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
-        .inline-errors= @campaign.errors[:category].to_sentence
-    .field_row
-      .label_and_field
-        = f.label :email_text
-        .field
-          .field_bg= f.text_area :email_text
-        .inline-errors= @campaign.errors[:email_text].to_sentence
-    .field_row
-      .label_and_field
-        = f.label :facebook_text
-        .field
-          .field_bg= f.text_area :facebook_text
-        .inline-errors= @campaign.errors[:facebook_text].to_sentence
-    .field_row
-      .label_and_field
-        = f.label :twitter_text
-        .field
-          .field_bg= f.text_field :twitter_text
-        small.campaign_twitter_text_status
-        .inline-errors= @campaign.errors[:twitter_text].to_sentence
-    .field_row.influencers
-      .label_and_field
-        = f.label :influencer_ids
-        .field.influencers
-          .field_bg= f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
-    - if current_user.admin?
-      .field_row
-        .label_and_field
-          = f.label :pokers_email
-          .field
-            .field_bg= f.text_area :pokers_email
-          .inline-errors= @campaign.errors[:pokers_email].to_sentence
-    .field_row.map
-      h2= t 'campaign.new.form.map.header'
-      = link_to "Adicionar mapa", "#", class: "btn showmap"
-      .label_and_field.hidden
-        = f.label :map_embed 
-        .field.map
-          .field_bg= f.text_field :map_embed 
-      .label_and_field.hidden
-        = f.label :map_description 
-        .field.map
-          .field_bg= f.text_area :map_description
-    .clear
-    .field_row.last
-      .action
-        = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'
-        = f.submit @campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save'), :class => "btn submit"
-aside.right
-  .content
-    .tip.first
-      span= t 'campaign.new.form.tips.title' 
-    .tip.text 
-      span= t 'campaign.new.form.tips.why_important_html' 
-    .tip 
-      span= t 'campaign.new.form.tips.image'
-    .tip
-      span= t 'campaign.new.form.tips.theme' 
-    .tip.marked.text
-      span= t 'campaign.new.form.tips.email_text'
-    .tip.marked.second.text
-      span= t 'campaign.new.form.tips.face_text' 
-    .tip.marked.text
-      span= t 'campaign.new.form.tips.tweet_text'
-    .tip.last 
-      span= t 'campaign.new.form.tips.targets_html', link: link_to(t('link.click_here'), 'http://bit.ly/SJZBx7')
+h1= t 'campaign.new.header'
+small= t 'campaign.new.small'
+
+= form_for @campaign, html: { class: "#{'errors' if @campaign.errors.any?}"} do |f|
+
+  fieldset
+    legend 
+      | Sobre a campanha 
+
+    = f.label :name
+    = f.text_field :name
+    span.tip= t 'campaign.new.form.tips.title' 
+    small.inline-errors= @campaign.errors[:name].to_sentence
+
+    = f.label :description
+    = f.text_area :description
+    span.tip= t 'campaign.new.form.tips.why_important_html'
+    small.inline-errors= @campaign.errors[:description].to_sentence
+
+  fieldset
+    legend
+      | O(s) Alvo(s) da Campanha
+    = f.label :influencer_ids
+    = f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+    span.tip= t 'campaign.new.form.tips.targets_html', link: link_to(t('link.click_here'), 'http://bit.ly/SJZBx7')
+
+
+  fieldset
+    legend
+      | Divulgação
+
+    = f.label :image
+    = f.file_field :image
+    span.tip= t 'campaign.new.form.tips.image'
+    small.inline-errors= @campaign.errors[:image].to_sentence
+    = image_tag @campaign.image if @campaign.persisted?
+    = f.hidden_field :image_cache
+
+
+  fieldset
+    legend
+      | Tema
+    = f.label :category_id
+    = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
+    span.tip= t 'campaign.new.form.tips.theme'
+    small.inline-errors= @campaign.errors[:category].to_sentence
+
+  fieldset
+    legend
+      | Pressão pelo Facebook
+    = f.label :facebook_text
+    = f.text_area :facebook_text
+    span.tip= t 'campaign.new.form.tips.face_text'
+    small.inline-errors= @campaign.errors[:facebook_text].to_sentence
+
+  fieldset
+    legend
+      | Pressão pelo Twitter
+    = f.label :twitter_text
+    = f.text_field :twitter_text
+    span.tip= t 'campaign.new.form.tips.tweet_text'
+    small.inline-errors= @campaign.errors[:twitter_text].to_sentence
+
+  fieldset
+    legend
+      | Pressão por e-mail
+    = f.label :email_text
+    = f.text_area :email_text
+    span.tip= t 'campaign.new.form.tips.email_text'
+    small.inline-errors= @campaign.errors[:email_text].to_sentence
+
+  - if current_user.admin?
+    fieldset
+      legend
+        | E-mail pra quem pressiona 
+      = f.label :pokers_email
+      = f.text_area :pokers_email
+      small.inline-errors= @campaign.errors[:pokers_email].to_sentence
+
+  .action
+    = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'
+    = f.submit @campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save'), :class => "btn submit"
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
   |  ou 

@@ -22,7 +22,7 @@ class Campaign < ActiveRecord::Base
 
   scope :accepted, where('accepted_at IS NOT NULL')
   scope :unmoderated, where(accepted_at: nil)
-  scope :featured, where('featured_at IS NOT NULL').order('finished_at DESC')
+  scope :featured, where('featured_at IS NOT NULL').reorder('finished_at DESC')
 
   mount_uploader :image, ImageUploader
 
