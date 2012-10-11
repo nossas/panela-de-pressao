@@ -486,7 +486,8 @@ section.footer
       line-height: 1.6em
       text-align: center
 
-#show, #update
+
+#new, #edit, #create, #show, #update
   .highlight
     line-height: 2.6em
     .home_link
@@ -831,32 +832,60 @@ body
             margin-right: .5em
             margin-bottom: .5em
     &#new, &#edit, &#create, &#update
-      h1
-        margin: .4em
+      span.block
+        display: block !important
+      input, textarea
+        +transition(.3s)
+      form
+        small.inline-errors
+          display: none
+        &.errors
+          small.inline-errors
+            display: block
+            font-size: .7em !important
+            background: lighten(red, 45%)
+
+      h1, small
+        margin: .4em 0 
       small
-        margin: 0 0 0 1em
-      color: lighten(gray, 5%)
+        display: block
+        color: lighten(gray, 5%)
+        padding: .4em
+        background: lighten($orange, 30%)
+        font-size: .9em !important
+      fieldset
+        margin: 1.6em 0
+        background: lighten($orange, 34%)
+        padding: 1em
+        border: 2px solid lighten($orange, 20%)
+
+        legend  
+          background: $orange 
+          display: block
+          padding: 0 .4em
+          font-family: "Londrina Solid"
+          text-transform: uppercase
+          letter-spacing: 1px 
+          font-size: 1.2em
+          +box-shadow(1px 2px 1px gray)
+        input, textarea
+          color: black
+          font-size: .9em
+          font-family: "Open Sans"
+        textarea
+          height: 80px
       .inline-errors
         color: red
         font-size: .7em
         text-align: center
-      .field_row
-        +transition(1s)
-        padding: 2em .8em
-        overflow: hidden 
-        +box-shadow(white 10em 0 10em 0 inset, white -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
-        &.first, &.last
-          +box-shadow(none)
-        &:hover 
-          background: lighten($yellow, 35%)
-        &.last:hover
-          background: none
-        &.influencers
-          overflow: visible
-      .label_and_field
-        width: 100%
-        float: left
-      
+      span.tip
+        background: lighten($yellow, 15%)
+        margin: .4em 0
+        padding: .4em 1em
+        font-size: .7em !important
+        line-height: 1.4em
+        display: none
+        +border-radius(4px)
       aside.right
         .content
           .tip
