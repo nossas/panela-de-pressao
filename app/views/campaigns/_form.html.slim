@@ -35,7 +35,11 @@ small= t 'campaign.new.small'
     small.inline-errors= @campaign.errors[:image].to_sentence
     = image_tag @campaign.image if @campaign.persisted?
     = f.hidden_field :image_cache
-
+    
+    = f.label :video_url
+    = f.text_field :video_url
+    span.tip= t 'campaign.new.form.tips.image'
+    small.inline-errors= @campaign.errors[:video_url].to_sentence
 
   fieldset
     legend
