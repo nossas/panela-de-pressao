@@ -21,8 +21,6 @@ class Poke < ActiveRecord::Base
   
   default_scope order('updated_at DESC') 
 
-
-
   def poked_recently?
     errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently')) if not any_recent_pokes?.blank? 
   end

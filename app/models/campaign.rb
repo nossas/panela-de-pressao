@@ -2,8 +2,8 @@ class Campaign < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :accepted_at, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
-    :pokers_email, :finished_at, :succeed
-  
+    :pokers_email, :finished_at, :succeed, :video_url
+
   belongs_to :user
   belongs_to :category
   has_many :targets
@@ -11,9 +11,9 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :posts
   has_many :answers
-  before_save { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
-  after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
-  after_create { CampaignMailer.delay.we_received_your_campaign(self) }
+  before_save       { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
+  after_create      { CampaignMailer.delay.campaign_awaiting_moderation(self) }
+  after_create      { CampaignMailer.delay.we_received_your_campaign(self) }
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers
@@ -27,6 +27,7 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates :name, :description, :user_id, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
+  validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
 
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
@@ -53,8 +54,8 @@ class Campaign < ActiveRecord::Base
 
   def pokers
     User
-      .joins(:pokes)
-      .where(["pokes.campaign_id = ?", self.id]).order('created_at DESC').uniq
+    .joins(:pokes)
+    .where(["pokes.campaign_id = ?", self.id]).order('created_at DESC').uniq
   end 
 
   def more_active_pokers 
@@ -72,4 +73,6 @@ class Campaign < ActiveRecord::Base
   def targets_with_twitter
     self.targets.select{|target| !target.influencer.twitter.blank?}
   end
+
+  
 end
