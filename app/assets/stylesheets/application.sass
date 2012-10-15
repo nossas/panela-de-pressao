@@ -16,7 +16,8 @@ $fb_blue: #3b5998
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
-
+em
+  font-style: italic !important
 section
   +grid-container
 .hidden
@@ -661,6 +662,9 @@ body
         .image
           img
             border: 2px solid lighten(gray, 35%)
+          iframe
+            width: 100% !important
+            height: 50% !important
         .share
           iframe, .fb-like
             display: inline-block
@@ -832,6 +836,19 @@ body
             margin-right: .5em
             margin-bottom: .5em
     &#new, &#edit, &#create, &#update
+      ul.formatting
+        background: lighten(gray, 45%)
+        font-size: .8em
+        padding: .4em
+        +border-radius(4px)
+        li
+          margin-left: .2em
+        ol
+          font-size: .8em
+          h4
+            font-weight: bold
+            margin-right: .4em
+            display: inline-block
       span.block
         display: block !important
       input, textarea

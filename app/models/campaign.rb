@@ -1,4 +1,5 @@
 class Campaign < ActiveRecord::Base
+  include AutoHtml
   attr_accessible :description, :name, :user_id, :accepted_at, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
@@ -11,6 +12,7 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :posts
   has_many :answers
+  before_save       { self.description_html = convert_html(description) }
   before_save       { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
   after_create      { CampaignMailer.delay.campaign_awaiting_moderation(self) }
   after_create      { CampaignMailer.delay.we_received_your_campaign(self) }
@@ -31,6 +33,22 @@ class Campaign < ActiveRecord::Base
   validates_length_of :twitter_text, :maximum => 100
 
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
+  
+
+  def video
+    video = VideoInfo.new(self.video_url)
+    return video.embed_code if video.valid?
+  end
+
+  def convert_html(text) 
+    auto_html text do
+      html_escape
+      image
+      youtube(width: "100%", height: 300)
+      link target: "_blank", rel: 'nofollow'
+      redcarpet :target => :_blank      
+    end
+  end
 
   def accepted?
     !accepted_at.nil?

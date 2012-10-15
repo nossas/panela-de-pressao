@@ -238,7 +238,7 @@ pt-BR:
         facebook_text: "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha"
         twitter_text: "Texto do tweet que será enviado, mencionando os alvos da campanha"
         map_embed: "Código de Embed do Google Maps"
-        video_url: "URL de um vídeo (youtube ou vimeo)"
+        video_url: "Endereço de um vídeo (youtube ou vimeo)"
         map_description: "Descreva o mapa!"
         pokers_email: "Email para quem pressiona"
       influencer:
