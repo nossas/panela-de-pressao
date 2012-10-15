@@ -229,7 +229,7 @@ pt-BR:
     attributes:
       campaign:
         name: "Qual é o título da sua campanha?"
-        description: "Por que essa campanha é importante pro Rio?"
+        description: "Explique a sua campanha"
         image: "Imagem de campanha"
         category_id: "Qual o tema da sua campanha?"
         influencer_ids: "Escolha os alvos de sua campanha"
