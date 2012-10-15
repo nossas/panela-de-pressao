@@ -8,7 +8,7 @@ Feature: Create my own campaign
     Given I'm logged in
     And I'm in the new campaign page
     And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
-    And I fill "Por que essa campanha é importante pro Rio?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Explique sua campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto do tweet que será enviado, mencionando os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
@@ -28,7 +28,7 @@ Feature: Create my own campaign
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
     Given I click "Entrar via Facebook"
     And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
-    And I fill "Por que essa campanha é importante pro Rio?" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Explique sua campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto do tweet que será enviado, mencionando os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
