@@ -74,4 +74,13 @@ describe Campaign do
     end
   end
 
+
+  describe "#description_html" do
+    let(:campaign) { Campaign.make! }
+
+    it "should populate the description_html column" do
+      campaign.description_html.should_not == 'nil' 
+    end
+  end
+
 end

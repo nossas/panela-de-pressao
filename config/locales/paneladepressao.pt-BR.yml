@@ -72,6 +72,7 @@ pt-BR:
           face_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha."
           tweet_text: " Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets."
           targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
+          video_url: "Esse vídeo ficará em destaque na página da campanha. Ex.: http://youtube.com/?v=1fsdf1"
     show:
       your_privacy: "sua privacidade"
       privacy_html: "O Panela protege %{link}."
