@@ -42,10 +42,8 @@ class Campaign < ActiveRecord::Base
 
   def convert_html(text) 
     auto_html text do
-      html_escape
       image
       youtube(width: "100%", height: 300)
-      link target: "_blank", rel: 'nofollow'
       redcarpet :target => :_blank      
     end
   end
