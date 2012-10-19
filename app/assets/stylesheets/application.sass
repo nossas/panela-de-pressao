@@ -790,6 +790,7 @@ body
             span
               color: $orange
         .targets
+          margin-top: 2em
           ol
             margin-bottom: 2em
             li.target
@@ -837,9 +838,9 @@ body
             margin-bottom: .5em
         .pokers
           img
-            margin-right: .1em !important
-            margin-bottom: .1em !important
-        .show_all_influencers
+            margin-right: .2em !important
+            margin-bottom: .2em !important
+        .show_all_influencers, .who_pokes
           font-family: "Londrina solid"
           font-size: 1.2em
           text-align: center
@@ -851,6 +852,13 @@ body
           border-bottom: 1px solid $orange
           &:hover
             opacity: .8
+        .who_pokes 
+          width: 90%
+          font-size: 1.2em
+          border-bottom: none  
+          color: black
+          text-align: right
+          
     &#new, &#edit, &#create, &#update
       ul.formatting
         background: lighten(gray, 45%)
