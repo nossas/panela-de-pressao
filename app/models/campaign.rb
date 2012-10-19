@@ -1,10 +1,11 @@
 class Campaign < ActiveRecord::Base
   include AutoHtml
-  attr_accessible :description, :name, :user_id, :accepted_at, :image, 
+  attr_accessible :description, :name, :user_id, :user_ids, :accepted_at, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
     :pokers_email, :finished_at, :succeed, :video_url
 
+  has_and_belongs_to_many :users
   belongs_to :user
   belongs_to :category
   has_many :targets
@@ -28,7 +29,7 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  validates :name, :description, :user_id, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
+  validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
 

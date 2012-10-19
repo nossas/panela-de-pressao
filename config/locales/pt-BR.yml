@@ -266,8 +266,8 @@ pt-BR:
 
   pokes_counter_html:
     zero: "<span>nenhuma</span> mensagem enviada"
-    one: "<span>1</span> já foi enviada para pressionar %{to}"
-    other: "<span>%{count}</span> mensagens já foram enviadas para pressionar %{to}"
+    one: "<span>1</span> mensagem já foi enviada"
+    other: "<span>%{count}</span> mensagens já foram enviadas"
 
   notice:
     email: "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
