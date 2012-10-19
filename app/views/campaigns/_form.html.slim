@@ -42,7 +42,7 @@ small= t 'campaign.new.small'
           li
             h4 
               | Textos + Links:
-            | Se você quiser colocar um texto no link, basta usar o seguinte formato: "texto que você quer":http://sua.url. por exemplo, "meu link":http://meulink.com virará <a href="http://meulink.com">meu link</a>
+            | Se você quiser colocar um texto no link, basta usar o seguinte formato: [texto que você quer](http://sua.url). por exemplo, [meu link](http://meulink.com) virará <a href="http://meulink.com">meu link</a>
 
     small.inline-errors= @campaign.errors[:description].to_sentence
 
