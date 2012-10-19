@@ -106,9 +106,11 @@ section.content.row
             = t 'home.text.who_supports' 
             span= " (#{@campaign.pokers.count})"
           ul
-            - @campaign.pokers.offset(rand(@campaign.pokers.count)).limit(24).each do |poker|
+            - @campaign.pokers.offset(rand(@campaign.pokers.count - (@campaign.pokers.count * 0.50))).limit(24).each do |poker|
               li= link_to image_tag(poker.pic(type: :square)), user_path(poker), title: poker.name
-
+            - if @campaign.pokers.count > 24
+              li.who_pokes
+                | + #{@campaign.pokers.count - 24} pessoas
 - if flash[:poke_notice]
   #poke_notice
     h1 Muito bom! Você acaba de colocar mais pressão nessa panela.
