@@ -38,7 +38,7 @@ section.content.row
 
   aside.right
     .poke_buttons#poke_buttons
-      .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.count, :to => raw(@campaign.influencers.map{|i| content_tag(:strong, i.name)}.to_sentence))
+      .pokes_counter= t("pokes_counter_html", :count => @campaign.pokes.count)
       - if @campaign.finished_at.nil?
         hr
         - if current_user and current_user.has_poked(@campaign)
