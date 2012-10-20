@@ -464,7 +464,7 @@ section.footer
     float: left
   li.plus a, img
     width: 30px
-    margin: 0 .4em .4em 0
+    margin: 0 .2em .2em 0
   span.who
     width: 75px
     font-family: "Londrina Solid"
@@ -790,6 +790,7 @@ body
             span
               color: $orange
         .targets
+          margin-top: 2em
           ol
             margin-bottom: 2em
             li.target
@@ -835,6 +836,29 @@ body
             float: left
             margin-right: .5em
             margin-bottom: .5em
+        .pokers
+          img
+            margin-right: .2em !important
+            margin-bottom: .2em !important
+        .show_all_influencers, .who_pokes
+          font-family: "Londrina solid"
+          font-size: 1.2em
+          text-align: center
+          display: block
+          width: 30%
+          margin: 0 auto
+          text-transform: uppercase
+          color: darken($orange, 10%)
+          border-bottom: 1px solid $orange
+          &:hover
+            opacity: .8
+        .who_pokes 
+          width: 90%
+          font-size: 1.2em
+          border-bottom: none  
+          color: black
+          text-align: right
+          
     &#new, &#edit, &#create, &#update
       ul.formatting
         background: lighten(gray, 45%)
