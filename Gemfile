@@ -38,7 +38,6 @@ gem "has_scope"
 
 group :development do
   gem "mailcatcher"
-  gem "heroku"
   gem "taps"
 end
 
