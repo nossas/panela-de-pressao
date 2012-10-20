@@ -31,8 +31,15 @@ App.Campaigns = {
     el: 'body',
 
     events: {
-      'change form.featured input': 'submitForm'
+      'change form.featured input': 'submitForm',
+      'click .show_all_influencers' : 'showInfluencers'
     },
+
+    showInfluencers: function(event){
+      $(".targets ol li.hidden").slideDown('slow');
+      $(event.target).detach();
+    },
+
     initialize: function(){
       $(".email_text").hide();
       $(".facebook_text").hide();
