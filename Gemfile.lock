@@ -118,14 +118,6 @@ GEM
     haml (3.1.6)
     has_scope (0.5.1)
     hashie (1.2.0)
-    heroku (2.26.3)
-      heroku-api (~> 0.2.1)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.2)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.2.1)
-      excon (~> 0.13.3)
     hike (1.2.1)
     hpricot (0.8.6)
     httparty (0.8.3)
@@ -180,7 +172,6 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
-    netrc (0.7.5)
     newrelic_rpm (3.1.2)
     nokogiri (1.5.5)
     oauth (0.4.6)
@@ -336,7 +327,6 @@ DEPENDENCIES
   foreigner
   formtastic (~> 2.2.0)
   has_scope
-  heroku
   inherited_resources
   jasmine
   jquery-rails

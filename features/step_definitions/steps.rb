@@ -220,6 +220,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
   when "the unmoderated campaigns page"
     sleep 1
     page.current_path.should be_== unmoderated_campaigns_path
+  when "the homepage"
+    page.current_path.should be_== root_path
   else
     raise "I don't know '#{arg1}'"
   end
