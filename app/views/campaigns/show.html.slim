@@ -44,7 +44,7 @@ section.content.row
         - if current_user and current_user.has_poked(@campaign)
           p Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!
         - else
-          p Participe dessa campanha:
+          p Envie uma mensagem diretamente aos responsáveis através destes canais:
         .poke_options
           = form_for [@campaign, @poke] do |f|
             = f.hidden_field :kind, :value => "facebook"
