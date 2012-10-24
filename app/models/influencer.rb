@@ -1,5 +1,6 @@
 class Influencer < ActiveRecord::Base
-  attr_accessible :email, :facebook_url, :facebook_id, :name, :twitter, :role, :avatar, :avatar_cache, :about
+  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache, :about, :facebook_url
+	attr_accessor :user_id
 
   has_many :targets
   has_many :campaigns, :through => :targets
@@ -11,10 +12,17 @@ class Influencer < ActiveRecord::Base
   validates_format_of :facebook_url,  with: /facebook\.com\/.+/, :allow_blank => true
 
   # Callbacks
-
-  before_save :setup_facebook_id 
   after_create { InfluencerMailer.delay.created(self) }
   after_update { InfluencerMailer.delay.edited(self) }
+
+	before_save do 
+		if self.facebook_url_changed? && !self.facebook_url.blank?
+			@facebook_url_temp = self.facebook_url
+			self.facebook_url = self.facebook_url_was
+			@user_id = self.user_id 
+		end
+	end
+	after_save { self.delay.update_facebook(@facebook_url_temp, :by => @user_id) if @facebook_url_temp }
 
   default_scope order("name")
 
@@ -32,14 +40,15 @@ class Influencer < ActiveRecord::Base
     /facebook\.com\/(.+)/.match(self.facebook_url)[1] if !self.facebook_url.blank?
   end
 
-  private
-    def setup_facebook_id
-      return unless self.facebook_url?
-      if self.facebook_url.include?("pages")
-        self.facebook_id = /facebook\.com\/pages\/.+\/([0-9]+)/.match(self.facebook_url)[1]
-      else
-        self.facebook_id = Koala::Facebook::API.new.get_object(self.facebook_user)["id"] if self.facebook_user
-      end
+  def update_facebook url, options = {}
+    graph = Koala::Facebook::API.new ENV["FB_TOKEN"]
+    page = graph.get_object(url.match(/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/)[1])
+    if page["can_post"]
+			self.update_column :facebook_url, page["link"]
+      self.update_column :facebook_id, page["id"]
+    else
+      InfluencerMailer.delay.facebook_was_not_updated(self, options[:by], url) if !page["can_post"] && options[:by]
     end
+  end
 end
 
