@@ -1,0 +1,14 @@
+p 
+  | Olá #{@user.name}, recentemente você atualizou o perfil de 
+  strong #{@influencer.name} 
+  | no Panela de Pressão.
+p Porém verificamos que o #{link_to "link para a página de Facebook informado por você", @facebook_url} não é válido.
+p 
+  | Serão aceitos apenas links de 
+  strong páginas públicas 
+  | no campo 
+  strong Página no Facebook 
+  | dos alvos do Panela de Pressão.
+p #{link_to "Clique aqui", edit_influencer_path(@influencer)} caso você queira tentar outro link, e fique a vontade para melhorar o cadastro deste alvo ;)
+p Agradecemos a sua colaboração.
+p Equipe Panela de Pressão.

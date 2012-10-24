@@ -1,5 +1,4 @@
 require 'spec_helper'
 
-describe InfluencersController do
-
+describe InfluencersController do	
 end
