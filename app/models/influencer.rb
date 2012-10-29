@@ -11,10 +11,6 @@ class Influencer < ActiveRecord::Base
   validates_format_of :email,         with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true
   validates_format_of :facebook_url,  with: /facebook\.com\/.+/, :allow_blank => true
 
-  # Callbacks
-  after_create { InfluencerMailer.delay.created(self) }
-  after_update { InfluencerMailer.delay.edited(self) }
-
 	before_save do 
 		if self.facebook_url_changed? && !self.facebook_url.blank?
 			@facebook_url_temp = self.facebook_url

@@ -24,14 +24,6 @@ pt-BR:
   emails:
     trusteeship: "curadoria@paneladepressao.org.br"
     contact: "contato@paneladepressao.org.br"
-    influencer:
-      subject:
-        created: "Um novo alvo foi cadastrado no Panela de Pressão"
-        edited: "O alvo %{target} foi alterado no Panela de Pressão"
-      body:
-        created_html: "Um novo alvo foi cadastrado (%{target}) no PDP, para ver acesse a url: %{url}"
-        edited_html: "Olá, o alvo %{target} foi alterado! Para ver o que mudou %{url}"
-
     poke:
       thanks: ""
   home:
