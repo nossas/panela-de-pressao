@@ -18,6 +18,7 @@ class Influencer < ActiveRecord::Base
 			@user_id = self.user_id 
 		end
 	end
+
 	after_save { self.delay.update_facebook(@facebook_url_temp, :by => @user_id) if @facebook_url_temp }
 
   default_scope order("name")
@@ -38,12 +39,16 @@ class Influencer < ActiveRecord::Base
 
   def update_facebook url, options = {}
     graph = Koala::Facebook::API.new ENV["FB_TOKEN"]
-    page = graph.get_object(url.match(/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/)[1])
+		begin
+    	page = graph.get_object(url.match(/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/)[1])
+		rescue
+			page = {"can_post" = false}
+		end
     if page["can_post"]
 			self.update_column :facebook_url, page["link"]
       self.update_column :facebook_id, page["id"]
     else
-      InfluencerMailer.delay.facebook_was_not_updated(self, options[:by], url) if !page["can_post"] && options[:by]
+      InfluencerMailer.delay.facebook_was_not_updated(self, options[:by], url) if options[:by]
     end
   end
 end
