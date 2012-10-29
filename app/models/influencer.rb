@@ -42,7 +42,7 @@ class Influencer < ActiveRecord::Base
 		begin
     	page = graph.get_object(url.match(/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/)[1])
 		rescue
-			page = {"can_post" = false}
+			page = {"can_post" => false}
 		end
     if page["can_post"]
 			self.update_column :facebook_url, page["link"]
