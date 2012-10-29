@@ -39,10 +39,7 @@ class Influencer < ActiveRecord::Base
 
   def update_facebook url, options = {}
     graph = Koala::Facebook::API.new ENV["FB_TOKEN"]
-		begin
-    	page = graph.get_object(url.match(/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/)[1])
-		rescue
-			page = {"can_post" => false}
+    page = graph.get_object(url.match(/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/)[1])
 		end
     if page["can_post"]
 			self.update_column :facebook_url, page["link"]
