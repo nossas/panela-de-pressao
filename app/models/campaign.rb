@@ -26,15 +26,15 @@ class Campaign < ActiveRecord::Base
   scope :accepted, where('accepted_at IS NOT NULL')
   scope :unmoderated, where(accepted_at: nil)
   scope :featured, where('featured_at IS NOT NULL').reorder('finished_at DESC')
-
-  mount_uploader :image, ImageUploader
+  scope :popular, joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
 
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
-
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
-  
+
+  mount_uploader :image, ImageUploader
+
 
   def video
     video = VideoInfo.new(self.video_url)

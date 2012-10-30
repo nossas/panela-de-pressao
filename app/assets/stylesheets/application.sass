@@ -1,23 +1,22 @@
 $columnal-grid-width: 980px !default
 
-$yellow: #fbca3f
-$green: #009546
+$yellow: #f6cc47
+$green: #219548
+$green_hover: #1d8741
 $orange: #ffa94b
-$mr_green: #059146
-$fb_blue: #3b5998
+$mr_green: #219548
+$fb_blue: #0949B9
+$gray: #f3f4f4
 
 @import compass/reset
 @import columnal/grid
 @import facebox
 @import chosen
 @import icomoon
-@import url('http://fonts.googleapis.com/css?family=Londrina+Solid')
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700')
+@import url('http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic')
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
-em
-  font-style: italic !important
 section
   +grid-container
 .hidden
@@ -69,21 +68,12 @@ hr
   border-bottom: 1px dashed $orange
 
 body
-  font-family: "Open Sans", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
-  font-size: .9em
+  font-family: "PT Sans", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+  font-size: 1em
   line-height: 1.6em
 
 h1, h2, h3, h4, h4, h5
-  font-weight: 200 
-
-h1, h2, h3
-  font-family: "Londrina Solid"
-  text-transform: uppercase
-
-h1, h2
-  line-height: 2em
-  color: darken(gray, 20%)
-  font-weight: 100
+  font-weight: 600
 
 h1
   font-size: 1.8em
@@ -109,7 +99,7 @@ a
   color: $green
   text-decoration: none
   &:hover
-    color: lighten($green, 5%)
+    color: $green_hover 
 
 input[type='text'], textarea, input[type="email"], input[type="url"]
   outline: none
@@ -152,40 +142,21 @@ p.inline-hints, p.inline-errors
   background: black
 
 .btn
-  color: white
   background: $green
-  font-family: "Londrina Solid"
-  text-transform: uppercase
-  font-weight: 300
-  font-size: 1.3em
-  padding: .4em .8em
-  border: 1px solid $green
+  color: white
+  padding: .7em 1.6em
+  font-size: .9em
   letter-spacing: 1px
   display: inline-block
+  text-transform: uppercase
+  font-weight: bold
+  width: 80%
   text-align: center
-  margin: 0
-  +border-radius(5px)
-  +background-image(linear-gradient(lighten($green, 15%), $green))  
-  +transition(.1s)
-  text-shadow: 1px 1px 2px darken(gray, 25%)
-  &.gray
-    +background-image(linear-gradient(lighten(gray, 45%), lighten(gray, 30%)))
-    color: lighten(gray, 10%)
-    border: 1px solid lighten(gray, 20%)
-    &:hover
-      color: inherit 
-  &.red
-    +background-image(linear-gradient(lighten(red, 45%), lighten(red, 30%)))
-    border: 1px solid lighten(red, 20%)
-    &:hover
-      color: inherit
-  &:hover 
-    color: white 
-    cursor: pointer
-    text-decoration: none
-    text-shadow: none 
-  &:active
-    top: 1px
+  +transition(.2s)
+  +border-radius(4px)
+  &:hover
+    color: white
+    background: #1d8741
 
 article
   &.right
@@ -207,15 +178,7 @@ aside
 .inside
   padding: 1em
 
-.clear
-  clear: both
-
 section.highlight
-  h1
-    font-size: 2.5em
-  .btn
-    font-size: 1.5em
-    padding: .5em 1em
   .new_campaign_btn
     .btn
       font-size: 1.5em
@@ -237,7 +200,7 @@ section.highlight
     input
       text-indent: -9999px
 section.content
-  margin-top: .8em
+  padding-top: 1em
 
 section.header, section.footer
   padding: 1.5em 0
@@ -256,13 +219,10 @@ section.alert
   background: $orange
   border-bottom: 1px dashed darken($orange, 20%)
 
-section.login, section.footer
-  line-height: 40px
 
 a[href="/auth/facebook"], a[href="/auth/meurio"]
   text-transform: uppercase
-  font-family: 'Londrina Solid', cursive
-  letter-spacing: 1px
+  font-size: .9em !important
   color: white
   padding: 4px 15px
   +border-radius(5px)
@@ -284,113 +244,167 @@ a[href="/auth/facebook"]
       top: -4px
 
 section.login
-  font-size: .8em
-  padding: .2em 0 
-  .row
-    overflow: visible
+  padding: .4em 0
+  line-height: 2.5em
+  position: relative
+  border-bottom: 1px solid lighten(black, 85%)
+  +box-shadow(1px 4px 15px lighten(black, 85%))
+
+  a.fb, a.mr
+    margin: 0 .4em
+  .meurio, .user
+    color: lighten(gray, 25%)
+    font-size: .8em
   .meurio
-    text-transform: uppercase
-  a.mr, a.fb
-    font-size: small
-    margin: 0 5px
-  a.fb
-    margin-right: 0
-  a:hover
-    opacity: .8
-  .meurio
-    font-size: .7em
-    float: left
-    img
-      float: left
-      margin-right: .4em
-      height: auto !important 
+    +grid(6)
   .user
-    float: right
-    line-height: 20px
-    margin-top: 10px
-    position: relative
-    img
-      margin-right: 1em
-      width: 25px
-      height: 25px
-      float: left 
-    .icon-cog
-      display: inline
-      margin-left: 1em
-      padding: 1em .7em 1em 1em
-      color: gray
-      &:before
-        font-size: 1.5em
-      &:hover
-        background: lighten(gray, 20%)
-        color: white
-        .options
-          display: block
-      .options
-        width: 180px
-        right: 0
-        top: 25px
-        display: none
-        position: absolute
-        background: white
-        padding: 1em
-        z-index: 1000
-        line-height: normal
-        border: 1px solid lighten(gray, 20%)
-        li
-          margin-bottom: .5em
-          &:last-child
-            margin: 0
-        a
-          color: gray
-          display: block
-
+    text-align: right
+    +grid(6)
+    +last
+  
 section.header
-  +box-shadow(0 15px 18px -20px lighten(black, 25%) inset)
-  background: lighten(gray, 47%)
-  border-bottom: 1px solid lighten(gray, 40%)
-  .row
-    overflow: visible
   .logo
-    float: left
+    +grid(3)
+    +grid-suffix(3)
+  .create
+    +grid(5)
+    a
+      color: lighten(gray, 28%)
+      display: inline-block
+      padding: 1.2em
+      border-right: 1px solid lighten(gray, 42%)
+      span
+        display: block
+        font-weight: bold
+        font-size: 1.3em
+        color: $green
+        margin-bottom: -4px
   .share
-    margin-top: 20px
-    float: right
-
-section.highlight, section.footer
-  +background-image(radial-gradient(lighten($yellow, 10%) 0%, $yellow 75%))
-
+    +grid(1)
+    +last
 section.highlight
-  +box-shadow(0 15px 20px -20px lighten(black, 20%) inset)
+  background: image-url('bg_highlight.jpg') center top repeat-x
+  .featured
+    background: white
+    padding: 1em
+    margin: 1em 0
+    overflow: hidden
+    +border-radius(4px)
+    +box-shadow(1px 1px 2px lighten(black, 65%))
+    h1
+      color: $green
+      font-size: 1.6em
+      margin-top: .6em
+      margin-bottom: 0 !important
+    .is_featured
+      background: $orange
+      color: white
+      width: 30%
+      font-size: .8em
+      padding: .3em .4em
+      font-weight: bol
+      +border-radius(4px)
+    .category
+      font-size: .8em
+      color: black
+      &:before
+        color: $orange
+        margin-right: .5em
+    .description
+      color: lighten(gray, 5%)
+      font-size: .9em
+      margin-top: .4em
+    .poke_it
+      border-top: 1px solid darken($gray, 10%)
+      padding-top: .8em
+      .messages span 
+        font-size: 3em
+        color: darken($gray, 85%)
+        display: block
+        font-weight: bold
+      .messages
+        +grid-subcolumn(6, 3)
+        font-size: .8em
+      .poke
+        +grid-subcolumn(6, 3)
+        +last
+    .about
+      +grid(6)
+    .image
+      +grid(6)
+      +last
+      height: 32%
+      img, iframe
+        width: 100%
+        height: 100% !important
+        display: block
+        +box-shadow(0 0 4px lighten(black, 60%))
 
-section.highlight_teeths, section.footer_teeths
-  background-color: transparent
-  background-size: 10px 10px
-  height: 5px
-  content: " "
-  display: block
+section.content
+  background: $gray
+  ol.campaigns
+    li.campaign
+      background: white
+      overflow: hidden
+      +grid(3)
+      +box-shadow(0 0 4px darken($gray, 15%))
+      +border-radius(4px)
+    h3
+      font-size: 1.1em
+      height: 100px
+      display: block
+    .image
+    .image, .info, .counter
+      padding: .8em
+    .image, .info
+      padding-bottom: 0
+    span.category
+      font-size: .7em
+      color: lighten(black, 10%)
+      padding-bottom: .8em
+      &:before
+        color: $orange
+        margin-right: .4em
+    p.description
+      font-size: .9em
+      color: darken($gray, 40%)
+      line-height: 1.4em
+      height: 100px
+      margin-top: .4em
+    .counter
+      border-top: 1px solid darken($gray, 10%)
+      span
+        display: block
+        font-size: 1.6em
+        font-weight: bold
+        color: black
+        line-height: .8em
+      font-size: .9em
+      color: darken($gray, 30%)
 
-section.footer_teeths
-  margin-top: 4em
-  background-position: 0 5px
 
-section.footer
-  .links
-    float: left
-    text-transform: uppercase
-    a
-      text-decoration: none
-      padding-right: 15px
-      margin-right: 15px
-      border-right: 1px solid $green
-      &:last-child
-        border: none
-  .social
-    float: right
-    a
-      float: right
-      margin-left: 10px
 
+body.campaigns#index
+  h2.popular
+    margin: .6em 0 1.5em 0
+    font-size: 1.2em
+    
+    &:before
+      color: $orange
+      margin-right: .4em
+  ol.campaigns li.campaign.last
+    +last
+
+
+  .information
+    .create_your_campaign, .our_victories, .didnt_find_target
+      margin: 2em 0
+      background: white
+      +grid(4)
+      .content
+        padding: .8em
+    .didnt_find_target
+      +last
 .warning
   background: lighten($orange, 25%)
   padding: .5em
@@ -400,92 +414,6 @@ section.footer
   border: 2px dashed $orange
   color: darken($orange, 40%)
 
-.category
-  color: $orange
-  font-size: .8em
-
-.campaigns#index
-  .list
-    .campaign
-      +box-shadow(white 10em 0 10em 0 inset, white -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
-      &:first-child
-        +box-shadow(none)
-
-.users#show
-  .list
-    .campaign
-      +box-shadow(lighten(gray, 48%) 10em 0 10em 0 inset, lighten(gray, 48%) -10em 0 10em 0 inset, black 0 1em 1em -1em inset)
-      &:first-child
-        +box-shadow(none)
-
-.list
-  .campaign
-    padding: 2em 0
-    .image
-      .img
-        background: white
-        border: 1px solid lighten(gray, 20%)
-        padding: .5em
-        overflow: hidden
-        position: relative
-        .finished
-          position: absolute
-          color: white
-          font-family: "Londrina Solid"
-          text-transform: uppercase
-          font-size: 2em
-          line-height: normal
-          padding: 0 40px
-          top: 25px
-          left: -40px
-          +box-shadow(black 0 0 10px)
-          +rotate(-45deg)
-          &.succeed
-            background: $green
-          &.unsucceed
-            background: desaturate(red, 40%)
-    .details
-      .description, .is_waiting_moderation
-        font-size: .8em
-      .description
-        color: gray
-        margin-bottom: 1em
-      span.is_waiting_moderation
-        line-height: normal
-        background: gray
-        color: white
-        display: inline-block
-        line-height: normal 
-        padding: .5em
-        +border-radius(.5em)
-
-.pokers
-  ul li
-    float: left
-  li.plus a, img
-    width: 30px
-    margin: 0 .2em .2em 0
-  span.who
-    width: 75px
-    font-family: "Londrina Solid"
-  span.who, img
-    float: left
-    line-height: .9em
-    font-size: 1.2em
-    text-transform: uppercase
-    color: gray
-    margin-right: .3em
-  span.who 
-    display: block
-  .plus
-    a
-      display: block
-      height: 30px
-      background: $green
-      color: white
-      font-size: 1.2em
-      line-height: 1.6em
-      text-align: center
 
 
 #new, #edit, #create, #show, #update
@@ -505,7 +433,6 @@ section.footer
         color: white
         letter-spacing: 1px
         text-transform: uppercase
-        font-family: "Londrina Solid"
         font-size: 1.4em
         text-shadow: 1px 1px 2px darken(gray, 25%)
         +transition(.1s)
@@ -515,77 +442,6 @@ section.footer
 
 body
   &.campaigns
-    &#index
-      article.left
-        +grid(9)
-      aside.right
-        +grid(3)
-        +last
-      .highlight
-        padding: 1.5em 0
-        .about
-          color: darken(gray, 10%)
-          h1
-            line-height: normal
-          a[href="#campaigns_list"]
-            background: image-url("home_participe.png")
-            height: 0
-            padding-top: 76px
-            width: 152px
-            overflow: hidden
-            float: right
-            vertical-align: middle
-            margin-right: 70px
-            margin-top: -5px
-          p.headline
-            margin-bottom: 2em
-
-        .campaign
-          .info
-            position: relative
-            background: white
-            padding: 10px
-            border: 1px solid lighten(gray, 20%)
-
-            .name
-              font-family: "Londrina Solid"
-              position: absolute
-              bottom: 10px
-              margin-right: 10px
-              background: rgba(0, 0, 0, .75)
-              padding: .5em
-              font-size: 1.5em
-              letter-spacing: 1px
-              text-transform: uppercase
-              a
-                color: white
-                text-decoration: none
-      .list
-        margin-bottom: 5em
-      .pokes_list
-        font-size: .8em
-        line-height: normal
-        margin-bottom: 5em
-        .poke
-          padding-top: 2em
-          margin-top: 2em
-          +box-shadow(lighten(gray, 48%) 5em 0 10em 0 inset, lighten(gray, 48%) -5em 0 10em 0 inset, black 0 1em 1em -1em inset)
-          &:first-child
-            padding-top: 0
-            margin-top: 0
-            +box-shadow(none)
-          .user
-            overflow: hidden
-            line-height: 20px
-            margin-bottom: .25em
-            img
-              width: 20px
-              height: 20px
-              float: left
-              margin-right: .5em
-          .poke_created_at
-            color: $orange
-            font-size: .8em
     &#show
       .finished_at
         span
@@ -597,7 +453,6 @@ body
           font-size: 2em
           display: block
           margin-bottom: 1em
-          font-family: "Londrina Solid"
           text-transform: uppercase
           +text-shadow(darken($green, 20%) 1px 1px 2px)
           &.unsucceed
@@ -740,7 +595,6 @@ body
               display: block
               font-size: 4em
               text-align: center
-              font-family: "Londrina Solid"
               line-height: normal
           .btn
             background: $green
@@ -841,7 +695,6 @@ body
             margin-right: .2em !important
             margin-bottom: .2em !important
         .show_all_influencers, .who_pokes
-          font-family: "Londrina solid"
           font-size: 1.2em
           text-align: center
           display: block
@@ -904,7 +757,6 @@ body
           background: $orange 
           display: block
           padding: 0 .4em
-          font-family: "Londrina Solid"
           text-transform: uppercase
           letter-spacing: 1px 
           font-size: 1.2em
@@ -912,7 +764,7 @@ body
         input, textarea
           color: black
           font-size: .9em
-          font-family: "Open Sans"
+          font-family: "PT Sans"
         textarea
           height: 80px
       .inline-errors
@@ -1052,7 +904,6 @@ body
             label[for='user_name']
               display: none
             input[name='user[name]']
-              font-family: "Londrina Solid"
               font-size: 1.6em
               letter-spacing: 1px
             textarea

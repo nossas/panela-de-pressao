@@ -1,4 +1,6 @@
 pt-BR:
+  loss: "Não deu"
+  victory: "Vitória!"
   site:
     title: "Panela de Pressão"
     keywords: "petição, pública, pressão, pressionar, rio de janeiro, política, mobilização, panela de pressão, meu rio, petição, campanha"
@@ -28,13 +30,11 @@ pt-BR:
       thanks: ""
   home:
     highlight:
-      header: "O melhor utensílio de pressão popular da sua cozinha."
-      headline: "Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. E na pressão tudo é mais rápido. Nossa receita é simples: você aponta um problema, convoca outras pessoas que desejam a mesma mudança e pressiona diretamente os responsáveis pela administração da cidade, por email, Twitter ou Facebook."
-      headline_2: "Aqui o papo é reto, você é quem fala por email, twitter e Facebook com quem é responsável pela administração da cidade."
-      start: "Crie sua campanha!"
-      participate: "Ou participe das campanhas abaixo"
+      pokes_count_html: "<span>%{count}</span> mensagens enviadas"
+      poke_now: "Pressionar agora!"
+      is_featured: "Campanha em Destaque"
     text:
-      discover_new_campaigns: "Descubra novas campanhas"
+      popular_campaigns: "Campanhas Populares"
       user_campaigns: "Campanhas criadas por %{user_name}"
       campaigns_waiting_for_moderation: "Campanhas aguardando moderação"
       waiting_for_moderation: "Aguardando moderação"
