@@ -83,4 +83,5 @@ describe Campaign do
     end
   end
 
+
 end

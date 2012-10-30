@@ -3,30 +3,50 @@
 
 - content_for :highlight do
   .row
-    .about
-      h1= t 'home.highlight.header' 
-      p.headline= t 'home.highlight.headline' 
-      p
-        = link_to t("home.highlight.start"), new_campaign_path, :class => "btn"
-        = link_to t("home.highlight.participate"), "#campaigns_list"
-    .campaign
-      .info
-        - if @highlight_campaign
-          = link_to image_tag(@highlight_campaign.image), @highlight_campaign
-          .name= link_to @highlight_campaign.name, @highlight_campaign
+    .featured
+      .about
+        span.is_featured= t 'home.highlight.is_featured'
+        - if @featured
+          h1= link_to @featured.name, @featured
+          span.category.icon-list= @featured.category.name
+          p.description= truncate(@featured.description, length: 190)
+          .poke_it
+            .messages= t "home.highlight.pokes_count_html", count: @featured.pokes.count
+            .poke= link_to t("home.highlight.poke_now"), @featured, class: 'btn'
+      .image
+        - unless @featured.video.nil?
+          = @featured.video.html_safe
+        - else
+          = link_to image_tag(@featured.image.url), @featured
 
-section.content.row
-  article.left.campaigns
-    h2= t "home.text.discover_new_campaigns"
-    hr
-    .list.all= render collection
-    hr
-     
-  aside.right
-    .content
-      h2= t "home.text.who_supports"
-      ol.pokes_list.recent
-        = render Poke.limit(5)
-      h2= t 'home.text.on_facebook'
-      .facebook_widget 
-        .fb-like-box data-href="http://www.facebook.com/meurio" data-border-color="#fafafa" data-width="185" data-height="405" data-show-faces="true" data-stream="false" data-header="false"
+
+
+section.content
+  .row.popular
+    h2.popular.icon-fire= t "home.text.popular_campaigns"
+    ol.campaigns
+      = render @popular 
+
+  .row.information
+    .create_your_campaign
+      .content
+        h3
+          | Crie sua campanha agora!
+    .our_victories
+      .content
+        h3
+          | Nossas vitórias
+    .didnt_find_target
+      .content
+        h3
+          | Não achou seu alvo?
+
+
+  .row.all_campaigns
+    ol.campaigns
+      = render collection.limit(12)
+    
+    
+    
+  /.facebook_widget 
+    .fb-like-box data-href="http://www.facebook.com/meurio" data-border-color="#fafafa" data-width="185" data-height="405" data-show-faces="true" data-stream="false" data-header="false"

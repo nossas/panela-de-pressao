@@ -1,12 +1,16 @@
 doctype html
 html
   head
+    title= yield(:title)
     meta charset="utf-8"
     meta name="viewport"                  content="width=device-width, initial-scale=1.0"
     meta name="google-site-verification"  content="YqyNtEWvyBDpCxBnPYuCFUeM0wLMhe9gB0I4vnz3A_k"
     meta name="keywords"                  content=t('site.keywords')
     meta name="author"                    content=t('site.author')
-    title= yield(:title)
+    meta name="facebook_app_id"           content=ENV["FB_ID"]
+    meta property="fb:app_id"             content=ENV["FB_ID"]
+    meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
+
     = stylesheet_link_tag "application"
     = favicon_link_tag "favicon.png"
     = csrf_meta_tag
@@ -18,9 +22,6 @@ html
       meta property="og:image"        content=t('site.image')
       meta property="og:url"          content=t('site.url')
       meta property="og:description"  content=t('site.fb_description')
-    meta name="facebook_app_id"           content=ENV["FB_ID"]
-    meta property="fb:app_id"             content=ENV["FB_ID"]
-    meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
     javascript:
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-26278513-6']);
@@ -41,33 +42,44 @@ html
           .message.icon-warning= alert
     section.login
       .row
-        .meurio_and_user
-          .meurio= link_to image_tag("seurio_bottom_logo_meurio.jpeg"), "http://meurio.org.br/"
-          .user
-            - if current_user
-              span= image_tag current_user.pic(:type => "square"), alt: "avatar"
-              span= current_user.name
-              .icon-cog
-                ul.options
-                  li= link_to "Meu perfil", current_user, :class => "icon-user"
-                  li= link_to "Minhas campanhas", user_campaigns_path(current_user), :class => "icon-comments"
-                  li= link_to "Moderar campanhas", unmoderated_campaigns_path, :class => "icon-blocked" if can? :moderate, Campaign
-                  li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
-                  li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
-            - else
-              | Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}
-        .clear
+        .meurio
+          = link_to image_tag("seurio_bottom_logo_meurio.jpeg"), "http://meurio.org.br/"
+        .user
+          - if current_user
+            span= image_tag current_user.pic(:type => "square"), alt: "avatar"
+            span= current_user.name
+            .icon-cog
+              ul.options
+                li= link_to "Meu perfil", current_user, :class => "icon-user"
+                li= link_to "Minhas campanhas", user_campaigns_path(current_user), :class => "icon-comments"
+                li= link_to "Moderar campanhas", unmoderated_campaigns_path, :class => "icon-blocked" if can? :moderate, Campaign
+                li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
+                li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
+          - else
+            | Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}
     section.header
       .row
-        .logo_and_share
-          .logo=link_to image_tag("seurio_logo.png"), root_path
-          .share
-            .fb-like data-href="http://paneladepressao.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"
-        .clear
-    section.highlight= yield :highlight
-    section.highlight_teeths
+        .logo
+          =link_to image_tag("logo.png"), root_path
+        .create
+          = link_to "/" do 
+            span
+              | O que é 
+            | o panela
+          = link_to "/" do
+            span 
+              | Descubra 
+            | as campanhas
+          = link_to "/" do
+            span 
+              | Crie agora
+            | sua campanha
+
+        .share
+          .fb-like data-href="http://paneladepressao.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"
+    section.highlight  
+      = yield :highlight
     = yield
-    section.footer_teeths
     section.footer
       .row
         .links_and_social
