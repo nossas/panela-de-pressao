@@ -187,6 +187,23 @@ p.inline-hints, p.inline-errors
   &:active
     top: 1px
 
+#formatting
+  display: none
+
+ul.formatting
+  ol
+    list-style: disc
+    padding-left: 1.5em
+    li
+      margin-bottom: .5em
+    h4
+      font-weight: bold
+      margin-right: .4em
+      display: inline-block
+
+a[href='#formatting']
+  font-size: .8em
+
 article
   &.right
     background: lighten(gray, 48%)
@@ -860,19 +877,6 @@ body
           text-align: right
           
     &#new, &#edit, &#create, &#update
-      ul.formatting
-        background: lighten(gray, 45%)
-        font-size: .8em
-        padding: .4em
-        +border-radius(4px)
-        li
-          margin-left: .2em
-        ol
-          font-size: .8em
-          h4
-            font-weight: bold
-            margin-right: .4em
-            display: inline-block
       span.block
         display: block !important
       input, textarea

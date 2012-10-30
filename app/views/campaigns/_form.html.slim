@@ -13,37 +13,9 @@ small= t 'campaign.new.small'
     small.inline-errors= @campaign.errors[:name].to_sentence
 
     = f.label :description
+    = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
     = f.text_area :description
     span.tip= t 'campaign.new.form.tips.why_important_html'
-    ul.formatting
-      li
-        strong 
-          | Dicas de formatação
-        ol
-          li
-            h4
-              | Vídeos e Imagens:
-            | Se você colar a url de uma imagem ou de um vídeo do vimeo ou do youtube, eles irão aparecer na descrição da ideia. experimente!
-          li
-            h4
-              | Negrito: 
-            | Você pode usar negrito adicionando dois asteriscos (**) antes e depois do texto que você quer formatar. Por exemplo, **meu texto em negrito** irá aparecer como <strong>meu texto em negrito</strong>
-          li
-            h4
-              | Itálico: 
-            | Você pode usar itálico adicionando um underline (_) antes e depois do texto que você quer formatar. Por exemplo, _meu texto em itálico_ irá aparecer como <em> meu texto em itálico</em>
-
-          li
-            h4 
-              | Links:
-            | Ao colar uma url qualquer, ela virará um link. Por exemplo, http://meulink.com virará <a href="http://meulink.com">http://meulink.com</a>
-
-
-          li
-            h4 
-              | Textos + Links:
-            | Se você quiser colocar um texto no link, basta usar o seguinte formato: [texto que você quer](http://sua.url). por exemplo, [meu link](http://meulink.com) virará <a href="http://meulink.com">meu link</a>
-
     small.inline-errors= @campaign.errors[:description].to_sentence
 
   fieldset
