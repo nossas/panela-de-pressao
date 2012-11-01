@@ -8,13 +8,19 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:index] { @highlight_campaign = Campaign.featured.last || Campaign.accepted.first }
 
   def create
-    create! do |success, failure|
-      success.html do 
-        bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
-        resource.update_attribute :short_url, bitly.shorten(Rails.application.routes.url_helpers.campaign_url(resource.id)).short_url
-        return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+    @campaign = Campaign.new(params[:campaign])
+    if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
+      create! do |success, failure|
+        success.html do 
+          bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
+          resource.update_attribute :short_url, bitly.shorten(campaign_url(resource.id)).short_url
+          return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+        end
+        failure.html { render :new }
       end
-      failure.html { render :new }
+    else
+      @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
+      render :new
     end
   end
 

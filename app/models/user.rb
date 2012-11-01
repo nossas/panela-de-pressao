@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :name, :picture, :about_me, :file, :remove_file
+  attr_accessible :admin, :email, :name, :picture, :about_me, :file, :remove_file, :mobile_phone
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   scope :by_campaign_id, lambda {|id| Campaign.find(id).pokers }
 
   validates_presence_of :email, :name
+  validates_format_of :mobile_phone, with: /\A\(\d{2}\) \d{4}\-\d{4}\z/, allow_blank: true
 
   mount_uploader :file, AvatarUploader
 

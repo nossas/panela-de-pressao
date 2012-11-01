@@ -6,6 +6,7 @@ User.blueprint do
   email { "foo#{sn}@bar.com" }
   picture { "pic.png" }
   admin { false } 
+  mobile_phone { "(21) 9999-9999" }
 end
 
 Authorization.blueprint do

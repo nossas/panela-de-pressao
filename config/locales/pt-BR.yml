@@ -254,6 +254,7 @@ pt-BR:
         about_me: "Sobre mim"
         picture: "Imagem"
         file: "Imagem"
+        mobile_phone: "Celular"
       poke:
         custom_message: "Mensagem"
       answer:

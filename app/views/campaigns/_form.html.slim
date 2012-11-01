@@ -2,16 +2,19 @@ h1= t 'campaign.new.header'
 small= t 'campaign.new.small'
 
 = form_for @campaign, html: { class: "#{'errors' if @campaign.errors.any?}"} do |f|
-
+  - if current_user.mobile_phone.blank?
+    fieldset
+      legend Dados pessoais
+      = label_tag do
+        | Celular
+        = text_field_tag "user_mobile_phone", params[:user_mobile_phone]
+        small.inline-errors= @campaign.errors[:user].to_sentence
   fieldset
-    legend 
-      | Sobre a campanha 
-
+    legend Sobre a campanha 
     = f.label :name
     = f.text_field :name
     span.tip= t 'campaign.new.form.tips.title' 
     small.inline-errors= @campaign.errors[:name].to_sentence
-
     = f.label :description
     = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
     = f.text_area :description
@@ -25,18 +28,14 @@ small= t 'campaign.new.small'
     = f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
     span.tip= t 'campaign.new.form.tips.targets_html', link: link_to(t('link.click_here'), 'http://bit.ly/SJZBx7')
 
-
   fieldset
-    legend
-      | Divulgação
-
+    legend Divulgação
     = f.label :image
     = f.file_field :image
     span.tip= t 'campaign.new.form.tips.image'
     small.inline-errors= @campaign.errors[:image].to_sentence
     = image_tag @campaign.image if @campaign.persisted?
-    = f.hidden_field :image_cache
-    
+    = f.hidden_field :image_cache      
     = f.label :video_url
     = f.text_field :video_url
     span.tip= t 'campaign.new.form.tips.video_url'

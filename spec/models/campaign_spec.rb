@@ -9,6 +9,7 @@ describe Campaign do
   end
 
   describe "validations" do
+    before { subject.stub(:user).and_return(mock_model(User)) }
     it{ should validate_presence_of :name }
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }

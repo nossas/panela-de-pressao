@@ -32,9 +32,8 @@ class Campaign < ActiveRecord::Base
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
-
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
-  
+  validate :owner_have_mobile_phone
 
   def video
     video = VideoInfo.new(self.video_url)
@@ -91,5 +90,7 @@ class Campaign < ActiveRecord::Base
     self.targets.select{|target| !target.influencer.twitter.blank?}
   end
 
-  
+  def owner_have_mobile_phone
+    errors.add(:user, "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato.") if self.user.mobile_phone.blank?
+  end
 end

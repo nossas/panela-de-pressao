@@ -27,6 +27,7 @@ Feature: Create my own campaign
     Then I should be in the campaigns page
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
     Given I click "Entrar via Facebook"
+    And I fill "Celular" with "(21) 9938-3212"
     And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
     And I fill "Explique a sua campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
@@ -47,3 +48,18 @@ Feature: Create my own campaign
     When I press "Enviar campanha para moderação"
     Then I should see "Queremos saber o que você quer mudar na sua cidade!"
     And I should see "Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?"
+
+  @omniauth_test @bitly @javascript
+  Scenario: when I leave mobile phone empty
+    Given I'm in the campaigns page
+    And I click "Crie sua campanha!"
+    And I click "Entrar via Facebook"
+    And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
+    And I fill "Explique a sua campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do email que será enviado para os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto da mensagem que será enviado no mural das páginas dos alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I fill "Texto do tweet que será enviado, mencionando os alvos da campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I attach an image to "Imagem de campanha"
+    And I select "Educação" for "Qual o tema da sua campanha?"
+    When I press "Enviar campanha para moderação"
+    Then I should see "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato."
