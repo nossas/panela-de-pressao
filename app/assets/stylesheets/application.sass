@@ -385,10 +385,12 @@ section.content
         top: .1em
         position: relative
     .pressure
+      padding: 0
       background: $green
-      padding: .1em
       a
         color: white
+        padding: .3em 
+        display: inline-block
       &:hover
         background: $victory
     .loss
@@ -437,7 +439,7 @@ body.campaigns#index
       margin-right: .4em
   .popular, ol.campaigns li.not_finished
     .counter
-      padding: .8em
+      padding: .6em
       padding-top: 1em
   ol.campaigns li.campaign.last
     +last
