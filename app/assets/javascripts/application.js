@@ -15,6 +15,8 @@
 
 //= require ./lib/underscore.js
 //= require ./lib/backbone.js
+//= require ./lib/jquery.inputmask.js
+//= require ./lib/jquery.inputmask.extensions.js
 //= require_tree ./lib
 //= require ./app.js
 //= require_tree ./app

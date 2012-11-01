@@ -7,7 +7,7 @@ describe CampaignsController do
       controller.stub(:current_user).and_return(stub_model(User))
       bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
       Campaign.any_instance.stub(:save)
-      bitly.should_receive(:shorten).with(Rails.application.routes.url_helpers.campaign_url(1)).and_return(mock_model(Campaign, :short_url => 'short_url'))
+      bitly.should_receive(:shorten).with("http://test.host/campaigns/1").and_return(mock_model(Campaign, :short_url => 'short_url'))
       campaign = stub_model(Campaign, :id => 1)
       campaign.should_receive(:update_attribute).with(:short_url, 'short_url')
       controller.stub(:resource).and_return(campaign)

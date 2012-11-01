@@ -991,6 +991,20 @@ body
       .influencers
         input
           +box-shadow(none)
+      form.edit_user
+        text-align: center
+        background: lighten($orange, 30%)
+        padding: 1em
+        margin-bottom: 10em
+        label
+          display: none
+        input
+          display: inline
+        input[type="text"]
+          width: auto
+          margin: 0 1em
+        small
+          margin: 0 0 .5em 0
   &.users, &.influencers
     &#show
       .about

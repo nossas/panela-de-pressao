@@ -65,6 +65,8 @@ var App = window.App = {
       if($("#poke_notice").length){ $.facebox({ div: '#poke_notice' }).reveal(); }
 
       $('a[rel*=facebox]').facebox()
+
+      $("#user_mobile_phone").inputmask("mask", {"mask": "(99) 9999-9999"});
     },
 
     showLoginBox: function(){

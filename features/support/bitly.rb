@@ -1,6 +1,6 @@
 Before('@bitly') do
   bitly = Bitly.new('bitly id', 'bitly key')
-  bitly.stub(:shorten).and_return(Campaign.make!(:short_url => 'short_url'))
+  bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
   Bitly.stub(:new).and_return(bitly)
 end
 
