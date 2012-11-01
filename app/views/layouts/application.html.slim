@@ -10,7 +10,7 @@ html
     meta name="facebook_app_id"           content=ENV["FB_ID"]
     meta property="fb:app_id"             content=ENV["FB_ID"]
     meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
-
+    
     = stylesheet_link_tag "application"
     = favicon_link_tag "favicon.png"
     = csrf_meta_tag
@@ -22,6 +22,8 @@ html
       meta property="og:image"        content=t('site.image')
       meta property="og:url"          content=t('site.url')
       meta property="og:description"  content=t('site.fb_description')
+    /[if IE] 
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     javascript:
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-26278513-6']);
@@ -62,15 +64,15 @@ html
         .logo
           =link_to image_tag("logo.png"), root_path
         .create
-          = link_to "/" do 
+          = link_to "/oque" do 
             span
               | O que é 
             | o panela
-          = link_to "/" do
+          = link_to "/explore" do
             span 
               | Descubra 
             | as campanhas
-          = link_to "/" do
+          = link_to new_campaign_path do
             span 
               | Crie agora
             | sua campanha
@@ -99,4 +101,5 @@ html
         = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
         |  ou 
         = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
+
     = javascript_include_tag "application"

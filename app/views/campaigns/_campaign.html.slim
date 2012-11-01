@@ -1,9 +1,17 @@
-li.campaign[class=cycle('first', 'second', 'third', 'last')]
+li.campaign[class="#{cycle('first', 'second', 'third', 'last')} #{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
   .image
     = link_to image_tag(campaign.image), campaign
   .info
-    h3.title= link_to campaign.name, campaign
-    span.category.icon-list= campaign.category.name
-    p.description= truncate(campaign.description, length: 110)
+    h3.title= link_to truncate(campaign.name, length: 60), campaign
+    span.category.icon-list= truncate(campaign.category.name, length: 30)
+    p.description= link_to truncate(campaign.description, length: 110), campaign
   .counter
-    = t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
+    - if campaign.finished_at?
+      - if campaign.succeed?
+        .icon-victory.victory Vitória!
+      - else
+        .icon-close-2.loss Não deu...
+    - else
+      .icon-message= t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
+      .icon-megaphone.pressure= link_to "Pressionar", campaign
+        
