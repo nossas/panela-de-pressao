@@ -29,4 +29,12 @@ class CampaignMailer < ActionMailer::Base
     )
   end
 
+  def report campaign
+    @campaign = campaign
+    mail(
+      :to => campaign.user.email,
+      :subject => "Relatório da sua campanha no Panela de Pressão",
+      :from => "contato@paneladepressao.org.br"
+    )
+  end
 end
