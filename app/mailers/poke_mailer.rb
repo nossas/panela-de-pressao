@@ -4,6 +4,7 @@ class PokeMailer < ActionMailer::Base
   default from: "from@example.com"
 
   def poke(the_poke)
+    headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"poke\"] }"
     @poke = the_poke
     mail(
       :to => the_poke.campaign.targets.map{|t| "\"#{t.influencer.name}\" <#{t.influencer.email}>" if t.influencer.email != "" }.join(", "), 
@@ -13,6 +14,7 @@ class PokeMailer < ActionMailer::Base
   end
 
   def thanks(the_poke)
+    headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"thanks_for_your_poke\"] }"
     @poke = the_poke
     mail(
       :to => @poke.user.email,
