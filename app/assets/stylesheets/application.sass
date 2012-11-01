@@ -5,6 +5,8 @@ $green: #219548
 $green_hover: #1d8741
 $orange: #ffa94b
 $mr_green: #219548
+$victory: #87c442
+$loss: #c44242
 $fb_blue: #0949B9
 $gray: #f3f4f4
 
@@ -13,7 +15,8 @@ $gray: #f3f4f4
 @import facebox
 @import chosen
 @import icomoon
-@import url('http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic')
+@import font
+//@import url('http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic')
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
@@ -67,13 +70,18 @@ hr
   border-top: none
   border-bottom: 1px dashed $orange
 
+strong
+  font-family: "Proxima Nova Bold"
+em
+  font-family: "Proxima Nova Italic"
+
 body
-  font-family: "PT Sans", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
-  font-size: 1em
-  line-height: 1.6em
+  font-family: "Proxima Nova", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+  font-size: .9em
+  line-height: 1.4em
 
 h1, h2, h3, h4, h4, h5
-  font-weight: 600
+  font-family: "Proxima Nova Bold"
 
 h1
   font-size: 1.8em
@@ -314,20 +322,10 @@ section.highlight
       color: lighten(gray, 5%)
       font-size: .9em
       margin-top: .4em
-    .poke_it
-      border-top: 1px solid darken($gray, 10%)
-      padding-top: .8em
-      .messages span 
-        font-size: 3em
-        color: darken($gray, 85%)
-        display: block
-        font-weight: bold
-      .messages
-        +grid-subcolumn(6, 3)
-        font-size: .8em
-      .poke
-        +grid-subcolumn(6, 3)
-        +last
+    .count, .poke
+      +grid-subcolumn(6,3)
+    .poke
+      +last
     .about
       +grid(6)
     .image
@@ -346,65 +344,126 @@ section.content
     li.campaign
       background: white
       overflow: hidden
+      margin-bottom: 2em
       +grid(3)
       +box-shadow(0 0 4px darken($gray, 15%))
       +border-radius(4px)
+      +transition(1s)
+      .icon-megaphone
+        display: none
+        visibility: hidden
+      &.not_finished:hover
+        .icon-message
+          display: none
+        .icon-megaphone
+          +transition-delay(0s)
+          display: block
+          visibility: visible
     h3
       font-size: 1.1em
       height: 100px
       display: block
-    .image
-    .image, .info, .counter
+    .image, .info
       padding: .8em
     .image, .info
       padding-bottom: 0
-    span.category
-      font-size: .7em
-      color: lighten(black, 10%)
-      padding-bottom: .8em
+    .image
+      img
+        +box-shadow(0 0 2px darken($gray, 30%))
+    .victory, .loss, .pressure
+      background: $victory 
+      color: white
+      text-align: center
+      font-size: 1.3em
+      font-weight: bold
+      padding: .6em
+      +border-radius(4px)
+      +transition(.4s)
       &:before
-        color: $orange
-        margin-right: .4em
-    p.description
-      font-size: .9em
-      color: darken($gray, 40%)
-      line-height: 1.4em
-      height: 100px
-      margin-top: .4em
+        margin-right: .2em
+        font-size: 1.2em
+        top: .1em
+        position: relative
+    .pressure
+      background: $green
+      padding: .1em
+      a
+        color: white
+      &:hover
+        background: $victory
+    .loss
+      background: $loss
     .counter
-      border-top: 1px solid darken($gray, 10%)
-      span
-        display: block
-        font-size: 1.6em
-        font-weight: bold
-        color: black
-        line-height: .8em
-      font-size: .9em
-      color: darken($gray, 30%)
+      padding: .4em
 
 
+// General style scopes
+
+span.category
+  font-size: .7em
+  color: lighten(black, 10%)
+  padding-bottom: .8em
+  &:before
+    color: $orange
+    margin-right: .4em
+p.description
+  font-size: .9em
+  line-height: 1.4em
+  height: 100px
+  margin-top: .4em
+  a
+    color: darken($gray, 40%)
+.counter
+  padding-top: 1em
+  border-top: 1px solid darken($gray, 10%)
+  .icon-message
+    color: darken($gray, 25%)
+  span
+    display: block
+    font-size: 1.6em
+    font-weight: bold
+    color: black
+    line-height: .8em
+    margin-bottom: -6px
+  font-size: .9em
+  color: darken($gray, 30%)
 
 body.campaigns#index
   h2.popular
     margin: .6em 0 1.5em 0
     font-size: 1.2em
-    
     &:before
       color: $orange
       margin-right: .4em
+  .popular, ol.campaigns li.not_finished
+    .counter
+      padding: .8em
+      padding-top: 1em
   ol.campaigns li.campaign.last
     +last
-
-
   .information
     .create_your_campaign, .our_victories, .didnt_find_target
       margin: 2em 0
       background: white
       +grid(4)
+      .btn
       .content
         padding: .8em
     .didnt_find_target
       +last
+  .all_campaigns
+    form.search
+      margin-bottom: 2em
+      overflow: hidden
+      display: block
+      input
+        padding: 0
+    .block
+      +grid(4)
+      &::last-child
+        +last
+    ol.campaigns
+      margin-top: 1em
 .warning
   background: lighten($orange, 25%)
   padding: .5em

@@ -10,8 +10,8 @@
           h1= link_to @featured.name, @featured
           span.category.icon-list= @featured.category.name
           p.description= truncate(@featured.description, length: 190)
-          .poke_it
-            .messages= t "home.highlight.pokes_count_html", count: @featured.pokes.count
+          .counter
+            .count.icon-message= t "home.highlight.pokes_count_html", count: @featured.pokes.count
             .poke= link_to t("home.highlight.poke_now"), @featured, class: 'btn'
       .image
         - unless @featured.video.nil?
@@ -30,19 +30,41 @@ section.content
   .row.information
     .create_your_campaign
       .content
+        .image = image_tag ""
         h3
           | Crie sua campanha agora!
+        p.description
+          | text
+        = link_to "Criar campanha", new_campaign_path, class: 'btn'
     .our_victories
       .content
+        .image= image_tag ""
         h3
           | Nossas vitórias
+        p.description
+          | text
+        = link_to "Campanhas encerradas", "", class: 'btn'
     .didnt_find_target
       .content
+        .image= image_tag ""
         h3
           | Não achou seu alvo?
+        p.description
+          | text
+        = link_to  "Adicionar alvo", '', class: 'btn'
 
 
   .row.all_campaigns
+    = form_for :search, html: { class: 'search'} do |f|
+      .block
+        label
+          | Escolha a Categoria
+          = f.select :category, Category.all.collect { |p| [p.name, p.id] }, {}, class: 'chzn-select'
+      .block
+        label
+          | Ou faça uma busca
+          = f.text_field :campaign
+      .block
     ol.campaigns
       = render collection.limit(12)
     
