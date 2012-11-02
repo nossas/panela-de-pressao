@@ -64,7 +64,8 @@ section.content
         label
           | Ou faça uma busca
           = f.text_field :campaign
-      .block
+      .block.last
+      .clear
     ol.campaigns
       = render collection.limit(12)
     
