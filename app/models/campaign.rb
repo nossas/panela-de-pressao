@@ -35,8 +35,6 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-
-
   def convert_html(text) 
     auto_html text do
       image

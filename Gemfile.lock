@@ -119,7 +119,6 @@ GEM
     has_scope (0.5.1)
     hashie (1.2.0)
     hike (1.2.1)
-    hpricot (0.8.6)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
@@ -302,8 +301,6 @@ GEM
     uglifier (1.0.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    video_info (0.4.0)
-      hpricot (~> 0.8.4)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -355,4 +352,3 @@ DEPENDENCIES
   thin
   twitter
   uglifier
-  video_info
