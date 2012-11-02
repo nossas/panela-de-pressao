@@ -13,10 +13,11 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :posts
   has_many :answers
-  before_save       { self.description_html = convert_html(description) }
-  before_save       { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
-  after_create      { CampaignMailer.delay.campaign_awaiting_moderation(self) }
-  after_create      { CampaignMailer.delay.we_received_your_campaign(self) }
+  before_save { self.description_html = convert_html(description) }
+  before_save { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
+  after_create { self.delay.generate_short_url! }
+  after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
+  after_create { CampaignMailer.delay.we_received_your_campaign(self) }
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers
@@ -93,5 +94,9 @@ class Campaign < ActiveRecord::Base
 
   def owner_have_mobile_phone
     errors.add(:user, "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato.") if self.user.mobile_phone.blank?
+  end
+
+  def generate_short_url!
+    self.update_attribute :short_url, Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET']).shorten(Rails.application.routes.url_helpers.campaign_url(self.id)).short_url
   end
 end

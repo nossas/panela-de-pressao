@@ -11,11 +11,7 @@ class CampaignsController < InheritedResources::Base
     @campaign = Campaign.new(params[:campaign])
     if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
       create! do |success, failure|
-        success.html do 
-          bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
-          resource.update_attribute :short_url, bitly.shorten(campaign_url(resource.id)).short_url
-          return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
-        end
+        success.html { return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
         failure.html { render :new }
       end
     else
