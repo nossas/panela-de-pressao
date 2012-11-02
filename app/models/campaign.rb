@@ -1,6 +1,6 @@
 class Campaign < ActiveRecord::Base
   include AutoHtml
-  attr_accessible :description, :name, :user_id, :user_ids, :accepted_at, :image, 
+  attr_accessible :description, :name, :user_id, :user_ids, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
     :pokers_email, :finished_at, :succeed, :video_url
@@ -14,7 +14,6 @@ class Campaign < ActiveRecord::Base
   has_many :posts
   has_many :answers
   before_save { self.description_html = convert_html(description) }
-  before_save { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
   after_create { self.delay.generate_short_url! }
   after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
   after_create { CampaignMailer.delay.we_received_your_campaign(self) }
@@ -98,5 +97,11 @@ class Campaign < ActiveRecord::Base
 
   def generate_short_url!
     self.update_attribute :short_url, Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET']).shorten(Rails.application.routes.url_helpers.campaign_url(self.id)).short_url
+  end
+
+  def accept_now!
+    self.accepted_at = Time.now
+    self.save
+    CampaignMailer.delay.campaign_accepted(self)
   end
 end

@@ -7,11 +7,8 @@ describe CampaignsController do
       controller.stub(:current_user).and_return(stub_model(User))
       bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
       Campaign.any_instance.stub(:save)
-      bitly.should_receive(:shorten).with("http://test.host/campaigns/1").and_return(mock_model(Campaign, :short_url => 'short_url'))
       campaign = stub_model(Campaign, :id => 1)
-      campaign.should_receive(:update_attribute).with(:short_url, 'short_url')
       controller.stub(:resource).and_return(campaign)
-      Bitly.should_receive(:new).with(ENV['BITLY_ID'], ENV['BITLY_SECRET']).and_return(bitly)
       post :create, :campaign => {}
     end
     it { should redirect_to campaigns_path }
@@ -27,7 +24,7 @@ describe CampaignsController do
   end
 
   describe "PUT accept" do
-    before { Campaign.stub(:find).and_return(mock_model(Campaign, :update_attribute => true)) }
+    before { Campaign.stub(:find).and_return(mock_model(Campaign, :update_attribute => true, :accept_now! => true)) }
     context "when I'm admin" do
       before { controller.stub(:current_user).and_return(mock_model(User, :admin? => true)) }
       before { put :accept, :campaign_id => "1" }
