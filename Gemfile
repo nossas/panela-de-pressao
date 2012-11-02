@@ -13,7 +13,6 @@ gem "formtastic", "~> 2.2.0"
 gem "auto_html"
 gem "redcarpet"
 gem 'delayed_job_active_record'
-gem 'video_info'
 gem 'rack-no-www'
 
 # Image uplaod
