@@ -20,8 +20,18 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
+  def update
+    @campaign = Campaign.find(params[:id])
+    if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
+      update!
+    else
+      @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
+      render :edit
+    end
+  end
+
   def accept
-    Campaign.find(params[:campaign_id]).update_attribute :accepted_at, Time.now
+    Campaign.find(params[:campaign_id]).accept_now!
     params[:id] = params[:campaign_id]
     show(:notice => "Está valendo, campanha no ar!")
   end
