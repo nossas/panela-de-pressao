@@ -1,0 +1,19 @@
+#email_poke_message
+  h1 Email que será enviado aos pressionados
+  = form_for [@campaign, @poke] do |f|
+    = f.hidden_field :kind, :value => "email"
+    = f.label :custom_message
+    = f.text_area :custom_message, :value => @campaign.email_text
+    = f.submit "Pressionar por Email", :class => "btn"
+
+#facebook_poke_message
+  h1 Mensagem que será postada na página de Facebook dos pressionados
+  = form_for [@campaign, @poke] do |f|
+    = f.hidden_field :kind, :value => "facebook"
+    = f.label :custom_message
+    = f.text_area :custom_message, :value => @campaign.facebook_text
+    = f.submit "Pressionar pelo Facebook", :class => "btn"
+
+#twitter_poke_message
+  h1 Tweet que será enviado aos pressionados
+  p= simple_format @campaign.twitter_text

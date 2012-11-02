@@ -71,10 +71,19 @@ pt-BR:
       targets_html: "Alvos da campanha <span>(%{count})</span>"
       map:
         header: "Sobre o mapa"
+      form:
+        headline: "Envie uma mensagem diretamente aos responsáveis através destes canais:" 
+        headline_poked: "Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!"
+        facebook: "Pressione no facebook"
+        facebook_tip: "mensagem será publicada no mural do alvo"
+        twitter: "Pressione no twitter"
+        twitter_tip: "mensagem será publicada no perfil do alvo"
+        email: "Pressione por e-mail"
+        email_tip: "mensagem será enviada ao e-mail do alvo"
       tabs:
         map: "Mapa"
         campaign: "A Campanha"
-        answers: "Respostas"
+        answers_html: "Respostas dos Alvos <span class='count'>%{count}</span>"
         comments: "Comentários"
       pokes:
         email: "Email que será enviado para os alvos:"

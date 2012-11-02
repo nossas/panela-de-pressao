@@ -1,0 +1,6 @@
+.finished_at 
+  span class="#{@campaign.succeed? ? "succeed" : "unsucceed"}"
+    strong #{@campaign.succeed? ? "Vitória!" : "Não foi dessa vez..."}
+    |  Esta campanha foi encerrada há 
+    = distance_of_time_in_words_to_now(@campaign.finished_at)
+
