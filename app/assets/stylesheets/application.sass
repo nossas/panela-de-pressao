@@ -18,6 +18,8 @@ $gray: #f3f4f4
 @import font
 //@import url('http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic')
 
+.clear
+  clear: both
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
 section
@@ -26,6 +28,7 @@ section
   display: none
 .row
   +grid-row
+
 
 .logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at, body.campaigns#unmoderated article.left
   +grid(12)
@@ -70,7 +73,7 @@ hr
   border-top: none
   border-bottom: 1px dashed $orange
 
-strong
+strong, .btn
   font-family: "Proxima Nova Bold"
 em
   font-family: "Proxima Nova Italic"
@@ -107,7 +110,7 @@ a
   color: $green
   text-decoration: none
   &:hover
-    color: $green_hover 
+    color: $victory
 
 input[type='text'], textarea, input[type="email"], input[type="url"]
   outline: none
@@ -153,11 +156,10 @@ p.inline-hints, p.inline-errors
   background: $green
   color: white
   padding: .7em 1.6em
-  font-size: .9em
+  font-size: 1em
   letter-spacing: 1px
   display: inline-block
   text-transform: uppercase
-  font-weight: bold
   width: 80%
   text-align: center
   +transition(.2s)
@@ -257,7 +259,6 @@ section.login
   position: relative
   border-bottom: 1px solid lighten(black, 85%)
   +box-shadow(1px 4px 15px lighten(black, 85%))
-
   a.fb, a.mr
     margin: 0 .4em
   .meurio, .user
@@ -281,6 +282,9 @@ section.header
       display: inline-block
       padding: 1.2em
       border-right: 1px solid lighten(gray, 42%)
+      &:hover
+        color: $victory
+        text-shadow: 0 0 1px $victory
       span
         display: block
         font-weight: bold
@@ -303,7 +307,7 @@ section.highlight
       color: $green
       font-size: 1.6em
       margin-top: .6em
-      margin-bottom: 0 !important
+      margin-bottom: .4em !important
     .is_featured
       background: $orange
       color: white
@@ -320,8 +324,9 @@ section.highlight
         margin-right: .5em
     .description
       color: lighten(gray, 5%)
-      font-size: .9em
-      margin-top: .4em
+      margin-top: .6em
+      font-size: 1em
+      line-height: 1.4em
     .count, .poke
       +grid-subcolumn(6,3)
     .poke
@@ -361,7 +366,7 @@ section.content
           visibility: visible
     h3
       font-size: 1.1em
-      height: 100px
+      height: 5em 
       display: block
     .image, .info
       padding: .8em
@@ -422,8 +427,8 @@ p.description
     color: darken($gray, 25%)
   span
     display: block
-    font-size: 1.6em
-    font-weight: bold
+    font-size: 1.8em
+    font-family: "Proxima Nova Bold"
     color: black
     line-height: .8em
     margin-bottom: -6px
@@ -456,50 +461,55 @@ body.campaigns#index
   .all_campaigns
     form.search
       margin-bottom: 2em
-      overflow: hidden
       display: block
       input
         padding: 0
     .block
       +grid(4)
-      &::last-child
+      &.last
         +last
     ol.campaigns
       margin-top: 1em
-.warning
-  background: lighten($orange, 25%)
-  padding: .5em
-  text-align: center
-  line-height: normal
-  margin-bottom: 1em
-  border: 2px dashed $orange
-  color: darken($orange, 40%)
+
+
+body.campaigns#show
+  section.header
+    +box-shadow(0 1px 6px lighten(black, 75%))
+    margin-bottom: .2em
+  h1.title, span.category
+    color: darken($gray, 75%)
+  h1
+    font-size: 2em
+    font-weight: bold
+    line-height: 100% 
+    margin: 1em 0 .5em 0
+  span.category
+    font-size: 1em
+    display: block
+    color: darken($gray, 55%)
+    margin-bottom: 1.5em
+  article.tab, article.share
+    background: none
+    padding-bottom: .6em
+  nav a
+    color: gray
+    margin: 0 1em
+    padding: .5em .5em
+    font-family: "Proxima Nova Bold"
+    &.selected
+      color: $green
+      border-bottom: 3px solid $green
+
+  article.campaign
+    background: white
+    .content
+      padding: 2em
+      +border-radius(4px)
 
 
 
-#new, #edit, #create, #show, #update
-  .highlight
-    line-height: 2.6em
-    .home_link
-      a
-        margin-right: 2em
-        font-size: .9em
-      a.home
-        &::before
-          content: "‹ "
-          font-size: 1.4em
-    .new_campaign_btn
-      text-align: center
-      a
-        color: white
-        letter-spacing: 1px
-        text-transform: uppercase
-        font-size: 1.4em
-        text-shadow: 1px 1px 2px darken(gray, 25%)
-        +transition(.1s)
-        &:hover
-          color: darken($green, 5%)
-          text-shadow: none
+
+
 
 body
   &.campaigns
@@ -525,56 +535,6 @@ body
           +box-sizing("border-box")
           width: 100%
       article.left
-        h1
-          line-height: normal
-          font-size: 2.0em
-          letter-spacing: 1px
-          margin-bottom: 1em
-        h2
-          visibility: hidden
-          color: lighten($orange, 5%)
-          font-size: .8em
-          border-bottom: 1px dashed $orange
-          margin-bottom: 0
-        small
-          display: none
-        .tabs
-          border-bottom: 1px solid lighten(gray, 25%)
-          margin-bottom: 2em
-          a
-            color: darken(white, 5%)
-            background: $green
-            display: inline-block
-            padding: .6em 3em
-            margin-right: .4em
-            text-transform: uppercase
-            font-size: .7em
-            position: relative
-            top: 1px
-            +box-shadow(black 0 -5px 10px -5px inset)
-            +border-radius(5px 5px 0 0)
-            +transition(0.5s)
-            +text-shadow(0 0 1px black)
-            &.selected
-              border: 1px solid lighten(gray, 25%)
-              +box-shadow(1px 1px 3px gray)
-              border-bottom: none
-              background: white
-              color: gray
-              +box-shadow(none)
-              &:hover
-                background: none
-            &:hover
-              background: lighten($green, 5%)
-            span
-              background: darken($green, 15%)
-              padding: 1px 7px
-              margin: 0 4px
-              +border-radius(8px)
-              color: white
-            &.comments
-              span
-                padding: 1px 2px
         .image
           img
             border: 2px solid lighten(gray, 35%)
