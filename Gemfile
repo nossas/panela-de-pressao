@@ -14,6 +14,7 @@ gem "auto_html"
 gem "redcarpet"
 gem 'delayed_job_active_record'
 gem 'rack-no-www'
+gem 'video_info'
 
 # Image uplaod
 gem 'carrierwave'
