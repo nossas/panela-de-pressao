@@ -14,8 +14,8 @@
             .count.icon-message= t "home.highlight.pokes_count_html", count: @featured.pokes.count
             .poke= link_to t("home.highlight.poke_now"), @featured, class: 'btn'
       .image
-        - if @featured_video
-          = @featured_video.html_safe
+        - unless @featured.video.nil?
+          = @featured.video.html_safe
         - else
           = link_to image_tag(@featured.image.url), @featured
 

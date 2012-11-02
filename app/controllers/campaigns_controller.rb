@@ -4,14 +4,10 @@ class CampaignsController < InheritedResources::Base
   skip_load_and_authorize_resource :only => [:index, :create]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
-  before_filter :only => [:show] do 
-    @featured_video = VideoInfo.new(@campaign.video_url).embed_code
-    @answer = Answer.new
-  end
+  before_filter :only => [:show] { @answer = Answer.new }
   before_filter :only => [:index] do
     @popular = Campaign.popular.limit(4)
     @featured = Campaign.featured.last || Campaign.accepted.first
-    @featured_video = VideoInfo.new(@featured.video_url).embed_code
   end
 
 
