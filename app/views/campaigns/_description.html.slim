@@ -1,5 +1,5 @@
-- if @featured_video
-  .image= @featured_video.html_safe
+- unless @campaign.video.nil?
+  .image= @campaign.video.html_safe
 - else
   .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
 .description= @campaign.description_html.html_safe
