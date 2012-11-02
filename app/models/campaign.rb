@@ -36,10 +36,6 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
 
-  def video
-    video = VideoInfo.new(self.video_url)
-    return video.embed_code if video.valid?
-  end
 
   def convert_html(text) 
     auto_html text do
