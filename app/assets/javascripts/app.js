@@ -70,6 +70,8 @@ var App = window.App = {
     },
 
     showLoginBox: function(){
+      $.facebox.settings.closeImage = '/assets/closelabel.png';
+      $.facebox.settings.loadingImage = '/assets/loading.gif';
       $.facebox({ div: '#login' });
     },
 
