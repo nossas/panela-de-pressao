@@ -264,6 +264,8 @@ pt-BR:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
       poke: "Rola de fazer o login? Depois você pode continuar pressionando os alvos da campanha"
+    show:
+      campaign: "Esta campanha ainda não foi moderada, você precisa ser administrador ou o dono dela para visualizar."
 
   pokes_counter_html:
     zero: "<span>nenhuma</span> mensagem enviada"
