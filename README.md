@@ -10,20 +10,17 @@ Because we care about our code: [![Build Status](https://secure.travis-ci.org/me
 7. `rake db:migrate`
 8. `touch config/initializers/01_envvars.rb`
 9. Open the file we eated above with you prefered editor and set some required environment variables (change their values with yours):
-
-`# Facebook integration
-ENV["FB_ID"] = "fb id"
-ENV["FB_SECRET"] = "fb secret"
-# Amazon integration
-ENV["AWS_ID"] = "aws id"
-ENV["AWS_SECRET"] = "aws secret"
-# Twitter integration
-ENV["TWITTER_ID"] = "twitter id"
-ENV["TWITTER_SECRET"] = "twitter secret"
-# Bit.ly integration
-ENV["BITLY_ID"] = "bit.ly id"
-ENV["BITLY_SECRET"] = "bit.ly secret"`
-
+`ENV["FB_ID"] = "fb id"`
+`ENV["FB_SECRET"] = "fb secret"`
+`# Amazon integration`
+`ENV["AWS_ID"] = "aws id"`
+`ENV["AWS_SECRET"] = "aws secret"`
+`# Twitter integration`
+`ENV["TWITTER_ID"] = "twitter id"`
+`ENV["TWITTER_SECRET"] = "twitter secret"`
+`# Bit.ly integration`
+`ENV["BITLY_ID"] = "bit.ly id"`
+`ENV["BITLY_SECRET"] = "bit.ly secret"`
 10. `rails s`
 11. Now try [http://localhost:3000/](http://localhost:3000/)
 
