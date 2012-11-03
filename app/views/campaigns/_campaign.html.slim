@@ -6,7 +6,7 @@ li.campaign[class="#{cycle('first', 'second', 'third', 'last')} #{(campaign.fini
     span.category.icon-list= truncate(campaign.category.name, length: 30)
     p.description= link_to truncate(campaign.description, length: 110), campaign
   .counter
-    - if campaign.finished_at?
+    - if campaign.finished?
       - if campaign.succeed?
         .icon-victory.victory Vitória!
       - else

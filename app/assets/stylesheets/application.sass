@@ -537,6 +537,7 @@ body.campaigns#show
   .counter, .via_facebook, .via_twitter, .via_email
     background: $gray
     padding: .8em 0
+    overflow: hidden
     +border-radius(6px)
   .counter 
     margin-bottom: 1em
@@ -550,9 +551,21 @@ body.campaigns#show
         font-size: 3em
 
   .poke_buttons
+    .text
+      margin: 3em 0 1em 0
     .via_facebook, .via_twitter, .via_email
       margin: 1em 0
+      .message
+        padding: 1.6em
+        width: 80%
+        display: none
+        h4
+          text-transform: uppercase
+        .text
+          color: darken($gray, 40%)
+          font-size: .8em
       .btn 
+        width: 75%
         margin: 0 auto
         display: block
         background: $fb_blue
@@ -567,6 +580,8 @@ body.campaigns#show
           text-transform: uppercase
           margin: 0
           padding: 0
+          margin-bottom: -2.5em
+          padding-bottom: 2.5em
           &:hover
             cursor: pointer
         span
@@ -575,6 +590,7 @@ body.campaigns#show
           text-transform: none
           line-height: .8em
           color: lighten($fb_blue, 40%)
+          display: block
     .via_twitter .btn
       background: $twitter_blue
       span
@@ -588,7 +604,45 @@ body.campaigns#show
       &:hover
         background: darken($gray, 40%)
 
-
+  .targets, .supporters, .pokers
+    margin-bottom: 1em
+    overflow: hidden
+    h3
+      border: 1px solid $gray 
+      border-bottom: none
+      padding: .8em
+      font-size: 1.1em
+      font-weight: bold
+      span
+        color: $orange
+      &:before
+        color: darken($gray, 30%)
+        margin-right: .4em
+        font-size: 1.2em
+        position: relative
+        top: .192em
+    .content
+      border: 1px solid $gray 
+      padding-top: 1em
+    img
+      float: left
+    .social a
+      display: inline-block
+      margin-right: .4em
+  .target
+    margin-bottom: .8em
+  .icon-twitter
+    color: $twitter_blue
+  .icon_facebook
+    color: $fb_blue
+  .icon-mail
+    color: gray
+  .targets img, .supporters img
+    padding-right: .4em
+  .targets .role
+    font-size: .7em
+    color: lighten(gray, 10%)
+    line-height: 1em
 
 body
   &.campaigns
@@ -619,78 +673,6 @@ body
               width: 100%
               +box-sizing("border-box")
               height: 200px
-        .targets, .pokers
-          h2
-            span
-              color: $orange
-        .targets
-          margin-top: 2em
-          ol
-            margin-bottom: 2em
-            li.target
-              overflow: hidden
-              margin-bottom: 1em
-              .info
-                float: left
-                width: 60%
-                margin-right: 5%
-                img
-                  width: 40px
-                  height: 40px
-                  float: left
-                  margin-right: .5em
-                .name, .role
-                  font-size: .8em
-                  line-height: 20px
-                .name
-                  font-weight: bold
-                  color: $green
-                .role
-                  color: $orange
-                  font-size: .6em
-              .social
-                width: 35%
-                float: left
-                line-height: 40px
-                text-align: right
-                a
-                  font-size: 1.25em
-                  color: lighten(gray, 20%)
-                  margin-right: .5em
-                  &:hover
-                    text-decoration: none
-                    color: $green
-        .supporters, .pokers
-          padding: 2em 0
-          overflow: hidden
-          +box-shadow(lighten(gray, 48%) 5em 0 5em 0 inset, lighten(gray, 48%) -5em 0 5em 0 inset, black 0 1em 1em -1em inset)
-          img
-            width: 40px
-            height: 40px
-            float: left
-            margin-right: .5em
-            margin-bottom: .5em
-        .pokers
-          img
-            margin-right: .2em !important
-            margin-bottom: .2em !important
-        .show_all_influencers, .who_pokes
-          font-size: 1.2em
-          text-align: center
-          display: block
-          width: 30%
-          margin: 0 auto
-          text-transform: uppercase
-          color: darken($orange, 10%)
-          border-bottom: 1px solid $orange
-          &:hover
-            opacity: .8
-        .who_pokes 
-          width: 90%
-          font-size: 1.2em
-          border-bottom: none  
-          color: black
-          text-align: right
           
     &#new, &#edit, &#create, &#update
       ul.formatting

@@ -1,9 +1,9 @@
 .tabs#tabs
   nav
-    = link_to t('campaign.show.tabs.campaign'), description_campaign_path(@campaign), :class => "#{params[:section] == "description" || params[:section].nil? ? 'selected' : ''}"
+    = link_to t('campaign.show.tabs.campaign'), @campaign, :class => "#{params[:section].nil? ? 'selected' : ''}"
     - if @campaign.map_embed?
-      = link_to t('campaign.show.tabs.map'),      map_campaign_path(@campaign), :class => "#{params[:section] == "map" ? 'selected' : ''}" 
-    = link_to t('campaign.show.tabs.answers_html', count: @campaign.answers.count), answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
+      = link_to t('campaign.show.tabs.map'), map_campaign_path(@campaign), :class => "#{params[:section] == "map" ? 'selected' : ''}" 
+    = link_to t('campaign.show.tabs.answers_html', count: @campaign.answers.length), answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
     = link_to(comments_campaign_path(@campaign), :class => "#{params[:section] == "comments" ? 'selected comments' : 'comments'}") do
       = t('campaign.show.tabs.comments') 
       span.count

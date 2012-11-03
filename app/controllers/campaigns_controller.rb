@@ -6,7 +6,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
   before_filter :only => [:index] do
-    @popular = Campaign.popular.limit(4)
+    @popular = Campaign.popular.limit(4).shuffle
     @featured = Campaign.featured.last || Campaign.accepted.first
   end
 

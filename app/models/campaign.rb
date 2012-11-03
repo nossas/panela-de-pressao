@@ -13,6 +13,9 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :posts
   has_many :answers
+  has_many :pokes
+  has_many :pokers, through: :pokes, source: :user, uniq: true
+
   before_save       { self.description_html = convert_html(description) }
   before_save       { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
   after_create      { CampaignMailer.delay.campaign_awaiting_moderation(self) }
@@ -25,7 +28,7 @@ class Campaign < ActiveRecord::Base
 
   scope :accepted, where('accepted_at IS NOT NULL')
   scope :unmoderated, where(accepted_at: nil)
-  scope :featured, where('featured_at IS NOT NULL').reorder('finished_at DESC')
+  scope :featured, where('featured_at IS NOT NULL').reorder('featured_at DESC')
   scope :popular, joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
 
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
@@ -53,30 +56,12 @@ class Campaign < ActiveRecord::Base
     !accepted_at.nil?
   end
 
-  def influencers
-    Influencer.joins(:targets).where(['targets.campaign_id = ?', self.id])
-  end
-
   def not_empty_influencer(opt = :email)
     self.influencers.select { |a| a.send(opt.to_s) != "" }    
   end
 
-  def pokes
-    Poke.where(['pokes.campaign_id = ?', self.id])
-  end
-
   def pokes_by(opt = :email)
     self.pokes.where(:kind => opt.to_s)
-  end
-
-  def pokers
-    User
-    .joins(:pokes)
-    .where(["pokes.campaign_id = ?", self.id]).order('created_at DESC').uniq
-  end 
-
-  def more_active_pokers 
-    pokers.sort { |a,b| b.pokes_count.to_i <=> a.pokes_count.to_i  } 
   end
 
   def finished?
@@ -84,11 +69,11 @@ class Campaign < ActiveRecord::Base
   end
 
   def targets_with_facebook
-    self.targets.select{|target| !target.influencer.facebook_id.blank?}
+    self.influencers.select(&:facebook_id)
   end
 
   def targets_with_twitter
-    self.targets.select{|target| !target.influencer.twitter.blank?}
+    self.influencers.select(&:twitter)
   end
 
   

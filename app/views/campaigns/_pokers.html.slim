@@ -1,16 +1,9 @@
-.supporters
-  h2 Quem cozinha
-  = link_to image_tag(@campaign.user.pic(:type => :square), size: "50x50", title: @campaign.user.name), user_path(@campaign.user), title: @campaign.user.name
-  - @campaign.users.each do |user|
-    = link_to image_tag(user.pic(:type => :square), size: "50x50", title: user.name), user_path(user), title: user.name
-- if @campaign.pokers.any?
-  .pokers
-    h2 
-      = t 'home.text.who_supports' 
-      span= " (#{@campaign.pokers.length})"
+.pokers
+  h3.icon-megaphone= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign.pokers.length)
+  .content
     ul
       - @campaign.pokers.offset(rand(@campaign.pokers.length - (@campaign.pokers.length * 0.50))).limit(24).each do |poker|
-        li= link_to image_tag(poker.pic(type: :square)), user_path(poker), title: poker.name
+        li= link_to image_tag(poker.pic(type: :square), size: '50x50'), poker, title: poker.name
       - if @campaign.pokers.length > 24
         li.who_pokes
           | + #{@campaign.pokers.length- 24} pessoas
