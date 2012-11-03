@@ -10,7 +10,6 @@ Because we care about our code: [![Build Status](https://secure.travis-ci.org/me
 7. `rake db:migrate`
 8. `touch config/initializers/01_envvars.rb`
 9. Open the file we eated above with you prefered editor and set some required environment variables (change their values with yours):
-
 `
 # Facebook integration
 ENV["FB_ID"] = "fb id"
