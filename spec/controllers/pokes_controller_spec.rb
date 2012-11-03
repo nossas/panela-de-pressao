@@ -2,6 +2,12 @@
 require 'spec_helper'
 
 describe PokesController do
+  before do
+    bitly = Bitly.new('bitly id', 'bitly key')
+    bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
+    Bitly.stub(:new).and_return(bitly)
+  end
+
   before { Campaign.stub(:find).with("1").and_return(mock_model(Campaign, :id => 1, :pokes => double(Object, :build => Poke.new))) }
 
   describe "POST create" do
