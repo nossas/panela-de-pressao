@@ -24,7 +24,6 @@ ENV["TWITTER_SECRET"] = "twitter secret"
 ENV["BITLY_ID"] = "bit.ly id"
 ENV["BITLY_SECRET"] = "bit.ly secret"
 `
-
 10. `rails s`
 11. Now try [](http://localhost:3000/)
 
