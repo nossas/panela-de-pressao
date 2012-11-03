@@ -11,11 +11,14 @@ pt-BR:
     url: "http://paneladepressao.org.br"
   link:
     click_here: "clique aqui"
+    what_is_html: "<span>O que é</span> o panela"
+    discover_it_html: "<span>Descubra</span> as campanhas"
+    create_html: "<span>Crie agora</span> sua campanha"
   actions:
     create: "Crie sua campanha agora >"
     edit: "Editar esta campanha"
     delete: "Excluir esta campanha"
-    back_home: "Voltar à home"
+    back_home: "Voltar à página inicial"
     channel: "Escolha um canal para fazer pressão: "
     send_to_moderation: "Enviar campanha para moderação"
     save: "Salvar campanha"
@@ -66,13 +69,20 @@ pt-BR:
           targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
           video_url: "Esse vídeo ficará em destaque na página da campanha. Ex.: http://youtube.com/?v=1fsdf1"
     show:
+      quoted_count: "(%{count})"
       your_privacy: "sua privacidade"
       privacy_html: "O Panela protege %{link}."
       targets_html: "Alvos da campanha <span>(%{count})</span>"
+      target:
+        head_html: 'Pressionados <span>(%{count})</span>'
+      pokers:  
+        head_html: 'Quem pressiona <span>(%{count})</span>'
+      cooker: 
+        head_html: 'Quem cozinha <span>(%{count})</span>'
       map:
         header: "Sobre o mapa"
       form:
-        headline: "Envie uma mensagem diretamente aos responsáveis através destes canais:" 
+        headline: "Escolha uma das opções abaixo para pressionar diretamente os responsáveis:" 
         headline_poked: "Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!"
         facebook: "Pressione no facebook"
         facebook_tip: "mensagem será publicada no mural do alvo"
@@ -80,6 +90,8 @@ pt-BR:
         twitter_tip: "mensagem será publicada no perfil do alvo"
         email: "Pressione por e-mail"
         email_tip: "mensagem será enviada ao e-mail do alvo"
+        message:
+          header: "Mensagem"
       tabs:
         map: "Mapa"
         campaign: "A Campanha"

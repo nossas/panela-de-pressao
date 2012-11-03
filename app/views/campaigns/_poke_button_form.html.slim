@@ -3,5 +3,7 @@
   .btn
     = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and current_user.can_poke(@campaign, with: kind))
     span= t "campaign.show.form.#{kind}_tip"
-  = link_to "Ver/personalizar mensagem", "#facebook_poke_message", class: "message_link", :rel => "facebox[.facebook_poke_message]"
+  .message
+    h4= t 'campaign.show.form.message.header'
+    .text= truncate(@campaign.send("#{kind}_text"), length: 140)
 

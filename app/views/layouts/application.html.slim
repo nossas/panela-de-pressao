@@ -62,20 +62,11 @@ html
     section.header
       .row
         .logo
-          =link_to image_tag("logo.png"), root_path
+          =link_to image_tag("logo.png"), root_path, title: t('actions.back_home') 
         .create
-          = link_to "/oque" do 
-            span
-              | O que é 
-            | o panela
-          = link_to "/explore" do
-            span 
-              | Descubra 
-            | as campanhas
-          = link_to new_campaign_path do
-            span 
-              | Crie agora
-            | sua campanha
+          = link_to t('link.what_is_html'), help_path
+          = link_to t('link.discover_it_html'), explore_path
+          = link_to t('link.create_html'), new_campaign_path
 
         .share
           .fb-like data-href="http://paneladepressao.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"

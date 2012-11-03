@@ -1,20 +1,18 @@
-#targets.targets
-  .titles
-    h2
-      | Pressionados 
-      span= "(#{@campaign.influencers.count})"
-  ol
-    - @campaign.influencers.each_with_index do |influencer, index|
-      li.target[class=(index > 5 ? 'hidden' : '')]
-        .info
-          = link_to image_tag(influencer.avatar.square, :title => influencer.name), influencer_path(influencer)
-          .name= link_to influencer.name, influencer_path(influencer)
-          .role= influencer.role
-        .social
-          = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
-          = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
-          = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-mail"
-    - if @campaign.influencers.count > 5
-      li
-        = link_to "Ver todos", "#/", class: "show_all_influencers"
+.targets
+  h3.icon-target= t 'campaign.show.target.head_html', count: @campaign.influencers.length
+  .content
+    ol
+      - @campaign.influencers.each_with_index do |influencer, index|
+        li.target[class=('hidden' if index > 4)]
+          .info
+            = link_to image_tag(influencer.avatar.square, size: "50x50", :title => influencer.name), influencer 
+            .name= link_to truncate(influencer.name, length: 35), influencer 
+            .role= truncate(influencer.role, length: 40)
+          .social
+            = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
+            = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
+            = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-mail"
+      - if @campaign.influencers.count > 4
+        li
+          = link_to "Ver todos", "#/", class: "show_all_influencers"
 

@@ -4,16 +4,14 @@ class User < ActiveRecord::Base
   has_many :campaigns
   has_many :pokes
 
-  scope :by_campaign_id, lambda {|id| Campaign.find(id).pokers }
-
   validates_presence_of :email, :name
 
   mount_uploader :file, AvatarUploader
 
   def self.create_from_hash!(hash)
     create!(
-      :email => hash['info']['email'],
-      :name => "#{hash['info']['first_name']} #{hash['info']['last_name']}",
+      :email =>   hash['info']['email'],
+      :name =>    "#{hash['info']['first_name']} #{hash['info']['last_name']}",
       :picture => hash['info']['image_url'] || hash['info']['image']
     )
   end
@@ -34,16 +32,12 @@ class User < ActiveRecord::Base
   def twitter_authorization
     authorizations.where(:provider => "twitter").first
   end
-  
-  def pokes_counter
-    attributes['pokes_count']
-  end
 
   def has_poked campaign
     self.pokes.where(:campaign_id => campaign.id).any?
   end
 
   def can_poke? campaign, options = {}
-    self.pokes.where("campaign_id = ? AND kind = ? AND created_at >= ?", campaign.id, options[:with], Time.now - 1.day).count == 0
+    self.pokes.where("campaign_id = ? AND kind = ? AND created_at >= ?", campaign.id, options[:with], Time.now - 1.day).size == 0
   end
 end

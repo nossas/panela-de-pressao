@@ -12,7 +12,6 @@ ManifesteSe::Application.routes.draw do
       get :comments,    defaults: { section: "comments" },     as: :comments,      to: "campaigns#show"
       get :map,         defaults: { section: "map" },          as: :map,           to: "campaigns#show"
       get :answers,     defaults: { section: "answers" },      as: :answers,       to: "campaigns#show"
-      get :description, defaults: { section: "description" },  as: :description,   to: "campaigns#show"
     end
 
     put :accept, :to => "campaigns#accept"
@@ -32,5 +31,10 @@ ManifesteSe::Application.routes.draw do
   resources :users, only: [:show, :update, :index] do
     resources :campaigns, :only => [:index]
   end
+
+
+  get '/explore', to: "campaigns#index", as: :explore
+  get '/ajuda',   to: "campaigns#index", as: :help
+
   root :to => 'campaigns#index'
 end
