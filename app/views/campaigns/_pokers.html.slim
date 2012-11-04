@@ -3,7 +3,7 @@
   .content
     ul
       - @campaign.pokers.offset(rand(@campaign.pokers.length - (@campaign.pokers.length * 0.50))).limit(24).each do |poker|
-        li= link_to image_tag(poker.pic(type: :square), size: '50x50'), poker, title: poker.name
+        li= link_to image_tag(poker.pic(type: :square), size: '49x49'), poker, title: poker.name
       - if @campaign.pokers.length > 24
         li.who_pokes
-          | + #{@campaign.pokers.length- 24} pessoas
+          span.the_others= @campaign.pokers.length - 24

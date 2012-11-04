@@ -8,7 +8,12 @@
   meta property="og:url"          content=campaign_url(@campaign)
   meta property="og:description"  content=@campaign.description
   meta property="og:type"         content="paneladepressao:campaign"
-
+  javascript:
+    |(function() {
+        var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+        mf.src = "//cdn.mouseflow.com/projects/8304e208-fb04-4b41-a1cc-76ef8ef3e10d.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
 section.content
   .row
     = render partial: 'finished_message' if @campaign.finished_at?

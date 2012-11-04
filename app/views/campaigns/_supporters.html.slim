@@ -4,8 +4,8 @@
     - user = @campaign.user
     ol
       li
-        = link_to image_tag(user.pic(:type => :square), size: "50x50", title: user.name), user_path(user), title: user.name
-        .name= link_to user.name, user
+        = link_to image_tag(user.pic(:type => :square), size: "50x50", title: user.name), user, title: user.name
+        .name= link_to truncate(user.name, length: 40), user
         .social
           = mail_to user.email, "", class: 'icon-mail'
 

@@ -18,6 +18,8 @@ $gray: #f3f4f4
 @import icomoon
 @import font
 //@import url('http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic')
+*
+  +transition(.2s)
 
 .clear
   clear: both
@@ -212,7 +214,7 @@ section.highlight
     input
       text-indent: -9999px
 section.content
-  padding-top: 1em
+  padding: 1.5em 0
 
 section.header, section.footer
   padding: 1.5em 0
@@ -286,16 +288,17 @@ section.header
       border-right: 1px solid lighten(gray, 42%)
       &:hover
         color: $victory
-        text-shadow: 0 0 1px $victory
       span
         display: block
         font-weight: bold
+        font-family: "Proxima Nova Bold"
         font-size: 1.3em
         color: $green
         margin-bottom: -4px
   .share
     +grid(1)
     +last
+    +mobile-hide
 section.highlight
   background: image-url('bg_highlight.jpg') center top repeat-x
   .featured
@@ -432,34 +435,44 @@ p.description
     font-size: 1.8em
     font-family: "Proxima Nova Bold"
     color: black
+    font-weight: bold
     line-height: .8em
-    margin-bottom: -6px
+    margin-bottom: -2px
   font-size: .9em
-  color: darken($gray, 30%)
+
+section.information
+  background: darken($gray, 5%)
+  .create_your_campaign, .our_victories, .didnt_find_target
+    margin: 2em 0
+    background: white
+    +grid(4)
+    +box-shadow(0 1px 2px lighten(gray, 30%))
+    +border-radius(4px)
+    .btn
+      width: 83.5%
+    .content
+      padding: .8em
+  .didnt_find_target
+    +last
+
+
 
 body.campaigns#index
   h2.popular
     margin: .6em 0 1.5em 0
-    font-size: 1.2em
+    color: darken(gray, 25%)
+    font-weight: bold
     &:before
-      color: $orange
+      color: darken($orange, 5%)
       margin-right: .4em
+      top: .2em
+      position: relative
   .popular, ol.campaigns li.not_finished
     .counter
       padding: .6em
       padding-top: 1em
   ol.campaigns li.campaign.last
     +last
-  .information
-    .create_your_campaign, .our_victories, .didnt_find_target
-      margin: 2em 0
-      background: white
-      +grid(4)
-      .btn
-      .content
-        padding: .8em
-    .didnt_find_target
-      +last
   .all_campaigns
     form.search
       margin-bottom: 2em
@@ -475,6 +488,10 @@ body.campaigns#index
 
 
 body.campaigns#show
+  .twitter-share-button
+    position: relative
+    top: .250em
+    left: .8em
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
@@ -626,6 +643,9 @@ body.campaigns#show
       padding-top: 1em
     img
       float: left
+      +transition(.4s)
+      &:hover
+        opacity: .7
     .social a
       display: inline-block
       margin-right: .4em
@@ -644,6 +664,26 @@ body.campaigns#show
     color: lighten(gray, 10%)
     line-height: 1em
 
+  .pokers
+    li
+      float: left
+      img
+        border: 1px solid white
+        &:hover
+          border: 1px solid $orange
+    li.who_pokes
+      background: $gray
+    .content
+      overflow: hidden
+    .the_others
+      font-weight: bold
+      line-height: 3.5em
+      padding-right: .9em
+      text-align: center
+      width: 100%
+      &:before
+        content: "+"
+        margin-left: .4em
 body
   &.campaigns
     &#show
@@ -916,3 +956,23 @@ body.influencers#new, body.influencers#create
     width: 100%
   li.input, .btn
     margin-bottom: 2em
+
+
+
+section.footer
+  background: darken($gray, 5%)
+  .links, .newsletter, .social
+    h4
+      text-transform: uppercase
+      color: darken($gray, 55%)
+      margin: 1em 0
+  .links 
+    +grid(6)
+  .social, .newsletter
+    +grid(3)
+  .newsletter
+    +last
+  .links li
+    font-size: .9em
+    display: inline-block
+    width: 50%

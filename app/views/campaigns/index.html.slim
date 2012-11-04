@@ -27,7 +27,8 @@ section.content
     ol.campaigns
       = render @popular 
 
-  .row.information
+section.information
+  .row
     .create_your_campaign
       .content
         .image = image_tag ""
@@ -53,7 +54,7 @@ section.content
           | text
         = link_to  "Adicionar alvo", '', class: 'btn'
 
-
+section.content
   .row.all_campaigns
     = form_for :search, html: { class: 'search'} do |f|
       .block
