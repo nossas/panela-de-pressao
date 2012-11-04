@@ -34,56 +34,13 @@ html
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
-    - if notice
-      section.notice
-        .row
-          .message.icon-checkmark= notice
-    - if alert
-      section.alert
-        .row
-          .message.icon-warning= alert
-    section.login
-      .row
-        .meurio
-          = link_to image_tag("seurio_bottom_logo_meurio.jpeg"), "http://meurio.org.br/"
-        .user
-          - if current_user
-            span= image_tag current_user.pic(:type => "square"), alt: "avatar"
-            span= current_user.name
-            .icon-cog
-              ul.options
-                li= link_to "Meu perfil", current_user, :class => "icon-user"
-                li= link_to "Minhas campanhas", user_campaigns_path(current_user), :class => "icon-comments"
-                li= link_to "Moderar campanhas", unmoderated_campaigns_path, :class => "icon-blocked" if can? :moderate, Campaign
-                li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
-                li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
-          - else
-            | Entre com a sua conta do #{link_to "Meu Rio", meurio_connect_path, class: 'mr'} ou do #{link_to "Facebook", facebook_connect_path, class: 'fb'}
-    section.header
-      .row
-        .logo
-          =link_to image_tag("logo.png"), root_path, title: t('actions.back_home') 
-        .create
-          = link_to t('link.what_is_html'), help_path
-          = link_to t('link.discover_it_html'), explore_path
-          = link_to t('link.create_html'), new_campaign_path
-
-        .share
-          .fb-like data-href="http://paneladepressao.org.br/" data-send="false" data-layout="box_count" data-width="48" data-show-faces="true"
+    = render partial: 'layouts/alerts'
+    = render partial: 'layouts/login'
+    = render partial: 'layouts/header'
     section.highlight  
       = yield :highlight
     = yield
-    section.footer
-      .row
-        .links_and_social
-          .links
-            = link_to "Quem somos", "http://meurio.org.br/paginas/sobre_nos"
-            = link_to "Contate-nos", "mailto:contato@meurio.org.br"
-          .social
-            = link_to "http://www.facebook.com/meurio" do
-              = image_tag "seurio_bottom_facebook.jpeg"
-            = link_to "http://twitter.com/#!/meu_rio" do
-              = image_tag "seurio_bottom_twitter.jpeg"
+    = render partial: 'layouts/footer'
     #fb-root
     #login
       h1 Login

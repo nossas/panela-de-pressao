@@ -40,7 +40,7 @@ class Campaign < ActiveRecord::Base
 
 
   def video
-    video = VideoInfo.new(self.video_url)
+    video = VideoInfo.new(self.video_url.to_s)
     if video.valid? then return video.embed_code else return nil end
   end
 
