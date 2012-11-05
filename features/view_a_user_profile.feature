@@ -9,8 +9,7 @@ Feature: View a member profile
     And I'm in the campaigns page
     When I click "Queremos bicicletários em todo o planeta!"
     And I click on the "Luiz Fonseca" avatar
-    Then I should see "O que Luiz Fonseca já fez no Panela de Pressão?"
-    And I should see "Pressionou a campanha Queremos bicicletários em todo o planeta!" 
+    Then I should see "Pressionou a campanha Queremos bicicletários em todo o planeta!" 
     And I should not see "user[email]"
   
   @omniauth_test @koala
@@ -20,8 +19,7 @@ Feature: View a member profile
     And I'm in the campaigns page
     When I click "Desarmamento Voluntário"
     And I click "Meu perfil"
-    Then I should see "O que Nícolas Iensen já fez no Panela de Pressão?"
-    And I should see "user[name]"
+    Then I should see "user[name]"
     And I should see "user[email]"
 
   Scenario: When the user collaborated with a campaign
