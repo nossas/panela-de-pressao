@@ -15,6 +15,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit edit_campaign_path(@campaign)
   when "this target page"
     visit influencer_path(@target.influencer)
+  when "this user page"
+    visit user_path(@user)
   else
     raise "I don't know #{arg1}"
   end
@@ -329,4 +331,13 @@ end
 
 Given /^there is an unmoderated campaign called "(.*?)"$/ do |arg1|
   @campaign = Campaign.make! :name => arg1, :accepted_at => nil
+end
+
+Given /^there is a user$/ do
+  @user = User.make!
+end
+
+Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
+  @campaign = Campaign.make!(:name => arg1, :accepted_at => Time.now)
+  @campaign.users << @user
 end

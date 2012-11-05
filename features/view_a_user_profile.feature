@@ -23,3 +23,9 @@ Feature: View a member profile
     Then I should see "O que Nícolas Iensen já fez no Panela de Pressão?"
     And I should see "user[name]"
     And I should see "user[email]"
+
+  Scenario: When the user collaborated with a campaign
+    Given there is a user
+    And this user collaborated with a campaign called "Queremos bicicletários em todo o planeta!"
+    When I go to this user page
+    Then I should see "Queremos bicicletários em todo o planeta!"
