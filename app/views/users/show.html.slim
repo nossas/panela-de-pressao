@@ -37,6 +37,11 @@ section.content.row
       h2= "Campanhas criadas por #{@user.name}"
       hr
       .list= render @user.campaigns.accepted
+        
+      h2= "Campanhas co-criadas por #{@user.name}"
+      hr
+      .list= render @user.collaborations.accepted
+        
       h2= t "user.show.what_user_did", user: @user.name
       hr
       ul.timeline
