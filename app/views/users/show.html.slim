@@ -34,19 +34,21 @@ section.content.row
 
   article.right
     .inside
-      h2= "Campanhas criadas por #{@user.name}"
-      hr
-      .list= render @user.campaigns.accepted
-        
-      h2= "Campanhas co-criadas por #{@user.name}"
-      hr
-      .list= render @user.collaborations.accepted
-        
-      h2= t "user.show.what_user_did", user: @user.name
-      hr
-      ul.timeline
-        - timeline_objects(@user).each do |obj|
-          li[class=obj.kind]
-            h4= raw obj.link 
-            p= t "time.some_time_ago", time: time_ago_in_words(obj.date)
+      - if @user.campaigns.accepted.any?
+        h2= "Campanhas criadas por #{@user.name}"
+        hr
+        .list= render @user.campaigns.accepted
 
+      - if @user.collaborations.accepted.any?
+        h2= "Campanhas co-criadas por #{@user.name}"
+        hr
+        .list= render @user.collaborations.accepted
+          
+      - if timeline_objects(@user).any?
+        h2= t "user.show.what_user_did", user: @user.name
+        hr
+        ul.timeline
+          - timeline_objects(@user).each do |obj|
+            li[class=obj.kind]
+              h4= raw obj.link 
+              p= t "time.some_time_ago", time: time_ago_in_words(obj.date)
