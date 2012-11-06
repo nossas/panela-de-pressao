@@ -1,11 +1,22 @@
+- content_for :title do
+  = t 'site.title'
+  |  - Descubra novas campanhas!
+
+
 section.content
   .row
+    article.left.about
+      h3 Descubra e participe pressionando!
+      span Navegue pelas campanhas e descubra como melhorar o Rio de Janeiro através do Panela de Pressão.
     article.left
       ol.campaigns
         = render collection
 
 
     aside.right
+      h4 Filtre por categorias
       ol.categories
-        - Category.all.each do |category|
-          = link_to category.name, nil
+        - Category.order(:name).each do |category|
+          li
+            = link_to truncate(category.name, length: 30), nil, title: category.name
+            span= category.campaigns.count
