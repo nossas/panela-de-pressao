@@ -1,0 +1,11 @@
+section.content
+  .row
+    article.left
+      ol.campaigns
+        = render collection
+
+
+    aside.right
+      ol.categories
+        - Category.all.each do |category|
+          = link_to category.name, nil

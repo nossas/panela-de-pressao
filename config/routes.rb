@@ -33,7 +33,7 @@ ManifesteSe::Application.routes.draw do
   end
 
 
-  get '/explore', to: "campaigns#index", as: :explore
+  get '/explore', to: "campaigns#explore", as: :explore
   get '/ajuda',   to: "campaigns#index", as: :help
 
   root :to => 'campaigns#index'

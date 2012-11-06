@@ -13,7 +13,7 @@ $gray: #f3f4f4
 
 @import compass/reset
 @import columnal/grid
-@import facebox
+@import colorbox 
 @import chosen
 @import icomoon
 @import font
@@ -23,13 +23,12 @@ $gray: #f3f4f4
 
 .clear
   clear: both
-
+.hidden
+  display: none
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
 section
   +grid-container
-.hidden
-  display: none
 
 .row
   +grid-row
@@ -276,6 +275,9 @@ section.login
     +last
   
 section.header
+  .fb-like
+    position: relative
+    top: .5em
   .logo
     +grid(3)
     +grid-suffix(3)
@@ -301,6 +303,13 @@ section.header
     +mobile-hide
 section.highlight
   background: image-url('bg_highlight.jpg') center top repeat-x
+  .counter
+    span
+      font-size: 3em !important
+    .count
+      &:before
+        font-size: 3em !important
+        margin-top: .2em
   .featured
     background: white
     padding: 1em
@@ -486,6 +495,12 @@ body.campaigns#index
     ol.campaigns
       margin-top: 1em
 
+body.campaigns#explore
+  ol.campaigns
+    li
+      +grid(4)
+      &.third
+        +last
 
 body.campaigns#show
   .twitter-share-button
@@ -586,6 +601,14 @@ body.campaigns#show
         margin: 0 auto
         display: block
         background: $fb_blue
+        &.disabled
+          background: darken($gray, 10%)
+          input, span 
+            color: lighten(gray, 15%)
+            &:hover
+              cursor: default
+          &:hover 
+            background: darken($gray, 20%)
         &:hover
           background: lighten($fb_blue, 5%)
         input
