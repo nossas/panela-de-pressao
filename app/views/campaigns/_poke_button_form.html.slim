@@ -1,7 +1,7 @@
 = form_for [@campaign, @poke] do |f|
   = f.hidden_field :kind, :value => kind
-  .btn
-    = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and current_user.can_poke(@campaign, with: kind))
+  .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
+    = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
     span= t "campaign.show.form.#{kind}_tip"
   .message
     h4= t 'campaign.show.form.message.header'

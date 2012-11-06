@@ -1,7 +1,7 @@
 # coding: utf-8
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
-  skip_load_and_authorize_resource :only => [:index, :create]
+  skip_load_and_authorize_resource :only => [:index, :create, :explore]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
@@ -45,6 +45,11 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       render :user_index
     end
+  end
+
+
+  def explore
+    index!
   end
 
   def unmoderated

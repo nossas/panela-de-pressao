@@ -53,25 +53,18 @@ var App = window.App = {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-      $.facebox.settings.closeImage = '/assets/closelabel.png';
-      $.facebox.settings.loadingImage = '/assets/loading.gif';
 
-      $("#login").hide();
-      $("#poke_notice").hide();
-      $("#email_poke_message").hide();
-      $("#facebook_poke_message").hide();
-      $("#twitter_poke_message").hide();
 
-      if($("#poke_notice").length){ $.facebox({ div: '#poke_notice' }).reveal(); }
+      if($("#poke_notice").length){ 
+        $.colorbox({ href: "#poke_notice", inline: true, width: "50%", height: "60%" }); 
+      }
 
-      $('a[rel*=facebox]').facebox()
+      $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
+      
     },
 
     showLoginBox: function(){
-      $.facebox({ div: '#login' });
-    },
-
-    finish: function(){
-    },
+      $.colorbox({ inline: true, href: '#login', width: "50%", height: "60%" });
+    }
   }
 };
