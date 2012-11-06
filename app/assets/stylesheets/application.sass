@@ -476,8 +476,10 @@ body.campaigns#index
       margin-right: .4em
       top: .2em
       position: relative
-  ol.campaigns li.campaign.fourth
-    +last
+  ol.campaigns 
+    li.campaign
+      &:nth-child(4n+0)
+        +last
   .all_campaigns
     form.search
       margin-bottom: 2em
@@ -516,7 +518,7 @@ body.campaigns#explore
   ol.campaigns
     li.campaign
       +grid(4)
-      &.third
+      &:nth-child(3n+0)
         +last
   ol.categories
     li
