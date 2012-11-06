@@ -1,4 +1,4 @@
-li.campaign[class="#{cycle('first', 'second', 'third', 'fourth')} #{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
+li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
   .image
     = link_to image_tag(campaign.image), campaign
   .info
