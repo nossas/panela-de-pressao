@@ -296,8 +296,6 @@ a[href="/auth/facebook"]
       top: -4px
 
 section.login
-  .row
-    overflow: auto
   padding: .4em 0
   line-height: 2.5em
   border-bottom: 1px solid lighten(black, 85%)
@@ -313,15 +311,30 @@ section.login
     text-align: right
     float: right
   ul.current li.me
+    padding: .4em
+    line-height: 3em
     &:hover
+      cursor: pointer
+      background: $gray
       .options
         display: block
+    img
+      position: relative
+      top: .4em
+      margin-right: .4em
+    .name
+      &::after
+        content: "▾"
+        display: inline-block
+        padding-left: .4em
+
   ul.options
     display: none
     position: absolute
     z-index: 9999
     background: lighten($gray, 2%)
     display: none
+    margin-left: -.4em
     +box-shadow(0 1px 2px lighten(gray, 15%))
     li
       text-align: left
@@ -330,8 +343,9 @@ section.login
       &:hover
         background: $orange
         color: black
-    a
-      color: black 
+        a
+          color: black 
+          padding-right: .8em
 
 section.header
   .fb-like
@@ -361,6 +375,7 @@ section.header
     +last
     +mobile-hide
 section.highlight
+  margin-top: -.1em
   background: image-url('bg_highlight.jpg') center top repeat-x
   .counter
     span
@@ -412,9 +427,10 @@ section.highlight
       height: 32%
       img, iframe
         width: 100%
-        height: 100% !important
         display: block
         +box-shadow(0 0 4px lighten(black, 60%))
+      iframe
+        height: 100%
 
 section.content
   background: $gray
@@ -522,7 +538,7 @@ section.information
       padding: .8em
     h3
       margin: .8em 0
-      font-size: 1.2em
+      font-size: 1.3em
       font-weight: bold
     p.description
       height: auto
