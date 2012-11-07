@@ -69,7 +69,7 @@ var App = window.App = {
     },
 
     showLoginBox: function(){
-      $.colorbox({ inline: true, href: '#login', width: "50%", height: "60%" });
+      $.colorbox({ inline: true, href: '#login', width: "30%", height: "50%" });
     }
   }
 };
