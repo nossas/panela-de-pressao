@@ -23,18 +23,30 @@ class CampaignsController < InheritedResources::Base
 
 
   def create
-    create! do |success, failure|
-      success.html do 
-        bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
-        resource.update_attribute :short_url, bitly.shorten(Rails.application.routes.url_helpers.campaign_url(resource.id)).short_url
-        return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
+    @campaign = Campaign.new(params[:campaign])
+    if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
+      create! do |success, failure|
+        success.html { return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
+        failure.html { render :new }
       end
-      failure.html { render :new }
+    else
+      @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
+      render :new
+    end
+  end
+
+  def update
+    @campaign = Campaign.find(params[:id])
+    if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
+      update!
+    else
+      @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
+      render :edit
     end
   end
 
   def accept
-    Campaign.find(params[:campaign_id]).update_attribute :accepted_at, Time.now
+    Campaign.find(params[:campaign_id]).accept_now!
     params[:id] = params[:campaign_id]
     show(:notice => "Está valendo, campanha no ar!")
   end

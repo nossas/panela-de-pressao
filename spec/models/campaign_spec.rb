@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Campaign do
+  before do
+    bitly = Bitly.new('bitly id', 'bitly key')
+    bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
+    Bitly.stub(:new).and_return(bitly)
+  end
+
   describe "associations" do
     it{ should belong_to :user }
     it{ should belong_to :category }
@@ -9,6 +15,7 @@ describe Campaign do
   end
 
   describe "validations" do
+    before { subject.stub(:user).and_return(mock_model(User)) }
     it{ should validate_presence_of :name }
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }

@@ -172,6 +172,23 @@ p.inline-hints, p.inline-errors
     color: white
     background: #1d8741
 
+#formatting
+  display: none
+
+ul.formatting
+  ol
+    list-style: disc
+    padding-left: 1.5em
+    li
+      margin-bottom: .5em
+    h4
+      font-weight: bold
+      margin-right: .4em
+      display: inline-block
+
+a[href='#formatting']
+  font-size: .8em
+
 article
   &.right
     background: lighten(gray, 48%)
@@ -778,7 +795,7 @@ body
             .answer_text
               color: gray
               p
-                margin: 0
+                margin-bottom: 1em
           form.new_answer
             label
               display: block
@@ -788,19 +805,6 @@ body
               height: 200px
           
     &#new, &#edit, &#create, &#update
-      ul.formatting
-        background: lighten(gray, 45%)
-        font-size: .8em
-        padding: .4em
-        +border-radius(4px)
-        li
-          margin-left: .2em
-        ol
-          font-size: .8em
-          h4
-            font-weight: bold
-            margin-right: .4em
-            display: inline-block
       span.block
         display: block !important
       input, textarea
@@ -914,6 +918,20 @@ body
       .influencers
         input
           +box-shadow(none)
+      form.edit_user
+        text-align: center
+        background: lighten($orange, 30%)
+        padding: 1em
+        margin-bottom: 10em
+        label
+          display: none
+        input
+          display: inline
+        input[type="text"]
+          width: auto
+          margin: 0 1em
+        small
+          margin: 0 0 .5em 0
   &.users, &.influencers
     &#show
       .about

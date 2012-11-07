@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Poke do
+  before do
+    bitly = Bitly.new('bitly id', 'bitly key')
+    bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
+    Bitly.stub(:new).and_return(bitly)
+  end
+
   describe "#twitter?" do
     context "when kind is other than twitter" do
       subject{ Poke.new(:kind => 'email').twitter? }

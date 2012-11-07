@@ -1,18 +1,24 @@
-[![Build Status](https://secure.travis-ci.org/meurio/panela-de-pressao.png?branch=master)](http://travis-ci.org/meurio/panela-de-pressao) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/meurio/panela-de-pressao)
+Because we care about our code: [![Build Status](https://secure.travis-ci.org/meurio/panela-de-pressao.png?branch=master)](http://travis-ci.org/meurio/panela-de-pressao) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/meurio/panela-de-pressao)
 
-# Workshop de requisitos
-Basicamente a história que estamos contando no workshop abaixo é a seguinte:
+# Getting Started
+1. We suppose you already have Ruby on Rails and Git installed;
+2. `git clone git://github.com/meurio/panela-de-pressao.git`
+3. `cd panela-de-pressao`
+4. `bundle install`
+5. Copy `config/database.sample.yml` to `config/database.yml` and set your database;
+6. `rake db:create`
+7. `rake db:migrate`
+8. `touch config/initializers/01_envvars.rb`
+9. Open `config/initializers/01_envvars.rb` with you preferred editor and set some required environment variables (change their values to yours):
+`ENV["FB_ID"] = "fb id"`
+`ENV["FB_SECRET"] = "fb secret"`
+`ENV["AWS_ID"] = "aws id"`
+`ENV["AWS_SECRET"] = "aws secret"`
+`ENV["TWITTER_ID"] = "twitter id"`
+`ENV["TWITTER_SECRET"] = "twitter secret"`
+`ENV["BITLY_ID"] = "bit.ly id"`
+`ENV["BITLY_SECRET"] = "bit.ly secret"`
+10. `rails s`
+11. Now try [http://localhost:3000/](http://localhost:3000/)
 
-_O mobilizador cria a sua campanha que fica aguardando aprovação da curadoria._
-
-_Assim que o curador aprovar a campanha, os visitantes poderão vê-la em uma lista de campanhas recentes._
-
-_Caso o visitante se interesse pela campanha ele poderá ver mais detalhes, ver a lista de engajados, ver as atualizações da campanha e o "barometro" da campanha._
-
-_Nesse momento o visitante pode se engajar na campanha e pressionar os tomadores de decisão para que tomem alguma ação._
-
-_Ao fazerem isso, os engajados passarão a receber as atualizações sobre a campanha._
-
-O MVP do projeto são todas as user stories que se encontram acima da linha roxa.
-
-![Requirements Workshop](http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc7/577682_10150678198637843_536687842_9730914_16508281_n.jpg)
+Need help? Create an [issue](https://github.com/meurio/panela-de-pressao/issues) and we help you.
