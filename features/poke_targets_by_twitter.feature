@@ -11,7 +11,7 @@ Feature: Poke targets by Twitter
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressionar pelo Twitter"
+    When I press "Pressione no Twitter"
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a twitter poke should be added to the target
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
@@ -23,7 +23,7 @@ Feature: Poke targets by Twitter
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressionar pelo Twitter"
+    When I press "Pressione no Twitter"
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a tweet poke should be added to the target
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
