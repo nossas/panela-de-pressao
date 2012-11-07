@@ -5,7 +5,10 @@ ManifesteSe::Application.routes.draw do
   get '/auth/meurio',   as: :meurio_connect
 
   get "/campaigns/unmoderated", :to => "campaigns#unmoderated", :as => :unmoderated_campaigns
-
+  
+  resources :categories, only: [:index] do
+    resources :campaigns, only: [:index]
+  end
   resources :sessions, :only => [:destroy]
   resources :campaigns do
     member do

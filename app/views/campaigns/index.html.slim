@@ -9,7 +9,7 @@
         - if @featured
           h1= link_to @featured.name, @featured
           span.category.icon-list= @featured.category.name
-          p.description= truncate(@featured.description, length: 190)
+          .description= truncate(@featured.description, length: 190)
           .counter
             .count.icon-message= t "home.highlight.pokes_count_html", count: @featured.pokes.count
             .poke= link_to t("home.highlight.poke_now"), @featured, class: 'btn'
@@ -57,21 +57,20 @@ section.information
 
 section.content
   .row.all_campaigns
+    h2.popular Campanhas recentes
     = form_for :search, html: { class: 'search'} do |f|
       .block
         label
-          | Escolha a Categoria
-          = f.select :category, Category.all.collect { |p| [p.name, p.id] }, {}, class: 'chzn-select'
+          | Filtre por categoria
+          = f.select :category, Category.all.collect { |p| [p.name, category_campaigns_url(p)] }, {}, class: 'chzn-select explore', id: 'explore_field'
       .block
-        label
+        /label
           | Ou faça uma busca
           = f.text_field :campaign
       .block.last
       .clear
     ol.campaigns
       = render collection.limit(12)
-    
-    
     
   /.facebook_widget 
     .fb-like-box data-href="http://www.facebook.com/meurio" data-border-color="#fafafa" data-width="185" data-height="405" data-show-faces="true" data-stream="false" data-header="false"
