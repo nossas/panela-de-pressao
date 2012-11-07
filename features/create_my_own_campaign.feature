@@ -23,7 +23,7 @@ Feature: Create my own campaign
   @omniauth_test @bitly @javascript
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
-    And I click "Crie sua campanha!"
+    And I click "Crie agora sua campanha"
     Then I should be in the campaigns page
     And I should see "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
     Given I click "Entrar via Facebook"
@@ -52,7 +52,7 @@ Feature: Create my own campaign
   @omniauth_test @bitly @javascript
   Scenario: when I leave mobile phone empty
     Given I'm in the campaigns page
-    And I click "Crie sua campanha!"
+    And I click "Crie agora sua campanha"
     And I click "Entrar via Facebook"
     And I fill "Qual é o título da sua campanha?" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
     And I fill "Explique a sua campanha" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
