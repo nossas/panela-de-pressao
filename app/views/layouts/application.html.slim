@@ -12,7 +12,7 @@ html
     meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
     
     = stylesheet_link_tag "application"
-    = favicon_link_tag "favicon.png"
+    = favicon_link_tag t('site.image')
     = csrf_meta_tag
     - if content_for?(:meta_tags)
       = yield(:meta_tags)
