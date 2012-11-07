@@ -1,9 +1,9 @@
 # coding: utf-8
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
-  has_scope :offset, default: 0, only: [:explore]
-  has_scope :limit, default: 9, only: [:explore]
-  
+  has_scope :offset,      default: 0, only: [:explore]
+  has_scope :limit,       default: 9, only: [:explore]
+  has_scope :successful,  only: [:explore] 
   optional_belongs_to :category
   
   custom_actions collection: :explore

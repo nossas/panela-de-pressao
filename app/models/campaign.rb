@@ -25,12 +25,12 @@ class Campaign < ActiveRecord::Base
 
   default_scope order("accepted_at DESC")
 
-  scope :accepted, where('accepted_at IS NOT NULL')
+  scope :accepted,    where('accepted_at IS NOT NULL')
   scope :unmoderated, where(accepted_at: nil)
-  scope :featured, where('featured_at IS NOT NULL').reorder('featured_at DESC')
-  scope :popular, joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
-  scope :unfinished, where('finished_at IS NULL')
-
+  scope :featured,    where('featured_at IS NOT NULL').reorder('featured_at DESC')
+  scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
+  scope :unfinished,  where('finished_at IS NULL')
+  scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
   mount_uploader :image, ImageUploader
 
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
