@@ -3,7 +3,7 @@
   |  - Descubra novas campanhas!
 
 
-section.content
+section.content.explore
   .row
     article.left.about
       h3 Descubra e participe pressionando!
@@ -18,5 +18,5 @@ section.content
       ol.categories
         - Category.order(:name).each do |category|
           li
-            = link_to truncate(category.name, length: 30), nil, title: category.name
-            span= category.campaigns.count
+            = link_to truncate(category.name, length: 30), category_campaigns_path(category), title: category.name
+            span= category.campaigns.accepted.count

@@ -1,4 +1,15 @@
 App.Campaigns = {
+  Index: Backbone.View.extend({
+    el: 'body',
+
+    initialize: function(){
+      $('#explore_field').chosen().change(function(event){
+        location.href = event.target.value;
+      });
+
+    }
+  
+  }),
   Create: Backbone.View.extend({
      el: 'body',
 
@@ -84,6 +95,7 @@ App.Campaigns = {
     }
   })
 };
+
 
 App.Campaigns.New = App.Campaigns.Create.extend();
 App.Campaigns.Edit = App.Campaigns.Create.extend();

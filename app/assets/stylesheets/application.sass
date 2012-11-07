@@ -308,7 +308,7 @@ section.highlight
       font-size: 3em !important
     .count
       &:before
-        font-size: 3em !important
+        font-size: 4em !important
         margin-top: .2em
   .featured
     background: white
@@ -367,6 +367,10 @@ section.content
       +grid(3)
       +box-shadow(0 0 4px darken($gray, 15%))
       +border-radius(4px)
+      .icon-message
+        &:before
+          position: relative
+          top: .2em
       .icon-megaphone
         display: none
       &.not_finished:hover
@@ -419,7 +423,6 @@ section.content
 span.category
   font-size: .7em
   color: lighten(black, 10%)
-  padding-bottom: .8em
   &:before
     color: $orange
     margin-right: .4em
@@ -466,7 +469,14 @@ body.campaigns#index, body.campaigns#explore
     .counter
       padding: .6em
       padding-top: 1em
+
+section.header
+  +box-shadow(0 1px 6px lighten(black, 75%))
+  margin-bottom: .2em
 body.campaigns#index
+  .featured
+    .description
+      padding: .2em 0 .6em 0
   h2.popular
     margin: .6em 0 1.5em 0
     color: darken(gray, 25%)
@@ -493,7 +503,7 @@ body.campaigns#index
     ol.campaigns
       margin-top: 1em
 
-body.campaigns#explore
+section.explore
   article.left
     background: $gray
     +grid(9)

@@ -1,6 +1,13 @@
 # coding: utf-8
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
+  has_scope :offset, default: 0, only: [:explore]
+  has_scope :limit, default: 9, only: [:explore]
+  
+  optional_belongs_to :category
+  
+  custom_actions collection: :explore
+
   skip_load_and_authorize_resource :only => [:index, :create, :explore]
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
@@ -46,15 +53,10 @@ class CampaignsController < InheritedResources::Base
   end
 
   def index
-    if params[:user_id]
-      render :user_index
-    end
+    return render :explore if parent?
+    return render :user_index if params[:user_id]
   end
 
-
-  def explore
-    index!
-  end
 
   def unmoderated
     @campaigns = Campaign.unmoderated
