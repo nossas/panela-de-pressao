@@ -2,48 +2,23 @@ h1= t 'campaign.new.header'
 small= t 'campaign.new.small'
 
 = form_for @campaign, html: { class: "#{'errors' if @campaign.errors.any?}"} do |f|
-
+  - if current_user.mobile_phone.blank?
+    fieldset
+      legend Dados pessoais
+      = label_tag do
+        | Celular
+        = text_field_tag "user_mobile_phone", params[:user_mobile_phone]
+        small.inline-errors= @campaign.errors[:user].to_sentence
   fieldset
-    legend 
-      | Sobre a campanha 
-
+    legend Sobre a campanha 
     = f.label :name
     = f.text_field :name
     span.tip= t 'campaign.new.form.tips.title' 
     small.inline-errors= @campaign.errors[:name].to_sentence
-
     = f.label :description
+    = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
     = f.text_area :description
     span.tip= t 'campaign.new.form.tips.why_important_html'
-    ul.formatting
-      li
-        strong 
-          | Dicas de formatação
-        ol
-          li
-            h4
-              | Vídeos e Imagens:
-            | Se você colar a url de uma imagem ou de um vídeo do vimeo ou do youtube, eles irão aparecer na descrição da ideia. experimente!
-          li
-            h4
-              | Negrito: 
-            | Você pode usar negrito adicionando dois asteriscos (**) antes e depois do texto que você quer formatar. Por exemplo, **meu texto em negrito** irá aparecer como <strong>meu texto em negrito</strong>
-          li
-            h4
-              | Itálico: 
-            | Você pode usar itálico adicionando um underline (_) antes e depois do texto que você quer formatar. Por exemplo, _meu texto em itálico_ irá aparecer como <em> meu texto em itálico</em>
-
-          li
-            h4 
-              | Links:
-            | Ao colar uma url qualquer, ela virará um link. Por exemplo, http://meulink.com virará <a href="http://meulink.com">http://meulink.com</a>
-
-
-          li
-            h4 
-              | Textos + Links:
-            | Se você quiser colocar um texto no link, basta usar o seguinte formato: [texto que você quer](http://sua.url). por exemplo, [meu link](http://meulink.com) virará <a href="http://meulink.com">meu link</a>
-
     small.inline-errors= @campaign.errors[:description].to_sentence
 
   fieldset
@@ -53,18 +28,14 @@ small= t 'campaign.new.small'
     = f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
     span.tip= t 'campaign.new.form.tips.targets_html', link: link_to(t('link.click_here'), 'http://bit.ly/SJZBx7')
 
-
   fieldset
-    legend
-      | Divulgação
-
+    legend Divulgação
     = f.label :image
     = f.file_field :image
     span.tip= t 'campaign.new.form.tips.image'
     small.inline-errors= @campaign.errors[:image].to_sentence
     = image_tag @campaign.image if @campaign.persisted?
-    = f.hidden_field :image_cache
-    
+    = f.hidden_field :image_cache      
     = f.label :video_url
     = f.text_field :video_url
     span.tip= t 'campaign.new.form.tips.video_url'

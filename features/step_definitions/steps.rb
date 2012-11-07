@@ -15,6 +15,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit edit_campaign_path(@campaign)
   when "this target page"
     visit influencer_path(@target.influencer)
+  when "this user page"
+    visit user_path(@user)
   else
     raise "I don't know #{arg1}"
   end
@@ -78,6 +80,8 @@ end
 
 Given /^I'm logged in$/ do
   visit "/auth/facebook"
+  Authorization.find_by_uid("536687842").user.update_attributes :mobile_phone => "(21) 9232-1233"
+  visit root_path
 end
 
 Given /^I'm logged in with Meu Rio$/ do
@@ -90,7 +94,7 @@ end
 
 Given /^I'm logged in as admin$/ do
   visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :admin => true
+  Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :mobile_phone => "(21) 9983-2232"
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
@@ -145,6 +149,8 @@ Then /^I should see "([^"]*)"$/ do |arg1|
     page.should have_css('input[type="submit"].facebook_poke')
   when "Pressionar pelo Twitter"
     page.should have_css('input[type="submit"].twitter_poke')
+  when "the new campaign form"
+    page.should have_css("#new_campaign")
   else
     page.should have_content(arg1)
   end
@@ -202,6 +208,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("form.new_answer")
   when "the pokes buttons"
     page.should_not have_css("form.new_poke")
+  when "the new campaign form"
+    page.should_not have_css("#new_campaign")
   else
     page.should_not have_content(arg1)
   end
@@ -323,4 +331,13 @@ end
 
 Given /^there is an unmoderated campaign called "(.*?)"$/ do |arg1|
   @campaign = Campaign.make! :name => arg1, :accepted_at => nil
+end
+
+Given /^there is a user$/ do
+  @user = User.make!
+end
+
+Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
+  @campaign = Campaign.make!(:name => arg1, :accepted_at => Time.now)
+  @campaign.users << @user
 end

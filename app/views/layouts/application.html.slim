@@ -42,13 +42,6 @@ html
     = yield
     = render partial: 'layouts/footer'
     #fb-root
-    .hidden
-      #login
-        h1 Login
-        p= flash[:login_alert]
-        .buttons
-          = link_to "Entrar via Facebook", "/auth/facebook", :class => "btn_fb"
-          |  ou 
-          = link_to "Entrar via Meu Rio", "/auth/meurio", :class => "btn_mr"
-
+    = render partial: 'layouts/login_alert'
+    = render partial: 'layouts/formatting_tips'
     = javascript_include_tag "application"

@@ -5,10 +5,11 @@
     - @campaign.answers.each do |answer|
       .campaign_answer
         .answer_created_at= l answer.created_at, :format => :short
-        .answer_text= simple_format answer.text
+        .answer_text= raw answer.text_html
   .warning Se você for um dos alvos da campanha, deixe a sua resposta através do email: #{mail_to "resposta@paneladepressao.org.br", "resposta@paneladepressao.org.br"}
   - if can? :update, @campaign
     = form_for [@campaign, @answer] do |form|
       = form.label :text
+      = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
       = form.text_area :text
       = form.submit "Postar reposta", :class => "btn"

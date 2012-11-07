@@ -1,6 +1,6 @@
 class Campaign < ActiveRecord::Base
   include AutoHtml
-  attr_accessible :description, :name, :user_id, :user_ids, :accepted_at, :image, 
+  attr_accessible :description, :name, :user_id, :user_ids, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
     :pokers_email, :finished_at, :succeed, :video_url
@@ -10,16 +10,15 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   has_many :targets
   has_many :influencers, :through => :targets
-  has_many :pokes
   has_many :posts
   has_many :answers
   has_many :pokes
   has_many :pokers, through: :pokes, source: :user, uniq: true
 
-  before_save       { self.description_html = convert_html(description) }
-  before_save       { CampaignMailer.delay.campaign_accepted(self) if accepted_at_changed? && persisted? }
-  after_create      { CampaignMailer.delay.campaign_awaiting_moderation(self) }
-  after_create      { CampaignMailer.delay.we_received_your_campaign(self) }
+  before_save  { self.description_html = convert_html(description) }
+  after_create { self.delay.generate_short_url! }
+  after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
+  after_create { CampaignMailer.delay.we_received_your_campaign(self) }
 
   accepts_nested_attributes_for :targets
   accepts_nested_attributes_for :influencers
@@ -30,6 +29,9 @@ class Campaign < ActiveRecord::Base
   scope :unmoderated, where(accepted_at: nil)
   scope :featured, where('featured_at IS NOT NULL').reorder('featured_at DESC')
   scope :popular, joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
+  scope :unfinished, where('finished_at IS NULL')
+
+  mount_uploader :image, ImageUploader
 
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
@@ -38,6 +40,7 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  validate :owner_have_mobile_phone
 
   def video
     video = VideoInfo.new(self.video_url.to_s)
@@ -76,5 +79,17 @@ class Campaign < ActiveRecord::Base
     self.influencers.select(&:twitter)
   end
 
-  
+  def owner_have_mobile_phone
+    errors.add(:user, "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato.") if self.user.mobile_phone.blank?
+  end
+
+  def generate_short_url!
+    self.update_attribute :short_url, Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET']).shorten(Rails.application.routes.url_helpers.campaign_url(self.id)).short_url
+  end
+
+  def accept_now!
+    self.accepted_at = Time.now
+    self.save
+    CampaignMailer.delay.campaign_accepted(self)
+  end
 end

@@ -18,12 +18,13 @@ var App = window.App = {
       Backbone.history.start();
 
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
+      $("#user_mobile_phone").inputmask("mask", {"mask": "(99) 9999-9999"});
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
       });
       if ($.browser.msie) {
-        $('#index ol.campaigns li:nth-child(4n+0)').css("margin-right", "0");
-        $('#explore ol.campaigns li:nth-child(3n+0)').css("margin-right", "0");
+        $('section.index ol.campaigns li:nth-child(4n+0)').css("margin-right", "0");
+        $('section.explore ol.campaigns li:nth-child(3n+0)').css("margin-right", "0");
       }
 
       // FB share
@@ -64,7 +65,7 @@ var App = window.App = {
       }
 
       $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
-      
+
     },
 
     showLoginBox: function(){
