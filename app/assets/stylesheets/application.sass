@@ -154,7 +154,29 @@ p.inline-hints, p.inline-errors
   margin: 0
 
 #login
-  background: black
+  h2
+    text-align: center
+    margin: 1em 1.5em
+  .alert
+    background: $gray
+    padding: 1em
+    width: 70%
+    margin: .5em auto
+  span
+    display: block
+    text-align: center
+    color: gray
+    margin: .6em 0
+  .buttons
+    margin: 1em
+    a
+      display: block
+      text-align: center
+      width: 70%
+      margin: 0 auto
+      padding: .6em 
+      &:hover
+        background: $orange
 
 .btn
   background: $green
@@ -274,9 +296,10 @@ a[href="/auth/facebook"]
       top: -4px
 
 section.login
+  .row
+    overflow: auto
   padding: .4em 0
   line-height: 2.5em
-  position: relative
   border-bottom: 1px solid lighten(black, 85%)
   +box-shadow(1px 4px 15px lighten(black, 85%))
   a.fb, a.mr
@@ -288,9 +311,28 @@ section.login
     +grid(6)
   .user
     text-align: right
-    +grid(6)
-    +last
-  
+    float: right
+  ul.current li.me
+    &:hover
+      .options
+        display: block
+  ul.options
+    display: none
+    position: absolute
+    z-index: 9999
+    background: lighten($gray, 2%)
+    display: none
+    +box-shadow(0 1px 2px lighten(gray, 15%))
+    li
+      text-align: left
+      padding: .2em .6em
+      border-bottom: 1px solid darken($gray, 10%)
+      &:hover
+        background: $orange
+        color: black
+    a
+      color: black 
+
 section.header
   .fb-like
     position: relative
