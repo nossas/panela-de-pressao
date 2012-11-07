@@ -32,28 +32,25 @@ section.information
   .row
     .create_your_campaign
       .content
-        .image = image_tag ""
         h3
-          | Crie sua campanha agora!
+          | Comece a transformar o Rio! 
         p.description
-          | text
+          | Se você vê algum problema no Rio que pode ser mudado com pressão popular, mãos à obra!
         = link_to "Criar campanha", new_campaign_path, class: 'btn'
     .our_victories
       .content
-        .image= image_tag ""
         h3
-          | Nossas vitórias
+          | Siga os exemplos
         p.description
-          | text
-        = link_to "Campanhas encerradas", "", class: 'btn'
+          | Descubra as campanhas de sucesso no Panela de Pressão!
+        = link_to "Campanhas encerradas", explore_path(successful: true), class: 'btn'
     .didnt_find_target
       .content
-        .image= image_tag ""
         h3
           | Não achou seu alvo?
         p.description
-          | text
-        = link_to  "Adicionar alvo", '', class: 'btn'
+          | Você procurou um alvo para pressionar e não o encontrou na nossa lista
+        = mail_to 'contato@paneladepressao.org.br', "Adicionar alvo",  class: 'btn'
 
 section.content.index
   .row.all_campaigns
