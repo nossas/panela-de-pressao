@@ -72,11 +72,11 @@ class Campaign < ActiveRecord::Base
   end
 
   def targets_with_facebook
-    self.influencers.select(&:facebook_id)
+    self.targets.select{|target| !target.influencer.facebook_id.blank?}
   end
 
   def targets_with_twitter
-    self.influencers.select(&:twitter)
+    self.targets.select{|target| !target.influencer.twitter.blank?}
   end
 
   def owner_have_mobile_phone
