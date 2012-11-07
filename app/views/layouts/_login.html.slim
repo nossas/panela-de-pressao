@@ -6,8 +6,8 @@ section.login
       - if current_user
         ul.current
           li.me
-            span= image_tag current_user.pic(:type => "square"), alt: "avatar"
-            span= current_user.name
+            span= image_tag current_user.pic(:type => "square"), size: '20x20', alt: "avatar"
+            span.name= current_user.name
             ul.options
               li= link_to "Meu perfil", current_user, :class => "icon-user"
               li= link_to "Minhas campanhas", user_campaigns_path(current_user), :class => "icon-comments"

@@ -22,10 +22,12 @@ var App = window.App = {
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
       });
-      if ($.browser.msie) {
+      if ($.browser.msie !== undefined) {
         $('section.index ol.campaigns li:nth-child(4n+0)').css("margin-right", "0");
-        $('section.explore ol.campaigns li:nth-child(3n+0)').css("margin-right", "0");
+        $('section.explore li:nth-child(3n+0)').css("margin-right", "0");
       }
+
+
 
       // FB share
       (function(d, s, id) {
