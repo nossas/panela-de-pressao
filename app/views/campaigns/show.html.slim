@@ -18,7 +18,9 @@ section.content
   .row
     = render partial: 'finished_message' if @campaign.finished_at?
     h1.title= @campaign.name
-    span.category.icon-list= @campaign.category.name
+    .campaign_menu
+      span.category.icon-list= @campaign.category.name
+      = link_to t('campaign.show.campaign_menu.edit'), edit_campaign_path(@campaign) if can?(:edit, @campaign)
   .row
     article.left.tab
       = render partial: 'tabs'
