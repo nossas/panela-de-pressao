@@ -94,6 +94,7 @@ pt-BR:
           header: "Mensagem"
       campaign_menu:
         edit: "Editar Campanha"
+        featured: "Destaque"
       tabs:
         map: "Mapa"
         campaign: "A Campanha"
