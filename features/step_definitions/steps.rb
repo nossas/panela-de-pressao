@@ -172,7 +172,7 @@ When /^I click "([^"]*)"$/ do |arg1|
   elsif arg1 == "Pressionar via Twitter"
     page.execute_script("$('form:has(input[value=\"twitter\"])').submit();")
   elsif arg1 == "Entrar via Facebook"
-    within("#facebox") do
+    within("#login") do
       click_on arg1
     end
   else 
