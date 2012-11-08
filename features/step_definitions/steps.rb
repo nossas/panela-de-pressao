@@ -172,11 +172,14 @@ When /^I click "([^"]*)"$/ do |arg1|
   elsif arg1 == "Pressionar via Twitter"
     page.execute_script("$('form:has(input[value=\"twitter\"])').submit();")
   elsif arg1 == "Entrar via Facebook"
-    within("#facebox") do
+    within("#login") do
       click_on arg1
     end
   else 
     click_link(arg1)
+  end
+  if arg1 == "ver/personalizar email" || arg1 == "ver/personalizar mensagem"
+    sleep(1)
   end
 end
 
@@ -305,8 +308,12 @@ Given /^I pass over the facebook poke button$/ do
 end
 
 When /^I press "(.*?)" at "(.*?)"$/ do |arg1, arg2|
-  if arg2 == "the lightbox"
-    within("#facebox") do
+  if arg2 == "the facebook poke message"
+    within("#facebook_poke_message") do
+      click_button arg1
+    end
+  elsif arg2 == "the email poke message"
+    within("#email_poke_message") do
       click_button arg1
     end
   else

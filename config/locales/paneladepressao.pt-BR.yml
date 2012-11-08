@@ -92,6 +92,11 @@ pt-BR:
         email_tip: "mensagem será enviada ao e-mail do alvo"
         message:
           header: "Mensagem"
+      campaign_menu:
+        edit: "Editar Campanha"
+        featured: "Destaque"
+        win: "Vitória"
+        lose: "Não Deu"
       tabs:
         map: "Mapa"
         campaign: "A Campanha"

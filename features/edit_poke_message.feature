@@ -9,12 +9,10 @@ Feature: edit poke message
     And there is a campaign called "Save the queen!"
     And there is a target for this campaign
     And I'm in this campaign page
-    And I click "Ver/personalizar email"
+    And I click "ver/personalizar email"
     And I fill "Mensagem" with "A rainha precisa da gente!"
-    When I press "Pressionar por Email" at "the lightbox"
+    When I press "Pressionar por Email" at "the email poke message"
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
-    And I should see "Pressionar pelo Facebook"
-    And I should see "Pressionar pelo Twitter"
     And a email poke should be added to the target
     And a email saying "A rainha precisa da gente!" should be sent
 
@@ -25,8 +23,8 @@ Feature: edit poke message
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    And I click "Ver/personalizar mensagem"
+    And I click "ver/personalizar mensagem"
     And I fill "Mensagem" with "A rainha precisa da gente!"
-    When I press "Pressionar pelo Facebook" at "the lightbox"
+    When I press "Pressionar pelo Facebook" at "the facebook poke message"
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a facebook poke should be added to the target
