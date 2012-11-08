@@ -4,7 +4,7 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
   .info
     h3.title= link_to truncate(campaign.name, length: 60), campaign
     span.category.icon-list= truncate(campaign.category.name, length: 30)
-    p.description= link_to truncate(campaign.description, length: 110), campaign
+    p.description= link_to truncate(strip_tags(campaign.description_html), length: 110), campaign
   .counter
     - if campaign.finished?
       - if campaign.succeed?
