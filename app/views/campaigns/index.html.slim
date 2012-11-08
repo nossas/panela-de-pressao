@@ -8,8 +8,8 @@
         span.is_featured= t 'home.highlight.is_featured'
         - if @featured
           h1= link_to @featured.name, @featured
-          span.category.icon-list= @featured.category.name
-          .description= truncate(strip_tags(@featured.description_html), length: 190)
+          span.category.icon-list= link_to @featured.category.name, category_campaigns_path(@featured.category)
+          .description= link_to truncate(strip_tags(@featured.description_html), length: 190), @featured 
           .counter
             .count.icon-message= t "home.highlight.pokes_count_html", count: @featured.pokes.count
             .poke= link_to t("home.highlight.poke_now"), @featured, class: 'btn'

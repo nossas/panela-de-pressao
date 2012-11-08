@@ -194,8 +194,6 @@ p.inline-hints, p.inline-errors
     color: white
     background: #1d8741
 
-#formatting
-  display: none
 
 ul.formatting
   ol
@@ -230,27 +228,6 @@ aside
 .inside
   padding: 1em
 
-section.highlight
-  .new_campaign_btn
-    .btn
-      font-size: 1.5em
-      padding: none
-      margin-top: .2em
-      +border-radius(0px !important)
-      +box-shadow(none !important)
-  .links
-    padding: 1em 0
-  form.featured
-    display: inline-block
-    label
-      color: $green 
-      font-size: .9em
-      &:hover
-        cursor: pointer
-        color: black
-        font-weight: bold
-    input
-      text-indent: -9999px
 section.content
   padding: 1.5em 0
 
@@ -350,7 +327,8 @@ section.login
 section.header
   .fb-like
     position: relative
-    top: .5em
+    top: 1.4em
+    left: -.8em
   .logo
     +grid(3)
     +grid-suffix(3)
@@ -360,13 +338,13 @@ section.header
       color: lighten(gray, 28%)
       display: inline-block
       padding: 1.2em
+      margin-top: .8em
       border-right: 1px solid lighten(gray, 42%)
       &:hover
         color: $victory
       span
         display: block
         font-weight: bold
-        font-family: "Proxima Nova Bold"
         font-size: 1.3em
         color: $green
         margin-bottom: -4px
@@ -380,14 +358,15 @@ section.highlight
   .counter
     span
       font-size: 3em !important
+      float: left
     .count
       &:before
         font-size: 4em !important
         margin-top: .2em
   .featured
     background: white
-    padding: 1em
-    margin: 1em 0
+    padding: 1.5em
+    margin: 2em 0
     overflow: hidden
     +border-radius(4px)
     +box-shadow(1px 1px 2px lighten(black, 65%))
@@ -406,15 +385,15 @@ section.highlight
       +border-radius(4px)
     .category
       font-size: .8em
-      color: black
       &:before
         color: $orange
         margin-right: .5em
     .description
-      color: lighten(gray, 5%)
-      margin-top: .6em
+      margin: 1em 0
       font-size: 1em
       line-height: 1.4em
+      a
+        color: lighten(gray, 5%)
     .count, .poke
       +grid-subcolumn(6,3)
     .poke
@@ -428,7 +407,7 @@ section.highlight
       img, iframe
         width: 100%
         display: block
-        +box-shadow(0 0 4px lighten(black, 60%))
+        +box-shadow(0 0 1px lighten(black, 60%))
       iframe
         height: 100%
 
@@ -440,7 +419,7 @@ section.content
       overflow: hidden
       margin-bottom: 2em
       +grid(3)
-      +box-shadow(0 0 4px darken($gray, 15%))
+      +box-shadow(0 1px 3px #c0c0c0)
       +border-radius(4px)
       .icon-message
         &:before
@@ -453,9 +432,11 @@ section.content
           display: none
         .icon-megaphone
           display: block
+    p.description
+      margin: .5em 0
     h3
       font-size: 1.1em
-      height: 5em 
+      height: 4em 
       display: block
     .image, .info
       padding: .8em
@@ -470,7 +451,7 @@ section.content
       text-align: center
       font-size: 1.3em
       font-weight: bold
-      padding: .652em
+      padding: .5em
       +border-radius(4px)
       +transition(.4s)
       &:before
@@ -479,12 +460,9 @@ section.content
         top: .1em
         position: relative
     .pressure
-      padding: .3em
       background: $green
       a
         color: white
-        padding: .170em 
-        display: inline-block
       &:hover
         background: $victory
     .loss
@@ -497,20 +475,22 @@ section.content
 
 span.category
   font-size: .7em
-  color: lighten(black, 10%)
+  a
+    color: lighten(black, 40%)
   &:before
     color: $orange
     margin-right: .4em
 p.description
   font-size: .9em
   line-height: 1.4em
-  height: 100px
+  height: 60px
   margin-top: .4em
   a
-    color: darken($gray, 40%)
+    color: darken($gray, 35%)
 .counter
   padding-top: 1em
   border-top: 1px solid darken($gray, 10%)
+  color: #404040
   .icon-message
     color: darken($gray, 15%)
   span
@@ -542,15 +522,17 @@ section.information
       font-weight: bold
     p.description
       height: auto
+      font-size: .9em
   .didnt_find_target
     +last
 
 
 body.campaigns#index, body.campaigns#explore
   .popular, ol.campaigns li.not_finished
-    .counter
-      padding: .6em
-      padding-top: 1em
+    .counter .icon-message
+      padding: .2em
+      padding-bottom: .150em
+      padding-top: .2em
 
 section.header
   +box-shadow(0 1px 6px lighten(black, 75%))
