@@ -20,8 +20,7 @@ class Campaign < ActiveRecord::Base
   after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
   after_create { CampaignMailer.delay.we_received_your_campaign(self) }
 
-  accepts_nested_attributes_for :targets
-  accepts_nested_attributes_for :influencers
+  accepts_nested_attributes_for :targets, :influencers
 
   default_scope order("accepted_at DESC")
 
@@ -40,7 +39,7 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  validate :owner_have_mobile_phone
+  validate :owner_have_mobile_phone, on: :create
 
   def video
     video = VideoInfo.new(self.video_url.to_s)
