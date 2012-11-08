@@ -10,7 +10,7 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressione no Facebook"
+    When I press "Pressione no facebook"
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a facebook poke should be added to the target
 
@@ -21,7 +21,7 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressione no Facebook"
+    When I press "Pressione no facebook"
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a facebook poke should be added to the target
     
@@ -32,5 +32,5 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressione no Facebook"
+    When I press "Pressione no facebook"
     Then an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent once
