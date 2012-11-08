@@ -95,6 +95,8 @@ pt-BR:
       campaign_menu:
         edit: "Editar Campanha"
         featured: "Destaque"
+        win: "Vitória"
+        lose: "Não Deu"
       tabs:
         map: "Mapa"
         campaign: "A Campanha"
