@@ -84,10 +84,6 @@ Given /^I'm logged in$/ do
   visit root_path
 end
 
-Given /^I'm logged in with Meu Rio$/ do
-  visit "/auth/meurio"
-end
-
 Given /^I've created an organization called "([^"]*)"$/ do |arg1|
   Organization.make! name: arg1.to_s, owner: Authorization.find_by_uid("536687842").user, accepted: true
 end
