@@ -123,8 +123,9 @@ Given /^I have a Twitter authorization$/ do
 end
 
 Given /^there is a target for this campaign without ([^"]*)$/ do |arg1|
-  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:facebook => "") if arg1 == "Facebook"
+  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:facebook_id => "") if arg1 == "Facebook"
   @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:twitter => "") if arg1 == "Twitter"
+  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:email => "") if arg1 == "E-mail"
 end
 
 Given /^there is a poker called "(.*?)"$/ do |arg1|

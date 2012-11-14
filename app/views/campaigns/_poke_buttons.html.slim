@@ -2,10 +2,10 @@
   - unless @campaign.finished_at
     p.text:strong= (current_user and current_user.has_poked(@campaign)) ? t('campaign.show.form.headline_poked') : t('campaign.show.form.headline')
     .poke
-      .via_facebook
-        = render partial: 'poke_button_form', locals: { kind: 'facebook' }
-      .via_twitter
-        = render partial: 'poke_button_form', locals: { kind: 'twitter' }
-      .via_email 
-        = render partial: 'poke_button_form', locals: { kind: 'email' }
+      - unless @campaign.facebook_influencers.count.zero?
+        .via_facebook= render partial: 'poke_button_form', locals: { kind: 'facebook' }
+      - unless @campaign.twitter_influencers.count.zero?
+        .via_twitter= render partial: 'poke_button_form', locals: { kind: 'twitter' }
+      - unless @campaign.email_influencers.count.zero?
+        .via_email= render partial: 'poke_button_form', locals: { kind: 'email' }
 

@@ -44,6 +44,7 @@ Influencer.blueprint do
   name { "Eduardo Paes" }
   email { "eduardopaes@meurio.org.br" }
   twitter { "@eduardopaes_" }
+  facebook_id { "1212313" }
   facebook_url { "http://www.facebook.com/eduardopaesRJ" }
   role { "Prefeito" }
   about { "Ele é candidato a prefeitura." }
