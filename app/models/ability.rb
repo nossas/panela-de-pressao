@@ -8,6 +8,7 @@ class Ability
       campaign.accepted_at
     end
     can :read, Influencer
+    can :create, Poke, :kind => "email"
 
     if user && user.admin?
       can :manage, :all
