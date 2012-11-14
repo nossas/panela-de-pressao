@@ -52,6 +52,16 @@ App.Campaigns = {
     },
 
     initialize: function(){
+      $("form#new_email_poke").validate({
+        messages: {
+          name: { required: "Precisamos do seu nome" },
+          email: {
+            required: "Precisamos do seu e-mail também",
+            email: "Precisamos de um e-mail correto",
+          }
+        }
+      });
+
       $(".email_text").hide();
       $(".facebook_text").hide();
       $(".twitter_text").hide();

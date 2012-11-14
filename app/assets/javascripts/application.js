@@ -17,8 +17,12 @@
 //= require ./lib/backbone.js
 //= require ./lib/jquery.inputmask.js
 //= require ./lib/jquery.inputmask.extensions.js
+//= require chosen-jquery
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+
 //= require_tree ./lib
 //= require ./app.js
 //= require_tree ./app
 //= require ./init.js
-//= require chosen-jquery
+
