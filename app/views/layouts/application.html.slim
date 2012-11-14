@@ -37,11 +37,9 @@ html
     = render partial: 'layouts/alerts'
     = render partial: 'layouts/login'
     = render partial: 'layouts/header'
-    section.highlight  
-      = yield :highlight
+    section.highlight= yield :highlight
     = yield
     = render partial: 'layouts/footer'
-    #fb-root
-    = render partial: 'layouts/login_alert'
     = render partial: 'layouts/formatting_tips'
+    #fb-root
     = javascript_include_tag "application"

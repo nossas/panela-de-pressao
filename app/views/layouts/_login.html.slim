@@ -15,5 +15,4 @@ section.login
               li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
               li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
       - else
-        | Entre com a sua conta do #{link_to "Facebook", facebook_connect_path, class: 'fb'}
-
+        = link_to "Conecte-se pelo Facebook", facebook_connect_path, class: 'fb'
