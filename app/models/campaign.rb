@@ -9,7 +9,10 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_many :targets
-  has_many :influencers, :through => :targets
+  has_many :influencers,          through: :targets
+  has_many :twitter_influencers,  through: :targets, source: :influencer, conditions: "COALESCE(influencers.twitter, '') <> ''"
+  has_many :facebook_influencers, through: :targets, source: :influencer, conditions: "COALESCE(influencers.facebook_id, '') <> ''"
+  has_many :email_influencers,    through: :targets, source: :influencer, conditions: "COALESCE(influencers.email, '') <> ''"
   has_many :posts
   has_many :answers
   has_many :pokes
@@ -30,6 +33,7 @@ class Campaign < ActiveRecord::Base
   scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
   scope :unfinished,  where('finished_at IS NULL')
   scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
+
   mount_uploader :image, ImageUploader
 
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
