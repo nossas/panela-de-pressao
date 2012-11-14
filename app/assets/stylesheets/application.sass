@@ -729,6 +729,19 @@ body.campaigns#show
           line-height: .8em
           color: lighten($fb_blue, 40%)
           display: block
+      form
+        .fields
+          padding: 1em
+          label
+            display: none
+          strong
+            text-transform: uppercase
+            display: block
+            text-align: center
+          input[type="text"], input[type="email"]
+            +border-radius(5px)
+            width: 100%
+            +box-sizing("border-box")
     .via_twitter .btn
       background: $twitter_blue
       span
