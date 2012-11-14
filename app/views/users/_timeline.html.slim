@@ -1,0 +1,5 @@
+- if timeline_objects(@user).any?
+  - timeline_objects(@user).each do |obj|
+    li[class=obj.kind]
+      h4= raw obj.link 
+      span= t "time.some_time_ago", time: time_ago_in_words(obj.date)
