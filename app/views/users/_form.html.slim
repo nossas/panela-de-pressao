@@ -1,0 +1,18 @@
+= form_for @user, multipart: true do |f|
+  p= f.file_field :file 
+
+  p
+    = f.label :name
+    = f.text_field :name
+  p
+    = f.label :email
+    = f.text_field :email
+  p
+    = f.label :about_me
+    = f.text_area :about_me, rows: 5
+
+
+  p.actions
+    = f.submit class: "btn submit green", value: t("user.show.save")
+
+

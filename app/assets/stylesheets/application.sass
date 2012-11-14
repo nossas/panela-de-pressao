@@ -832,260 +832,225 @@ body.campaigns#show
       &:before
         content: "+"
         margin-left: .4em
-body
-  &.campaigns
-    &#show
-      article.left
-        .influencers_response
-          small
-            display: block
-            color: gray
-            font-style: italic
-            text-align: center
-            margin-bottom: 1em
-          .campaign_answer
-            border-bottom: dashed 1px $orange
-            margin-bottom: 1em
-            padding-bottom: 1em
-            .answer_created_at
-              color: $orange
-              font-size: .8em
-            .answer_text
-              color: gray
-              p
-                margin-bottom: 1em
-          form.new_answer
-            label
-              display: block
-            textarea
-              width: 100%
-              +box-sizing("border-box")
-              height: 200px
-          
-    &#new, &#edit, &#create, &#update
-      span.block
-        display: block !important
-      input, textarea
-        +transition(.3s)
-      form
-        small.inline-errors
-          display: none
-        &.errors
-          small.inline-errors
-            display: block
-            font-size: .7em !important
-            background: lighten(red, 45%)
-
-      h1, small
-        margin: .4em 0 
-      small
-        display: block
-        color: lighten(gray, 5%)
-        padding: .4em
-        background: lighten($orange, 30%)
-        font-size: .9em !important
-      fieldset
-        margin: 1.6em 0
-        background: lighten($orange, 34%)
-        padding: 1em
-        border: 2px solid lighten($orange, 20%)
-
-        legend  
-          background: $orange 
-          display: block
-          padding: 0 .4em
-          text-transform: uppercase
-          letter-spacing: 1px 
-          font-size: 1.2em
-          +box-shadow(1px 2px 1px gray)
-        input, textarea
-          color: black
-          font-size: .9em
-          font-family: "PT Sans"
-        textarea
-          height: 80px
-      .inline-errors
-        color: red
-        font-size: .7em
-        text-align: center
-      span.tip
-        background: lighten($yellow, 15%)
-        margin: .4em 0
-        padding: .4em 1em
-        font-size: .7em !important
-        line-height: 1.4em
-        display: none
-        +border-radius(4px)
-      aside.right
-        .content
-          .tip
-            width: 90%
-            background: lighten($yellow, 5%)
-            color: #333
-            line-height: 1.4em
-            font-size: .7em
-            margin: 8em 0 11em 1em
-            +border-radius(6px)
-            &::before
-              content: ""
-              display: block
-              height: 0
-              width: 0
-              border: 10px solid lighten($yellow, 5%)
-              border-color: transparent lighten($yellow,5%) transparent transparent
-              border-width: 10px 10px 10px 0
-              position: absolute
-              margin-top: 1em
-              left: 1.5em
-            &.text
-              &::before
-                margin-top: 2.1em
-            &.first
-              margin-top: 13em
-              margin-bottom: 12em
-            &.marked
-              margin-top: 15em
-              margin-bottom: 10em
-              &.second
-                margin-top: 25em
-                margin-bottom: 16em
-            span
-              display: block
-              padding: 1em
-      .action
-        width: 80%
-        margin: 4em auto
-      a.cancel
-        margin-right: 2em
-      input[type='text'], textarea
-        width: 98%
-      textarea
-        height: 200px
-      h1
-        line-height: 1em
-      small
-        font-size: .8em
-        line-height: 1.4em
-        display: block
-      label 
-        color: $green
-        font-size: 1em
-        font-weight: bold
-        display: block
-        margin: 1em 0 .8em 0
-      .influencers
-        input
-          +box-shadow(none)
-      form.edit_user
-        text-align: center
-        background: lighten($orange, 30%)
-        padding: 1em
-        margin-bottom: 10em
-        label
-          display: none
-        input
-          display: inline
-        input[type="text"]
-          width: auto
-          margin: 0 1em
+body.campaigns
+  &#show
+    article.left
+      .influencers_response
         small
-          margin: 0 0 .5em 0
-  &.users, &.influencers
-    &#show
-      .about
-        overflow: hidden
-        margin-bottom: 1em
-      .submit
-        float: right
-      article.right
-        +grid(9)
-        +last
-        textarea
-          width: 100%
-          height: 200px
-          +box-sizing("border-box")
-        form.not_logged
-          textarea
-            height:  10% !important
-            background: none
-            border: none
-      aside.left
-        +grid(3)
-        h3
-          padding-top: 1em
-        strong
           display: block
-        .image
-          img
-            +box-shadow(0 0 .4em gray)
-            padding: .5em
-        form
-          span.member_since
-            font-size: .7em
-            color: lighten(gray, 15%)
-          hr
-            border: 1px solid lighten(gray, 40%)
+          color: gray
+          font-style: italic
+          text-align: center
+          margin-bottom: 1em
+        .campaign_answer
+          border-bottom: dashed 1px $orange
+          margin-bottom: 1em
+          padding-bottom: 1em
+          .answer_created_at
+            color: $orange
+            font-size: .8em
+          .answer_text
+            color: gray
+            p
+              margin-bottom: 1em
+        form.new_answer
           label
             display: block
-            margin: .5em 0 0 0
-            font-weight: bold
-            color: $green
-          .image, ul.details
-            margin: 1em
-          .image
-            img
-              +box-shadow(0 0 .4em gray)
-              padding: .5em
           textarea
-            max-width: 91% 
-            max-height: 6em
-  
-          input[type="text"], textarea
-            border: 1px solid lighten(gray, 30%)
-            padding: .5em
+            width: 100%
+            +box-sizing("border-box")
+            height: 200px
+        
+  &#new, &#edit, &#create, &#update
+    span.block
+      display: block !important
+    input, textarea
+      +transition(.3s)
+    form
+      small.inline-errors
+        display: none
+      &.errors
+        small.inline-errors
+          display: block
+          font-size: .7em !important
+          background: lighten(red, 45%)
 
-            margin: .9em 0
-            font-size: .8em
-            +border-radius(4px)
-            +box-shadow(inset 0 0 2px lighten(gray, 40%))
-          &.not_logged
-            input, textarea
-              border: none
-              margin: 0
-            label[for='user_name']
-              display: none
-            input[name='user[name]']
-              font-size: 1.6em
-              letter-spacing: 1px
-            textarea
-              font-style: italic
-              font-size: 1em
-              color: lighten(gray, 10%)
-            
-      
-      ul.timeline
-        margin-top: 2em
-        +border-radius(4px)
-        li
-          +transition(.2s)
-          padding: 1em 1em 1em 50px
-          background: white 
-          border: 1px solid lighten(gray, 45%)
-          p
-            font-size: .7em
-            font-style: italic
-            font-color: lighten(gray, 20%)
-            margin: 0
-          &:hover
-            +box-shadow(0 4px .5em gray)
-          &.poke, &.campaign
-            background-position: 10px 10px
-            background-size: 4% 35%
-            background-repeat: no-repeat          
-          &.poke
-            background-image: url('icon-press-2.svg')
-          &.campaign 
-            background-image: url('icon-campaign-2.svg')
+    h1, small
+      margin: .4em 0 
+    small
+      display: block
+      color: lighten(gray, 5%)
+      padding: .4em
+      background: lighten($orange, 30%)
+      font-size: .9em !important
+    fieldset
+      margin: 1.6em 0
+      background: lighten($orange, 34%)
+      padding: 1em
+      border: 2px solid lighten($orange, 20%)
+
+      legend  
+        background: $orange 
+        display: block
+        padding: 0 .4em
+        text-transform: uppercase
+        letter-spacing: 1px 
+        font-size: 1.2em
+        +box-shadow(1px 2px 1px gray)
+      input, textarea
+        color: black
+        font-size: .9em
+        font-family: "PT Sans"
+      textarea
+        height: 80px
+    .inline-errors
+      color: red
+      font-size: .7em
+      text-align: center
+    span.tip
+      background: lighten($yellow, 15%)
+      margin: .4em 0
+      padding: .4em 1em
+      font-size: .7em !important
+      line-height: 1.4em
+      display: none
+      +border-radius(4px)
+    aside.right
+      .content
+        .tip
+          width: 90%
+          background: lighten($yellow, 5%)
+          color: #333
+          line-height: 1.4em
+          font-size: .7em
+          margin: 8em 0 11em 1em
+          +border-radius(6px)
+          &::before
+            content: ""
+            display: block
+            height: 0
+            width: 0
+            border: 10px solid lighten($yellow, 5%)
+            border-color: transparent lighten($yellow,5%) transparent transparent
+            border-width: 10px 10px 10px 0
+            position: absolute
+            margin-top: 1em
+            left: 1.5em
+          &.text
+            &::before
+              margin-top: 2.1em
+          &.first
+            margin-top: 13em
+            margin-bottom: 12em
+          &.marked
+            margin-top: 15em
+            margin-bottom: 10em
+            &.second
+              margin-top: 25em
+              margin-bottom: 16em
+          span
+            display: block
+            padding: 1em
+    .action
+      width: 80%
+      margin: 4em auto
+    a.cancel
+      margin-right: 2em
+    input[type='text'], textarea
+      width: 98%
+    textarea
+      height: 200px
+    h1
+      line-height: 1em
+    small
+      font-size: .8em
+      line-height: 1.4em
+      display: block
+    label 
+      color: $green
+      font-size: 1em
+      font-weight: bold
+      display: block
+      margin: 1em 0 .8em 0
+    .influencers
+      input
+        +box-shadow(none)
+    form.edit_user
+      text-align: center
+      background: lighten($orange, 30%)
+      padding: 1em
+      margin-bottom: 10em
+      label
+        display: none
+      input
+        display: inline
+      input[type="text"]
+        width: auto
+        margin: 0 1em
+      small
+        margin: 0 0 .5em 0
+body.users     
+  .content
+    padding-bottom: 2em
+    overflow: hidden
+  .profile
+    margin-top: 1.5em
+  span.member_since
+    
+  h1
+    font-weight: bold
+    font-size: 2.2em
+    margin-top: .5em
+  aside.left
+    img
+      +box-shadow(0 0 3px black)
+      margin-bottom: .6em
+    img, p, input, textarea
+      width: 90%
+    h3
+      margin: 1em 0 .2em 0
+      font-size: 1em
+      color: darken($gray, 65%)
+    p
+      background: white
+      padding: .2em
+      color: gray
+    p, img
+      +border-radius(4px)
+    input, textarea
+      font-size: .9em
+      &:hover
+        color: black
+
+  article.right
+    background: none
+    +box-shadow(none)
+    li.campaign
+      +grid-subcolumn(9, 3)
+      &:nth-child(3n-0)
+        +last
+    h2
+      font-weight: bold
+      margin-bottom: 1.2em
+      color: darken($gray, 75%)
+      font-size: 1.4em
+  ol.timeline
+    li
+      background: white
+      padding: 1.6em 1.2em
+      border-bottom: 1px solid $gray
+      &:hover
+        background: lighten($orange, 34%)
+      &:before
+        font-size: 2.5em
+        color: $orange
+        width: 6%
+    h4, li:before 
+      display: inline-block
+      margin-right: .3em
+    span
+      color: darken($gray, 35%)
+      text-transform: lowercase
 
 body.influencers#index
   .influencers_list

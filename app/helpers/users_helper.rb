@@ -8,18 +8,18 @@ module UsersHelper
   
   def timeline_objects(user)
     a = []
-    user.pokes.each do |poke|
+    user.pokes.limit(10).each do |poke|
       b = Notification::User.new
       b.link = I18n.t('notification.campaign.poked_html', through: poke.kind, link: campaign_path(poke.campaign), name: poke.campaign.name)
       b.date = poke.created_at
-      b.kind = "poke"
+      b.kind = "icon-megaphone"
       a << b
     end
-    user.campaigns.each do |campaign|
+    user.campaigns.limit(10).each do |campaign|
       b = Notification::User.new
       b.link = I18n.t('notification.campaign.created_html', link: campaign_path(campaign), name: campaign.name)
       b.date = campaign.created_at
-      b.kind = "campaign"
+      b.kind = "icon-edit"
       a << b
     end
 

@@ -109,6 +109,7 @@ pt-BR:
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
+      did_nothing: "%{user} ainda não escreveu sua bio : ("
       create_and_edit: "Edite seu perfil"
       member_since: "Membro desde %{since}"
       save: "Salvar"
