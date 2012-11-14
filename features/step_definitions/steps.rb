@@ -229,6 +229,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== unmoderated_campaigns_path
   when "the homepage"
     page.current_path.should be_== root_path
+  when "the Facebook callback"
+    page.current_path.should be_== '/auth/facebook/callback'
   else
     raise "I don't know '#{arg1}'"
   end
