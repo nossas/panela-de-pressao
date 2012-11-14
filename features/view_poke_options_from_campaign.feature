@@ -7,8 +7,7 @@ Feature: View poke options
   Scenario: View enabled poke options from targets with only email
     Given I'm logged in
     And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
-    And there is a target for this campaign without Facebook
-    And there is a target for this campaign without Twitter 
+    And there is one target for this campaign without Facebook and without Twitter
     When I'm in this campaign page
     Then I should not see "mensagem será publicada no mural do alvo"
     And I should not see "mensagem será publicada no perfil do alvo"

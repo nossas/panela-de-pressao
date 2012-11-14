@@ -128,6 +128,11 @@ Given /^there is a target for this campaign without ([^"]*)$/ do |arg1|
   @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:email => "") if arg1 == "E-mail"
 end
 
+Given /^there is one target for this campaign without ([^"]*) and without ([^"]*)$/ do |arg1, arg2|
+  @target = Target.make! :campaign => @campaign, :influencer => Influencer.make!(:facebook_id => "", twitter: "") if arg1 == "Facebook" and arg2 == "Twitter"
+end
+
+
 Given /^there is a poker called "(.*?)"$/ do |arg1|
   @poke = Poke.make! :campaign => @campaign
 end
