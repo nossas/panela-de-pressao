@@ -25,6 +25,7 @@ var App = window.App = {
       if ($.browser.msie !== undefined) {
         $('section.index ol.campaigns li:nth-child(4n+0)').css("margin-right", "0");
         $('section.explore li:nth-child(3n+0)').css("margin-right", "0");
+        $('body.users#show li:nth-child(3n+0)').css("margin-right", "0");
       }
 
 
