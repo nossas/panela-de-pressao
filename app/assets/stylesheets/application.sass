@@ -116,6 +116,9 @@ a
   &:hover
     color: $victory
 
+label.error
+  color: red
+
 input[type='text'], textarea, input[type="email"], input[type="url"]
   outline: none
   border: 2px solid lighten(gray, 40%)
@@ -742,6 +745,8 @@ body.campaigns#show
             +border-radius(5px)
             width: 100%
             +box-sizing("border-box")
+          .field
+            margin-bottom: .5em
     .via_twitter .btn
       background: $twitter_blue
       span

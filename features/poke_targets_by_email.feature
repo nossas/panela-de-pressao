@@ -28,10 +28,11 @@ Feature: Poke targets by email
     And an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
-  @javascript @koala
+  @javascript @koala @javascript
   Scenario: when I'm not logged in and I miss the form
     Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
     And there is a target for this campaign
     And I'm in this campaign page
     When I press "Pressione por e-mail"
-    Then I should see "Não foi possível realizar a pressão :("
+    Then I should see "Precisamos do seu nome"
+    And I should see "Precisamos do seu e-mail também"
