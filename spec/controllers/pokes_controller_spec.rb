@@ -65,7 +65,7 @@ describe PokesController do
     context "when it's not logged in" do
       before { @request.env['HTTP_REFERER'] = 'http://test.com/' }
       before { post :create, :poke => {:kind => "twitter"}, :campaign_id => "1" }
-      it { should redirect_to("http://test.com/#login") }
+      it { should redirect_to("/auth/facebook") }
     end
 
   end

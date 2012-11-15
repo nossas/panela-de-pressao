@@ -14,17 +14,6 @@ Feature: Poke targets by Facebook
     Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
     And a facebook poke should be added to the target
 
-  @omniauth_test @koala @javascript
-  Scenario: when I don't have a Facebook authorization
-    Given I'm logged in with Meu Rio
-    And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
-    And there is a target for this campaign
-    And I already poked this campaign
-    And I'm in this campaign page
-    When I press "Pressione no facebook"
-    Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
-    And a facebook poke should be added to the target
-    
   @omniauth_test @javascript @koala
   Scenario: when I poke a campaign twice
     Given I'm logged in

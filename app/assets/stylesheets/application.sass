@@ -116,6 +116,12 @@ a
   &:hover
     color: $victory
 
+input, a
+  outline: none
+
+label.error
+  color: red
+
 input[type='text'], textarea, input[type="email"], input[type="url"]
   outline: none
   border: 2px solid lighten(gray, 40%)
@@ -153,31 +159,6 @@ p.inline-hints
 p.inline-hints, p.inline-errors
   margin: 0
 
-#login
-  h2
-    text-align: center
-    margin: 1em 1.5em
-  .alert
-    background: $gray
-    padding: 1em
-    width: 70%
-    margin: .5em auto
-  span
-    display: block
-    text-align: center
-    color: gray
-    margin: .6em 0
-  .buttons
-    margin: 1em
-    a
-      display: block
-      text-align: center
-      width: 70%
-      margin: 0 auto
-      padding: .6em 
-      &:hover
-        background: $orange
-
 .btn
   background: $green
   color: white
@@ -193,7 +174,6 @@ p.inline-hints, p.inline-errors
   &:hover
     color: white
     background: #1d8741
-
 
 ul.formatting
   ol
@@ -249,15 +229,12 @@ section.alert
   border-bottom: 1px dashed darken($orange, 20%)
 
 
-a[href="/auth/facebook"], a[href="/auth/meurio"]
+a[href="/auth/facebook"]
   text-transform: uppercase
   font-size: .9em !important
   color: white
   padding: 4px 15px
   +border-radius(5px)
-
-a[href="/auth/meurio"]
-  background: $mr_green
 
 a[href="/auth/facebook"]
   background: $fb_blue
@@ -272,12 +249,42 @@ a[href="/auth/facebook"]
     .fb-like
       top: -4px
 
+#cboxContent
+  #cboxLoadedContent
+    margin-bottom: 0
+  #cboxClose
+    position: absolute
+    top: 0
+    right: 0
+
+#email_poke_message, #facebook_poke_message, #twitter_poke_message
+  padding: 1em
+  line-height: normal
+  h1
+  label
+    display: none
+  textarea
+    width: 100%
+    +box-sizing("border-box")
+  .btn
+    width: auto
+    border: none
+    cursor: pointer
+    float: right
+
+#twitter_poke_message
+  p
+    font-size: 1.5em
+    font-style: italic
+    color: gray
+    margin: 0
+
 section.login
   padding: .4em 0
   line-height: 2.5em
   border-bottom: 1px solid lighten(black, 85%)
   +box-shadow(1px 4px 15px lighten(black, 85%))
-  a.fb, a.mr
+  a.fb
     margin: 0 .4em
   .meurio, .user
     color: lighten(gray, 25%)
@@ -758,6 +765,21 @@ body.campaigns#show
           line-height: .8em
           color: lighten($fb_blue, 40%)
           display: block
+      form
+        .fields
+          padding: 1em
+          label
+            display: none
+          strong
+            text-transform: uppercase
+            display: block
+            text-align: center
+          input[type="text"], input[type="email"]
+            +border-radius(5px)
+            width: 100%
+            +box-sizing("border-box")
+          .field
+            margin-bottom: .5em
     .via_twitter .btn
       background: $twitter_blue
       span
