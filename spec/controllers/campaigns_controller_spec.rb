@@ -34,7 +34,7 @@ describe CampaignsController do
       before { controller.stub(:current_user).and_return(mock_model(User, :admin? => false)) }
       before { @request.env['HTTP_REFERER'] = 'http://test.com/' }
       before { put :accept, :campaign_id => "1" }
-      it { should redirect_to("http://test.com/#login") }
+      it { should redirect_to("/auth/facebook") }
     end
   end
 end

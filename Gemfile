@@ -15,6 +15,7 @@ gem "redcarpet"
 gem 'delayed_job_active_record'
 gem 'rack-no-www'
 gem 'video_info'
+gem "jquery-validation-rails"
 
 # Image uplaod
 gem 'carrierwave'

@@ -1,4 +1,15 @@
-= form_for [@campaign, @poke] do |f|
+= form_for [@campaign, @poke], :html => {:id => "new_#{kind}_poke"} do |f|
+
+  - if kind == "email" && !signed_in?
+    .fields
+      strong Insira seus dados
+      .field
+        = label_tag :name, "Nome"
+        = text_field_tag :name, "", :placeholder => "Nome", :class => "required"
+      .field
+        = label_tag :email, "E-mail"
+        = email_field_tag :email, "", :placeholder => "E-mail", :class => "required email"
+
   = f.hidden_field :kind, :value => kind
   .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
     = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))

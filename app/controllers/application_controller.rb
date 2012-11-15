@@ -1,13 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :signed_in?
-
-  before_filter { |controller| session[:restore_url] = request.url if controller.controller_name != "sessions" && !request.xhr? && session.delete(:access_denied_redirect).nil? }
-  before_filter { session[:redirect_url] = params[:redirect_url] if params[:redirect_url] }
+  before_filter { |controller| session[:restore_url] = request.url if controller.controller_name != "sessions" && !request.xhr? }
 
   rescue_from CanCan::AccessDenied do |exception|
-    session[:access_denied_redirect] = true
-    redirect_to "#{request.env["HTTP_REFERER"]}#login", :flash => {:login_alert => exception.message}
+    redirect_to "/auth/facebook"
   end
 
   protected

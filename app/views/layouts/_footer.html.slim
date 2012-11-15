@@ -5,10 +5,7 @@ section.footer
       ol.categories
         - Category.order(:name).each do |category|
           li= link_to category.name, nil 
-
     .social
       h4 O MeuRio no Facebook
       .fb-like data-href="http://facebook.com/meurio" data-send="false" data-width="210" data-show-faces="true"
-
     .newsletter
-

@@ -1,6 +1,6 @@
 # coding: utf-8
 class PokesController < InheritedResources::Base
-  load_and_authorize_resource :only => [:create]
+  load_and_authorize_resource
   belongs_to :campaign
 
   prepend_before_filter(:only => [:create], :if => Proc.new { request.post? }) do 
@@ -13,15 +13,15 @@ class PokesController < InheritedResources::Base
   end
 
   def create
-    @poke = Poke.new session.delete(:poke).merge(:user_id => current_user.id)
+    user = current_user || User.find_or_create_by_email(params[:email], :name => params[:name])
+    @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
     create! do |success, failure|
       success.html do
         flash[:poke_notice] = true
         redirect_to campaign_path(@campaign)
       end
       failure.html do
-        flash[:alert] = "Você já pressionou recentemente. Aguarde um tempinho para pressionar novamente por este canal :)"
-        redirect_to campaign_path(@campaign)
+        redirect_to @campaign, :alert => "Não foi possível realizar a pressão :("
       end
     end
   end
