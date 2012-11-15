@@ -1,3 +1,5 @@
-section.content.row
-  article.left.campaigns
-    .list.all= render @campaigns
+section.content
+  .row.popular
+    h2.popular.icon-fire= t 'home.text.campaigns_waiting_for_moderation' 
+    ol.campaigns
+      = render @campaigns

@@ -68,7 +68,6 @@ var App = window.App = {
       }
 
       $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
-
     },
 
     showLoginBox: function(){

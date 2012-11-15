@@ -1,92 +1,78 @@
-h1= t 'campaign.new.header'
-small= t 'campaign.new.small'
+= form_for @campaign do |f|
 
-= form_for @campaign, html: { class: "#{'errors' if @campaign.errors.any?}"} do |f|
-  - if current_user.mobile_phone.blank?
-    fieldset
-      legend Dados pessoais
-      = label_tag do
-        | Celular
-        = text_field_tag "user_mobile_phone", params[:user_mobile_phone]
-        small.inline-errors= @campaign.errors[:user].to_sentence
-  fieldset
-    legend Sobre a campanha 
+  - if @campaign.persisted?
+    p.image
+      = image_tag(@campaign.image, size: '40x30')
+      = link_to "Expandir imagem da campanha", "#image", rel: 'facebox' 
+  p
+    | Olá, meu nome é 
+    strong
+      = current_user.name
+  p
     = f.label :name
     = f.text_field :name
-    span.tip= t 'campaign.new.form.tips.title' 
     small.inline-errors= @campaign.errors[:name].to_sentence
-    = f.label :description
-    = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
-    = f.text_area :description
-    span.tip= t 'campaign.new.form.tips.why_important_html'
-    small.inline-errors= @campaign.errors[:description].to_sentence
-
-  fieldset
-    legend
-      | O(s) Alvo(s) da Campanha
-    = f.label :influencer_ids
-    = f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
-    span.tip= t 'campaign.new.form.tips.targets_html', link: link_to(t('link.click_here'), 'http://bit.ly/SJZBx7')
-
-  fieldset
-    legend Divulgação
-    = f.label :image
-    = f.file_field :image
-    span.tip= t 'campaign.new.form.tips.image'
-    small.inline-errors= @campaign.errors[:image].to_sentence
-    = image_tag @campaign.image if @campaign.persisted?
-    = f.hidden_field :image_cache      
-    = f.label :video_url
-    = f.text_field :video_url
-    span.tip= t 'campaign.new.form.tips.video_url'
-    small.inline-errors= @campaign.errors[:video_url].to_sentence
-
-  fieldset
-    legend
-      | Tema
+  p
     = f.label :category_id
     = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
-    span.tip= t 'campaign.new.form.tips.theme'
     small.inline-errors= @campaign.errors[:category].to_sentence
 
-  fieldset
-    legend
-      | Pressão pelo Facebook
+  p.textarea
+    = f.label :description
+    = f.text_area :description
+    = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
+    small.inline-errors= @campaign.errors[:description].to_sentence
+
+  p.textarea
+    = f.label :influencer_ids
+    = f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+ 
+  p.textarea
     = f.label :facebook_text
     = f.text_area :facebook_text
-    span.tip= t 'campaign.new.form.tips.face_text'
     small.inline-errors= @campaign.errors[:facebook_text].to_sentence
 
-  fieldset
-    legend
-      | Pressão pelo Twitter
+  p.textarea
     = f.label :twitter_text
     = f.text_field :twitter_text
-    span.tip= t 'campaign.new.form.tips.tweet_text'
     small.inline-errors= @campaign.errors[:twitter_text].to_sentence
 
-  fieldset
-    legend
-      | Pressão por e-mail
+  p.textarea
     = f.label :email_text
     = f.text_area :email_text
-    span.tip= t 'campaign.new.form.tips.email_text'
     small.inline-errors= @campaign.errors[:email_text].to_sentence
 
-  - if current_user.admin?
-    fieldset
-      legend
-        | E-mail pra quem pressiona 
-      = f.label :pokers_email
-      = f.text_area :pokers_email
-      small.inline-errors= @campaign.errors[:pokers_email].to_sentence
+  p.phone
+    = f.label :image
+    = f.file_field :image
+    small.inline-errors= @campaign.errors[:image].to_sentence
+    = f.hidden_field :image_cache      
 
-  .action
+    span &nbsp; 
+    = f.label :video_url
+    = f.text_field :video_url, placeholder: "Link video youtube/vimeo"
+    small.inline-errors= @campaign.errors[:video_url].to_sentence
+
+  p.phone
+   - if current_user.mobile_phone.blank?
+    label 
+      | Para entrarem em contato comigo se necessário, podem me contatar no número
+      = text_field_tag "user_mobile_phone", params[:user_mobile_phone]
+    small.inline-errors= @campaign.errors[:user].to_sentence
+
+
+  p.action
     = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'
-    = f.submit @campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save'), :class => "btn submit"
+    = f.submit (@campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save')), class: 'btn'
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
-  |  ou 
-  = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-    = f.submit t('actions.accept'), :class => "btn submit"
-  = link_to t('actions.delete'), @campaign, :method => :delete, :class => "btn cancel"
+  hr
+  p.action
+    = link_to t('actions.delete'), @campaign, :method => :delete, :class => "btn cancel"
+    = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
+      = f.submit t('actions.accept'), :class => "btn submit"
+
+
+.hidden
+  #image
+    = image_tag(@campaign.image) if @campaign.persisted?
