@@ -116,6 +116,9 @@ a
   &:hover
     color: $victory
 
+input, a
+  outline: none
+
 label.error
   color: red
 
@@ -245,6 +248,36 @@ a[href="/auth/facebook"]
   .share
     .fb-like
       top: -4px
+
+#cboxContent
+  #cboxLoadedContent
+    margin-bottom: 0
+  #cboxClose
+    position: absolute
+    top: 0
+    right: 0
+
+#email_poke_message, #facebook_poke_message, #twitter_poke_message
+  padding: 1em
+  line-height: normal
+  h1
+  label
+    display: none
+  textarea
+    width: 100%
+    +box-sizing("border-box")
+  .btn
+    width: auto
+    border: none
+    cursor: pointer
+    float: right
+
+#twitter_poke_message
+  p
+    font-size: 1.5em
+    font-style: italic
+    color: gray
+    margin: 0
 
 section.login
   padding: .4em 0
