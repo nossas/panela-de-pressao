@@ -62,9 +62,6 @@ class Campaign < ActiveRecord::Base
     !accepted_at.nil?
   end
 
-  def not_empty_influencer(opt = :email)
-    self.influencers.select { |a| a.send(opt.to_s) != "" }    
-  end
 
   def pokes_by(opt = :email)
     self.pokes.where(:kind => opt.to_s)
