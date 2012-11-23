@@ -8,8 +8,10 @@ class CampaignsController < InheritedResources::Base
   optional_belongs_to :category
   
   custom_actions collection: :explore
-
+  
   skip_load_and_authorize_resource :only => [:index, :create, :explore]
+
+
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
@@ -76,11 +78,16 @@ class CampaignsController < InheritedResources::Base
   end
 
   protected
-  def collection
-    if params[:user_id]
-      @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
-    else
-      @campaigns ||= end_of_association_chain.accepted
+    def collection
+      if params[:user_id]
+        @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
+      else
+        @campaigns ||= end_of_association_chain.accepted
+      end
     end
-  end
+
+  private
+    def current_ability
+      @current_ability ||= Ability.new(current_user, params)
+    end
 end

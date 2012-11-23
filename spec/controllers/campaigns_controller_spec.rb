@@ -16,11 +16,32 @@ describe CampaignsController do
   end
 
   describe "GET show" do
-    before do 
-      Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => Time.now))
-      get :show, :id => "1"
+    context "Accepted campaigns" do
+      before do 
+        Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => Time.now))
+        get :show, :id => "1"
+      end
+      it { should assign_to(:poke) }
     end
-    it { should assign_to(:poke) }
+
+    context "Not accepted campaigns with a wrong preview code" do
+      before do 
+        Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: 12345))
+        get :show, id: 1, preview_code: 1234
+      end
+      it { should redirect_to("/auth/facebook") }
+    end
+
+    context "Not accepted campaigns with a correct preview code" do
+      before do 
+        Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: "12345"))
+        get :show, id: 1, preview_code: 12345
+      end
+
+      it { should_not redirect_to("/auth/facebook") }
+    end
+
+      
   end
 
   describe "PUT accept" do
