@@ -1,10 +1,8 @@
-- content_for :highlight do
-  .row
-    .home_link
-      = link_to "Voltar à home", root_path, :class => "icon-home"
-
 - content_for :title do
   = t 'campaign.new.header'
 section.content
+  .row
+    h1.title= t 'campaign.new.header'
+    small= t 'campaign.new.small'
   .row
     = render :partial => "form"

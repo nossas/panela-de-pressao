@@ -94,7 +94,7 @@ Given /^I'm logged in as admin$/ do
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
-  if arg1 == "Imagem de campanha"
+  if arg1 == "Para a divulgação da minha campanha bombar, vou usar essa imagem"
     attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
   elsif arg1 == "Avatar"
     attach_file arg1, File.dirname(__FILE__) + "/../support/influencer.jpg"

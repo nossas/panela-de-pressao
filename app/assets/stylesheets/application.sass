@@ -25,6 +25,8 @@ $gray: #f3f4f4
   clear: both
 .hidden
   display: none
+.cancel
+  background: darken(red, 15%) !important
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
 section
@@ -305,6 +307,7 @@ section.login
     &:hover
       cursor: pointer
       background: $gray
+    &:target
       .options
         display: block
     img
@@ -465,6 +468,7 @@ section.content
       font-size: 1.3em
       font-weight: bold
       padding: .5em
+      padding-bottom: .45em
       +border-radius(4px)
       +transition(.4s)
       &:before
@@ -540,7 +544,7 @@ section.information
     +last
 
 
-body.campaigns#index, body.campaigns#explore
+body.campaigns#index, body.campaigns#explore, body.campaigns#unmoderated
   .popular, ol.campaigns li.not_finished
     .counter .icon-message
       padding: .2em
@@ -550,7 +554,7 @@ body.campaigns#index, body.campaigns#explore
 section.header
   +box-shadow(0 1px 6px lighten(black, 75%))
   margin-bottom: .2em
-body.campaigns#index
+body.campaigns#index, body.campaigns#unmoderated
   .featured
     .description
       padding: .2em 0 .6em 0
@@ -630,6 +634,74 @@ section.explore
       text-align: center
       +border-radius(4px)
 
+body.campaigns#new, body.campaigns#edit, body.campaigns#create
+  .content
+    .row
+      margin-bottom: 1.5em
+  h1
+    font-weight: bold
+    margin-top: 1em 
+  small 
+    color: darken($gray, 40%)
+  input
+    width: 60%
+  input, textarea
+    +border-radius(4px)
+    +box-shadow(inset 0 1px 2px gray)
+    text-indent: .2em
+  input, select
+    padding: .2em
+    margin-left: .6em
+    top: -.1em
+    position: relative
+  strong, input, textarea
+    color: black
+    font-family: "Proxima Nova Bold"
+  form
+    p
+      margin: .8em 0
+    .charleft
+      font-size: .8em
+      color: $green
+    p.textarea
+      margin: 1.2em 0
+      label
+        display: block
+      textarea, input
+        width: 98%
+        margin-left: 0
+      textarea
+        height: 80px
+    p.phone
+      input
+        width: 20%
+    p.image
+      background: white
+      padding: .4em
+      margin-bottom: 2em 
+      overflow: hidden
+      img
+        float: left
+        margin-right: .6em
+      a
+        display: inline-block
+        margin-top: .6em
+  p.action
+    width: 60%
+    margin: 0 auto
+    margin-top: 4em
+    input, a
+      margin-left: 2em
+    a
+      width: 20%
+    input
+      color: white
+      border: none
+      padding: .8em 1.6em 
+      top: 1px
+      &:hover
+        cursor: pointer
+
 body.campaigns#show
   .twitter-share-button
     position: relative
@@ -704,6 +776,7 @@ body.campaigns#show
     +border-radius(6px)
   .counter 
     margin-bottom: 1em
+    border-top: none
     .count
       padding: .8em
 
@@ -859,164 +932,8 @@ body.campaigns#show
       &:before
         content: "+"
         margin-left: .4em
-body.campaigns
-  &#show
-    article.left
-      .influencers_response
-        small
-          display: block
-          color: gray
-          font-style: italic
-          text-align: center
-          margin-bottom: 1em
-        .campaign_answer
-          border-bottom: dashed 1px $orange
-          margin-bottom: 1em
-          padding-bottom: 1em
-          .answer_created_at
-            color: $orange
-            font-size: .8em
-          .answer_text
-            color: gray
-            p
-              margin-bottom: 1em
-        form.new_answer
-          label
-            display: block
-          textarea
-            width: 100%
-            +box-sizing("border-box")
-            height: 200px
-        
-  &#new, &#edit, &#create, &#update
-    span.block
-      display: block !important
-    input, textarea
-      +transition(.3s)
-    form
-      small.inline-errors
-        display: none
-      &.errors
-        small.inline-errors
-          display: block
-          font-size: .7em !important
-          background: lighten(red, 45%)
 
-    h1, small
-      margin: .4em 0 
-    small
-      display: block
-      color: lighten(gray, 5%)
-      padding: .4em
-      background: lighten($orange, 30%)
-      font-size: .9em !important
-    fieldset
-      margin: 1.6em 0
-      background: lighten($orange, 34%)
-      padding: 1em
-      border: 2px solid lighten($orange, 20%)
-
-      legend  
-        background: $orange 
-        display: block
-        padding: 0 .4em
-        text-transform: uppercase
-        letter-spacing: 1px 
-        font-size: 1.2em
-        +box-shadow(1px 2px 1px gray)
-      input, textarea
-        color: black
-        font-size: .9em
-        font-family: "PT Sans"
-      textarea
-        height: 80px
-    .inline-errors
-      color: red
-      font-size: .7em
-      text-align: center
-    span.tip
-      background: lighten($yellow, 15%)
-      margin: .4em 0
-      padding: .4em 1em
-      font-size: .7em !important
-      line-height: 1.4em
-      display: none
-      +border-radius(4px)
-    aside.right
-      .content
-        .tip
-          width: 90%
-          background: lighten($yellow, 5%)
-          color: #333
-          line-height: 1.4em
-          font-size: .7em
-          margin: 8em 0 11em 1em
-          +border-radius(6px)
-          &::before
-            content: ""
-            display: block
-            height: 0
-            width: 0
-            border: 10px solid lighten($yellow, 5%)
-            border-color: transparent lighten($yellow,5%) transparent transparent
-            border-width: 10px 10px 10px 0
-            position: absolute
-            margin-top: 1em
-            left: 1.5em
-          &.text
-            &::before
-              margin-top: 2.1em
-          &.first
-            margin-top: 13em
-            margin-bottom: 12em
-          &.marked
-            margin-top: 15em
-            margin-bottom: 10em
-            &.second
-              margin-top: 25em
-              margin-bottom: 16em
-          span
-            display: block
-            padding: 1em
-    .action
-      width: 80%
-      margin: 4em auto
-    a.cancel
-      margin-right: 2em
-    input[type='text'], textarea
-      width: 98%
-    textarea
-      height: 200px
-    h1
-      line-height: 1em
-    small
-      font-size: .8em
-      line-height: 1.4em
-      display: block
-    label 
-      color: $green
-      font-size: 1em
-      font-weight: bold
-      display: block
-      margin: 1em 0 .8em 0
-    .influencers
-      input
-        +box-shadow(none)
-    form.edit_user
-      text-align: center
-      background: lighten($orange, 30%)
-      padding: 1em
-      margin-bottom: 10em
-      label
-        display: none
-      input
-        display: inline
-      input[type="text"]
-        width: auto
-        margin: 0 1em
-      small
-        margin: 0 0 .5em 0
-body.users     
+body.users#show 
   .content
     padding-bottom: 2em
     overflow: hidden
@@ -1097,6 +1014,50 @@ body.influencers#new, body.influencers#create
   li.input, .btn
     margin-bottom: 2em
 
+
+body.pages#about
+  h1
+    margin: 1em 0
+    +grid-prefix(3)
+    +grid(6)
+    +grid-suffix(3)
+    text-align: center
+    font-size: 3.5em
+    font-weight: bold
+    line-height: 100%
+  .content
+    padding-bottom: 6em
+    h2
+      font-weight: bold
+    h2.special
+      color: $green
+      font-size: 3em
+      line-height: 100%
+      font-weight: bold
+      +grid-subcolumn(6,5)
+    .content
+      background: white
+      overflow: hidden
+      padding: .2em 0
+      padding-top: 1.5em
+      +border-radius(4px)
+    .image, .text
+      margin: 1em 0
+    .image
+      +grid-prefix(1)
+      +grid(3)
+    .text
+      line-height: 1.6em
+      margin-top: 2em
+      +grid-suffix(1)
+      +grid(7)
+      +last
+  .campaign_btn
+    margin-top: 1em
+    +grid-prefix(3)
+    +grid(6)
+    +grid-suffix(3)
+  
 
 
 section.footer
