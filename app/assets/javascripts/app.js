@@ -64,7 +64,7 @@ var App = window.App = {
 
 
       if($("#poke_notice").length){ 
-        $.colorbox({ href: "#poke_notice", inline: true, width: "50%", height: "60%" }); 
+        $.colorbox({ href: "#poke_notice", inline: true, width: "50%" }); 
       }
 
       $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
