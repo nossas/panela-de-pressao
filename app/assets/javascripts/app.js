@@ -27,7 +27,8 @@ var App = window.App = {
         $('section.explore li.campaign:nth-child(3n+0)').css("margin-right", "0");
         $('body.users#show li.campaign:nth-child(3n+0)').css("margin-right", "0");
       }
-
+      
+      $('ul.current li.me').on('click', function(){ $(this).children('.options').fadeToggle(10); });
 
 
       // FB share
@@ -68,7 +69,6 @@ var App = window.App = {
       }
 
       $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
-
     },
 
     showLoginBox: function(){

@@ -36,7 +36,7 @@ ManifesteSe::Application.routes.draw do
 
 
   get '/explore', to: "campaigns#explore", as: :explore
-  get '/ajuda' => redirect('http://meurio.org.br/paginas/sobre_nos'), as: :help
+  get '/about', to: "pages#about", as: :about
 
   root :to => 'campaigns#index'
 end

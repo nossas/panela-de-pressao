@@ -28,7 +28,7 @@ class Campaign < ActiveRecord::Base
   default_scope order("accepted_at DESC")
 
   scope :accepted,    where('accepted_at IS NOT NULL')
-  scope :unmoderated, where(accepted_at: nil)
+  scope :unmoderated, where(accepted_at: nil).reorder('updated_at DESC')
   scope :featured,    where('featured_at IS NOT NULL').reorder('featured_at DESC')
   scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
   scope :unfinished,  where('finished_at IS NULL')
@@ -62,9 +62,6 @@ class Campaign < ActiveRecord::Base
     !accepted_at.nil?
   end
 
-  def not_empty_influencer(opt = :email)
-    self.influencers.select { |a| a.send(opt.to_s) != "" }    
-  end
 
   def pokes_by(opt = :email)
     self.pokes.where(:kind => opt.to_s)
