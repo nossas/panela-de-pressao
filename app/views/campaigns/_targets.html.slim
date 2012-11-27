@@ -11,7 +11,7 @@
           .social
             = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
             = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
-            = mail_to influencer.email, "", title: "E-mail de contato", :class => "icon-mail"
+            = link_to "", "#", title: "E-mail de contato", :class => "icon-mail"
       - if @campaign.influencers.count > 4
         li
           = link_to "Ver todos", "#/", class: "show_all_influencers"
