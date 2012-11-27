@@ -18,9 +18,10 @@ section.content.row
         = f.label :role
         = f.text_field :role, disabled: (can?(:edit, @influencer) ? false : "disabled")
       hr
-      p
-        = f.label :email
-        = f.text_field :email, disabled: (can?(:edit, @influencer) ? false : "disabled")
+      - if can? :edit, @influencer
+        p
+          = f.label :email
+          = f.text_field :email
       p
         = f.label :twitter
         = f.text_field :twitter , disabled: (can?(:edit, @influencer) ? false : "disabled")
