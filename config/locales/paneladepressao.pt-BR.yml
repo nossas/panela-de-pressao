@@ -53,7 +53,7 @@ pt-BR:
     new:  
       title: "Nova campanha"
       header: "Crie/Edite sua campanha"
-      small: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua."
+      small_html: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua. Se você precisa de ajuda, <a href='%{link}' target='_blank'>clique aqui para ver o Livro de Receitas da Panela Perfeita</a>."
       form:
         choose_targets: "Escreva o nome ou escolha na lista abaixo os alvos da campanha"
         map:
