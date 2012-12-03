@@ -7,7 +7,7 @@
   p
     | Olá, meu nome é 
     strong
-      = @campaign.user.name || current_user.name
+      = @campaign.user.present? ? @campaign.user.name : current_user.name
   p
     = f.label :name
     = f.text_field :name
