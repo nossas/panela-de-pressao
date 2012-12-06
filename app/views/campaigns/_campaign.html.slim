@@ -13,5 +13,5 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
         .icon-close-2.loss Não deu...
     - else
       .icon-message= t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
-      .icon-megaphone.pressure= link_to "Pressionar", campaign
+      .icon-megaphone.pressure= link_to "Pressionar", campaign_path(campaign, anchor: 'poke')
         
