@@ -260,7 +260,7 @@ a[href="/auth/facebook"]
     margin-bottom: 0
   #cboxClose
     position: absolute
-    top: 0
+    bottom: 0
     right: 0
 
 #email_poke_message, #facebook_poke_message, #twitter_poke_message, #poke_notice
@@ -797,7 +797,33 @@ body.campaigns#show
     display: inline-block
     &:hover
       color: $yellow
- 
+
+  a.poke_box
+    font-family: "Proxima Nova Bold"
+  #poke_box
+    padding: 1.2em 0
+    font-size: .9em
+    span.title
+      color: $green
+      font-weight: bold
+    span, p
+      display: block
+      padding: .9em 1.6em
+    input
+      font-size: 1.155em !important
+    .via_twitter span.title
+      margin-bottom: 1.5em
+    .via_twitter .btn, .via_facebook .btn
+      margin-top: 3.4em
+    .via_facebook .btn input
+      margin-left: -.4em
+    .btn
+      span
+        font-size: 9px !important
+        margin: 0
+        padding: 0 !important
+        font-family: "Arial"
+        line-height: 1.2em
   .poke_buttons
     .text
       margin: 3em 0 1em 0
@@ -874,7 +900,11 @@ body.campaigns#show
         color: darken($gray, 10%)
       &:hover
         background: darken($gray, 40%)
-
+  #poke_box
+    .button 
+      +grid-subcolumn(9, 3)
+      &:last-child
+        +last
   .targets, .supporters, .pokers
     margin-bottom: 1em
     overflow: hidden

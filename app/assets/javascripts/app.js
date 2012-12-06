@@ -2,8 +2,11 @@ var Routes = Backbone.Router.extend({
 
   routes: {
     "login" : "login",
+    "poke"  : "poke"
   },
-
+  poke: function(){
+    $.colorbox({inline: true, width: '800px', href: '#poke_box'})
+  },
   login: function(){
     App.Common.showLoginBox();
     this.navigate("");
@@ -69,6 +72,7 @@ var App = window.App = {
       }
 
       $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
+      $('a[rel*=facebox_fixed]').colorbox({ inline: true, width: "800px" });
     },
 
     showLoginBox: function(){
