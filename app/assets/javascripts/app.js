@@ -5,7 +5,7 @@ var Routes = Backbone.Router.extend({
     "poke"  : "poke"
   },
   poke: function(){
-    $.colorbox({inline: true, width: '800px', href: '#poke_box'})
+    $.colorbox({inline: true, width: '900px', href: '#poke_box'})
   },
   login: function(){
     App.Common.showLoginBox();
