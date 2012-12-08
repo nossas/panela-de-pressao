@@ -42,6 +42,12 @@
     = f.text_area :email_text
     small.inline-errors= @campaign.errors[:email_text].to_sentence
 
+
+  p.textarea
+    = f.label :pokers_email
+    = f.text_area :email_text
+    small.inline-errors= @campaign.errors[:pokers_email].to_sentence
+
   p.phone
     = f.label :image
     = f.file_field :image
