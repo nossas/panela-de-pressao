@@ -73,10 +73,10 @@
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
   hr
-  p.action
-    = link_to t('actions.delete'), @campaign, :method => :delete, :class => "btn cancel"
-    = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-      = f.submit t('actions.accept'), :class => "btn submit"
+  = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
+    p.action
+      = link_to t('actions.delete'), @campaign, :method => :delete, :class => "btn cancel"
+      = f.submit t('actions.accept'), :class => "btn"
 
 
 .hidden
