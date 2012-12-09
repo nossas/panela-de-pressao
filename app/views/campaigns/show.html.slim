@@ -25,6 +25,7 @@ section.content
       = link_to t('campaign.show.campaign_menu.featured'), campaign_feature_path(@campaign, featured: true), :method => :put if can?(:feature, @campaign)
       = link_to t('campaign.show.campaign_menu.win'), campaign_finish_path(@campaign, :succeed => true), :method => :put if can?(:finish, @campaign)
       = link_to t('campaign.show.campaign_menu.lose'), campaign_finish_path(@campaign, :succeed => false), :method => :put if can?(:finish, @campaign)
+      = link_to t('campaign.show.campaign_menu.export'), users_path(format: :csv, by_campaign_id: @campaign.id) if can?(:export, User)
   .row
     article.left.tab
       = render partial: 'tabs'

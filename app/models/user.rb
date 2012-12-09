@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :name
   validates_format_of :mobile_phone, with: /\A\(\d{2}\) \d{4}\-\d{4}\z/, allow_blank: true
 
+  scope :by_campaign_id, ->(campaign) { joins(:pokes).where(['pokes.campaign_id = ?', campaign]).uniq }
+
   mount_uploader :file, AvatarUploader
 
   def self.create_from_hash!(hash)
@@ -17,6 +19,7 @@ class User < ActiveRecord::Base
       :picture => hash['info']['image_url'] || hash['info']['image']
     )
   end
+
 
   def facebook_authorization
     authorizations.where(:provider => "facebook").first
