@@ -97,6 +97,7 @@ pt-BR:
         featured: "Destaque"
         win: "Vitória"
         lose: "Não Deu"
+        export: "Exportar pressionadores"
       tabs:
         map: "Mapa"
         campaign: "A Campanha"
