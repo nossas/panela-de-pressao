@@ -13,7 +13,7 @@ class Poke < ActiveRecord::Base
 
   validate :poked_recently?, on: :create
 
-  after_create    :thanks 
+  after_create    :thanks
   after_create    :send_email,          :if => Proc.new {self.email?}
   after_create    :send_facebook_post,  :if => Proc.new {self.facebook?}
   after_create    :if => Proc.new {self.twitter?} { self.delay.send_tweet }
