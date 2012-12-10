@@ -2,9 +2,6 @@
 
 class Poke < ActiveRecord::Base
   attr_accessible :campaign_id,         :kind, :user_id, :custom_message
-  after_create    :send_email,          :if => Proc.new {self.email?}
-  after_create    :send_facebook_post,  :if => Proc.new {self.facebook?}
-  after_create    :if => Proc.new {self.twitter?} { self.delay.send_tweet }
   belongs_to      :campaign
   belongs_to      :user
   has_many        :targets,     :through => :campaign
@@ -16,10 +13,18 @@ class Poke < ActiveRecord::Base
 
   validate :poked_recently?, on: :create
 
-  before_create { PokeMailer.delay.thanks(self) unless self.user.has_poked(self.campaign) }
-  before_create :post_facebook_activity
+  after_create    :thanks 
+  after_create    :send_email,          :if => Proc.new {self.email?}
+  after_create    :send_facebook_post,  :if => Proc.new {self.facebook?}
+  after_create    :if => Proc.new {self.twitter?} { self.delay.send_tweet }
+  before_create   :post_facebook_activity
   
   default_scope order('updated_at DESC') 
+
+
+  def thanks
+    PokeMailer.delay.thanks(self)
+  end
 
   def poked_recently?
     errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently')) if not any_recent_pokes?.blank? 
@@ -31,7 +36,7 @@ class Poke < ActiveRecord::Base
   end
 
   def twitter?
-    self.kind == 'twitter'
+    self.kind == "twitter"
   end
 
   def email?
