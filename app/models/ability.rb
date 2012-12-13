@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user, options = nil)
     can :read, User
+    can :read, Answer
     can :read, Influencer
     can :read, Campaign, Campaign.accepted do |campaign|
       campaign.accepted_at
