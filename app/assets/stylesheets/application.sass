@@ -1127,3 +1127,46 @@ section.footer
     font-size: .9em
     display: inline-block
     width: 50%
+
+.influencers_response
+  li.answer
+  .date
+    font-size: .8em
+    margin-top: 3em
+    color: lightgray
+  .text
+    background: lighten(gray, 48%)
+    padding: 1em
+  .delete
+    overflow: hidden
+    a 
+      display: block
+      float: right
+      color: red
+      font-size: .7em
+      opacity: .4
+      &:hover
+        opacity: 1
+      
+  li.answer .date, .warning
+    +border-radius(4px)
+  .warning
+    background: lighten($orange, 25%)
+    padding: 1em
+    text-align: center
+  .warning, hr, h3
+    margin: 1.5em 0
+  form 
+    a
+      display: block
+    label
+      display: none 
+    textarea
+      width: 100%
+      height: 200px
+    input
+      width: auto
+      float: right
+      &:hover
+        cursor: pointer
+

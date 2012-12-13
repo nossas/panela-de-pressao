@@ -1,9 +1,14 @@
-class AnswersController < InheritedResources::Base
+class AnswersController < ApplicationController
+  load_and_authorize_resource
+  inherit_resources
   belongs_to :campaign
+  actions :create, :destroy
 
   def create
-    create! do |success, failure|
-      success.html { redirect_to answers_campaign_path(@campaign) }
-    end
+    create! { answers_campaign_path(@campaign) }
+  end
+
+  def destroy 
+    destroy! { answers_campaign_path(@campaign) }
   end
 end

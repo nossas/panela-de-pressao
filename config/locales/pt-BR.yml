@@ -203,6 +203,10 @@ pt-BR:
     errors:
       <<: *errors
   activerecord:
+    models:
+      answer: 
+        one: "Resposta" 
+        other: "Respostas"
     errors:
       <<: *errors
       models:
@@ -258,7 +262,8 @@ pt-BR:
       poke:
         custom_message: "Mensagem"
       answer:
-        text: "Nova resposta"
+        text: "Resposta"
+
 
   unauthorized:
     create:

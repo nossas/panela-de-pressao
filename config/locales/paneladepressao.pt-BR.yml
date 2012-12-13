@@ -107,6 +107,12 @@ pt-BR:
         email: "Email que será enviado para os alvos:"
         twitter: "Tweet que será enviado para os alvos:"
         facebook: "Mensagem que será postada no mural dos alvos:"
+      answers:
+        header: "Respostas recebidas dos alvos:"
+        published: "Publicada em: %{date}"
+        warning_html: "Se você for um dos alvos da campanha, deixe a sua resposta através do email: %{email}"
+        new: "Publicar nova resposta"
+        delete: "Excluir resposta"
   user:
     show:
       what_user_did: "O que %{user} já fez no Panela de Pressão?"
