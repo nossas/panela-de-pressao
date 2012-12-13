@@ -9,8 +9,8 @@ Feature: post an answer of a target
     And there is a campaign called "A Vida das Ariranhas"
     And I'm in this campaign page
     And I click "Respostas"
-    And I fill "Nova resposta" with "Viva la vida!"
-    When I press "Postar reposta"
+    And I fill "answer_text" with "Viva la vida!"
+    When I press "Criar Resposta"
     Then I should be in the answers page of the campaign
     And I should see "Viva la vida!"
 
@@ -20,10 +20,10 @@ Feature: post an answer of a target
     And I own a campaign called "A Vida das Ariranhas"
     And I'm in this campaign page
     And I click "Respostas"
-    And I fill "Nova resposta" with "Viva la vida!"
-    When I press "Postar reposta"
+    And I fill "answer_text" with "Viva la vida!"
+    When I press "Criar Resposta"
     Then I should be in the answers page of the campaign
-    And I should see "Viva la vida!"
+    And I should not see "Viva la vida!"
 
   @omniauth_test
   Scenario: when I'm not the campaign's creator
