@@ -46,8 +46,8 @@ class Campaign < ActiveRecord::Base
   validate :owner_have_mobile_phone, on: :create
 
   def video
-    video = VideoInfo.new(self.video_url.to_s)
-    if video.valid? then return video.embed_code else return nil end
+    video = VideoInfo.get(self.video_url.to_s)
+    return video.embed_code unless video.nil?
   end
 
   def convert_html(text) 
