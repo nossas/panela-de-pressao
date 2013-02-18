@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     create!(
       :email =>   hash['info']['email'],
       :name =>    "#{hash['info']['first_name']} #{hash['info']['last_name']}",
-      :picture => hash['info']['image_url'] || hash['info']['image']
+      :picture => hash['info']['image']
     )
   end
 
