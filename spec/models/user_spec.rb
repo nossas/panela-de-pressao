@@ -21,7 +21,8 @@ describe User do
       its(:pic){ should be_== "picture.jpg" }
     end
     context "when the user have no picture at all" do
-      its(:pic){ should be_== "http://meurio.org.br/assets/avatar_blank.png" }
+      before { subject.email = "nicolas@paneladepressao.org.br" }
+      its(:pic){ should be_== "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest("nicolas@paneladepressao.org.br")}?default=monsterid" }
     end
   end
 
