@@ -6,7 +6,7 @@
   meta property="og:title"        content=@campaign.name
   meta property="og:image"        content=@campaign.image.url
   meta property="og:url"          content=campaign_url(@campaign)
-  meta property="og:description"  content=@campaign.description
+  meta property="og:description"  content=truncate(strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
   meta property="og:type"         content="paneladepressao:campaign"
   = javascript_include_tag "//cdn.optimizely.com/js/152144521.js"
   /javascript:
