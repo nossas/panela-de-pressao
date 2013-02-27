@@ -17,6 +17,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit influencer_path(@target.influencer)
   when "this user page"
     visit user_path(@user)
+  when "the unmoderated campaigns page"
+    visit unmoderated_campaigns_path
   else
     raise "I don't know #{arg1}"
   end
@@ -340,8 +342,12 @@ Then /^a email saying "(.*?)" should be sent$/ do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.body.include? arg1}.should_not be_empty
 end
 
-Given /^there is an unmoderated campaign called "(.*?)"$/ do |arg1|
+Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! :name => arg1, :accepted_at => nil
+end
+
+Given /^there is an unmoderated campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
+  @campaign = Campaign.make! :name => arg1, :accepted_at => nil, :moderator => User.make!(:name => arg2)
 end
 
 Given /^there is a user$/ do
@@ -351,4 +357,12 @@ end
 Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
   @campaign = Campaign.make!(:name => arg1, :accepted_at => Time.now)
   @campaign.users << @user
+end
+
+Then /^I should see the moderate button for this campaign$/ do
+  page.should have_css("li.campaign a[href='#{campaign_moderate_path(@campaign)}']")
+end
+
+Then /^I should see "(.*?)" as the moderator of this campaign$/ do |arg1|
+  page.should have_css("li.campaign .campaign_moderator", :text => arg1)
 end
