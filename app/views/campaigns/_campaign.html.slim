@@ -14,9 +14,8 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
     - elsif campaign.accepted?
       .icon-message= t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
       .icon-megaphone.pressure= link_to "Pressionar", campaign_path(campaign, anchor: 'poke')
-    - elsif campaign.moderator
-      .campaign_moderator
-        strong= campaign.moderator.name
-        |  está moderando
     - elsif can? :moderate, Campaign
+      .campaign_moderator
+        strong= campaign.moderator ? campaign.moderator.name : "Ninguém"
+        |  está moderando
       = link_to "Assumir moderação", campaign_moderate_path(campaign), :class => "btn", :method => "put"
