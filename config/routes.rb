@@ -9,7 +9,7 @@ ManifesteSe::Application.routes.draw do
     resources :campaigns, only: [:index]
   end
   resources :sessions, :only => [:destroy]
-  resources :campaigns do
+  resources :campaigns, :except => [:destroy] do
     member do
       get :comments,    defaults: { section: "comments" },     as: :comments,      to: "campaigns#show"
       get :map,         defaults: { section: "map" },          as: :map,           to: "campaigns#show"
@@ -20,6 +20,7 @@ ManifesteSe::Application.routes.draw do
     put :finish, :to => "campaigns#finish"
     put :feature, to: "campaigns#feature"
     put :moderate, to: "campaigns#moderate"
+    put :archive, to: "campaigns#archive"
 
     resources :posts, :only => [:create, :index, :destroy]
     resources :pokes, :only => [:create] do

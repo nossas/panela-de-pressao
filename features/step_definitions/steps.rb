@@ -366,3 +366,7 @@ end
 Then /^I should see "(.*?)" as the moderator of this campaign$/ do |arg1|
   page.should have_css("li.campaign .campaign_moderator", :text => arg1)
 end
+
+Given /^there is a campaign$/ do
+  @campaign = Campaign.make!
+end

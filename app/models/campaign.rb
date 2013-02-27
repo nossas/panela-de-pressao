@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :user_ids, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
-    :pokers_email, :finished_at, :succeed, :video_url, :moderator_id
+    :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at
 
   has_and_belongs_to_many :users
   belongs_to :user
@@ -34,6 +34,7 @@ class Campaign < ActiveRecord::Base
   scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
   scope :unfinished,  where('finished_at IS NULL')
   scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
+  scope :unarchived,  where('archived_at IS NULL')
 
   mount_uploader :image, ImageUploader
 
@@ -92,5 +93,9 @@ class Campaign < ActiveRecord::Base
     self.accepted_at = Time.now
     self.save
     CampaignMailer.delay.campaign_accepted(self)
+  end
+
+  def archived?
+    !self.archived_at.nil?
   end
 end

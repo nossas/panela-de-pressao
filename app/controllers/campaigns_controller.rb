@@ -74,12 +74,18 @@ class CampaignsController < InheritedResources::Base
 
 
   def unmoderated
-    @campaigns = Campaign.unmoderated
+    @campaigns = Campaign.unmoderated.unarchived
   end
 
   def moderate
     Campaign.find(params[:campaign_id]).update_attributes :moderator_id => current_user.id
     redirect_to unmoderated_campaigns_path
+  end
+
+  def archive
+    campaign = Campaign.find(params[:campaign_id])
+    campaign.update_attributes :archived_at => Time.now
+    redirect_to campaign
   end
 
   protected
