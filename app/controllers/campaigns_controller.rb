@@ -77,6 +77,11 @@ class CampaignsController < InheritedResources::Base
     @campaigns = Campaign.unmoderated
   end
 
+  def moderate
+    Campaign.find(params[:campaign_id]).update_attributes :moderator_id => current_user.id
+    redirect_to unmoderated_campaigns_path
+  end
+
   protected
     def collection
       if params[:user_id]

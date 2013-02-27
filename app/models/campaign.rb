@@ -3,11 +3,12 @@ class Campaign < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :user_ids, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
-    :pokers_email, :finished_at, :succeed, :video_url
+    :pokers_email, :finished_at, :succeed, :video_url, :moderator_id
 
   has_and_belongs_to_many :users
   belongs_to :user
   belongs_to :category
+  belongs_to :moderator, :class_name => "User"
   has_many :targets
   has_many :influencers,          through: :targets
   has_many :twitter_influencers,  through: :targets, source: :influencer, conditions: "COALESCE(influencers.twitter, '') <> ''"
