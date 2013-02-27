@@ -75,7 +75,6 @@
   hr
   = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
     p.action
-      = link_to t('actions.delete'), @campaign, :method => :delete, :class => "btn cancel"
       = f.submit t('actions.accept'), :class => "btn"
 
 

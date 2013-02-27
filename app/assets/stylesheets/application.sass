@@ -27,7 +27,7 @@ $gray: #f3f4f4
   display: none
 .cancel
   background: darken(red, 15%) !important
-span.succeed, span.unsucceed
+span.succeed, span.unsucceed, span.archived
   background: $victory
   display: block
   width: 98%
@@ -40,6 +40,8 @@ span.succeed, span.unsucceed
   font-size: 1.1em
 span.unsucceed
   background: $loss
+span.archived
+  background: #666
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
