@@ -17,6 +17,6 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
     - elsif campaign.moderator
       .campaign_moderator
         strong= campaign.moderator.name
-        |  está moderando esta campanha
+        |  está moderando
     - elsif can? :moderate, Campaign
       = link_to "Assumir moderação", campaign_moderate_path(campaign), :class => "btn", :method => "put"
