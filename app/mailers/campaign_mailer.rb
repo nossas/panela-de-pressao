@@ -21,6 +21,16 @@ class CampaignMailer < ActionMailer::Base
       :from => "contato@paneladepressao.org.br"
     )
   end
+  
+  def campaigns_without_moderator
+    headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"campaigns_without_moderator\"] }"
+    @campaigns = Campaign.orphan.unmoderated.unarchived
+    mail(
+      :to => "curadoria@paneladepressao.org.br",
+      :subject => "Campanhas sem moderador",
+      :from => "contato@paneladepressao.org.br"
+    )
+  end
 
   def we_received_your_campaign campaign
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"we_received_your_campaign\"] }"

@@ -35,6 +35,7 @@ class Campaign < ActiveRecord::Base
   scope :unfinished,  where('finished_at IS NULL')
   scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
   scope :unarchived,  where('archived_at IS NULL')
+  scope :orphan,      where('moderator_id IS NULL')
 
   mount_uploader :image, ImageUploader
 
