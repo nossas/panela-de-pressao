@@ -1,0 +1,5 @@
+p Se liga, #{t('there_are_campaigns', :count => @campaigns.size)} sem moderador!
+p Entre na #{link_to "página de moderação", unmoderated_campaigns_url} ou veja a lista dessas campanhas abaixo:
+ul
+  - @campaigns.each do |campaign|
+    li= link_to campaign.name, campaign_url(campaign)

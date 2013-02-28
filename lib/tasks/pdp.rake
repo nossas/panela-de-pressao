@@ -8,4 +8,9 @@ namespace :pdp do
       CampaignMailer.report(campaign).deliver
     end
   end
+
+  desc "Email campaigns without moderator"
+  task :email_campaigns_without_moderator => :environment do
+    CampaignMailer.campaigns_without_moderator.deliver
+  end
 end

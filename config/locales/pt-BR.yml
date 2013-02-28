@@ -281,3 +281,7 @@ pt-BR:
     email: "Seu email foi enviado aos alvos da campanha, é isso aí! Pressão neles!"
     facebook: "Uma nova mensagem foi postada no seu mural do Facebook, é isso aí! Pressão neles!"
     twitter: "Mais um tweet para a campanha, é isso aí! Pressão neles!"
+
+  there_are_campaigns:
+    one: "existe 1 campanha"
+    other: "existem %{count} campanhas"
