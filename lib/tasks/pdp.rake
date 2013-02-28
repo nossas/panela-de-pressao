@@ -11,6 +11,8 @@ namespace :pdp do
 
   desc "Email campaigns without moderator"
   task :email_campaigns_without_moderator => :environment do
-    CampaignMailer.campaigns_without_moderator.deliver
+    if Campaign.orphan.unmoderated.unarchived.any?
+      CampaignMailer.campaigns_without_moderator.deliver
+    end
   end
 end
