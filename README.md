@@ -1,4 +1,5 @@
-Because we care about our code: [![Build Status](https://secure.travis-ci.org/meurio/panela-de-pressao.png?branch=master)](http://travis-ci.org/meurio/panela-de-pressao) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/meurio/panela-de-pressao)
+[![Build Status](https://secure.travis-ci.org/meurio/panela-de-pressao.png?branch=master)](http://travis-ci.org/meurio/panela-de-pressao)
+[![Code Climate](https://codeclimate.com/github/meurio/panela-de-pressao.png)](https://codeclimate.com/github/meurio/panela-de-pressao)
 
 # Getting Started
 1. We suppose you already have Ruby on Rails and Git installed;
