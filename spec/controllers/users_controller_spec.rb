@@ -26,7 +26,7 @@ describe UsersController do
         controller.stub!(:current_user).and_return(false)
         put :update, id: @user.id, user: { about_me: "Trying to update something that isn't mine hohoho" }
       end
-      its(:status) { should == 401 }
+      its(:status) { should == 302 }
     end
     end
   end
