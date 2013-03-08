@@ -1,11 +1,16 @@
 .supporters
   h3.icon-cooker= t 'campaign.show.cooker.head_html', count: 1
   .content
-    - user = @campaign.user
     ol
       li
-        = link_to image_tag(user.pic(:type => :square), size: "50x50", title: user.name), user, title: user.name
-        .name= link_to truncate(user.name, length: 40), user
+        = link_to image_tag(@campaign.user.pic(:type => :square), size: "50x50", title: @campaign.user.name), @campaign.user, title: @campaign.user.name
+        .name= link_to truncate(@campaign.user.name, length: 40), @campaign.user
         .social
           = mail_to t('emails.contact'), "", class: 'icon-mail'
 
+      - @campaign.users.each do |user|
+        li
+          = link_to image_tag(user.pic(:type => :square), size: "50x50", title: user.name), user, title: user.name
+          .name= link_to truncate(user.name, length: 40), user
+          .social
+            = mail_to t('emails.contact'), "", class: 'icon-mail'
