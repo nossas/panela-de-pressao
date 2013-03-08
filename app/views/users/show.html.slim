@@ -9,8 +9,8 @@ section.content
     aside.left
       .image
         = image_tag @user.pic
-        = render 'form' if current_user == @user
-        = render 'profile' unless current_user == @user
+        = render 'form' if can? :update, @user
+        = render 'profile' if cannot? :update, @user
 
 
 

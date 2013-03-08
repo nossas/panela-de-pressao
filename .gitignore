@@ -12,3 +12,4 @@ public/uploads/
 logfile
 .DS_Store
 config/initializers/01_env_vars.rb
+*.swo
