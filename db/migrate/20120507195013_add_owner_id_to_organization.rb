@@ -1,7 +1,5 @@
 class AddOwnerIdToOrganization < ActiveRecord::Migration
   def change
-    add_column :organizations, :owner_id, :integer, null: false
-    add_foreign_key :organizations, :users, column: 'owner_id'
+    add_column :organizations, :owner_id, :integer, null: false, foreign_key: { references: :users }
   end
-
 end

@@ -5,8 +5,5 @@ class CreateOrganizationMembers < ActiveRecord::Migration
       t.integer :user_id, :null => false
       t.timestamps
     end
-
-    add_foreign_key :organization_members, :organizations
-    add_foreign_key :organization_members, :users
   end
 end

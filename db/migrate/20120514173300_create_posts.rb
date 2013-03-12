@@ -7,7 +7,5 @@ class CreatePosts < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_foreign_key :posts, :campaigns
   end
 end

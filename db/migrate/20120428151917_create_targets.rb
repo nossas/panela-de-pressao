@@ -7,8 +7,6 @@ class CreateTargets < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_foreign_key :targets, :influencers
-    add_foreign_key :targets, :campaigns
     add_index :targets, [:influencer_id, :campaign_id], {:unique => true}
   end
 end
