@@ -1,12 +1,11 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '~> 3.2.6'
+gem 'rails', '~> 3.2.12'
 
 # Tools
 gem 'pg'
 gem 'thin'
-gem "foreigner"
 gem 'inherited_resources'
 gem "slim"
 gem "slim-rails"
@@ -17,6 +16,7 @@ gem 'delayed_job_active_record'
 gem 'rack-no-www'
 gem 'video_info'
 gem "jquery-validation-rails"
+gem "schema_plus"
 
 # Image uplaod
 gem 'carrierwave'
