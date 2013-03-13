@@ -18,11 +18,11 @@ Authorization.blueprint do
 end
 
 Campaign.blueprint do
-  name { "Desarmamento Voluntário" }
+  name { "Desarmamento Voluntário #{sn}" }
   description { "O projeto desenvolve atividades destinadas a reduzir a violência armada." }
   user { User.make! }
   image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
-  category { Category.make! }
+  category { Category.first }
   pokes(0)
   email_text { "teste" }
   facebook_text { "teste" }

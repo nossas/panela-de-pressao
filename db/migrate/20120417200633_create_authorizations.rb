@@ -7,7 +7,5 @@ class CreateAuthorizations < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_foreign_key :authorizations, :users
   end
 end
