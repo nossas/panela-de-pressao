@@ -31,4 +31,8 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.before { ActionMailer::Base.deliveries.clear }
   config.before { Bitly.stub_chain(:new, :shorten, :short_url).and_return("bitly.com/unlockmedia") }
+    
+  config.before do
+    load Rails.root + 'db/seeds.rb'
+  end  
 end
