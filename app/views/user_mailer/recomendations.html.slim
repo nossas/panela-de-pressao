@@ -3,7 +3,7 @@
 - content_for(:footer) do
   p style="font-size:12px; text-align:center; color:#A4A4A4"
     | Não quer mais receber e-mails do Panela de Pressão? 
-    a href=user_url(@user) style="color:#D76E35" Retire-se da lista
+    a href=user_unsubscribe_url(@user, :token => @user.token) style="color:#D76E35" Retire-se da lista
 
 - @recomendations.each do |recomendation|
   table style="background-color:white"

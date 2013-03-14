@@ -19,6 +19,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit user_path(@user)
   when "the unmoderated campaigns page"
     visit unmoderated_campaigns_path
+  when "this user unsubscribe page"
+    visit user_unsubscribe_path(@user, :token => @user.token)
   else
     raise "I don't know #{arg1}"
   end
@@ -369,4 +371,8 @@ end
 
 Given /^there is a campaign$/ do
   @campaign = Campaign.make!
+end
+
+Then /^I should see the unsubscription message$/ do
+  page.should have_css(".unsubscription_message")
 end
