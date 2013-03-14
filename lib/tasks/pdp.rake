@@ -15,4 +15,13 @@ namespace :pdp do
       CampaignMailer.campaigns_without_moderator.deliver
     end
   end
+
+  desc "Email the recommended campaigns to users"
+  task :email_recommended_campaigns => :environment do
+    if(Date.today.yday % 14 == 4)
+      User.subscribers.each do |user|
+        UserMailer.recomendations(user.id).deliver
+      end
+    end
+  end
 end

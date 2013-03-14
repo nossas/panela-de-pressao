@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_format_of :mobile_phone, with: /\A\(\d{2}\) \d{4}\-\d{4}\z/, allow_blank: true
 
   scope :by_campaign_id, ->(campaign) { joins(:pokes).where(['pokes.campaign_id = ?', campaign]).uniq }
+  scope :subscribers, where(:subscriber => true)
 
   mount_uploader :file, AvatarUploader
 
