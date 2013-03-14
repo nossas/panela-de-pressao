@@ -1,10 +1,21 @@
-p #{@campaign.user.name},
-p A sua campanha #{link_to @campaign.name, @campaign} chegou na sua #{((Time.now - @campaign.created_at)/1.week).round}ª semana e estes são os resultados até então:
-p #{content_tag :strong, number_to_human(@campaign.pokers.length)} pessoas já realizaram #{content_tag :strong, number_to_human(@campaign.pokes.count)} pressões, das quais:
-ul
-  li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "facebook").count)} via Facebook;
-  li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "twitter").count)} via Twitter;
-  li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "email").count)} via email;
-  li #{content_tag :strong, number_to_human(@campaign.pokes.where("created_at >= ?", Time.now - 1.week).count)} na última semana;
-p Continue compartilhando e chamando mais pessoas para pressionar!
-p Equipe Panela de Pressão.
+- content_for(:title) { "Relatório da sua campanha" }
+
+table style="background-color:white"
+  tr
+    td colspan="3" style="height:10px"
+  tr
+    td style="width:10px"
+    td style="color:#676767; font-size:14px"
+      p #{@campaign.user.name},
+      p A sua campanha #{link_to @campaign.name, @campaign} chegou na sua #{((Time.now - @campaign.created_at)/1.week).round}ª semana e estes são os resultados até então:
+      p #{content_tag :strong, number_to_human(@campaign.pokers.length)} pessoas já realizaram #{content_tag :strong, number_to_human(@campaign.pokes.count)} pressões, das quais:
+      ul
+        li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "facebook").count)} via Facebook;
+        li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "twitter").count)} via Twitter;
+        li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "email").count)} via email;
+        li #{content_tag :strong, number_to_human(@campaign.pokes.where("created_at >= ?", Time.now - 1.week).count)} na última semana;
+      p Continue compartilhando e chamando mais pessoas para pressionar!
+      p Equipe Panela de Pressão.
+    td style="width:10px"
+  tr
+    td colspan="3" style="height:10px"

@@ -1,6 +1,7 @@
 # coding: utf-8
 class CampaignMailer < ActionMailer::Base
   default from: "from@example.com"
+  layout 'mailer'
 
   def campaign_accepted campaign
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"campaign_accepted\"] }"
@@ -47,7 +48,7 @@ class CampaignMailer < ActionMailer::Base
     @campaign = campaign
     mail(
       :to => campaign.user.email,
-      :subject => "Relatório da sua campanha no Panela de Pressão",
+      :subject => "Relatório da sua campanha",
       :from => "contato@paneladepressao.org.br"
     )
   end

@@ -2,6 +2,7 @@
 
 class PokeMailer < ActionMailer::Base
   default from: "from@example.com"
+  layout 'mailer'
 
   def poke(the_poke)
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"poke\"] }"
