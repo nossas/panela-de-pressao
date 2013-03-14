@@ -1,0 +1,26 @@
+- content_for(:title) { "Veja as campanhas que separamos essa semana para você" }
+
+- content_for(:footer) do
+  p style="font-size:12px; text-align:center; color:#A4A4A4"
+    | Não quer mais receber e-mails do Panela de Pressão? 
+    a href=user_url(@user) style="color:#D76E35" Retire-se da lista
+
+- @recomendations.each do |recomendation|
+  table style="background-color:white"
+    tr
+      td colspan="5" style="height:10px"
+    tr
+      td style="width:10px"
+      td style="vertical-align:top;"
+        img src=recomendation.campaign.image style="width:180px"
+      td style="width:5px"
+      td style="vertical-align:top; color:#676767"
+        a href=campaign_url(recomendation.campaign) style="font-size:14px; color:#219548; font-weight:bold" =recomendation.campaign.name
+        p style="font-size:12px; margin:0" =truncate(strip_tags(recomendation.campaign.description_html), length: 140)
+        p style="font-size:12px;"
+          strong Porque você pressionou: 
+          a href=campaign_url(recomendation.source) style="color:#219548; font-style:italic" =recomendation.source.name
+      td style="width:10px"
+    tr
+      td colspan="5" style="height:10px"
+  br

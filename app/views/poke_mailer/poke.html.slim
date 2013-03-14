@@ -1,3 +1,12 @@
-p= raw simple_format(@poke.message)
-p= link_to @poke.campaign.name, campaign_url(@poke.campaign)
-p Atenciosamente #{@poke.user.name}
+table style="background-color:white"
+  tr
+    td colspan="3" style="height:10px"
+  tr
+    td style="width:10px"
+    td style="color:#676767; font-size:14px"
+      p= raw simple_format(@poke.message)
+      p= link_to @poke.campaign.name, campaign_url(@poke.campaign)
+      p Atenciosamente #{@poke.user.name}
+    td style="width:10px"
+  tr
+    td colspan="3" style="height:10px"

@@ -1,5 +1,16 @@
-p Se liga, #{t('there_are_campaigns', :count => @campaigns.size)} sem moderador!
-p Entre na #{link_to "página de moderação", unmoderated_campaigns_url} ou veja a lista dessas campanhas abaixo:
-ul
-  - @campaigns.each do |campaign|
-    li= link_to campaign.name, campaign_url(campaign)
+- content_for(:title) { "Campanhas sem moderador" }
+
+table style="background-color:white"
+  tr
+    td colspan="3" style="height:10px"
+  tr
+    td style="width:10px"
+    td style="color:#676767; font-size:14px"
+      p Se liga, #{t('there_are_campaigns', :count => @campaigns.size)} sem moderador!
+      p Entre na #{link_to "página de moderação", unmoderated_campaigns_url} ou veja a lista dessas campanhas abaixo:
+      ul
+        - @campaigns.each do |campaign|
+          li= link_to campaign.name, campaign_url(campaign)
+    td style="width:10px"
+  tr
+    td colspan="3" style="height:10px"

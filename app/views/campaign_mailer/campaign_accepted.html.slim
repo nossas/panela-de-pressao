@@ -1,1 +1,14 @@
-p Parabéns #{@campaign.user.name}! Sua campanha #{link_to @campaign.name, @campaign} já está no ar. Agora é com você: espalhe a sua campanha para quem você puder usando os links de compartilhamento no Facebook e Twitter ou enviando o link da campanha por email. Quanto mais gente, mais pressão e quanto mais pressão mais rápido a coisa anda! 
+- content_for(:title) { "Sua campanha foi aprovada!" }
+
+table style="background-color:white"
+  tr
+    td colspan="3" style="height:10px"
+  tr
+    td style="width:10px"
+    td style="color:#676767; font-size:14px"
+      p Parabéns #{@campaign.user.name}!
+      p Sua campanha #{link_to @campaign.name, @campaign} já está no ar. Agora é com você: espalhe a sua campanha para quem você puder usando os links de compartilhamento no Facebook e Twitter ou enviando o link da campanha por email.
+      p Quanto mais gente, mais pressão e quanto mais pressão mais rápido a coisa anda! 
+    td style="width:10px"
+  tr
+    td colspan="3" style="height:10px"
