@@ -34,6 +34,7 @@ ManifesteSe::Application.routes.draw do
 
   resources :users, only: [:show, :update, :index] do
     resources :campaigns, :only => [:index]
+    get :unsubscribe, :to => "users#unsubscribe"
   end
 
 

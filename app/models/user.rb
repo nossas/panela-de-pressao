@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :name, :picture, :about_me, :file, :remove_file, :mobile_phone
+  attr_accessible :admin, :email, :name, :picture, :about_me, :file, :remove_file, :mobile_phone, :token, :subscriber
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   scope :by_campaign_id, ->(campaign) { joins(:pokes).where(['pokes.campaign_id = ?', campaign]).uniq }
 
   mount_uploader :file, AvatarUploader
+
+  before_create { self.token = Digest::MD5.hexdigest(Time.now.to_s) }
 
   def self.create_from_hash!(hash)
     create!(
