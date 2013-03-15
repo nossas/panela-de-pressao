@@ -15,6 +15,7 @@ table style="background-color:white"
         li #{content_tag :strong, number_to_human(@campaign.pokes.where(:kind => "email").count)} via email;
         li #{content_tag :strong, number_to_human(@campaign.pokes.where("created_at >= ?", Time.now - 1.week).count)} na última semana;
       p Continue compartilhando e chamando mais pessoas para pressionar!
+      p Não vê a hora de ter vitória na sua campanha? #{link_to "Clique aqui", "https://speakerd.s3.amazonaws.com/presentations/55331d301fb401307ccc12313d145d81/Panela_de_Pressao_-_cookbook.pdf", :style => "color:#219548;"} pra ver o livro de receitas da panela perfeita! Qualquer dúvida fala com a gente!
       p Equipe Panela de Pressão.
     td style="width:10px"
   tr
