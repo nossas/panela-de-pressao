@@ -1,7 +1,7 @@
 #coding: utf-8
 
 class PokeMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "Panela de Pressão <contato@paneladepressao.org.br>"
   layout 'mailer'
 
   def poke(the_poke)
@@ -17,10 +17,6 @@ class PokeMailer < ActionMailer::Base
   def thanks(the_poke)
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"thanks_for_your_poke\"] }"
     @poke = the_poke
-    mail(
-      :to => @poke.user.email,
-      :subject => "Valeu por apoiar a campanha: #{@poke.campaign.name}",
-      :from => "contato@paneladepressao.org.br"
-    )
+    mail(:to => @poke.user.email, :subject => "Valeu por apoiar a campanha: #{@poke.campaign.name}")
   end
 end
