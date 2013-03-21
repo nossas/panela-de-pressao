@@ -19,7 +19,7 @@ namespace :pdp do
   desc "Email the recommended campaigns to users"
   task :email_recommended_campaigns => :environment do
     if(Date.today.yday % 14 == 10)
-      User.subscribers.each do |user|
+      User.subscribers.pokers.each do |user|
         UserMailer.recomendations(user.id).deliver
       end
     end
