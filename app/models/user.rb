@@ -7,9 +7,11 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :name
   validates_format_of :mobile_phone, with: /\A\(\d{2}\) \d{4}\-\d{4}\z/, allow_blank: true
+  validates_uniqueness_of :email
 
   scope :by_campaign_id, ->(campaign) { joins(:pokes).where(['pokes.campaign_id = ?', campaign]).uniq }
   scope :subscribers, where(:subscriber => true)
+  scope :pokers, where("(SELECT count(*) FROM pokes WHERE pokes.user_id = users.id) > 0")
 
   mount_uploader :file, AvatarUploader
 
