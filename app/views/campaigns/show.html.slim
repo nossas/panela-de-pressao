@@ -30,7 +30,7 @@ section.content
       = link_to t('campaign.show.campaign_menu.lose'), campaign_finish_path(@campaign, :succeed => false), :method => :put if can?(:finish, @campaign)
       = link_to "Arquivar", campaign_archive_path(@campaign), :method => :put if can?(:archive, @campaign)
       = link_to t('campaign.show.campaign_menu.export'), users_path(format: :csv, by_campaign_id: @campaign.id) if can?(:export, User)
-  .row
+  .row.visible
     article.left.tab
       = render partial: 'tabs'
     aside.right.share
