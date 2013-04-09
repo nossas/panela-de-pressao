@@ -22,14 +22,18 @@ section.content
       .finished_at
         span.archived Essa campanha foi arquivada
     h1.title= @campaign.name
-    .campaign_menu
-      span.category.icon-list= @campaign.category.name
-      = link_to t('campaign.show.campaign_menu.edit'), edit_campaign_path(@campaign) if can?(:edit, @campaign)
-      = link_to t('campaign.show.campaign_menu.featured'), campaign_feature_path(@campaign, featured: true), :method => :put if can?(:feature, @campaign)
-      = link_to t('campaign.show.campaign_menu.win'), campaign_finish_path(@campaign, :succeed => true), :method => :put if can?(:finish, @campaign)
-      = link_to t('campaign.show.campaign_menu.lose'), campaign_finish_path(@campaign, :succeed => false), :method => :put if can?(:finish, @campaign)
-      = link_to "Arquivar", campaign_archive_path(@campaign), :method => :put if can?(:archive, @campaign)
-      = link_to t('campaign.show.campaign_menu.export'), users_path(format: :csv, by_campaign_id: @campaign.id) if can?(:export, User)
+    .campaign_subtitle
+      span
+        | No ar há 
+        strong #{@campaign.accepted_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.accepted_at)}
+        |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
+      .campaign_menu
+        = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha" if can?(:edit, @campaign)
+        = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque" if can?(:feature, @campaign)
+        = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória" if can?(:finish, @campaign)
+        = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu" if can?(:finish, @campaign)
+        = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-download", title: "Arquivar" if can?(:archive, @campaign)
+        = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-export", title: "Exportar CSV" if can?(:export, User)
   .row.visible
     article.left.tab
       = render partial: 'tabs'
@@ -41,7 +45,7 @@ section.content
         = render partial: params[:section] || 'description'
       aside.right.pressure
         .counter
-          .count.icon-message= t('home.highlight.pokes_count_html', :count => number_with_delimiter(@campaign.pokes.count))
+          .count.icon-chat= t('home.highlight.pokes_count_html', :count => number_with_delimiter(@campaign.pokes.count))
         = render partial: 'poke_buttons'
         = render partial: 'targets'
         = render partial: 'supporters'

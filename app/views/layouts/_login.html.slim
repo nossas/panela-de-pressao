@@ -9,10 +9,10 @@ section.login
             span= image_tag current_user.pic(:type => "square"), size: '20x20', alt: "avatar"
             span.name= current_user.name
             ul.options
-              li= link_to "Meu perfil", current_user, :class => "icon-user"
-              li= link_to "Minhas campanhas", user_campaigns_path(current_user), :class => "icon-comments"
-              li= link_to "Moderar campanhas", unmoderated_campaigns_path, :class => "icon-blocked" if can? :moderate, Campaign
-              li= link_to "Exportar todos os usuários", users_path(:format => :csv), :class => "icon-file-excel" if can? :export, User
-              li= link_to "Sair", session_path(current_user.id), :method => :delete, :class => "icon-exit", :title => "Sair"
+              li= link_to "Meu perfil", current_user
+              li= link_to "Minhas campanhas", user_campaigns_path(current_user)
+              li= link_to "Moderar campanhas", unmoderated_campaigns_path if can? :moderate, Campaign
+              li= link_to "Exportar todos os usuários", users_path(:format => :csv) if can? :export, User
+              li= link_to "Sair", session_path(current_user.id), :method => :delete, :title => "Sair"
       - else
         = link_to "Conecte-se pelo Facebook", facebook_connect_path, class: 'fb'
