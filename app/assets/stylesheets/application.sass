@@ -399,10 +399,10 @@ section.highlight
       font-size: 3em !important
       float: left
       width: 60%
+      line-height: 36px
     .count
       &:before
         font-size: 48px !important
-        margin-top: .2em
   .featured
     background: white
     padding: 1.5em
@@ -461,14 +461,10 @@ section.content
       +grid(3)
       +box-shadow(0 1px 3px #c0c0c0)
       +border-radius(4px)
-      .icon-message
-        &:before
-          position: relative
-          top: .2em
       .icon-megaphone
         display: none
       &.not_finished:hover
-        .icon-message
+        .icon-chat
           display: none
         .icon-megaphone
           display: block
@@ -495,17 +491,13 @@ section.content
       background: $victory 
       color: white
       text-align: center
-      font-size: 1.3em
       font-weight: bold
-      padding: .5em
-      padding-bottom: .45em
+      padding: 5px
       +border-radius(4px)
       +transition(.4s)
       &:before
-        margin-right: .2em
-        font-size: 1.2em
-        top: .1em
-        position: relative
+        vertical-align: middle
+        margin-right: 5px
     .pressure
       background: $green
       a
@@ -515,7 +507,7 @@ section.content
     .loss
       background: $loss
     .counter
-      padding: .4em
+      padding: 7px
 
 
 // General style scopes
@@ -538,11 +530,11 @@ p.description
   padding-top: 1em
   border-top: 1px solid darken($gray, 10%)
   color: #404040
-  .icon-message
+  .icon-chat
     color: darken($gray, 15%)
   span
     display: block
-    font-size: 1.8em
+    font-size: 17px
     color: black
     font-weight: bold
     line-height: .8em
@@ -571,14 +563,6 @@ section.information
       font-size: .9em
   .didnt_find_target
     +last
-
-
-body.campaigns#index, body.campaigns#explore, body.campaigns#unmoderated
-  .popular, ol.campaigns li.not_finished
-    .counter .icon-message
-      padding: .2em
-      padding-bottom: .150em
-      padding-top: .2em
 
 section.header
   +box-shadow(0 1px 6px lighten(black, 75%))
@@ -663,6 +647,13 @@ section.explore
       text-align: center
       +border-radius(4px)
 
+.icon-chat:before
+  float: left
+  font-size: 26px
+  opacity: .7
+  margin-right: .2em
+  top: -2px
+
 body.campaigns#new, body.campaigns#edit, body.campaigns#create
   .content
     .row
@@ -739,21 +730,36 @@ body.campaigns#show
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
-  h1.title, span.category
+  h1.title, span
     color: darken($gray, 75%)
   h1.title
     font-size: 2em
     font-weight: bold
     line-height: 100% 
     margin: 1em 0 .5em 0
-  .campaign_menu
+  .campaign_subtitle
     margin-bottom: 1.5em
-    span.category, a
+    span
       margin-right: 1em
-    span.category
       font-size: 1em
       display: inline-block
       color: darken($gray, 55%)
+    .campaign_menu
+      display: inline-block
+      a[class^="icon-"]
+        background: lighten(lightgray, 10%)
+        padding: 5px 10px
+        color: gray
+        border-top: 1px lightgray solid
+        border-bottom: 1px lightgray solid
+        border-left: 1px lightgray solid
+        &:hover
+          background: white
+        &:first-child
+          +border-radius(5px 0 0 5px)
+        &:last-child
+          +border-radius(0 5px 5px 0)
+          border-right: 1px lightgray solid
   article.tab, article.share
     background: none
     padding-bottom: .6em
@@ -808,7 +814,6 @@ body.campaigns#show
     border-top: none
     .count
       padding: .8em
-
       &:before
         font-size: 48px
         margin-top: .2em

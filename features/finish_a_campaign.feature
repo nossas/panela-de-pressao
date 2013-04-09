@@ -18,7 +18,7 @@ Feature: finish a campaign
     Given I'm logged in as admin
     And there is a campaign called "Save the Whales!"
     And I'm in this campaign page
-    When I click "Não Deu"
+    When I click "Não deu"
     Then I should be in this campaign page
     And I should see "Não foi dessa vez..."
     And I should not see "the pokes buttons" in "the right sidebar"

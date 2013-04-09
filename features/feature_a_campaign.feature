@@ -9,7 +9,6 @@ Feature: Put a campaign on featured mode
     Given I'm logged in as admin
     And there is a campaign called "Save the Whales!"
     And I'm in this campaign page
-    And I should see "Destaque"
     When I click "Destaque"
     Then I should be in this campaign page
 
