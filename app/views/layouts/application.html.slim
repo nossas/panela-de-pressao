@@ -24,7 +24,7 @@ html
       meta property="og:description"  content=t('site.fb_description')
     /[if IE] 
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-      = javascript_include_tag "ie/lte-ie7"
+    == "<!--[if lt IE 7 ]>#{javascript_include_tag "ie/lte-ie7"}<![endif]-->"
     javascript:
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-26278513-6']);
