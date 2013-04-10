@@ -732,7 +732,7 @@ body.campaigns#show
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
-  h1.title, span
+  h1.title, .campaign_subtitle span
     color: darken($gray, 75%)
   h1.title
     font-size: 2em
@@ -749,6 +749,8 @@ body.campaigns#show
     .campaign_menu
       display: inline-block
       a[class^="icon-"]
+        display: inline-block
+        line-height: 0
         background: lighten(lightgray, 10%)
         padding: 5px 10px
         color: gray
