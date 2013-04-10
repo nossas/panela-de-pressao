@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-pencil, .icon-export, .icon-thumbs-up, .icon-thumbs-down, .icon-star, .icon-download, .icon-target, .icon-mail, .icon-megaphone, .icon-new, .icon-cross, .icon-list, .icon-chat, .icon-user, .icon-facebook, .icon-twitter {
+[class*="icon-"]:before{
 	font-family: 'entypo';
 	speak: none;
 	font-style: normal;
