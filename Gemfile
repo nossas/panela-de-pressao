@@ -59,7 +59,7 @@ group :test, :development do
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'database_cleaner'
-  gem "capybara", "~> 1.1.2"
+  gem "capybara"
   gem "shoulda-matchers"
   gem "machinist", ">= 2.0.0.beta2"
   gem "jasmine"
