@@ -1,9 +1,9 @@
 # coding: utf-8
 class SessionsController < ApplicationController
   def create
-    unless @auth = Authorization.find_from_hash(auth_data)
-      # Create a new user or add an auth to existing user, depending on
-      # whether there is already a user signed in.
+    if @auth = Authorization.find_from_hash(auth_data)
+      @auth.update_attributes :token => auth_data['credentials']['token'], :secret => auth_data['credentials']['secret']
+    else
       @auth = Authorization.create_from_hash(auth_data, current_user)
     end
 
