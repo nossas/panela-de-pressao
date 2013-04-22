@@ -7,8 +7,7 @@ Feature: edit a campaign
   Scenario: when I'm admin
     Given I'm logged in as admin
     And there is a campaign called "Salve a praça Nossa Senhora da Paz"
-    And I'm in the campaigns page
-    And I click "Salve a praça Nossa Senhora da Paz"
+    And I'm in this campaign page
     And I click "Editar campanha"
     Then I should not see "the accept campaign button"
     Given I fill "O nome da minha campanha será" with "Fim à Escravidão no Brasil"
@@ -21,8 +20,7 @@ Feature: edit a campaign
   Scenario: when I'm not admin
     Given I'm logged in
     And there is a campaign called "Salve a praça Nossa Senhora da Paz"
-    And I'm in the campaigns page
-    When I click "Salve a praça Nossa Senhora da Paz"
+    When I'm in this campaign page
     Then I should not see "the edit campaign button"
 
   @omniauth_test

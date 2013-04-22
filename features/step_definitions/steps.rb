@@ -144,7 +144,7 @@ end
 Then /^I should see "([^"]*)"$/ do |arg1|
   case arg1
   when "the poker avatar"
-    page.should have_css("img[src='/assets/pic.png']")
+    page.should have_css("img[src='http://sphotos-d.ak.fbcdn.net/hphotos-ak-snc7/602310_10151152362652843_505953681_n.jpg']")
   when "user[name]"
     page.should have_css('input[name="user[name]"]')
   when "user[email]"
@@ -331,7 +331,7 @@ end
 
 Then /^I should not see "(.*?)" in "(.*?)"$/ do |arg1, arg2|
   if arg2 == "the right sidebar"
-    within("aside.right") do
+    within("aside.right.pressure") do
       should_not have_content(arg1)
     end
   else
