@@ -92,7 +92,6 @@ class Poke < ActiveRecord::Base
       begin
         campaign_url = Rails.application.routes.url_helpers.campaign_url(self.campaign)
         Koala::Facebook::API.new(self.user.facebook_authorization.token).delay.put_connections("me", "paneladepressao:apoiar", :campaign => campaign_url)
-        Koala::Facebook::API.new(self.user.facebook_authorization.token).delay.put_wall_post("", {:link => campaign_url})
       rescue Exception => e
         puts "Post Facebook activity failed: #{e.message}"
       end
