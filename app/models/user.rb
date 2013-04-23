@@ -32,7 +32,11 @@ class User < ActiveRecord::Base
 
   def pic options = {:type => "large"}
     type = options[:type]
-    self.carrierwave_pic(:type => type) || self.picture.try{|p| p.gsub("square", type.to_s)} || "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?default=identicon"
+    if self.file? || self.picture.nil?
+      self.carrierwave_pic(:type => type)
+    else
+      self.picture.try{|p| p.gsub("square", type.to_s)}
+    end
   end
 
   def carrierwave_pic options = {:type => "large"}
