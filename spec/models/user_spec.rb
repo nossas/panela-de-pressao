@@ -20,10 +20,6 @@ describe User do
       before { subject.stub(:picture).and_return("picture.jpg") }
       its(:pic){ should be_== "picture.jpg" }
     end
-    context "when the user have no picture at all" do
-      before { subject.email = "nicolas@paneladepressao.org.br" }
-      its(:pic){ should be_== "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest("nicolas@paneladepressao.org.br")}?default=identicon" }
-    end
   end
 
   describe "#can_poke?" do
