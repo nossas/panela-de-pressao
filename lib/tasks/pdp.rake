@@ -20,7 +20,9 @@ namespace :pdp do
   task :email_recommended_campaigns => :environment do
     if(Date.today.yday % 14 == 10)
       User.subscribers.pokers.each do |user|
-        UserMailer.delay.recomendations(user.id)
+        if user.recomendations.any?
+          UserMailer.delay.recomendations(user.id)
+        end
       end
     end
   end
