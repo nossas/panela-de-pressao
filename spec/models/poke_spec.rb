@@ -59,4 +59,20 @@ describe Poke do
     end
   end
 
+  describe "#first?" do
+    context "when the user never poked this campaign" do
+      before { subject.stub(:campaign_id).and_return(1) }
+      before { subject.stub(:user_id).and_return(1) }
+      before { Poke.stub(:where).with(:user_id => 1, :campaign_id => 1).and_return([subject]) }
+      its(:first?){ should be_true }
+    end
+    
+    context "when the user already poked this campaign" do
+      before { subject.stub(:campaign_id).and_return(1) }
+      before { subject.stub(:user_id).and_return(1) }
+      before { Poke.stub(:where).with(:user_id => 1, :campaign_id => 1).and_return([stub_model(Poke), subject]) }
+      its(:first?){ should be_false }
+    end
+  end
+
 end
