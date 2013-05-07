@@ -88,7 +88,7 @@ class Poke < ActiveRecord::Base
   end
 
   def post_facebook_activity
-    if self.user.facebook_authorization
+    if self.user.facebook_authorization && self.first?
       begin
         campaign_url = Rails.application.routes.url_helpers.campaign_url(self.campaign)
         Koala::Facebook::API.new(self.user.facebook_authorization.token).delay.put_connections("me", "paneladepressao:apoiar", :campaign => campaign_url)
@@ -96,5 +96,9 @@ class Poke < ActiveRecord::Base
         puts "Post Facebook activity failed: #{e.message}"
       end
     end
+  end
+
+  def first?
+    Poke.where(:user_id => self.user_id, :campaign_id => self.campaign_id).count == 1
   end
 end
