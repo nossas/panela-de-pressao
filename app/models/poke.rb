@@ -54,6 +54,10 @@ class Poke < ActiveRecord::Base
     return self.campaign.twitter_text if self.twitter?
   end
 
+  def first?
+    Poke.where(:user_id => self.user_id, :campaign_id => self.campaign_id).count == 1
+  end
+
   private
   def send_email
     PokeMailer.delay.poke(self)
@@ -96,9 +100,5 @@ class Poke < ActiveRecord::Base
         puts "Post Facebook activity failed: #{e.message}"
       end
     end
-  end
-
-  def first?
-    Poke.where(:user_id => self.user_id, :campaign_id => self.campaign_id).count == 1
   end
 end
