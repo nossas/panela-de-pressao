@@ -15,8 +15,7 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit edit_campaign_path(@campaign)
   when "this target page"
     visit influencer_path(@target.influencer)
-  when "this user page"
-    visit user_path(@user)
+
   when "the unmoderated campaigns page"
     visit unmoderated_campaigns_path
   when "this user unsubscribe page"

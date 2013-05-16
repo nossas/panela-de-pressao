@@ -32,7 +32,7 @@ ManifesteSe::Application.routes.draw do
   end
   resources :influencers, except: [:destroy]
 
-  resources :users, only: [:show, :update, :index] do
+  resources :users, only: [:index] do
     resources :campaigns, :only => [:index]
     get :unsubscribe, :to => "users#unsubscribe"
   end
