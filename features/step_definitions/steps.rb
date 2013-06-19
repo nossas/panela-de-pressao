@@ -395,3 +395,19 @@ end
 Then /^I should see the update$/ do
   page.should have_css(".update .title", text: @update.title)
 end
+
+Given /^there is an update with an image for this campaign$/ do
+  @update = Update.make!(campaign: @campaign)
+end
+
+When /^I click in the update title$/ do
+  page.find(".update .title a").click
+end
+
+Then /^I should see the update lightbox$/ do
+  page.should have_css("#colorbox .update_facebox")
+end
+
+Then /^I should see the update image$/ do
+  page.should have_css("#colorbox .update_facebox .image")
+end
