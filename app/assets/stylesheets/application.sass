@@ -1009,6 +1009,21 @@ body.campaigns#show
       &:before
         content: "+"
         margin-left: .4em
+  .update_facebox
+    color: gray
+    padding: 1em
+    .body
+      margin-top: 1em
+      p
+        &:last-child
+          margin: 0
+    .image
+      img
+        width: 100%
+    .title
+      font-size: 1.5em
+      margin-bottom: 1em
+      font-weight: bold
 
 body.users#unsubscribe
   .unsubscription_message
@@ -1217,9 +1232,15 @@ section.footer
       img
         float: left
         margin-right: 1em
+        width: 200px
     .created_at
       color: lighten(gray, 10%)
     .title
       font-weight: bold
-      color: gray
       font-size: 1.25em
+      a
+        color: gray
+        &:hover
+          text-decoration: underline
+    .facebox
+      display: none
