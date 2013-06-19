@@ -1,0 +1,5 @@
+.campaign_updates
+  - if @campaign.updates.empty?
+    .no_update_yet Esta campanha ainda não tem atualizações
+  - else
+    = render @campaign.updates

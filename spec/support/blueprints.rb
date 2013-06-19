@@ -56,3 +56,10 @@ Poke.blueprint do
   user { User.make! }
   kind { "email" }
 end
+
+Update.blueprint do
+  campaign  { Campaign.make! }
+  body      { Faker::Lorem.paragraph }
+  image     { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
+  title     { Faker::Lorem.sentence }
+end
