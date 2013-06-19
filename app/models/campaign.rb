@@ -18,6 +18,7 @@ class Campaign < ActiveRecord::Base
   has_many :answers
   has_many :pokes
   has_many :pokers, through: :pokes, source: :user, uniq: true
+  has_many :updates
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }

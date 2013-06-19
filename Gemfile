@@ -17,6 +17,7 @@ gem 'rack-no-www'
 gem 'video_info'
 gem "jquery-validation-rails"
 gem "schema_plus"
+gem "faker"
 
 # Image uplaod
 gem 'carrierwave'

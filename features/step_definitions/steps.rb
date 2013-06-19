@@ -372,6 +372,26 @@ Given /^there is a campaign$/ do
   @campaign = Campaign.make!
 end
 
+Given /^there is an accepted campaign$/ do
+  @campaign = Campaign.make! accepted_at: Time.now
+end
+
 Then /^I should see the unsubscription message$/ do
   page.should have_css(".unsubscription_message")
+end
+
+When /^I click in the updates button$/ do
+  click_link("campaign_updates")
+end
+
+Then /^I should see that there is no update yet$/ do
+  page.should have_css(".campaign_updates .no_update_yet")
+end
+
+Given /^there is an update for this campaign$/ do
+  @update = Update.make!(campaign: @campaign)
+end
+
+Then /^I should see the update$/ do
+  page.should have_css(".update .title", text: @update.title)
 end
