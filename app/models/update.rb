@@ -1,5 +1,5 @@
 class Update < ActiveRecord::Base
-  attr_accessible :body, :campaign_id, :image, :title
+  attr_accessible :body, :campaign_id, :image, :title, :video
   belongs_to :campaign
   validates :body, :campaign_id, :title, presence: true
   mount_uploader :image, UpdateImageUploader
