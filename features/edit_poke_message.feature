@@ -12,7 +12,7 @@ Feature: edit poke message
     And I click "ver/personalizar email"
     And I fill "Mensagem" with "A rainha precisa da gente!"
     When I press "Pressionar por Email" at "the email poke message"
-    Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
+    Then I should see the successful poke message
     And a email poke should be added to the target
     And a email saying "A rainha precisa da gente!" should be sent
 
@@ -26,5 +26,5 @@ Feature: edit poke message
     And I click "ver/personalizar mensagem"
     And I fill "Mensagem" with "A rainha precisa da gente!"
     When I press "Pressionar pelo Facebook" at "the facebook poke message"
-    Then I should see "Muito bom! Você acaba de colocar mais pressão nessa panela."
+    Then I should see the successful poke message
     And a facebook poke should be added to the target

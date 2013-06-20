@@ -316,11 +316,11 @@ end
 
 When /^I press "(.*?)" at "(.*?)"$/ do |arg1, arg2|
   if arg2 == "the facebook poke message"
-    within("#facebook_poke_message") do
+    within(".facebook_poke_message") do
       click_button arg1
     end
   elsif arg2 == "the email poke message"
-    within("#email_poke_message") do
+    within(".email_poke_message") do
       click_button arg1
     end
   else
@@ -405,11 +405,11 @@ When /^I click in the update title$/ do
 end
 
 Then /^I should see the update lightbox$/ do
-  page.should have_css("#colorbox .update_facebox")
+  page.should have_css(".update_facebox")
 end
 
 Then /^I should see the update image$/ do
-  page.should have_css("#colorbox .update_facebox .image")
+  page.should have_css(".update_facebox .image")
 end
 
 Given /^there is an update with a video for this campaign$/ do
@@ -417,5 +417,9 @@ Given /^there is an update with a video for this campaign$/ do
 end
 
 Then /^I should see the update video$/ do
-  page.should have_css("#colorbox .update_facebox .video")
+  page.should have_css(".update_facebox .video")
+end
+
+Then /^I should see the successful poke message$/ do
+  page.should have_css(".poke_buttons .headline_poked")
 end
