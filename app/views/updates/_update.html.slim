@@ -1,10 +1,4 @@
 .update
-  .image= link_to image_tag(update.image.thumb), [update.campaign, update], rel: "facebox"
+  .image= link_to image_tag(update.image.thumb), [update.campaign, update], rel: "facebox[.update_facebox]"
   .created_at= l update.created_at, format: :short
-  .title= link_to update.title, "#update_#{update.id}", rel: "facebox"
-  .facebox
-    div.update_facebox id="update_#{update.id}"
-      .created_at= l update.created_at, format: :short
-      .title= update.title
-      .image= image_tag update.image
-      .body= simple_format update.body
+  .title= link_to update.title, [update.campaign, update], rel: "facebox[.update_facebox]", id: "update_#{update.id}_btn"

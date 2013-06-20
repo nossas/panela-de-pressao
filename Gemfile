@@ -74,3 +74,4 @@ group :assets do
   gem "uglifier"
 end
 
+gem 'facebox-rails'

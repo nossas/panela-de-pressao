@@ -13,7 +13,7 @@ $gray: #f3f4f4
 
 @import compass/reset
 @import columnal/grid
-@import colorbox 
+@import jquery.facebox
 @import chosen
 @import icomoon
 @import font
@@ -309,6 +309,13 @@ a[href="/auth/facebook"]
     font-style: italic
     color: gray
     margin: 0
+
+#facebox
+  .popup
+    width: 660px
+  .content
+    width: 600px
+    padding: 30px
 
 section.login
   padding: .4em 0
@@ -1011,7 +1018,6 @@ body.campaigns#show
         margin-left: .4em
   .update_facebox
     color: gray
-    padding: 1em
     .body
       margin-top: 1em
       p

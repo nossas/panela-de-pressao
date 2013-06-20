@@ -71,8 +71,8 @@ var App = window.App = {
         $.colorbox({ href: "#poke_notice", inline: true, width: "50%" }); 
       }
 
-      $('a[rel*=facebox]').colorbox({ inline: true, width: "50%" });
-      $('a[rel*=facebox_fixed]').colorbox({ inline: true, width: "800px" });
+      $('a[rel*=facebox]').facebox();
+      $('a[rel*=facebox_fixed]').facebox();
     },
 
     showLoginBox: function(){
