@@ -20,6 +20,7 @@
 //= require chosen-jquery
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require jquery.facebox
 
 //= require_tree ./lib
 //= require ./app.js

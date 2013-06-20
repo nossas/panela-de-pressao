@@ -411,3 +411,11 @@ end
 Then /^I should see the update image$/ do
   page.should have_css("#colorbox .update_facebox .image")
 end
+
+Given /^there is an update with a video for this campaign$/ do
+  @update = Update.make!(campaign: @campaign, video: "http://www.youtube.com/watch?v=ojErI546Sg8")
+end
+
+Then /^I should see the update video$/ do
+  page.should have_css("#colorbox .update_facebox .video")
+end

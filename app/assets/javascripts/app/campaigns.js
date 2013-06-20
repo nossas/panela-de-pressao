@@ -98,6 +98,7 @@ App.Campaigns = {
       $(".poke_btn.twitter").click(function(){ $("form.twitter").submit(); });
 
       $("a[href='#poke_buttons']").click(function(){ $(".poke_buttons").hide(); $(".poke_buttons").fadeIn(); })
+      $(document.location.hash + "_btn").click();
     },
 
     submitForm: function(event) {

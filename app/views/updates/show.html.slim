@@ -1,0 +1,8 @@
+div.update_facebox id="update_#{@update.id}"
+  .created_at= l @update.created_at, format: :short
+  .title= @update.title
+  - if @update.video.blank?
+    .image= image_tag @update.image
+  - else
+    .video= raw @update.video_html
+  .body= simple_format @update.body

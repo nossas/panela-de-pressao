@@ -1,2 +1,3 @@
-class UpdatesController < ApplicationController
+class UpdatesController < InheritedResources::Base
+  layout false
 end
