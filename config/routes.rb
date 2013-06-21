@@ -14,6 +14,7 @@ ManifesteSe::Application.routes.draw do
       get :comments,    defaults: { section: "comments" },     as: :comments,      to: "campaigns#show"
       get :map,         defaults: { section: "map" },          as: :map,           to: "campaigns#show"
       get :answers,     defaults: { section: "answers" },      as: :answers,       to: "campaigns#show"
+      get :updates,     defaults: { section: "updates" },      as: :updates,       to: "campaigns#show"
     end
 
     put :accept, :to => "campaigns#accept"
@@ -23,6 +24,7 @@ ManifesteSe::Application.routes.draw do
     put :archive, to: "campaigns#archive"
 
     resources :posts, :only => [:create, :index, :destroy]
+    resources :updates, :only => [:show, :new, :create]
     resources :pokes, :only => [:create] do
       collection do
         get :create_from_session, :to => "pokes#create"

@@ -13,7 +13,7 @@ $gray: #f3f4f4
 
 @import compass/reset
 @import columnal/grid
-@import colorbox 
+@import jquery.facebox
 @import chosen
 @import icomoon
 @import font
@@ -150,9 +150,11 @@ label.error
 input[type='text'], textarea, input[type="email"], input[type="url"]
   outline: none
   border: 2px solid lighten(gray, 40%)
-  padding: .6em .5em
+  padding: .5em
   font-size: 1.1em
   color: lighten(gray, 10%)
+  +border-radius(5px)
+  +box-sizing("border-box")
   &:focus
     border: 2px solid $orange
 
@@ -195,8 +197,10 @@ p.inline-hints, p.inline-errors
   text-transform: uppercase
   width: 80%
   text-align: center
+  border: 0
+  cursor: pointer
   +transition(.2s)
-  +border-radius(4px)
+  +border-radius(2px)
   &:hover
     color: white
     background: #1d8741
@@ -285,7 +289,7 @@ a[href="/auth/facebook"]
   #cboxCurrent, #cboxNext, #cboxPrevious
     visibility: hidden
 
-#email_poke_message, #facebook_poke_message, #twitter_poke_message, #phone_poke_message #poke_notice
+#email_poke_message, #facebook_poke_message, #twitter_poke_message,  #poke_notice, #phone_poke_message
   padding: 1.5em
   line-height: normal
   h1
@@ -311,6 +315,13 @@ a[href="/auth/facebook"]
     font-style: italic
     color: gray
     margin: 0
+
+#facebox
+  .popup
+    width: 560px
+  .content
+    width: 500px
+    padding: 30px
 
 section.login
   padding: .4em 0
@@ -778,20 +789,24 @@ body.campaigns#show
     padding-bottom: .6em
   nav a
     color: lighten(gray, 20%)
-    margin: 0 1.6em
+    margin: 0 .5em
     padding: .5em .3em
     +transition(.2s)
     &.selected, &:hover
       color: $green
       border-bottom: 3px solid $green
+      span.count
+        background: $green
     &:hover
       border: none
     span.count
-      background: $orange
+      background: $yellow
       color: white
-      padding: 0 .6em
       font-size: .8em
       margin-left: .4em
+      text-align: center
+      display: inline-block
+      width: 30px
       +border-radius(2px)
   .wrap
     padding: 1.8em
@@ -806,7 +821,6 @@ body.campaigns#show
     iframe
       width: 100% !important
       height: 350px !important
-
   .description
     margin: 1.6em 0
     a
@@ -1004,7 +1018,6 @@ body.campaigns#show
     li
       height: 50px
       margin-bottom: 1em
-
   .pokers
     li
       float: left
@@ -1023,6 +1036,58 @@ body.campaigns#show
       &:before
         content: "+"
         margin-left: .4em
+  .update_facebox
+    color: gray
+    .body
+      margin-top: 1em
+      p
+        &:last-child
+          margin: 0
+    .image
+      img
+        width: 100%
+    .title
+      font-size: 1.5em
+      margin-bottom: 1em
+      font-weight: bold
+  form.new_update
+    label
+      font-weight: bold
+      display: block
+      margin-bottom: .25em
+    .field
+      margin-bottom: 1.5em
+      &:last-child
+        margin: 0
+    input[type='text'], textarea
+      width: 100%
+    textarea
+      height: 100px
+    .btn
+      width: auto
+  .campaign_updates
+    #new_update
+      width: auto
+      margin-bottom: 3em
+    .update
+      overflow: hidden
+      border-bottom: 1px solid lightgray
+      padding-bottom: 2em
+      margin-bottom: 2em
+      .image
+        img
+          float: left
+          margin-right: 1em
+          width: 200px
+      .created_at
+        color: lighten(gray, 10%)
+      .title
+        font-weight: bold
+        font-size: 1.25em
+        a
+          color: gray
+          &:hover
+            text-decoration: underline
 
 body.users#unsubscribe
   .unsubscription_message
@@ -1220,4 +1285,3 @@ section.footer
       float: right
       &:hover
         cursor: pointer
-

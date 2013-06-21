@@ -63,7 +63,7 @@
    - if current_user.mobile_phone.blank?
     label 
       | Para entrarem em contato comigo se necessário, podem me contatar no número
-      = text_field_tag "user_mobile_phone", params[:user_mobile_phone]
+      = text_field_tag "user_mobile_phone", params[:user_mobile_phone], class: [:phone]
     small.inline-errors= @campaign.errors[:user].to_sentence
 
 
@@ -73,7 +73,7 @@
       legend Plivo integration
       p
         = f.label :voice_call_number
-        = f.text_field :voice_call_number, placeholder: "Número de telefone alvo"
+        = f.text_field :voice_call_number, placeholder: "Número de telefone alvo", class: [:phone_with_country_code]
       p.textarea
         = f.label :voice_call_script
         = f.text_area :voice_call_script

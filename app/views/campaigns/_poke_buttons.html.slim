@@ -1,6 +1,6 @@
 .poke_buttons
   - unless @campaign.finished_at
-    p.text:strong= (current_user and current_user.has_poked(@campaign)) ? t('campaign.show.form.headline_poked') : t('campaign.show.form.headline')
+    p.text.headline_poked:strong= (current_user and current_user.has_poked(@campaign)) ? t('campaign.show.form.headline_poked') : t('campaign.show.form.headline')
     .poke.original
       - if @campaign.has_voice_action?
         .via_phone= render partial: 'poke_voice_button_form'
