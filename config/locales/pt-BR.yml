@@ -268,6 +268,7 @@ pt-BR:
         image:  "Imagem"
         body:   "Texto"
         share_text: "Texto de compartilhamento"
+        video: "Link do Youtube"
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"
