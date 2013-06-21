@@ -73,6 +73,10 @@ var App = window.App = {
 
       $('a[rel*=facebox]').facebox();
       $('a[rel*=facebox_fixed]').facebox();
+
+      $(document).bind('reveal.facebox', function() {
+        $("form.new_update").enableClientSideValidations();
+      });
     },
 
     showLoginBox: function(){

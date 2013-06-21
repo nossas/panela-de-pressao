@@ -263,8 +263,11 @@ pt-BR:
         custom_message: "Mensagem"
       answer:
         text: "Resposta"
-
-
+      update:
+        title:  "Título da atualização"
+        image:  "Imagem"
+        body:   "Texto"
+        share_text: "Texto de compartilhamento"
   unauthorized:
     create:
       campaign: "Rola de fazer o login? Depois você pode continuar criando a sua campanha ;)"

@@ -3,7 +3,7 @@ Feature: view an update of a campaign
   As a visitor
   I want to view an update of a campaign
 
-  @javascript
+  @javascript @koala
   Scenario: when the update have an image
     Given there is an accepted campaign
     And there is an update with an image for this campaign
@@ -13,7 +13,7 @@ Feature: view an update of a campaign
     Then I should see the update lightbox
     And I should see the update image
 
-  @javascript
+  @javascript @koala
   Scenario: when the update have a video
     Given there is an accepted campaign
     And there is an update with a video for this campaign
