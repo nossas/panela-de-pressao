@@ -52,7 +52,7 @@ ManifesteSe::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  default_url_options[:host] = "paneladepressao.org.br"
+  default_url_options[:host] = ENV[:HOST]
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
