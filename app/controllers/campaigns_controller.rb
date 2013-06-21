@@ -15,6 +15,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
+  before_filter :only => [:show] { @featured_update = Update.find_by_id(params[:update_id]) }
   before_filter :only => [:index] do
     @popular = Campaign.popular.limit(4).shuffle
     unless Campaign.featured.length.zero?
