@@ -4,6 +4,7 @@ class Update < ActiveRecord::Base
   belongs_to :user
   validates :body, :campaign_id, :title, :share_text, :lead, :user_id, presence: true
   mount_uploader :image, UpdateImageUploader
+  default_scope order("created_at DESC")
   after_save {|update| self.delay.post_on_facebook if update.facebook_post_uid.nil? }
   
   auto_html_for :video do
