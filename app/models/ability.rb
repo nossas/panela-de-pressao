@@ -12,7 +12,8 @@ class Ability
     can :read, Campaign, Campaign.unmoderated do |campaign|
       !campaign.preview_code.nil? and campaign.preview_code == options[:preview_code]    
     end
-    can :create, Poke, :kind => "email"
+    can :create, Poke, kind: 'email'
+    can :create, Poke, kind: 'phone'
 
     if user && user.admin?
       can :manage, :all
