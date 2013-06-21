@@ -240,6 +240,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== root_path
   when "the Facebook callback"
     page.current_path.should be_== '/auth/facebook/callback'
+  when "the updates page of the campaign"
+    page.current_path.should be_== updates_campaign_path(@campaign)
   else
     raise "I don't know '#{arg1}'"
   end
@@ -316,11 +318,11 @@ end
 
 When /^I press "(.*?)" at "(.*?)"$/ do |arg1, arg2|
   if arg2 == "the facebook poke message"
-    within("#facebook_poke_message") do
+    within(".facebook_poke_message") do
       click_button arg1
     end
   elsif arg2 == "the email poke message"
-    within("#email_poke_message") do
+    within(".email_poke_message") do
       click_button arg1
     end
   else
@@ -372,6 +374,84 @@ Given /^there is a campaign$/ do
   @campaign = Campaign.make!
 end
 
+Given /^there is an accepted campaign$/ do
+  @campaign = Campaign.make! accepted_at: Time.now
+end
+
 Then /^I should see the unsubscription message$/ do
   page.should have_css(".unsubscription_message")
+end
+
+When /^I click in the updates button$/ do
+  click_link("campaign_updates")
+end
+
+Then /^I should see that there is no update yet$/ do
+  page.should have_css(".campaign_updates .no_update_yet")
+end
+
+Given /^there is an update for this campaign$/ do
+  @update = Update.make!(campaign: @campaign)
+end
+
+Then /^I should see the update$/ do
+  page.should have_css(".update .title", text: @update.title)
+end
+
+Given /^there is an update with an image for this campaign$/ do
+  @update = Update.make!(campaign: @campaign)
+end
+
+When /^I click in the update title$/ do
+  page.find(".update .title a").click
+end
+
+Then /^I should see the update lightbox$/ do
+  page.should have_css(".update_facebox")
+end
+
+Then /^I should see the update image$/ do
+  page.should have_css(".update_facebox .image")
+end
+
+Given /^there is an update with a video for this campaign$/ do
+  @update = Update.make!(campaign: @campaign, video: "http://www.youtube.com/watch?v=ojErI546Sg8")
+end
+
+Then /^I should see the update video$/ do
+  page.should have_css(".update_facebox .video")
+end
+
+Then /^I should see the successful poke message$/ do
+  page.should have_css(".poke_buttons .headline_poked")
+end
+
+Then /^I should see the new update button$/ do
+  page.should have_css(".campaign_updates a#new_update")
+end
+
+Given /^I click in the new update button$/ do
+  page.find(".campaign_updates a#new_update").click
+end
+
+Given /^I fill the new update form right$/ do
+  within "form.new_update" do
+    fill_in     "update_title",       with: Faker::Lorem.sentence
+    attach_file "update_image",       "#{Rails.root}/features/support/campaign.png"
+    fill_in     "update_body",        with: Faker::Lorem.paragraph
+    fill_in     "update_lead",        with: Faker::Lorem.paragraph
+    fill_in     "update_share_text",  with: Faker::Lorem.paragraph
+  end
+end
+
+When /^I submit the new update form$/ do
+  page.find("form.new_update input[type='submit']").click
+end
+
+Then /^I should see the new update in a facebox$/ do
+  page.should have_css(".update_facebox")
+end
+
+Then /^I should see the new update in the Meu Rio Facebook page$/ do
+  Update.order("id DESC").first.facebook_post_uid.should be_== "facebook_post_uid"
 end

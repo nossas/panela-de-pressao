@@ -1,20 +1,23 @@
-- content_for :title do
-  = @campaign.name
+- if @featured_update.nil?
+  - content_for :title do
+    = @campaign.name
+  - content_for :meta_tags do
+    meta name="description"         content=truncate(@campaign.description)
+    meta property="og:title"        content=@campaign.name
+    meta property="og:image"        content=@campaign.image.url
+    meta property="og:url"          content=campaign_url(@campaign)
+    meta property="og:description"  content=truncate(strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
+    meta property="og:type"         content="paneladepressao:campaign"
+- else
+  - content_for :title do
+    = @featured_update.title
+  - content_for :meta_tags do
+    meta name="description"         content=@featured_update.lead
+    meta property="og:title"        content=@featured_update.title
+    meta property="og:image"        content=@featured_update.thumb
+    meta property="og:url"          content=updates_campaign_url(@campaign, anchor: "update_#{@featured_update.id}", update_id: @featured_update.id)
+    meta property="og:description"  content=@featured_update.lead
 
-- content_for :meta_tags do
-  meta name="description"         content=truncate(@campaign.description)
-  meta property="og:title"        content=@campaign.name
-  meta property="og:image"        content=@campaign.image.url
-  meta property="og:url"          content=campaign_url(@campaign)
-  meta property="og:description"  content=truncate(strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
-  meta property="og:type"         content="paneladepressao:campaign"
-  = javascript_include_tag "//cdn.optimizely.com/js/152144521.js"
-  /javascript:
-    (function() {
-        var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
-        mf.src = "//cdn.mouseflow.com/projects/8304e208-fb04-4b41-a1cc-76ef8ef3e10d.js";
-        document.getElementsByTagName("head")[0].appendChild(mf);
-      })();
 section.content
   .row
     = render partial: 'finished_message' if @campaign.finished_at?

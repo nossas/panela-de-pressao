@@ -21,7 +21,7 @@
   .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: 'phone'))}"]
     = f.submit t("campaign.show.form.voice_call"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: 'phone'))
     span= t "campaign.show.form.voice_call_tip"
-  = link_to "ver mensagem", "phone_poke_message", class: "message_link", :rel => "facebox[.phone_poke_message]"
+  = link_to "ver mensagem", "#phone_poke_message", class: "message_link", :rel => "facebox"
 
   .message
     h4= t 'campaign.show.form.message.header'

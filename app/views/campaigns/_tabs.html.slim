@@ -8,5 +8,6 @@
       = t('campaign.show.tabs.comments') 
       span.count
         fb:comments-count[href=campaign_url(@campaign)]
-
-
+    = link_to updates_campaign_path(@campaign), :class => "#{params[:section] == "updates" ? 'selected' : ''}", id: "campaign_updates" do
+      | Atualizações
+      span.count= @campaign.updates.count

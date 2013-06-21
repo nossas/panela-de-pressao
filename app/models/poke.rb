@@ -38,7 +38,7 @@ class Poke < ActiveRecord::Base
 
   def any_recent_pokes?
     pokes = Poke.where(user_id: self.user_id, campaign_id: self.campaign_id, kind: self.kind)
-    pokes.select { |poke| poke.created_at > Time.now - 1.day }
+    pokes.select { |poke| poke.created_at > Time.now - 12.hours }
   end
 
 
@@ -76,6 +76,9 @@ class Poke < ActiveRecord::Base
     "55" + self.user.mobile_phone.scan(/[0-9]+/).join
   end
 
+  def campaign_phone
+    self.campaign.voice_call_number.scan(/[0-9]+/).join
+  end
   
   private
   def send_phone
@@ -83,7 +86,7 @@ class Poke < ActiveRecord::Base
     params  = { 
       to: self.user_phone,
       from: ENV['PLIVO_NUMBER'],
-      answer_url: "https://callforward.herokuapp.com/forward/?Numbers=#{self.campaign.voice_call_number}"
+      answer_url: "https://callforward.herokuapp.com/forward/?Numbers=#{self.campaign_phone}"
     }
 
 
