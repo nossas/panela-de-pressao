@@ -9,6 +9,7 @@ Feature: view all updates of a campaign
     When I click in the updates button
     Then I should see that there is no update yet
 
+  @koala
   Scenario: when there are some updates
     Given there is an accepted campaign
     And there is an update for this campaign

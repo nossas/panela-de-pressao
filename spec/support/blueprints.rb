@@ -12,7 +12,7 @@ end
 Authorization.blueprint do
   user { User.make! }
   uid  { "uid#{sn}" }
-  provider { 'meurio' }
+  provider { 'facebook' }
   token { 'lsjdljasdljas' }
   secret { 'sjdkahjskd' }
 end
@@ -58,8 +58,11 @@ Poke.blueprint do
 end
 
 Update.blueprint do
-  campaign  { Campaign.make! }
-  body      { Faker::Lorem.paragraph }
-  image     { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
-  title     { Faker::Lorem.sentence }
+  campaign    { Campaign.make! }
+  body        { Faker::Lorem.paragraph }
+  image       { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
+  title       { Faker::Lorem.sentence }
+  share_text  { Faker::Lorem.paragraph }
+  lead        { Faker::Lorem.paragraph }
+  user        { Authorization.make!.user }
 end

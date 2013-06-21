@@ -1,4 +1,6 @@
 .campaign_updates
+  - if current_user && current_user.admin?
+    = link_to "Criar atualização", new_campaign_update_path(@campaign), class: "btn", id: "new_update", rel: "facebox[.new_update]"
   - if @campaign.updates.empty?
     .no_update_yet Esta campanha ainda não tem atualizações
   - else

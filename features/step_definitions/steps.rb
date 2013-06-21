@@ -240,6 +240,8 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== root_path
   when "the Facebook callback"
     page.current_path.should be_== '/auth/facebook/callback'
+  when "the updates page of the campaign"
+    page.current_path.should be_== updates_campaign_path(@campaign)
   else
     raise "I don't know '#{arg1}'"
   end
@@ -422,4 +424,34 @@ end
 
 Then /^I should see the successful poke message$/ do
   page.should have_css(".poke_buttons .headline_poked")
+end
+
+Then /^I should see the new update button$/ do
+  page.should have_css(".campaign_updates a#new_update")
+end
+
+Given /^I click in the new update button$/ do
+  page.find(".campaign_updates a#new_update").click
+end
+
+Given /^I fill the new update form right$/ do
+  within "form.new_update" do
+    fill_in     "update_title",       with: Faker::Lorem.sentence
+    attach_file "update_image",       "#{Rails.root}/features/support/campaign.png"
+    fill_in     "update_body",        with: Faker::Lorem.paragraph
+    fill_in     "update_lead",        with: Faker::Lorem.paragraph
+    fill_in     "update_share_text",  with: Faker::Lorem.paragraph
+  end
+end
+
+When /^I submit the new update form$/ do
+  page.find("form.new_update input[type='submit']").click
+end
+
+Then /^I should see the new update in a facebox$/ do
+  page.should have_css(".update_facebox")
+end
+
+Then /^I should see the new update in the Meu Rio Facebook page$/ do
+  Update.order("id DESC").first.facebook_post_uid.should be_== "facebook_post_uid"
 end

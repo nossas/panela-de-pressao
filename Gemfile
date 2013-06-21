@@ -16,6 +16,7 @@ gem 'delayed_job_active_record'
 gem 'rack-no-www'
 gem 'video_info'
 gem "jquery-validation-rails"
+gem 'client_side_validations'
 gem "schema_plus"
 gem "faker"
 gem "machinist", ">= 2.0.0.beta2"
