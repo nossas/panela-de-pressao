@@ -67,9 +67,24 @@
     small.inline-errors= @campaign.errors[:user].to_sentence
 
 
+
+  - if @current_user.admin?
+    fieldset
+      legend Plivo integration
+      p
+        = f.label :voice_call_number
+        = f.text_field :voice_call_number, placeholder: "Número de telefone alvo"
+      p.textarea
+        = f.label :voice_call_script
+        = f.text_area :voice_call_script
+
   p.action
     = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'
     = f.submit (@campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save')), class: 'btn'
+
+
+
+
 
 - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
   hr

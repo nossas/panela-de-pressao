@@ -22,6 +22,7 @@ var App = window.App = {
 
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
       $("#user_mobile_phone").inputmask("mask", {"mask": "(99) 9999-9999"});
+      $('.phone').inputmask("mask", {"mask": "(99) 9999-9999"});
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
       });

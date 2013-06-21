@@ -30,6 +30,8 @@ Campaign.blueprint do
   map_embed  { '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?ie=UTF8&amp;msa=0&amp;msid=217057435688440890390.0004c5805d208053b7e14&amp;t=m&amp;z=4"></iframe><br /><small><a href="https://maps.google.com/maps/ms?ie=UTF8&amp;msa=0&amp;msid=217057435688440890390.0004c5805d208053b7e14&amp;t=m&amp;z=4&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>' }
   map_description { "My Map Description" }
   preview_code { "12345" }
+  voice_call_script { "Script" }
+  voice_call_number { "2197137471" }
 end
 
 Category.blueprint do

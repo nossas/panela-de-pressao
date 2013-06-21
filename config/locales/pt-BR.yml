@@ -245,6 +245,8 @@ pt-BR:
         video_url: "ou esse vídeo"
         map_description: "Descreva o mapa!"
         pokers_email: "Quem pressionar na minha campanha receberá um email de agradecimento com essa mensagem"
+        voice_call_script: "Script que deve ser lido para quem liga"
+        voice_call_number: "Número que receberá as ligações"
       influencer:
         name: "Nome"
         role: "Descrição"

@@ -25,6 +25,7 @@ $gray: #f3f4f4
   clear: both
 .hidden
   display: none
+
 .cancel
   background: darken(red, 15%) !important
 span.succeed, span.unsucceed, span.archived
@@ -172,9 +173,10 @@ li.error
   input
     border-color: red
 
-p.inline-errors
-  color: red
+p.inline-errors, small.inline-errors
+  color: red !important
   font-size: .8em
+
 
 p.inline-hints
   color: gray
@@ -283,7 +285,7 @@ a[href="/auth/facebook"]
   #cboxCurrent, #cboxNext, #cboxPrevious
     visibility: hidden
 
-#email_poke_message, #facebook_poke_message, #twitter_poke_message, #poke_notice
+#email_poke_message, #facebook_poke_message, #twitter_poke_message, #phone_poke_message #poke_notice
   padding: 1.5em
   line-height: normal
   h1
@@ -656,7 +658,7 @@ section.explore
   margin-right: .2em
   top: -2px
 
-body.campaigns#new, body.campaigns#edit, body.campaigns#create
+body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#update
   .content
     .row
       margin-bottom: 1.5em
@@ -680,6 +682,12 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create
     color: black
     font-weight: bold
   form
+    fieldset
+      border: 1px dashed grey
+      padding: 1em
+      legend
+        font-weight: bold
+        padding: 1em
     p
       margin: .8em 0
     .charleft
@@ -708,6 +716,7 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create
       a
         display: inline-block
         margin-top: .6em
+
   p.action
     width: 60%
     margin: 0 auto
@@ -808,7 +817,7 @@ body.campaigns#show
       line-height: 1.6em
       strong
         color: #333
-  .counter, .via_facebook, .via_twitter, .via_email
+  .counter, .via_facebook, .via_twitter, .via_email, .via_phone
     background: $gray
     padding: .8em 0
     overflow: hidden
@@ -852,6 +861,9 @@ body.campaigns#show
       margin-top: 3.4em
     .via_facebook .btn input
       margin-left: -.4em
+    .via_phone .btn input
+      position: relative
+      left: -1em
     .btn
       span
         font-size: 8px !important
@@ -862,7 +874,7 @@ body.campaigns#show
   .poke_buttons
     .text
       margin: 3em 0 1em 0
-    .via_facebook, .via_twitter, .via_email
+    .via_facebook, .via_twitter, .via_email, .via_phone
       margin: 1em 0
       .message
         padding: 1.6em
@@ -935,6 +947,12 @@ body.campaigns#show
         color: darken($gray, 10%)
       &:hover
         background: darken($gray, 40%)
+    .via_phone .btn
+      background: darken(red, 20%)
+      span
+        color: darken(white, 5%)
+      &:hover
+        background: darken(red, 5%)
   #poke_box
     .button 
       +grid-subcolumn(9, 3)

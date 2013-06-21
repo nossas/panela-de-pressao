@@ -1,6 +1,11 @@
 # coding: utf-8
 
+require 'plivo'
+
 class Poke < ActiveRecord::Base
+
+
+
   attr_accessible :campaign_id,         :kind, :user_id, :custom_message
   belongs_to      :campaign
   belongs_to      :user
@@ -14,8 +19,9 @@ class Poke < ActiveRecord::Base
   validate :poked_recently?, on: :create
 
   after_create    :thanks
-  after_create    :send_email,          :if => Proc.new {self.email?}
-  after_create    :send_facebook_post,  :if => Proc.new {self.facebook?}
+  after_create    :send_phone,          :if => Proc.new { self.phone? }
+  after_create    :send_email,          :if => Proc.new { self.email? }
+  after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
   after_create    :if => Proc.new {self.twitter?} { self.delay.send_tweet }
   before_create   :post_facebook_activity
   
@@ -34,6 +40,12 @@ class Poke < ActiveRecord::Base
     pokes = Poke.where(user_id: self.user_id, campaign_id: self.campaign_id, kind: self.kind)
     pokes.select { |poke| poke.created_at > Time.now - 1.day }
   end
+
+
+  def phone?
+    self.kind == "phone"
+  end
+
 
   def twitter?
     self.kind == "twitter"
@@ -58,7 +70,28 @@ class Poke < ActiveRecord::Base
     Poke.where(:user_id => self.user_id, :campaign_id => self.campaign_id).count == 1
   end
 
+
+
+  def user_phone
+    "55" + self.user.mobile_phone.scan(/[0-9]+/).join
+  end
+
+  
   private
+  def send_phone
+    plivo   = Plivo::RestAPI.new(ENV['PLIVO_ID'], ENV['PLIVO_TOKEN'])
+    params  = { 
+      to: self.user_phone,
+      from: ENV['PLIVO_NUMBER'],
+      answer_url: "https://callforward.herokuapp.com/forward/?Numbers=#{self.campaign.voice_call_number}"
+    }
+
+
+    response = plivo.make_call(params)
+    return response
+  end
+
+
   def send_email
     PokeMailer.delay.poke(self)
     self.campaign.targets.each {|t| t.increase_pokes_by_email}
