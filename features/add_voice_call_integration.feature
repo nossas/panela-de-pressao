@@ -45,7 +45,7 @@ Feature: Enable voice call integration of campaign
     Then I should see the campaigns' name
     Then I should see the campaigns' description 
     Then I should see the campaigns' image
-    Then I should see "Pressionar via celular"
+    Then I should see "Pressione por celular"
 
 
 
