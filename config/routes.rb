@@ -2,6 +2,7 @@ ManifesteSe::Application.routes.draw do
 
   match '/auth/:provider/callback',   :to => 'sessions#create'
   get '/auth/facebook', as: :facebook_connect
+  get '/auth/facebook_admin', as: :facebook_admin_connect
 
   get "/campaigns/unmoderated", :to => "campaigns#unmoderated", :as => :unmoderated_campaigns
   

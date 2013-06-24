@@ -15,7 +15,8 @@ Given /^I'm in ([^"]*)$/ do |arg1|
     visit edit_campaign_path(@campaign)
   when "this target page"
     visit influencer_path(@target.influencer)
-
+  when "this updates page"
+    visit updates_campaign_path(@update.campaign, anchor: "update_#{@update.id}")
   when "the unmoderated campaigns page"
     visit unmoderated_campaigns_path
   when "this user unsubscribe page"
@@ -467,4 +468,10 @@ end
 
 Then /^I should not see the new update button$/ do
   page.should_not have_css("a#new_update")
+end
+
+Then /^I should see the Facebook share button in the update facebox$/ do
+  within ".update_facebox" do
+    page.should have_css("a.facebook_share")
+  end
 end
