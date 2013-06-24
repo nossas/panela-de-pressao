@@ -28,4 +28,10 @@ Feature: create an update for a campaign
     Then I should be in the updates page of the campaign
     And I should see the update form errors
 
+  @omniauth_test
   Scenario: when I'm not an admin user
+    Given I'm logged in
+    And there is an accepted campaign
+    And I'm in this campaign page
+    When I click in the updates button
+    Then I should not see the new update button

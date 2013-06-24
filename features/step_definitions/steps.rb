@@ -464,3 +464,7 @@ Then /^I should see the update form errors$/ do
     page.should have_css("label.message[for='update_share_text']")
   end
 end
+
+Then /^I should not see the new update button$/ do
+  page.should_not have_css("a#new_update")
+end
