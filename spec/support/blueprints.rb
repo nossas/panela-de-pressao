@@ -31,7 +31,7 @@ Campaign.blueprint do
   map_description { "My Map Description" }
   preview_code { "12345" }
   voice_call_script { "Script" }
-  voice_call_number { "2197137471" }
+  voice_call_number { "552197137471" }
 end
 
 Category.blueprint do
