@@ -455,3 +455,16 @@ end
 Then /^I should see the new update in the Meu Rio Facebook page$/ do
   Update.order("id DESC").first.facebook_post_uid.should be_== "facebook_post_uid"
 end
+
+Then /^I should see the update form errors$/ do
+  within "form.new_update" do
+    page.should have_css("label.message[for='update_title']")
+    page.should have_css("label.message[for='update_body']")
+    page.should have_css("label.message[for='update_lead']")
+    page.should have_css("label.message[for='update_share_text']")
+  end
+end
+
+Then /^I should not see the new update button$/ do
+  page.should_not have_css("a#new_update")
+end

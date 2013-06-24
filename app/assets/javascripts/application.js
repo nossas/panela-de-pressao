@@ -18,6 +18,7 @@
 //= require ./lib/jquery.inputmask.js
 //= require ./lib/jquery.inputmask.extensions.js
 //= require chosen-jquery
+//= require rails.validations
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.facebox
