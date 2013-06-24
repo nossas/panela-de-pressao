@@ -86,7 +86,7 @@ class Poke < ActiveRecord::Base
     params  = { 
       to: self.user_phone,
       from: ENV['PLIVO_NUMBER'],
-      answer_url: "https://callforward.herokuapp.com/forward/?Numbers=#{self.campaign_phone}"
+      answer_url: "http://callforward.herokuapp.com/forward/?Numbers=#{self.campaign_phone}"
     }
 
 
