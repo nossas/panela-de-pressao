@@ -1,4 +1,4 @@
-div.update_facebox id="update_#{@update.id}"
+div id="update_#{@update.id}"
   .created_at= l @update.created_at, format: :short
   .title= @update.title
   - if @update.video.blank?
@@ -6,3 +6,5 @@ div.update_facebox id="update_#{@update.id}"
   - else
     .video= raw @update.video_html
   .body= simple_format @update.body
+  .share_buttons
+    = link_to "Compartilhar no Facebook", "https://www.facebook.com/sharer.php?u=#{updates_campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id)}", class: "btn facebook_share"

@@ -10,6 +10,8 @@ $loss: #c44242
 $fb_blue: #1F4A8E
 $twitter_blue: #359AD8
 $gray: #f3f4f4
+$chambray: #40599c
+$picton_blue: #43bde2
 
 @import compass/reset
 @import columnal/grid
@@ -204,6 +206,8 @@ p.inline-hints, p.inline-errors
   &:hover
     color: white
     background: #1d8741
+  &.facebook_share
+    background: $chambray
 
 ul.formatting
   ol
@@ -1050,6 +1054,12 @@ body.campaigns#show
       font-size: 1.5em
       margin-bottom: 1em
       font-weight: bold
+    .share_buttons
+      text-align: center
+      margin-top: 3em
+      a.facebook_share
+        width: auto
+        padding: .75em 1em .7em 1em
   form.new_update
     label
       font-weight: bold
