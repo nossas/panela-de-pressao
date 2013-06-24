@@ -17,5 +17,15 @@ Feature: create an update for a campaign
     And I should see the new update in a facebox
     And I should see the new update in the Meu Rio Facebook page
 
+  @omniauth_test @javascript
   Scenario: when I'm an admin user and submit the form wrong
+    Given I'm logged in as admin
+    And there is an accepted campaign
+    And I'm in this campaign page
+    And I click in the updates button
+    And I click in the new update button
+    When I submit the new update form
+    Then I should be in the updates page of the campaign
+    And I should see the update form errors
+
   Scenario: when I'm not an admin user
