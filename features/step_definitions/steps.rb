@@ -318,11 +318,11 @@ end
 
 When /^I press "(.*?)" at "(.*?)"$/ do |arg1, arg2|
   if arg2 == "the facebook poke message"
-    within("#facebook_poke_message") do
+    within(".facebook_poke_message") do
       click_button arg1
     end
   elsif arg2 == "the email poke message"
-    within("#email_poke_message") do
+    within(".email_poke_message") do
       click_button arg1
     end
   else
