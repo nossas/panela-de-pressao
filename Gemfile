@@ -3,9 +3,6 @@ ruby '1.9.3'
 
 gem 'rails', '~> 3.2.12'
 
-# Voice integration
-gem 'plivo'
-
 # Tools
 gem 'pg'
 gem 'thin'
