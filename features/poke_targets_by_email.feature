@@ -20,6 +20,7 @@ Feature: Poke targets by email
     Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
     And there is a target for this campaign
     And I'm in this campaign page
+    And I press "Pressione por e-mail"
     And I fill "Nome" with "Nícolas"
     And I fill "E-mail" with "test@paneladepressao.org.br"
     When I press "Pressione por e-mail"

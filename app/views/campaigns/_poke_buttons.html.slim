@@ -2,19 +2,15 @@
   - unless @campaign.finished_at
     p.text.headline_poked:strong= (current_user and current_user.has_poked(@campaign)) ? t('campaign.show.form.headline_poked') : t('campaign.show.form.headline')
     .poke.original
+      - if @campaign.has_voice_action?
+        .via_phone= render partial: 'poke_voice_button_form'
       - unless @campaign.facebook_influencers.count.zero?
         .via_facebook= render partial: 'poke_button_form', locals: { kind: 'facebook' }
       - unless @campaign.twitter_influencers.count.zero?
         .via_twitter= render partial: 'poke_button_form', locals: { kind: 'twitter' }
       - unless @campaign.email_influencers.count.zero?
         .via_email= render partial: 'poke_button_form', locals: { kind: 'email' }
-    .hidden
-      .poke
-        .via_facebook
-          = link_to '#/poke', class: 'btn poke_box' do
-            | Clique para Pressionar
-            span
-              | Clique para pressionar os alvos
+
 .hidden
   #poke_box.poke_buttons
     h2= t 'campaign.show.form.headline' 

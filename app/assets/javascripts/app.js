@@ -5,7 +5,7 @@ var Routes = Backbone.Router.extend({
     "poke"  : "poke"
   },
   poke: function(){
-    $.colorbox({inline: true, width: '900px', href: '#poke_box'})
+    $.facebox({div: '#poke_box', width: '900px'})
   },
   login: function(){
     App.Common.showLoginBox();
@@ -21,7 +21,12 @@ var App = window.App = {
       Backbone.history.start();
 
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
-      $("#user_mobile_phone").inputmask("mask", {"mask": "(99) 9999-9999"});
+      
+
+      
+      $('.phone').inputmask("mask", {"mask": "(99) 9999-9999"});
+      $('.phone_with_country_code').inputmask("mask", { "mask" : "+99 (99) 9999-9999"});
+
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
       });
@@ -68,7 +73,7 @@ var App = window.App = {
 
 
       if($("#poke_notice").length){ 
-        $.colorbox({ href: "#poke_notice", inline: true, width: "50%" }); 
+        $.facebox({ div: '#poke_notice'});
       }
 
       $('a[rel*=facebox]').facebox();

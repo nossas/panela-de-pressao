@@ -6,3 +6,12 @@
       .share
         a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
         .fb-like data-href=request.url data-layout="button_count" data-show-faces="false"
+  - if flash[:poke_phone_notice]
+    #poke_notice
+      h1 Muito bom! Estamos ligando pra você!
+      p assim que você atender, leia o seguinte script (não é obrigatório):
+
+
+      .script
+        blockquote
+          = simple_format(@campaign.voice_call_script)

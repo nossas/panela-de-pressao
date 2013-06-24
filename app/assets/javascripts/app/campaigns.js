@@ -43,7 +43,18 @@ App.Campaigns = {
 
     events: {
       'change form.featured input': 'submitForm',
-      'click .show_all_influencers' : 'showInfluencers'
+      'click .show_all_influencers' : 'showInfluencers',
+      'click .poke_form input' : 'toggleFields'
+    },
+
+    toggleFields: function(event){
+      var obj = $(event.target);
+      var parent = obj.parents('.poke_form');
+      if (parent.hasClass('user_false') && !parent.validate()) {
+          event.preventDefault();
+      }
+      
+      obj.parents('.poke_form').children('.fade').show();
     },
 
     showInfluencers: function(event){
@@ -52,6 +63,8 @@ App.Campaigns = {
     },
 
     initialize: function(){
+      
+
       $("form#new_email_poke").validate({
         messages: {
           name: { required: "Precisamos do seu nome" },
@@ -61,6 +74,18 @@ App.Campaigns = {
           }
         }
       });
+
+      $('#new_phone_poke').validate({
+        messages: { 
+          name: { required: "Precisamos do seu nome" },
+          email: {
+            required: "Precisamos do seu e-mail também",
+            email: "Precisamos de um e-mail correto",
+          },
+          phone: { required: "Precisamos do seu telefone" }
+        }
+      });
+
 
       $(".email_text").hide();
       $(".facebook_text").hide();
