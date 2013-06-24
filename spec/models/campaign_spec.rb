@@ -91,4 +91,24 @@ describe Campaign do
   end
 
 
+  describe "#has_voice_action?" do
+
+    context "when there's a voice script and voice number" do
+      let(:campaign) { Campaign.make! }
+      
+      it "should return true" do
+        expect(campaign.has_voice_action?).to eq(true)
+      end
+    end
+
+    context "when there is NOT a voice script and voice number" do
+      let(:campaign) { Campaign.make!(voice_call_script: nil, voice_call_number: nil) }      
+
+      it "should return false" do
+        expect(campaign.has_voice_action?).to eq(false)        
+      end
+    end
+  end
+
+
 end

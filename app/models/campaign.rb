@@ -3,7 +3,9 @@ class Campaign < ActiveRecord::Base
   attr_accessible :description, :name, :user_id, :user_ids, :image, 
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
-    :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at
+    :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
+    :voice_call_script, :voice_call_number
+
 
   has_and_belongs_to_many :users
   belongs_to :user
@@ -33,10 +35,10 @@ class Campaign < ActiveRecord::Base
   scope :unmoderated, where(accepted_at: nil).reorder('updated_at DESC')
   scope :featured,    where('featured_at IS NOT NULL AND accepted_at IS NOT NULL').reorder('featured_at DESC')
   scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
-  scope :unfinished,  where('finished_at IS NULL')
+  scope :unfinished,  where(finished_at: nil)
   scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
-  scope :unarchived,  where('archived_at IS NULL')
-  scope :orphan,      where('moderator_id IS NULL')
+  scope :unarchived,  where(archived_at: nil)
+  scope :orphan,      where(moderator_id: nil)
 
   mount_uploader :image, ImageUploader
 
@@ -100,4 +102,11 @@ class Campaign < ActiveRecord::Base
   def archived?
     !self.archived_at.nil?
   end
+
+
+  def has_voice_action?
+    self.voice_call_number.present? && self.voice_call_script.present?
+  end
+
+
 end
