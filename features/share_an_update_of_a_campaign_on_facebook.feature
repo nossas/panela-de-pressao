@@ -7,5 +7,5 @@ Feature: share an update of a campaign on Facebook
   Scenario: the only one I know
     Given there is an accepted campaign
     And there is an update for this campaign
-    When I'm in this updates page
+    When I'm in this update page
     Then I should see the Facebook share button in the update facebox
