@@ -81,6 +81,7 @@ var App = window.App = {
 
       $(document).bind('reveal.facebox', function() {
         $("form.new_update").enableClientSideValidations();
+        $("form.edit_update").enableClientSideValidations();
         loadShareButtons();
       });
 

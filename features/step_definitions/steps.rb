@@ -496,3 +496,9 @@ Then /^the update title should be "(.*?)"$/ do |arg1|
     page.should have_css(".title", text: arg1)
   end
 end
+
+Then /^I should see an error in the title field in the edit update form$/ do
+  within "form.edit_update" do
+    page.should have_css("label.message[for='update_title']")
+  end
+end

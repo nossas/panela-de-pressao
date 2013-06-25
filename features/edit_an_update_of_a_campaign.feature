@@ -16,5 +16,14 @@ Feature: edit an update of a campaign
     And I should see the update popup
     And the update title should be "My update"
 
+  @omniauth_test @koala @javascript
   Scenario: when I am an admin and I fill the form wrong
+    Given there is an update for a campaign
+    And I'm logged in as admin
+    And I'm in the updates page of this campaign
+    And I click in the edit button of the update
+    And I change the update title to ""
+    When I submit the edit update form
+    Then I should see an error in the title field in the edit update form
+
   Scenario: when I am not an admin
