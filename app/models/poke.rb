@@ -17,10 +17,10 @@ class Poke < ActiveRecord::Base
   validate :poked_recently?, on: :create
 
   after_create    :thanks
-  after_create    :send_phone,          :if => Proc.new { self.phone? }
   after_create    :send_email,          :if => Proc.new { self.email? }
   after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
-  after_create    :if => Proc.new {self.twitter?} { self.delay.send_tweet }
+  after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
+  after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone } 
   before_create   :post_facebook_activity
   
   default_scope order('updated_at DESC') 
@@ -85,7 +85,9 @@ class Poke < ActiveRecord::Base
       destination:  self.campaign_phone
     }
 
-    HTTParty.get(service, params) 
+    response = HTTParty.get(service, params) 
+
+    return response
     
   end
 
