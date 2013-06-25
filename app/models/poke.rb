@@ -1,10 +1,8 @@
 # coding: utf-8
-
-require 'plivo'
+require 'httparty'
 
 class Poke < ActiveRecord::Base
-
-
+  
 
   attr_accessible :campaign_id,         :kind, :user_id, :custom_message
   belongs_to      :campaign
@@ -46,7 +44,6 @@ class Poke < ActiveRecord::Base
     self.kind == "phone"
   end
 
-
   def twitter?
     self.kind == "twitter"
   end
@@ -73,25 +70,23 @@ class Poke < ActiveRecord::Base
 
 
   def user_phone
-    "55" + self.user.mobile_phone.scan(/[0-9]+/).join
+    "+55#{self.user.mobile_phone.scan(/[0-9]+/).join}"
   end
 
   def campaign_phone
-    self.campaign.voice_call_number.scan(/[0-9]+/).join
+    "+#{self.campaign.voice_call_number.scan(/[0-9]+/).join}"
   end
   
   private
   def send_phone
-    plivo   = Plivo::RestAPI.new(ENV['PLIVO_ID'], ENV['PLIVO_TOKEN'])
-    params  = { 
-      to: self.user_phone,
-      from: ENV['PLIVO_NUMBER'],
-      answer_url: "http://callforward.herokuapp.com/forward/?Numbers=#{self.campaign_phone}"
+    service = ENV['SERVICE_CALL_URL']
+    params  = {
+      user:         self.user_phone,
+      destination:  self.campaign_phone
     }
 
-
-    response = plivo.make_call(params)
-    return response
+    HTTParty.get(service, params) 
+    
   end
 
 
