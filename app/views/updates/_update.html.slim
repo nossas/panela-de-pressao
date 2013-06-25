@@ -2,3 +2,5 @@
   .image= link_to image_tag(update.thumb), [update.campaign, update], rel: "facebox[.update_facebox]"
   .created_at= l update.created_at, format: :short
   .title= link_to update.title, [update.campaign, update], rel: "facebox[.update_facebox]", id: "update_#{update.id}_btn"
+  .buttons
+    = link_to "", edit_campaign_update_path(@campaign, update), rel: "facebox[.edit_update_facebox]", class: ["icon-new", "edit"]

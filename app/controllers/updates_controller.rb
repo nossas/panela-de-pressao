@@ -8,4 +8,10 @@ class UpdatesController < InheritedResources::Base
       format.html { redirect_to updates_campaign_path(@campaign, anchor: "update_#{@update.id}") }
     end
   end
+
+  def update
+    update! do |format|
+      format.html { redirect_to updates_campaign_path(@campaign, anchor: "update_#{@update.id}") }
+    end
+  end
 end

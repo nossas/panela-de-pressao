@@ -1,0 +1,23 @@
+= form_for [@campaign, @update], validate: true do |form|
+  .field
+    = form.label :title
+    = form.text_field :title
+  .field
+    = form.label :image
+    - if @update.image.file
+      = image_tag @update.image
+    = form.file_field :image
+  .field
+    = form.label :video
+    = form.text_field :video
+  .field
+    = form.label :body
+    = form.text_area  :body
+  .field
+    = form.label :lead
+    = form.text_area :lead
+  .field
+    = form.label :share_text
+    = form.text_area :share_text
+  .field
+    = form.submit "Criar atualização", class: "btn"
