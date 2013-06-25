@@ -85,7 +85,7 @@ class Poke < ActiveRecord::Base
       destination:  self.campaign_phone
     }
 
-    response = HTTParty.get(service, params) 
+    response = HTTParty.get(service, query: params) 
 
     return response
     
