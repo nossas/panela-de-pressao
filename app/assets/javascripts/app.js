@@ -85,7 +85,7 @@ var App = window.App = {
       });
 
       function loadShareButtons(){
-        $("a.facebook_share").click(function(event, target){
+        $("a.facebook_share, a.twitter_share").click(function(event, target){
           event.preventDefault();
           var obj = $(event.target);
           var url = null;

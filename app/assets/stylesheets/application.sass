@@ -208,6 +208,12 @@ p.inline-hints, p.inline-errors
     background: #1d8741
   &.facebook_share
     background: $chambray
+    &:hover
+      background: lighten($chambray, 10%)
+  &.twitter_share
+    background: $picton_blue
+    &:hover
+      background: lighten($picton_blue, 10%)
 
 ul.formatting
   ol
@@ -1057,9 +1063,12 @@ body.campaigns#show
     .share_buttons
       text-align: center
       margin-top: 3em
-      a.facebook_share
+      a.facebook_share, a.twitter_share
         width: auto
+        font-size: .9em
+        margin-right: .5em
         padding: .75em 1em .7em 1em
+        display: inline-block
   form.new_update
     label
       font-weight: bold
