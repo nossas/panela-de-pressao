@@ -10,7 +10,7 @@ Feature: view an update of a campaign
     And I'm in this campaign page
     And I click in the updates button
     When I click in the update title
-    Then I should see the update lightbox
+    Then I should see the update popup
     And I should see the update image
 
   @javascript @koala
@@ -20,5 +20,5 @@ Feature: view an update of a campaign
     And I'm in this campaign page
     And I click in the updates button
     When I click in the update title
-    Then I should see the update lightbox
+    Then I should see the update popup
     And I should see the update video
