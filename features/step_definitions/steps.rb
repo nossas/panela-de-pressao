@@ -502,3 +502,9 @@ Then /^I should see an error in the title field in the edit update form$/ do
     page.should have_css("label.message[for='update_title']")
   end
 end
+
+Then /^I should not see the edit button of the update$/ do
+  within ".update" do
+    page.should_not have_css("a.edit")
+  end
+end

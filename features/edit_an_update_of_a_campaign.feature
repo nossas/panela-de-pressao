@@ -26,4 +26,9 @@ Feature: edit an update of a campaign
     When I submit the edit update form
     Then I should see an error in the title field in the edit update form
 
+  @koala @omniauth_test
   Scenario: when I am not an admin
+    Given there is an update for a campaign
+    And I'm logged in
+    When I'm in the updates page of this campaign
+    Then I should not see the edit button of the update
