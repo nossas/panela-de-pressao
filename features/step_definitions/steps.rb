@@ -1,31 +1,6 @@
 # coding: utf-8
 Given /^I'm in ([^"]*)$/ do |arg1|
-  case arg1
-  when "the campaigns page"
-    visit campaigns_path
-  when "the new campaign page"
-    visit new_campaign_path
-  when "the influencers page"
-    visit influencers_path
-  when "the new influencer page"
-    visit new_influencer_path
-  when "this campaign page"
-    visit campaign_path(@campaign)
-  when "this campaign editing page"
-    visit edit_campaign_path(@campaign)
-  when "this target page"
-    visit influencer_path(@target.influencer)
-  when "this update page"
-    visit updates_campaign_path(@update.campaign, anchor: "update_#{@update.id}")
-  when "the unmoderated campaigns page"
-    visit unmoderated_campaigns_path
-  when "this user unsubscribe page"
-    visit user_unsubscribe_path(@user, :token => @user.token)
-  when "the updates page of this campaign"
-    visit updates_campaign_path(@campaign)
-  else
-    raise "I don't know #{arg1}"
-  end
+  visit route_to_path(arg1)
 end
 
 Given /^there is a campaign created by "(.*?)" with no partnership$/ do |arg1|
@@ -506,5 +481,31 @@ end
 Then /^I should not see the edit button of the update$/ do
   within ".update" do
     page.should_not have_css("a.edit")
+  end
+end
+
+Then /^I should see the remove update button$/ do
+  within ".update" do
+    page.should have_css("a.remove")
+  end
+end
+
+When /^I click on the remove update button$/ do
+  within ".update" do
+    page.find("a.remove").click
+  end
+end
+
+Then /^I should not see the update in the list of updates$/ do
+  page.should_not have_css(".update .title", text: @update.title)
+end
+
+Then /^I should see a successful message$/ do
+  page.should have_css("section.notice")
+end
+
+Then /^I should not see the remove update button$/ do
+  within ".update" do
+    page.should_not have_css("a.remove")
   end
 end

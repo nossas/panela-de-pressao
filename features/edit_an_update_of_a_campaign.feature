@@ -7,7 +7,7 @@ Feature: edit an update of a campaign
   Scenario: when I am an admin and I fill the form right
     Given there is an update for a campaign
     And I'm logged in as admin
-    When I'm in the updates page of this campaign
+    When I'm in the updates page of the campaign
     Then I should see the edit button of the update
     Given I click in the edit button of the update
     And I change the update title to "My update"
@@ -20,7 +20,7 @@ Feature: edit an update of a campaign
   Scenario: when I am an admin and I fill the form wrong
     Given there is an update for a campaign
     And I'm logged in as admin
-    And I'm in the updates page of this campaign
+    And I'm in the updates page of the campaign
     And I click in the edit button of the update
     And I change the update title to ""
     When I submit the edit update form
@@ -30,5 +30,5 @@ Feature: edit an update of a campaign
   Scenario: when I am not an admin
     Given there is an update for a campaign
     And I'm logged in
-    When I'm in the updates page of this campaign
+    When I'm in the updates page of the campaign
     Then I should not see the edit button of the update
