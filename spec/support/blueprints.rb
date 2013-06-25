@@ -60,7 +60,7 @@ Poke.blueprint do
 end
 
 Update.blueprint do
-  campaign    { Campaign.make! }
+  campaign    { Campaign.make! accepted_at: Time.now }
   body        { Faker::Lorem.paragraph }
   image       { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
   title       { Faker::Lorem.sentence }
