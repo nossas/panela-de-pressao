@@ -82,7 +82,7 @@ App.Campaigns = {
             required: "Precisamos do seu e-mail também",
             email: "Precisamos de um e-mail correto",
           },
-          phone: { required: "Precisamos do seu telefone" }
+          phone: { required: "Precisamos do seu telefone." }
         }
       });
 
