@@ -1,29 +1,6 @@
 # coding: utf-8
 Given /^I'm in ([^"]*)$/ do |arg1|
-  case arg1
-  when "the campaigns page"
-    visit campaigns_path
-  when "the new campaign page"
-    visit new_campaign_path
-  when "the influencers page"
-    visit influencers_path
-  when "the new influencer page"
-    visit new_influencer_path
-  when "this campaign page"
-    visit campaign_path(@campaign)
-  when "this campaign editing page"
-    visit edit_campaign_path(@campaign)
-  when "this target page"
-    visit influencer_path(@target.influencer)
-  when "this update page"
-    visit updates_campaign_path(@update.campaign, anchor: "update_#{@update.id}")
-  when "the unmoderated campaigns page"
-    visit unmoderated_campaigns_path
-  when "this user unsubscribe page"
-    visit user_unsubscribe_path(@user, :token => @user.token)
-  else
-    raise "I don't know #{arg1}"
-  end
+  visit route_to_path(arg1)
 end
 
 Given /^there is a campaign created by "(.*?)" with no partnership$/ do |arg1|
@@ -225,27 +202,7 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
 end
 
 Then /^I should be in ([^"]*)$/ do |arg1|
-  case arg1
-  when "the campaigns page"
-    page.current_path.should be_== campaigns_path
-  when "this campaign page"
-    page.current_path.should be_== campaign_path(@campaign)
-  when "the new campaign page"
-    page.current_path.should be_== new_campaign_path
-  when "the answers page of the campaign"
-    page.current_path.should be_== answers_campaign_path(@campaign)
-  when "the unmoderated campaigns page"
-    sleep 1
-    page.current_path.should be_== unmoderated_campaigns_path
-  when "the homepage"
-    page.current_path.should be_== root_path
-  when "the Facebook callback"
-    page.current_path.should be_== '/auth/facebook/callback'
-  when "the updates page of the campaign"
-    page.current_path.should be_== updates_campaign_path(@campaign)
-  else
-    raise "I don't know '#{arg1}'"
-  end
+  page.current_path.should be_== route_to_path(arg1)
 end
 
 Then /^I should see the campaigns' ([^"]*)$/ do |arg|
@@ -407,7 +364,7 @@ When /^I click in the update title$/ do
   page.find(".update .title a").click
 end
 
-Then /^I should see the update lightbox$/ do
+Then /^I should see the update popup$/ do
   page.should have_css(".update_facebox")
 end
 
@@ -477,11 +434,78 @@ Then /^I should see the Facebook share button in the update facebox$/ do
 end
 
 Given /^there is an update for a campaign$/ do
-  @update = Update.make!
+  @campaign = Campaign.make! accepted_at: Time.now
+  @update = Update.make! campaign: @campaign
 end
 
 Then /^I should see the Twitter share button in the update facebox$/ do
   within ".update_facebox" do
     page.should have_css("a.twitter_share")
+  end
+end
+
+Then /^I should see the edit button of the update$/ do
+  within ".update" do
+    page.should have_css("a.edit")
+  end
+end
+
+Given /^I click in the edit button of the update$/ do
+  within ".update" do
+    page.find("a.edit").click
+  end
+end
+
+Given /^I change the update title to "(.*?)"$/ do |arg1|
+  within "form.edit_update" do
+    fill_in "update_title", with: arg1
+  end
+end
+
+When /^I submit the edit update form$/ do
+  page.find("form.edit_update input[type='submit']").click
+end
+
+Then /^the update title should be "(.*?)"$/ do |arg1|
+  within ".update_facebox" do
+    page.should have_css(".title", text: arg1)
+  end
+end
+
+Then /^I should see an error in the title field in the edit update form$/ do
+  within "form.edit_update" do
+    page.should have_css("label.message[for='update_title']")
+  end
+end
+
+Then /^I should not see the edit button of the update$/ do
+  within ".update" do
+    page.should_not have_css("a.edit")
+  end
+end
+
+Then /^I should see the remove update button$/ do
+  within ".update" do
+    page.should have_css("a.remove")
+  end
+end
+
+When /^I click on the remove update button$/ do
+  within ".update" do
+    page.find("a.remove").click
+  end
+end
+
+Then /^I should not see the update in the list of updates$/ do
+  page.should_not have_css(".update .title", text: @update.title)
+end
+
+Then /^I should see a successful message$/ do
+  page.should have_css("section.notice")
+end
+
+Then /^I should not see the remove update button$/ do
+  within ".update" do
+    page.should_not have_css("a.remove")
   end
 end
