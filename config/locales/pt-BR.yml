@@ -207,6 +207,9 @@ pt-BR:
       answer: 
         one: "Resposta" 
         other: "Respostas"
+      update:
+        one: "Atualização"
+        other: "Atualizações"
     errors:
       <<: *errors
       models:

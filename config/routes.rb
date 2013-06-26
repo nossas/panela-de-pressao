@@ -25,7 +25,7 @@ ManifesteSe::Application.routes.draw do
     put :archive, to: "campaigns#archive"
 
     resources :posts, :only => [:create, :index, :destroy]
-    resources :updates, :only => [:show, :new, :create]
+    resources :updates, :only => [:show, :new, :create, :edit, :update, :destroy]
     resources :pokes, :only => [:create] do
       collection do
         get :create_from_session, :to => "pokes#create"
