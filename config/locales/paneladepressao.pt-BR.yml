@@ -90,8 +90,8 @@ pt-BR:
         twitter_tip: "mensagem será publicada no perfil do alvo"
         email: "Pressione por e-mail"
         email_tip: "mensagem será enviada ao e-mail do alvo"
-        voice_call: "Pressione por celular"
-        voice_call_tip: "ligaremos para que você fale diretamente"
+        voice_call: "Pressione por telefone"
+        voice_call_tip: "você receberá uma ligação te conectando com o gabinete do prefeito."
         message:
           header: "Mensagem"
       campaign_menu:
