@@ -11,28 +11,3 @@
       - unless @campaign.email_influencers.count.zero?
         .via_email= render partial: 'poke_button_form', locals: { kind: 'email' }
 
-.hidden
-  #poke_box.poke_buttons
-    h2= t 'campaign.show.form.headline' 
-    - unless @campaign.finished_at
-      .poke
-        - unless @campaign.email_influencers.count.zero?
-          .via_email.button
-            span.title
-              | 1. Insira seus dados para enviar uma mensagem por e-mail
-            = render partial: 'poke_button_form', locals: { kind: 'email' }
-        - unless @campaign.facebook_influencers.count.zero?
-          .via_facebook.button
-            span.title
-              | 2. Aproveite também para pressionar através do facebook! 
-            p
-              | Ao clicar no botão, você será automaticamente redirecionado ao Facebook, para efetuar login e autorizar a pressão.
-            = render partial: 'poke_button_form', locals: { kind: 'facebook' }
-        - unless @campaign.twitter_influencers.count.zero?
-          .via_twitter.button
-            span.title
-              | 3. Para finalizar, pressione também pelo twitter
-            p
-              | Ao clicar no botão, você será automaticamente redirecionado ao Twitter, para efetuar login e autorizar o tweet.
-            = render partial: 'poke_button_form', locals: { kind: 'twitter' } 
-      p &nbsp; 
