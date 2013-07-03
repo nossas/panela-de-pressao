@@ -91,7 +91,7 @@ pt-BR:
         email: "Pressione por e-mail"
         email_tip: "mensagem será enviada ao e-mail do alvo"
         voice_call: "Pressione por telefone"
-        voice_call_tip: "você receberá uma ligação te conectando com o gabinete do prefeito."
+        voice_call_tip: "você receberá uma ligação do número 3957-9303 te conectando com o alvo."
         message:
           header: "Mensagem"
       campaign_menu:
