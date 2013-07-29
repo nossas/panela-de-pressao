@@ -1,5 +1,7 @@
 class Influencer < ActiveRecord::Base
-  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache, :about, :facebook_url
+  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache, 
+    :about, :facebook_url, :archived
+
 	attr_accessor :user_id
 
   has_many :targets
@@ -11,19 +13,35 @@ class Influencer < ActiveRecord::Base
   validates_format_of :email,         with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true
   validates_format_of :facebook_url,  with: /facebook\.com\/.+/, :allow_blank => true
 
-	before_save do 
+	before_save do
 		if self.facebook_url_changed? && !self.facebook_url.blank?
 			@facebook_url_temp = self.facebook_url
 			self.facebook_url = self.facebook_url_was
-			@user_id = self.user_id 
+			@user_id = self.user_id
 		end
 	end
 
 	after_save { self.delay.update_facebook(@facebook_url_temp, :by => @user_id) if @facebook_url_temp }
 
   default_scope order("name")
+  scope :available, where(archived_at: nil)
+  scope :archived, where("archived_at IS NOT NULL")
 
   mount_uploader :avatar, AvatarUploader
+
+  def archived=(value)
+    if value
+      self.archived_at ||= Time.now
+    else
+      self.archived_at = nil 
+    end
+  end
+
+  def archived
+    !!archived_at 
+  end
+  
+  alias :archived? :archived
 
   def to_s
     "#{self.name}, #{self.role}"

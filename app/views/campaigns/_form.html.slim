@@ -25,7 +25,7 @@
 
   p.textarea
     = f.label :influencer_ids
-    = f.select :influencer_ids, Influencer.all.map{|i| [i, i.id]}, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+    = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
  
   p.textarea
     = f.label :facebook_text

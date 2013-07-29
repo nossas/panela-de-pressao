@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
     redirect_to "/auth/facebook"
   end
 
-
-
   protected
   def render_404
     raise ActionController::RoutingError.new('Not Found')
