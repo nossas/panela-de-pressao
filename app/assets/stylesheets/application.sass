@@ -12,6 +12,9 @@ $twitter_blue: #359AD8
 $gray: #f3f4f4
 $chambray: #40599c
 $picton_blue: #43bde2
+$light_gray: #d1d1d1
+$dark_gray: #666
+$darker_gray: #333
 
 @import compass/reset
 @import columnal/grid
@@ -1198,6 +1201,14 @@ body.influencers#index
       width: 100%
       img
         width: 25px
+      tr.archived
+        background-color: $light_gray
+        td
+          color: $dark_gray
+          a
+            color: $dark_gray
+            &:hover
+              color: $darker_gray
     .icon-twitter, .icon-facebook
       display: block
       float: left

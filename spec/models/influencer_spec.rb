@@ -6,7 +6,7 @@ describe Influencer do
     it { should have_many :campaigns }
   end
 
-  describe "validations" do 
+  describe "validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :role }
   end
@@ -15,13 +15,13 @@ describe Influencer do
 		subject { stub_model(Influencer, :facebook_url => "http://www.facebook.com/eduardopaesRJ", :facebook_id => "165276720205822") }
 		before do
   			@public_page = double(:get_object => {
-					"link" => "http://www.facebook.com/coca-cola", 
-					"id" => "40796308305", 
+					"link" => "http://www.facebook.com/coca-cola",
+					"id" => "40796308305",
 					"can_post" => true
 				})
   			@private_page = double(:get_object => {
-					"link" => "http://www.facebook.com/coca-cola", 
-					"id" => "40796308305", 
+					"link" => "http://www.facebook.com/coca-cola",
+					"id" => "40796308305",
 					"can_post" => false
 				})
 		end
@@ -47,4 +47,59 @@ describe Influencer do
 			end
 		end
 	end
+
+	describe "#archived=" do
+	  let(:influencer) { Influencer.new }
+
+    context "when archived is true" do
+      subject { influencer.archived = true }
+
+      context "and archived_at is null" do
+        it { expect { subject }.to change(influencer, :archived_at) }
+      end
+
+      context "and the archived_at is not null" do
+        before do
+          influencer.archived_at = Time.now
+        end
+
+        it { expect { subject }.to_not change(influencer, :archived_at) }
+      end
+    end
+
+    context "when archived is false" do
+      subject { influencer.archived = false }
+      
+      before do
+        influencer.archived_at = Time.now
+      end
+
+      it { expect { subject }.to change(influencer, :archived_at) }
+    end
+  end
+
+  describe "#archived" do
+	  let(:influencer) { Influencer.new }
+    subject { influencer.archived }
+
+    context "when archived_at is null" do
+      it { should be_false } 
+    end
+
+    context "when archived_at is not null" do
+      before do
+        influencer.archived_at = Time.now
+      end
+      it { should be_true }
+    end
+  end
+
+  describe ".available" do
+    let(:influencer1) { Influencer.make! }
+    let(:influencer2) { Influencer.make!(archived_at: Time.now) }
+
+    subject { Influencer.available }
+    it { should include(influencer1) }
+    it { should_not include(influencer2) }
+  end
 end
