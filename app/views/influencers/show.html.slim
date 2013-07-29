@@ -10,6 +10,9 @@ section.content.row
     = form_for @influencer, multipart: true, html: { class: (can?(:edit, @influencer) ? "" : "not_logged") } do |f|
       - if can?(:edit, @influencer)
         p
+          = f.label :archived
+          = f.check_box :archived
+        p
           = f.file_field :avatar
       p
         = f.label :name
