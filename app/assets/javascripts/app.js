@@ -30,11 +30,9 @@ var App = window.App = {
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
         $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
       });
-      if ($.browser.msie !== undefined) {
-        $('section.index li.campaign:nth-child(4n+0)').css("margin-right", "0");
-        $('section.explore li.campaign:nth-child(3n+0)').css("margin-right", "0");
-        $('body.users#show li.campaign:nth-child(3n+0)').css("margin-right", "0");
-      }
+      $('section.index li.campaign:nth-child(4n+0)').css("margin-right", "0");
+      $('section.explore li.campaign:nth-child(3n+0)').css("margin-right", "0");
+      $('body.users#show li.campaign:nth-child(3n+0)').css("margin-right", "0");
       
       $('ul.current li.me').on('click', function(){ $(this).children('.options').fadeToggle(10); });
 
