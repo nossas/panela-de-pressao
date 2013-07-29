@@ -44,7 +44,7 @@ describe User do
     subject { User.by_campaign_id(campaign.id) }
 
     it "should return a list of users that poked a given campaign" do
-      subject.should be_== [user]
+      subject.should == [user]
     end
   end
 end

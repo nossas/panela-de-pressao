@@ -8,9 +8,9 @@ class PokeMailer < ActionMailer::Base
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"poke\"] }"
     @poke = the_poke
     mail(
-      :to => the_poke.campaign.targets.map{|t| "'#{t.influencer.name}' <#{t.influencer.email}>" if !t.influencer.email.blank? }.join(", "), 
-      :subject => the_poke.campaign.name,
-      :from => "\"#{the_poke.user.name}\" <#{the_poke.user.email}>"
+      :to => @poke.campaign.targets.map{|t| "'#{t.influencer.name}' <#{t.influencer.email}>" if !t.influencer.email.blank? }.join(", "), 
+      :subject => @poke.campaign.name,
+      :from => "\"#{@poke.user.name}\" <#{@poke.user.email}>"
     )
   end
 
