@@ -21,7 +21,7 @@ describe CampaignsController do
         Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => Time.now))
         get :show, :id => "1"
       end
-      it { should assign_to(:poke) }
+      its(:status) { should == 200 }
     end
 
     context "Not accepted campaigns with a wrong preview code" do
