@@ -14,8 +14,6 @@ Feature: Enable voice call integration of campaign
     Given I'm logged in
     When I'm in the new campaign page
     Then I should not see "Plivo integration"
-
-
     
   @omniauth_test @javascript @bitly
   Scenario: when I'm smart enough to successfully fill the new campaign form
@@ -36,8 +34,6 @@ Feature: Enable voice call integration of campaign
     And an email called "Recebemos a sua campanha" should be sent
     And an email called "Campanha aguardando moderação" should be sent
 
-
-
   Scenario: One accepted campaign exists 
     Given there is a campaign called "Desarmamento Voluntário" accepted on "1/1/2012"
     And there is a target for this campaign    
@@ -45,9 +41,4 @@ Feature: Enable voice call integration of campaign
     Then I should see the campaigns' name
     Then I should see the campaigns' description 
     Then I should see the campaigns' image
-    Then I should see "ligaremos para que você fale diretamente"
-
-
-
-  
-
+    Then I should see "você receberá uma ligação do número 3957-9303 te conectando com o alvo."

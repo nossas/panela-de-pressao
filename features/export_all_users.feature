@@ -5,14 +5,10 @@ Feature: export all users
 
   @omniauth_test @javascript
   Scenario: when I'm an admin
-    Given I'm logged in as admin
-    And I'm in the campaigns page
-    When I open my profile options
-    Then I should see "Exportar"
+    When I'm logged in as admin
+    Then the profile panel should have an option to export all users
 
   @omniauth_test @javascript
   Scenario: when I'm not an admin
-    Given I'm logged in
-    And I'm in the campaigns page
-    When I open my profile options
-    Then I should not see "Exportar"
+    When I'm logged in
+    Then the profile panel should not have an option to export all users

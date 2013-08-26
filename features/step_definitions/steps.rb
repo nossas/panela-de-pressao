@@ -72,6 +72,7 @@ end
 Given /^I'm logged in as admin$/ do
   visit "/auth/facebook"
   Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :mobile_phone => "(21) 9983-2232"
+  visit root_path
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
@@ -111,6 +112,7 @@ end
 
 
 Given /^there is a poker called "(.*?)"$/ do |arg1|
+  @campaign.targets << Target.make!
   @poke = Poke.make! :campaign => @campaign
 end
 
@@ -508,4 +510,12 @@ Then /^I should not see the remove update button$/ do
   within ".update" do
     page.should_not have_css("a.remove")
   end
+end
+
+Then(/^the profile panel should have an option to export all users$/) do
+  page.should have_css("ul.options a[href='/users.csv']", visible: false)
+end
+
+Then(/^the profile panel should not have an option to export all users$/) do
+  page.should_not have_css("ul.options a[href='/users.csv']", visible: false)
 end

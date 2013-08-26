@@ -39,21 +39,24 @@ describe Poke do
       end
     end
     context "When the user has poked the same channel in less than 1 day" do
-      let(:poke) { Poke.make!(created_at: Time.now - 23.hours, kind: "facebook") }
+      let(:campaign)  { Campaign.make! }
+      let(:user)      { User.make! }
+      before          { campaign.influencers << Influencer.make! }
+      before          { Poke.make!(created_at: Time.now - 23.hours, kind: "facebook", campaign: campaign, user: user) }
 
       it "Should not throw an error saying 'you poked this channel recently' when it's another channel in another time window" do
-        new_poke = Poke.create(user_id: poke.user.id, campaign_id: poke.campaign.id, kind: "email")
+        new_poke = Poke.create(user_id: user.id, campaign_id: campaign.id, kind: "email")
         expect(new_poke).to have(0).error_on(:created_at)
       end
 
       it "Should throw an error saying 'you poked this channel recently' when the user already poked the same channel some minutes ago" do
-        new_poke = Poke.create(user_id: poke.user.id, campaign_id: poke.campaign.id, kind: "facebook")
+        new_poke = Poke.create(user_id: user.id, campaign_id: campaign.id, kind: "facebook")
         expect(new_poke).to have(1).error_on(:created_at)
         expect(new_poke.errors[:created_at]).to eq([I18n.t("activerecord.errors.models.poke.attributes.created_at.poked_recently")])
       end
 
       it "Should not throw an error when the user hasn't any recent pokes in the same channel" do
-        new_poke = Poke.make(created_at: Time.now, user_id: poke.user.id, campaign_id: poke.campaign.id, kind: "facebook")
+        new_poke = Poke.make(created_at: Time.now, user_id: user.id, campaign_id: campaign.id, kind: "facebook")
         expect(new_poke).to have(0).error_on(:created_at)
       end
     end
