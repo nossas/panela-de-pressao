@@ -19,3 +19,5 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
         strong= campaign.moderator ? campaign.moderator.name : "Ninguém"
         |  está moderando
       = link_to "Assumir moderação", campaign_moderate_path(campaign), :class => "btn", :method => "put"
+      .campaign_user_email= campaign.user.email
+      .campaign_created_at= l(campaign.created_at, format: :short)

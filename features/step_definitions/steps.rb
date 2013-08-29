@@ -519,3 +519,9 @@ end
 Then(/^the profile panel should not have an option to export all users$/) do
   page.should_not have_css("ul.options a[href='/users.csv']", visible: false)
 end
+
+Then(/^I should see "(.*?)" in "(.*?)"$/) do |arg1, arg2|
+  within to_element(arg2) do
+    page.should have_content(to_element(arg1))
+  end
+end

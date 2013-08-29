@@ -10,14 +10,14 @@ describe InfluencersController do
 
     context "when the influencer is archived" do
       before do
-        influencer.stub!(:archived?).and_return(true)
+        influencer.stub(:archived?).and_return(true)
       end
 
       context "and the user is logged in" do
         let(:user) { User.new }
         
         before do
-          User.stub!(:find_by_id).and_return(user)
+          User.stub(:find_by_id).and_return(user)
         end
         
         context "and can edit influencers" do
@@ -49,7 +49,7 @@ describe InfluencersController do
 
     context "when the influencer is not archived" do
       before do
-        influencer.stub!(:archived?).and_return(false)
+        influencer.stub(:archived?).and_return(false)
 
         get :show, id: 1
       end

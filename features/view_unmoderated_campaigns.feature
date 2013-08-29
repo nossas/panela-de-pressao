@@ -12,6 +12,8 @@ Feature: View unmoderated campaigns
     When I click "Moderar campanhas"
     Then I should be in the unmoderated campaigns page
     And I should see "Save the whales!"
+    And I should see "the cooker's email" in "the campaign list"
+    And I should see "the submition date" in "the campaign list"
     And I should see the moderate button for this campaign
 
   @omniauth_test @javascript
