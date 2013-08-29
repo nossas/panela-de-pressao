@@ -41,6 +41,7 @@ gem 'twitter'
 gem 'bitly'
 gem "koala"
 gem "has_scope"
+gem 'simplecov', :require => false, :group => :test
 
 group :development do
   gem "mailcatcher"
