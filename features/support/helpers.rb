@@ -14,3 +14,10 @@ def route_to_path route
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
   raise "I don't know '#{route}'"
 end
+
+def to_element string
+  return ".campaign"                                  if string == "the campaign list"
+  return I18n.l(@campaign.created_at, format: :short) if string == "the submition date"
+  return @campaign.user.email                         if string == "the cooker's email"
+  raise "I don't know '#{string}'"
+end
