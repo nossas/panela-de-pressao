@@ -322,14 +322,6 @@ Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
   @campaign.users << @user
 end
 
-Then /^I should see the moderate button for this campaign$/ do
-  page.should have_css("li.campaign a[href='#{campaign_moderate_path(@campaign)}']")
-end
-
-Then /^I should see "(.*?)" as the moderator of this campaign$/ do |arg1|
-  page.should have_css("li.campaign .campaign_moderator", :text => arg1)
-end
-
 Given /^there is a campaign$/ do
   @campaign = Campaign.make!
 end
@@ -521,7 +513,7 @@ Then(/^the profile panel should not have an option to export all users$/) do
 end
 
 Then(/^I should see "(.*?)" in "(.*?)"$/) do |arg1, arg2|
-  within to_element(arg2) do
-    page.should have_content(to_element(arg1))
+  within :xpath, to_xpath(arg2) do
+    page.should have_xpath(to_xpath(arg1))
   end
 end

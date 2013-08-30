@@ -7,4 +7,4 @@ Feature: take on a campaing's moderation
     And I go to the unmoderated campaigns page
     When I click "Assumir moderação"
     Then I should be in the unmoderated campaigns page
-    And I should see "Nícolas Iensen está moderando"
+    And I should see "the campaign's moderator name" in "the campaign list"
