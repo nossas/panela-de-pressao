@@ -73,7 +73,7 @@ class CampaignsController < InheritedResources::Base
 
 
   def unmoderated
-    @campaigns = Campaign.unmoderated.unarchived.order(:created_at)
+    @campaigns = Campaign.unmoderated.unarchived.order("created_at DESC")
   end
 
   def moderate
