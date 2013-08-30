@@ -8,7 +8,7 @@
     | Olá, meu nome é 
     - if can? :change_ownership, @campaign
       = f.label :user_id
-      = f.select :user_id, User.order(:name).all.map{|u| [u.name, u.id]}, {}, class: 'chzn-select'
+      = f.select :user_id, User.order(:name).all.map{|u| [u.name, u.id]}
     - else
       strong
         = @campaign.user.present? ? @campaign.user.name : current_user.name
