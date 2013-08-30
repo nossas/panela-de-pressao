@@ -198,6 +198,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("form.new_poke")
   when "the new campaign form"
     page.should_not have_css("#new_campaign")
+  when "the ownership field"
+    page.should_not have_css("select#campaign_user_id", visible: false)
   else
     page.should_not have_content(arg1)
   end
@@ -516,4 +518,16 @@ Then(/^I should see "(.*?)" in "(.*?)"$/) do |arg1, arg2|
   within :xpath, to_xpath(arg2) do
     page.should have_xpath(to_xpath(arg1))
   end
+end
+
+Given(/^there is an user called "(.*?)"$/) do |arg1|
+  User.make! name: arg1
+end
+
+Then(/^the campaign's owner should be "(.*?)"$/) do |arg1|
+  @campaign.reload.user.name.should be_== arg1
+end
+
+Given(/^I own a campaign$/) do
+  @campaign = Campaign.make! user: Authorization.find_by_uid("536687842").user
 end

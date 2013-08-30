@@ -6,8 +6,12 @@
       = link_to "Expandir imagem da campanha", "#image", rel: 'facebox' 
   p
     | Olá, meu nome é 
-    strong
-      = @campaign.user.present? ? @campaign.user.name : current_user.name
+    - if can? :change_ownership, @campaign
+      = f.label :user_id
+      = f.select :user_id, User.order(:name).all.map{|u| [u.name, u.id]}, {}, class: 'chzn-select'
+    - else
+      strong
+        = @campaign.user.present? ? @campaign.user.name : current_user.name
   p
     = f.label :name
     = f.text_field :name
