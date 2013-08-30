@@ -21,7 +21,7 @@ var App = window.App = {
       Backbone.history.start();
 
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
-      
+      $("select#campaign_user_id").chosen({no_results_text: "Nenhum resultado", width: "300px"});
 
       $('.phone_rj').inputmask("mask", {"mask": "(21) 9999-9999"});
       $('.phone').inputmask("mask", {"mask": "(99) 9999-9999"});
