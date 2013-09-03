@@ -78,3 +78,5 @@ group :assets do
 end
 
 gem 'facebox-rails'
+gem 'rails3-jquery-autocomplete', git: "git@github.com:nicolasiensen/rails3-jquery-autocomplete.git"
+gem 'jquery-ui-rails'

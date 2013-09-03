@@ -531,3 +531,10 @@ end
 Given(/^I own a campaign$/) do
   @campaign = Campaign.make! user: Authorization.find_by_uid("536687842").user
 end
+
+Given /^I choose "([^"]*)" in the autocomplete$/ do |text|
+  step ("I fill \"campaign_user\" with \"#{text}\"")
+  page.execute_script "$('.ui-autocomplete-input').trigger('keydown');"
+  sleep 2
+  page.execute_script "$('.ui-menu-item a:contains(\"#{text}\")').trigger('mouseenter').trigger('click');"
+end

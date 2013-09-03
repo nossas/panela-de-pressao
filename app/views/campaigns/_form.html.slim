@@ -8,7 +8,8 @@
     | Olá, meu nome é 
     - if can? :change_ownership, @campaign
       = f.label :user_id
-      = f.select :user_id, User.order(:name).all.map{|u| [u.name, u.id]}
+      = f.autocomplete_field :user, autocomplete_user_name_users_path, id_element: "#campaign_user_id", value: @campaign.user.name if @campaign.persisted?
+      = f.hidden_field :user_id
     - else
       strong
         = @campaign.user.present? ? @campaign.user.name : current_user.name
