@@ -3,13 +3,13 @@ Feature: change the campaign's ownership
   As an admin
   I want to change the campaign's ownership
 
-  @omniauth_test
+  @omniauth_test @javascript
   Scenario: when I'm an admin
     Given there is a campaign
     And there is an user called "Leonardo Eloi"
     And I'm logged in as admin
     And I'm in this campaign editing page
-    And I select "Leonardo Eloi" for "Cozinheiro"
+    And I choose "Leonardo Eloi" in the autocomplete
     When I press "Salvar campanha"
     Then the campaign's owner should be "Leonardo Eloi"
 

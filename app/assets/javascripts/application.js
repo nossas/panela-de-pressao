@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 
 //= require ./lib/underscore.js
 //= require ./lib/backbone.js
@@ -22,9 +23,9 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.facebox
+//= require autocomplete-rails
 
 //= require_tree ./lib
 //= require ./app.js
 //= require_tree ./app
 //= require ./init.js
-
