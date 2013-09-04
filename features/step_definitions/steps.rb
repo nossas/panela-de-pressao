@@ -525,7 +525,7 @@ Given(/^there is an user called "(.*?)"$/) do |arg1|
 end
 
 Then(/^the campaign's owner should be "(.*?)"$/) do |arg1|
-  @campaign.reload.user.name.should be_== arg1
+  @campaign.reload.user.email.should be_== arg1
 end
 
 Given(/^I own a campaign$/) do
@@ -537,4 +537,8 @@ Given /^I choose "([^"]*)" in the autocomplete$/ do |text|
   page.execute_script "$('.ui-autocomplete-input').trigger('keydown');"
   sleep 2
   page.execute_script "$('.ui-menu-item a:contains(\"#{text}\")').trigger('mouseenter').trigger('click');"
+end
+
+Given(/^there is an user with email "(.*?)"$/) do |arg1|
+  User.make! email: arg1
 end

@@ -6,12 +6,12 @@ Feature: change the campaign's ownership
   @omniauth_test @javascript
   Scenario: when I'm an admin
     Given there is a campaign
-    And there is an user called "Leonardo Eloi"
+    And there is an user with email "nicolas@paneladepressao.org.br"
     And I'm logged in as admin
     And I'm in this campaign editing page
-    And I choose "Leonardo Eloi" in the autocomplete
+    And I choose "nicolas@paneladepressao.org.br" in the autocomplete
     When I press "Salvar campanha"
-    Then the campaign's owner should be "Leonardo Eloi"
+    Then the campaign's owner should be "nicolas@paneladepressao.org.br"
 
   @omniauth_test
   Scenario: when I'm not the admin
