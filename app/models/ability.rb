@@ -18,12 +18,10 @@ class Ability
     if user && user.admin?
       can :manage, :all
     elsif user
-
-      # Just comment the line below if you are closing the campaign's form
       can :create, Campaign
-
       can :create, Poke
-      can :update, Campaign, :user_id => user.id
+      can :update, Campaign, user_id: user.id
+      can :read, Campaign, user_id: user.id
       can :update, User, id: user.id
     end
   end
