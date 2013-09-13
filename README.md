@@ -1,5 +1,6 @@
 [![Build Status](https://secure.travis-ci.org/meurio/panela-de-pressao.png?branch=master)](http://travis-ci.org/meurio/panela-de-pressao)
 [![Code Climate](https://codeclimate.com/github/meurio/panela-de-pressao.png)](https://codeclimate.com/github/meurio/panela-de-pressao)
+[![Coverage Status](https://coveralls.io/repos/meurio/panela-de-pressao/badge.png)](https://coveralls.io/r/meurio/panela-de-pressao)
 
 # Getting Started
 1. We suppose you already have Ruby on Rails and Git installed;
