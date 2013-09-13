@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :is_current_user?
   before_filter { |controller| session[:restore_url] = request.url if controller.controller_name != "sessions" && !request.xhr? }
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
+  end
+
+  def is_current_user?(user)
+    current_user == user
   end
 
   def signed_in?
