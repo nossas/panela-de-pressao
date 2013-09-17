@@ -542,3 +542,11 @@ end
 Given(/^there is an user with email "(.*?)"$/) do |arg1|
   User.make! email: arg1
 end
+
+Then(/^I should see the campaign's hashtag field$/) do
+  page.should have_css("form input[name='campaign[hashtag]']")
+end
+
+Then(/^I should not see the campaign's hashtag field$/) do
+  page.should_not have_css("form input[name='campaign[hashtag]']")
+end

@@ -7,6 +7,7 @@ describe Campaign do
     Bitly.stub(:new).and_return(bitly)
   end
 
+
   describe "associations" do
     it{ should belong_to :user }
     it{ should belong_to :category }
@@ -15,7 +16,8 @@ describe Campaign do
   end
 
   describe "validations" do
-    before { subject.stub(:user).and_return(mock_model(User)) }
+    before { Campaign.any_instance.stub(:user).and_return(mock_model(User, mobile_phone: "(21) 9999-9999", email: "test@paneladepressao.org.br")) }
+    before { Campaign.make! }
     it{ should validate_presence_of :name }
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }
@@ -84,7 +86,6 @@ describe Campaign do
 
   describe "#description_html" do
     let(:campaign) { Campaign.make! }
-
     it "should populate the description_html column" do
       campaign.description_html.should_not == 'nil' 
     end
@@ -92,7 +93,6 @@ describe Campaign do
 
 
   describe "#has_voice_action?" do
-
     context "when there's a voice script and voice number" do
       let(:campaign) { Campaign.make! }
       
@@ -109,6 +109,4 @@ describe Campaign do
       end
     end
   end
-
-
 end
