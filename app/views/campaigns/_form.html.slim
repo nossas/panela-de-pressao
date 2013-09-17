@@ -82,6 +82,9 @@
       p.textarea
         = f.label :voice_call_script
         = f.text_area :voice_call_script
+    p
+      = f.label :hashtag
+      = f.text_field :hashtag
 
   p.action
     = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'

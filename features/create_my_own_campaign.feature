@@ -59,3 +59,15 @@ Feature: Create my own campaign
     And I select "Educação" for "E trata do tema"
     When I press "Enviar campanha para moderação"
     Then I should see "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato."
+
+  @omniauth_test
+  Scenario: when I'm an admin
+    Given I'm logged in as admin
+    When I click "Crie agora sua campanha"
+    Then I should see the campaign's hashtag field
+
+  @omniauth_test
+  Scenario: when I'm not an admin
+    Given I'm logged in
+    When I click "Crie agora sua campanha"
+    Then I should not see the campaign's hashtag field
