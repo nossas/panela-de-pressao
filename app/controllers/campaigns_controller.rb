@@ -9,20 +9,12 @@ class CampaignsController < InheritedResources::Base
   
   skip_load_and_authorize_resource :only => [:index, :create, :explore]
 
-
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
   before_filter :only => [:show] { @featured_update = Update.find_by_id(params[:update_id]) }
-  before_filter :only => [:index] do
-    @popular = Campaign.popular.limit(4).shuffle
-    unless Campaign.featured.length.zero?
-      @featured = Campaign.featured.first 
-    else
-      @featured = Campaign.accepted.first
-    end
-  end
-
+  before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
+  before_filter :only => [:index] { @featured = Campaign.featured.first || Campaign.accepted.first }
 
   def create
     @campaign = Campaign.new(params[:campaign])
@@ -67,10 +59,19 @@ class CampaignsController < InheritedResources::Base
   end
 
   def index
-    return render :explore if parent?
-    return render :user_index if params[:user_id]
+    respond_to do |format|
+      format.html do
+        if params[:user_id]
+          render :user_index
+        elsif parent?
+          render :explore
+        else
+          render :index
+        end
+      end
+      format.json { render :json => collection.to_json }
+    end
   end
-
 
   def unmoderated
     @campaigns = Campaign.unmoderated.unarchived.order("created_at DESC")
