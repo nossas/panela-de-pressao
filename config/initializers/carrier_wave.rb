@@ -4,7 +4,7 @@ CarrierWave.configure do |config|
     :aws_access_key_id      => ENV["AWS_ID"],
     :aws_secret_access_key  => ENV["AWS_SECRET"],
   }
-  config.fog_directory  = 'manifeste-se' 
+  config.fog_directory  = ENV["AWS_BUCKET"] 
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
 
   if Rails.env.test? or Rails.env.cucumber?
