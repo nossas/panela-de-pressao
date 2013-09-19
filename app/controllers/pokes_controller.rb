@@ -3,6 +3,8 @@ class PokesController < InheritedResources::Base
   load_and_authorize_resource
   belongs_to :campaign
 
+  respond_to :json, only: :index
+
   prepend_before_filter(:only => [:create], :if => Proc.new { request.post? }) do 
     session[:poke] = params[:poke].merge(:campaign_id => params[:campaign_id])
   end
