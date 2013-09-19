@@ -26,7 +26,7 @@ ManifesteSe::Application.routes.draw do
 
     resources :posts, :only => [:create, :index, :destroy]
     resources :updates, :only => [:show, :new, :create, :edit, :update, :destroy]
-    resources :pokes, :only => [:create] do
+    resources :pokes, :only => [:create, :index] do
       collection do
         get :create_from_session, :to => "pokes#create"
       end
