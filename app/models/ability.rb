@@ -5,7 +5,6 @@ class Ability
     can :read, User
     can :unsubscribe, User
     can :read, Answer
-    can :read, Influencer
     can :read, Poke
     can :read, Campaign, Campaign.accepted do |campaign|
       campaign.accepted_at
