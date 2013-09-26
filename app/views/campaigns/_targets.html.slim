@@ -5,9 +5,9 @@
       - @campaign.influencers.each_with_index do |influencer, index|
         li.target[class=('hidden' if index > 4)]
           .info
-            = link_to image_tag(influencer.avatar.square, size: "50x50", :title => influencer.name), influencer 
-            .name= link_to truncate(influencer.name, length: 35), influencer 
-            .role= truncate(influencer.role, length: 40)
+            = image_tag influencer.avatar.square, size: "50x50", :title => influencer.name
+            .name= truncate influencer.name, length: 35
+            .role= truncate influencer.role, length: 40
           .social
             = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
             = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
