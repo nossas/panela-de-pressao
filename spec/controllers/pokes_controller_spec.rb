@@ -8,7 +8,7 @@ describe PokesController do
     Bitly.stub(:new).and_return(bitly)
   end
 
-  before { Campaign.stub(:find).with("1").and_return(mock_model(Campaign, :id => 1, :pokes => double(Object, :build => Poke.new))) }
+  before { Campaign.stub(:find).with("1").and_return(mock_model(Campaign, :id => 1, :pokes => double(Object, :build => Poke.new, :all => []))) }
 
   describe "POST create" do
 
@@ -68,5 +68,16 @@ describe PokesController do
       it { should redirect_to("/auth/facebook") }
     end
 
+  end
+
+  describe "GET index" do
+    context "when the token is provided" do
+      before { get :index, token: ENV["API_TOKEN"], format: :json, campaign_id: "1" }
+      its(:status) { should be_== 200 }
+    end
+    context "when the token is not provided" do
+      before { get :index, format: :json, campaign_id: "1" }
+      its(:status) { should be_== 302 }
+    end
   end
 end
