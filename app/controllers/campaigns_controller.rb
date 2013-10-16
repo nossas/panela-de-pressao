@@ -7,7 +7,7 @@ class CampaignsController < InheritedResources::Base
   
   custom_actions collection: :explore
   
-  skip_load_and_authorize_resource :only => [:index, :create, :explore]
+  skip_load_and_authorize_resource :only => [:create, :explore]
 
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
   before_filter :only => [:show] { @poke = Poke.new }

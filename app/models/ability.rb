@@ -6,10 +6,10 @@ class Ability
     can :unsubscribe, User
     can :read, Answer
     can :read, Poke
-    can :read, Campaign, Campaign.accepted do |campaign|
+    can :read, Campaign do |campaign|
       campaign.accepted_at
     end
-    can :read, Campaign, Campaign.unmoderated do |campaign|
+    can :read, Campaign do |campaign|
       !campaign.preview_code.nil? and campaign.preview_code == request.params[:preview_code]    
     end
     can :create, Poke, kind: 'email'
