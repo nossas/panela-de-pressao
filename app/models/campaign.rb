@@ -6,7 +6,6 @@ class Campaign < ActiveRecord::Base
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
     :voice_call_script, :voice_call_number, :hashtag
 
-
   has_and_belongs_to_many :users
   belongs_to :user
   belongs_to :category
@@ -68,7 +67,6 @@ class Campaign < ActiveRecord::Base
     !accepted_at.nil?
   end
 
-
   def pokes_by(opt = :email)
     self.pokes.where(:kind => opt.to_s)
   end
@@ -103,10 +101,15 @@ class Campaign < ActiveRecord::Base
     !self.archived_at.nil?
   end
 
-
   def has_voice_action?
     self.voice_call_number.present? && self.voice_call_script.present?
   end
 
+  def user_email
+    user.email
+  end
 
+  def as_json options
+    super(methods: [:user_email])
+  end
 end
