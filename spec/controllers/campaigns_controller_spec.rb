@@ -58,4 +58,15 @@ describe CampaignsController do
       it { should redirect_to("/auth/facebook") }
     end
   end
+
+  describe "GET index" do
+    context "when the token is provided" do
+      before { get :index, token: ENV["API_TOKEN"], format: :json }
+      its(:status) { should be_== 200 }
+    end
+    context "when the token is not provided" do
+      before { get :index, format: :json }
+      its(:status) { should be_== 302 }
+    end
+  end
 end
