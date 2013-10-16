@@ -78,7 +78,7 @@ class Poke < ActiveRecord::Base
   end
 
   def user_email
-    if user.present? ? user.email : nil
+    user.present? ? user.email : nil
   end
 
   def as_json options
