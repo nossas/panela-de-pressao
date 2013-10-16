@@ -28,7 +28,9 @@ class Ability
     if request.params[:format] == "json"
       if request.params[:token] == ENV['API_TOKEN']
         can :index, Poke
+        can :index, Campaign
       else
+        cannot :index, Campaign
         cannot :index, Poke
       end
     end
