@@ -89,16 +89,11 @@ class CampaignsController < InheritedResources::Base
   end
 
   protected
-    def collection
-      if params[:user_id]
-        @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
-      else
-        @campaigns ||= end_of_association_chain.accepted.unarchived
-      end
+  def collection
+    if params[:user_id]
+      @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
+    else
+      @campaigns ||= end_of_association_chain.accepted.unarchived
     end
-
-  private
-    def current_ability
-      @current_ability ||= Ability.new(current_user, params)
-    end
+  end
 end

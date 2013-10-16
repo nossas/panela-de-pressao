@@ -36,5 +36,9 @@ class ApplicationController < ActionController::Base
   def require_twitter_auth
     return redirect_to "/auth/twitter" unless current_user.twitter_authorization
   end
+  
+  private
+  def current_ability
+    @current_ability ||= Ability.new(current_user, request)
+  end
 end
-

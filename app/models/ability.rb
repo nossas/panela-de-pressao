@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user, options = nil)
+  def initialize(user, request)
     can :read, User
     can :unsubscribe, User
     can :read, Answer
@@ -10,7 +10,7 @@ class Ability
       campaign.accepted_at
     end
     can :read, Campaign, Campaign.unmoderated do |campaign|
-      !campaign.preview_code.nil? and campaign.preview_code == options[:preview_code]    
+      !campaign.preview_code.nil? and campaign.preview_code == request.params[:preview_code]    
     end
     can :create, Poke, kind: 'email'
     can :create, Poke, kind: 'phone'
@@ -23,6 +23,14 @@ class Ability
       can :update, Campaign, user_id: user.id
       can :read, Campaign, user_id: user.id
       can :update, User, id: user.id
+    end
+
+    if request.params[:format] == "json"
+      if request.params[:token] == ENV['API_TOKEN']
+        can :index, Poke
+      else
+        cannot :index, Poke
+      end
     end
   end
 end
