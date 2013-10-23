@@ -12,7 +12,7 @@
           .description= link_to truncate(strip_tags(@featured.description_html), length: 120), @featured 
           .counter
             .count.icon-chat= t "home.highlight.pokes_count_html", count: @featured.pokes.count
-            .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured, anchor: 'poke'), class: 'btn'
+            .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured), class: 'btn'
       .image
         - unless @featured.nil?
           - unless @featured.video.nil?
