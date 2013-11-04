@@ -1,9 +1,9 @@
 .pokers
-  h3.icon-megaphone= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign.pokers.size)
+  h3.icon-megaphone= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign_pokers.size)
   .content
     ul
-      - @campaign.pokers.offset(rand(@campaign.pokers.size - (@campaign.pokers.size * 0.50))).limit(24).each do |poker|
+      - @campaign_pokers[0..23].each do |poker|
         li= image_tag(poker.pic(type: :square), size: '49x49', title: poker.name)
-      - if @campaign.pokers.length > 24
+      - if @campaign_pokers.size > 24
         li.who_pokes
-          span.the_others= @campaign.pokers.length - 24
+          span.the_others= @campaign_pokers.size - 24

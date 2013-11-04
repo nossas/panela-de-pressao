@@ -65,10 +65,10 @@
     small.inline-errors= @campaign.errors[:video_url].to_sentence
 
   p.phone
-   - if current_user.mobile_phone.blank?
+   - if current_user.phone.blank?
     label 
       | Para entrarem em contato comigo se necessário, podem me contatar no número
-      = text_field_tag "user_mobile_phone", params[:user_mobile_phone], class: [:phone]
+      = text_field_tag "user_phone", params[:user_phone], class: [:phone]
     small.inline-errors= @campaign.errors[:user].to_sentence
 
 

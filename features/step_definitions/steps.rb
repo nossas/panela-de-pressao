@@ -61,7 +61,7 @@ end
 
 Given /^I'm logged in$/ do
   visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :mobile_phone => "(21) 9232-1233"
+  Authorization.find_by_uid("536687842").user.update_attributes :phone => "(21) 9232-1233"
   visit root_path
 end
 
@@ -71,7 +71,7 @@ end
 
 Given /^I'm logged in as admin$/ do
   visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :mobile_phone => "(21) 9983-2232"
+  Authorization.find_by_uid("536687842").user.update_attributes :admin => true
   visit root_path
 end
 

@@ -2,11 +2,11 @@
 require 'machinist/active_record'
 
 User.blueprint do
-  name { "Test User" }
-  email { "foo#{sn}@bar.com" }
-  picture { "http://sphotos-d.ak.fbcdn.net/hphotos-ak-snc7/602310_10151152362652843_505953681_n.jpg" }
-  admin { false } 
-  mobile_phone { "(21) 9999-9999" }
+  first_name    { "Nícolas" }
+  last_name     { "Iensen" }
+  email         { "foo#{sn}@bar.com" }
+  admin         { false } 
+  phone         { "(21) 9999-9999" }
 end
 
 Authorization.blueprint do
