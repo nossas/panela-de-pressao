@@ -1,26 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  describe "associations" do
-    it { should have_many :authorizations }
-    it { should have_many :campaigns }
-  end
-  describe "validations" do
-    it { should validate_presence_of :email }
-    it { should validate_presence_of :name }
-  end
-
-  describe "#pic" do
-    before { subject.stub_chain(:file, :large, :url).and_return(nil) }
-    context "when the user uploaded a picture" do
-      before { subject.stub_chain(:file, :large, :url).and_return("profile.jpg") }
-      its(:pic){ should be_== "profile.jpg" }
-    end
-    context "when the user have a picture from somewhere" do
-      before { subject.stub(:picture).and_return("picture.jpg") }
-      its(:pic){ should be_== "picture.jpg" }
-    end
-  end
+  it { should have_many :authorizations }
+  it { should have_many :campaigns }
 
   describe "#can_poke?" do
     let(:campaign) { stub_model(Campaign, :id => 1) }
@@ -33,8 +15,6 @@ describe User do
     end
   end
   
-
-
   describe ".by_campaign_id" do
     let(:user)      { User.make! }
     let(:campaign)  { Campaign.make! }
