@@ -11,11 +11,4 @@ class UsersController < ApplicationController
       format.csv { render :layout => false }
     end
   end
-
-  def unsubscribe
-    user = User.find(params[:user_id])
-    if user.token == params[:token]
-      user.update_attributes :subscriber => false
-    end
-  end
 end

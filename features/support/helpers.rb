@@ -11,7 +11,6 @@ def route_to_path route
   return updates_campaign_path(@campaign)                                 if route == "the updates page of the campaign"
   return edit_campaign_path(@campaign)                                    if route == "this campaign editing page"
   return new_influencer_path                                              if route == "the new influencer page"
-  return user_unsubscribe_path(@user)                                     if route == "this user unsubscribe page"
   return influencer_path(@target.influencer)                              if route == "this target page"
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
   raise "I don't know the route '#{route}'"
