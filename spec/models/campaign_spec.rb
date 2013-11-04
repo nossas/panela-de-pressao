@@ -16,8 +16,7 @@ describe Campaign do
   end
 
   describe "validations" do
-    before { Campaign.any_instance.stub(:user).and_return(mock_model(User, mobile_phone: "(21) 9999-9999", email: "test@paneladepressao.org.br")) }
-    before { Campaign.make! }
+    before { Campaign.any_instance.stub(:user).and_return(mock_model(User, phone: "(21) 9999-9999", email: "test@paneladepressao.org.br")) }
     it{ should validate_presence_of :name }
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }

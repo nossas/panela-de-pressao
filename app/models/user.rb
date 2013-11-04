@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   establish_connection Rails.env.production? ? ENV["ACCOUNTS_DATABASE"] : "accounts_#{Rails.env}"
-  attr_accessible :admin, :email, :about_me, :phone, :token, :subscriber, :first_name, :last_name
+  attr_accessible :admin, :email, :phone, :first_name, :last_name
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
 
-  scope :by_campaign_id, ->(campaign) { joins(:pokes).where(['pokes.campaign_id = ?', campaign]).uniq }
+  scope :by_campaign_id, ->(campaign_id) { Poke.where(campaign_id: campaign_id).map{|p| p.user} }
   scope :subscribers, where(:subscriber => true)
   scope :pokers, where("(SELECT count(*) FROM pokes WHERE pokes.user_id = users.id) > 0")
 
