@@ -6,7 +6,8 @@ class Campaign < ActiveRecord::Base
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
     :voice_call_script, :voice_call_number, :hashtag
 
-  has_and_belongs_to_many :users
+  has_many :users, through: :campaign_owners
+  has_many :campaign_owners
   belongs_to :user
   belongs_to :category
   belongs_to :moderator, :class_name => "User"
@@ -84,7 +85,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def owner_have_mobile_phone
-    errors.add(:user, "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato.") if self.user.mobile_phone.blank?
+    errors.add(:user, "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato.") if self.user.phone.blank?
   end
 
   def generate_short_url!
