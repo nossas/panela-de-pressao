@@ -37,7 +37,6 @@ ManifesteSe::Application.routes.draw do
 
   resources :users, only: [:index] do
     resources :campaigns, :only => [:index]
-    get :unsubscribe, :to => "users#unsubscribe"
     get :autocomplete_user_email, :on => :collection
   end
 

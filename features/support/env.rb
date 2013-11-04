@@ -72,3 +72,7 @@ Before do
   bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
   Bitly.stub(:new).and_return(bitly)
 end
+
+Before do
+  User.any_instance.stub(avatar_url: "/assets/default-avatar.png")
+end

@@ -3,7 +3,7 @@
   .content
     ul
       - @campaign_pokers[0..23].each do |poker|
-        li= image_tag(poker.pic(type: :square), size: '49x49', title: poker.name)
+        li= image_tag(poker.avatar_url, size: '49x49', title: poker.name)
       - if @campaign_pokers.size > 24
         li.who_pokes
           span.the_others= @campaign_pokers.size - 24

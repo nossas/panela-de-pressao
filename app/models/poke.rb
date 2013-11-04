@@ -70,7 +70,7 @@ class Poke < ActiveRecord::Base
 
 
   def user_phone
-    "55#{self.user.mobile_phone.scan(/[0-9]+/).join}"
+    "55#{self.user.phone.scan(/[0-9]+/).join}"
   end
 
   def campaign_phone

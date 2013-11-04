@@ -23,5 +23,5 @@
   "Transportes e Trânsito",
   "Turismo"
 ].each do |category|
-  Category.create! :name => category
+  Category.create :name => category
 end

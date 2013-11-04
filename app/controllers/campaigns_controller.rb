@@ -20,7 +20,7 @@ class CampaignsController < InheritedResources::Base
 
   def create
     @campaign = Campaign.new(params[:campaign])
-    if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
+    if params[:user_phone].nil? || current_user.update_attributes(:phone => params[:user_phone])
       create! do |success, failure|
         success.html { return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
         failure.html { render :new }
@@ -33,7 +33,7 @@ class CampaignsController < InheritedResources::Base
 
   def update
     @campaign = Campaign.find(params[:id])
-    if params[:user_mobile_phone].nil? || current_user.update_attributes(:mobile_phone => params[:user_mobile_phone])
+    if params[:user_phone].nil? || current_user.update_attributes(:phone => params[:user_phone])
       update!
     else
       @campaign.errors[:user] << current_user.errors.full_messages.join(", ")

@@ -3,7 +3,6 @@ class Ability
 
   def initialize(user, request)
     can :read, User
-    can :unsubscribe, User
     can :read, Answer
     can :read, Poke
     can :read, Campaign do |campaign|

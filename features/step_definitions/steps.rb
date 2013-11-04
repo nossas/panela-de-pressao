@@ -71,7 +71,7 @@ end
 
 Given /^I'm logged in as admin$/ do
   visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :admin => true
+  Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :phone => "(21) 9232-1233"
   visit root_path
 end
 
@@ -312,7 +312,7 @@ Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
 end
 
 Given /^there is an unmoderated campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! :name => arg1, :accepted_at => nil, :moderator => User.make!(:name => arg2)
+  @campaign = Campaign.make! :name => arg1, :accepted_at => nil, :moderator => User.make!(:first_name => arg2)
 end
 
 Given /^there is a user$/ do
@@ -549,4 +549,8 @@ end
 
 Then(/^I should not see the campaign's hashtag field$/) do
   page.should_not have_css("form input[name='campaign[hashtag]']")
+end
+
+Then(/^show me the page$/) do
+  save_and_open_page
 end

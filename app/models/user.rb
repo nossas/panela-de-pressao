@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   establish_connection Rails.env.production? ? ENV["ACCOUNTS_DATABASE"] : "accounts_#{Rails.env}"
-  attr_accessible :admin, :email, :name, :picture, :about_me, :file, :remove_file, :phone, :token, :subscriber
+  attr_accessible :admin, :email, :about_me, :phone, :token, :subscriber, :first_name, :last_name
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
@@ -15,12 +15,14 @@ class User < ActiveRecord::Base
 
   def self.create_from_hash!(hash)
     create!(
-      :email =>   hash['info']['email']
+      :email =>       hash['info']['email'],
+      :first_name =>  hash['info']['first_name'],
+      :last_name =>   hash['info']['last_name']
     )
   end
 
   def name
-    "#{first_name} #{last_name}"
+    "#{self.first_name} #{self.last_name}"
   end
 
   def avatar_url
