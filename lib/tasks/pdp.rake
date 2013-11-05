@@ -1,5 +1,7 @@
 # coding: utf-8
 require 'csv'
+require 'open-uri'
+require 'json'
 
 namespace :pdp do
   desc "Email owners reports"
@@ -28,6 +30,7 @@ namespace :pdp do
   end
 
   task :migrate_users_database, [:json_url] => :environment do |t, args|
+    puts "migrate_users_database"
     users = JSON.parse(open(args[:json_url]).read)
     users["values"].each do |user|
       new_user = User.find_or_create_by_email(
@@ -38,7 +41,7 @@ namespace :pdp do
         avatar:     user[3],
         bio:        user[7],
         phone:      user[9],
-        password:   Digest::SHA1.hexdigest(Time.now)
+        password:   Digest::SHA1.hexdigest(Time.now.to_s)
       )
       Authorization.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
       Campaign.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
