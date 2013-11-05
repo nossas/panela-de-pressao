@@ -17,3 +17,4 @@ script: "bundle exec rake db:migrate && bundle exec rspec spec && bundle exec cu
 branches:
   only:
     - master
+    - ssi
