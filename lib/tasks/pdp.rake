@@ -28,9 +28,8 @@ namespace :pdp do
   end
 
   task :migrate_users_database, [:json_url] => :environment do |t, args|
-    raise "migrate_users_database"
+    puts "migrate_users_database"
     users = JSON.parse(open(args[:json_url]).read)
-    raise users.inspect
     users["values"].each do |user|
       new_user = User.find_or_create_by_email(
         user[2],
