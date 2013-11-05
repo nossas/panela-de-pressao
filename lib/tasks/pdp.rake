@@ -39,11 +39,11 @@ namespace :pdp do
         bio:        user[7],
         phone:      user[9]
       )
-      Authorization.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
-      Campaign.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
-      CampaignOwner.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
-      Poke.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
-      Update.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
+      Authorization.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
+      Campaign.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
+      CampaignOwner.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
+      Poke.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
+      Update.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
     end
   end
 end
