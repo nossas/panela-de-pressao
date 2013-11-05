@@ -27,7 +27,7 @@ accounts_development:
   encoding: unicode
   database: meurio_accounts_development
   pool: 5
-  username: meurio
+  username: seurio
   password:
 
 accounts_test:
@@ -35,5 +35,5 @@ accounts_test:
   encoding: unicode
   database: meurio_accounts_test
   pool: 5
-  username: meurio
+  username: seurio
   password:
