@@ -26,4 +26,24 @@ namespace :pdp do
       end
     end
   end
+
+  task :migrate_users_database, [:json_url] => :environment do |t, args|
+    users = JSON.parse(open(args[:json_url]).read)
+    users["values"].each do |user|
+      new_user = User.find_or_create_by_email(
+        user[2],
+        email:      user[2], 
+        first_name: user[1].split(" ")[0], 
+        last_name:  user[1].split(" ")[1],
+        avatar:     user[3],
+        bio:        user[7],
+        phone:      user[9]
+      )
+      Authorization.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
+      Campaign.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
+      CampaignOwner.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
+      Poke.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
+      Update.where(user_id: user[0]).each {|i| i.user_id = new_user.id}
+    end
+  end
 end
