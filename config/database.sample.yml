@@ -33,7 +33,7 @@ accounts_development:
 accounts_test:
   adapter: postgresql
   encoding: unicode
-  database: meurio_accounts_test
+  database: meurio_accounts_production
   pool: 5
   username: seurio
   password:
