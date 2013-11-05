@@ -30,7 +30,6 @@ namespace :pdp do
   task :migrate_users_database, [:json_url] => :environment do |t, args|
     users = JSON.parse(open(args[:json_url]).read)
     users["values"].each do |user|
-      puts user[2]
       new_user = User.find_or_create_by_email(
         user[2],
         email:      user[2], 
@@ -38,7 +37,8 @@ namespace :pdp do
         last_name:  user[1].split(" ")[1],
         avatar:     user[3],
         bio:        user[7],
-        phone:      user[9]
+        phone:      user[9],
+        password:   Digest::SHA1.hexdigest(Time.now)
       )
       Authorization.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
       Campaign.where(user_id: user[0]).each {|i| i.user_id = new_user.id; i.save}
