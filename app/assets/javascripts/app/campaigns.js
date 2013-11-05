@@ -67,7 +67,8 @@ App.Campaigns = {
 
       $("form#new_email_poke").validate({
         messages: {
-          name: { required: "Precisamos do seu nome" },
+          first_name: { required: "Precisamos do seu nome" },
+          last_name: { required: "Precisamos do seu sobrenome" },
           email: {
             required: "Precisamos do seu e-mail também",
             email: "Precisamos de um e-mail correto",
