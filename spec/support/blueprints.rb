@@ -1,16 +1,7 @@
 # coding: utf-8
 require 'machinist/active_record'
 
-User.blueprint do
-  first_name    { "Nícolas" }
-  last_name     { "Iensen" }
-  email         { "foo#{sn}@bar.com" }
-  admin         { false } 
-  phone         { "(21) 9999-9999" }
-end
-
 Authorization.blueprint do
-  user { User.make! }
   uid  { "uid#{sn}" }
   provider { 'facebook' }
   token { 'lsjdljasdljas' }
@@ -20,7 +11,6 @@ end
 Campaign.blueprint do
   name { "Desarmamento Voluntário #{sn}" }
   description { "O projeto desenvolve atividades destinadas a reduzir a violência armada." }
-  user { User.make! }
   image { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
   category { Category.first }
   pokes(0)
@@ -55,7 +45,6 @@ end
 
 Poke.blueprint do
   campaign { Campaign.make! }
-  user { User.make! }
   kind { "email" }
 end
 
@@ -66,5 +55,4 @@ Update.blueprint do
   title       { Faker::Lorem.sentence }
   share_text  { Faker::Lorem.paragraph }
   lead        { Faker::Lorem.paragraph }
-  user        { Authorization.make!.user }
 end
