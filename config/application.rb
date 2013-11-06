@@ -37,6 +37,9 @@ module ManifesteSe
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
+    config.generators do |g|
+      g.fixture_replacement :machinist
+    end
     
     # Enable the asset pipeline
     config.assets.enabled = true
@@ -49,7 +52,7 @@ module ManifesteSe
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-		if Rails.env.production?
+    if Rails.env.production?
       config.middleware.insert_before Rack::Lock, Rack::NoWWW
     end
   end

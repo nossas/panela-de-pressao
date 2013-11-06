@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  establish_connection Rails.env.development? ? "accounts_#{Rails.env}" : ENV["ACCOUNTS_DATABASE"]
+  establish_connection ENV["ACCOUNTS_DATABASE"] unless Rails.env.test?
   attr_accessible :admin, :email, :phone, :first_name, :last_name
   has_many :authorizations
   has_many :campaigns
