@@ -24,10 +24,6 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def current_user=(user)
-    session[:user_id] = user.id
-  end
-
   def require_facebook_auth
     return redirect_to "/auth/facebook" unless current_user.facebook_authorization
   end
