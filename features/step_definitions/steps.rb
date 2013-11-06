@@ -12,7 +12,7 @@ Given /^there is a campaign created by "(.*?)" with a partnership with "(.*?)"$/
 end
 
 Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
+  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2), user: @mock_user
 end
 
 Given /^there is a campaign called "(.*?)" with an organization "(.*?)" as supporter accepted on "(.*?)"$/ do |arg1, arg2, arg3|
@@ -37,11 +37,11 @@ Given /^there is a campaign called "([^"]*)"$/ do |arg1|
 end
 
 Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil
+  @campaign = Campaign.make! name: arg1, accepted_at: nil, user: @mock_user
 end
 
 Given /^I own a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => Authorization.find_by_uid("536687842").user
+  @campaign = Campaign.make! name: arg1, accepted_at: nil, user: @mock_user
 end
 
 Given /^I own a campaign called "([^"]*)"$/ do |arg1|
@@ -61,8 +61,6 @@ end
 
 Given /^I'm logged in$/ do
   visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :phone => "(21) 9232-1233"
-  visit root_path
 end
 
 Given /^I've created an organization called "([^"]*)"$/ do |arg1|
@@ -70,9 +68,8 @@ Given /^I've created an organization called "([^"]*)"$/ do |arg1|
 end
 
 Given /^I'm logged in as admin$/ do
+  @mock_user.stub(admin?: true)
   visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :phone => "(21) 9232-1233"
-  visit root_path
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
@@ -325,11 +322,11 @@ Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
 end
 
 Given /^there is a campaign$/ do
-  @campaign = Campaign.make!
+  @campaign = Campaign.make! user: @mock_user
 end
 
 Given /^there is an accepted campaign$/ do
-  @campaign = Campaign.make! accepted_at: Time.now
+  @campaign = Campaign.make! accepted_at: Time.now, user: @mock_user
 end
 
 Then /^I should see the unsubscription message$/ do
@@ -540,7 +537,7 @@ Given /^I choose "([^"]*)" in the autocomplete$/ do |text|
 end
 
 Given(/^there is an user with email "(.*?)"$/) do |arg1|
-  User.make! email: arg1
+  @mock_user.stub(:email).and_return arg1
 end
 
 Then(/^I should see the campaign's hashtag field$/) do

@@ -15,6 +15,10 @@ require 'cucumber/rspec/doubles'
 require "#{Rails.root}/spec/support/blueprints.rb" 
 require 'cucumber/autocomplete'
 
+require 'rspec/rails'
+require 'rspec/mocks'
+World(RSpec::Rails::Mocks)
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
@@ -76,8 +80,4 @@ Before do
   bitly = Bitly.new('bitly id', 'bitly key')
   bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
   Bitly.stub(:new).and_return(bitly)
-end
-
-Before do
-  User.any_instance.stub(avatar_url: "/assets/default-avatar.png")
 end
