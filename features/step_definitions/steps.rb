@@ -4,17 +4,15 @@ Given /^I'm in ([^"]*)$/ do |arg1|
 end
 
 Given /^there is a campaign created by "(.*?)" with no partnership$/ do |arg1|
-  @user.stub(name: arg1)
-  @campaign = Campaign.make! :accepted_at => Time.now
+  @campaign = Campaign.make! :user => User.make!(:name => arg1), :accepted_at => Time.now
 end
 
 Given /^there is a campaign created by "(.*?)" with a partnership with "(.*?)"$/ do |arg1, arg2|
-  @user.stub(name: arg1)
-  @campaign = Campaign.make! :accepted_at => Time.now, :organizations => [Organization.make!(:name => arg2)]
+  @campaign = Campaign.make! :user => User.make!(:name => arg1), :accepted_at => Time.now, :organizations => [Organization.make!(:name => arg2)]
 end
 
 Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2), user: @mock_user
+  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
 end
 
 Given /^there is a campaign called "(.*?)" with an organization "(.*?)" as supporter accepted on "(.*?)"$/ do |arg1, arg2, arg3|
@@ -33,16 +31,17 @@ Given /^I should see an avatar from organization "(.*?)"$/ do |arg1|
   page.should have_xpath("//img[@title='#{arg1}']")
 end
 
+
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: Time.now
 end
 
 Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil, user: @mock_user
+  @campaign = Campaign.make! name: arg1, accepted_at: nil
 end
 
 Given /^I own a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil, user: @mock_user
+  @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => Authorization.find_by_uid("536687842").user
 end
 
 Given /^I own a campaign called "([^"]*)"$/ do |arg1|
@@ -61,20 +60,19 @@ Given /^I fill "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
 end
 
 Given /^I'm logged in$/ do
-  @user.stub(:admin?).and_return(false)
   visit "/auth/facebook"
-end
-
-Given /^I'm logged in as admin$/ do
-  @user.stub(:admin?).and_return(true)
-end
-
-Given /^I'm logged in as admin$/ do
-  @mock_user.stub(admin?: true)
+  Authorization.find_by_uid("536687842").user.update_attributes :phone => "(21) 9232-1233"
+  visit root_path
 end
 
 Given /^I've created an organization called "([^"]*)"$/ do |arg1|
   Organization.make! name: arg1.to_s, owner: Authorization.find_by_uid("536687842").user, accepted: true
+end
+
+Given /^I'm logged in as admin$/ do
+  visit "/auth/facebook"
+  Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :phone => "(21) 9232-1233"
+  visit root_path
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
@@ -255,6 +253,7 @@ Then /^this campaign should be accepted$/ do
   @campaign.reload.should be_accepted
 end
 
+
 Then /^I should see a list of (\d+) recent pokers$/ do |arg1|
   page.should have_css("div.pokers ol li", count: arg1.to_i)
 end
@@ -268,7 +267,7 @@ When /^I open my profile options$/ do
 end
 
 Given /^I already poked this campaign$/ do
-  Poke.make! campaign: @campaign
+  Poke.make! :campaign => @campaign, :user => User.find_by_email("nicolas@engage.is")
 end
 
 Given /^I pass over the email poke button$/ do
@@ -316,7 +315,7 @@ Given /^there is an unmoderated campaign called "(.*?)" moderated by "(.*?)"$/ d
   @campaign = Campaign.make! :name => arg1, :accepted_at => nil, :moderator => User.make!(:first_name => arg2)
 end
 
-Given /^there is an user$/ do
+Given /^there is a user$/ do
   @user = User.make!
 end
 
@@ -326,11 +325,11 @@ Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
 end
 
 Given /^there is a campaign$/ do
-  @campaign = Campaign.make! user: @mock_user
+  @campaign = Campaign.make!
 end
 
 Given /^there is an accepted campaign$/ do
-  @campaign = Campaign.make! accepted_at: Time.now, user: @mock_user
+  @campaign = Campaign.make! accepted_at: Time.now
 end
 
 Then /^I should see the unsubscription message$/ do
@@ -530,7 +529,7 @@ Then(/^the campaign's owner should be "(.*?)"$/) do |arg1|
 end
 
 Given(/^I own a campaign$/) do
-  @campaign = Campaign.make!
+  @campaign = Campaign.make! user: Authorization.find_by_uid("536687842").user
 end
 
 Given /^I choose "([^"]*)" in the autocomplete$/ do |text|
@@ -541,7 +540,7 @@ Given /^I choose "([^"]*)" in the autocomplete$/ do |text|
 end
 
 Given(/^there is an user with email "(.*?)"$/) do |arg1|
-  @mock_user.stub(:email).and_return arg1
+  User.make! email: arg1
 end
 
 Then(/^I should see the campaign's hashtag field$/) do
