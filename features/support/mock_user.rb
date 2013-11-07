@@ -1,22 +1,16 @@
-# coding: utf-8
-
 Before do
-  facebook_authorization = double('facebook_authorization', token: "123")
+  ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS users;")
+  ActiveRecord::Base.connection.execute("
+    CREATE TABLE IF NOT EXISTS users(
+      id          SERIAL PRIMARY KEY, 
+      email       varchar(40), 
+      first_name  varchar(40), 
+      last_name   varchar(40),
+      admin       boolean,
+      avatar      varchar(40),
+      phone       varchar(40)
+    );
+  ")
 
-  @mock_user = mock_model(
-    User, 
-    admin?: false, 
-    avatar_url: "/assets/default-avatar.png", 
-    name: "Nícolas Iensen", 
-    phone: "(21) 9232-1233", 
-    email: "foo1@bar.com",
-    has_poked: false,
-    can_poke?: true,
-    facebook_authorization: facebook_authorization
-  )
-
-  User.stub(:find_by_id).and_return @mock_user
-  Campaign.any_instance.stub(:user).and_return @mock_user
-  Authorization.any_instance.stub(:user).and_return @mock_user
-  Update.any_instance.stub(:user).and_return @mock_user
+  User.any_instance.stub(:avatar_url).and_return("/assets/default-avatar.png")
 end
