@@ -80,8 +80,4 @@ Before do
   bitly = Bitly.new('bitly id', 'bitly key')
   bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
   Bitly.stub(:new).and_return(bitly)
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> 9c3eb36baab7019c9b349f3b0a22d3c7a2fcfe2a
