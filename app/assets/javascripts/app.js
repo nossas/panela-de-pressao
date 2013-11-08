@@ -23,8 +23,8 @@ var App = window.App = {
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
       $("select#campaign_user_id").chosen({no_results_text: "Nenhum resultado", width: "300px"});
 
-      $('.phone_rj').inputmask("mask", {"mask": "(21) 9999-9999"});
-      $('.phone').inputmask("mask", {"mask": "(99) 9999-9999"});
+      $('.phone_rj').inputmask("mask", {"mask": "(21) 999999999"});
+      $('.phone').inputmask("mask", {"mask": "(99) 999999999"});
       $('.phone_with_country_code').inputmask("mask", { "mask" : "+99 (99) 9999-9999"});
 
       $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
