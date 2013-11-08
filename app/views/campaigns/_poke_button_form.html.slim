@@ -4,8 +4,11 @@
       .fields
         strong Insira seus dados
         .field
-          = label_tag :name, "Nome"
-          = text_field_tag :name, "", :placeholder => "Nome", :class => "required"
+          = label_tag :first_name, "Nome"
+          = text_field_tag :first_name, "", :placeholder => "Nome", :class => "required"
+        .field
+          = label_tag :last_name, "Sobrenome"
+          = text_field_tag :last_name, "", :placeholder => "Sobrenome", :class => "required"
         .field
           = label_tag :email, "E-mail"
           = email_field_tag :email, "", :placeholder => "E-mail", :class => "required email"
