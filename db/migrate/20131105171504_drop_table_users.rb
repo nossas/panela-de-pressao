@@ -1,6 +1,6 @@
 class DropTableUsers < ActiveRecord::Migration
   def up
-    execute "DROP TABLE users CASCADE CONSTRAINTS PURGE"
+    execute "DROP TABLE users CASCADE"
   end
 
   def down
