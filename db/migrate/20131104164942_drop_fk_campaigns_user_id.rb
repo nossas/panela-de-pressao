@@ -1,7 +1,7 @@
 class DropFkCampaignsUserId < ActiveRecord::Migration
   def up
     execute <<-SQL
-        ALTER TABLE campaigns DROP CONSTRAINT fk_campaigns_user_id;
+        ALTER TABLE campaigns DROP CONSTRAINT IF EXISTS fk_campaigns_user_id;
     SQL
   end
 
