@@ -22,6 +22,7 @@ Feature: Poke targets by email
     And I'm in this campaign page
     And I press "Pressione por e-mail"
     And I fill "Nome" with "Nícolas"
+    And I fill "Sobrenome" with "Iensen"
     And I fill "E-mail" with "test@paneladepressao.org.br"
     When I press "Pressione por e-mail"
     Then I should see the successful poke message
