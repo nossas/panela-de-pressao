@@ -14,4 +14,4 @@ section.login
               li= link_to "Exportar todos os usuários", users_path(:format => :csv) if can? :export, User
               li= link_to "Sair", session_path(current_user.id), :method => :delete, :title => "Sair"
       - else
-        = link_to "Conecte-se pelo Facebook", facebook_connect_path, class: 'fb'
+        = link_to 'Login', "http://accounts.meurio.org.br/?redirect_url=#{root_url}", class: 'fb'
