@@ -7,15 +7,13 @@ class ApplicationController < ActionController::Base
     redirect_to "/auth/facebook"
   end
 
-  def current_user
-    if session[:ssi_user_id]
-      return @current_user ||= User.find(session[:ssi_user_id])
-    end
-  end
-
   protected
   def render_404
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
   end
 
   def is_current_user?(user)
@@ -24,6 +22,10 @@ class ApplicationController < ActionController::Base
 
   def signed_in?
     !!current_user
+  end
+
+  def current_user=(user)
+    session[:user_id] = user.id
   end
 
   def require_facebook_auth
