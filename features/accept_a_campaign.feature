@@ -3,7 +3,7 @@ Feature: accept a campaign
   As an admin
   I want to accept a campaign
 
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: when I'm admin
     Given I'm logged in as admin
     And there is a campaign called "Salve a praça Nossa Senhora da Paz" awaiting moderation
@@ -16,7 +16,7 @@ Feature: accept a campaign
     And this campaign should be accepted
     And an email should be sent
 
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: when I own a campaign awaiting moderation
     Given I'm logged in
     And I own a campaign called "Salve a praça Nossa Senhora da Paz" awaiting moderation
