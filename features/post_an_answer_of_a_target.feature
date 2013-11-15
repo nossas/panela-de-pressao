@@ -3,7 +3,7 @@ Feature: post an answer of a target
   As a campaigner
   I want to post an answer of a target
   
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: when I'm logged in as an admin
     Given I'm logged in as admin
     And there is a campaign called "A Vida das Ariranhas"
@@ -14,18 +14,7 @@ Feature: post an answer of a target
     Then I should be in the answers page of the campaign
     And I should see "Viva la vida!"
 
-  @omniauth_test
-  Scenario: when I'm the campaign's creator
-    Given I'm logged in
-    And I own a campaign called "A Vida das Ariranhas"
-    And I'm in this campaign page
-    And I click "Respostas"
-    And I fill "answer_text" with "Viva la vida!"
-    When I press "Criar Resposta"
-    Then I should be in the answers page of the campaign
-    And I should not see "Viva la vida!"
-
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: when I'm not the campaign's creator
     Given I'm logged in
     And there is a campaign called "A Vida das Ariranhas"

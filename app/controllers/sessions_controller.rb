@@ -7,9 +7,6 @@ class SessionsController < ApplicationController
       @auth = Authorization.create_from_hash(auth_data, current_user)
     end
 
-    # Log the authorizing user in.
-    self.current_user = @auth.user
-   
     if session[:poke]
       redirect_to create_from_session_campaign_pokes_path(:campaign_id => session[:poke][:campaign_id])
     else

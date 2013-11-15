@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter { |controller| session[:restore_url] = request.url if controller.controller_name != "sessions" && !request.xhr? }
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to "/auth/facebook"
+    redirect_to ENV["MEURIO_ACCOUNTS_URL"], redirect_url: request.host
   end
 
   protected
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.find_by_id(session[:ssi_user_id])
   end
 
   def is_current_user?(user)
@@ -22,10 +22,6 @@ class ApplicationController < ActionController::Base
 
   def signed_in?
     !!current_user
-  end
-
-  def current_user=(user)
-    session[:user_id] = user.id
   end
 
   def require_facebook_auth

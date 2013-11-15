@@ -3,19 +3,19 @@ Feature: Enable voice call integration of campaign
   As an admin
   I want to enable voice call integratino
 
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: when I own a campaign awaiting moderation
     Given I'm logged in
     When I'm in the new campaign page
     Then I should not see "Plivo integration"
  
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: when I'm admin
     Given I'm logged in as admin
     When I'm in the new campaign page
     Then I should see "Plivo integration"
    
-  @omniauth_test @javascript @bitly
+  @omniauth_test @javascript @bitly @ssi
   Scenario: when I'm smart enough to successfully fill the new campaign form
     Given I'm logged in as admin
     And I'm in the new campaign page
