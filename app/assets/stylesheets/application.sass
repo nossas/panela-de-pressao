@@ -198,9 +198,7 @@ p.inline-hints, p.inline-errors
   color: white
   padding: .7em 1.6em
   font-size: 1em
-  letter-spacing: 1px
   display: inline-block
-  text-transform: uppercase
   width: 80%
   text-align: center
   border: 0
@@ -218,6 +216,16 @@ p.inline-hints, p.inline-errors
     background: $picton_blue
     &:hover
       background: lighten($picton_blue, 10%)
+
+.btn2
+  color: white
+  border: 1px solid white
+  padding: 5px 10px
+  font-weight: bold
+  +border-radius(3px)
+  &:hover
+    color: $green
+    background: white
 
 ul.formatting
   ol
@@ -346,29 +354,31 @@ header
       overflow: visible
     .meurio_logo
       +grid(2)
-      padding: 5px 0
+      padding: 7px 0
     .user_menu
       +grid(10)
       +last
       text-align: right
       color: white
       position: relative
-      padding: 5px 0
-      a
-        color: white
-        &:hover
-          text-decoration: underline
+      padding: 7px 0
       img
         width: 35px
         +border-radius(35px)
         vertical-align: middle
         margin-right: .5em
+      .icon-triangle-down
+        top: 6px
+        position: relative
+        margin-left: 1em
+        cursor: pointer
       .user_links
         position: absolute
         top: 40px
         background: $green
         z-index: 1000
         right: 0
+        display: none
         a
           display: block
           padding: 0 1em
@@ -384,7 +394,7 @@ header
       position: relative
       overflow: visible
       padding: 10px 0
-      font-size: 1.5em
+      font-size: 20px
       font-weight: bold
       a
         color: black
@@ -398,9 +408,10 @@ header
           float: left
         span.icon-arrow-box
           position: relative
-          top: 18px
+          top: 19px
           margin-left: 1em
-          color: gray
+          color: #a7a8ac
+          font-size: .9em
       .apps
         position: absolute
         background: white
@@ -408,7 +419,7 @@ header
         z-index: 1000
         width: 600px
         padding: 1em
-        +box-shadow(lightgray 1px 1px 1px)
+        display: none
         .app_btn
           font-size: .7em
           font-weight: normal
@@ -431,7 +442,7 @@ header
       a
         display: inline-block
         margin-left: 1.5em
-        font-size: 1em
+        font-size: 16px
         font-weight: bold
         color: black
         &.btn
@@ -1356,3 +1367,16 @@ section.footer
       float: right
       &:hover
         cursor: pointer
+
+[class^="icon-"], [class*=" icon-"]
+  font-family: "Proxima Nova", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+  &:before
+    font-family: 'icomoon'
+    speak: none
+    font-style: normal
+    font-weight: normal
+    font-variant: normal
+    text-transform: none
+    line-height: 1
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale

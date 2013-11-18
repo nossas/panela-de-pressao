@@ -47,12 +47,13 @@ html
               .user_name
                 = image_tag current_user.avatar_url
                 = current_user.name
+                span.icon-triangle-down
               .user_links
                 = link_to 'Minhas campanhas', user_campaigns_path(current_user)
                 = link_to 'Moderar campanhas', unmoderated_campaigns_path if can? :moderate, Campaign
                 = link_to "Exportar todos os usuários", users_path(:format => :csv) if can? :export, User
             - else
-              = link_to 'Entrar', "http://accounts.meurio.org.br/?redirect_url=#{request.url}"
+              = link_to 'Entrar', "http://accounts.meurio.org.br/?redirect_url=#{request.url}", class: :btn2
           .clear
 
       .app
@@ -94,4 +95,3 @@ html
     = render partial: 'layouts/formatting_tips'
     #fb-root
     = javascript_include_tag "application"
-    .session= session.inspect
