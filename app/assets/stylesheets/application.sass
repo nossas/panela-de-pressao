@@ -52,6 +52,7 @@ span.archived
 
 .campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
   +mobile-hide
+
 section
   +grid-container
 
@@ -255,7 +256,7 @@ aside
 section.content
   padding: 1.5em 0
 
-section.header, section.footer
+section.footer
   padding: 1.5em 0
 
 section.notice, section.alert
@@ -337,87 +338,105 @@ a[href="/auth/facebook"]
     width: 500px
     padding: 30px
 
-section.login
-  padding: .4em 0
-  line-height: 2.5em
-  border-bottom: 1px solid lighten(black, 85%)
-  +box-shadow(1px 4px 15px lighten(black, 85%))
-  a.fb
-    margin: 0 .4em
-  .meurio, .user
-    color: lighten(gray, 25%)
-    font-size: .8em
-  .meurio
-    +grid(6)
+header
   .user
-    text-align: right
-    float: right
-  ul.current li.me
-    padding: .4em
-    line-height: 3em
-    &:hover
-      cursor: pointer
-      background: $gray
-    &:target
-      .options
-        display: block
-    img
+    +grid-container
+    background: $green
+    line-height: 35px
+    .row
+      overflow: visible
+    .meurio_logo
+      +grid(2)
+      padding: 5px 0
+    .user_menu
+      +grid(10)
+      +last
+      text-align: right
+      color: white
       position: relative
-      top: .4em
-      margin-right: .4em
-    .name
-      &::after
-        content: "▾"
-        display: inline-block
-        padding-left: .4em
-
-  ul.options
-    display: none
-    position: absolute
-    z-index: 9999
-    background: lighten($gray, 2%)
-    display: none
-    margin-left: -.4em
-    +box-shadow(0 1px 2px lighten(gray, 15%))
-    li
-      text-align: left
-      padding: .2em .6em
-      border-bottom: 1px solid darken($gray, 10%)
-      &:hover
-        background: $orange
-        color: black
+      padding: 5px 0
+      a
+        color: white
+        &:hover
+          text-decoration: underline
+      img
+        width: 35px
+        +border-radius(35px)
+        vertical-align: middle
+        margin-right: .5em
+      .user_links
+        position: absolute
+        top: 40px
+        background: $green
+        z-index: 1000
+        right: 0
         a
-          color: black 
-          padding-right: .8em
+          display: block
+          padding: 0 1em
 
-section.header
-  .fb-like
-    position: relative
-    top: 1.4em
-    left: -.8em
-  .logo
-    +grid(3)
-    +grid-suffix(3)
-  .create
-    +grid(5)
-    a
-      color: lighten(gray, 28%)
-      display: inline-block
-      padding: 1.2em
-      margin-top: .8em
-      border-right: 1px solid lighten(gray, 42%)
-      &:hover
-        color: $victory
+  .app
+    +grid-container
+    line-height: 59px
+    .row
+      overflow: visible
+    .logo
+      +grid(4)
+      cursor: pointer
+      position: relative
+      overflow: visible
+      padding: 10px 0
+      a
+        color: black
+      .apps
+        position: absolute
+        background: white
+        top: 79px
+        z-index: 1000
+        +box-shadow(lightgray 1px 1px 1px)
+        .app_btn
+          font-size: .7em
+          font-weight: normal
+          padding: .5em 1em
+          line-height: 30px
+          display: block
+          color: black
+          &:hover
+            background: #eee
+          img
+            width: 30px
+    .logo
+      font-size: 1.5em
+      font-weight: bold
+      img
+        vertical-align: middle
+        margin-right: .5em
+        float: left
       span
         display: block
+        float: left
+    .menu
+      +grid(8)
+      +last
+      text-align: right
+      padding: 10px 0
+      a
+        display: inline-block
+        margin-left: 1.5em
+        font-size: 1em
         font-weight: bold
-        font-size: 1.3em
-        color: $green
-        margin-bottom: -4px
-  .share
-    +grid(1)
-    +last
-    +mobile-hide
+        color: black
+        &.btn
+          background: $orange
+          color: white
+          padding: .5em
+          display: inline-block
+          width: auto
+          line-height: normal
+          &:hover
+            text-decoration: none
+        &:hover
+          text-decoration: underline
+
 section.highlight
   margin-top: -.1em
   background: image-url('bg_highlight.jpg') center top repeat-x
@@ -542,9 +561,6 @@ section.content
     .counter
       padding: 7px
 
-
-// General style scopes
-
 span.category
   font-size: .7em
   a
@@ -599,9 +615,6 @@ section.information
   .didnt_find_target
     +last
 
-section.header
-  +box-shadow(0 1px 6px lighten(black, 75%))
-  margin-bottom: .2em
 body.campaigns#index, body.campaigns#unmoderated
   .featured
     .description

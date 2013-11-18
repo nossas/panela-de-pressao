@@ -9,7 +9,7 @@ html
     meta name="facebook_app_id"           content=ENV["FB_ID"]
     meta property="fb:app_id"             content=ENV["FB_ID"]
     meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
-    
+
     = stylesheet_link_tag "application"
     = favicon_link_tag t('site.image')
     = csrf_meta_tag
@@ -33,10 +33,58 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
     = render partial: 'layouts/alerts'
-    = render partial: 'layouts/login'
-    = render partial: 'layouts/header'
+
+    header
+      .user
+        .row
+          .meurio_logo= link_to image_tag('meurio.png'), 'http://meurio.org.br/'
+          .user_menu
+            - if current_user.present?
+              .user_name
+                = image_tag current_user.avatar_url
+                = current_user.name
+              .user_links
+                = link_to 'Minhas campanhas', user_campaigns_path(current_user)
+                = link_to 'Moderar campanhas', unmoderated_campaigns_path if can? :moderate, Campaign
+                = link_to "Exportar todos os usuários", users_path(:format => :csv) if can? :export, User
+            - else
+              = link_to 'Entrar', "http://accounts.meurio.org.br/?redirect_url=#{request.url}"
+          .clear
+
+      .app
+        .row
+          .logo
+            = link_to root_path do
+              = image_tag 'pdp.png'
+              span Panela de Pressão
+            .apps
+              = link_to 'http://meurio.org.br/', class: :app_btn do
+                = image_tag('mr.png')
+                | Ação em Rede
+              = link_to 'http://paneladepressao.org.br/', class: :app_btn do
+                = image_tag('pdp.png')
+                | Panela de Pressão
+              = link_to 'http://imagine.meurio.org.br/', class: :app_btn do
+                = image_tag('imagine.png')
+                | Imagine
+              = link_to 'https://apoie.meurio.org.br/', class: :app_btn do
+                = image_tag('apoie.png')
+                | Faça Acontecer
+              = link_to 'http://deolho.meurio.org.br/', class: :app_btn do
+                = image_tag('deolho.png')
+                | De Olho
+              = link_to 'http://deguarda.meurio.org.br/', class: :app_btn do
+                = image_tag('deguarda.png')
+                | De Guarda
+          .menu
+            = link_to 'Como funciona?', about_path
+            = link_to 'Descubra as campanhas', explore_path
+            = link_to 'Crie sua campanha', new_campaign_path, class: :btn
+          .clear
+
     section.highlight= yield :highlight
     = yield
     = render partial: 'layouts/footer'

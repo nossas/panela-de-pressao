@@ -3,7 +3,7 @@ Feature: View unmoderated campaigns
   As an admin
   I want to view the unmoderated campaigns
 
-  @omniauth_test @javascript
+  @omniauth_test @javascript @ssi
   Scenario: when I'm an admin
     Given there is an unmoderated campaign called "Save the whales!"
     And I'm logged in as admin
@@ -16,7 +16,7 @@ Feature: View unmoderated campaigns
     And I should see "the campaign's submition date" in "the campaign list"
     And I should see "the campaign's moderation button" in "the campaign list"
 
-  @omniauth_test @javascript
+  @omniauth_test @javascript @ssi
   Scenario: when there is a campaign with a moderator
     Given there is an unmoderated campaign called "Save the whales!" moderated by "Jack Daniel"
     And I'm logged in as admin
