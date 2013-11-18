@@ -263,7 +263,7 @@ Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2
 end
 
 When /^I open my profile options$/ do
-  page.execute_script("$('.options').show();")
+  page.execute_script("$('.user_links').show();")
 end
 
 Given /^I already poked this campaign$/ do
@@ -507,7 +507,7 @@ Then /^I should not see the remove update button$/ do
 end
 
 Then(/^the profile panel should have an option to export all users$/) do
-  page.should have_css("ul.options a[href='/users.csv']", visible: false)
+  page.should have_css(".user_links a[href='/users.csv']", visible: false)
 end
 
 Then(/^the profile panel should not have an option to export all users$/) do
