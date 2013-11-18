@@ -29,7 +29,7 @@ describe CampaignsController do
         Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: 12345))
         get :show, id: 1, preview_code: 1234
       end
-      it { should redirect_to("/auth/facebook") }
+      it { should redirect_to("http://127.0.0.1/meurio_accounts") }
     end
 
     context "Not accepted campaigns with a correct preview code" do
@@ -38,7 +38,7 @@ describe CampaignsController do
         get :show, id: 1, preview_code: 12345
       end
 
-      it { should_not redirect_to("/auth/facebook") }
+      it { should_not redirect_to("http://127.0.0.1/meurio_accounts") }
     end
 
       
@@ -55,7 +55,7 @@ describe CampaignsController do
       before { controller.stub(:current_user).and_return(mock_model(User, :admin? => false)) }
       before { @request.env['HTTP_REFERER'] = 'http://test.com/' }
       before { put :accept, :campaign_id => "1" }
-      it { should redirect_to("/auth/facebook") }
+      it { should redirect_to("http://127.0.0.1/meurio_accounts") }
     end
   end
 

@@ -13,6 +13,7 @@ def route_to_path route
   return new_influencer_path                                              if route == "the new influencer page"
   return influencer_path(@target.influencer)                              if route == "this target page"
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
+  return "/meurio_accounts"                                               if route == "the Meu Rio accounts login page"
   raise "I don't know the route '#{route}'"
 end
 

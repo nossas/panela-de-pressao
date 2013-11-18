@@ -3,7 +3,7 @@ Feature: edit poke message
   As an user
   I want to edit poke message
 
-  @omniauth_test @javascript @koala
+  @omniauth_test @javascript @koala @ssi
   Scenario: edit email poke message
     Given I'm logged in
     And there is a campaign called "Save the queen!"
@@ -16,7 +16,7 @@ Feature: edit poke message
     And a email poke should be added to the target
     And a email saying "A rainha precisa da gente!" should be sent
 
-  @omniauth_test @javascript @koala
+  @omniauth_test @javascript @koala @ssi
   Scenario: edit facebook poke message
     Given I'm logged in
     And there is a campaign called "Save the queen!"
