@@ -38,6 +38,7 @@ var App = window.App = {
 
       $('.apps').hide();
       $('.icon-arrow-box').click(function(){ $('.apps').toggle(); });
+
       $('.user_links').hide();
       $('.user_menu').mouseover(function(){ $('.user_links').show(); });
       $('.user_menu').mouseout(function(){ $('.user_links').hide(); });
