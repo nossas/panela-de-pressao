@@ -58,27 +58,28 @@ html
         .row
           .logo
             = link_to root_path do
-              = image_tag 'pdp.png'
-              span Panela de Pressão
+              .current_app
+                = image_tag 'pdp.png'
+                span Panela de Pressão
             .apps
               = link_to 'http://meurio.org.br/', class: :app_btn do
                 = image_tag('mr.png')
-                | Ação em Rede
+                span Ação em Rede
               = link_to 'http://paneladepressao.org.br/', class: :app_btn do
                 = image_tag('pdp.png')
-                | Panela de Pressão
+                span Panela de Pressão
               = link_to 'http://imagine.meurio.org.br/', class: :app_btn do
                 = image_tag('imagine.png')
-                | Imagine
+                span Imagine
               = link_to 'https://apoie.meurio.org.br/', class: :app_btn do
                 = image_tag('apoie.png')
-                | Faça Acontecer
+                span Faça Acontecer
               = link_to 'http://deolho.meurio.org.br/', class: :app_btn do
                 = image_tag('deolho.png')
-                | De Olho
+                span De Olho
               = link_to 'http://deguarda.meurio.org.br/', class: :app_btn do
                 = image_tag('deguarda.png')
-                | De Guarda
+                span De Guarda
           .menu
             = link_to 'Como funciona?', about_path
             = link_to 'Descubra as campanhas', explore_path
