@@ -41,11 +41,11 @@ Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
 end
 
 Given /^I own a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => Authorization.find_by_uid("536687842").user
+  @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => @current_user
 end
 
 Given /^I own a campaign called "([^"]*)"$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, :user => Authorization.find_by_uid("536687842").user, :accepted_at => Time.now
+  @campaign = Campaign.make! name: arg1, :user => @current_user, :accepted_at => Time.now
 end
 
 Given /^there is 1 poker called "(.*?)" that poked (\d+) times$/ do |name, quant|
@@ -60,8 +60,8 @@ Given /^I fill "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
 end
 
 Given /^I'm logged in$/ do
-  visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :phone => "(21) 9232-1233"
+  @current_user = User.make! email: "ssi@meurio.org.br"
+  Authorization.make! user: @current_user
   visit root_path
 end
 
@@ -70,8 +70,8 @@ Given /^I've created an organization called "([^"]*)"$/ do |arg1|
 end
 
 Given /^I'm logged in as admin$/ do
-  visit "/auth/facebook"
-  Authorization.find_by_uid("536687842").user.update_attributes :admin => true, :phone => "(21) 9232-1233"
+  @current_user = User.make! admin: true, email: "ssi@meurio.org.br"
+  Authorization.make! user: @current_user
   visit root_path
 end
 
@@ -97,7 +97,7 @@ end
 
 
 Given /^I have a Twitter authorization$/ do
-  Authorization.make! :user => Authorization.find_by_uid("536687842").user, :provider => "twitter"
+  Authorization.make! :user => @current_user, :provider => "twitter"
 end
 
 Given /^there is a target for this campaign without ([^"]*)$/ do |arg1|
@@ -263,11 +263,11 @@ Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2
 end
 
 When /^I open my profile options$/ do
-  page.execute_script("$('.options').show();")
+  page.execute_script("$('.user_links').show();")
 end
 
 Given /^I already poked this campaign$/ do
-  Poke.make! :campaign => @campaign, :user => User.find_by_email("nicolas@engage.is")
+  Poke.make! :campaign => @campaign, :user => @current_user
 end
 
 Given /^I pass over the email poke button$/ do
@@ -507,7 +507,7 @@ Then /^I should not see the remove update button$/ do
 end
 
 Then(/^the profile panel should have an option to export all users$/) do
-  page.should have_css("ul.options a[href='/users.csv']", visible: false)
+  page.should have_css(".user_links a[href='/users.csv']", visible: false)
 end
 
 Then(/^the profile panel should not have an option to export all users$/) do
@@ -529,7 +529,7 @@ Then(/^the campaign's owner should be "(.*?)"$/) do |arg1|
 end
 
 Given(/^I own a campaign$/) do
-  @campaign = Campaign.make! user: Authorization.find_by_uid("536687842").user
+  @campaign = Campaign.make! user: @current_user
 end
 
 Given /^I choose "([^"]*)" in the autocomplete$/ do |text|
@@ -553,4 +553,8 @@ end
 
 Then(/^show me the page$/) do
   save_and_open_page
+end
+
+Given(/^I have no phone$/) do
+  @current_user.update_attributes phone: nil
 end
