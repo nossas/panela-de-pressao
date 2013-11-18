@@ -10,6 +10,7 @@ html
     meta property="fb:app_id"             content=ENV["FB_ID"]
     meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
 
+    link rel="stylesheet" href="http://i.icomoon.io/public/temp/70b4065e91/pdp/style.css"
     = stylesheet_link_tag "application"
     = favicon_link_tag t('site.image')
     = csrf_meta_tag
@@ -57,10 +58,11 @@ html
       .app
         .row
           .logo
-            = link_to root_path do
-              .current_app
+            .current_app
+              = link_to root_path do
                 = image_tag 'pdp.png'
                 span Panela de Pressão
+              span.icon-arrow-box
             .apps
               = link_to 'http://meurio.org.br/', class: :app_btn do
                 = image_tag('mr.png')

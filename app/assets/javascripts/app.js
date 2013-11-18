@@ -37,8 +37,7 @@ var App = window.App = {
       $('ul.current li.me').on('click', function(){ $(this).children('.options').fadeToggle(10); });
 
       $('.apps').hide();
-      $('.logo').mouseover(function(){ $('.apps').show(); });
-      $('.logo').mouseout(function(){ $('.apps').hide(); });
+      $('.icon-arrow-box').click(function(){ $('.apps').toggle(); });
       $('.user_links').hide();
       $('.user_menu').mouseover(function(){ $('.user_links').show(); });
       $('.user_menu').mouseout(function(){ $('.user_links').hide(); });
