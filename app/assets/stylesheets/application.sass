@@ -385,35 +385,40 @@ header
       position: relative
       overflow: visible
       padding: 10px 0
+      font-size: 1.5em
+      font-weight: bold
       a
         color: black
+      .current_app
+        img
+          vertical-align: middle
+          margin-right: .5em
+          float: left
+        span
+          display: block
+          float: left
       .apps
         position: absolute
         background: white
         top: 79px
         z-index: 1000
+        width: 600px
+        padding: 1em
         +box-shadow(lightgray 1px 1px 1px)
         .app_btn
           font-size: .7em
           font-weight: normal
-          padding: .5em 1em
-          line-height: 30px
           display: block
           color: black
-          &:hover
-            background: #eee
+          float: left
+          width: 80px
+          margin: 0 10px
+          text-align: center
+          line-height: normal
+          span
+            display: block
           img
-            width: 30px
-    .logo
-      font-size: 1.5em
-      font-weight: bold
-      img
-        vertical-align: middle
-        margin-right: .5em
-        float: left
-      span
-        display: block
-        float: left
+            display: inline-block
     .menu
       +grid(8)
       +last
