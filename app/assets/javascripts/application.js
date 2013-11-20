@@ -24,6 +24,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery.facebox
 //= require autocomplete-rails
+//= require meurio_ui
 
 //= require_tree ./lib
 //= require ./app.js

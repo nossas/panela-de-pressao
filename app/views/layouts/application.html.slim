@@ -37,58 +37,7 @@ html
 
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
     = render partial: 'layouts/alerts'
-
-    header
-      .user
-        .row
-          .meurio_logo= link_to image_tag('meurio.png'), 'http://meurio.org.br/'
-          .user_menu
-            - if current_user.present?
-              .user_name
-                = image_tag current_user.avatar_url
-                = current_user.name
-                span.icon-triangle-down
-              .user_links
-                = link_to 'Minhas campanhas', user_campaigns_path(current_user)
-                = link_to 'Moderar campanhas', unmoderated_campaigns_path if can? :moderate, Campaign
-                = link_to "Exportar todos os usuários", users_path(:format => :csv) if can? :export, User
-            - else
-              = link_to 'Entrar', "http://accounts.meurio.org.br/?redirect_url=#{request.url}", class: :btn2
-          .clear
-
-      .app
-        .row
-          .logo
-            .current_app
-              = link_to root_path do
-                = image_tag 'pdp.png'
-                span Panela de Pressão
-              span.icon-arrow-box
-            .apps
-              = link_to 'http://meurio.org.br/', class: :app_btn do
-                = image_tag('mr.png')
-                span Ação em Rede
-              = link_to 'http://paneladepressao.meurio.org.br/', class: :app_btn do
-                = image_tag('pdp.png')
-                span Panela de Pressão
-              = link_to 'http://imagine.meurio.org.br/', class: :app_btn do
-                = image_tag('imagine.png')
-                span Imagine
-              = link_to 'https://apoie.meurio.org.br/', class: :app_btn do
-                = image_tag('apoie.png')
-                span Faça Acontecer
-              = link_to 'http://deolho.meurio.org.br/', class: :app_btn do
-                = image_tag('deolho.png')
-                span De Olho
-              = link_to 'http://deguarda.meurio.org.br/', class: :app_btn do
-                = image_tag('deguarda.png')
-                span De Guarda
-          .menu
-            = link_to 'Como funciona?', about_path
-            = link_to 'Descubra as campanhas', explore_path
-            = link_to 'Crie sua campanha', new_campaign_path, class: :btn
-          .clear
-
+    = meurio_header_for(:paneladepressao)
     section.highlight= yield :highlight
     = yield
     = render partial: 'layouts/footer'

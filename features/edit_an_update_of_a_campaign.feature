@@ -3,7 +3,7 @@ Feature: edit an update of a campaign
   As an admin
   I want to edit an update of a campaign
 
-  @omniauth_test @koala @javascript
+  @omniauth_test @koala @javascript @ssi
   Scenario: when I am an admin and I fill the form right
     Given there is an update for a campaign
     And I'm logged in as admin
@@ -16,7 +16,7 @@ Feature: edit an update of a campaign
     And I should see the update popup
     And the update title should be "My update"
 
-  @omniauth_test @koala @javascript
+  @omniauth_test @koala @javascript @ssi
   Scenario: when I am an admin and I fill the form wrong
     Given there is an update for a campaign
     And I'm logged in as admin
@@ -26,7 +26,7 @@ Feature: edit an update of a campaign
     When I submit the edit update form
     Then I should see an error in the title field in the edit update form
 
-  @koala @omniauth_test
+  @koala @omniauth_test @ssi
   Scenario: when I am not an admin
     Given there is an update for a campaign
     And I'm logged in
