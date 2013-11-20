@@ -11,7 +11,7 @@
           span.category.icon-list= link_to @featured.category.name, category_campaigns_path(@featured.category)
           .description= link_to truncate(strip_tags(@featured.description_html), length: 120), @featured 
           .counter
-            .count.icon-chat= t "home.highlight.pokes_count_html", count: @featured.pokes.count
+            .count.icon-bubbles= t "home.highlight.pokes_count_html", count: @featured.pokes.count
             .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured), class: 'btn'
       .image
         - unless @featured.nil?
@@ -24,7 +24,7 @@
 
 section.content
   .row.popular
-    h2.popular.icon-new= t "home.text.popular_campaigns"
+    h2.popular.icon-fire= t "home.text.popular_campaigns"
     ol.campaigns
       = render @popular 
 

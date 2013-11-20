@@ -5,4 +5,4 @@
   .buttons
     - if can? :manage, update
       = link_to " ", edit_campaign_update_path(@campaign, update), rel: "facebox[.edit_update_facebox]", class: ["icon-pencil", "edit"]
-      = link_to " ", campaign_update_path(@campaign, update), class: ["icon-cross", "remove"], method: :delete
+      = link_to " ", campaign_update_path(@campaign, update), class: ["icon-close", "remove"], method: :delete
