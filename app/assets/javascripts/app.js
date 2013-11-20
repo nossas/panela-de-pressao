@@ -36,12 +36,6 @@ var App = window.App = {
       
       $('ul.current li.me').on('click', function(){ $(this).children('.options').fadeToggle(10); });
 
-      $('.icon-arrow-box').click(function(e){ $('.apps').toggle(); e.stopPropagation(); return false; });
-      $(document).click(function(){ $('.apps').hide(); });
-      
-      $('.icon-triangle-down').click(function(e){ $('.user_links').toggle(); e.stopPropagation(); return false; });
-      $(document).click(function(){ $('.user_links').hide(); });
-
       // FB share
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

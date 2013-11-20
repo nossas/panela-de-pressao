@@ -22,7 +22,8 @@ $darker_gray: #333
 @import chosen
 @import font
 @import jquery.ui.all
-//@import url('http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic')
+@import meurio_ui
+
 *
   +transition(.2s)
 
@@ -217,16 +218,6 @@ p.inline-hints, p.inline-errors
     &:hover
       background: lighten($picton_blue, 10%)
 
-.btn2
-  color: white
-  border: 1px solid white
-  padding: 5px 10px
-  font-weight: bold
-  +border-radius(3px)
-  &:hover
-    color: $green
-    background: white
-
 ul.formatting
   ol
     list-style: disc
@@ -345,119 +336,6 @@ a[href="/auth/facebook"]
     width: 500px
     padding: 30px
 
-header
-  .user
-    +grid-container
-    background: $green
-    line-height: 35px
-    .row
-      overflow: visible
-    .meurio_logo
-      +grid(2)
-      padding: 7px 0
-    .user_menu
-      +grid(10)
-      +last
-      text-align: right
-      color: white
-      position: relative
-      padding: 7px 0
-      img
-        width: 35px
-        +border-radius(35px)
-        vertical-align: middle
-        margin-right: .5em
-      .icon-triangle-down
-        top: 6px
-        position: relative
-        margin-left: 1em
-        cursor: pointer
-      .user_links
-        position: absolute
-        top: 40px
-        background: $green
-        z-index: 1000
-        right: 0
-        display: none
-        a
-          display: block
-          padding: 0 1em
-          color: white
-
-  .app
-    +grid-container
-    line-height: 59px
-    .row
-      overflow: visible
-    .logo
-      +grid(4)
-      cursor: pointer
-      position: relative
-      overflow: visible
-      padding: 10px 0
-      font-size: 20px
-      font-weight: bold
-      a
-        color: black
-      .current_app
-        img
-          vertical-align: middle
-          margin-right: .5em
-          float: left
-        span
-          display: block
-          float: left
-        span.icon-arrow-box
-          position: relative
-          top: 19px
-          margin-left: 1em
-          color: #a7a8ac
-          font-size: .9em
-      .apps
-        position: absolute
-        background: white
-        top: 79px
-        z-index: 1000
-        width: 600px
-        padding: 1em
-        display: none
-        .app_btn
-          font-size: .7em
-          font-weight: normal
-          display: block
-          color: black
-          float: left
-          width: 80px
-          margin: 0 10px
-          text-align: center
-          line-height: normal
-          span
-            display: block
-          img
-            display: inline-block
-    .menu
-      +grid(8)
-      +last
-      text-align: right
-      padding: 10px 0
-      a
-        display: inline-block
-        margin-left: 1.5em
-        font-size: 16px
-        font-weight: bold
-        color: black
-        &.btn
-          background: $orange
-          color: white
-          padding: .5em
-          display: inline-block
-          width: auto
-          line-height: normal
-          &:hover
-            text-decoration: none
-        &:hover
-          text-decoration: underline
-
 section.highlight
   margin-top: -.1em
   background: image-url('bg_highlight.jpg') center top repeat-x
@@ -518,6 +396,22 @@ section.highlight
         +box-shadow(0 0 1px lighten(black, 60%))
       iframe
         height: 280px
+
+header.meurio_header
+  .meurio_logo_and_user_menu
+    +grid-container
+    .meurio_logo
+      +grid(2)
+    .user_menu
+      +grid(10)
+      +last
+  .meurio_apps_and_application_menu
+    +grid-container
+    .meurio_apps
+      +grid(4)
+    .application_menu
+      +grid(8)
+      +last
 
 section.content
   background: $gray
