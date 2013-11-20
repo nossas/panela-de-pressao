@@ -10,7 +10,7 @@ html
     meta property="fb:app_id"             content=ENV["FB_ID"]
     meta name="facebook_redirect_uri"     content="http://#{request.host}/close.html"
 
-    link rel="stylesheet" href="http://i.icomoon.io/public/temp/70b4065e91/pdp/style.css"
+    link rel="stylesheet" href="http://i.icomoon.io/public/temp/e9a34475ab/MeuRio/style.css"
     = stylesheet_link_tag "application"
     = favicon_link_tag t('site.image')
     = csrf_meta_tag
@@ -24,7 +24,6 @@ html
       meta property="og:description"  content=t('site.fb_description')
     /[if IE] 
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-    == "<!--[if lt IE 7 ]>#{javascript_include_tag "ie/lte-ie7"}<![endif]-->"
     javascript:
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-26278513-6']);
