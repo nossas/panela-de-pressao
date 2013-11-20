@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter { |controller| session[:restore_url] = request.url if controller.controller_name != "sessions" && !request.xhr? }
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to ENV["MEURIO_ACCOUNTS_URL"], redirect_url: session[:restore_url]
+    redirect_to ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}"
   end
 
   protected
