@@ -3,7 +3,7 @@ Feature: Poke targets by email
   As a citizen
   I want to poke targets by email
 
-  @omniauth_test @javascript @koala
+  @omniauth_test @javascript @koala @ssi
   Scenario: when I'm logged in
     Given I'm logged in
     And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
