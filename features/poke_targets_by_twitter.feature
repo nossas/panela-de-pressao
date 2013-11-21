@@ -27,3 +27,12 @@ Feature: Poke targets by Twitter
     Then I should see the successful poke message
     And a tweet poke should be added to the target
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
+
+  @omniauth_test @twitter @koala @javascript
+  Scenario: when I'm not logged in
+    Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
+    And there is a target for this campaign
+    And I'm in this campaign page
+    When I press "Pressione no twitter"
+    Then I should see the successful poke message
+    And a tweet poke should be added to the target

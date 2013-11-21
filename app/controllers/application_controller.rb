@@ -25,11 +25,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_facebook_auth
-    return redirect_to "/auth/facebook" unless current_user.facebook_authorization
+    return redirect_to "/auth/facebook"
   end
 
   def require_twitter_auth
-    return redirect_to "/auth/twitter" unless current_user.twitter_authorization
+    return redirect_to "/auth/twitter"
   end
   
   private
