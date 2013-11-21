@@ -11,9 +11,8 @@ Feature: Poke targets by Facebook
     And I already poked this campaign
     And I'm in this campaign page
     When I press "Pressione no facebook"
-    Then I should see the successful poke message
-    And a facebook poke should be added to the target
-    Then an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
+    Then a facebook poke should be added to the target
+    And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
   @omniauth_test @javascript @koala
   Scenario: when I poke a campaign twice

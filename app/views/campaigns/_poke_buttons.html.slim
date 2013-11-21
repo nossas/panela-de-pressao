@@ -1,6 +1,5 @@
 .poke_buttons
   - unless @campaign.finished_at
-    p.text.headline_poked:strong= (current_user and current_user.has_poked(@campaign)) ? t('campaign.show.form.headline_poked') : t('campaign.show.form.headline')
     .poke.original
       - unless @campaign.facebook_influencers.count.zero?
         .via_facebook= render partial: 'poke_button_form', locals: { kind: 'facebook' }

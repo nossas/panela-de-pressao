@@ -12,8 +12,7 @@ Feature: Poke targets by Twitter
     And I already poked this campaign
     And I'm in this campaign page
     When I press "Pressione no twitter"
-    Then I should see the successful poke message
-    And a twitter poke should be added to the target
+    Then a twitter poke should be added to the target
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
   @omniauth_test @twitter @javascript @koala @ssi
@@ -24,6 +23,5 @@ Feature: Poke targets by Twitter
     And I already poked this campaign
     And I'm in this campaign page
     When I press "Pressione no twitter"
-    Then I should see the successful poke message
-    And a tweet poke should be added to the target
+    Then a tweet poke should be added to the target
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent

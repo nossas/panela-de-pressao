@@ -1,26 +1,38 @@
 = form_for [@campaign, @poke], :html => {:id => "new_#{kind}_poke", class: "poke_form user_#{current_user.present?}"} do |f|
-  .hidden.fade
-    - if kind == "email" && !signed_in?
-      .fields
-        strong Insira seus dados
+  - if kind == "email"
+    .fields_title Pressione por Email
+    .fields
+      - if !signed_in?
         .field
           = label_tag :first_name, "Nome"
-          = text_field_tag :first_name, "", :placeholder => "Nome", :class => "required"
+          = text_field_tag :first_name, "", :class => "required"
         .field
           = label_tag :last_name, "Sobrenome"
-          = text_field_tag :last_name, "", :placeholder => "Sobrenome", :class => "required"
+          = text_field_tag :last_name, "", :class => "required"
         .field
           = label_tag :email, "E-mail"
-          = email_field_tag :email, "", :placeholder => "E-mail", :class => "required email"
+          = email_field_tag :email, "", :class => "required email"
+      - if kind == "email"
+        .field
+          = label_tag :to, "Para"
+          br
+          = @campaign.influencers.map{|i| i.name}.join(", ")
+        .field
+          = label_tag :subject, "Assunto"
+          br
+          strong= @campaign.name
+        .field
+          = text_area_tag :custom_message, @campaign.email_text
 
   = f.hidden_field :kind, :value => kind
-  .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
-    = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
-    span= t "campaign.show.form.#{kind}_tip"
+  - if kind == "email"
+    = f.submit "Pressionar Agora!", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
+  - else
+    .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
+      = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
+      span= t "campaign.show.form.#{kind}_tip"
   - if kind == "twitter"
     = link_to "ver mensagem", "##{kind}_poke_message", class: "message_link", :rel => "facebox"
-  - else
-    = link_to "ver/personalizar #{kind == "email" ? "email" : "mensagem"}", "##{kind}_poke_message", class: "message_link", :rel => "facebox"
 
   .message
     h4= t 'campaign.show.form.message.header'
