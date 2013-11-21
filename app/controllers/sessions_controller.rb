@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     else
       @auth = Authorization.create_from_hash(auth_data, current_user)
     end
-
+    
     if session[:poke]
-      redirect_to create_from_session_campaign_pokes_path(:campaign_id => session[:poke][:campaign_id])
+      redirect_to create_from_session_campaign_pokes_path(:campaign_id => session[:poke][:campaign_id], :user_id => @auth.user.id)
     else
       redirect_to session[:restore_url] || root_path
     end

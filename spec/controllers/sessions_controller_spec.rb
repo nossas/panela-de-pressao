@@ -23,7 +23,7 @@ describe SessionsController do
         session[:poke] = poke
         get :create, :provider => 'facebook'
       end
-      it{ should redirect_to create_from_session_campaign_pokes_path(:campaign_id => poke[:campaign_id]) }
+      it{ should redirect_to create_from_session_campaign_pokes_path(:campaign_id => poke[:campaign_id], :user_id => user.id) }
     end
 
     context "without poke" do

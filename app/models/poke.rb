@@ -27,7 +27,7 @@ class Poke < ActiveRecord::Base
 
 
   def thanks
-    PokeMailer.delay.thanks(self)
+    PokeMailer.delay.thanks(self) if self.user.email.present?
   end
 
   def poked_recently?

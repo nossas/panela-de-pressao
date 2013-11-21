@@ -10,12 +10,12 @@ class PokesController < InheritedResources::Base
   end
 
   before_filter :only => [:create] do
-    require_facebook_auth if session[:poke][:kind] == "facebook"
-    require_twitter_auth if session[:poke][:kind] == "twitter"
+    require_facebook_auth if session[:poke][:kind] == "facebook" && params[:user_id].nil?
+    require_twitter_auth if session[:poke][:kind] == "twitter" && params[:user_id].nil?
   end
 
   def create
-    user = current_user || User.find_or_create_by_email(params[:email], :first_name => params[:name], :last_name => params[:last_name])
+    user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], :first_name => params[:name], :last_name => params[:last_name])
     user.update_attribute(:phone, params[:phone]) if params[:phone]
 
     @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
