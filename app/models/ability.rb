@@ -4,21 +4,18 @@ class Ability
   def initialize(user, request)
     can :read, User
     can :read, Answer
-    can :read, Poke
     can :read, Campaign do |campaign|
       campaign.accepted_at
     end
     can :read, Campaign do |campaign|
       !campaign.preview_code.nil? and campaign.preview_code == request.params[:preview_code]    
     end
-    can :create, Poke, kind: 'email'
-    can :create, Poke, kind: 'phone'
+    can :manage, Poke
 
     if user && user.admin?
       can :manage, :all
     elsif user
       can :create, Campaign
-      can :create, Poke
       can :update, Campaign, user_id: user.id
       can :read, Campaign, user_id: user.id
       can :update, User, id: user.id
