@@ -2,4 +2,7 @@
   .image= @campaign.video.html_safe
 - else
   .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+
+.counter
+ .count.icon-bubbles= t('home.highlight.pokes_count_html', :count => number_with_delimiter(@campaign.pokes.count))
 .description= @campaign.description_html.html_safe || @campaign.description.html_safe

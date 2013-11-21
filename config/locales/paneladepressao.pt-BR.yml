@@ -33,7 +33,7 @@ pt-BR:
       thanks: ""
   home:
     highlight:
-      pokes_count_html: "<span>%{count}</span> mensagens enviadas"
+      pokes_count_html: "<span>%{count}</span> pressões feitas"
       poke_now: "Pressionar agora!"
       is_featured: "Campanha em Destaque"
     text:

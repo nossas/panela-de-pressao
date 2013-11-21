@@ -3,15 +3,14 @@ Feature: Poke targets by email
   As a citizen
   I want to poke targets by email
 
-  @omniauth_test @javascript @koala
+  @omniauth_test @javascript @koala @ssi
   Scenario: when I'm logged in
     Given I'm logged in
     And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
     And there is a target for this campaign
     And I'm in this campaign page
-    When I press "Pressione por e-mail"
-    Then I should see the successful poke message
-    And a email poke should be added to the target
+    When I press "Pressionar Agora!"
+    Then a email poke should be added to the target
     And an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
@@ -20,13 +19,11 @@ Feature: Poke targets by email
     Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
     And there is a target for this campaign
     And I'm in this campaign page
-    And I press "Pressione por e-mail"
     And I fill "Nome" with "Nícolas"
     And I fill "Sobrenome" with "Iensen"
     And I fill "E-mail" with "test@paneladepressao.org.br"
-    When I press "Pressione por e-mail"
-    Then I should see the successful poke message
-    And a email poke should be added to the target
+    When I press "Pressionar Agora!"
+    Then a email poke should be added to the target
     And an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
     And an email called "Valeu por apoiar a campanha: Impeça a demolição da praça Nossa Senhora da Paz" should be sent
 
@@ -35,6 +32,6 @@ Feature: Poke targets by email
     Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
     And there is a target for this campaign
     And I'm in this campaign page
-    When I press "Pressione por e-mail"
+    When I press "Pressionar Agora!"
     Then I should see "Precisamos do seu nome"
     And I should see "Precisamos do seu e-mail também"

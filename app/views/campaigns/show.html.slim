@@ -40,15 +40,11 @@ section.content
   .row.visible
     article.left.tab
       = render partial: 'tabs'
-    aside.right.share
-      = render partial: 'share'
   .row
     .wrap
       article.left.campaign
         = render partial: params[:section] || 'description'
       aside.right.pressure
-        .counter
-          .count.icon-bubbles= t('home.highlight.pokes_count_html', :count => number_with_delimiter(@campaign.pokes.count))
         = render partial: 'poke_buttons'
         = render partial: 'targets'
         = render partial: 'supporters'

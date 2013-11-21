@@ -490,6 +490,7 @@ p.description
   margin-top: .4em
   a
     color: darken($gray, 35%)
+
 .counter
   padding-top: 1em
   border-top: 1px solid darken($gray, 10%)
@@ -780,7 +781,7 @@ body.campaigns#show
       line-height: 1.6em
       strong
         color: #333
-  .counter, .via_facebook, .via_twitter, .via_email, .via_phone
+  .via_facebook, .via_twitter, .via_phone
     background: $gray
     padding: .8em 0
     overflow: hidden
@@ -788,13 +789,16 @@ body.campaigns#show
   .counter 
     margin-bottom: 1em
     border-top: none
+    margin-top: 1em
     .count
-      padding: .8em
+      color: black
       &:before
-        font-size: 48px
-      span  
-        font-size: 3em
-        line-height: 23px
+        color: gray
+        top: -10px
+        position: relative
+      span
+        display: inline
+        font-size: 28px
   .message_link
     text-align: center
     font-size: .8em
@@ -839,7 +843,7 @@ body.campaigns#show
     .text
       margin: 3em 0 1em 0
     .via_facebook, .via_twitter, .via_email, .via_phone
-      margin: 1em 0
+      margin-bottom: 1em
       .message
         padding: 1.6em
         width: 80%
@@ -849,6 +853,17 @@ body.campaigns#show
         .text
           color: darken($gray, 40%)
           font-size: .8em
+      .email_poke_btn
+        display: block
+        background: $orange
+        color: white
+        padding: 1em
+        border: none
+        width: 100%
+        font-size: 18px
+        +border-radius(0 0 5px 5px)
+        margin: 0
+        cursor: pointer
       .btn 
         width: 75%
         margin: 0 auto
@@ -885,18 +900,23 @@ body.campaigns#show
           color: lighten($fb_blue, 40%)
           display: block
       form
+        .fields_title
+          background: #333
+          padding: .75em
+          color: white
+          font-size: 18px
+          font-weight: bold
+          +border-radius(5px 5px 0 0)
         .fields
           padding: 1em
-          label
-            display: none
-          strong
-            text-transform: uppercase
-            display: block
-            text-align: center
-          input[type="text"], input[type="email"]
+          border-left: lightgray 1px solid
+          border-right: lightgray 1px solid
+          input[type="text"], input[type="email"], textarea
             +border-radius(5px)
             width: 100%
             +box-sizing("border-box")
+          textarea
+            height: 250px
           .field
             margin-bottom: .5em
     .via_twitter .btn
