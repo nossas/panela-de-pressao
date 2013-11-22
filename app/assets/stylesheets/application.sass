@@ -957,15 +957,21 @@ body.campaigns#show
             margin: 0
             margin-right: 10px
             +border-radius(5px)
-    .via_phone .btn
-      background: darken(red, 20%)
-      display: block
-      padding: 0.7em 2em 0.7em 0.8em
-      span
-        color: darken(white, 5%)
-        line-height: 1.2em
-      &:hover
-        background: darken(red, 5%)
+    .via_phone
+      form
+        .fields
+          border: 0
+          .field
+            border: 0
+      .btn
+        background: darken(red, 20%)
+        display: block
+        padding: 0.7em 2em 0.7em 0.8em
+        span
+          color: darken(white, 5%)
+          line-height: 1.2em
+        &:hover
+          background: darken(red, 5%)
   #poke_box
     .button 
       +grid-subcolumn(9, 3)

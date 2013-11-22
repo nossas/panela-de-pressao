@@ -2,7 +2,6 @@
   .hidden.fade
     - if !signed_in?
       .fields
-        strong Insira seus dados
         .field
           = label_tag :name, "Nome"
           = text_field_tag :name, "", :placeholder => "Nome", :class => "required"
