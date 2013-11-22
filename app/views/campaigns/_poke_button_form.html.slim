@@ -5,13 +5,13 @@
       - if !signed_in?
         .field
           = label_tag :first_name, "Nome:"
-          = text_field_tag :first_name, "", :class => "required"
+          = text_field_tag :first_name, "", :class => "required", placeholder: 'Insira o seu nome'
         .field
           = label_tag :last_name, "Sobrenome:"
-          = text_field_tag :last_name, "", :class => "required"
+          = text_field_tag :last_name, "", :class => "required", placeholder: 'Insira o seu sobrenome'
         .field
           = label_tag :email, "E-mail:"
-          = email_field_tag :email, "", :class => "required email"
+          = email_field_tag :email, "", :class => "required email", placeholder: 'Insira o seu email'
       - if kind == "email"
         .field.to
           = label_tag :to, "Para:"
@@ -24,7 +24,8 @@
 
   = f.hidden_field :kind, :value => kind
   - if kind == "email"
-    = f.submit "Enviar email agora", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
+    .email_box
+      = f.submit "Enviar email agora", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
   - else
     .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
       = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
