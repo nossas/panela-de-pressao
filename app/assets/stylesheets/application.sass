@@ -844,6 +844,7 @@ body.campaigns#show
       margin: 3em 0 1em 0
     .via_facebook, .via_twitter, .via_email, .via_phone
       margin-bottom: 1em
+      background: white
       .message
         padding: 1.6em
         width: 80%
@@ -908,7 +909,6 @@ body.campaigns#show
           font-weight: bold
           +border-radius(5px 5px 0 0)
         .fields
-          padding: 1em
           border-left: lightgray 1px solid
           border-right: lightgray 1px solid
           input[type="text"], input[type="email"], textarea
@@ -918,7 +918,8 @@ body.campaigns#show
           textarea
             height: 250px
           .field
-            margin-bottom: .5em
+            padding: 1em
+            border-bottom: 1px lightgray solid
     .via_twitter .btn
       background: $twitter_blue
       span
@@ -948,6 +949,8 @@ body.campaigns#show
   .targets, .supporters, .pokers
     margin-bottom: 1em
     overflow: hidden
+    background: white
+    +border-radius(5px)
     h3
       border: 1px solid $gray 
       border-bottom: none
@@ -968,6 +971,7 @@ body.campaigns#show
     img
       float: left
       +transition(.4s)
+      +border-radius(100%)
       &:hover
         opacity: .7
     .social a

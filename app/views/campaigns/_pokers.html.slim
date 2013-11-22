@@ -1,5 +1,5 @@
 .pokers
-  h3.icon-bullhorn= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign_pokers.size)
+  h3= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign_pokers.size)
   .content
     ul
       - @campaign_pokers[0..23].each do |poker|
