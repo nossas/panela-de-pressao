@@ -932,6 +932,31 @@ body.campaigns#show
         color: darken($gray, 10%)
       &:hover
         background: darken($gray, 40%)
+    .via_email
+      form
+        .fields
+          label
+            margin-right: 1em
+          input[type='text'], input[type='email'], textarea
+            border: none
+            width: auto
+            display: inline
+            color: black
+            font-size: normal
+            padding: 0
+          textarea
+            width: 100%
+            resize: none
+            font-size: 12px
+          span.target
+            display: inline-block
+            color: red
+            border: 1px solid red
+            padding: 2px 5px
+            background: lighten(red, 40%)
+            margin: 0
+            margin-right: 10px
+            +border-radius(5px)
     .via_phone .btn
       background: darken(red, 20%)
       display: block
