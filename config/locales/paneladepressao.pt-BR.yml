@@ -84,13 +84,13 @@ pt-BR:
       form:
         headline: "Escolha uma das opções abaixo para pressionar diretamente os responsáveis:" 
         headline_poked: "Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!"
-        facebook: "Pressione no facebook"
+        facebook: "Pressionar no facebook"
         facebook_tip: "mensagem será publicada no mural do alvo"
-        twitter: "Pressione no twitter"
+        twitter: "Pressionar no twitter"
         twitter_tip: "mensagem será publicada no perfil do alvo"
         email: "Pressione por e-mail"
         email_tip: "mensagem será enviada ao e-mail do alvo"
-        voice_call: "Pressione por telefone"
+        voice_call: "Pressionar por telefone"
         voice_call_tip: "você receberá uma ligação do número 3957-9303 te conectando com o alvo."
         message:
           header: "Mensagem"
