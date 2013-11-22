@@ -13,10 +13,10 @@
           = label_tag :email, "E-mail"
           = email_field_tag :email, "", :class => "required email"
       - if kind == "email"
-        .field
+        .field.to
           = label_tag :to, "Para"
-          = raw @campaign.influencers.map{|i| content_tag(:span, i.name, class: :target)}.join("")
-        .field
+          span.targets= raw @campaign.influencers.map{|i| content_tag(:span, i.name, class: :target)}.join("")
+        .field.subject
           = label_tag :subject, "Assunto"
           strong= @campaign.name
         .field

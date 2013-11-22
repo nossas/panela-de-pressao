@@ -947,6 +947,22 @@ body.campaigns#show
           .field
             padding: 1em
             border-bottom: 1px lightgray solid
+            &.subject, &.to
+              label, strong, span.targets
+                display: inline-block
+                margin-bottom: 0
+              label
+                width: 50px
+              strong, span.targets
+                width: 200px
+                vertical-align: top
+            &.to
+              label
+                width: 25px
+              span.targets
+                width: 225px
+                span
+                  margin-bottom: 3px
     .via_twitter .btn
       background: $twitter_blue
       span
