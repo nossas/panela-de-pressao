@@ -1,30 +1,30 @@
 = form_for [@campaign, @poke], :html => {:id => "new_#{kind}_poke", class: "poke_form user_#{current_user.present?}"} do |f|
   - if kind == "email"
-    .fields_title Pressione por Email
+    p.headline Envie agora um email para pressionar diretamente quem toma essa decisão!
     .fields
       - if !signed_in?
         .field
-          = label_tag :first_name, "Nome"
+          = label_tag :first_name, "Nome:"
           = text_field_tag :first_name, "", :class => "required"
         .field
-          = label_tag :last_name, "Sobrenome"
+          = label_tag :last_name, "Sobrenome:"
           = text_field_tag :last_name, "", :class => "required"
         .field
-          = label_tag :email, "E-mail"
+          = label_tag :email, "E-mail:"
           = email_field_tag :email, "", :class => "required email"
       - if kind == "email"
         .field.to
-          = label_tag :to, "Para"
-          span.targets= raw @campaign.influencers.map{|i| content_tag(:span, i.name, class: :target)}.join("")
+          = label_tag :to, "Para:"
+          strong= raw @campaign.influencers.map{|i| i.name}.join(", ")
         .field.subject
-          = label_tag :subject, "Assunto"
+          = label_tag :subject, "Assunto:"
           strong= @campaign.name
         .field
           = text_area_tag :custom_message, @campaign.email_text
 
   = f.hidden_field :kind, :value => kind
   - if kind == "email"
-    = f.submit "Pressionar Agora!", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
+    = f.submit "Enviar email agora", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
   - else
     .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
       = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))

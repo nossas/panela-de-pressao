@@ -1,11 +1,13 @@
 .hidden
-  - if flash[:poke_notice]
-    #poke_notice
+  #poke_notice
+    .email_poke_notice
       h1 Muito bom! Você acaba de colocar mais pressão nessa panela.
       p Agora compartilhe essa campanha com seus amigos!
       .share
-        a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" data-url=@campaign.short_url Tweetar
-        .fb-like data-href=request.url data-layout="button_count" data-show-faces="false"
+        a href="https://www.facebook.com/sharer.php?s=100&p[url]=#{request.url}" class="facebook_share_btn"
+          = image_tag "header_facebook.png"
+        a href="https://twitter.com/share?url=#{@campaign.short_url}" class="twitter_share_btn"
+          = image_tag "header_twitter.png"
   - if flash[:poke_phone_notice]
     #poke_notice
       h1 Muito bom! Estamos ligando pra você!

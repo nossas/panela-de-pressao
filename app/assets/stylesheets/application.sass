@@ -322,6 +322,12 @@ a[href="/auth/facebook"]
   .share
     height: 20px
 
+.email_poke_notice
+  text-align: center
+  a
+    display: inline-block
+    margin-right: 10px
+
 #twitter_poke_message
   p
     font-size: 1.5em
@@ -809,7 +815,7 @@ body.campaigns#show
       strong
         color: #333
   .via_facebook, .via_twitter, .via_phone
-    background: $gray
+    background: white
     padding: .8em 0
     overflow: hidden
     +border-radius(6px)
@@ -871,7 +877,6 @@ body.campaigns#show
       margin: 3em 0 1em 0
     .via_facebook, .via_twitter, .via_email, .via_phone
       margin-bottom: 1em
-      background: white
       .message
         padding: 1.6em
         width: 80%
@@ -892,6 +897,8 @@ body.campaigns#show
         +border-radius(0 0 5px 5px)
         margin: 0
         cursor: pointer
+        text-transform: uppercase
+        font-weight: bold
       .btn 
         width: 75%
         margin: 0 auto
@@ -928,6 +935,9 @@ body.campaigns#show
           color: lighten($fb_blue, 40%)
           display: block
       form
+        p.headline
+          font-size: 16px
+          text-align: center
         .fields_title
           background: #333
           padding: .75em
@@ -936,24 +946,29 @@ body.campaigns#show
           font-weight: bold
           +border-radius(5px 5px 0 0)
         .fields
+          background: white
           border-left: lightgray 1px solid
           border-right: lightgray 1px solid
+          border-top: lightgray 1px solid
+          +border-radius(5px 5px 0 0)
           input[type="text"], input[type="email"], textarea
             +border-radius(5px)
             width: 100%
             +box-sizing("border-box")
+            font-size: 14px
+            font-weight: bold
           textarea
             height: 250px
           .field
             padding: 1em
             border-bottom: 1px lightgray solid
             &.subject, &.to
-              label, strong, span.targets
+              label, strong
                 display: inline-block
                 margin-bottom: 0
               label
                 width: 50px
-              strong, span.targets
+              strong
                 width: 200px
                 vertical-align: top
             &.to
