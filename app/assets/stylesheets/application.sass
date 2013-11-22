@@ -426,7 +426,7 @@ section.content
       .icon-bullhorn
         display: none
       &.not_finished:hover
-        .icon-bubbles
+        .icon-comments
           display: none
         .icon-bullhorn
           display: block
@@ -496,7 +496,7 @@ p.description
   border-top: 1px solid darken($gray, 10%)
   color: #404040
   min-height: 28px
-  .icon-bubbles
+  .icon-comments
     color: darken($gray, 15%)
     line-height: normal
   span
@@ -611,7 +611,7 @@ section.explore
       text-align: center
       +border-radius(4px)
 
-.icon-bubbles:before
+.icon-comments:before
   float: left
   font-size: 26px
   opacity: .7
@@ -765,6 +765,33 @@ body.campaigns#show
     overflow: hidden
     +border-radius(4px)
   article.campaign, aside.pressure
+    .counter
+      .icon-comments
+        &:before
+          font-size: 42px
+          top: 0
+      span.number
+        span
+          background: black
+          color: white
+          display: inline-block
+          height: 41px
+          width: 41px
+          padding: 0
+          margin: 0
+          line-height: normal
+          font-size: 34px
+          text-align: center
+          margin-right: 2px
+          +border-radius(5px)
+      span.label
+        font-size: 14px
+        display: inline-block
+        padding: 0
+        margin-left: .5em
+        position: relative
+        top: 2px
+        line-height: normal
   .image
     img,iframe
       +border-radius(4px)
