@@ -41,14 +41,14 @@ section.content
     article.left.tab
       = render partial: 'tabs'
   .row
-    .wrap
-      article.left.campaign
+    article.left.campaign
+      .wrap
         = render partial: params[:section] || 'description'
-      aside.right.pressure
-        = render partial: 'poke_buttons'
-        = render partial: 'targets'
-        = render partial: 'supporters'
-        = render partial: 'pokers'
+    aside.right.pressure
+      = render partial: 'poke_buttons'
+      = render partial: 'supporters'
+      = render partial: 'targets'
+      = render partial: 'pokers'
 
   = render partial: 'poke_notice'
   = render partial: 'poke_messages'

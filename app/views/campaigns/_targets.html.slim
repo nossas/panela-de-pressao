@@ -1,5 +1,5 @@
 .targets
-  h3.icon-target= t 'campaign.show.target.head_html', count: @campaign.influencers.length
+  h3= t 'campaign.show.target.head_html', count: @campaign.influencers.length
   .content
     ol
       - @campaign.influencers.each_with_index do |influencer, index|
