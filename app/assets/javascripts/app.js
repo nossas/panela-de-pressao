@@ -82,6 +82,17 @@ var App = window.App = {
         loadShareButtons();
       });
 
+      $('a.facebook_share_btn, a.twitter_share_btn').click(function(event, target){
+        event.preventDefault();
+        var obj = $(event.target);
+        var url = null;
+        url = obj.attr('href');
+        if (url == undefined) {
+          url = obj.parent('a').attr('href');
+        }
+        window.open(url, '', 'width=600,height=300');
+      });
+
       function loadShareButtons(){
         $("a.facebook_share, a.twitter_share").click(function(event, target){
           event.preventDefault();
