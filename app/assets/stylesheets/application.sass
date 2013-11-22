@@ -900,7 +900,6 @@ body.campaigns#show
         text-transform: uppercase
         font-weight: bold
       .btn 
-        width: 75%
         margin: 0 auto
         display: block
         background: $fb_blue
@@ -957,6 +956,20 @@ body.campaigns#show
             +box-sizing("border-box")
             font-size: 14px
             font-weight: bold
+            &::-webkit-input-placeholder
+              color: lightgray
+              font-weight: normal
+            &:-moz-placeholder
+              color: lightgray
+              font-weight: normal
+            &::-moz-placeholder
+              color: lightgray
+              font-weight: normal
+            &:-ms-input-placeholder
+              color: lightgray
+              font-weight: normal
+            &[name='last_name']
+              width: 165px
           textarea
             height: 250px
           .field
