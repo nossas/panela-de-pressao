@@ -12,7 +12,7 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
       - else
         .icon-thumbs-down.loss Não deu...
     - elsif campaign.accepted?
-      .icon-bubbles= t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
+      .icon-comments= t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
       .icon-bullhorn.pressure= link_to "Pressionar", campaign_path(campaign)
     - elsif can? :moderate, Campaign
       .campaign_moderator class="#{'alert' if campaign.moderator.nil?}"

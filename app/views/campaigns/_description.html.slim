@@ -4,5 +4,10 @@
   .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
 
 .counter
- .count.icon-bubbles= t('home.highlight.pokes_count_html', :count => number_with_delimiter(@campaign.pokes.count))
+  .count.icon-comments
+    span.number= raw @campaign.pokes.count.to_s.chars.map{|c| content_tag :span, c}.join("")
+    span.label
+      | pressões
+      br
+      | feitas
 .description= @campaign.description_html.html_safe || @campaign.description.html_safe

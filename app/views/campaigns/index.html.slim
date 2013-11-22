@@ -11,7 +11,7 @@
           span.category.icon-list= link_to @featured.category.name, category_campaigns_path(@featured.category)
           .description= link_to truncate(strip_tags(@featured.description_html), length: 120), @featured 
           .counter
-            .count.icon-bubbles= t "home.highlight.pokes_count_html", count: @featured.pokes.count
+            .count.icon-comments= t "home.highlight.pokes_count_html", count: @featured.pokes.count
             .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured), class: 'btn'
       .image
         - unless @featured.nil?
