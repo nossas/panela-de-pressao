@@ -1,9 +1,9 @@
 .pokers
-  h3= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign_pokers.size)
+  h3= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign.pokes.count)
   .content
     ul
-      - @campaign_pokers[0..23].each do |poker|
-        li= image_tag(poker.avatar_url, size: '49x49', title: poker.name)
-      - if @campaign_pokers.size > 24
+      - @campaign_pokes.each do |poke|
+        li= image_tag(poke.user.avatar_url, size: '49x49', title: poke.user.name)
+      - if @campaign_pokes.size > 24
         li.who_pokes
-          span.the_others= @campaign_pokers.size - 24
+          span.the_others= @campaign_pokes.size - 24
