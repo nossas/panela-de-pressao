@@ -1,22 +1,6 @@
-- content_for(:title) { "Campanha aguardando moderação" }
-
-table style="background-color:white"
-  tr
-    td colspan="3" style="height:10px"
-  tr
-    td style="width:10px"
-    td style="color:#676767; font-size:14px"
-      p Atenção curadoria!
-      p= raw "Uma nova campanha chamada #{link_to @campaign.name, edit_campaign_url(@campaign), :style => "color:#219548;"} está aguardando a sua moderação."
-      p
-        | O criador da campanha se chama 
-        strong= @campaign.user.name
-        |  e o email dele é 
-        strong= @campaign.user.email
-        | .
-      p 
-        strong Descrição da campanha:
-      em= simple_format @campaign.description
-    td style="width:10px"
-  tr
-    td colspan="3" style="height:10px"
+p Atenção curadoria!
+p= raw "Uma nova campanha chamada #{link_to @campaign.name, edit_campaign_url(@campaign)} está aguardando a sua moderação."
+p O criador da campanha se chama #{@campaign.user.name} e o email dele é #{@campaign.user.email}.
+p 
+  strong Descrição da campanha:
+em= simple_format @campaign.description
