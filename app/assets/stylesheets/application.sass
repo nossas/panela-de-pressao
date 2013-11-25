@@ -954,8 +954,9 @@ body.campaigns#show
             +border-radius(5px)
             width: 100%
             +box-sizing("border-box")
-            font-size: 14px
-            font-weight: bold
+            font-size: 15px
+            font-weight: normal
+            font-family: "Proxima Nova", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
             &::-webkit-input-placeholder
               color: lightgray
               font-weight: normal
@@ -971,7 +972,7 @@ body.campaigns#show
             &[name='last_name']
               width: 165px
           textarea
-            height: 250px
+            height: 125px
           .field
             padding: 1em
             border-bottom: 1px lightgray solid
@@ -980,13 +981,16 @@ body.campaigns#show
                 display: inline-block
                 margin-bottom: 0
               label
-                width: 50px
+                width: 70px
+                margin: 0
               strong
-                width: 200px
+                width: 180px
                 vertical-align: top
+                font-weight: normal
+                font-size: 15px
             &.to
               label
-                width: 25px
+                width: 45px
               span.targets
                 width: 225px
                 span
@@ -1008,6 +1012,8 @@ body.campaigns#show
         .fields
           label
             margin-right: 1em
+            font-weight: bold
+            font-size: 15px
           input[type='text'], input[type='email'], textarea
             border: none
             width: auto
@@ -1018,7 +1024,7 @@ body.campaigns#show
           textarea
             width: 100%
             resize: none
-            font-size: 12px
+            font-size: 15px
           span.target
             display: inline-block
             color: red
