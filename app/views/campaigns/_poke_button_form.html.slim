@@ -15,7 +15,10 @@
       - if kind == "email"
         .field.to
           = label_tag :to, "Para:"
-          strong= raw @campaign.influencers.map{|i| i.name}.join(", ")
+          strong
+            = @campaign.influencers.limit(5).map{|i| i.name}.join(", ")
+            - if @campaign.influencers.count > 5
+              |  e mais #{@campaign.influencers.count - 5}
         .field.subject
           = label_tag :subject, "Assunto:"
           strong= @campaign.name
