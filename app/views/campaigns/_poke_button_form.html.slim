@@ -29,7 +29,7 @@
   - if kind == "email"
     .email_box
       = f.submit "Enviar email agora", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
-  - else
+  - elsif kind == "facebook"
     .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
       = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
       span= t "campaign.show.form.#{kind}_tip"
