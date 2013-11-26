@@ -33,7 +33,7 @@
     .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
       = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
       span= t "campaign.show.form.#{kind}_tip"
-  - if kind == "twitter"
+  - if kind == "twitter" && false
     = link_to "ver mensagem", "##{kind}_poke_message", class: "message_link", :rel => "facebox"
 
   .message
