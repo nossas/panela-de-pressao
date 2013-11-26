@@ -29,11 +29,11 @@
   - if kind == "email"
     .email_box
       = f.submit "Enviar email agora", disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind)), class: "email_poke_btn"
-  - elsif kind == "facebook"
+  - else
     .btn[class="#{('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))}"]
       = f.submit t("campaign.show.form.#{kind}"), disabled: ('disabled' if current_user and !current_user.can_poke?(@campaign, with: kind))
       span= t "campaign.show.form.#{kind}_tip"
-  - if kind == "twitter" && false
+  - if kind == "twitter"
     = link_to "ver mensagem", "##{kind}_poke_message", class: "message_link", :rel => "facebox"
 
   .message
