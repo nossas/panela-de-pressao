@@ -36,7 +36,20 @@ html
 
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
     = render partial: 'layouts/alerts'
-    = meurio_header_for(:paneladepressao)
+
+    - content_for :application_menu do
+      = link_to "Como funciona?", about_path
+      = link_to "Descubra as campanhas", explore_path
+      = link_to "Crie sua campanha", new_campaign_path, class: :btn
+
+    - content_for :current_user_links do
+      - if current_user.present?
+        = link_to "Minhas campanhas", user_campaigns_path(current_user)
+        = link_to "Moderar campanhas", unmoderated_campaigns_path if can? :moderate, Campaign
+        = link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
+
+    = meurio_header_for(:pdp)
+
     section.highlight= yield :highlight
     = yield
     = render partial: 'layouts/footer'
