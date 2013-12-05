@@ -36,8 +36,8 @@ class PokesController < InheritedResources::Base
     end
   end
 
-  protected
-  def collection
-    @pokes ||= end_of_association_chain.order("created_at DESC").limit(100)
+  def index
+    @pokes = @campaign.pokes.includes(:user)
+    index!
   end
 end

@@ -77,12 +77,8 @@ class Poke < ActiveRecord::Base
     "#{self.campaign.voice_call_number.scan(/[0-9]+/).join}"
   end
 
-  def user_email
-    user.present? ? user.email : nil
-  end
-
   def as_json options
-    super(methods: [:user_email])
+    super({include: :user}.merge(options))
   end
   
   private
