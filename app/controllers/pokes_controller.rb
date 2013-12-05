@@ -38,6 +38,6 @@ class PokesController < InheritedResources::Base
 
   protected
   def collection
-    @pokes ||= end_of_association_chain.order("created_at DESC").limit(1000)
+    @pokes ||= end_of_association_chain.order("created_at DESC").limit(100)
   end
 end
