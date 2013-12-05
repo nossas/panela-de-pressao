@@ -37,7 +37,7 @@ class PokesController < InheritedResources::Base
   end
 
   def index
-    @pokes = @campaign.pokes.includes(:user)
+    @pokes = @campaign.pokes.includes(:user).order("created_at DESC").limit(100)
     index!
   end
 end
