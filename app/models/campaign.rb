@@ -113,11 +113,9 @@ class Campaign < ActiveRecord::Base
   end
 
   def create_mailchimp_segment
-    begin
-      segment = Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: "[PDP] #{self.name[0..50]}"})
-      self.update_attribute :mailchimp_segment_uid, segment["id"]
-    rescue Exception => e
-      puts e.message
-    end
+    segment_name = "[PdP] #{self.name[0..50]}"
+    segments = Gibbon::API.lists.segments(id: ENV["MAILCHIMP_LIST_ID"])
+    segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: segment_name})
+    self.update_attribute :mailchimp_segment_uid, segment["id"]
   end
 end
