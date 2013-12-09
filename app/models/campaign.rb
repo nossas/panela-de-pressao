@@ -26,6 +26,7 @@ class Campaign < ActiveRecord::Base
   after_create { self.delay.generate_short_url! }
   after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
   after_create { CampaignMailer.delay.we_received_your_campaign(self) }
+  after_create { self.delay.create_mailchimp_segment }
 
   accepts_nested_attributes_for :targets, :influencers
 
@@ -40,16 +41,13 @@ class Campaign < ActiveRecord::Base
   scope :unarchived,  where(archived_at: nil)
   scope :orphan,      where(moderator_id: nil)
 
-  mount_uploader :image, ImageUploader
-
   validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
+  validate :owner_have_mobile_phone, on: :create
 
   mount_uploader :image, ImageUploader
-
-  validate :owner_have_mobile_phone, on: :create
 
   def video
     video = VideoInfo.get(self.video_url.to_s)
@@ -112,5 +110,9 @@ class Campaign < ActiveRecord::Base
 
   def as_json options
     super(methods: [:user_email])
+  end
+
+  def create_mailchimp_segment
+    Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: "[PDP] #{self.name}"})    
   end
 end

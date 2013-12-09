@@ -24,7 +24,7 @@ gem "machinist", ">= 2.0.0.beta2"
 # Image uplaod
 gem 'carrierwave'
 gem 'mini_magick'
-gem "fog", "~> 1.3.1"
+gem "fog"
 
 # Authentication
 gem 'omniauth'
@@ -83,3 +83,4 @@ gem 'jquery-ui-rails'
 gem 'coveralls', require: false
 gem 'rails_12factor'
 gem 'meurio_ui'
+gem 'gibbon'
