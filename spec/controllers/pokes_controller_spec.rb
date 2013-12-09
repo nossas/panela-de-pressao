@@ -62,15 +62,19 @@ describe PokesController do
       end
     end
 
-    context "when it's not logged in" do
-      before { @request.env['HTTP_REFERER'] = 'http://test.com/' }
-      before { post :create, :poke => {:kind => "twitter"}, :campaign_id => "1" }
-      it { should redirect_to(ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}") }
-    end
-
+    # Disable Twitter poke
+    # context "when it's not logged in" do
+    #   before { @request.env['HTTP_REFERER'] = 'http://test.com/' }
+    #   before { post :create, :poke => {:kind => "twitter"}, :campaign_id => "1" }
+    #   it { should redirect_to(ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}") }
+    # end
   end
 
   describe "GET index" do
+    let (:campaign) { stub_model(Campaign, id: 1) }
+    before { campaign.stub_chain(:pokes, :includes, :order, :limit).and_return(double(Object, :build => Poke.new, :all => [])) }
+    before { Campaign.stub(:find).with("1").and_return(campaign) }
+
     context "when the token is provided" do
       before { get :index, token: ENV["API_TOKEN"], format: :json, campaign_id: "1" }
       its(:status) { should be_== 200 }
