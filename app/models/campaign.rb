@@ -113,6 +113,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def create_mailchimp_segment
-    Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: "[PDP] #{self.name}"})    
+    segment = Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: "[PDP] #{self.name}"})    
+    self.update_attribute :mailchimp_segment_uid, segment["id"]
   end
 end
