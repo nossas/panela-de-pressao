@@ -22,18 +22,10 @@ production:
   username: seurio
   password:
 
-# accounts_development:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: meurio_accounts_development
-#   pool: 5
-#   username: seurio
-#   password:
-
-# accounts_test:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: meurio_accounts_production
-#   pool: 5
-#   username: seurio
-#   password:
+accounts_test:
+  adapter: postgresql
+  encoding: unicode
+  database: seurio_test
+  pool: 5
+  username: seurio
+  password:
