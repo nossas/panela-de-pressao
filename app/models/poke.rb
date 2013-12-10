@@ -2,8 +2,6 @@
 require 'httparty'
 
 class Poke < ActiveRecord::Base
-  
-
   attr_accessible :campaign_id,         :kind, :user_id, :custom_message
   belongs_to      :campaign
   belongs_to      :user
@@ -13,18 +11,17 @@ class Poke < ActiveRecord::Base
   validates_presence_of :campaign
   validates_presence_of :user
   validates_presence_of :kind
-
   validate :poked_recently?, on: :create
 
+  before_create   :post_facebook_activity
   after_create    :thanks
   after_create    :send_email,          :if => Proc.new { self.email? }
   after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
   after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
   after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone } 
-  before_create   :post_facebook_activity
-  
-  default_scope order('updated_at DESC') 
+  after_create    :add_to_mailchimp_segment
 
+  default_scope order('updated_at DESC') 
 
   def thanks
     PokeMailer.delay.thanks(self) if self.user.email.present?
@@ -80,7 +77,12 @@ class Poke < ActiveRecord::Base
   def as_json options
     super({include: :user}.merge(options))
   end
-  
+
+  def add_to_mailchimp_segment
+    subscriber = Gibbon::API.lists.subscribe(id: ENV["MAILCHIMP_LIST_ID"], email: {email: self.user.email}, merge_vars: {FNAME: self.user.first_name, LNAME: self.user.last_name}, double_optin: false, update_existing: true)
+    Gibbon::API.lists.static_segment_members_add(id: ENV["MAILCHIMP_LIST_ID"], seg_id: self.campaign.mailchimp_segment_uid, batch: [{email: self.user.email}])
+  end
+
   private
   def send_phone
     service = ENV['SERVICE_CALL_URL']
