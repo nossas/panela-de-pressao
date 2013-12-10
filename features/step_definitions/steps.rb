@@ -136,6 +136,8 @@ Then /^I should see "([^"]*)"$/ do |arg1|
     page.should have_css('input[type="submit"].twitter_poke')
   when "the new campaign form"
     page.should have_css("#new_campaign")
+  when "the Plivo integration fields"
+    page.should have_css("input.phone_with_country_code")
   else
     page.should have_content(arg1)
   end

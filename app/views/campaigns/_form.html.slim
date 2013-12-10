@@ -1,106 +1,101 @@
-= form_for @campaign do |f|
+section.content
+  .row
+    .field
+      h1.title= t 'campaign.new.header'
+      small= t 'campaign.new.small_html', link: 'https://speakerd.s3.amazonaws.com/presentations/55331d301fb401307ccc12313d145d81/Panela_de_Pressao_-_cookbook.pdf'
+    = form_for @campaign do |f|
+      .field
+        - if can? :change_ownership, @campaign
+          = f.label :user_id
+          = f.autocomplete_field :user, autocomplete_user_email_users_path, id_element: "#campaign_user_id", value: @campaign.user.email if @campaign.persisted?
+          = f.hidden_field :user_id
+    
+      .field
+        = f.label :name
+        = f.text_field :name
+    
+      .field
+        = f.label :category_id
+        = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
+    
+      .field
+        = f.label :description
+        = f.text_area :description
+        = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
+    
+      .field
+        = f.label :influencer_ids
+        = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+    
+      .field
+        | Como você deseja pressionar os alvos dessa campanha?
+        br
+        = f.radio_button :poke_type, :email, default: true
+        = f.label :poke_type_email, "por email"
+        = f.radio_button :poke_type, :facebook
+        = f.label :poke_type_facebook, "por Facebook"
+        = f.radio_button :poke_type, :twitter
+        = f.label :poke_type_twitter, "por Twitter"
+    
+      .field
+        = f.label :facebook_text
+        = f.text_area :facebook_text
+    
+      .field
+        = f.label :twitter_text
+        = f.text_field :twitter_text
+    
+      .field
+        = f.label :email_text
+        = f.text_area :email_text
+    
+    
+      .field
+        = f.label :pokers_email
+        = f.text_area :pokers_email
+    
+      .field
+        - if @campaign.persisted?
+          = image_tag(@campaign.image, size: '40x30')
+          = link_to "Expandir imagem da campanha", "#image", rel: 'facebox' 
+        = f.label :image
+        = f.file_field :image
+        = f.hidden_field :image_cache      
+    
+      .field
+        = f.label :video_url, "Ou esse vídeo"
+        = f.text_field :video_url, placeholder: "http://www.youtube.com/watch?v=JFq4_OSqbbM"
+    
+      - if current_user.phone.blank?
+        .field
+          label 
+            | Para entrarem em contato comigo, se necessário, podem me contatar no número
+            = text_field_tag "user_phone", params[:user_phone], class: [:phone]
+          small.inline-errors= @campaign.errors[:user].to_sentence
 
-  - if @campaign.persisted?
-    p.image
-      = image_tag(@campaign.image, size: '40x30')
-      = link_to "Expandir imagem da campanha", "#image", rel: 'facebox' 
-  p
-    | Olá, meu nome é 
-    - if can? :change_ownership, @campaign
-      = f.label :user_id
-      = f.autocomplete_field :user, autocomplete_user_email_users_path, id_element: "#campaign_user_id", value: @campaign.user.email if @campaign.persisted?
-      = f.hidden_field :user_id
-    - else
-      strong
-        = @campaign.user.present? ? @campaign.user.name : current_user.name
-  p
-    = f.label :name
-    = f.text_field :name
-    small.inline-errors= @campaign.errors[:name].to_sentence
-  p
-    = f.label :category_id
-    = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
-    small.inline-errors= @campaign.errors[:category].to_sentence
+      - if @current_user.admin?
+        .field
+          = f.label :voice_call_number
+          = f.text_field :voice_call_number, placeholder: "+55 (21) 9999-9999", class: [:phone_with_country_code]
+        .field
+          = f.label :voice_call_script
+          = f.text_area :voice_call_script
+        .field
+          = f.label :hashtag
+          = f.text_field :hashtag
 
-  p.textarea
-    = f.label :description
-    = f.text_area :description
-    = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
-    small.inline-errors= @campaign.errors[:description].to_sentence
+      .field
+        = f.submit (@campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save')), class: 'btn'
 
-  p.textarea
-    = f.label :influencer_ids
-    = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
- 
-  p.textarea
-    = f.label :facebook_text
-    = f.text_area :facebook_text
-    small.inline-errors= @campaign.errors[:facebook_text].to_sentence
+    - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
+      .field
+        = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
+          p.action
+            = f.submit t('actions.accept'), :class => "btn"
 
-  p.textarea
-    = f.label :twitter_text
-    = f.text_field :twitter_text
-    small.inline-errors= @campaign.errors[:twitter_text].to_sentence
+    .hidden
+      #image
+        = image_tag(@campaign.image) if @campaign.persisted?
 
-  p.textarea
-    = f.label :email_text
-    = f.text_area :email_text
-    small.inline-errors= @campaign.errors[:email_text].to_sentence
-
-
-  p.textarea
-    = f.label :pokers_email
-    = f.text_area :pokers_email
-    small.inline-errors= @campaign.errors[:pokers_email].to_sentence
-
-  p.phone
-    = f.label :image
-    = f.file_field :image
-    small.inline-errors= @campaign.errors[:image].to_sentence
-    = f.hidden_field :image_cache      
-
-    span &nbsp; 
-    = f.label :video_url
-    = f.text_field :video_url, placeholder: "Link video youtube/vimeo"
-    small.inline-errors= @campaign.errors[:video_url].to_sentence
-
-  p.phone
-   - if current_user.phone.blank?
-    label 
-      | Para entrarem em contato comigo se necessário, podem me contatar no número
-      = text_field_tag "user_phone", params[:user_phone], class: [:phone]
-    small.inline-errors= @campaign.errors[:user].to_sentence
-
-
-
-  - if @current_user.admin?
-    fieldset
-      legend Plivo integration
-      p
-        = f.label :voice_call_number
-        = f.text_field :voice_call_number, placeholder: "Número de telefone alvo", class: [:phone_with_country_code]
-      p.textarea
-        = f.label :voice_call_script
-        = f.text_area :voice_call_script
-    p
-      = f.label :hashtag
-      = f.text_field :hashtag
-
-  p.action
-    = link_to t('actions.cancel'), root_path, class: 'btn gray cancel'
-    = f.submit (@campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save')), class: 'btn'
-
-
-
-
-
-- if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
-  hr
-  = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-    p.action
-      = f.submit t('actions.accept'), :class => "btn"
-
-
-.hidden
-  #image
-    = image_tag(@campaign.image) if @campaign.persisted?
+- content_for :title do
+  | Criar/Editar campanha

@@ -32,6 +32,7 @@ Campaign.blueprint do
   preview_code { "12345" }
   voice_call_script { "Script" }
   voice_call_number { "552197137471" }
+  poke_type { 'email' }
 end
 
 Category.blueprint do

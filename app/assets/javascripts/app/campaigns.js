@@ -10,33 +10,6 @@ App.Campaigns = {
     }
   
   }),
-  Create: Backbone.View.extend({
-     el: 'body',
-
-    events: {
-      'focus input' : 'showTip',
-      'focus textarea' : 'showTipAndExpand',
-      'click select, input[type="file"]' : 'showTip',
-      'blur input': 'hideTip',
-      'blur textarea': 'hideTipAndNormalize'
-    },
-    
-    showTip: function(event) {
-      $(event.target).next('span.tip').first().slideDown('fast').css({display: 'block'});
-    },
-    hideTip: function(event) {
-      $(event.target).next('span.tip').first().slideUp(10);
-    },
-
-    hideTipAndNormalize: function(event){
-      this.hideTip(event);
-      $(event.target).animate({height: '80px'});
-    },
-    showTipAndExpand: function(event) {
-      this.showTip(event);
-      $(event.target).animate({height: '220px'});
-    }
-  }),
 
   Show: Backbone.View.extend({
     el: 'body',
@@ -132,7 +105,3 @@ App.Campaigns = {
     }
   })
 };
-
-
-App.Campaigns.New = App.Campaigns.Create.extend();
-App.Campaigns.Edit = App.Campaigns.Create.extend();

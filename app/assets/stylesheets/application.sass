@@ -24,11 +24,9 @@ $darker_gray: #333
 @import jquery.ui.all
 @import meurio_ui
 
-*
-  +transition(.2s)
-
 .clear
   clear: both
+
 .hidden
   display: none
 
@@ -50,7 +48,7 @@ span.unsucceed
 span.archived
   background: #666
 
-.campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#update aside, body.campaigns#index aside, body.campaigns#new aside, body.campaigns#create aside, body.campaigns#edit aside
+.campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside, body.campaigns#index aside
   +mobile-hide
 
 section
@@ -124,6 +122,7 @@ h1, h2, h3, h4, h4, h5
 
 h1
   font-size: 1.8em
+  line-height: 1em
   margin-bottom: .25em
 
 h2
@@ -625,82 +624,6 @@ section.explore
   opacity: .7
   margin-right: .2em
   top: -2px
-
-body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#update
-  .content
-    .row
-      margin-bottom: 1.5em
-  h1
-    font-weight: bold
-    margin-top: 1em 
-  small 
-    color: darken($gray, 40%)
-  input
-    width: 60%
-  input, textarea
-    +border-radius(4px)
-    +box-shadow(inset 0 1px 2px gray)
-    text-indent: .2em
-  input, select
-    padding: .2em
-    margin-left: .6em
-    top: -.1em
-    position: relative
-  strong, input, textarea
-    color: black
-    font-weight: bold
-  form
-    fieldset
-      border: 1px dashed grey
-      padding: 1em
-      legend
-        font-weight: bold
-        padding: 1em
-    p
-      margin: .8em 0
-    .charleft
-      font-size: .8em
-      color: $green
-    p.textarea
-      margin: 1.2em 0
-      label
-        display: block
-      textarea, input
-        width: 98%
-        margin-left: 0
-      textarea
-        height: 80px
-    p.phone
-      input
-        width: 20%
-    p.image
-      background: white
-      padding: .4em
-      margin-bottom: 2em 
-      overflow: hidden
-      img
-        float: left
-        margin-right: .6em
-      a
-        display: inline-block
-        margin-top: .6em
-  p.action
-    width: 60%
-    margin: 0 auto
-    margin-top: 4em
-    input, a
-      margin-left: 2em
-    a
-      width: 20%
-    input
-      color: white
-      border: none
-      padding: .8em 1.6em 
-      top: 1px
-      &:hover
-        cursor: pointer
-  label[for='campaign_user_id']
-    display: none
 
 body.campaigns#show
   .twitter-share-button
@@ -1412,3 +1335,5 @@ section.footer
     line-height: 1
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
+
+@import campaigns

@@ -7,13 +7,13 @@ Feature: Enable voice call integration of campaign
   Scenario: when I own a campaign awaiting moderation
     Given I'm logged in
     When I'm in the new campaign page
-    Then I should not see "Plivo integration"
+    Then I should not see "the Plivo integration fields"
  
   @omniauth_test @ssi
   Scenario: when I'm admin
     Given I'm logged in as admin
     When I'm in the new campaign page
-    Then I should see "Plivo integration"
+    Then I should see "the Plivo integration fields"
    
   @omniauth_test @javascript @bitly @ssi
   Scenario: when I'm smart enough to successfully fill the new campaign form
