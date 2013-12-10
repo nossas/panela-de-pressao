@@ -79,7 +79,7 @@ class Poke < ActiveRecord::Base
   end
 
   def add_to_mailchimp_segment
-    subscriber = Gibbon::API.lists.subscribe(id: ENV["MAILCHIMP_LIST_ID"], email: {email: self.user.email}, merge_vars: {FNAME: self.user.first_name, LNAME: self.user.last_name}, double_optin: false, update_existing: true)
+    Gibbon::API.lists.subscribe(id: ENV["MAILCHIMP_LIST_ID"], email: {email: self.user.email}, merge_vars: {FNAME: self.user.first_name, LNAME: self.user.last_name}, double_optin: false, update_existing: true)
     Gibbon::API.lists.static_segment_members_add(id: ENV["MAILCHIMP_LIST_ID"], seg_id: self.campaign.mailchimp_segment_uid, batch: [{email: self.user.email}])
   end
 
