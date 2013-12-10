@@ -4,11 +4,11 @@ section.content
       h1.title= t 'campaign.new.header'
       small= t 'campaign.new.small_html', link: 'https://speakerd.s3.amazonaws.com/presentations/55331d301fb401307ccc12313d145d81/Panela_de_Pressao_-_cookbook.pdf'
     = form_for @campaign do |f|
-      .field
-        - if can? :change_ownership, @campaign
-          = f.label :user_id
-          = f.autocomplete_field :user, autocomplete_user_email_users_path, id_element: "#campaign_user_id", value: @campaign.user.email if @campaign.persisted?
-          = f.hidden_field :user_id
+      - if can?(:change_ownership, @campaign) && @campaign.persisted?
+        .field
+            = f.label :user_id
+            = f.autocomplete_field :user, autocomplete_user_email_users_path, id_element: "#campaign_user_id", value: @campaign.user.email if @campaign.persisted?
+            = f.hidden_field :user_id
     
       .field
         = f.label :name
