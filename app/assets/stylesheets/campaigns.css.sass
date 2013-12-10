@@ -1,0 +1,22 @@
+body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#update
+  .field
+    +grid(8)
+    +grid-prefix(2)
+    margin-bottom: 20px
+  form
+    label
+      display: block
+      &[for='campaign_category_id'], &[for='campaign_poke_type_email'], &[for='campaign_poke_type_facebook'], &[for='campaign_poke_type_twitter']
+        display: inline-block
+      &[for='campaign_poke_type_email'], &[for='campaign_poke_type_facebook'], &[for='campaign_poke_type_twitter']
+        margin-right: 10px
+      &.message
+        display: block
+    input[type='text'], textarea
+      width: 100%
+    textarea
+      height: 100px
+    fieldset
+      display:block
+    input[type='submit']
+      width: auto
