@@ -119,7 +119,7 @@ class Campaign < ActiveRecord::Base
       segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: segment_name})
       self.update_attribute :mailchimp_segment_uid, segment["id"]
     rescue Exception => e
-      puts e
+      Rails.logger.error e
     end
   end
 end
