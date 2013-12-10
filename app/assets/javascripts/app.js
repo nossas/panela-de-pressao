@@ -27,9 +27,6 @@ var App = window.App = {
       $('.phone').inputmask("mask", {"mask": "(99) 999999999"});
       $('.phone_with_country_code').inputmask("mask", { "mask" : "+99 (99) 9999-9999"});
 
-      $('#campaign_twitter_text').textareaCount({maxCharacterSize: 100}, function(data){
-        $(".campaign_twitter_text_status").html(100 - data.input + " caracteres");
-      });
       $('section.index li.campaign:nth-child(4n+0)').css("margin-right", "0");
       $('section.explore li.campaign:nth-child(3n+0)').css("margin-right", "0");
       $('body.users#show li.campaign:nth-child(3n+0)').css("margin-right", "0");
