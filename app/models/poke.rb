@@ -19,7 +19,7 @@ class Poke < ActiveRecord::Base
   after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
   after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
   after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone } 
-  after_create    :add_to_mailchimp_segment
+  after_create    { self.delay.add_to_mailchimp_segment }
 
   default_scope order('updated_at DESC') 
 
