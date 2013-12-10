@@ -37,7 +37,17 @@ class PokesController < InheritedResources::Base
   end
 
   def index
-    @pokes = @campaign.pokes.includes(:user).order("created_at DESC").limit(100)
+    @pokes = @campaign.pokes.includes(:user).order("created_at DESC")
+
+    @pokes = @pokes.where('created_at >= :from', from: format_date(params[:from])) unless params[:from].blank?
+    @pokes = @pokes.where('created_at <= :until', until: format_date(params[:until])) unless params[:until].blank?
+
     index!
+  end
+
+  private
+
+  def format_date string
+    DateTime.strptime(string, '%Y-%m-%d-%H-%M-%S') if string
   end
 end
