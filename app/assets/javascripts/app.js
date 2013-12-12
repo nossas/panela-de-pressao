@@ -33,6 +33,16 @@ var App = window.App = {
       
       $('ul.current li.me').on('click', function(){ $(this).children('.options').fadeToggle(10); });
 
+      function changeCampaignPokeType(type){
+        $('.email_text').hide();
+        $('.facebook_text').hide();
+        $('.twitter_text').hide();
+        $('.' + type + '_text').show();
+      }
+
+      changeCampaignPokeType('email');
+      $('#campaign_poke_type').change(function(e){ changeCampaignPokeType($(e.target).val()) });
+
       // FB share
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

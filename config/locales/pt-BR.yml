@@ -251,6 +251,7 @@ pt-BR:
         voice_call_script: "Script que deve ser lido para quem liga"
         voice_call_number: "Número que receberá as ligações"
         user_id: "Cozinheiro"
+        poke_type: "Como você deseja pressionar os alvos dessa campanha?"
       influencer:
         name: "Nome"
         role: "Descrição"
