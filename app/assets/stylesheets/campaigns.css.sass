@@ -1,12 +1,17 @@
 body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#update
+  .header, form
+    +grid(12)
   .field
-    +grid(8)
-    +grid-prefix(2)
     margin-bottom: 20px
+  fieldset, .header
+    margin-bottom: 40px
+  .field, fieldset
+    &:last-child
+      margin-bottom: 0
   form
     label
       display: block
-      &[for='campaign_category_id'], &[for='campaign_poke_type_email'], &[for='campaign_poke_type_facebook'], &[for='campaign_poke_type_twitter']
+      &[for='campaign_poke_type_email'], &[for='campaign_poke_type_facebook'], &[for='campaign_poke_type_twitter']
         display: inline-block
       &[for='campaign_poke_type_email'], &[for='campaign_poke_type_facebook'], &[for='campaign_poke_type_twitter']
         margin-right: 10px
@@ -20,3 +25,6 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
       display:block
     input[type='submit']
       width: auto
+    .email_text, .facebook_text, .twitter_text
+      display: none
+      margin: 0
