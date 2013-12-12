@@ -22,8 +22,6 @@ Feature: Enable voice call integration of campaign
     And I fill "O nome da minha campanha será" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
     And I fill "A situação que eu quero mudar com ela é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "A mensagem de email que eu quero enviar para os alvos é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "O texto que eu quero postar na página do Facebook dos alvos é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
-    And I fill "A mensagem de 140 caracteres que eu quero postar no twitter dos alvos é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "Script que deve ser lido para quem liga" with "Script with"
     And I fill "Número que receberá as ligações" with "2197137471"
     And I attach an image to "Para a divulgação da minha campanha bombar, vou usar essa imagem"

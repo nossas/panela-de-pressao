@@ -5,6 +5,7 @@ describe Campaign do
     bitly = Bitly.new('bitly id', 'bitly key')
     bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
     Bitly.stub(:new).and_return(bitly)
+    subject.stub_chain(:user, :phone, :blank?).and_return(false)
   end
 
   describe "associations" do
@@ -107,5 +108,20 @@ describe Campaign do
         expect(campaign.has_voice_action?).to eq(false)        
       end
     end
+  end
+
+  context "when it's poke type is set to email" do
+    before { subject.poke_type = 'email' }
+    it { should validate_presence_of :email_text }
+  end
+  
+  context "when it's poke type is set to facebook" do
+    before { subject.poke_type = 'facebook' }
+    it { should validate_presence_of :facebook_text }
+  end
+  
+  context "when it's poke type is set to twitter" do
+    before { subject.poke_type = 'twitter' }
+    it { should validate_presence_of :twitter_text }
   end
 end
