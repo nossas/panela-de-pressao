@@ -41,11 +41,14 @@ class Campaign < ActiveRecord::Base
   scope :unarchived,  where(archived_at: nil)
   scope :orphan,      where(moderator_id: nil)
 
-  validates :name, :user_id, :description, :image, :category, :email_text, :facebook_text, :twitter_text, :poke_type, :presence => true  
+  validates :name, :user_id, :description, :image, :category, :poke_type, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
   validate :owner_have_mobile_phone, on: :create
+  validates :email_text, presence: true, if: Proc.new{ poke_type?("email") }
+  validates :facebook_text, presence: true, if: Proc.new{ poke_type?("facebook") }
+  validates :twitter_text, presence: true, if: Proc.new{ poke_type?("twitter") }
 
   mount_uploader :image, ImageUploader
 
@@ -121,5 +124,9 @@ class Campaign < ActiveRecord::Base
     rescue Exception => e
       Rails.logger.error e
     end
+  end
+
+  def poke_type? type
+    poke_type == type
   end
 end
