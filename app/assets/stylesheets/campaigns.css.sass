@@ -28,3 +28,530 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
     .email_text, .facebook_text, .twitter_text
       display: none
       margin: 0
+
+body.campaigns#index, body.campaigns#unmoderated
+  article.left
+    +grid(12)
+    +last
+  .featured
+    .description
+      padding: .2em 0 .6em 0
+  h2.popular
+    margin: .6em 0 1.5em 0
+    color: darken(gray, 25%)
+    font-weight: bold
+    &:before
+      color: darken($orange, 5%)
+      margin-right: .4em
+      top: .2em
+      position: relative
+  section.index, .popular
+    ol.campaigns 
+      li.campaign
+        &:nth-child(4n+0)
+          +last
+  .all_campaigns
+    form.search
+      margin-bottom: 2em
+      display: block
+      input
+        padding: 0
+    .block
+      +grid(4)
+      &.last
+        +last
+    ol.campaigns
+      margin-top: 1em
+
+body.campaigns#show
+  .twitter-share-button
+    position: relative
+    top: .250em
+    left: .8em
+  section.header
+    +box-shadow(0 1px 6px lighten(black, 75%))
+    margin-bottom: .2em
+  h1.title, .campaign_subtitle span
+    color: darken($gray, 75%)
+  h1.title
+    font-size: 2em
+    font-weight: bold
+    line-height: 100% 
+    margin: 1em 0 .5em 0
+  .campaign_subtitle
+    margin-bottom: 1.5em
+    span
+      margin-right: 1em
+      font-size: 1em
+      display: inline-block
+      color: darken($gray, 55%)
+    .campaign_menu
+      display: inline-block
+      a[class^="icon-"]
+        display: inline-block
+        line-height: 0
+        background: lighten(lightgray, 10%)
+        padding: 5px 10px
+        color: gray
+        border-top: 1px lightgray solid
+        border-bottom: 1px lightgray solid
+        border-left: 1px lightgray solid
+        &:hover
+          background: white
+        &:first-child
+          +border-radius(5px 0 0 5px)
+        &:last-child
+          +border-radius(0 5px 5px 0)
+          border-right: 1px lightgray solid
+  article.tab, article.share
+    background: none
+    padding-bottom: .6em
+  nav a
+    color: lighten(gray, 20%)
+    margin: 0 .5em
+    padding: .5em .3em
+    +transition(.2s)
+    &.selected, &:hover
+      color: $green
+      border-bottom: 3px solid $green
+      span.count
+        background: $green
+    &:hover
+      border: none
+    span.count
+      background: $yellow
+      color: white
+      font-size: .8em
+      margin-left: .4em
+      text-align: center
+      display: inline-block
+      width: 30px
+      +border-radius(2px)
+  .wrap
+    padding: 1.8em
+    background: white
+    height: 100% !important
+    overflow: hidden
+    +border-radius(4px)
+  article.campaign, aside.pressure
+    .counter
+      .icon-comments
+        &:before
+          font-size: 42px
+          top: 0
+      span.number
+        span
+          background: black
+          color: white
+          display: inline-block
+          height: 41px
+          width: 41px
+          padding: 0
+          margin: 0
+          line-height: normal
+          font-size: 34px
+          text-align: center
+          margin-right: 2px
+          +border-radius(5px)
+      span.label
+        font-size: 14px
+        display: inline-block
+        padding: 0
+        margin-left: .5em
+        position: relative
+        top: 2px
+        line-height: normal
+  .image
+    img,iframe
+      +border-radius(4px)
+    iframe
+      width: 100% !important
+      height: 350px !important
+  .description
+    margin: 1.6em 0
+    a
+      border-bottom: 1px dotted $green
+    p
+      font-size: 1.05em !important
+      color: darken($gray, 60%)
+      line-height: 1.6em
+      strong
+        color: #333
+  .via_facebook, .via_twitter, .via_phone
+    background: white
+    padding: .8em 0
+    overflow: hidden
+    +border-radius(6px)
+  .counter 
+    margin-bottom: 1em
+    border-top: none
+    margin-top: 1em
+    .count
+      color: black
+      &:before
+        color: gray
+        top: -10px
+        position: relative
+      span
+        display: inline
+        font-size: 28px
+  .message_link
+    text-align: center
+    font-size: .8em
+    color: lighten(gray, 15%)
+    width: 100%
+    display: inline-block
+    &:hover
+      color: $yellow
+  a.poke_box
+    font-weight: bold
+  #poke_box
+    h2
+      text-align: center
+    padding: 1.2em 0
+    font-size: .9em
+    span.title
+      color: $green
+      font-weight: bold
+    span, p
+      display: block
+      padding: .9em 1.6em
+    input
+      font-size: 1.155em !important
+    .via_twitter span.title
+      margin-bottom: 0em
+    .via_twitter .btn, .via_facebook .btn
+      margin-top: 3.4em
+    .via_facebook .btn input
+      margin-left: -.4em
+    .via_phone .btn
+     
+    .via_phone .btn input
+      display: block
+    .btn
+      span
+        font-size: 8px !important
+        margin: 0
+        padding: 0 !important
+        font-family: "Arial"
+        line-height: 1.2em
+  .poke_buttons
+    .text
+      margin: 3em 0 1em 0
+    .via_facebook, .via_twitter, .via_email, .via_phone
+      margin-bottom: 1em
+      .message
+        padding: 1.6em
+        width: 80%
+        display: none
+        h4
+          text-transform: uppercase
+        .text
+          color: darken($gray, 40%)
+          font-size: .8em
+      .email_poke_btn
+        display: block
+        background: $orange
+        color: white
+        padding: 1em
+        border: none
+        width: 100%
+        font-size: 18px
+        +border-radius(0 0 5px 5px)
+        margin: 0
+        cursor: pointer
+        text-transform: uppercase
+        font-weight: bold
+        &:disabled
+          background: lightgray
+          cursor: default
+      .btn 
+        margin: 0 auto
+        display: block
+        background: $fb_blue
+        &.disabled
+          background: darken($gray, 10%)
+          input, span 
+            color: lighten(gray, 15%)
+            &:hover
+              cursor: default
+          &:hover 
+            background: darken($gray, 20%)
+        &:hover
+          background: lighten($fb_blue, 5%)
+        input
+          background: none
+          border: none
+          color: white
+          font-weight: bold
+          font-size: 1.2em
+          text-transform: uppercase
+          margin: 0
+          padding: 0
+          margin-bottom: -2.5em
+          padding-bottom: 2.5em
+          &:hover
+            cursor: pointer
+        span
+          font-size: .6em
+          font-weight: bold
+          text-transform: none
+          line-height: .8em
+          color: lighten($fb_blue, 40%)
+          display: block
+      form
+        p.headline
+          font-size: 16px
+          text-align: center
+        .fields_title
+          background: #333
+          padding: .75em
+          color: white
+          font-size: 18px
+          font-weight: bold
+          +border-radius(5px 5px 0 0)
+        .fields
+          background: white
+          border-left: lightgray 1px solid
+          border-right: lightgray 1px solid
+          border-top: lightgray 1px solid
+          +border-radius(5px 5px 0 0)
+          input[type="text"], input[type="email"], textarea
+            +border-radius(5px)
+            width: 100%
+            +box-sizing("border-box")
+            font-size: 15px
+            font-weight: normal
+            font-family: "Proxima Nova", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+            &::-webkit-input-placeholder
+              color: lightgray
+              font-weight: normal
+            &:-moz-placeholder
+              color: lightgray
+              font-weight: normal
+            &::-moz-placeholder
+              color: lightgray
+              font-weight: normal
+            &:-ms-input-placeholder
+              color: lightgray
+              font-weight: normal
+            &[name='last_name']
+              width: 165px
+          textarea
+            height: 125px
+          .field
+            padding: 1em
+            border-bottom: 1px lightgray solid
+            &.subject, &.to
+              label, strong
+                display: inline-block
+                margin-bottom: 0
+              label
+                width: 70px
+                margin: 0
+              strong
+                width: 180px
+                vertical-align: top
+                font-weight: normal
+                font-size: 15px
+            &.to
+              label
+                width: 45px
+              span.targets
+                width: 225px
+                span
+                  margin-bottom: 3px
+    .via_twitter .btn
+      background: $twitter_blue
+      span
+        color: lighten($twitter_blue, 40%)
+      &:hover
+        background: lighten($twitter_blue, 5%)
+    .via_email .btn
+      background: darken($gray, 45%) 
+      span
+        color: darken($gray, 10%)
+      &:hover
+        background: darken($gray, 40%)
+    .via_email
+      form
+        .fields
+          label
+            margin-right: 1em
+            font-weight: bold
+            font-size: 15px
+          input[type='text'], input[type='email'], textarea
+            border: none
+            width: auto
+            display: inline
+            color: black
+            font-size: normal
+            padding: 0
+          textarea
+            width: 100%
+            resize: none
+            font-size: 15px
+          span.target
+            display: inline-block
+            color: red
+            border: 1px solid red
+            padding: 2px 5px
+            background: lighten(red, 40%)
+            margin: 0
+            margin-right: 10px
+            +border-radius(5px)
+    .via_phone
+      form
+        .fields
+          border: 0
+          .field
+            border: 0
+      .btn
+        background: darken(red, 20%)
+        display: block
+        padding: 0.7em 2em 0.7em 0.8em
+        span
+          color: darken(white, 5%)
+          line-height: 1.2em
+        &:hover
+          background: darken(red, 5%)
+  #poke_box
+    .button 
+      +grid-subcolumn(9, 3)
+      &:last-child
+        +last
+  .targets, .supporters, .pokers
+    margin-bottom: 1em
+    overflow: hidden
+    background: white
+    +border-radius(5px)
+    h3
+      border: 1px solid $gray 
+      border-bottom: none
+      padding: .8em
+      font-size: 1.1em
+      font-weight: bold
+      span
+        color: $orange
+      &:before
+        color: darken($gray, 30%)
+        margin-right: .4em
+        font-size: 1.2em
+        position: relative
+        top: .192em
+    .content
+      border: 1px solid $gray 
+      padding-top: 1em
+    img
+      float: left
+      +transition(.4s)
+      +border-radius(100%)
+      &:hover
+        opacity: .7
+    .social a
+      display: inline-block
+      margin-right: .4em
+  .target
+    margin-bottom: .8em
+  .icon-twitter
+    color: $twitter_blue
+  .icon_facebook
+    color: $fb_blue
+  .icon-mail
+    color: gray
+  .targets img, .supporters img
+    padding-right: .4em
+  .targets .role
+    font-size: .7em
+    color: lighten(gray, 10%)
+    line-height: 1em
+  .supporters
+    li
+      height: 50px
+      margin-bottom: 1em
+  .pokers
+    li
+      float: left
+      img
+        border: 1px solid white
+        &:hover
+          border: 1px solid $orange
+    li.who_pokes
+    .content
+      overflow: hidden
+    .the_others
+      font-weight: bold
+      line-height: 3.5em
+      text-align: center
+      width: 100%
+      &:before
+        content: "+"
+        margin-left: .4em
+  .update_facebox
+    color: gray
+    .body
+      margin-top: 1em
+      p
+        &:last-child
+          margin: 0
+    .image
+      img
+        width: 100%
+    .title
+      font-size: 1.5em
+      margin-bottom: 1em
+      font-weight: bold
+    .share_buttons
+      text-align: center
+      margin-top: 3em
+      a.facebook_share, a.twitter_share
+        width: auto
+        font-size: .9em
+        margin-right: .5em
+        padding: .75em 1em .7em 1em
+        display: inline-block
+  form.new_update, form.edit_update
+    label
+      font-weight: bold
+      display: block
+      margin-bottom: .25em
+    .field
+      margin-bottom: 1.5em
+      &:last-child
+        margin: 0
+    input[type='text'], textarea
+      width: 100%
+    textarea
+      height: 100px
+    .btn
+      width: auto
+    img
+      width: 100%
+  .campaign_updates
+    #new_update
+      width: auto
+      margin-bottom: 3em
+    .update
+      overflow: hidden
+      border-bottom: 1px solid lightgray
+      padding-bottom: 2em
+      margin-bottom: 2em
+      .image
+        img
+          float: left
+          margin-right: 1em
+          width: 200px
+      .created_at
+        color: lighten(gray, 10%)
+      .title
+        font-weight: bold
+        font-size: 1.25em
+        a
+          color: gray
+          &:hover
+            text-decoration: underline
+      .buttons
+        a.edit
+          color: $yellow
+        a.remove
+          color: red
