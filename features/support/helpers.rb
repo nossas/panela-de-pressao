@@ -50,4 +50,9 @@ def to_element string
   return "input.phone_with_country_code" if string == "the Plivo integration fields"
   return "#poke_notice" if string == "the thanks for poke message"
   return ".notice" if string == "Está valendo, campanha no ar!"
+  return "form.new_phone_poke" if string == "the phone poke form"
+  return "first_name" if string == "the first name field"
+  return "last_name" if string == "the last name field"
+  return "email" if string == "the email field"
+  return "phone" if string == "the phone field"
 end
