@@ -553,3 +553,13 @@ end
 Then(/^I should receive an email$/) do
   ActionMailer::Base.deliveries.select{|d| d.to.index(@current_user.email) != nil}.should_not be_empty
 end
+
+Given(/^I fill in "(.*?)" of "(.*?)" with "(.*?)"$/) do |arg1, arg2, arg3|
+  within to_element(arg2) do
+    fill_in to_element(arg1), with: arg3
+  end
+end
+
+Then(/^an email should be sent to "(.*?)"$/) do |arg1|
+  ActionMailer::Base.deliveries.select{|d| d.to.index(arg1) != nil}.should_not be_empty
+end

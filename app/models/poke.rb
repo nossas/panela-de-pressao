@@ -36,7 +36,6 @@ class Poke < ActiveRecord::Base
     pokes.select { |poke| poke.created_at > Time.now - 1.day }
   end
 
-
   def phone?
     self.kind == "phone"
   end
