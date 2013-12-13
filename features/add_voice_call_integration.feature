@@ -31,12 +31,3 @@ Feature: Enable voice call integration of campaign
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
     And an email called "Recebemos a sua campanha" should be sent
     And an email called "Campanha aguardando moderação" should be sent
-
-  Scenario: One accepted campaign exists 
-    Given there is a campaign called "Desarmamento Voluntário" accepted on "1/1/2012"
-    And there is a target for this campaign    
-    When I go to this campaign page
-    Then I should see the campaigns' name
-    Then I should see the campaigns' description 
-    Then I should see the campaigns' image
-    Then I should see "você receberá uma ligação do número 3957-9303 te conectando com o alvo."
