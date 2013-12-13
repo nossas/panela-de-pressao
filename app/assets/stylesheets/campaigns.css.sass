@@ -64,7 +64,7 @@ body.campaigns#index, body.campaigns#unmoderated
       margin-top: 1em
 
 body.campaigns#show
-  article.left.campaign, aside.right.pressure
+  article.left.campaign, aside.right.pressure, article.left.tab
     +grid(6)
   .twitter-share-button
     position: relative
@@ -109,8 +109,9 @@ body.campaigns#show
     background: none
     padding-bottom: .6em
   nav a
+    font-size: 13px
     color: lighten(gray, 20%)
-    margin: 0 .5em
+    margin-right: 5px
     padding: .5em .3em
     +transition(.2s)
     &.selected, &:hover
