@@ -24,3 +24,10 @@ Feature: Poke targets by phone
     And an email should be sent to "nicolas@meurio.org.br"
    
   Scenario: when I fill the form wrongly
+    Given there is an accepted campaign
+    And I go to this campaign page
+    When I press "the phone poke button"
+    Then I should see "the first name field error"
+    And I should see "the last name field error"
+    And I should see "the email field error"
+    And I should see "the phone field error"
