@@ -121,25 +121,8 @@ Given /^I check "(.*?)"$/ do |arg1|
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
-  case arg1
-  when "the poker avatar"
-    page.should have_css("img[src='http://sphotos-d.ak.fbcdn.net/hphotos-ak-snc7/602310_10151152362652843_505953681_n.jpg']")
-  when "user[name]"
-    page.should have_css('input[name="user[name]"]')
-  when "user[email]"
-    page.should have_css('input[name="user[email]"]')
-  when "user[about_me]"
-    page.should have_css('textarea[name="user[about_me]"]')
-  when "Pressionar pelo Facebook"
-    page.should have_css('input[type="submit"].facebook_poke')
-  when "Pressionar pelo Twitter"
-    page.should have_css('input[type="submit"].twitter_poke')
-  when "the new campaign form"
-    page.should have_css("#new_campaign")
-  when "the Plivo integration fields"
-    page.should have_css("input.phone_with_country_code")
-  when "the thanks for poke message"
-    page.should have_css("#poke_notice")
+  if to_element(arg1)
+    page.should have_css(to_element(arg1))
   else
     page.should have_content(arg1)
   end
