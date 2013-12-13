@@ -142,10 +142,15 @@ body.campaigns#show
       margin-bottom: 20px
       +border-radius(5px)
       .header
-        background: $fb_blue
         color: white
         padding: 10px
-      .to, .preview
+        font-weight: bolder
+        font-size: 1.1em
+        &.email  
+          background: $darker_gray
+        &.facebook
+          background: $fb_blue
+      .field, .preview
         background: white
         padding: 10px
         border-bottom: 1px lightgray solid
@@ -174,28 +179,47 @@ body.campaigns#show
               margin-bottom: 10px
             span.description
               margin: 0
-      .to
+      .field
+        input
+          border: 0
+          color: $darker_gray
         span
-          background: #ffd9da
-          color: red
-          padding: 3px
-          margin-right: 5px
-          border: 1px solid red
           +border-radius(3px)
+          margin: 0 5px
+          padding: 3px 6px
+        &.user
+          span
+            background: $light_green
+            border: 1px solid green
+            color: green
+        &.to
+          span
+            background: #ffd9da
+            border: 1px solid red
+            color: red
+        &.subject
+          span
+            font-weight: bolder
+            font-size: 1.1em
+            padding: 0
       .action
         padding: 10px
         input
           width: 100%
           padding: 20px
-          background: $fb_blue
           color: white
           font-size: 18px
+          font-weight: bolder
           border: 0
           cursor: pointer
           +opacity(.9)
           +border-radius(3px)
           &:hover
             +opacity(1)
+          &.facebook
+            background: $fb_blue
+          &.email
+            background: $email_blue
     .counter
       .icon-comments
         &:before

@@ -1,15 +1,23 @@
 = form_for [@campaign, @poke] do |f|
   = f.hidden_field :kind, :value => 'email'
-
-  = label_tag :first_name, "Nome:"
-  = text_field_tag :first_name
-
-  = label_tag :last_name, "Sobrenome:"
-  = text_field_tag :last_name
-
-  = label_tag :email, "E-mail:"
-  = email_field_tag :email
-
-  = text_area_tag :custom_message, @campaign.email_text
-
-  = f.submit "Enviar email agora"
+  .header.email Preencha seus dados
+  
+  .field.user
+    | Nome: 
+    = current_user ? content_tag(:span, current_user.try(:first_name)) : text_field_tag(:first_name)
+  .field.user
+    | Sobrenome: 
+    = current_user ? content_tag(:span, current_user.try(:last_name)) : text_field_tag(:last_name)
+  .field.user
+    | Email: 
+    = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email)
+  .field.to
+    | Para: 
+    - @campaign.influencers.each do |i|
+      span= i.name
+  .field.subject
+    | Assunto: 
+    span= @campaign.name
+  .preview= @campaign.email_text
+  .action
+    = f.submit "Pressionar Agora!", id: "new_poke_email_submit_button", class: :email
