@@ -29,5 +29,6 @@ end
 
 def to_button string
   return "new_poke_phone_submit_button" if string == "the phone poke button"
+  return "new_poke_facebook_submit_button" if string == "the Facebook poke button"
   string
 end
