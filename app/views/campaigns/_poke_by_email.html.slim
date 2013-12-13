@@ -1,0 +1,15 @@
+= form_for [@campaign, @poke] do |f|
+  = f.hidden_field :kind, :value => 'email'
+
+  = label_tag :first_name, "Nome:"
+  = text_field_tag :first_name
+
+  = label_tag :last_name, "Sobrenome:"
+  = text_field_tag :last_name
+
+  = label_tag :email, "E-mail:"
+  = email_field_tag :email
+
+  = text_area_tag :custom_message, @campaign.email_text
+
+  = f.submit "Enviar email agora"

@@ -45,7 +45,7 @@ section.content
       .wrap
         = render partial: params[:section] || 'description'
     aside.right.pressure
-      = render partial: 'poke_button_form', locals: { kind: @campaign.poke_type }
+      = render partial: "poke_by_#{@campaign.poke_type}"
       = render partial: 'poke_voice_button_form' if @campaign.has_voice_action?
       = render partial: 'supporters'
       = render partial: 'targets'
