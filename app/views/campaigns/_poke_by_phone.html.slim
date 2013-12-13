@@ -1,9 +1,16 @@
-= form_for [@campaign, @poke] do |f|
+= form_for [@campaign, @poke], html: {class: :new_phone_poke} do |f|
   = f.hidden_field :kind, :value => :phone
-  = label_tag :name, "Nome"
-  = text_field_tag :name
+
+  = label_tag :first_name, "Nome"
+  = text_field_tag :first_name
+
+  = label_tag :last_name, "Sobrenome"
+  = text_field_tag :last_name
+
   = label_tag :email, "E-mail"
   = email_field_tag :email
+
   = label_tag :phone, "Celular"
   = text_field_tag :phone
+
   = f.submit "Pressionar Agora!", id: :new_poke_phone_submit_button
