@@ -560,3 +560,7 @@ end
 Given(/^I have no phone$/) do
   @current_user.update_attributes phone: nil
 end
+
+Given(/^there is a campaign with poke type "(.*?)"$/) do |arg1|
+  @campaign = Campaign.make! poke_type: :facebook, accepted_at: Time.now
+end
