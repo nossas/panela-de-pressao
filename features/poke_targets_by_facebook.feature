@@ -10,7 +10,7 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressionar no facebook"
+    When I press "Pressionar Agora!"
     Then a facebook poke should be added to the target
     And an email should be sent
 
@@ -21,7 +21,7 @@ Feature: Poke targets by Facebook
     And there is a target for this campaign
     And I already poked this campaign
     And I'm in this campaign page
-    When I press "Pressionar no facebook"
+    When I press "Pressionar Agora!"
     Then an email should be sent
   
   @omniauth_test @koala
@@ -29,6 +29,6 @@ Feature: Poke targets by Facebook
     Given there is a campaign with poke type "facebook"
     And there is a target for this campaign
     And I'm in this campaign page
-    When I press "Pressionar no facebook"
+    When I press "Pressionar Agora!"
     Then a facebook poke should be added to the target
     And an email should be sent
