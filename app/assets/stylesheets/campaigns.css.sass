@@ -64,6 +64,8 @@ body.campaigns#index, body.campaigns#unmoderated
       margin-top: 1em
 
 body.campaigns#show
+  article.left.campaign, aside.right.pressure
+    +grid(6)
   .twitter-share-button
     position: relative
     top: .250em
@@ -134,6 +136,65 @@ body.campaigns#show
     overflow: hidden
     +border-radius(4px)
   article.campaign, aside.pressure
+    form.new_poke
+      border: 1px gray solid
+      margin-bottom: 20px
+      +border-radius(5px)
+      .header
+        background: $fb_blue
+        color: white
+        padding: 10px
+      .to, .preview
+        background: white
+        padding: 10px
+        border-bottom: 1px lightgray solid
+        p
+          margin-bottom: 5px
+        .post
+          background: #f7f7f7
+          overflow: hidden
+          border: 1px lightgray solid
+          +border-radius(3px)
+          img
+            width: 200px
+            float: left
+            margin-right: 10px
+          .text
+            font-size: 13px
+            padding: 10px
+            line-height: 1em
+            color: gray
+            span
+              display: block
+            span.title
+              color: $fb_blue
+              font-weight: bold
+            span.url
+              margin-bottom: 10px
+            span.description
+              margin: 0
+      .to
+        span
+          background: #ffd9da
+          color: red
+          padding: 3px
+          margin-right: 5px
+          border: 1px solid red
+          +border-radius(3px)
+      .action
+        padding: 10px
+        input
+          width: 100%
+          padding: 20px
+          background: $fb_blue
+          color: white
+          font-size: 18px
+          border: 0
+          cursor: pointer
+          +opacity(.9)
+          +border-radius(3px)
+          &:hover
+            +opacity(1)
     .counter
       .icon-comments
         &:before
