@@ -28,7 +28,13 @@ def to_xpath text
 end
 
 def to_button string
-  return "new_poke_phone_submit_button" if string == "the phone poke button"
-  return "new_poke_facebook_submit_button" if string == "the Facebook poke button"
-  string
+  return "new_poke_phone_submit_button"     if string == "the phone poke button"
+  return "new_poke_facebook_submit_button"  if string == "the Facebook poke button"
+  return "Aceitar campanha"                 if string == "Aceitar campanha"
+  return "Adicionar alvo"                   if string == "Adicionar alvo"
+  return "Enviar campanha para moderação"   if string == "Enviar campanha para moderação"
+  return "Salvar campanha"                  if string == "Salvar campanha"
+  return "Enviar email agora"               if string == "Enviar email agora"
+  return "Criar Resposta"                   if string == "Criar Resposta"
+  raise "I don't know button '#{string}'"
 end
