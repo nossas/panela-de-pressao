@@ -38,3 +38,16 @@ def to_button string
   return "Criar Resposta"                   if string == "Criar Resposta"
   raise "I don't know button '#{string}'"
 end
+
+def to_element string
+  return "img[src='http://sphotos-d.ak.fbcdn.net/hphotos-ak-snc7/602310_10151152362652843_505953681_n.jpg']" if string == "the poker avatar"
+  return 'input[name="user[name]"]' if string == "user[name]"
+  return 'input[name="user[email]"]' if string == "user[email]"
+  return 'textarea[name="user[about_me]"]' if string == "user[about_me]"
+  return 'input[type="submit"].facebook_poke' if string == "Pressionar pelo Facebook"
+  return 'input[type="submit"].twitter_poke' if string == "Pressionar pelo Facebook"
+  return "#new_campaign" if string == "the new campaign form"
+  return "input.phone_with_country_code" if string == "the Plivo integration fields"
+  return "#poke_notice" if string == "the thanks for poke message"
+  return ".notice" if string == "Está valendo, campanha no ar!"
+end
