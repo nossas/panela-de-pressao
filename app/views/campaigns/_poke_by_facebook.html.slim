@@ -14,4 +14,4 @@
         span.url= truncate(request.url, length: 40)
         span.description= truncate(@campaign.description, length: 80)
   .action
-    = f.submit "Pressionar Agora!"
+    = f.submit "Pressionar Agora!", id: "new_poke_facebook_submit_button"
