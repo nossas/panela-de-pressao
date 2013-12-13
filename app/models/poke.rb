@@ -90,15 +90,9 @@ class Poke < ActiveRecord::Base
   private
   def send_phone
     service = ENV['SERVICE_CALL_URL']
-    params  = {
-      user:         self.user_phone,
-      destination:  self.campaign_phone
-    }
-
+    params = { user: self.user_phone, destination: self.campaign_phone }
     response = HTTParty.get(service, query: params) 
-
     return response
-    
   end
 
   def send_email

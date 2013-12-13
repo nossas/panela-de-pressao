@@ -138,6 +138,8 @@ Then /^I should see "([^"]*)"$/ do |arg1|
     page.should have_css("#new_campaign")
   when "the Plivo integration fields"
     page.should have_css("input.phone_with_country_code")
+  when "the thanks for poke message"
+    page.should have_css("#poke_notice")
   else
     page.should have_content(arg1)
   end
@@ -148,7 +150,7 @@ When /^I go to ([^"]*)$/ do |arg1|
 end
 
 When /^I press "([^"]*)"$/ do |arg1|
-  click_button arg1
+  click_button to_button(arg1)
 end
 
 When /^I click "([^"]*)"$/ do |arg1|
@@ -563,4 +565,8 @@ end
 
 Given(/^there is a campaign with poke type "(.*?)"$/) do |arg1|
   @campaign = Campaign.make! poke_type: :facebook, accepted_at: Time.now
+end
+
+Then(/^I should receive an email$/) do
+  ActionMailer::Base.deliveries.select{|d| d.to.index(@current_user.email) != nil}.should_not be_empty
 end

@@ -26,3 +26,8 @@ def to_xpath text
   return "//div[contains(@class, 'campaign_moderator')][.='#{@campaign.reload.moderator.name}']"                if text == "the campaign's moderator name"
   raise "I don't know the xpath for '#{text}'"
 end
+
+def to_button string
+  return "new_poke_phone_submit_button" if string == "the phone poke button"
+  string
+end
