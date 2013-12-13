@@ -17,19 +17,18 @@ class PokesController < InheritedResources::Base
   def create
     user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], :first_name => params[:name], :last_name => params[:last_name])
     user.update_attribute(:phone, params[:phone]) if params[:phone]
-
     @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
+
     create! do |success, failure|
       success.html do
-
         if @poke.phone?
           flash[:poke_phone_notice] = true
         else
           flash[:poke_notice] = true
         end
-
         redirect_to campaign_path(@campaign)
       end
+
       failure.html do
         redirect_to @campaign, :alert => "Não foi possível realizar a pressão :("
       end
