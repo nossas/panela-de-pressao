@@ -10,7 +10,7 @@
     .post
       = image_tag @campaign.image
       .text
-        span.title= @campaign.name + "asdasd asd a  das "
+        span.title= @campaign.name
         span.url= truncate(request.url, length: 40)
         span.description= truncate(@campaign.description, length: 80)
   .action
