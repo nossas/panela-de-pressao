@@ -1,20 +1,24 @@
 = form_for [@campaign, @poke], html: {class: :new_phone_poke, "data-abide" => true} do |f|
   = f.hidden_field :kind, :value => :phone
 
-  = label_tag :first_name, "Nome"
-  = text_field_tag :first_name, nil, required: true
-  small.error Nome é obrigatório
+  .first_name-field
+    = label_tag :first_name, "Nome"
+    = text_field_tag :first_name, nil, required: true
+    small.error Nome é obrigatório
+  
+  .last_name-field
+    = label_tag :last_name, "Sobrenome"
+    = text_field_tag :last_name, nil, required: true
+    small.error Sobrenome é obrigatório
 
-  = label_tag :last_name, "Sobrenome"
-  = text_field_tag :last_name, nil, required: true
-  small.error Sobrenome é obrigatório
+  .email-field
+    = label_tag :email, "E-mail"
+    = email_field_tag :email, nil, required: true
+    small.error Email é obrigatório e precisa ser válido
 
-  = label_tag :email, "E-mail"
-  = email_field_tag :email, nil, required: true
-  small.error Email é obrigatório e precisa ser válido
-
-  = label_tag :phone, "Celular"
-  = text_field_tag :phone, nil, required: true, pattern: "\(\d{2}\) \d{8,9}"
-  small.error Celular é obrigatório e precisa ser válido
+  .phone-field
+    = label_tag :phone, "Celular"
+    = text_field_tag :phone, nil, required: true, pattern: "\([\d{2}]\) [\d]{8,9}"
+    small.error Celular é obrigatório e precisa ser válido
 
   = f.submit "Pressionar Agora!", id: :new_poke_phone_submit_button
