@@ -18,6 +18,7 @@
   .field.subject
     | Assunto: 
     span= @campaign.name
-  .preview= @campaign.email_text
+  .preview
+    textarea= @campaign.email_text
   .action
     = f.submit "Pressionar Agora!", id: "new_poke_email_submit_button", class: :email
