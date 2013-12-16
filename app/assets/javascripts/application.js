@@ -25,8 +25,13 @@
 //= require jquery.facebox
 //= require autocomplete-rails
 //= require meurio_ui
+//= require foundation
 
 //= require_tree ./lib
 //= require ./app.js
 //= require_tree ./app
 //= require ./init.js
+
+$(function(){
+  $(document).foundation();
+});
