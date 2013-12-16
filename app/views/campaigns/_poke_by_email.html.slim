@@ -19,6 +19,6 @@
     | Assunto: 
     span= @campaign.name
   .preview
-    textarea= @poke.custom_message 
+    = f.text_area :custom_message, value: @campaign.email_text
   .action
     = f.submit "Pressionar Agora!", id: "new_poke_email_submit_button", class: :email
