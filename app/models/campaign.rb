@@ -4,7 +4,7 @@ class Campaign < ActiveRecord::Base
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
-    :voice_call_script, :voice_call_number, :hashtag
+    :voice_call_script, :voice_call_number, :hashtag, :poke_type
 
   has_many :users, through: :campaign_owners
   has_many :campaign_owners
