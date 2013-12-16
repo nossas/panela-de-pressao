@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'https://rails-assets.org'
 ruby '1.9.3'
 
 gem 'rails', '~> 3.2.14'
@@ -84,3 +85,4 @@ gem 'coveralls', require: false
 gem 'rails_12factor'
 gem 'meurio_ui'
 gem 'gibbon'
+gem 'foundation-rails'
