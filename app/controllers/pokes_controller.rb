@@ -15,7 +15,7 @@ class PokesController < InheritedResources::Base
   end
 
   def create
-    user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], :first_name => params[:name], :last_name => params[:last_name])
+    user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], :first_name => params[:first_name], :last_name => params[:last_name])
     user.update_attribute(:phone, params[:phone]) if params[:phone]
 
     @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
