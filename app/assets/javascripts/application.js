@@ -33,5 +33,11 @@
 //= require ./init.js
 
 $(function(){
-  $(document).foundation();
+  $(document)
+  .foundation()
+  .foundation('abide', {
+    patterns: {
+      phone: /^[a-z]$/
+    }
+  });
 });
