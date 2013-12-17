@@ -45,6 +45,8 @@ section.content
       .wrap
         = render partial: params[:section] || 'description'
     aside.right.pressure
+      .text-center
+        .poke_here Pressione diretamente quem toma essa decisão
       - if @campaign.has_voice_action?
         = render partial: 'poke_by_phone'
       - else

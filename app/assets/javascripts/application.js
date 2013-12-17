@@ -18,6 +18,7 @@
 //= require ./lib/backbone.js
 //= require ./lib/jquery.inputmask.js
 //= require ./lib/jquery.inputmask.extensions.js
+//= require ./lib/jquery.mask.min
 //= require chosen-jquery
 //= require rails.validations
 //= require jquery.validate
@@ -33,6 +34,10 @@
 //= require ./init.js
 
 $(function(){
+  // Masks
+  $("input.phone").mask('(00) 000000000');
+
+  // Foundation
   $(document)
   .foundation()
   .foundation('abide', {
