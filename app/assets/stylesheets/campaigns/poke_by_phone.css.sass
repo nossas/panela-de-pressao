@@ -1,0 +1,39 @@
+form.new_phone_poke
+  background: #3b3b3b
+  padding: 30px 15px
+  width: 300px
+  margin: 0 auto
+  +border-radius(10px 10px 0 0)
+  .fields
+    color: white
+    text-align: center
+    background: image-url("campaigns/mobile-bg.jpg") center center
+    padding: 20px 10px 10px 10px
+    .header
+      font-size: 26px
+    .subheader, .footer
+      color: #8cc53e
+      margin-bottom: 25px
+    .footer
+      margin-top: 20px
+    input[type='text'], input[type='email']
+      background: none
+      border: 0
+      border-top: 1px solid white
+      color: white
+      margin: 0
+      text-align: center
+      padding: 20px 0
+      +border-radius(0)
+      +box-shadow(none)
+      &.placeholder, &:-moz-placeholder, &::-webkit-input-placeholder
+        color: white
+    input[type='submit']
+      background: #f8b741
+      color: white
+      width: 100%
+      padding: 20px 0
+      border: 0
+      font-size: 16px
+      cursor: pointer
+      +border-radius(3px)

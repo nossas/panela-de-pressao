@@ -1,24 +1,24 @@
 = form_for [@campaign, @poke], html: {class: :new_phone_poke, "data-abide" => true} do |f|
-  = f.hidden_field :kind, :value => :phone
-
-  .first_name-field
-    = label_tag :first_name, "Nome"
-    = text_field_tag :first_name, nil, required: true
-    small.error Nome é obrigatório
+  .fields
+    .header Recebendo ligação
+    .subheader Preencha seus dados
+    = f.hidden_field :kind, :value => :phone
   
-  .last_name-field
-    = label_tag :last_name, "Sobrenome"
-    = text_field_tag :last_name, nil, required: true
-    small.error Sobrenome é obrigatório
-
-  .email-field
-    = label_tag :email, "E-mail"
-    = email_field_tag :email, nil, required: true
-    small.error Email é obrigatório e precisa ser válido
-
-  .phone-field
-    = label_tag :phone, "Celular"
-    = text_field_tag :phone, nil, required: true, pattern: "[(]{1}[0-9]{2}[)]{1} [0-9]{8,9}", placeholder: "(21) 987654321"
-    small.error Celular é obrigatório e precisa estar no formato (21) 99999999
-
-  = f.submit "Pressionar Agora!", id: :new_poke_phone_submit_button
+    .first_name-field
+      = text_field_tag :first_name, nil, required: true, placeholder: "Nome", autocomplete: "off"
+      small.error Nome é obrigatório
+    
+    .last_name-field
+      = text_field_tag :last_name, nil, required: true, placeholder: "Sobrenome", autocomplete: "off"
+      small.error Sobrenome é obrigatório
+  
+    .email-field
+      = email_field_tag :email, nil, required: true, placeholder: "Email", autocomplete: "off"
+      small.error Email é obrigatório e precisa ser válido
+  
+    .phone-field
+      = text_field_tag :phone, nil, required: true, pattern: "[(]{1}[0-9]{2}[)]{1} [0-9]{8,9}", placeholder: "Celular", autocomplete: "off"
+      small.error Celular é obrigatório e precisa estar no formato (21) 99999999
+  
+    .footer Você receberá uma ligação do número 3957-9303 te conectando ao alvo.
+    = f.submit "Pressionar Agora!", id: :new_poke_phone_submit_button
