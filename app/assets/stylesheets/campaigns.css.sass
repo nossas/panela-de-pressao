@@ -150,16 +150,16 @@ body.campaigns#show
           background: $darker_gray
         &.facebook
           background: $fb_blue
-      .field, .preview
+      .field, .preview, .message
         background: white
         padding: 10px
         border-bottom: 1px lightgray solid
         textarea
+          color: $darker_gray
           resize: none
           height: 7em
           width: 100%
           border: 0
-          color: $darker_gray
         p
           margin-bottom: 5px
         .post
@@ -186,9 +186,12 @@ body.campaigns#show
             span.description
               margin: 0
       .field
+        label
+          display: inline-block
         input
-          border: 0
           color: $darker_gray
+          height: 2em
+          border: 0
         span
           +border-radius(3px)
           margin: 0 5px
