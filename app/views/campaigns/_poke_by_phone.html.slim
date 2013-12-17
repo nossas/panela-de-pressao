@@ -18,7 +18,7 @@
 
   .phone-field
     = label_tag :phone, "Celular"
-    = text_field_tag :phone, nil, required: true, pattern: "\([\d{2}]\) [\d]{8,9}"
-    small.error Celular é obrigatório e precisa ser válido
+    = text_field_tag :phone, nil, required: true, pattern: "[(]{1}[0-9]{2}[)]{1} [0-9]{8,9}", placeholder: "(21) 987654321"
+    small.error Celular é obrigatório e precisa estar no formato (21) 99999999
 
   = f.submit "Pressionar Agora!", id: :new_poke_phone_submit_button
