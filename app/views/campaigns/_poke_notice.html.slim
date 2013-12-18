@@ -1,7 +1,7 @@
 .hidden
   - if flash[:poke_notice]
     #poke_notice
-      .email_poke_notice
+      .poke_notice
         h1 Muito bom! Você acaba de colocar mais pressão nessa panela.
         p Agora compartilhe essa campanha com seus amigos!
         .share
@@ -11,6 +11,7 @@
             = image_tag "header_twitter.png"
   - if flash[:poke_phone_notice]
     #poke_notice
-      h1 Muito bom! Estamos ligando pra você!
-      h3 Em alguns segundos, você receberá uma ligação do número 3957-9303 te conectando com o alvo.
-      .script= simple_format(@campaign.voice_call_script)
+      .poke_notice
+        h1 Muito bom! Estamos ligando pra você!
+        h3 Em alguns segundos, você receberá uma ligação do número 3957-9303 te conectando com o alvo.
+        .script= simple_format(@campaign.voice_call_script)
