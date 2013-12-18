@@ -157,7 +157,7 @@ body.campaigns#show
         +rotate(45deg)
     @import campaigns/poke_by_phone
     form.new_poke, form.new_twitter_poke
-      border: 1px gray solid
+      border: 1px #b3b3b3 solid
       margin-bottom: 20px
       +border-radius(5px)
       .header
@@ -188,6 +188,10 @@ body.campaigns#show
           height: 7em
           width: 100%
           border: 0
+      .field, .preview, .custom_message
+        background: white
+        padding: 10px
+        border-bottom: 1px lightgray solid
         p
           margin-bottom: 5px
         .post
@@ -215,7 +219,11 @@ body.campaigns#show
               margin: 0
       .field
         label
-          display: inline-block
+          display: inline
+        input, textarea
+          color: #566772
+          border: 0
+          +box-shadow(inset 0 0 0)          
         input
           color: $darker_gray
           border: 0
@@ -228,12 +236,27 @@ body.campaigns#show
             background: none
         small.error
           margin: 0
+          padding: 3px 6px
+          display: inline
+          margin: 0 5px
+          height: 2em
+          width: 80%          
         span
           +border-radius(3px)
           margin: 0 5px
           padding: 3px 6px
           display: inline-block
-          margin-bottom: 5px
+        small
+          margin: 5px 0 0 0
+        textarea
+          resize: vertical
+          min-height: 6em
+          font-size: 1em
+          width: 100%
+        *:focus
+          background: transparent
+          border: 0
+          outline: 0
         &.user
           span
             background: $light_green
@@ -253,13 +276,13 @@ body.campaigns#show
         padding: 10px
         overflow: hidden
         input
-          width: 100%
-          padding: 20px
-          color: white
+          font-weight: bold
           font-size: 18px
-          font-weight: bolder
-          border: 0
           cursor: pointer
+          padding: 10px
+          color: white
+          width: 100%
+          border: 0
           +opacity(.9)
           +border-radius(3px)
           &:hover

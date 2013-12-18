@@ -18,15 +18,15 @@
     small.error Email é obrigatório e precisa ser válido
 
   .field.to
-    | Para: 
+    | Para 
     - @campaign.influencers.each do |i|
       span= i.name
   
   .field.subject
-    | Assunto: 
+    | Assunto 
     span= @campaign.name
   
-  .message.field
+  .custom_message.field
     = f.text_area :custom_message, value: @campaign.email_text, required: true
     small.error O texto da mensagem é obrigatório
   
