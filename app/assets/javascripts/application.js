@@ -34,15 +34,6 @@
 //= require ./init.js
 
 $(function(){
-  // Masks
   $("input.phone").mask('(00) 000000000');
-
-  // Foundation
-  $(document)
-  .foundation()
-  .foundation('abide', {
-    patterns: {
-      phone: /^[a-z]$/
-    }
-  });
+  $(document).foundation();
 });
