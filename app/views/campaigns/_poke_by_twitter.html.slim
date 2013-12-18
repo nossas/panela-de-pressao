@@ -23,10 +23,11 @@
       span= t
 
   .message.field
-    - @campaign.influencers.map{|i| i.twitter}.each do |t|
-      span.twitter_username #{t}
-      |  
-    = @campaign.twitter_text
+    .tweet
+      - @campaign.influencers.map{|i| i.twitter}.each do |t|
+        span.twitter_username #{t}
+        |  
+      = @campaign.twitter_text
 
   .action
     = f.submit "Pressionar Agora!", id: "new_poke_twitter_submit_button", class: :twitter
