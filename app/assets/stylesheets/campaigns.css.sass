@@ -137,6 +137,25 @@ body.campaigns#show
     overflow: hidden
     +border-radius(4px)
   article.campaign, aside.pressure
+    .poke_here
+      background: $green
+      color: white
+      display: inline-block
+      padding: 10px 10px 0 10px
+      font-size: 16px
+      margin-bottom: 20px
+      +border-radius(3px)
+      &:after
+        background-color: $green
+        content: "\00a0"
+        display: block
+        height: 10px
+        width:  10px
+        bottom: -5px
+        margin: 0 auto
+        position: relative
+        +rotate(45deg)
+    @import campaigns/poke_by_phone
     form.new_poke
       border: 1px #b3b3b3 solid
       margin-bottom: 20px

@@ -1,0 +1,70 @@
+form.new_phone_poke
+  background: #3b3b3b
+  padding: 20px 15px
+  width: 300px
+  margin: 0 auto
+  +border-radius(10px 10px 0 0)
+  .speaker
+    width: 70px
+    height: 7px
+    background: black
+    margin: 0 auto
+    margin-bottom: 20px
+    +border-radius(10px)
+  .fields
+    color: white
+    text-align: center
+    background: image-url("campaigns/mobile-bg.jpg") center center
+    padding: 20px 10px 10px 10px
+    .header
+      font-size: 26px
+    .subheader, .footer
+      color: #8cc53e
+      margin-bottom: 25px
+    .footer
+      margin-top: 20px
+    input[type='text'], input[type='email']
+      background: none
+      border: 0
+      border-top: 1px solid white
+      color: white
+      margin: 0
+      text-align: center
+      padding: 20px 0
+      +border-radius(0)
+      +box-shadow(none)
+      &.placeholder, &:-moz-placeholder, &::-webkit-input-placeholder
+        color: white
+    input[type='submit']
+      background: #f8b741
+      color: white
+      width: 100%
+      padding: 20px 0
+      border: 0
+      font-size: 16px
+      cursor: pointer
+      +opacity(.95)
+      +border-radius(3px)
+      &:hover
+        +opacity(1)
+
+.voice_call_script
+  background: #80929e
+  color: white
+  padding: 0 10px 10px 10px
+  margin-bottom: 20px
+  +border-radius(5px)
+  &:before
+    background-color: #80929e
+    content: "\00a0"
+    display: block
+    height: 10px
+    width:  10px
+    top: -5px
+    margin: 0 auto
+    position: relative
+    +rotate(45deg)
+  span
+    display: block
+    font-size: 16px
+    color: lighten(#80929e, 25%)

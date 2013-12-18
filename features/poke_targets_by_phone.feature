@@ -22,7 +22,8 @@ Feature: Poke targets by phone
     When I press "the phone poke button"
     Then I should see "the thanks for poke message"
     And an email should be sent to "nicolas@meurio.org.br"
-   
+
+  @javascript
   Scenario: when I fill the form wrongly
     Given there is an accepted campaign
     And I go to this campaign page
