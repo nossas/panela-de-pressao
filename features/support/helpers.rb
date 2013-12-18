@@ -50,7 +50,7 @@ def to_element string
   return 'input[type="submit"].twitter_poke' if string == "Pressionar pelo Facebook"
   return "#new_campaign" if string == "the new campaign form"
   return "input.phone_with_country_code" if string == "the Plivo integration fields"
-  return "#poke_notice" if string == "the thanks for poke message"
+  return ".poke_notice" if string == "the thanks for poke message"
   return ".notice" if string == "Está valendo, campanha no ar!"
   return "form.new_phone_poke" if string == "the phone poke form"
   return "form.new_email_poke" if string == "the email poke form"
