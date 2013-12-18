@@ -1,11 +1,9 @@
-.tabs#tabs
-  nav
-    = link_to t('campaign.show.tabs.campaign'), @campaign, :class => "#{params[:section].nil? ? 'selected' : ''}"
-    = link_to t('campaign.show.tabs.answers_html', count: @campaign.answers.length), answers_campaign_path(@campaign), :class => "#{params[:section] == "answers" ? 'selected' : ''}"
-    = link_to(comments_campaign_path(@campaign), :class => "#{params[:section] == "comments" ? 'selected comments' : 'comments'}") do
-      = t('campaign.show.tabs.comments') 
-      span.count
-        fb:comments-count[href=campaign_url(@campaign)]
-    = link_to updates_campaign_path(@campaign), :class => "#{params[:section] == "updates" ? 'selected' : ''}", id: "campaign_updates" do
-      | Atualizações
-      span.count= @campaign.updates.count
+dl.sub-nav
+  dd{class="#{params[:section].nil? ? 'active' : ''}"}= link_to "Campanha", @campaign
+  dd{class="#{params[:section] == "answers" ? 'active' : ''}"}= link_to "Respostas (#{@campaign.answers.count})", answers_campaign_path(@campaign)
+  dd{class="#{params[:section] == "comments" ? 'active' : ''}"}
+    = link_to comments_campaign_path(@campaign) do
+      | Comentários (
+      fb:comments-count[href=campaign_url(@campaign)]
+      | )
+  dd{class="#{params[:section] == "updates" ? 'active' : ''}"}= link_to "Atualizações (#{@campaign.updates.count})", updates_campaign_path(@campaign)

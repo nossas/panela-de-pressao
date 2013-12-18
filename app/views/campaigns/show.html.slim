@@ -24,26 +24,36 @@ section.content
     - if @campaign.archived?
       .finished_at
         span.archived Essa campanha foi arquivada
-    h1.title= @campaign.name
-    .campaign_subtitle
-      span
-        | No ar há 
-        strong #{@campaign.accepted_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.accepted_at)}
-        |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
-      .campaign_menu
-        = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha" if can?(:edit, @campaign)
-        = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque" if can?(:feature, @campaign)
-        = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória" if can?(:finish, @campaign)
-        = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu" if can?(:finish, @campaign)
-        = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-drawer", title: "Arquivar" if can?(:archive, @campaign)
-        = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-file-excel", title: "Exportar CSV" if can?(:export, User)
-  .row.visible
-    article.left.tab
-      = render partial: 'tabs'
+
   .row
-    article.left.campaign
-      .wrap
-        = render partial: params[:section] || 'description'
+    article.campaign
+      h1.title= @campaign.name
+      .campaign_subtitle
+        span
+          | No ar há 
+          strong #{@campaign.accepted_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.accepted_at)}
+          |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
+        .campaign_menu
+          = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha" if can?(:edit, @campaign)
+          = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque" if can?(:feature, @campaign)
+          = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória" if can?(:finish, @campaign)
+          = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu" if can?(:finish, @campaign)
+          = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-drawer", title: "Arquivar" if can?(:archive, @campaign)
+          = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-file-excel", title: "Exportar CSV" if can?(:export, User)
+      .users
+        - @campaign.users.each do |user|
+          .user
+            = image_tag user.avatar_url
+            .user_name= user.name
+            .cooker Cozinheiro
+
+      - unless @campaign.video.nil?
+        .image= @campaign.video.html_safe
+      - else
+        .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
+
+      = render partial: 'tabs'
+      = render partial: params[:section] || 'description'
     aside.right.pressure
       .text-center
         .poke_here Pressione diretamente quem toma essa decisão
@@ -51,6 +61,15 @@ section.content
         = render partial: 'poke_by_phone'
       - else
         = render partial: "poke_by_#{@campaign.poke_type}"
+
+      .counter
+        .count
+          span.number= raw @campaign.pokes.count.to_s.chars.map{|c| content_tag :span, c}.join("")
+          span.counter_label
+            | pressões
+            br
+            | feitas
+
       = render partial: 'supporters'
       = render partial: 'targets'
       = render partial: 'pokers'

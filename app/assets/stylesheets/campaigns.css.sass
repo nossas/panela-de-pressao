@@ -64,24 +64,19 @@ body.campaigns#index, body.campaigns#unmoderated
       margin-top: 1em
 
 body.campaigns#show
-  article.left.campaign, aside.right.pressure, article.left.tab
+  article.campaign, aside.right.pressure
     +grid(6)
-  .twitter-share-button
-    position: relative
-    top: .250em
-    left: .8em
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
   h1.title, .campaign_subtitle span
     color: darken($gray, 75%)
   h1.title
-    font-size: 2em
-    font-weight: bold
+    font-size: 2.5em
     line-height: 100% 
-    margin: 1em 0 .5em 0
+    color: #34393c
   .campaign_subtitle
-    margin-bottom: 1.5em
+    margin-bottom: 1em
     span
       margin-right: 1em
       font-size: 1em
@@ -108,34 +103,26 @@ body.campaigns#show
   article.tab, article.share
     background: none
     padding-bottom: .6em
-  nav a
-    font-size: 13px
-    color: lighten(gray, 20%)
-    margin-right: 5px
-    padding: .5em .3em
-    +transition(.2s)
-    &.selected, &:hover
-      color: $green
-      border-bottom: 3px solid $green
-      span.count
-        background: $green
-    &:hover
-      border: none
-    span.count
-      background: $yellow
-      color: white
-      font-size: .8em
-      margin-left: .4em
-      text-align: center
-      display: inline-block
-      width: 30px
-      +border-radius(2px)
-  .wrap
-    padding: 1.8em
-    background: white
-    height: 100% !important
+  .users
+    margin-bottom: 2em
     overflow: hidden
-    +border-radius(4px)
+    .user
+      line-height: normal
+      +grid-subcolumn(6,3)
+      &:nth-child(2n+0)
+        +last
+      img
+        width: 50px
+        height: 50px
+        +border-radius(50px)
+        margin-right: 10px
+        float: left
+      .user_name
+        font-weight: bold
+        margin-top: 10px
+      .cooker
+        color: gray
+        font-size: 12px
   article.campaign, aside.pressure
     .poke_here
       background: $green
@@ -279,7 +266,6 @@ body.campaigns#show
         padding: 10px
         overflow: hidden
         input
-          font-family: Proxima Nova
           font-weight: bold
           font-size: 18px
           cursor: pointer
@@ -298,6 +284,7 @@ body.campaigns#show
           &.twitter
             background: $twitter_blue
     .counter
+      margin-bottom: 2em
       .icon-comments
         &:before
           font-size: 42px
@@ -316,7 +303,7 @@ body.campaigns#show
           text-align: center
           margin-right: 2px
           +border-radius(5px)
-      span.label
+      span.counter_label
         font-size: 14px
         display: inline-block
         padding: 0
@@ -325,6 +312,7 @@ body.campaigns#show
         top: 2px
         line-height: normal
   .image
+    margin-bottom: 2em
     img,iframe
       +border-radius(4px)
     iframe

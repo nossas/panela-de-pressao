@@ -129,4 +129,8 @@ class Campaign < ActiveRecord::Base
   def poke_type? type
     poke_type == type
   end
+
+  def users
+    @users ||= [self.user].concat(CampaignOwner.where(campaign_id: self.id).map{|co| co.user})
+  end
 end
