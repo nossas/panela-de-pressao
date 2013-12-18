@@ -36,4 +36,13 @@
 $(function(){
   $("input.phone").mask('(00) 000000000');
   $(document).foundation();
+  
+  // campaigns#new campaigns#edit  
+  $('#campaign_poke_type').change(function(e){ 
+    $('.email_text').hide();
+    $('.facebook_text').hide();
+    $('.twitter_text').hide();
+    $('.' + $(e.target).val() + '_text').show();
+  });
+  $('#campaign_poke_type').trigger('change');
 });
