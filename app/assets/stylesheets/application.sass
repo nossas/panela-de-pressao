@@ -18,6 +18,9 @@ $light_gray: #d1d1d1
 $dark_gray: #666
 $darker_gray: #333
 
+$primary-color: $yellow
+$body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+
 @import compass/reset
 @import columnal/grid
 @import chosen
@@ -116,12 +119,13 @@ em
   font-style: italic
 
 body
-  font-family: "Proxima Nova", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+  font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
   font-size: .9em
   line-height: 1.4em
 
 h1, h2, h3, h4, h4, h5
-  font-weight: bold
+  font-weight: 900
+  font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
 
 h1
   font-size: 1.8em
@@ -155,6 +159,9 @@ input, a
 
 label.error, label.message
   color: red
+
+input[type='submit']
+  font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
 
 input[type='text'], textarea, input[type="email"], input[type="url"]
   outline: none
@@ -254,7 +261,7 @@ aside
   padding: 1em
 
 section.content
-  padding: 1.5em 0
+  padding: 1.75em 0
 
 section.footer
   padding: 1.5em 0
@@ -803,7 +810,7 @@ section.footer
         cursor: pointer
 
 [class^="icon-"], [class*=" icon-"]
-  font-family: "Proxima Nova", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
+  font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
   &:before
     font-family: 'icomoon'
     speak: none
