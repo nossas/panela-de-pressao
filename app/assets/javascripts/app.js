@@ -24,7 +24,6 @@ var App = window.App = {
       $("select#campaign_user_id").chosen({no_results_text: "Nenhum resultado", width: "300px"});
 
       $('.phone_rj').inputmask("mask", {"mask": "(21) 999999999"});
-      $('.phone').inputmask("mask", {"mask": "(99) 999999999"});
       $('.phone_with_country_code').inputmask("mask", { "mask" : "+99 (99) 9999-9999"});
 
       $('section.index li.campaign:nth-child(4n+0)').css("margin-right", "0");

@@ -547,7 +547,7 @@ Given(/^I have no phone$/) do
 end
 
 Given(/^there is a campaign with poke type "(.*?)"$/) do |arg1|
-  @campaign = Campaign.make! poke_type: :facebook, accepted_at: Time.now
+  @campaign = Campaign.make! poke_type: :facebook, accepted_at: Time.now, voice_call_script: nil, voice_call_number: nil
 end
 
 Then(/^I should receive an email$/) do
