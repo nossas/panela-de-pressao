@@ -36,6 +36,7 @@ def to_button string
   return "Salvar campanha"                  if string == "Salvar campanha"
   return "Enviar email agora"               if string == "Enviar email agora"
   return "Criar Resposta"                   if string == "Criar Resposta"
+  return "new_poke_twitter_submit_button"   if string == "the Twitter poke button"
   raise "I don't know button '#{string}'"
 end
 
@@ -59,4 +60,5 @@ def to_element string
   return ".last_name-field small.error" if string == "the last name field error"
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
+  return "form.new_twitter_poke" if string == "the Twitter poke form"
 end

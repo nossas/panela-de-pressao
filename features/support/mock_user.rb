@@ -3,9 +3,9 @@ Before do
   ActiveRecord::Base.connection.execute("
     CREATE TABLE IF NOT EXISTS users(
       id          SERIAL PRIMARY KEY, 
-      email       varchar(40), 
-      first_name  varchar(40), 
-      last_name   varchar(40),
+      email       varchar(40) NOT NULL, 
+      first_name  varchar(40) NOT NULL, 
+      last_name   varchar(40) NOT NULL,
       admin       boolean,
       avatar      varchar(40),
       phone       varchar(40)
