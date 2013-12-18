@@ -3,33 +3,36 @@ Feature: Poke targets by email
   As a citizen
   I want to poke targets by email
 
-  @omniauth_test @javascript @koala @ssi
+  @ssi
   Scenario: when I'm logged in
     Given I'm logged in
-    And there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
+    And there is a campaign with poke type "email"
     And there is a target for this campaign
-    And I'm in this campaign page
-    When I press "Enviar email agora"
-    Then a email poke should be added to the target
-    And an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
+    And I go to this campaign page
+    When I press "the email poke button"
+    Then I should see "the thanks for poke message"
+    And an email poke should be added to the target
+    And I should receive an email
 
-  @javascript @koala
+  @javascript
   Scenario: when I'm not logged in
-    Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
+    Given there is a campaign with poke type "email"
     And there is a target for this campaign
-    And I'm in this campaign page
-    And I fill "Nome" with "Nícolas"
-    And I fill "Sobrenome" with "Iensen"
-    And I fill "E-mail" with "test@paneladepressao.org.br"
-    When I press "Enviar email agora"
-    Then a email poke should be added to the target
-    And an email called "Impeça a demolição da praça Nossa Senhora da Paz" should be sent
+    And I go to this campaign page
+    And I fill in "the first name field" of "the email poke form" with "Josias"
+    And I fill in "the last name field" of "the email poke form" with "Schneider"
+    And I fill in "the email field" of "the email poke form" with "teste@meurio.org.br"
+    When I press "the email poke button"
+    Then I should see "the thanks for poke message"
+    And an email poke should be added to the target
+    And an email should be sent to "teste@meurio.org.br"
 
-  @javascript @koala @javascript
+  @javascript
   Scenario: when I'm not logged in and I miss the form
-    Given there is a campaign called "Impeça a demolição da praça Nossa Senhora da Paz"
+    Given there is a campaign with poke type "email"
     And there is a target for this campaign
-    And I'm in this campaign page
-    When I press "Enviar email agora"
-    Then I should see "Precisamos do seu nome"
-    And I should see "Precisamos do seu e-mail também"
+    And I go to this campaign page
+    When I press "the email poke button"
+    Then I should see "the first name field error"
+    And I should see "the last name field error"
+    And I should see "the email field error"

@@ -231,7 +231,7 @@ Then /^no email should be sent$/ do
   ActionMailer::Base.deliveries.should be_empty
 end
 
-Then /^a ([^"]*) poke should be added to the target$/ do |arg1|
+Then /^an? ([^"]*) poke should be added to the target$/ do |arg1|
   @target.reload.pokes_by_email.should be_== 1 if arg1 == "email"
   @target.reload.pokes_by_facebook.should be_== 1 if arg1 == "facebook"
 end

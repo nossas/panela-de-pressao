@@ -1,18 +1,18 @@
-= form_for [@campaign, @poke], html: { "data-abide" => true } do |f|
+= form_for [@campaign, @poke], html: { class: :new_email_poke, "data-abide" => true } do |f|
   = f.hidden_field :kind, value: :email
   .header.email Preencha seus dados
   
-  .first_name.user.field
+  .first_name-field.user.field
     = label_tag :first_name, "Nome"
     = current_user ? content_tag(:span, current_user.try(:first_name)) : text_field_tag(:first_name, nil, required: true)
     small.error Nome é obrigatório
   
-  .last_name.user.field
+  .last_name-field.user.field
     = label_tag :last_name, "Sobrenome"
     = current_user ? content_tag(:span, current_user.try(:last_name)) : text_field_tag(:last_name, nil, required: true)
     small.error Sobrenome é obrigatório
     
-  .email.user.field
+  .email-field.user.field
     = label_tag :email, "E-mail"
     = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true)
     small.error Email é obrigatório e precisa ser válido
@@ -31,4 +31,4 @@
     small.error O texto da mensagem é obrigatório
   
   .action
-    = f.submit "Pressionar Agora!", id: "new_poke_email_submit_button", class: :email
+    = f.submit "Pressionar Agora!", id: :new_poke_email_submit_button, class: :email

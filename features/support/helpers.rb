@@ -29,6 +29,7 @@ end
 
 def to_button string
   return "new_poke_phone_submit_button"     if string == "the phone poke button"
+  return "new_poke_email_submit_button"     if string == "the email poke button"
   return "new_poke_facebook_submit_button"  if string == "the Facebook poke button"
   return "Aceitar campanha"                 if string == "Aceitar campanha"
   return "Adicionar alvo"                   if string == "Adicionar alvo"
@@ -52,6 +53,8 @@ def to_element string
   return "#poke_notice" if string == "the thanks for poke message"
   return ".notice" if string == "Está valendo, campanha no ar!"
   return "form.new_phone_poke" if string == "the phone poke form"
+  return "form.new_email_poke" if string == "the email poke form"
+  return "form.new_twitter_poke" if string == "the Twitter poke form"
   return "first_name" if string == "the first name field"
   return "last_name" if string == "the last name field"
   return "email" if string == "the email field"
@@ -60,5 +63,4 @@ def to_element string
   return ".last_name-field small.error" if string == "the last name field error"
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
-  return "form.new_twitter_poke" if string == "the Twitter poke form"
 end
