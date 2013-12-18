@@ -112,7 +112,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
-    ffi (1.9.0)
+    ffi (1.9.3)
     fog (1.18.0)
       builder
       excon (~> 0.28.0)
@@ -280,7 +280,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-hmac (0.4.0)
-    rubyzip (0.9.9)
+    rubyzip (1.1.0)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -289,10 +289,10 @@ GEM
     schema_plus (1.1.2)
       rails (>= 3.2)
       valuable
-    selenium-webdriver (2.35.0)
+    selenium-webdriver (2.39.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
-      rubyzip
+      rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     sequel (3.20.0)
     shoulda-matchers (2.2.0)
