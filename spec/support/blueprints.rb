@@ -6,7 +6,7 @@ User.blueprint do
   last_name     { "Iensen" }
   email         { "foo#{sn}@bar.com" }
   admin         { false } 
-  phone         { "(21) 9999-9999" }
+  phone         { "(21) 99999999" }
 end
 
 Authorization.blueprint do

@@ -11,7 +11,6 @@ class Poke < ActiveRecord::Base
   validates_presence_of :campaign
   validates_presence_of :user
   validates_presence_of :kind
-  validate :poked_recently?, on: :create
 
   before_create   :post_facebook_activity
   after_create    :thanks

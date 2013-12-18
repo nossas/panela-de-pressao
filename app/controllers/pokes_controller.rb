@@ -7,6 +7,9 @@ class PokesController < InheritedResources::Base
 
   prepend_before_filter(:only => [:create], :if => Proc.new { request.post? }) do 
     session[:poke] = params[:poke].merge(:campaign_id => params[:campaign_id])
+    session[:first_name] = params[:first_name]
+    session[:last_name] = params[:last_name]
+    session[:email] = params[:email]
   end
 
   before_filter :only => [:create] do
@@ -15,7 +18,8 @@ class PokesController < InheritedResources::Base
   end
 
   def create
-    user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], :first_name => params[:name], :last_name => params[:last_name])
+    user_hash = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email]}
+    user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], user_hash)
     user.update_attribute(:phone, params[:phone]) if params[:phone]
     @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
 

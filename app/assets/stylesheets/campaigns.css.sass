@@ -156,7 +156,7 @@ body.campaigns#show
         position: relative
         +rotate(45deg)
     @import campaigns/poke_by_phone
-    form.new_poke
+    form.new_poke, form.new_twitter_poke
       border: 1px gray solid
       margin-bottom: 20px
       +border-radius(5px)
@@ -165,14 +165,23 @@ body.campaigns#show
         padding: 10px
         font-weight: bolder
         font-size: 1.1em
+        border-bottom: 1px gray solid
+        +border-radius(5px 5px 0 0)
         &.email  
           background: $darker_gray
         &.facebook
           background: $fb_blue
+        &.twitter
+          +background-image(linear-gradient(#f4f4f4, #e8eae9))
+          color: black
       .field, .preview, .message
         background: white
         padding: 10px
         border-bottom: 1px lightgray solid
+        span.twitter_username
+          margin: 0
+          padding: 0
+          color: $twitter_blue
         textarea
           color: $darker_gray
           resize: none
@@ -209,8 +218,16 @@ body.campaigns#show
           display: inline-block
         input
           color: $darker_gray
-          height: 2em
           border: 0
+          display: inline-block
+          width: 390px
+        input, textarea
+          +box-shadow(none)
+          margin: 0
+          &:focus
+            background: none
+        small.error
+          margin: 0
         span
           +border-radius(3px)
           margin: 0 5px
@@ -234,6 +251,7 @@ body.campaigns#show
             padding: 0
       .action
         padding: 10px
+        overflow: hidden
         input
           width: 100%
           padding: 20px
@@ -250,6 +268,8 @@ body.campaigns#show
             background: $fb_blue
           &.email
             background: $email_blue
+          &.twitter
+            background: $twitter_blue
     .counter
       .icon-comments
         &:before
