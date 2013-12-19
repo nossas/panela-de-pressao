@@ -62,7 +62,7 @@ body.campaigns#index, body.campaigns#unmoderated
         +last
     ol.campaigns
       margin-top: 1em
-
+      
 body.campaigns#show
   article.campaign, aside.right.pressure
     +grid(6)
@@ -106,23 +106,10 @@ body.campaigns#show
   .users
     margin-bottom: 2em
     overflow: hidden
-    .user
-      line-height: normal
+    .user_thumb
       +grid-subcolumn(6,3)
       &:nth-child(2n+0)
         +last
-      img
-        width: 50px
-        height: 50px
-        +border-radius(50px)
-        margin-right: 10px
-        float: left
-      .user_name
-        font-weight: bold
-        margin-top: 10px
-      .cooker
-        color: gray
-        font-size: 12px
   dl.sub-nav
     dd
       border: solid 2px $campaign_gray
@@ -268,6 +255,7 @@ body.campaigns#show
             background: #ffd9da
             border: 1px solid red
             color: red
+            margin-bottom: .5em
         &.subject
           span
             font-weight: bolder
@@ -357,17 +345,23 @@ body.campaigns#show
       span
         display: inline
         font-size: 28px
-  .targets, .supporters, .pokers
+  .targets, .supporters, .pokers, .moderator
     margin-bottom: 1em
     overflow: hidden
     background: white
+    border: 1px solid #e7e7e7
     +border-radius(5px)
+    ol, ul
+      margin: 0
+      li
+        &:last-child
+          margin: 0
     h3
-      border: 1px solid $gray 
-      border-bottom: none
+      border-bottom: 1px solid #e7e7e7
       padding: .8em
       font-size: 1.1em
       font-weight: bold
+      margin: 0
       span
         color: $orange
       &:before
@@ -377,53 +371,21 @@ body.campaigns#show
         position: relative
         top: .192em
     .content
-      border: 1px solid $gray 
-      padding-top: 1em
-    img
-      float: left
-      +transition(.4s)
-      +border-radius(100%)
-      &:hover
-        opacity: .7
-    .social a
-      display: inline-block
-      margin-right: .4em
-  .target
-    margin-bottom: .8em
-  .icon-twitter
-    color: $twitter_blue
-  .icon_facebook
-    color: $fb_blue
-  .icon-mail
-    color: gray
-  .targets img, .supporters img
-    padding-right: .4em
-  .targets .role
-    font-size: .7em
-    color: lighten(gray, 10%)
-    line-height: 1em
-  .supporters
-    li
-      height: 50px
-      margin-bottom: 1em
-  .pokers
-    li
-      float: left
-      img
-        border: 1px solid white
-        &:hover
-          border: 1px solid $orange
-    li.who_pokes
-    .content
+      border: 0
+      padding: 1em
       overflow: hidden
-    .the_others
-      font-weight: bold
-      line-height: 3.5em
+      .user_thumb
+        margin-bottom: .5em
+        &:last-child
+          margin: 0
+    .show_all_influencers
+      display: block
+      background: $green
+      color: white
       text-align: center
-      width: 100%
-      &:before
-        content: "+"
-        margin-left: .4em
+      cursor: pointer
+      padding: 10px
+      +border-radius(3px)
   .update_facebox
     color: gray
     .body

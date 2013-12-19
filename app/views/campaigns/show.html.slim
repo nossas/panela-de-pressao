@@ -42,10 +42,10 @@ section.content
           = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-file-excel", title: "Exportar CSV" if can?(:export, User)
       .users
         - @campaign.users.each do |user|
-          .user
+          .user_thumb
             = image_tag user.avatar_url
             .user_name= user.name
-            .cooker Cozinheiro
+            .user_label Cozinheiro
 
       - unless @campaign.video.nil?
         .image= @campaign.video.html_safe
@@ -70,7 +70,15 @@ section.content
             br
             | feitas
 
-      = render partial: 'supporters'
+      - if @campaign.moderator.present?
+        .moderator
+          h3 Curador
+          .content
+            .user_thumb
+              = image_tag(@campaign.moderator.avatar_url, size: "50x50", title: @campaign.moderator.name)
+              .user_name= @campaign.moderator.name
+              .user_label= @campaign.moderator.profession
+
       = render partial: 'targets'
       = render partial: 'pokers'
 
