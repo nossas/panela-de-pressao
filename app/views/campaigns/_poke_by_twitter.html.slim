@@ -2,19 +2,19 @@
   = f.hidden_field :kind, :value => 'twitter'
   .header.twitter Novo Tweet
 
-  .first_name-field.field
+  .first_name-field.field.twitter
     = label_tag :first_name, "Nome"
-    = text_field_tag :first_name, nil, required: true, autocomplete: "off"
+    = current_user ? content_tag(:span, current_user.try(:first_name)) : text_field_tag(:first_name, nil, required: true, autocomplete: "off")
     small.error Nome é obrigatório
 
-  .last_name-field.field
+  .last_name-field.field.twitter
     = label_tag :last_name, "Sobrenome"
-    = text_field_tag :last_name, nil, required: true, autocomplete: "off"
+    = current_user ? content_tag(:span, current_user.try(:last_name)) : text_field_tag(:last_name, nil, required: true, autocomplete: "off")
     small.error Sobrenome é obrigatório
 
-  .email-field.field
+  .email-field.field.twitter
     = label_tag :email, "Email"
-    = email_field_tag :email, nil, required: true, autocomplete: "off"
+    = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true, autocomplete: "off")
     small.error Email é obrigatório e precisa ser válido
 
   .field.to
