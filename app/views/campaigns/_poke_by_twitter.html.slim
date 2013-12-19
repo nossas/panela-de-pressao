@@ -1,24 +1,24 @@
 = form_for [@campaign, @poke], html: {class: "new_twitter_poke", "data-abide" => true} do |f|
   = f.hidden_field :kind, :value => 'twitter'
-  .header.twitter Novo Tweet
+  .header.twitter Pressione por Twitter
 
   .first_name-field.field.twitter
-    = label_tag :first_name, "Nome"
+    = label_tag :first_name, "Seu nome:"
     = current_user ? content_tag(:span, current_user.try(:first_name)) : text_field_tag(:first_name, nil, required: true, autocomplete: "off")
     small.error Nome é obrigatório
 
   .last_name-field.field.twitter
-    = label_tag :last_name, "Sobrenome"
+    = label_tag :last_name, "Seu sobrenome:"
     = current_user ? content_tag(:span, current_user.try(:last_name)) : text_field_tag(:last_name, nil, required: true, autocomplete: "off")
     small.error Sobrenome é obrigatório
 
   .email-field.field.twitter
-    = label_tag :email, "Email"
+    = label_tag :email, "Seu email:"
     = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true, autocomplete: "off")
     small.error Email é obrigatório e precisa ser válido
 
   .field.to
-    | Para: 
+    | Tuitado: 
     - @campaign.influencers.map{|i| i.twitter}.each do |t|
       span= t
 
@@ -30,4 +30,4 @@
       = @campaign.twitter_text
 
   .action
-    = f.submit "Pressionar Agora!", id: "new_poke_twitter_submit_button", class: :twitter
+    = f.submit "Tuitar a sua pressão", id: "new_poke_twitter_submit_button", class: :twitter
