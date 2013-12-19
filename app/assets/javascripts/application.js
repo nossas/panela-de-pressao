@@ -37,6 +37,9 @@ $(function(){
   $("input.phone").mask('(00) 000000000');
   $(document).foundation();
   
+  // campaigns#show
+  $('.show_all_influencers').click(function(e){ $('.targets .user_thumb').slideDown(); $(e.target).remove(); });
+
   // campaigns#new campaigns#edit  
   $('#campaign_poke_type').change(function(e){ 
     $('.email_text').hide();

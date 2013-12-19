@@ -1,18 +1,10 @@
-.targets
+.targets#targets
   h3= t 'campaign.show.target.head_html', count: @campaign.influencers.length
   .content
-    ol
-      - @campaign.influencers.each_with_index do |influencer, index|
-        li.target[class=('hidden' if index > 4)]
-          .info
-            = image_tag influencer.avatar.square, size: "50x50", :title => influencer.name
-            .name= truncate influencer.name, length: 35
-            .role= truncate influencer.role, length: 40
-          .social
-            = link_to "", influencer.facebook_url, :target => "_blank", title: "Página no facebook", :class => "icon-facebook" if !influencer.facebook_url.blank?
-            = link_to "", influencer.twitter_url, :target => "_blank", title: "Perfil no twitter", :class => "icon-twitter" if !influencer.twitter.blank?
-            = link_to "", "#", title: "E-mail de contato", :class => "icon-mail"
-      - if @campaign.influencers.count > 4
-        li
-          = link_to "Ver todos", "#/", class: "show_all_influencers"
-
+    - @campaign.influencers.each_with_index do |influencer, index|
+      .user_thumb[class=('hidden' if index > 4)]
+        = image_tag influencer.avatar.square, size: "50x50", :title => influencer.name
+        .user_name= truncate influencer.name, length: 35
+        .user_label= truncate influencer.role, length: 40
+    - if @campaign.influencers.count > 4
+      span.show_all_influencers Ver todos

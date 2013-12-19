@@ -1,9 +1,8 @@
 .pokers
   h3= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign.pokes.count)
   .content
-    ul
-      - @campaign_pokes.each do |poke|
-        li= image_tag(poke.user.avatar_url, size: '49x49', title: poke.user.name)
-      - if @campaign_pokes.size > 24
-        li.who_pokes
-          span.the_others= @campaign_pokes.size - 24
+    - @campaign_pokes.each do |poke|
+      .user_thumb
+        = image_tag(poke.user.avatar_url, title: poke.user.name)
+        .user_name= poke.user.name
+        .user_label há #{distance_of_time_in_words_to_now poke.created_at}
