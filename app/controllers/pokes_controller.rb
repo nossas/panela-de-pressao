@@ -15,7 +15,7 @@ class PokesController < InheritedResources::Base
   before_filter :only => [:create] do
     if session[:poke]
       require_facebook_auth if session[:poke][:kind] == "facebook" && params[:user_id].nil?
-      require_twitter_auth if session[:poke][:kind] == "twitter" && (params[:user_id].nil? || current_user.try(:twitter_authorization))
+      require_twitter_auth if session[:poke][:kind] == "twitter" && (params[:user_id].nil? or not current_user.try(:twitter_authorization))
     end
   end
 
