@@ -123,6 +123,22 @@ body.campaigns#show
       .cooker
         color: gray
         font-size: 12px
+  dl.sub-nav
+    dd
+      border: solid 2px $campaign_gray
+      +border-radius(3px)
+      padding: .2em 1em
+      margin-left: .7em
+      a
+        background: transparent
+        color: $campaign_gray
+        font-weight: bold
+        font-size: .9em
+        padding: 0
+      &.active
+        border: solid 2px $orange
+        a
+          color: $orange
   article.campaign, aside.pressure
     .poke_here
       background: $green
