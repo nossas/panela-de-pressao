@@ -9,8 +9,8 @@
             = image_tag "header_facebook.png"
           a href="https://twitter.com/share?url=#{@campaign.short_url}" class="twitter_share_btn"
             = image_tag "header_twitter.png"
-  /- if flash[:poke_phone_notice]
-  #poke_notice
-    .poke_notice
-      h1 Ótimo! A telefonista eletrônica já recebeu a sua solitação e em breve irá te ligar do número 3957-9303 e te conectar com o alvo. Quando você for atendido, dê o seu recado:
-      .script= simple_format(@campaign.voice_call_script)
+  - if flash[:poke_phone_notice]
+    #poke_notice
+      .poke_notice
+        h1 Ótimo! A telefonista eletrônica já recebeu a sua solitação e em breve irá te ligar do número 3957-9303 e te conectar com o alvo. Quando você for atendido, dê o seu recado:
+        .script= simple_format(@campaign.voice_call_script)
