@@ -34,21 +34,21 @@ section.information
       .content
         h3
           | Comece a transformar o Rio! 
-        p.description
+        p
           | Se você vê algum problema no Rio que pode ser mudado com pressão popular, mãos à obra!
         = link_to "Criar campanha", new_campaign_path, class: 'btn'
     .our_victories
       .content
         h3
           | Siga os exemplos
-        p.description
+        p
           | Descubra as campanhas de sucesso no Panela de Pressão!
         = link_to "Campanhas vitoriosas!", explore_path(successful: true), class: 'btn'
     .didnt_find_target
       .content
         h3
           | Não achou seu alvo?
-        p.description
+        p
           | Você procurou um alvo para pressionar e não o encontrou na nossa lista
         = mail_to 'contato@paneladepressao.org.br', "Adicionar alvo",  class: 'btn'
 

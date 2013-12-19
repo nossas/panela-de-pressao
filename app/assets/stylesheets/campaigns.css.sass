@@ -62,7 +62,28 @@ body.campaigns#index, body.campaigns#unmoderated
         +last
     ol.campaigns
       margin-top: 1em
-      
+  section.information
+    background: darken($gray, 5%)
+    padding: 2em 0
+    .create_your_campaign, .our_victories, .didnt_find_target
+      +grid(4)
+      .content
+        background: white
+        padding: 1em
+        +border-radius(3px)
+        h3
+          margin: 0
+          font-size: 18px
+        p
+          font-size: 14px
+          height: 60px
+      a.btn
+        width: 100%
+        display: block
+    .didnt_find_target
+      +last
+
+
 body.campaigns#show
   article.campaign, aside.right.pressure
     +grid(6)
@@ -454,3 +475,52 @@ body.campaigns#show
           color: $yellow
         a.remove
           color: red
+
+body.campaigns#explore
+  article.left
+    background: $gray
+    +grid(9)
+  aside.right
+    +grid(3)
+    +last
+    h4
+      font-weight: bold
+      font-size: 1em
+      margin-bottom: 1em
+      color: darken(gray, 15%)
+  .about
+    h3
+      font-weight: bold
+      margin: 1em 0 .5em 0
+      color: darken(gray, 15%)
+    span
+      color: darken($gray, 30%)
+      font-size: 1.1em
+      display: inline-block
+      margin-bottom: 1em
+  ol.campaigns
+    li.campaign
+      +grid(4)
+      &:nth-child(3n+0)
+        +last
+  ol.categories
+    margin: 0
+    li
+      padding: .8em 0
+      border-bottom: 1px solid darken($gray, 15%)
+      a
+        color: lighten(gray, 10%)
+        font-size: .9em
+      &:hover
+        border-bottom: 1px solid $yellow
+        a
+          color: $orange
+    span
+      float: right
+      background: $yellow
+      color: white
+      padding: .1em .6em
+      font-size: .9em
+      display: inline-block
+      text-align: center
+      +border-radius(4px)
