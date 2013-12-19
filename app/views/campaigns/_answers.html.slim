@@ -3,7 +3,7 @@
   .warning= t 'campaign.show.answers.warning_html', email: mail_to("resposta@paneladepressao.org.br")
   h3= t 'campaign.show.answers.header' 
   - if @campaign.answers.empty?
-    small Ainda não houve resposta dos alvos da campanha...
+    p Ainda não houve resposta dos alvos da campanha...
   - else
     ol.answers
       - @campaign.answers.each do |answer|
@@ -21,4 +21,3 @@
       = form.text_area :text
       = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
       = form.submit :class => "btn"
-
