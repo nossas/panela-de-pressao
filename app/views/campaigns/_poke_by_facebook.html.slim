@@ -1,6 +1,6 @@
 = form_for [@campaign, @poke] do |f|
   = f.hidden_field :kind, :value => 'facebook'
-  .header.facebook Pressione no Facebook
+  .header.facebook Pressione por Facebook
   .field.to
     | Para: 
     - @campaign.influencers.each do |i|

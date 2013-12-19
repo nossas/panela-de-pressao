@@ -1,5 +1,5 @@
 .targets#targets
-  h3= t 'campaign.show.target.head_html', count: @campaign.influencers.length
+  h3 Quem é pressionado
   .content
     - @campaign.influencers.each_with_index do |influencer, index|
       .user_thumb[class=('hidden' if index > 4)]
