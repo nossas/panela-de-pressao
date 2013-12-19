@@ -1,0 +1,39 @@
+body.pages#about
+  h1
+    margin: 1em 0
+    +grid(12)
+    text-align: center
+    font-size: 3em
+    font-weight: bold
+    line-height: 100%
+  .content
+    padding-bottom: 6em
+    h2
+      font-weight: bold
+    h2.special
+      color: $green
+      font-size: 3em
+      line-height: 100%
+      font-weight: bold
+      +grid-subcolumn(6,5)
+    .content
+      background: white
+      overflow: hidden
+      padding: .2em 0
+      padding-top: 1.5em
+      +border-radius(4px)
+    .image, .text
+      margin: 1em 0
+    .image
+      +grid-prefix(1)
+      +grid(3)
+    .text
+      line-height: 1.6em
+      margin-top: 2em
+      +grid-suffix(1)
+      +grid(7)
+      +last
+  .campaign_btn
+    margin-top: 1em
+    text-align: center
+    +grid(12)
