@@ -1,8 +1,8 @@
 section.content
   .row
     .header
-      h1.title Crie ou Edite sua Campanha
-      small= t 'campaign.new.small_html', link: 'https://speakerd.s3.amazonaws.com/presentations/55331d301fb401307ccc12313d145d81/Panela_de_Pressao_-_cookbook.pdf'
+      h1 Crie ou Edite sua Campanha
+      h4.subheader= t 'campaign.new.small_html', link: 'https://speakerd.s3.amazonaws.com/presentations/55331d301fb401307ccc12313d145d81/Panela_de_Pressao_-_cookbook.pdf'
     = form_for @campaign do |f|
       fieldset
         legend Dados da campanha
@@ -37,7 +37,7 @@ section.content
         legend Pressão
         .field
           = f.label :influencer_ids
-          = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: t('campaign.new.form.choose_targets') }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+          = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: "" }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
         .field
           = f.label :poke_type
           = f.select :poke_type, [["Por Email", :email], ["Por Facebook", :facebook], ["Por Twitter", :twitter]]
