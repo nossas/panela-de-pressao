@@ -25,11 +25,11 @@ $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'L
 
 @import compass/reset
 @import columnal/grid
-@import chosen
 @import font
-@import jquery.ui.all
 @import foundation
+@import jquery.ui.all
 @import jquery.facebox
+@import chosen
 @import meurio_ui
 
 .clear
@@ -55,9 +55,6 @@ span.unsucceed
   background: $loss
 span.archived
   background: #666
-
-.campaigns_awaiting_moderation, .my_campaigns, .campaign_info, a[href="#campaigns_list"], .meurio_and_user .user, .logo_and_share .share, section.footer, .tabs, .about p, body.users#show aside
-  +mobile-hide
 
 section
   +grid-container
@@ -164,17 +161,6 @@ label.error, label.message
 
 input[type='submit']
   font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
-
-input[type='text'], textarea, input[type="email"], input[type="url"]
-  outline: none
-  border: 2px solid lighten(gray, 40%)
-  padding: .5em
-  font-size: 1.1em
-  color: lighten(gray, 10%)
-  +border-radius(5px)
-  +box-sizing("border-box")
-  &:focus
-    border: 2px solid $orange
 
 table
   img
@@ -435,6 +421,7 @@ section.highlight
 section.content
   background: $gray
   ol.campaigns
+    margin: 0
     li.campaign
       background: white
       overflow: hidden
@@ -444,11 +431,6 @@ section.content
       +border-radius(4px)
       .icon-bullhorn
         display: none
-      &.not_finished:hover
-        .icon-comments
-          display: none
-        .icon-bullhorn
-          display: block
       .campaign_moderator
         padding: 0 5px
         line-height: 38px
@@ -502,6 +484,7 @@ span.category
   &:before
     color: $orange
     margin-right: .4em
+
 p.description
   font-size: .9em
   line-height: 1.4em
@@ -526,78 +509,6 @@ p.description
     line-height: 3px
     padding-top: 9px
   font-size: .9em
-
-section.information
-  background: darken($gray, 5%)
-  .create_your_campaign, .our_victories, .didnt_find_target
-    height: 30% 
-    margin: 2em 0
-    background: white
-    +grid(4)
-    +box-shadow(0 1px 2px lighten(gray, 30%))
-    +border-radius(4px)
-    .btn
-      width: 83.5%
-    .content
-      padding: .8em
-    h3
-      margin: .8em 0
-      font-size: 1.3em
-      font-weight: bold
-    p.description
-      height: auto
-      font-size: .9em
-  .didnt_find_target
-    +last
-
-section.explore
-  article.left
-    background: $gray
-    +grid(9)
-  aside.right
-    +grid(3)
-    +last
-    h4
-      font-weight: bold
-      font-size: 1em
-      margin-bottom: 1em
-      color: darken(gray, 15%)
-  .about
-    h3
-      font-weight: bold
-      margin: 1em 0 .5em 0
-      color: darken(gray, 15%)
-    span
-      color: darken($gray, 30%)
-      font-size: 1.1em
-      display: inline-block
-      margin-bottom: 1em
-  ol.campaigns
-    li.campaign
-      +grid(4)
-      &:nth-child(3n+0)
-        +last
-  ol.categories
-    li
-      padding: .8em 0
-      border-bottom: 1px solid darken($gray, 15%)
-      a
-        color: lighten(gray, 10%)
-        font-size: .9em
-      &:hover
-        border-bottom: 1px solid $yellow
-        a
-          color: $orange
-    span
-      float: right
-      background: $yellow
-      color: white
-      padding: .1em .6em
-      font-size: .9em
-      display: inline-block
-      width: 4% 
-      text-align: center
-      +border-radius(4px)
 
 .icon-comments:before
   float: left
@@ -705,52 +616,6 @@ body.influencers#new, body.influencers#create
   li.input, .btn
     margin-bottom: 2em
 
-
-body.pages#about
-  h1
-    margin: 1em 0
-    +grid-prefix(3)
-    +grid(6)
-    +grid-suffix(3)
-    text-align: center
-    font-size: 3.5em
-    font-weight: bold
-    line-height: 100%
-  .content
-    padding-bottom: 6em
-    h2
-      font-weight: bold
-    h2.special
-      color: $green
-      font-size: 3em
-      line-height: 100%
-      font-weight: bold
-      +grid-subcolumn(6,5)
-    .content
-      background: white
-      overflow: hidden
-      padding: .2em 0
-      padding-top: 1.5em
-      +border-radius(4px)
-    .image, .text
-      margin: 1em 0
-    .image
-      +grid-prefix(1)
-      +grid(3)
-    .text
-      line-height: 1.6em
-      margin-top: 2em
-      +grid-suffix(1)
-      +grid(7)
-      +last
-  .campaign_btn
-    margin-top: 1em
-    +grid-prefix(3)
-    +grid(6)
-    +grid-suffix(3)
-  
-
-
 section.footer
   background: darken($gray, 5%)
   .links, .newsletter, .social
@@ -825,14 +690,8 @@ section.footer
     -moz-osx-font-smoothing: grayscale
 
 fieldset
-  padding: 20px
-  border: dotted 2px lightgray
-  +border-radius(5px)
   legend
-    font-size: 26px
-    color: lightgray
-    font-weight: bold
-    padding: 0 10px
+    background: none
 
 label
   cursor: pointer
@@ -854,3 +713,4 @@ label
     font-size: 12px
 
 @import campaigns
+@import pages
