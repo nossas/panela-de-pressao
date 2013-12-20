@@ -55,12 +55,19 @@ section.content
       = render partial: 'tabs'
       = render partial: params[:section] || 'description'
     aside.right.pressure
-      .text-center
-        .poke_here Pressione diretamente quem toma essa decisão
-      - if @campaign.has_voice_action?
-        = render partial: 'poke_by_phone'
-      - else
-        = render partial: "poke_by_#{@campaign.poke_type}"
+      - if flash[:poke_notice] || flash[:poke_phone_notice]
+        .share
+          a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class="facebook_share_btn"
+            = image_tag "header_facebook.png"
+          a href="https://twitter.com/share?url=#{@campaign.short_url}" class="twitter_share_btn"
+            = image_tag "header_twitter.png"
+      - elsif !@campaign.finished?
+        .text-center
+          .poke_here Pressione diretamente quem toma essa decisão
+        - if @campaign.has_voice_action?
+          = render partial: 'poke_by_phone'
+        - else
+          = render partial: "poke_by_#{@campaign.poke_type}"
 
       .counter
         .count
