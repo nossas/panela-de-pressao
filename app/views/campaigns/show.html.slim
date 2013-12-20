@@ -69,7 +69,7 @@ section.content
             .title Compartilhe a campanha nas Redes Sociais e ajude a multiplicar nossa voz.
             .wrap
               a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class=[:btn, :facebook_share] Compartilhe no Facebook
-              a href="https://twitter.com/share?url=#{@campaign.short_url}" class=[:btn, :twitter_share] Compartilhe no Twitter
+              a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
       - elsif !@campaign.finished?
         .text-center
           .poke_here Pressione diretamente quem toma essa decisão
