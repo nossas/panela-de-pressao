@@ -5,7 +5,8 @@ class Campaign < ActiveRecord::Base
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
     :voice_call_script, :voice_call_number, :hashtag, :poke_type, 
-    :facebook_share_title, :facebook_share_lead, :facebook_share_thumb
+    :facebook_share_title, :facebook_share_lead, :facebook_share_thumb,
+    :after_poke_title, :after_poke_text, :after_poke_link, :after_poke_call_to_action
 
   has_many :users, through: :campaign_owners
   has_many :campaign_owners
