@@ -15,7 +15,7 @@ class FacebookThumbUploader < CarrierWave::Uploader::Base
   storage :file if not Rails.env.production?
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [154, 154]
+  process :resize_to_fill => [200, 200]
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
