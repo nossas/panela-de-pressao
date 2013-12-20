@@ -1,3 +1,4 @@
 = render @last_update if @last_update.present?
 .description= @campaign.description_html.html_safe || @campaign.description.html_safe
+h3 Deixe seu comentário
 .fb-comments data-href=campaign_url(@campaign) data-num-posts="10" width="481"
