@@ -61,9 +61,10 @@ section.content
         - if @campaign.after_poke_customized?
           .after_poke
             .header
-              = @campaign.after_poke_title
+              h3= @campaign.after_poke_title
             .content
-              = @campaign.after_poke_text
+              p= @campaign.after_poke_text
+              = link_to @campaign.after_poke_call_to_action, @campaign.after_poke_link, class: 'btn', target: :blank
         - else
           .share
             .title Compartilhe a campanha nas Redes Sociais e ajude a multiplicar nossa voz.
