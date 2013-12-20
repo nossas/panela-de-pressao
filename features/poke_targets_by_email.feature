@@ -10,11 +10,9 @@ Feature: Poke targets by email
     And there is a target for this campaign
     And I go to this campaign page
     When I press "the email poke button"
-    Then I should see "the thanks for poke message"
-    And an email poke should be added to the target
+    Then an email poke should be added to the target
     And I should receive an email
 
-  @javascript
   Scenario: when I'm not logged in
     Given there is a campaign with poke type "email"
     And there is a target for this campaign
@@ -23,8 +21,7 @@ Feature: Poke targets by email
     And I fill in "the last name field" of "the email poke form" with "Schneider"
     And I fill in "the email field" of "the email poke form" with "teste@meurio.org.br"
     When I press "the email poke button"
-    Then I should see "the thanks for poke message"
-    And an email poke should be added to the target
+    Then an email poke should be added to the target
     And an email should be sent to "teste@meurio.org.br"
 
   @javascript
