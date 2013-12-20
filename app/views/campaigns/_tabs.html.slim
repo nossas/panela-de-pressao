@@ -1,8 +1,4 @@
 dl.sub-nav
   dd{class="#{params[:section].nil? ? 'active' : ''}"}= link_to "A Campanha", @campaign
-  dd{class="#{params[:section] == "updates" ? 'active' : ''}"}= link_to "Atualizações  #{@campaign.updates.count}", updates_campaign_path(@campaign), id: :campaign_updates
-  dd{class="#{params[:section] == "comments" ? 'active' : ''}"}
-    = link_to comments_campaign_path(@campaign) do
-      | Comentários 
-      fb:comments-count[href=campaign_url(@campaign)]
+  dd{class="#{params[:section] == "updates" ? 'active' : ''}"}= link_to "Novidades  #{@campaign.updates.count}", updates_campaign_path(@campaign), id: :campaign_updates
   dd{class="#{params[:section] == "answers" ? 'active' : ''}"}= link_to "Respostas  #{@campaign.answers.count}", answers_campaign_path(@campaign)
