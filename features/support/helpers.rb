@@ -63,4 +63,5 @@ def to_element string
   return ".last_name-field small.error" if string == "the last name field error"
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
+  return "aside.pressure .share" if string == "the campaign share buttons"
 end
