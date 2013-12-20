@@ -6,8 +6,7 @@
     meta property="og:title"        content=(@campaign.facebook_share_title || @campaign.name)
     meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @campaign.image.url)
     meta property="og:url"          content=campaign_url(@campaign)
-    meta property="og:description"  content=truncate(strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
-    meta property="og:type"         content="paneladepressao:campaign"
+    meta property="og:description"  content=truncate(@campaign.facebook_share_lead || strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
 - else
   - content_for :title do
     = @featured_update.title
@@ -16,7 +15,7 @@
     meta property="og:title"        content=(@campaign.facebook_share_title || @featured_update.title)
     meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @featured_update.thumb)
     meta property="og:url"          content=updates_campaign_url(@campaign, anchor: "update_#{@featured_update.id}", update_id: @featured_update.id)
-    meta property="og:description"  content=@featured_update.lead
+    meta property="og:description"  content=(@campaign.facebook_share_lead || @featured_update.lead)
 
 section.content
   .row
@@ -59,11 +58,18 @@ section.content
         .thanks
           h3 Obrigado por pressionar!
           h3.subheader Agora vamos multiplicar essa pressão
-        .share
-          .title Compartilhe a campanha nas Redes Sociais e ajude a multiplicar nossa voz.
-          .wrap
-            a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class=[:btn, :facebook_share] Compartilhe no Facebook
-            a href="https://twitter.com/share?url=#{@campaign.short_url}" class=[:btn, :twitter_share] Compartilhe no Twitter
+        - if @campaign.after_poke_customized?
+          .after_poke
+            .header
+              = @campaign.after_poke_title
+            .content
+              = @campaign.after_poke_text
+        - else
+          .share
+            .title Compartilhe a campanha nas Redes Sociais e ajude a multiplicar nossa voz.
+            .wrap
+              a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class=[:btn, :facebook_share] Compartilhe no Facebook
+              a href="https://twitter.com/share?url=#{@campaign.short_url}" class=[:btn, :twitter_share] Compartilhe no Twitter
       - elsif !@campaign.finished?
         .text-center
           .poke_here Pressione diretamente quem toma essa decisão
