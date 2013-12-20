@@ -53,7 +53,7 @@ section.content
         .image= image_tag @campaign.image.url, alt: @campaign.name, title: @campaign.name
 
       = render partial: 'tabs'
-      = render @last_update
+      = render @last_update if @last_update.present?
       = render partial: params[:section] || 'description'
     aside.right.pressure
       .text-center
