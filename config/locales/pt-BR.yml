@@ -252,6 +252,9 @@ pt-BR:
         voice_call_number: "Número que receberá as ligações"
         user_id: "Cozinheiro"
         poke_type: "Como você deseja pressionar os alvos dessa campanha?"
+        facebook_share_title: "Título de compartilhamento no Facebook"
+        facebook_share_lead: "Texto de compartilhamento no Facebook"
+        facebook_share_thumb: "Imagem de compartilhamento no Facebook"
       influencer:
         name: "Nome"
         role: "Descrição"

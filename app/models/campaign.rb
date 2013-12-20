@@ -4,7 +4,8 @@ class Campaign < ActiveRecord::Base
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
-    :voice_call_script, :voice_call_number, :hashtag, :poke_type
+    :voice_call_script, :voice_call_number, :hashtag, :poke_type, 
+    :facebook_share_title, :facebook_share_lead, :facebook_share_thumb
 
   has_many :users, through: :campaign_owners
   has_many :campaign_owners
@@ -51,6 +52,7 @@ class Campaign < ActiveRecord::Base
   validates :twitter_text, presence: true, if: Proc.new{ poke_type?("twitter") }
 
   mount_uploader :image, ImageUploader
+  mount_uploader :facebook_share_thumb, FacebookThumbUploader
 
   def video
     video = VideoInfo.get(self.video_url.to_s)
