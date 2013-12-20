@@ -64,9 +64,10 @@ section.content
           = f.text_field :facebook_share_title
         .field
           = f.label :facebook_share_lead
-          = f.text_field :facebook_share_lead
+          = f.text_area :facebook_share_lead
         .field
           = f.label :facebook_share_thumb
+          = image_tag @campaign.facebook_share_thumb unless @campaign.facebook_share_thumb.blank?
           = f.file_field :facebook_share_thumb
     
       - if current_user.phone.blank?
