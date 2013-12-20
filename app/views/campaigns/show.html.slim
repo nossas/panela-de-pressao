@@ -7,7 +7,6 @@
     meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @campaign.image.url)
     meta property="og:url"          content=campaign_url(@campaign)
     meta property="og:description"  content=truncate(@campaign.facebook_share_lead || strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
-    meta property="og:type"         content="paneladepressao:campaign"
 - else
   - content_for :title do
     = @featured_update.title
@@ -56,11 +55,18 @@ section.content
       = render partial: params[:section] || 'description'
     aside.right.pressure
       - if flash[:poke_notice] || flash[:poke_phone_notice]
-        .share
-          a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class="facebook_share_btn"
-            = image_tag "header_facebook.png"
-          a href="https://twitter.com/share?url=#{@campaign.short_url}" class="twitter_share_btn"
-            = image_tag "header_twitter.png"
+        - if @campaign.after_poke_customized?
+          .after_poke
+            .header
+              = @campaign.after_poke_title
+            .content
+              = @campaign.after_poke_text
+        - else
+          .share
+            a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class="facebook_share_btn"
+              = image_tag "header_facebook.png"
+            a href="https://twitter.com/share?url=#{@campaign.short_url}" class="twitter_share_btn"
+              = image_tag "header_twitter.png"
       - elsif !@campaign.finished?
         .text-center
           .poke_here Pressione diretamente quem toma essa decisão
