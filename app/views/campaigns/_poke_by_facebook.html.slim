@@ -1,8 +1,8 @@
 = form_for [@campaign, @poke] do |f|
   = f.hidden_field :kind, :value => 'facebook'
-  .header.facebook Pressione no Facebook
+  .header.facebook Pressione por Facebook
   .field.to
-    | Para: 
+    | Post para: 
     - @campaign.influencers.each do |i|
       span= i.name
   .preview
@@ -14,4 +14,4 @@
         span.url= truncate(request.url, length: 40)
         span.description= truncate(@campaign.description, length: 80)
   .action
-    = f.submit "Pressionar Agora!", id: "new_poke_facebook_submit_button", class: :facebook
+    = f.submit "Postar a sua pressão", id: "new_poke_facebook_submit_button", class: :facebook
