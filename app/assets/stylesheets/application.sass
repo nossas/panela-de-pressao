@@ -11,7 +11,7 @@ $loss: #c44242
 $fb_blue: #4e68a3
 $twitter_blue: #359AD8
 $email_blue: #2C8FF5
-$gray: #f3f4f4
+$gray: #f4f5f7
 $chambray: #40599c
 $picton_blue: #43bde2
 $light_gray: #d1d1d1
@@ -201,19 +201,15 @@ p.inline-hints, p.inline-errors
   text-align: center
   border: 0
   cursor: pointer
-  +transition(.2s)
+  +opacity(.9)
   +border-radius(2px)
   &:hover
+    +opacity(1)
     color: white
-    background: #1d8741
   &.facebook_share
-    background: $chambray
-    &:hover
-      background: lighten($chambray, 10%)
+    background: #044a90
   &.twitter_share
-    background: $picton_blue
-    &:hover
-      background: lighten($picton_blue, 10%)
+    background: #27aae2
 
 ul.formatting
   ol
