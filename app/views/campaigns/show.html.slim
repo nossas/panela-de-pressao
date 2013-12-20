@@ -55,12 +55,15 @@ section.content
       = render partial: params[:section] || 'description'
     aside.right.pressure
       - if flash[:poke_notice] || flash[:poke_phone_notice]
+        h2.thanks Obrigado por pressionar!
+        h3.multiply Agora vamos multiplicar essa pressão!
         - if @campaign.after_poke_customized?
           .after_poke
             .header
-              = @campaign.after_poke_title
+              h3= @campaign.after_poke_title
             .content
-              = @campaign.after_poke_text
+              p= @campaign.after_poke_text
+              = link_to @campaign.after_poke_call_to_action, @campaign.after_poke_link, class: 'btn', target: :blank
         - else
           .share
             a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class="facebook_share_btn"
