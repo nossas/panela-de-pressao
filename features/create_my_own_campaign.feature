@@ -12,6 +12,9 @@ Feature: Create my own campaign
     And I fill "A mensagem de email que eu quero enviar para os alvos é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I attach an image to "Para a divulgação da minha campanha bombar, vou usar essa imagem"
     And I select "Educação" for "E trata do tema"
+    And I fill "Título de compartilhamento no Facebook" with "Ajude a praça Nossa Senhora da Paz!"
+    And I fill "Texto de compartilhamento no Facebook" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
+    And I attach an image to "Imagem de compartilhamento no Facebook"
     When I press "Enviar campanha para moderação"
     Then I should be in the campaigns page
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."

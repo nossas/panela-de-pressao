@@ -56,6 +56,18 @@ section.content
         .field
           = f.label :pokers_email
           = f.text_area :pokers_email
+
+      fieldset
+        legend Compartilhamento no Facebook
+        .field
+          = f.label :facebook_share_title
+          = f.text_field :facebook_share_title
+        .field
+          = f.label :facebook_share_lead
+          = f.text_field :facebook_share_lead
+        .field
+          = f.label :facebook_share_thumb
+          = f.file_field :facebook_share_thumb
     
       - if current_user.phone.blank?
         fieldset
