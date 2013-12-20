@@ -456,30 +456,25 @@ body.campaigns#show
     #new_update
       width: auto
       margin-bottom: 3em
-    .update
-      overflow: hidden
-      border-bottom: 1px solid lightgray
-      padding-bottom: 2em
-      margin-bottom: 2em
-      .image
-        img
-          float: left
-          margin-right: 1em
-          width: 200px
-      .created_at
-        color: lighten(gray, 10%)
-      .title
-        font-weight: bold
-        font-size: 1.25em
-        a
-          color: gray
-          &:hover
-            text-decoration: underline
-      .buttons
-        a.edit
-          color: $yellow
-        a.remove
-          color: red
+  .update
+    background: white
+    padding: 20px
+    border: 1px solid #e7e7e7
+    +border-radius(5px)
+    .created_at
+      color: lighten(gray, 10%)
+    .title
+      font-weight: bold
+      font-size: 1.25em
+      a
+        color: gray
+        &:hover
+          text-decoration: underline
+    .buttons
+      a.edit
+        color: $yellow
+      a.remove
+        color: red
 
 body.campaigns#explore
   article.left

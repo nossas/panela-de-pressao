@@ -13,6 +13,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:show] { @poke = Poke.new }
   before_filter :only => [:show] { @answer = Answer.new }
   before_filter :only => [:show] { @featured_update = Update.find_by_id(params[:update_id]) }
+  before_filter :only => [:show] { @last_update = @campaign.updates.order("created_at DESC").first }
   before_filter :only => [:show] { @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user} }
   before_filter :only => [:show] { @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5) }
   before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
