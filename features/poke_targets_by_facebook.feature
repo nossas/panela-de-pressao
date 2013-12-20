@@ -3,7 +3,7 @@ Feature: Poke targets by Facebook
   As a citizen
   I want to poke targets by Facebook
 
-  @omniauth_test @koala @javascript
+  @omniauth_test @koala
   Scenario: when I have a Facebook authorization
     Given I'm logged in
     And there is a campaign with poke type "facebook"
@@ -14,7 +14,7 @@ Feature: Poke targets by Facebook
     Then a facebook poke should be added to the target
     And an email should be sent
 
-  @omniauth_test @javascript @koala
+  @omniauth_test @koala
   Scenario: when I poke a campaign twice
     Given I'm logged in
     And there is a campaign with poke type "facebook"

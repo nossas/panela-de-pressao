@@ -55,8 +55,9 @@ section.content
       = render partial: params[:section] || 'description'
     aside.right.pressure
       - if flash[:poke_notice] || flash[:poke_phone_notice]
-        h2.thanks Obrigado por pressionar!
-        h3.multiply Agora vamos multiplicar essa pressão!
+        .thanks
+          h3 Obrigado por pressionar!
+          h3.subheader Agora vamos multiplicar essa pressão
         - if @campaign.after_poke_customized?
           .after_poke
             .header
@@ -66,10 +67,10 @@ section.content
               = link_to @campaign.after_poke_call_to_action, @campaign.after_poke_link, class: 'btn', target: :blank
         - else
           .share
-            a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class="facebook_share_btn"
-              = image_tag "header_facebook.png"
-            a href="https://twitter.com/share?url=#{@campaign.short_url}" class="twitter_share_btn"
-              = image_tag "header_twitter.png"
+            .title Compartilhe a campanha nas Redes Sociais e ajude a multiplicar nossa voz.
+            .wrap
+              a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class=[:btn, :facebook_share] Compartilhe no Facebook
+              a href="https://twitter.com/share?url=#{@campaign.short_url}" class=[:btn, :twitter_share] Compartilhe no Twitter
       - elsif !@campaign.finished?
         .text-center
           .poke_here Pressione diretamente quem toma essa decisão
