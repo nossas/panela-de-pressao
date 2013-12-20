@@ -114,6 +114,10 @@ class Campaign < ActiveRecord::Base
     user.email
   end
 
+  def after_poke_customized?
+    self.after_poke_title.present? and self.after_poke_text.present? and self.after_poke_link.present? and self.after_poke_call_to_action.present?
+  end
+
   def as_json options
     super(methods: [:user_email])
   end
