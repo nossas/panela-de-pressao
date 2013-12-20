@@ -2,9 +2,9 @@
   - content_for :title do
     = @campaign.name
   - content_for :meta_tags do
-    meta name="description"         content=truncate(@campaign.description)
-    meta property="og:title"        content=@campaign.name
-    meta property="og:image"        content=@campaign.image.url
+    meta name="description"         content=(@campaign.facebook_share_lead || truncate(@campaign.description))
+    meta property="og:title"        content=(@campaign.facebook_share_title || @campaign.name)
+    meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @campaign.image.url)
     meta property="og:url"          content=campaign_url(@campaign)
     meta property="og:description"  content=truncate(strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
     meta property="og:type"         content="paneladepressao:campaign"
@@ -12,9 +12,9 @@
   - content_for :title do
     = @featured_update.title
   - content_for :meta_tags do
-    meta name="description"         content=@featured_update.lead
-    meta property="og:title"        content=@featured_update.title
-    meta property="og:image"        content=@featured_update.thumb
+    meta name="description"         content=(@campaign.facebook_share_lead || @featured_update.lead)
+    meta property="og:title"        content=(@campaign.facebook_share_title || @featured_update.title)
+    meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @featured_update.thumb)
     meta property="og:url"          content=updates_campaign_url(@campaign, anchor: "update_#{@featured_update.id}", update_id: @featured_update.id)
     meta property="og:description"  content=@featured_update.lead
 
