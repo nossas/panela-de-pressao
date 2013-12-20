@@ -67,7 +67,7 @@ section.content
               = link_to @campaign.after_poke_call_to_action, @campaign.after_poke_link, class: 'btn', target: :blank
         - else
           .share
-            .title Compartilhe a campanha nas Redes Sociais e ajude a multiplicar nossa voz.
+            .title Você botou o alvo na Pressão! Agora, fale dessa mobilização aos seus amigos, aumente o fogo na Panela!
             .wrap
               a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
