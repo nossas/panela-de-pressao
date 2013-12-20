@@ -255,6 +255,10 @@ pt-BR:
         facebook_share_title: "Título de compartilhamento no Facebook"
         facebook_share_lead: "Texto de compartilhamento no Facebook"
         facebook_share_thumb: "Imagem de compartilhamento no Facebook"
+        after_poke_title: "Título da pós-pressão"
+        after_poke_text: "Texto da pós-pressão"
+        after_poke_link: "Link da pós-pressão"
+        after_poke_call_to_action: "Texto do botão da pós-pressão"
       influencer:
         name: "Nome"
         role: "Descrição"
