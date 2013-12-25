@@ -11,11 +11,11 @@
   - content_for :title do
     = @featured_update.title
   - content_for :meta_tags do
-    meta name="description"         content=(@campaign.facebook_share_lead || @featured_update.lead)
-    meta property="og:title"        content=(@campaign.facebook_share_title || @featured_update.title)
-    meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @featured_update.thumb)
+    meta name="description"         content=(@featured_update.lead)
+    meta property="og:title"        content=(@featured_update.title)
+    meta property="og:image"        content=(@featured_update.thumb)
     meta property="og:url"          content=updates_campaign_url(@campaign, anchor: "update_#{@featured_update.id}", update_id: @featured_update.id)
-    meta property="og:description"  content=(@campaign.facebook_share_lead || @featured_update.lead)
+    meta property="og:description"  content=(@featured_update.lead)
 
 section.content
   .row
