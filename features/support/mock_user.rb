@@ -7,6 +7,8 @@ Before do
       first_name  varchar(40) NOT NULL, 
       last_name   varchar(40) NOT NULL,
       admin       boolean,
+      profession character varying(255),
+      bio text,
       avatar      varchar(40),
       phone       varchar(40)
     );

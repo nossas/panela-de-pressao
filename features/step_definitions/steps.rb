@@ -122,7 +122,7 @@ end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
   if to_element(arg1)
-    page.should have_css(to_element(arg1))
+    page.should have_css(to_element(arg1), text: to_text(arg1))
   else
     page.should have_content(arg1)
   end
@@ -187,6 +187,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("#new_campaign")
   when "the ownership field"
     page.should_not have_css("select#campaign_user_id", visible: false)
+  when "any moderation list"
+    page.should_not have_css(".campaigns_by_moderator")
   else
     page.should_not have_content(arg1)
   end
@@ -562,4 +564,8 @@ end
 
 Then(/^an email should be sent to "(.*?)"$/) do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.to.index(arg1) != nil}.should_not be_empty
+end
+
+Given(/^there is a campaign moderated by this user$/) do
+  @campaign = Campaign.make! moderator: @user
 end

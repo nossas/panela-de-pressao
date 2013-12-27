@@ -45,7 +45,7 @@ body.campaigns#index, body.campaigns#unmoderated
       margin-right: .4em
       top: .2em
       position: relative
-  section.index, .popular
+  section.index, .popular, .moderator
     ol.campaigns 
       li.campaign
         &:nth-child(4n+0)
@@ -82,7 +82,18 @@ body.campaigns#index, body.campaigns#unmoderated
         display: block
     .didnt_find_target
       +last
-
+  .campaigns_by_moderator
+    background: #2e3235
+    h2
+      color: white
+      margin-bottom: 1em
+      font-weight: normal
+    .moderator
+      +grid(3)
+      color: white
+      .user_bio
+        margin-top: 1em
+        color: #a3a8b4
 
 body.campaigns#show
   article.campaign, aside.right.pressure
