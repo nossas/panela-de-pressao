@@ -20,13 +20,23 @@
           - else
             = link_to image_tag(@featured.image.url), @featured
 
-
-
 section.content
   .row.popular
     h2.popular.icon-fire= t "home.text.popular_campaigns"
     ol.campaigns
       = render @popular 
+
+- if @moderator.present?
+  section.content.campaigns_by_moderator
+    .row
+      h2 Campanhas curadas por
+      .moderator
+        .user_thumb
+          = image_tag @moderator.avatar_url
+          .user_name= @moderator.name
+          .user_label= @moderator.profession
+        .user_bio= @moderator.bio
+      ol.campaigns= render @moderator.moderations.limit(3)
 
 section.information
   .row
