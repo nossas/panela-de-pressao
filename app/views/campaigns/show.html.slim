@@ -28,17 +28,19 @@ section.content
     article.campaign
       h1.title= @campaign.name
       .campaign_subtitle
-        span
+        .accepted_at_and_category_name
           | No ar há 
           strong #{@campaign.accepted_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.accepted_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
-        .campaign_menu
-          = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha" if can?(:edit, @campaign)
-          = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque" if can?(:feature, @campaign)
-          = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória" if can?(:finish, @campaign)
-          = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu" if can?(:finish, @campaign)
-          = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-drawer", title: "Arquivar" if can?(:archive, @campaign)
-          = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-file-excel", title: "Exportar CSV" if can?(:export, User)
+        a.button.dropdown.small href="#" data-dropdown="drop" Menu da campanha
+        ul.f-dropdown id="drop" data-dropdown-content=true
+          li= link_to "Editar", edit_campaign_path(@campaign), id: "edit_button" if can?(:edit, @campaign)
+          li= link_to "Destacar", campaign_feature_path(@campaign, featured: true), method: :put, id: "feature_button" if can?(:feature, @campaign)
+          li= link_to "Vitória", campaign_finish_path(@campaign, :succeed => true), method: :put if can?(:finish, @campaign)
+          li= link_to "Não deu", campaign_finish_path(@campaign, :succeed => false), method: :put if can?(:finish, @campaign)
+          li= link_to "Arquivar", campaign_archive_path(@campaign), method: :put if can?(:archive, @campaign)
+          li= link_to "Exportar CSV", users_path(format: :csv, by_campaign_id: @campaign.id) if can?(:export, User)
+          li= link_to "Assumir moderação", campaign_moderate_path(@campaign), :method => "put", id: "take_on_moderation_button" if can?(:moderate, @campaign)
       .users
         - @campaign.users.each do |user|
           .user_thumb

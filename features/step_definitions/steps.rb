@@ -147,6 +147,12 @@ When /^I click "([^"]*)"$/ do |arg1|
     within("#login") do
       click_on arg1
     end
+  elsif arg1 == "the take on moderation button"
+    click_link("take_on_moderation_button")
+  elsif arg1 == "the edit campaign button"
+    click_link("edit_button")
+  elsif arg1 == "the feature button"
+    click_link("feature_button")
   else 
     click_link(arg1)
   end
@@ -189,6 +195,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("select#campaign_user_id", visible: false)
   when "any moderation list"
     page.should_not have_css(".campaigns_by_moderator")
+  when "the edit campaign button"
+    page.should_not have_css("#edit_button")
   else
     page.should_not have_content(arg1)
   end
@@ -568,4 +576,8 @@ end
 
 Given(/^there is a campaign moderated by this user$/) do
   @campaign = Campaign.make! moderator: @user
+end
+
+Given(/^I open the campaign menu$/) do
+  page.execute_script("$('.campaign_subtitle a.dropdown').click();")
 end
