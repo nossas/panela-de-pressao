@@ -50,7 +50,15 @@ body.campaigns#index, body.campaigns#unmoderated
       li.campaign
         margin-bottom: 2em
         +grid(3)
+  section.index, .popular
+    ol.campaigns 
+      li.campaign
         &:nth-child(4n+0)
+          +last
+  .campaigns_by_moderator
+    ol.campaigns 
+      li.campaign
+        &:nth-child(3n+0)
           +last
   .all_campaigns
     form.search
