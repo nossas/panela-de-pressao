@@ -64,9 +64,13 @@ def to_element string
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
   return "aside.pressure .share" if string == "the campaign share buttons"
-  return ".campaigns_by_moderator .campaign .title" if string == "somebody's moderation list"
+  return ".campaigns_by_moderator .campaign .name" if string == "somebody's moderation list"
+  return ".campaign .name" if string == "the unmoderated campaign"
+  return ".moderator .user_thumb .user_name" if string == "me as the moderator of this campaign"
 end
 
 def to_text string
   return @campaign.name if string == "somebody's moderation list"
+  return @campaign.name if string == "the unmoderated campaign"
+  return @current_user.name if string == "me as the moderator of this campaign"
 end

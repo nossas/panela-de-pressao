@@ -45,9 +45,11 @@ body.campaigns#index, body.campaigns#unmoderated
       margin-right: .4em
       top: .2em
       position: relative
-  section.index, .popular, .moderator
+  section.index, .popular, .campaigns_by_moderator
     ol.campaigns 
       li.campaign
+        margin-bottom: 2em
+        +grid(3)
         &:nth-child(4n+0)
           +last
   .all_campaigns
@@ -108,30 +110,10 @@ body.campaigns#show
     line-height: 100% 
     color: #34393c
   .campaign_subtitle
-    margin-bottom: 1em
-    span
-      margin-right: 1em
+    .accepted_at_and_category_name
+      margin-bottom: 1em
       font-size: 1em
-      display: inline-block
       color: darken($gray, 55%)
-    .campaign_menu
-      display: inline-block
-      a[class^="icon-"]
-        display: inline-block
-        line-height: 0
-        background: lighten(lightgray, 10%)
-        padding: 5px 10px
-        color: gray
-        border-top: 1px lightgray solid
-        border-bottom: 1px lightgray solid
-        border-left: 1px lightgray solid
-        &:hover
-          background: white
-        &:first-child
-          +border-radius(5px 0 0 5px)
-        &:last-child
-          +border-radius(0 5px 5px 0)
-          border-right: 1px lightgray solid
   article.tab, article.share
     background: none
     padding-bottom: .6em

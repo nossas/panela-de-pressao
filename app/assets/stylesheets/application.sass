@@ -21,6 +21,7 @@ $darker_gray: #333
 $campaign_gray: #CFD3DD
 
 $primary-color: $yellow
+
 $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
 
 @import compass/reset
@@ -400,60 +401,6 @@ section.content
   background: $gray
   ol.campaigns
     margin: 0
-    li.campaign
-      background: white
-      overflow: hidden
-      margin-bottom: 2em
-      +grid(3)
-      +box-shadow(0 1px 3px #c0c0c0)
-      +border-radius(4px)
-      .icon-bullhorn
-        display: none
-      .campaign_moderator
-        padding: 0 5px
-        line-height: 38px
-        text-align: center
-        &.alert
-          color: red
-      .campaign_user_email
-        margin-top: .5em
-      .campaign_user_email, .campaign_created_at
-        text-align: center
-        color: lighten(gray, 20%)
-    p.description
-      margin: .5em 0
-    h3
-      font-size: 1.1em
-      height: 4em 
-      display: block
-    .image, .info
-      padding: .8em
-    .image, .info
-      padding-bottom: 0
-    .image
-      img
-        +box-shadow(0 0 2px darken($gray, 30%))
-    .victory, .loss, .pressure
-      background: $victory 
-      color: white
-      text-align: center
-      font-weight: bold
-      padding: 4px
-      +border-radius(4px)
-      +transition(.4s)
-      &:before
-        vertical-align: middle
-        margin-right: 5px
-    .pressure
-      background: $green
-      a
-        color: white
-      &:hover
-        background: $victory
-    .loss
-      background: $loss
-    .counter
-      padding: 7px
 
 span.category
   font-size: .7em
@@ -691,4 +638,5 @@ label
     font-size: 12px
 
 @import campaigns
+@import campaigns/campaign
 @import pages

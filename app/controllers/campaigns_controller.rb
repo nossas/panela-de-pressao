@@ -57,9 +57,8 @@ class CampaignsController < InheritedResources::Base
 
   def feature
     @campaign = Campaign.find(params[:campaign_id])
-    @campaign.featured_at = params[:featured] == "true" ? Time.now : nil 
-    @campaign.save!
-    redirect_to :back and return
+    @campaign.update_attribute :featured_at, params[:featured] == "true" ? Time.now : nil
+    redirect_to @campaign
   end
 
   def index
@@ -82,8 +81,9 @@ class CampaignsController < InheritedResources::Base
   end
 
   def moderate
-    Campaign.find(params[:campaign_id]).update_attributes :moderator_id => current_user.id
-    redirect_to unmoderated_campaigns_path
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.update_attributes :moderator_id => current_user.id
+    redirect_to @campaign
   end
 
   def archive
