@@ -21,7 +21,6 @@ class Campaign < ActiveRecord::Base
   has_many :posts
   has_many :answers
   has_many :pokes
-  has_many :pokers, through: :pokes, source: :user, uniq: true
   has_many :updates
 
   before_save  { self.description_html = convert_html(description) }
@@ -139,5 +138,9 @@ class Campaign < ActiveRecord::Base
 
   def users
     @users ||= [self.user].concat(CampaignOwner.where(campaign_id: self.id).map{|co| co.user})
+  end
+
+  def pokers
+    @pokers ||= User.where("id IN (?)", pokes.map{|p| p.user_id})
   end
 end
