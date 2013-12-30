@@ -8,45 +8,45 @@ gem 'rails', '~> 3.2.14'
 gem 'pg'
 gem 'thin'
 gem 'inherited_resources'
-gem "slim"
-gem "slim-rails"
-gem "formtastic", "~> 2.2.0"
-gem "auto_html"
-gem "redcarpet"
+gem 'slim'
+gem 'slim-rails'
+gem 'formtastic', '~> 2.2.0'
+gem 'auto_html'
+gem 'redcarpet'
 gem 'delayed_job_active_record'
 gem 'rack-no-www'
 gem 'video_info'
-gem "jquery-validation-rails"
+gem 'jquery-validation-rails'
 gem 'client_side_validations'
-gem "schema_plus"
-gem "faker"
-gem "machinist", ">= 2.0.0.beta2"
+gem 'schema_plus'
+gem 'faker'
+gem 'machinist', '>= 2.0.0.beta2'
 
 # Image uplaod
 gem 'carrierwave'
 gem 'mini_magick'
-gem "fog"
+gem 'fog'
 
 # Authentication
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem "cancan"
+gem 'cancan'
 
 # Stuff
-gem "jquery-rails"
+gem 'jquery-rails'
 gem 'chosen-rails'
 gem 'coffee-rails'
 gem 'twitter'
 gem 'bitly'
-gem "koala"
-gem "has_scope"
+gem 'koala'
+gem 'has_scope'
 gem 'simplecov', :require => false, :group => :test
 
 group :development do
-  gem "mailcatcher"
-  gem "taps"
+  gem 'mailcatcher'
+  gem 'taps'
 end
 
 group :production do
@@ -56,7 +56,7 @@ end
 
 group :test, :development do
   gem 'rake'
-  gem "rspec-rails", ">= 2.0.1"
+  gem 'rspec-rails', '>= 2.0.1'
 end
 
 # We need development here to make rake spec work
@@ -64,18 +64,18 @@ group :test, :development do
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'database_cleaner'
-  gem "capybara"
-  gem "shoulda-matchers"
-  gem "jasmine"
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'jasmine'
 end
 
 group :assets do
-  gem "sass-rails"
-  gem "coffee-rails"
-  gem "compass-rails"
-  gem "compass-columnal-plugin", "~> 0.1.2"
-  gem "uglifier"
-  gem "therubyracer"
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'compass-rails'
+  gem 'compass-columnal-plugin', '~> 0.1.2'
+  gem 'uglifier'
+  gem 'therubyracer'
 end
 
 gem 'facebox-rails'
