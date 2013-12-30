@@ -81,11 +81,11 @@ section.content
 
       .counter
         .count
-          span.number= raw @campaign.pokers.count.to_s.chars.map{|c| content_tag :span, c}.join("")
+          span.number= raw @campaign.pokes.count.to_s.chars.map{|c| content_tag :span, c}.join("")
           span.counter_label
-            | pessoas
+            | pressões
             br
-            | pressionaram
+            | feitas
 
       - if @campaign.moderator.present?
         .moderator
