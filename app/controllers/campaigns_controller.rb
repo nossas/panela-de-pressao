@@ -17,7 +17,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:show] { @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user} }
   before_filter :only => [:show] { @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5) }
   before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
-  before_filter :only => [:index] { @featured = Campaign.featured.first || Campaign.accepted.first }
+  before_filter :only => [:index] { @featured = Campaign.featured.first || Campaign.moderated.first }
 
   def create
     @campaign = Campaign.new(params[:campaign])
@@ -40,12 +40,6 @@ class CampaignsController < InheritedResources::Base
       @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
       render :edit
     end
-  end
-
-  def accept
-    Campaign.find(params[:campaign_id]).accept_now!
-    params[:id] = params[:campaign_id]
-    show(:notice => "Está valendo, campanha no ar!")
   end
 
   def finish
@@ -96,7 +90,7 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      @campaigns ||= end_of_association_chain.accepted.unarchived
+      @campaigns ||= end_of_association_chain.unarchived
     end
   end
 end

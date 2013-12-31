@@ -240,7 +240,6 @@ pt-BR:
         image: "Para a divulgação da minha campanha bombar, vou usar essa imagem"
         category_id: "E trata do tema"
         influencer_ids: "Os alvos que eu vou pressionar para conseguir essa mudança são"
-        organization_id: "Quem está por trás?"
         email_text: "A mensagem de email que eu quero enviar para os alvos é"
         facebook_text: "O texto que eu quero postar na página do Facebook dos alvos é"
         twitter_text: "A mensagem de 140 caracteres que eu quero postar no twitter dos alvos é"
@@ -264,8 +263,6 @@ pt-BR:
         role: "Descrição"
         twitter: "Usuário no Twitter"
         facebook_url: "Página no Facebook"
-      organization:
-        name: "Nome"
       user:
         name: "Nome"
         email: "E-mail"

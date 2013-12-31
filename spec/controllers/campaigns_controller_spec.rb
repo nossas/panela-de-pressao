@@ -16,47 +16,30 @@ describe CampaignsController do
   end
 
   describe "GET show" do
-    context "Accepted campaigns" do
+    context "All campaigns" do
       before do 
-        Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => Time.now))
+        Campaign.stub(:find).and_return(stub_model(Campaign))
         get :show, :id => "1"
       end
       its(:status) { should == 200 }
     end
 
-    context "Not accepted campaigns with a wrong preview code" do
-      before do 
-        Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: 12345))
-        get :show, id: 1, preview_code: 1234
-      end
-      it { should redirect_to(ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}") }
-    end
+    # context "Not accepted campaigns with a wrong preview code" do
+    #   before do 
+    #     Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: 12345))
+    #     get :show, id: 1, preview_code: 1234
+    #   end
+    #   it { should redirect_to(ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}") }
+    # end
 
-    context "Not accepted campaigns with a correct preview code" do
-      before do 
-        Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: "12345"))
-        get :show, id: 1, preview_code: 12345
-      end
+    # context "Not accepted campaigns with a correct preview code" do
+    #   before do 
+    #     Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: "12345"))
+    #     get :show, id: 1, preview_code: 12345
+    #   end
 
-      it { should_not redirect_to("http://127.0.0.1/meurio_accounts") }
-    end
-
-      
-  end
-
-  describe "PUT accept" do
-    before { Campaign.stub(:find).and_return(mock_model(Campaign, :update_attribute => true, :accept_now! => true)) }
-    context "when I'm admin" do
-      before { controller.stub(:current_user).and_return(mock_model(User, :admin? => true)) }
-      before { put :accept, :campaign_id => "1" }
-      it { should_not redirect_to(campaigns_path + "#login") }
-    end
-    context "when I'm not admin" do
-      before { controller.stub(:current_user).and_return(mock_model(User, :admin? => false)) }
-      before { @request.env['HTTP_REFERER'] = 'http://test.com/' }
-      before { put :accept, :campaign_id => "1" }
-      it { should redirect_to(ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}") }
-    end
+    #   it { should_not redirect_to("http://127.0.0.1/meurio_accounts") }
+    # end
   end
 
   describe "GET index" do

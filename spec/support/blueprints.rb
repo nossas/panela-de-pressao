@@ -33,6 +33,7 @@ Campaign.blueprint do
   voice_call_script { "Script" }
   voice_call_number { "552197137471" }
   poke_type { 'email' }
+  moderator { User.make! }
 end
 
 Category.blueprint do
@@ -61,7 +62,7 @@ Poke.blueprint do
 end
 
 Update.blueprint do
-  campaign    { Campaign.make! accepted_at: Time.now }
+  campaign    { Campaign.make! }
   body        { Faker::Lorem.paragraph }
   image       { File.open(File.dirname(__FILE__) + "/../../features/support/campaign.png") }
   title       { Faker::Lorem.sentence }
