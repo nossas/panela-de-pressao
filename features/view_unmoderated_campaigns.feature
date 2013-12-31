@@ -18,9 +18,10 @@ Feature: View unmoderated campaigns
 
   @omniauth_test @javascript @ssi
   Scenario: when there is a campaign with a moderator
-    Given there is an unmoderated campaign called "Save the whales!" moderated by "Jack Daniel"
+    Given there is an campaign called "Save the whales!" moderated by "Jack Daniel"
     And I'm logged in as admin
     And I go to the campaigns page
     And I open my profile options
     When I click "Moderar campanhas"
     Then I should see "the campaign's moderator name" in "the campaign list"
+

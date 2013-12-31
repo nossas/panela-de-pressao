@@ -106,7 +106,7 @@ section.content
             = f.text_field :hashtag
 
       .field
-        = f.submit (@campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save')), class: 'btn'
+        = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: 'btn'
 
     - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
       .field

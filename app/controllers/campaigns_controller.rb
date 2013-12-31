@@ -23,7 +23,7 @@ class CampaignsController < InheritedResources::Base
     @campaign = Campaign.new(params[:campaign])
     if params[:user_phone].nil? || current_user.update_attributes(:phone => params[:user_phone])
       create! do |success, failure|
-        success.html { return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
+        success.html { return redirect_to campaigns_path, :notice => "Está valendo, campanha no ar!" }
         failure.html { render :new }
       end
     else
