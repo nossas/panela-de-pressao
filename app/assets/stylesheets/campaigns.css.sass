@@ -83,7 +83,6 @@ body.campaigns#index, body.campaigns#unmoderated
     .didnt_find_target
       +last
 
-
 body.campaigns#show
   article.campaign, aside.right.pressure
     +grid(6)
@@ -578,3 +577,9 @@ body.campaigns#explore
       display: inline-block
       text-align: center
       +border-radius(4px)
+
+body.campaigns#reported
+  .title, .empty
+    +grid(12)
+  .title
+    margin-bottom: 1em
