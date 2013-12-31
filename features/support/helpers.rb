@@ -14,6 +14,7 @@ def route_to_path route
   return influencer_path(@target.influencer)                              if route == "this target page"
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
   return "/meurio_accounts"                                               if route == "the Meu Rio accounts login page"
+  return reported_campaigns_path                                          if route == "the reported campaigns page"
   raise "I don't know the route '#{route}'"
 end
 
@@ -64,4 +65,7 @@ def to_element string
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
   return "aside.pressure .share" if string == "the campaign share buttons"
+  return "a[href='/campaigns/reported']" if string == "the reported campaigns button"
+  return ".campaign" if string == "campaigns"
+  return ".empty" if string == "there is no reported campaigns"
 end
