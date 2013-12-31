@@ -18,17 +18,6 @@ namespace :pdp do
     end
   end
 
-  desc "Email the recommended campaigns to users"
-  task :email_recommended_campaigns => :environment do
-    if(Date.today.yday % 14 == 10)
-      User.subscribers.pokers.each do |user|
-        if user.recomendations.any?
-          UserMailer.delay.recomendations(user.id)
-        end
-      end
-    end
-  end
-
   task :migrate_users_database, [:json_url] => :environment do |t, args|
     puts "migrate_users_database"
     users = JSON.parse(open(args[:json_url]).read)
