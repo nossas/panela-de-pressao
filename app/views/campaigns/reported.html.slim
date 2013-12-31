@@ -1,0 +1,8 @@
+section.content
+  .row
+    .title
+      h2 Campanhas denunciadas
+    - if @campaigns.any?
+      ol.campaigns= render @campaigns
+    - else
+      .empty Oba! Nenhuma campanha denunciada.

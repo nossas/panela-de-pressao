@@ -102,6 +102,10 @@ Given /^I check "(.*?)"$/ do |arg1|
   check(arg1)
 end
 
+Given(/^there is (\d+) reported campaigns$/) do |arg1|
+  arg1.to_i.times { Report.make! }
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   if to_element(arg1)
     page.should have_css(to_element(arg1))
@@ -169,6 +173,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("#new_campaign")
   when "the ownership field"
     page.should_not have_css("select#campaign_user_id", visible: false)
+  when "the reported campaigns button"
+    page.should_not have_css(to_element("the reported campaigns button"))
   else
     page.should_not have_content(arg1)
   end
@@ -527,4 +533,8 @@ end
 
 Then(/^an email should be sent to "(.*?)"$/) do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.to.index(arg1) != nil}.should_not be_empty
+end
+
+Then(/^I should see (\d+) "(.*?)"$/) do |arg1, arg2|
+  page.should have_css(to_element(arg2), count: arg1)
 end

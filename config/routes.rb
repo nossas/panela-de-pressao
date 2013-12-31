@@ -5,6 +5,7 @@ ManifesteSe::Application.routes.draw do
   get '/auth/facebook_admin', as: :facebook_admin_connect
 
   get "/campaigns/unmoderated", :to => "campaigns#unmoderated", :as => :unmoderated_campaigns
+  get "/campaigns/reported", :to => "campaigns#reported", :as => :reported_campaigns
   
   resources :categories, only: [:index] do
     resources :campaigns, only: [:index]

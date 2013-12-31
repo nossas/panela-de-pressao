@@ -45,6 +45,7 @@ html
       - if current_user.present?
         = link_to "Minhas campanhas", user_campaigns_path(current_user)
         = link_to "Moderar campanhas", unmoderated_campaigns_path if can? :moderate, Campaign
+        = link_to "Campanhas denunciadas", reported_campaigns_path if current_user.admin?
         = link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
 
     = meurio_header_for(:pdp)
