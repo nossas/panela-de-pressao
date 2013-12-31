@@ -1,7 +1,5 @@
-p= "Olá #{@campaign.user.name}"
-p 
-  | Confirmamos o recebimento do formulário de criação da campanha 
-  strong= @campaign.name
-  |  no Panela de Pressão para moderação de nossa equipe.
-p Vamos analisar a sua campanha com bastante cuidado, desde o texto até os alvos que você escolheu para pressionar, e entraremos em contato o mais rápido possível. Essa moderação serve para a gente ter certeza de que a sua campanha será lançada com uma linguagem clara e bons alvos de pressão.
-p Vale lembrar que não aceitaremos campanhas com fins partidários, eleitoreiros, vexatórios, difamatórios, ou que assediem, persigam, violem ou ameacem de qualquer forma os direitos de alguém.
+p Parabéns #{@campaign.user.name}!
+
+p Sua campanha #{link_to @campaign.name, @campaign} já está no ar. Agora é com você: espalhe a sua campanha para quem você puder usando os links de compartilhamento no Facebook e Twitter ou enviando o link da campanha por email.
+
+p Quanto mais gente, mais pressão e quanto mais pressão mais rápido a coisa anda! 

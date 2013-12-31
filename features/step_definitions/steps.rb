@@ -36,6 +36,10 @@ Given /^there is a campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: Time.now
 end
 
+Given /^there is a unmoderated campaign called "([^"]*)"$/ do |arg1|
+  @campaign = Campaign.make! name: arg1, moderator_id: nil
+end
+
 Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
   @campaign = Campaign.make! name: arg1, accepted_at: nil
 end
@@ -298,7 +302,7 @@ Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! :name => arg1, :accepted_at => nil
 end
 
-Given /^there is an unmoderated campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
+Given /^there is an campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
   @campaign = Campaign.make! :name => arg1, :accepted_at => nil, :moderator => User.make!(:first_name => arg2)
 end
 
