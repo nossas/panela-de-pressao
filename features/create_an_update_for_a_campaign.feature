@@ -6,7 +6,7 @@ Feature: create an update for a campaign
   @omniauth_test @javascript @koala @ssi
   Scenario: when I'm an admin user and submit the form right
     Given I'm logged in as admin
-    And there is an accepted campaign
+    And there is a campaign
     And I'm in this campaign page
     When I click in the updates button
     Then I should see the new update button
@@ -20,7 +20,7 @@ Feature: create an update for a campaign
   @omniauth_test @javascript @ssi
   Scenario: when I'm an admin user and submit the form wrong
     Given I'm logged in as admin
-    And there is an accepted campaign
+    And there is a campaign
     And I'm in this campaign page
     And I click in the updates button
     And I click in the new update button
@@ -31,7 +31,7 @@ Feature: create an update for a campaign
   @omniauth_test @ssi
   Scenario: when I'm not an admin user
     Given I'm logged in
-    And there is an accepted campaign
+    And there is a campaign
     And I'm in this campaign page
     When I click in the updates button
     Then I should not see the new update button

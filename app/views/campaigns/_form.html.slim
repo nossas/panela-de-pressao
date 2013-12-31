@@ -107,13 +107,7 @@ section.content
 
       .field
         = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: 'btn'
-
-    - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
-      .field
-        = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-          p.action
-            = f.submit t('actions.accept'), :class => "btn"
-
+    
     .hidden
       #image
         = image_tag(@campaign.image) if @campaign.persisted?

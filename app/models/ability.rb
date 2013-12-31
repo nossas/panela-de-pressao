@@ -5,10 +5,7 @@ class Ability
     can :read, User
     can :read, Answer
     can :manage, Poke
-
-    can :read, Campaign do |campaign|
-      campaign.accepted_at
-    end
+    can :read, Campaign
 
     can :read, Campaign do |campaign|
       !campaign.preview_code.nil? and campaign.preview_code == request.params[:preview_code]    

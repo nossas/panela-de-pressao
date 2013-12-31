@@ -4,20 +4,7 @@ Given /^I'm in ([^"]*)$/ do |arg1|
 end
 
 Given /^there is a campaign created by "(.*?)" with no partnership$/ do |arg1|
-  @campaign = Campaign.make! :user => User.make!(:name => arg1), :accepted_at => Time.now
-end
-
-Given /^there is a campaign created by "(.*?)" with a partnership with "(.*?)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! :user => User.make!(:name => arg1), :accepted_at => Time.now, :organizations => [Organization.make!(:name => arg2)]
-end
-
-Given /^there is a campaign called "([^"]*)" accepted on "([^"]*)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg2)
-end
-
-Given /^there is a campaign called "(.*?)" with an organization "(.*?)" as supporter accepted on "(.*?)"$/ do |arg1, arg2, arg3|
-  @organization = Organization.make! name: arg2
-  @campaign = Campaign.make! name: arg1, accepted_at: Date.parse(arg3), organizations: [@organization]
+  @campaign = Campaign.make! :user => User.make!(:name => arg1)
 end
 
 Given /^there is (\d+) pokers for this campaign$/ do |arg1|
@@ -27,29 +14,24 @@ Given /^there is (\d+) pokers for this campaign$/ do |arg1|
   end
 end
 
-Given /^I should see an avatar from organization "(.*?)"$/ do |arg1|
-  page.should have_xpath("//img[@title='#{arg1}']")
-end
-
-
 Given /^there is a campaign called "([^"]*)"$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: Time.now
+  @campaign = Campaign.make! name: arg1
 end
 
-Given /^there is a unmoderated campaign called "([^"]*)"$/ do |arg1|
+Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
   @campaign = Campaign.make! name: arg1, moderator_id: nil
 end
 
-Given /^there is a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil
-end
-
-Given /^I own a campaign called "([^"]*)" awaiting moderation$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, accepted_at: nil, :user => @current_user
+Given /^there is an campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
+  @campaign = Campaign.make! name: arg1, moderator: User.make!(first_name: arg2)
 end
 
 Given /^I own a campaign called "([^"]*)"$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, :user => @current_user, :accepted_at => Time.now
+  @campaign = Campaign.make! name: arg1, user: @current_user
+end
+
+Given /^I own an unmoderated campaign called "([^"]*)"$/ do |arg1|
+  @campaign = Campaign.make! name: arg1, user: @current_user, moderator_id: nil
 end
 
 Given /^there is 1 poker called "(.*?)" that poked (\d+) times$/ do |name, quant|
@@ -67,10 +49,6 @@ Given /^I'm logged in$/ do
   @current_user = User.make! email: "ssi@meurio.org.br"
   Authorization.make! user: @current_user
   visit root_path
-end
-
-Given /^I've created an organization called "([^"]*)"$/ do |arg1|
-  Organization.make! name: arg1.to_s, owner: Authorization.find_by_uid("536687842").user, accepted: true
 end
 
 Given /^I'm logged in as admin$/ do
@@ -240,11 +218,6 @@ Then /^an? ([^"]*) poke should be added to the target$/ do |arg1|
   @target.reload.pokes_by_facebook.should be_== 1 if arg1 == "facebook"
 end
 
-Then /^this campaign should be accepted$/ do
-  @campaign.reload.should be_accepted
-end
-
-
 Then /^I should see a list of (\d+) recent pokers$/ do |arg1|
   page.should have_css("div.pokers ol li", count: arg1.to_i)
 end
@@ -298,29 +271,17 @@ Then /^a email saying "(.*?)" should be sent$/ do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.body.include? arg1}.should_not be_empty
 end
 
-Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
-  @campaign = Campaign.make! :name => arg1, :accepted_at => nil
-end
-
-Given /^there is an campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
-  @campaign = Campaign.make! :name => arg1, :accepted_at => nil, :moderator => User.make!(:first_name => arg2)
-end
-
-Given /^there is a user$/ do
+Given /^there is an user$/ do
   @user = User.make!
 end
 
 Given /^this user collaborated with a campaign called "(.*?)"$/ do |arg1|
-  @campaign = Campaign.make!(:name => arg1, :accepted_at => Time.now)
+  @campaign = Campaign.make!(:name => arg1)
   @campaign.users << @user
 end
 
 Given /^there is a campaign$/ do
   @campaign = Campaign.make!
-end
-
-Given /^there is an accepted campaign$/ do
-  @campaign = Campaign.make! accepted_at: Time.now
 end
 
 Then /^I should see the unsubscription message$/ do
@@ -421,7 +382,7 @@ Then /^I should see the Facebook share button in the update facebox$/ do
 end
 
 Given /^there is an update for a campaign$/ do
-  @campaign = Campaign.make! accepted_at: Time.now
+  @campaign = Campaign.make!
   @update = Update.make! campaign: @campaign
 end
 
@@ -551,7 +512,7 @@ Given(/^I have no phone$/) do
 end
 
 Given(/^there is a campaign with poke type "(.*?)"$/) do |arg1|
-  @campaign = Campaign.make! poke_type: arg1, accepted_at: Time.now, voice_call_script: nil, voice_call_number: nil
+  @campaign = Campaign.make! poke_type: arg1, voice_call_script: nil, voice_call_number: nil
 end
 
 Then(/^I should receive an email$/) do
