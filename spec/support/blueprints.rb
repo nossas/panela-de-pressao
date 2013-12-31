@@ -69,3 +69,8 @@ Update.blueprint do
   lead        { Faker::Lorem.paragraph }
   user        { Authorization.make!.user }
 end
+
+Report.blueprint do
+  campaign  { Campaign.make! }
+  user      { User.make! }
+end
