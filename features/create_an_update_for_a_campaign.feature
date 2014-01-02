@@ -13,7 +13,7 @@ Feature: create an update for a campaign
     Given I click in the new update button
     And I fill the new update form right
     When I submit the new update form
-    Then I should be in the updates page of the campaign
+    Then I should be in "the updates page of the campaign"
     And I should see the new update in a facebox
     And I should see the new update in the Meu Rio Facebook page
 
@@ -25,7 +25,7 @@ Feature: create an update for a campaign
     And I click in the updates button
     And I click in the new update button
     When I submit the new update form
-    Then I should be in the updates page of the campaign
+    Then I should be in "the updates page of the campaign"
     And I should see the update form errors
 
   @omniauth_test @ssi
