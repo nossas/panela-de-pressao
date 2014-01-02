@@ -151,6 +151,8 @@ When /^I click "([^"]*)"$/ do |arg1|
     within("#login") do
       click_on arg1
     end
+  elsif arg1 == "the report campaign button"
+    click_link("report_campaign_button")
   else 
     click_link(arg1)
   end
@@ -572,4 +574,8 @@ end
 
 Then(/^I should see (\d+) "(.*?)"$/) do |arg1, arg2|
   page.should have_css(to_element(arg2), count: arg1)
+end
+
+Then(/^the campaign should have now (\d+) report$/) do |arg1|
+  @campaign.reports.count.should be_== arg1.to_i
 end

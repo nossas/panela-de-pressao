@@ -68,4 +68,5 @@ def to_element string
   return "a[href='/campaigns/reported']" if string == "the reported campaigns button"
   return ".campaign" if string == "campaigns"
   return ".empty" if string == "there is no reported campaigns"
+  return ".campaign_without_moderator_warn" if string == "the warn of campaign without moderator"
 end

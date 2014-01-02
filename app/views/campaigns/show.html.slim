@@ -19,6 +19,10 @@
 
 section.content
   .row
+    .campaign_without_moderator_warn
+      = link_to "Reportar abuso", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
+
+  .row
     = render partial: 'finished_message' if @campaign.finished_at?
     - if @campaign.archived?
       .finished_at
