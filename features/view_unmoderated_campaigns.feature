@@ -7,8 +7,8 @@ Feature: View unmoderated campaigns
   Scenario: when I'm an admin
     Given there is an unmoderated campaign called "Save the whales!"
     And I'm logged in as admin
-    And I go to the campaigns page
+    And I go to "the campaigns page"
     And I open my profile options
-    When I click "Moderar campanhas"
-    Then I should be in the unmoderated campaigns page
+    When I click "the unmoderated campaigns button"
+    Then I should be in "the unmoderated campaigns page"
     And I should see "the unmoderated campaign"

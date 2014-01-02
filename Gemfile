@@ -18,7 +18,6 @@ gem 'rack-no-www'
 gem 'video_info'
 gem "jquery-validation-rails"
 gem 'client_side_validations'
-gem "schema_plus"
 gem "faker"
 gem "machinist", ">= 2.0.0.beta2"
 
@@ -37,7 +36,6 @@ gem "cancan"
 # Stuff
 gem "jquery-rails"
 gem 'chosen-rails'
-gem 'coffee-rails'
 gem 'twitter'
 gem 'bitly'
 gem "koala"
@@ -86,3 +84,4 @@ gem 'rails_12factor'
 gem 'meurio_ui'
 gem 'gibbon'
 gem 'foundation-rails'
+gem 'schema_plus'

@@ -18,6 +18,15 @@
     meta property="og:description"  content=(@campaign.facebook_share_lead || @featured_update.lead)
 
 section.content
+  - if @campaign.moderator.nil?
+    .row
+      .campaign_without_moderator_warn
+        span
+          | Esta campanha não foi moderada pelo Meu Rio. 
+          - if can?(:create, Report) && !current_user.reported?(@campaign)
+            | Se não estiver de acordo com os princípios e visão de rede do Meu Rio, 
+            = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
+
   .row
     = render partial: 'finished_message' if @campaign.finished_at?
     - if @campaign.archived?
@@ -34,13 +43,13 @@ section.content
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
         a.button.dropdown.small href="#" data-dropdown="drop" Menu da campanha
         ul.f-dropdown id="drop" data-dropdown-content=true
-          li= link_to "Editar", edit_campaign_path(@campaign), id: "edit_button" if can?(:edit, @campaign)
-          li= link_to "Destacar", campaign_feature_path(@campaign, featured: true), method: :put, id: "feature_button" if can?(:feature, @campaign)
-          li= link_to "Vitória", campaign_finish_path(@campaign, :succeed => true), method: :put if can?(:finish, @campaign)
-          li= link_to "Não deu", campaign_finish_path(@campaign, :succeed => false), method: :put if can?(:finish, @campaign)
-          li= link_to "Arquivar", campaign_archive_path(@campaign), method: :put if can?(:archive, @campaign)
+          li= link_to "Editar", edit_campaign_path(@campaign), id: :edit_campaign_button if can?(:edit, @campaign)
+          li= link_to "Destacar", campaign_feature_path(@campaign, featured: true), method: :put, id: :feature_campaign_button if can?(:feature, @campaign)
+          li= link_to "Vitória", campaign_finish_path(@campaign, :succeed => true), method: :put, id: :victory_campaign_button if can?(:finish, @campaign)
+          li= link_to "Não deu", campaign_finish_path(@campaign, :succeed => false), method: :put, id: :lose_campaign_button if can?(:finish, @campaign)
+          li= link_to "Arquivar", campaign_archive_path(@campaign), method: :put, id: :archive_campaign_button if can?(:archive, @campaign)
           li= link_to "Exportar CSV", users_path(format: :csv, by_campaign_id: @campaign.id) if can?(:export, User)
-          li= link_to "Assumir moderação", campaign_moderate_path(@campaign), :method => "put", id: "take_on_moderation_button" if can?(:moderate, @campaign)
+          li= link_to "Assumir moderação", campaign_moderate_path(@campaign), :method => "put", id: :take_on_moderation_button if can?(:moderate, @campaign)
       .users
         - @campaign.users.each do |user|
           .user_thumb
