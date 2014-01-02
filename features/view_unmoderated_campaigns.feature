@@ -9,7 +9,7 @@ Feature: View unmoderated campaigns
     And I'm logged in as admin
     And I go to "the campaigns page"
     And I open my profile options
-    When I click "Moderar campanhas"
+    When I click "the unmoderated campaigns button"
     Then I should be in the unmoderated campaigns page
     And I should see "the campaign's name" in "the campaign list"
     And I should see "the campaign's user email" in "the campaign list"
@@ -22,5 +22,5 @@ Feature: View unmoderated campaigns
     And I'm logged in as admin
     And I go to "the campaigns page"
     And I open my profile options
-    When I click "Moderar campanhas"
+    When I click "the unmoderated campaigns button"
     Then I should see "the campaign's moderator name" in "the campaign list"
