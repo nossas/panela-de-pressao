@@ -10,18 +10,17 @@ Feature: View unmoderated campaigns
     And I go to the campaigns page
     And I open my profile options
     When I click "Moderar campanhas"
-    Then I should be in the unmoderated campaigns page
-    And I should see "the campaign's name" in "the campaign list"
+    Then I should see "the campaign's name" in "the campaign list"
     And I should see "the campaign's user email" in "the campaign list"
     And I should see "the campaign's submition date" in "the campaign list"
     And I should see "the campaign's moderation button" in "the campaign list"
 
   @omniauth_test @javascript @ssi
-  Scenario: when there is a campaign with a moderator
+  Scenario: when the campaign already has a moderator
     Given there is an campaign called "Save the whales!" moderated by "Jack Daniel"
     And I'm logged in as admin
     And I go to the campaigns page
     And I open my profile options
     When I click "Moderar campanhas"
-    Then I should see "the campaign's moderator name" in "the campaign list"
+    Then I should not see "Save the whales!"
 

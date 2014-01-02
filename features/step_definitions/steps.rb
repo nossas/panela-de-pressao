@@ -19,7 +19,7 @@ Given /^there is a campaign called "([^"]*)"$/ do |arg1|
 end
 
 Given /^there is an unmoderated campaign called "([^"]*)"$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, moderator_id: nil
+  @campaign = Campaign.make! :unmoderated, name: arg1
 end
 
 Given /^there is an campaign called "(.*?)" moderated by "(.*?)"$/ do |arg1, arg2|
@@ -31,7 +31,7 @@ Given /^I own a campaign called "([^"]*)"$/ do |arg1|
 end
 
 Given /^I own an unmoderated campaign called "([^"]*)"$/ do |arg1|
-  @campaign = Campaign.make! name: arg1, user: @current_user, moderator_id: nil
+  @campaign = Campaign.make! :unmoderated, name: arg1, user: @current_user
 end
 
 Given /^there is 1 poker called "(.*?)" that poked (\d+) times$/ do |name, quant|
