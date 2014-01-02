@@ -81,3 +81,8 @@ def to_element string
   return "my_campaigns_button" if string == "the my campaigns button"
   return "take_on_a_campaign_button" if string == "the take on a campaign button"
 end
+
+def to_email_subject string
+  return "Nova denúncia" if string == "report campaign"
+  raise "I don't know email subject '#{string}'"
+end
