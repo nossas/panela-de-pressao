@@ -23,23 +23,6 @@ describe CampaignsController do
       end
       its(:status) { should == 200 }
     end
-
-    # context "Not accepted campaigns with a wrong preview code" do
-    #   before do 
-    #     Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: 12345))
-    #     get :show, id: 1, preview_code: 1234
-    #   end
-    #   it { should redirect_to(ENV["MEURIO_ACCOUNTS_URL"] + "?redirect_url=#{session[:restore_url]}") }
-    # end
-
-    # context "Not accepted campaigns with a correct preview code" do
-    #   before do 
-    #     Campaign.stub(:find).and_return(stub_model(Campaign, :accepted_at => nil, preview_code: "12345"))
-    #     get :show, id: 1, preview_code: 12345
-    #   end
-
-    #   it { should_not redirect_to("http://127.0.0.1/meurio_accounts") }
-    # end
   end
 
   describe "GET index" do

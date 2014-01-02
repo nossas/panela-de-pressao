@@ -7,10 +7,6 @@ class Ability
     can :manage, Poke
     can :read, Campaign
 
-    can :read, Campaign do |campaign|
-      !campaign.preview_code.nil? and campaign.preview_code == request.params[:preview_code]    
-    end
-
     if user && user.admin?
       can :manage, :all
     elsif user
