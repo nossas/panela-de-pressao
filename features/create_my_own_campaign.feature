@@ -22,7 +22,7 @@ Feature: Create my own campaign
     When I press "Criar campanha"
     Then I should be in "the campaigns page"
     And I should see "Está valendo, campanha no ar!"
-    And an email called "Recebemos a sua campanha" should be sent
+    And an email called "A sua mobilização está no ar!" should be sent
     And an email called "Campanha aguardando moderação" should be sent
   
   @omniauth_test @javascript @bitly
