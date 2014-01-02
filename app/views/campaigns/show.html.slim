@@ -18,13 +18,14 @@
     meta property="og:description"  content=(@campaign.facebook_share_lead || @featured_update.lead)
 
 section.content
-  .row
-    .campaign_without_moderator_warn
-      span
-        | Esta campanha não foi moderada pelo Meu Rio. 
-        - if can?(:create, Report) && !current_user.reported?(@campaign) && @campaign.moderator.nil?
-          | Se não estiver de acordo com os princípios e visão de rede do Meu Rio, 
-          = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
+  - if @campaign.moderator.nil?
+    .row
+      .campaign_without_moderator_warn
+        span
+          | Esta campanha não foi moderada pelo Meu Rio. 
+          - if can?(:create, Report) && !current_user.reported?(@campaign)
+            | Se não estiver de acordo com os princípios e visão de rede do Meu Rio, 
+            = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
 
   .row
     = render partial: 'finished_message' if @campaign.finished_at?
