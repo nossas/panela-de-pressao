@@ -34,7 +34,7 @@ Feature: share a campaign after poke
   Scenario: when I poke by phone
     Given I'm logged in
     And there is an accepted campaign
-    And I go to this campaign page
+    And I go to "this campaign page"
     When I press "the phone poke button"
     Then I should be in this campaign page
     And I should see "the campaign share buttons"

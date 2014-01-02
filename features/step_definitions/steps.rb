@@ -132,7 +132,7 @@ Then /^I should see "([^"]*)"$/ do |arg1|
   end
 end
 
-When /^I go to ([^"]*)$/ do |arg1|
+When /^I go to "([^"]*)"$/ do |arg1|
   step "I'm in #{arg1}"
 end
 

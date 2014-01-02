@@ -7,7 +7,7 @@ Feature: View unmoderated campaigns
   Scenario: when I'm an admin
     Given there is an unmoderated campaign called "Save the whales!"
     And I'm logged in as admin
-    And I go to the campaigns page
+    And I go to "the campaigns page"
     And I open my profile options
     When I click "Moderar campanhas"
     Then I should be in the unmoderated campaigns page
@@ -20,7 +20,7 @@ Feature: View unmoderated campaigns
   Scenario: when there is a campaign with a moderator
     Given there is an unmoderated campaign called "Save the whales!" moderated by "Jack Daniel"
     And I'm logged in as admin
-    And I go to the campaigns page
+    And I go to "the campaigns page"
     And I open my profile options
     When I click "Moderar campanhas"
     Then I should see "the campaign's moderator name" in "the campaign list"
