@@ -3,7 +3,7 @@ Feature: report a campaign
   @ssi
   Scenario: when I'm logged in
     Given I'm logged in
-    And there is an accepted campaign
+    And there is a campaign
     When I go to "this campaign page"
     Then I should see "the warn of campaign without moderator"
     When I click "the report campaign button"
