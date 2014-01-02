@@ -11,7 +11,7 @@ Feature: post an answer of a target
     And I click "the campaign answers button"
     And I fill "answer_text" with "Viva la vida!"
     When I press "Criar Resposta"
-    Then I should be in the answers page of the campaign
+    Then I should be in "the answers page of the campaign"
     And I should see "Viva la vida!"
 
   @omniauth_test @ssi

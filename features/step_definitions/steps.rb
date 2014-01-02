@@ -183,7 +183,7 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
   end
 end
 
-Then /^I should be in ([^"]*)$/ do |arg1|
+Then /^I should be in "([^"]*)"$/ do |arg1|
   page.current_path.should be_== route_to_path(arg1)
 end
 

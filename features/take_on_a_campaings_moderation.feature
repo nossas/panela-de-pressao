@@ -6,5 +6,5 @@ Feature: take on a campaing's moderation
     And I'm logged in as admin
     And I go to "the unmoderated campaigns page"
     When I click "the take on a campaign button"
-    Then I should be in the unmoderated campaigns page
+    Then I should be in "the unmoderated campaigns page"
     And I should see "the campaign's moderator name" in "the campaign list"

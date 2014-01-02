@@ -9,7 +9,7 @@ Feature: Put a campaign on featured mode
     And there is a campaign called "Save the Whales!"
     And I'm in this campaign page
     When I click "the feature campaign button"
-    Then I should be in this campaign page
+    Then I should be in "this campaign page"
 
   Scenario: I'm not logged in as admin
     Given there is a campaign called "Save the Whales!"
