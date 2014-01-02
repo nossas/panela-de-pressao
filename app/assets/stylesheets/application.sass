@@ -236,18 +236,19 @@ section.footer
   padding: 1.5em 0
 
 section.notice, section.alert
+  padding: .5em
+  text-align: center
+  font-size: 18px
   .message
     color: white
-    &:before
-      padding-right: 1em
 
 section.notice
   background: $green
-  border-bottom: 1px dashed darken($green, 20%)
+  border-bottom: 1px solid darken($green, 20%)
 
 section.alert
   background: $orange
-  border-bottom: 1px dashed darken($orange, 20%)
+  border-bottom: 1px solid darken($orange, 20%)
 
 
 a[href="/auth/facebook"]
