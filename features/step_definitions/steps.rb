@@ -178,6 +178,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("select#campaign_user_id", visible: false)
   when "the reported campaigns button"
     page.should_not have_css(to_element("the reported campaigns button"))
+  when "the report campaign button"
+    page.should_not have_css("#report_campaign_button")
   else
     page.should_not have_content(arg1)
   end
@@ -561,4 +563,17 @@ end
 
 Then(/^the campaign should have now (\d+) report$/) do |arg1|
   @campaign.reports.count.should be_== arg1.to_i
+end
+
+Given(/^I already reported this campaign$/) do
+  Report.make! campaign: @campaign, user: @current_user
+end
+
+Given(/^this campaign have a moderator$/) do
+  @campaign.moderator = User.make!
+  @campaign.save
+end
+
+Then(/^the "(.*?)" email should be sent$/) do |arg1|
+  ActionMailer::Base.deliveries.select{|d| d.subject.index(to_email_subject(arg1)) != nil}.should_not be_empty
 end

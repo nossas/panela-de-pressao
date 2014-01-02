@@ -5,4 +5,6 @@ class Report < ActiveRecord::Base
 
   belongs_to :campaign
   belongs_to :user
+
+  after_create { ReportMailer.delay.new_report(self) }
 end
