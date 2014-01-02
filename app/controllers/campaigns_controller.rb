@@ -92,6 +92,10 @@ class CampaignsController < InheritedResources::Base
     redirect_to campaign
   end
 
+  def reported
+    @campaigns = Campaign.reported
+  end
+
   protected
   def collection
     if params[:user_id]

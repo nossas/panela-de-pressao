@@ -41,21 +41,6 @@ $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'L
 
 .cancel
   background: darken(red, 15%) !important
-span.succeed, span.unsucceed, span.archived
-  background: $victory
-  display: block
-  width: 98%
-  text-align: center
-  padding: .6em
-  color: white
-  +border-radius(4px)
-  margin: 0 auto
-  margin-bottom: 1.5em
-  font-size: 1.1em
-span.unsucceed
-  background: $loss
-span.archived
-  background: #666
 
 section
   +grid-container
@@ -65,7 +50,7 @@ section
   &.visible
     overflow: visible   
 
-.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links
   +grid(12)
   +last
 
@@ -252,18 +237,19 @@ section.footer
   padding: 1.5em 0
 
 section.notice, section.alert
+  padding: .5em
+  text-align: center
+  font-size: 18px
   .message
     color: white
-    &:before
-      padding-right: 1em
 
 section.notice
   background: $green
-  border-bottom: 1px dashed darken($green, 20%)
+  border-bottom: 1px solid darken($green, 20%)
 
 section.alert
   background: $orange
-  border-bottom: 1px dashed darken($orange, 20%)
+  border-bottom: 1px solid darken($orange, 20%)
 
 
 a[href="/auth/facebook"]
@@ -391,8 +377,6 @@ section.highlight
     +grid-container
     .meurio_apps
       +grid(4)
-      .other_apps
-        top: 78px
     .application_menu
       +grid(8)
       +last

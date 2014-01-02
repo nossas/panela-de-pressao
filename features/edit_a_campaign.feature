@@ -13,7 +13,7 @@ Feature: edit a campaign
     Then I should not see "the accept campaign button"
     Given I fill "O nome da minha campanha será" with "Fim à Escravidão no Brasil"
     When I press "Salvar campanha"
-    Then I should be in this campaign page
+    Then I should be in "this campaign page"
     And I should see "Fim à Escravidão no Brasil"
     And no email called "Sua campanha foi aprovada!" should be sent
 
@@ -35,6 +35,6 @@ Feature: edit a campaign
     Then I should not see "the accept campaign button"
     Given I fill "O nome da minha campanha será" with "Fim à Escravidão no Brasil"
     When I press "Salvar campanha"
-    Then I should be in this campaign page
+    Then I should be in "this campaign page"
     And I should see "Fim à Escravidão no Brasil"
     And no email called "Sua campanha foi aprovada!" should be sent

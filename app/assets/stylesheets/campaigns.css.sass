@@ -111,6 +111,25 @@ body.campaigns#show
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
+  .finished_at, .campaign_without_moderator_warn
+    +grid(12)
+    +last
+    a
+      color: #333
+    span
+      background: #c2c8d4
+      display: block
+      text-align: center
+      padding: .6em
+      color: white
+      +border-radius(4px)
+      margin: 0 auto
+      margin-bottom: 1.5em
+      font-size: 1.1em
+    span.unsucceed
+      background: $loss
+    span.succeed
+      background: $victory
   h1.title, .campaign_subtitle span
     color: darken($gray, 75%)
   h1.title
@@ -579,3 +598,9 @@ body.campaigns#explore
       display: inline-block
       text-align: center
       +border-radius(4px)
+
+body.campaigns#reported
+  .title, .empty
+    +grid(12)
+  .title
+    margin-bottom: 1em
