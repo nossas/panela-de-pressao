@@ -26,4 +26,4 @@ Feature: Add new influencers
   @omniauth_test @javascript @koala
   Scenario: when I'm not logged in
     When I go to "the new influencer page"
-    Then I should be in the Meu Rio accounts login page
+    Then I should be in "the Meu Rio accounts login page"

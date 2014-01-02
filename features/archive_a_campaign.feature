@@ -6,5 +6,5 @@ Feature: archive a campaign
     And there is a campaign
     And I go to "this campaign page"
     When I click "the archive campaign button"
-    Then I should be in this campaign page
+    Then I should be in "this campaign page"
     And I should see "Essa campanha foi arquivada"

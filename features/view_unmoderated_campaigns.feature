@@ -10,7 +10,7 @@ Feature: View unmoderated campaigns
     And I go to "the campaigns page"
     And I open my profile options
     When I click "the unmoderated campaigns button"
-    Then I should be in the unmoderated campaigns page
+    Then I should be in "the unmoderated campaigns page"
     And I should see "the campaign's name" in "the campaign list"
     And I should see "the campaign's user email" in "the campaign list"
     And I should see "the campaign's submition date" in "the campaign list"

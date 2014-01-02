@@ -20,7 +20,7 @@ Feature: Create my own campaign
     And I fill "Texto de compartilhamento no Facebook" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I attach an image to "Imagem de compartilhamento no Facebook"
     When I press "Enviar campanha para moderação"
-    Then I should be in the campaigns page
+    Then I should be in "the campaigns page"
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
     And an email called "Recebemos a sua campanha" should be sent
     And an email called "Campanha aguardando moderação" should be sent
@@ -29,7 +29,7 @@ Feature: Create my own campaign
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
     When I click "the new campaign button"
-    Then I should be in the Meu Rio accounts login page
+    Then I should be in "the Meu Rio accounts login page"
 
   @omniauth_test @ssi
   Scenario: when I'm troll enough to let all fields blank

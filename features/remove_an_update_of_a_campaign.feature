@@ -10,7 +10,7 @@ Feature: remove an update of a campaign
     When I'm in the updates page of the campaign
     Then I should see the remove update button
     When I click on the remove update button
-    Then I should be in the updates page of the campaign
+    Then I should be in "the updates page of the campaign"
     And I should not see the update in the list of updates
     And I should see a successful message
 
