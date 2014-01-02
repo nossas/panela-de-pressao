@@ -25,6 +25,7 @@ ManifesteSe::Application.routes.draw do
     put :moderate, to: "campaigns#moderate"
     put :archive, to: "campaigns#archive"
 
+    resources :reports, :only => [:create]
     resources :posts, :only => [:create, :index, :destroy]
     resources :updates, :only => [:show, :new, :create, :edit, :update, :destroy]
     resources :pokes, :only => [:create, :index] do
