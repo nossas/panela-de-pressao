@@ -20,5 +20,5 @@ Feature: accept a campaign
   Scenario: when I own a campaign awaiting moderation
     Given I'm logged in
     And I own a campaign called "Salve a praça Nossa Senhora da Paz" awaiting moderation
-    When I go to this campaign editing page
+    When I go to "this campaign editing page"
     Then I should not see "the accept campaign button"

@@ -3,7 +3,6 @@ Feature: Put a campaign on featured mode
   As an admin
   I want to feature a campaign
 
-
   @omniauth_test
   Scenario: I'm logged in as admin
     Given I'm logged in as admin
@@ -14,5 +13,5 @@ Feature: Put a campaign on featured mode
 
   Scenario: I'm not logged in as admin
     Given there is a campaign called "Save the Whales!"
-    When I go to this campaign page
+    When I go to "this campaign page"
     Then I should not see "Destaque"

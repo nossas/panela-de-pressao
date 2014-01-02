@@ -16,11 +16,11 @@ Feature: view all the reported campaigns
   Scenario: when there is at least one reported campaign
     Given I'm logged in as admin
     And there is 10 reported campaigns
-    When I go to the reported campaigns page
+    When I go to "the reported campaigns page"
     Then I should see 10 "campaigns"
 
   @ssi
   Scenario: when there is no reported campaign
     Given I'm logged in as admin
-    When I go to the reported campaigns page
+    When I go to "the reported campaigns page"
     Then I should see "there is no reported campaigns"

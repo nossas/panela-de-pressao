@@ -25,12 +25,12 @@ Feature: finish a campaign
 
   Scenario: I'm not logged in
     Given there is a campaign called "Save the Whales!"
-    When I go to this campaign page
+    When I go to "this campaign page"
     Then I should not see "Encerrar campanha"
 
   @omniauth_test
   Scenario: I'm the campaigns owner
     Given I'm logged in
     And I own a campaign called "Save the Whales!"
-    When I go to this campaign page
+    When I go to "this campaign page"
     Then I should not see "Encerrar campanha"
