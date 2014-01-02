@@ -36,7 +36,6 @@ gem "cancan"
 # Stuff
 gem "jquery-rails"
 gem 'chosen-rails'
-gem 'coffee-rails'
 gem 'twitter'
 gem 'bitly'
 gem "koala"
