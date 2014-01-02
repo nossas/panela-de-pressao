@@ -28,7 +28,7 @@ Feature: Create my own campaign
   @omniauth_test @javascript @bitly
   Scenario: when I'm not logged in
     Given I'm in the campaigns page
-    When I click "Crie sua campanha"
+    When I click "the new campaign button"
     Then I should be in the Meu Rio accounts login page
 
   @omniauth_test @ssi
@@ -44,7 +44,7 @@ Feature: Create my own campaign
     Given I'm logged in
     And I have no phone
     And I'm in the campaigns page
-    And I click "Crie sua campanha"
+    And I click "the new campaign button"
     And I fill "O nome da minha campanha será" with "Evitar que desapareçam com a praça Nossa Senhora da Paz"
     And I fill "A situação que eu quero mudar com ela é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I fill "A mensagem de email que eu quero enviar para os alvos é" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
@@ -56,11 +56,11 @@ Feature: Create my own campaign
   @omniauth_test @ssi
   Scenario: when I'm an admin
     Given I'm logged in as admin
-    When I click "Crie sua campanha"
+    When I click "the new campaign button"
     Then I should see the campaign's hashtag field
 
   @omniauth_test @ssi
   Scenario: when I'm not an admin
     Given I'm logged in
-    When I click "Crie sua campanha"
+    When I click "the new campaign button"
     Then I should not see the campaign's hashtag field

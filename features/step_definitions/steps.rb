@@ -141,24 +141,7 @@ When /^I press "([^"]*)"$/ do |arg1|
 end
 
 When /^I click "([^"]*)"$/ do |arg1|
-  if arg1 == "Pressionar via email"
-    page.execute_script("$('form:has(input[value=\"email\"])').submit();")
-  elsif arg1 == "Pressionar via Facebook"
-    page.execute_script("$('form:has(input[value=\"facebook\"])').submit();")
-  elsif arg1 == "Pressionar via Twitter"
-    page.execute_script("$('form:has(input[value=\"twitter\"])').submit();")
-  elsif arg1 == "Entrar via Facebook"
-    within("#login") do
-      click_on arg1
-    end
-  elsif arg1 == "the report campaign button"
-    click_link("report_campaign_button")
-  else 
-    click_link(arg1)
-  end
-  if arg1 == "ver/personalizar email" || arg1 == "ver/personalizar mensagem"
-    sleep(1)
-  end
+  click_link to_element(arg1)
 end
 
 When /^I click on the "(.*?)" avatar$/ do |arg1|

@@ -8,7 +8,7 @@ Feature: post an answer of a target
     Given I'm logged in as admin
     And there is a campaign called "A Vida das Ariranhas"
     And I'm in this campaign page
-    And I click "Respostas"
+    And I click "the campaign answers button"
     And I fill "answer_text" with "Viva la vida!"
     When I press "Criar Resposta"
     Then I should be in the answers page of the campaign
