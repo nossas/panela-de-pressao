@@ -94,7 +94,7 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      @campaigns ||= end_of_association_chain.unarchived
+      @campaigns ||= end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
     end
   end
 end
