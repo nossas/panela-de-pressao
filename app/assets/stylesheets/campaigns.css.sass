@@ -29,48 +29,38 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
       display: none
       margin: 0
 
+body.campaigns#unmoderated
+  section.highlight
+    display: none
+  ol.campaigns 
+    margin: 0
+    li.campaign
+      margin-bottom: 1em
+      +grid(3)
+      &:nth-child(4n)
+        +last
+
 body.campaigns#index, body.campaigns#unmoderated
-  article.left
-    +grid(12)
-    +last
-  .featured
-    .description
-      padding: .2em 0 .6em 0
   h2
-    color: darken(gray, 25%)
-    margin: 2em 0 1em 0
+    color: #363a3d
     font-weight: bold
     font-size: 1.4em
-    &:before
-      color: darken($orange, 5%)
-      margin-right: .4em
-      top: .2em
-      position: relative
+    margin-bottom: 1em
+  section
+    padding: 2em 0
+  .campaigns_by_moderator, .successful_campaigns
+    ol.campaigns 
+      margin: 0
+      li.campaign
+        +grid(3)
+        &:last-child
+          +last
   .successful_campaigns
     background: #e7e8ea
-    ol.campaigns
-      margin: 0
-  section.index, .campaigns_by_moderator, .successful_campaigns
-    ol.campaigns 
-      li.campaign
-        margin-bottom: 2em
-        +grid(3)
-  section.index, .successful_campaigns
-    ol.campaigns 
-      li.campaign
-        &:nth-child(4n+0)
-          +last
-  .campaigns_by_moderator
-    ol.campaigns 
-      li.campaign
-        &:nth-child(3n+0)
-          +last
   .campaigns_by_moderator
     background: #2e3235
     h2
       color: white
-      margin-bottom: 1em
-      font-weight: normal
     .moderator
       +grid(3)
       color: white
@@ -547,8 +537,9 @@ body.campaigns#explore
       margin-bottom: 1em
   ol.campaigns
     li.campaign
+      margin-bottom: 1em
       +grid(4)
-      &:nth-child(3n+0)
+      &:nth-child(3n)
         +last
   ol.categories
     margin: 0
