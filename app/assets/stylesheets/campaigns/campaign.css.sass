@@ -1,7 +1,25 @@
 li.campaign
   line-height: normal
-  img
-    +border-radius(5px 5px 0 0)
+  .image
+    position: relative
+    overflow: hidden
+    .succeed, .failed
+      position: absolute
+      width: 100%
+      text-align: center
+      color: white
+      padding: .25em
+      font-weight: bold
+      +rotate(-45deg)
+      left: -75px
+      top: 20px
+      +box-shadow(black 0 0 5px)
+    .succeed
+      background: $green
+    .failed
+      background: red
+    img
+      +border-radius(5px 5px 0 0)
   .name_and_user_name
     background: white
     padding: .5em 1em

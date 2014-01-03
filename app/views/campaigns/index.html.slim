@@ -3,15 +3,19 @@
 
 - content_for :highlight do
   .row
-    h2.popular Campanhas em Destaque
+    h2 Campanhas em Destaque
     #featured.featured data-orbit=""
       = render 'featured'
 
+section.successful_campaigns
+  .row
+    h2 Campanhas Vitoriosas
+    ol.campaigns= render @successful_campaigns
+
 section.content
   .row.popular
-    h2.popular.icon-fire= t "home.text.popular_campaigns"
-    ol.campaigns
-      = render @popular 
+    h2= t "home.text.popular_campaigns"
+    ol.campaigns= render @popular 
 
 - if @moderator.present?
   section.content.campaigns_by_moderator
@@ -51,7 +55,7 @@ section.information
 
 section.content.index
   .row.all_campaigns
-    h2.popular Campanhas recentes
+    h2 Campanhas recentes
     = form_for :search, html: { class: 'search'} do |f|
       .block
         label

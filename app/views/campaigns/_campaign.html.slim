@@ -1,5 +1,10 @@
 li.campaign
-  = link_to image_tag(campaign.image), campaign
+  .image
+    = link_to image_tag(campaign.image), campaign
+    - if campaign.succeed?
+      .succeed Vitória!
+    - elsif campaign.failed?
+      .failed Não deu
   .name_and_user_name
     .name= link_to truncate(campaign.name, length: 60), campaign
     .user_name por #{content_tag :strong, campaign.user.name}

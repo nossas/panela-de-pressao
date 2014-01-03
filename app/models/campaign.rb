@@ -135,4 +135,8 @@ class Campaign < ActiveRecord::Base
   def pokers
     @pokers ||= User.where("id IN (?)", pokes.map{|p| p.user_id})
   end
+
+  def failed?
+    succeed == false
+  end
 end

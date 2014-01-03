@@ -19,6 +19,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
   before_filter :only => [:index] { @featured = Campaign.featured || Campaign.moderated.limit(5) }
   before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
+  before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
 
   def create
     @campaign = Campaign.new(params[:campaign])
