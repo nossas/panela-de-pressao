@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
-  has_many :recomendations
   has_many :moderations, class_name: "Campaign", foreign_key: "moderator_id"
   has_and_belongs_to_many :collaborations, :class_name => "Campaign"
 

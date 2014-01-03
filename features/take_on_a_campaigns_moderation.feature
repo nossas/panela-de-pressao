@@ -1,4 +1,4 @@
-Feature: take on a campaing's moderation
+Feature: take on a campaign's moderation
 
   @omniauth_test @ssi @javascript
   Scenario: when I'm an admin
