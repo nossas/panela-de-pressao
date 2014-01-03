@@ -12,11 +12,6 @@ section.successful_campaigns
     h2 Campanhas Vitoriosas
     ol.campaigns= render @successful_campaigns
 
-section.content
-  .row.popular
-    h2= t "home.text.popular_campaigns"
-    ol.campaigns= render @popular 
-
 - if @moderator.present?
   section.content.campaigns_by_moderator
     .row
@@ -28,47 +23,3 @@ section.content
           .user_label= @moderator.profession
         .user_bio= @moderator.bio
       ol.campaigns= render @moderator.moderations.limit(3)
-
-section.information
-  .row
-    .create_your_campaign
-      .content
-        h3
-          | Comece a transformar o Rio! 
-        p
-          | Se você vê algum problema no Rio que pode ser mudado com pressão popular, mãos à obra!
-        = link_to "Criar campanha", new_campaign_path, class: 'btn'
-    .our_victories
-      .content
-        h3
-          | Siga os exemplos
-        p
-          | Descubra as campanhas de sucesso no Panela de Pressão!
-        = link_to "Campanhas vitoriosas!", explore_path(successful: true), class: 'btn'
-    .didnt_find_target
-      .content
-        h3
-          | Não achou seu alvo?
-        p
-          | Você procurou um alvo para pressionar e não o encontrou na nossa lista
-        = mail_to 'contato@paneladepressao.org.br', "Adicionar alvo",  class: 'btn'
-
-section.content.index
-  .row.all_campaigns
-    h2 Campanhas recentes
-    = form_for :search, html: { class: 'search'} do |f|
-      .block
-        label
-          | Filtre por categoria
-          = f.select :category, Category.all.collect { |p| [p.name, category_campaigns_url(p)] }, {}, class: 'chzn-select explore', id: 'explore_field'
-      .block
-        /label
-          | Ou faça uma busca
-          = f.text_field :campaign
-      .block.last
-      .clear
-    ol.campaigns
-      = render collection.limit(12)
-    
-  /.facebook_widget 
-    .fb-like-box data-href="http://www.facebook.com/meurio" data-border-color="#fafafa" data-width="185" data-height="405" data-show-faces="true" data-stream="false" data-header="false"
