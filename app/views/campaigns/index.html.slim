@@ -3,22 +3,24 @@
 
 - content_for :highlight do
   .row
-    .featured
-      .about
-        span.is_featured= t 'home.highlight.is_featured'
-        - if @featured
-          h1= link_to truncate(@featured.name, length: 100), @featured
-          span.category.icon-list= link_to @featured.category.name, category_campaigns_path(@featured.category)
-          .description= link_to truncate(strip_tags(@featured.description_html), length: 120), @featured 
-          .counter
-            .count.icon-comments= t "home.highlight.pokes_count_html", count: @featured.pokers.count
-            .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured), class: 'btn'
-      .image
-        - unless @featured.nil?
-          - unless @featured.video.nil?
-            = @featured.video.html_safe
-          - else
-            = link_to image_tag(@featured.image.url), @featured
+    #featured.featured data-orbit=""
+      - 3.times do
+        div
+          .about
+            span.is_featured= t 'home.highlight.is_featured'
+            - if @featured
+              h1= link_to truncate(@featured.name, length: 100), @featured
+              span.category.icon-list= link_to @featured.category.name, category_campaigns_path(@featured.category)
+              .description= link_to truncate(strip_tags(@featured.description_html), length: 120), @featured 
+              .counter
+                .count.icon-comments= t "home.highlight.pokes_count_html", count: @featured.pokers.count
+                .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured), class: 'btn'
+          .image
+            - unless @featured.nil?
+              - unless @featured.video.nil?
+                = @featured.video.html_safe
+              - else
+                = link_to image_tag(@featured.image.url), @featured
 
 section.content
   .row.popular
