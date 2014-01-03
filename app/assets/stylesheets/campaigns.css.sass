@@ -50,12 +50,12 @@ body.campaigns#index, body.campaigns#unmoderated
     background: #e7e8ea
     ol.campaigns
       margin: 0
-  section.index, .popular, .campaigns_by_moderator, .successful_campaigns
+  section.index, .campaigns_by_moderator, .successful_campaigns
     ol.campaigns 
       li.campaign
         margin-bottom: 2em
         +grid(3)
-  section.index, .popular, .successful_campaigns
+  section.index, .successful_campaigns
     ol.campaigns 
       li.campaign
         &:nth-child(4n+0)
@@ -65,38 +65,6 @@ body.campaigns#index, body.campaigns#unmoderated
       li.campaign
         &:nth-child(3n+0)
           +last
-  .all_campaigns
-    form.search
-      margin-bottom: 2em
-      display: block
-      input
-        padding: 0
-    .block
-      +grid(4)
-      &.last
-        +last
-    ol.campaigns
-      margin-top: 1em
-  section.information
-    background: darken($gray, 5%)
-    padding: 2em 0
-    .create_your_campaign, .our_victories, .didnt_find_target
-      +grid(4)
-      .content
-        background: white
-        padding: 1em
-        +border-radius(3px)
-        h3
-          margin: 0
-          font-size: 18px
-        p
-          font-size: 14px
-          height: 60px
-      a.btn
-        width: 100%
-        display: block
-    .didnt_find_target
-      +last
   .campaigns_by_moderator
     background: #2e3235
     h2
