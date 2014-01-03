@@ -305,66 +305,55 @@ a[href="/auth/facebook"]
     padding: 30px
 
 section.highlight
-  margin-top: -.1em
-  background: image-url('bg_highlight.jpg') center top repeat-x
-  .counter
-    span
-      font-size: 3em !important
-      float: left
-      width: 60%
-      line-height: 22px
-      padding-top: 9px
-    .count
-      &:before
-        font-size: 48px !important
+  background: $gray
+  .orbit-next, .orbit-prev
+    background-color: rgba(0,0,0,0.2)
   .featured
+    border: 1px solid darken($gray, 10%)
     background: white
-    padding: 1.5em
-    margin: 25px 0
     overflow: hidden
+    padding: 0
+    margin: 0
     +border-radius(4px)
-    +box-shadow(1px 1px 2px lighten(black, 65%))
+    .image
+      height: 32%
+      padding: 0
+      img, iframe
+        width: 100%
+        display: block
+    .about
+      padding: 1em 2em 1em 0
+      +last
     h1
       color: $green
       font-size: 1.6em
-      margin-top: .6em
       margin-bottom: .4em !important
-    .is_featured
-      background: $orange
-      color: white
-      width: 30%
-      font-size: .8em
-      padding: .3em .4em
-      font-weight: bol
-      +border-radius(4px)
-    .category
-      font-size: .8em
-      &:before
-        color: $orange
-        margin-right: .5em
+    .user_name
+      color: lighten(gray, 5%)
+      strong
+        color: black
     .description
       margin: 1em 0
       font-size: 1em
       line-height: 1.4em
       a
         color: lighten(gray, 5%)
-    .count, .poke
-      +grid-subcolumn(6,3)
-    .poke
-      +last
-    .about
-      +grid(6)
-    .image
-      +grid(6)
-      +last
-      height: 32%
-      img, iframe
+    .counter
+      .count
+        +grid(4)
+        color: lighten(gray, 5%)
+        span
+          font-size: 3em
+          margin-bottom: .3em
+      .poke
+        +grid(8)
+        +last
+      .btn
+        background-color: $orange
+        font-size: 1.3em
+        color: white
         width: 100%
-        display: block
-        +box-shadow(0 0 1px lighten(black, 60%))
-      iframe
-        height: 280px
-
+        
 .meurio_header
   .meurio_logo_and_user_menu
     +grid-container
