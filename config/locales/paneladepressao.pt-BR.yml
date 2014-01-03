@@ -35,7 +35,7 @@ pt-BR:
   home:
     highlight:
       pokes_count_html: "<span>%{count}</span> pressões feitas"
-      poke_now: "Pressionar agora!"
+      poke_now: "Pressione agora!"
       is_featured: "Campanha em Destaque"
     text:
       popular_campaigns: "Campanhas Populares"
