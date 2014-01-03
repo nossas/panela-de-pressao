@@ -9,6 +9,6 @@ Feature: View recent campaigns
     Then I should see "Desarmamento Voluntário"
   
   Scenario: when there is an unmoderated campaign
-    Given there is a campaign called "Desarmamento Voluntário" awaiting moderation
+    Given there is an unmoderated campaign called "Campanha não moderada"
     When I go to "the campaigns page"
-    Then I should not see "Desarmamento Voluntário"
+    Then I should see "Campanha não moderada"

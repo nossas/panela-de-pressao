@@ -17,14 +17,14 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:show] { @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user} }
   before_filter :only => [:show] { @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5) }
   before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
-  before_filter :only => [:index] { @featured = Campaign.featured.first || Campaign.accepted.first }
+  before_filter :only => [:index] { @featured = Campaign.featured.first || Campaign.moderated.first }
   before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
 
   def create
     @campaign = Campaign.new(params[:campaign])
     if params[:user_phone].nil? || current_user.update_attributes(:phone => params[:user_phone])
       create! do |success, failure|
-        success.html { return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
+        success.html { return redirect_to campaigns_path, :notice => "Está valendo, campanha no ar!" }
         failure.html { render :new }
       end
     else
@@ -41,12 +41,6 @@ class CampaignsController < InheritedResources::Base
       @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
       render :edit
     end
-  end
-
-  def accept
-    Campaign.find(params[:campaign_id]).accept_now!
-    params[:id] = params[:campaign_id]
-    show(:notice => "Está valendo, campanha no ar!")
   end
 
   def finish
@@ -101,7 +95,7 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      @campaigns ||= end_of_association_chain.accepted.unarchived
+      @campaigns ||= end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
     end
   end
 end

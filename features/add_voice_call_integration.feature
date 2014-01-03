@@ -1,10 +1,10 @@
 Feature: Enable voice call integration of campaign 
   In order to allow people to connect directly with their representatives
   As an admin
-  I want to enable voice call integratino
+  I want to enable voice call integration
 
   @omniauth_test @ssi
-  Scenario: when I own a campaign awaiting moderation
+  Scenario: when I own a campaign
     Given I'm logged in
     When I'm in the new campaign page
     Then I should not see "the Plivo integration fields"
@@ -26,8 +26,8 @@ Feature: Enable voice call integration of campaign
     And I fill "Número que receberá as ligações" with "2197137471"
     And I attach an image to "Para a divulgação da minha campanha bombar, vou usar essa imagem"
     And I select "Educação" for "E trata do tema"
-    When I press "Enviar campanha para moderação"
+    When I press "Criar campanha"
     Then I should be in "the campaigns page"
-    And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
-    And an email called "Recebemos a sua campanha" should be sent
+    And I should see "Está valendo, campanha no ar!"
+    And an email called "A sua mobilização está no ar!" should be sent
     And an email called "Campanha aguardando moderação" should be sent

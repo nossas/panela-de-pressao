@@ -21,6 +21,7 @@ pt-BR:
     back_home: "Voltar à página inicial"
     channel: "Escolha um canal para fazer pressão: "
     send_to_moderation: "Enviar campanha para moderação"
+    create_campaign: "Criar campanha"
     save: "Salvar campanha"
     cancel: "Cancelar"
     accept: "Aceitar campanha"
