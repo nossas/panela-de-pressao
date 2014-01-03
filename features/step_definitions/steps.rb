@@ -554,3 +554,7 @@ end
 Then(/^the "(.*?)" email should be sent$/) do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.subject.index(to_email_subject(arg1)) != nil}.should_not be_empty
 end
+
+Given(/^there is a successful campaign$/) do
+  @campaign = Campaign.make! succeed: true, finished_at: Time.now
+end

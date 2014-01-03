@@ -36,7 +36,7 @@ body.campaigns#index, body.campaigns#unmoderated
   .featured
     .description
       padding: .2em 0 .6em 0
-  h2.popular
+  h2
     color: darken(gray, 25%)
     margin: 2em 0 1em 0
     font-weight: bold
@@ -46,12 +46,16 @@ body.campaigns#index, body.campaigns#unmoderated
       margin-right: .4em
       top: .2em
       position: relative
-  section.index, .popular, .campaigns_by_moderator
+  .successful_campaigns
+    background: #e7e8ea
+    ol.campaigns
+      margin: 0
+  section.index, .popular, .campaigns_by_moderator, .successful_campaigns
     ol.campaigns 
       li.campaign
         margin-bottom: 2em
         +grid(3)
-  section.index, .popular
+  section.index, .popular, .successful_campaigns
     ol.campaigns 
       li.campaign
         &:nth-child(4n+0)

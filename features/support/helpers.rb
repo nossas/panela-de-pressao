@@ -84,12 +84,14 @@ def to_element string
   return "#reported_campaigns_button" if string == "the reported campaigns button"
   return ".campaign" if string == "campaigns"
   return ".empty" if string == "there is no reported campaigns"
+  return ".successful_campaigns .campaign .name a" if string == "this successful campaign"
 end
 
 def to_text string
   return @campaign.name if string == "somebody's moderation list"
   return @campaign.name if string == "the unmoderated campaign"
   return @current_user.name if string == "me as the moderator of this campaign"
+  return @campaign.name if string == "this successful campaign"
 end
 
 def to_email_subject string
