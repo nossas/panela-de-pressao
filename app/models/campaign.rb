@@ -76,6 +76,10 @@ class Campaign < ActiveRecord::Base
     !self.finished_at.nil?
   end
 
+  def featured?
+    !self.featured_at.nil?
+  end
+
   def targets_with_facebook
     self.targets.select{|target| !target.influencer.facebook_id.blank?}
   end

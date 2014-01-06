@@ -46,7 +46,7 @@ class CampaignsController < InheritedResources::Base
 
   def finish
     @campaign = Campaign.find(params[:campaign_id])
-    @campaign.update_attributes :finished_at => Time.now, :succeed => params[:succeed]
+    @campaign.update_attributes finished_at: Time.now, succeed: params[:succeed]
     redirect_to @campaign
   end
 
