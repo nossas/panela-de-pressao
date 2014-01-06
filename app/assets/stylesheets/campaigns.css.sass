@@ -541,27 +541,28 @@ body.campaigns#explore
       +grid(4)
       &:nth-child(3n)
         +last
-  ol.categories
-    margin: 0
-    li
-      padding: .8em 0
-      border-bottom: 1px solid darken($gray, 15%)
-      a
-        color: lighten(gray, 10%)
-        font-size: .9em
-      &:hover
-        border-bottom: 1px solid $yellow
+  aside.right
+    ol.categories
+      margin: 0
+      li
+        padding: .8em 0
+        border-bottom: 1px solid darken($gray, 15%)
         a
-          color: $orange
-    span
-      float: right
-      background: $yellow
-      color: white
-      padding: .1em .6em
-      font-size: .9em
-      display: inline-block
-      text-align: center
-      +border-radius(4px)
+          color: lighten(gray, 10%)
+          font-size: .9em
+        &:hover
+          border-bottom: 1px solid $yellow
+          a
+            color: $orange
+      span
+        float: right
+        background: $yellow
+        color: white
+        padding: .1em .6em
+        font-size: .9em
+        display: inline-block
+        text-align: center
+        +border-radius(4px)
 
 body.campaigns#reported
   .title, .empty
