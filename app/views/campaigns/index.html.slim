@@ -4,7 +4,7 @@
 - content_for :highlight do
   .row
     h2 Campanhas em Destaque
-    #featured.featured data-orbit=""
+    #featured.featured
       = render 'featured'
 
 section.successful_campaigns
@@ -23,3 +23,8 @@ section.successful_campaigns
           .user_label= @moderator.profession
         .user_bio= @moderator.bio
       ol.campaigns= render @moderator.moderations.limit(3)
+
+section.popular
+  .row
+    h2 Campanhas Populares
+    ol.campaigns= render @popular
