@@ -1,54 +1,72 @@
-= content_for :title, "O que é? - Panela de Pressão"
+= content_for :title, "Conheça o Panela de Pressão"
 
-section.content
-  .row
-    h1 Coisas que só o Panela de Pressão faz por você.
-  .row.content
-    .image
-      = image_tag "about/1.png"
-    .text
-      h2 
-        |Te dá acesso aos nomes e e-mails de todas as pessoas que participarem da sua campanha 
-      p.description
-        |Ao contrário de outros sites, como o Avaaz, o Panela dá ao organizador da campanha (e apenas a ele) acesso automático 
-        | aos nomes e e-mails dos participantes. Assim, você pode se comunicar com todas as pessoas que participarem da sua campanha, 
-        | dando informações sobre próximos passos, vitórias e derrotas. Você também pode imprimir todos os nomes e entregar um documento 
-        | em formato de petição para os responsáveis.
-  .row.content
-    .image
-      = image_tag "about/2.png"
-    .text
-      h2 
-        |Não vende e-mails nem nenhum outro dado pessoal de quem participa de campanhas
-      p.description
-        |O panela não vende ou cede as informações recolhidas, nem veicula publicidade para os participantes. 
-        | Os dados de quem participa só são disponibilizados para quem cria a campanha e para a nossa equipe. 
-        | Os criadores de campanha, ao participar do site, aderem aos nossos termos de uso e também se comprometem 
-        | a não vender dados de quem participa.
-  .row.content
-    .image
-      = image_tag "about/3.png"
-    .text
-      h2 
-        |Permite que você entre em contato direto com quem toma as decisões na cidade 
-      p.description
-        |Quando você cria uma petição online, muitas vezes pode ser difícil a entrega das assinaturas para quem toma a decisão. 
-        | Afinal, quem tem o contato do Governador, do Prefeito ou de outros governantes? No Panela, esse problema não existe, pois 
-        | cada pressão é uma mensagem enviada diretamente as alvos por e-mail, Facebook e/ou Twitter. 
-  .row.content
-    .image
-      = image_tag "about/4.png"
-    .text
-      h2 
-        |Tem uma equipe comprometida a melhorar o desempenho da sua campanha 
-      p.description
-        |Nossa equipe entra em contato direto com você e te ajuda a fazer uma campanha ainda mais bacana. Em caso de dúvidas, 
-        | é só você mandar um e-mail ou dar uma ligada pra gente e responderemos com o maior prazer, no menor prazo possível. 
-  .row.content
-    .image
-      = image_tag "about/5.png"
-    .text
-      h2.special É feito  e mantido por cariocas apaixonados pelo Rio!
-  .row
-    .campaign_btn
-      = link_to "Vamos criar uma campanha?", new_campaign_path, class: 'btn'
+section
+  .row.about_item
+    .about_image= image_tag "about/icon-01.png"
+    .about_text
+      h2 O que é o Panela de Pressão?
+      p O Panela de Pressão é o único aplicativo de mobilizações que permite contato direto com governantes, gestores públicos, parlamentares, concessionárias de serviços públicos, políticos em geral e outros tomadores de decisão da cidade. O Panela de Pressão foi criado e é mantido pela equipe da Rede Meu Rio (ainda não conhece a rede? #{link_to "Clique aqui", "http://www.meurio.org.br/"}).
+
+  .row.about_item
+    .about_image= image_tag "about/icon-02.png"
+    .about_text
+      h2 O que o Panela de Pressão não é?
+      p O Panela de Pressão não é um site de petições online. Quem se mobiliza não assina nada. Não há intermediários. Em vez disso, todos pressionam diretamente os tomadores de decisão da cidade por email, Facebook, Twitter e até por telefone.
+
+  .row.about_item
+    .about_image= image_tag "about/icon-03.png"
+    .about_text
+      h2 Quem pressiona?
+      p Qualquer pessoa que se identifica com a causa de uma mobilização pode pressionar. Ao fazê-lo, essa pessoa passa a integrar a Rede Mobilizadora Meu Rio que conta com 100 mil cariocas de nascimento e de coração.
+      h3 Uma informação útil a quem pressiona:
+      p Cada mobilização permite apenas uma das quatro formas de pressão:
+      ul
+        li
+          strong Por email: 
+          | ao clicar, você enviará um email do seu endereço eletrônico diretamente para o endereço eletrônico do alvo.
+        li 
+          strong Por Facebook: 
+          | ao clicar, você irá postar com o seu perfil diretamente no mural do alvo.
+        li 
+          strong Por Twitter: 
+          | ao clicar, você irá tuitar o alvo diretamente com o seu perfil.
+        li 
+          strong Por telefone: 
+          | ao clicar, a telefonista eletrônica vai ligar para o seu celular do número 3957-9303 e completar a ligação com o alvo para você. Quando você for atendido, dê o seu recado.
+
+  .row.about_item
+    .about_image= image_tag "about/icon-04.png"
+    .about_text
+      h2 Quem cozinha?
+      p Qualquer pessoa pode criar a sua própria mobilização no Panela de Pressão #{link_to "clicando aqui", new_campaign_path}. Quem cria uma mobilização é chamado de cozinheiro. E, como todo bom cozinheiro, quem cria a mobilização é o primeiro responsável por manter a pressão e divulgar a sua causa nas redes sociais.
+      h3 Duas informações úteis aos cozinheiros:
+      h4 Não pressione se
+      p Ao criar a sua mobilização, ela será automaticamente publicada no Panela de Pressão. Entretanto, ela poderá ser denunciada e tirada do ar se estiver em desacordo com a política do aplicativo. Por isso, não crie uma mobilização que:
+      ul
+        li incite ódio, homofobia, preconceito social, racial ou de gênero.
+        li faça propaganda política partidária.
+        li sugira ações que contraditórias com a visão de cidade da Rede Meu Rio, a qual defende a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
+        li promova uma causa de caráter privado, e não público.
+        li não possua caráter propositivo.
+      h4 Seja selecionado pela equipe
+      p Quanto mais alinhadas com os critérios a seguir, mais chance a sua mobilização tem de ser selecionada e de receber suporte dos recursos humanos da equipe do Meu Rio:
+      ul
+        li A mobilização em muito se alinha à visão de cidade do Meu Rio: a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
+        li A mobilização tem caráter urgente, cujo impacto e o alcance de seus objetivos só será alcançado caso haja trabalho extra da equipe do Meu Rio.
+        li A mobilização tem grande potencial de atingir sucesso.
+        li A mobilização toca em uma temática que está sendo amplamente discutida pela sociedade.
+        li O membro da rede, criador da mobilização, tem disponibilidade de tempo para se dedicar, junto com a equipe, ao desenvolvimento da mobilização.
+
+  .row.about_item
+    .about_image= image_tag "about/icon-05.png"
+    .about_text
+      h2 Quem é pressionado?
+      p Qualquer pessoa que tem o poder de tomar decisões que atingem a vida de muitas pessoas na cidade pode ser alvo de uma mobilização. Aqueles que são pressionados podem (e devem) responder às mobilizações com a garantia de que sua resposta, qualquer que seja ela, será publicada no Panela de Pressão.
+
+  .row.about_item
+    .about_image= image_tag "about/icon-06.png"
+    .about_text
+      h2 Sobre a Rede Mobilizadora Meu Rio
+      p O Meu Rio é uma rede mobilizadora formada por cariocas, de nascimento e de coração, que compartilham conhecimento, talento, recursos e tecnologia para criar e divulgar mobilizações por um Rio de Janeiro melhor. 
+      p A equipe do Meu Rio, um grupo multidisciplinar de profissionais, cria e mantém a infraestrutura e dá suporte às mobilizações, e o faz de forma independente por meio das seguintes plataformas: o Panela de Pressão, o Imagine, o De Olho e o De Guarda. A plataforma Faça Acontecer, que facilita o microfinanciamento da rede, também é de responsabilidade da equipe do Meu Rio.  
+      p Conheça e faça parte dessa rede #{link_to "clicando aqui", "http://www.meurio.org.br/"}
