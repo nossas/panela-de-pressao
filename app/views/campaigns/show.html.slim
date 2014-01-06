@@ -30,7 +30,7 @@ section.content
               - else
                 | denuncie.
       - else
-            span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui", about_path}.
+            span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui", about_path(anchor: "campaign_owner")}.
 
   .row
     = render partial: 'finished_message' if @campaign.finished_at?
