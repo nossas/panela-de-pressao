@@ -15,6 +15,7 @@ def route_to_path route
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
   return "/meurio_accounts"                                               if route == "the Meu Rio accounts login page"
   return reported_campaigns_path                                          if route == "the reported campaigns page"
+  return campaign_path(Campaign.order(:id).last)                          if route == "the created campaign page"
   raise "I don't know the route '#{route}'"
 end
 
