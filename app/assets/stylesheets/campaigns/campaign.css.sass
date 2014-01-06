@@ -1,5 +1,6 @@
 li.campaign
   line-height: normal
+  +border-radius(5px)
   .image
     position: relative
     overflow: hidden
@@ -18,21 +19,16 @@ li.campaign
       background: $green
     .failed
       background: red
-    img
-      +border-radius(5px 5px 0 0)
   .name_user_name_and_category
     background: white
     padding: .5em 1em
-    border-left: 1px solid #e7e7e7
-    border-right: 1px solid #e7e7e7
     height: 115px
     .category
       font-size: 12px
   .pokes
     background: #f7f8fc
     padding: .5em 1em
-    border: 1px solid #e7e7e7
-    +border-radius(0 0 5px 5px)
+    border-top: 1px solid #e7e7e7
     .count
       font-size: 24px
       font-weight: bold
