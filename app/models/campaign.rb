@@ -27,7 +27,6 @@ class Campaign < ActiveRecord::Base
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
   after_create { self.delay.create_mailchimp_segment }
-  after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
   after_create { CampaignMailer.delay.we_received_your_campaign(self) }
 
   accepts_nested_attributes_for :targets, :influencers
