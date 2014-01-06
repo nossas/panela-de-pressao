@@ -3,7 +3,7 @@ p Olá #{@campaign.user.name}!
 p Parabéns, você criou com sucesso a sua mobilização que, esperamos, irá ganhar o apoio de muitas cariocas que, como você, querem um Rio de Janeiro mais participativo para todos.
 
 p 
-  strong Este é o seu link único que você pode, a partir de agora, compartilhar nas redes sociais, por email, ou de qualquer outra forma criativa que você desejar para divulgar a sua mobilização: #{link_to campaign_url(@campaign), @campaign}
+  strong Este é o seu link único que você pode, a partir de agora, compartilhar nas redes sociais, por email, ou de qualquer outra forma criativa que você desejar para divulgar a sua mobilização: #{link_to campaign_url(@campaign), campaign_url(@campaign)}
 
 p E não se esqueça: o Panela de Pressão é um aplicativo da Rede Meu Rio e, por isso, caso um membro da rede entenda que a sua mobilização está em desacordo com a nossa política de uso, ela poderá ser denunciada e retirada do ar. Por isso, fique atento para que a sua mobilização não:
 
