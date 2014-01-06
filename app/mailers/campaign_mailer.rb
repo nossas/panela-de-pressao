@@ -10,12 +10,6 @@ class CampaignMailer < ActionMailer::Base
     mail(to: campaign.user.email, subject: "Sua campanha foi aprovada!")
   end
 
-  def campaign_awaiting_moderation campaign
-    headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"campaign_awaiting_moderation\"] }"
-    @campaign = campaign
-    mail(to: "curadoria@paneladepressao.org.br", subject: "Campanha aguardando moderação")
-  end
-  
   def campaigns_without_moderator
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"campaigns_without_moderator\"] }"
     @campaigns = Campaign.orphan.unmoderated.unarchived
