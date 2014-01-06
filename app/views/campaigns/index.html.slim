@@ -1,11 +1,25 @@
 - content_for :title do
   = t 'site.title'
 
-- content_for :highlight do
+section.institutional
+  .row
+    .item.large-3.columns
+      .image= image_tag 'institutional/icon-01.png'
+      h2 Algo que você quer resolver? Crie agora sua mobilização!
+    .item.large-3.columns
+      .image= image_tag 'institutional/icon-02.png'
+      h2 Ganhe acesso a governantes e tomadores de decisão da cidade!
+    .item.large-3.columns
+      .image.icon-03= image_tag 'institutional/icon-03.png'
+      h2 Isso não é um site de petições: aqui a pressão é direta!
+    .item.large-3.columns
+      .image.icon-04= image_tag 'institutional/icon-04.png'
+      h2 Você mobiliza, você pressiona, você é o protagonista!
+
+section.featured_campaigns
   .row
     h2 Destaque do dia
-    #featured.featured
-      = render 'featured'
+    .featured= render 'featured'
 
 section.successful_campaigns
   .row
