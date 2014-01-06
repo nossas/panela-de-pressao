@@ -558,3 +558,7 @@ end
 Given(/^there is a successful campaign$/) do
   @campaign = Campaign.make! succeed: true, finished_at: Time.now
 end
+
+Given(/^there is a featured campaign$/) do
+  @campaign = Campaign.make! featured_at: Time.now
+end
