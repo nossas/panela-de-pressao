@@ -124,7 +124,7 @@ body.campaigns#show
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
-  .finished_at, .campaign_without_moderator_warn
+  .finished_at, .campaign_warn
     +grid(12)
     +last
     a
@@ -184,14 +184,6 @@ body.campaigns#show
   article.campaign, aside.pressure
     .thanks
       margin-bottom: 1em
-      h3
-        color: #333b3d
-        font-weight: bold
-        margin: 0
-        &.subheader
-          color: #51626d
-          font-size: 1.25em
-          font-weight: 500
     .after_poke
       +border-radius(3px)
       background: white
