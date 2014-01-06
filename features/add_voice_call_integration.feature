@@ -27,7 +27,5 @@ Feature: Enable voice call integration of campaign
     And I attach an image to "Para a divulgação da minha campanha bombar, vou usar essa imagem"
     And I select "Educação" for "E trata do tema"
     When I press "Criar campanha"
-    Then I should be in "the campaigns page"
-    And I should see "Está valendo, campanha no ar!"
+    Then I should be in "the created campaign page"
     And an email called "A sua mobilização está no ar!" should be sent
-    And an email called "Campanha aguardando moderação" should be sent
