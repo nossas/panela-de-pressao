@@ -467,22 +467,18 @@ body.influencers#new, body.influencers#create
     margin-bottom: 2em
 
 section.footer
-  background: darken($gray, 5%)
-  .links, .newsletter, .social
-    h4
-      text-transform: uppercase
-      color: darken($gray, 55%)
-      margin: 1em 0
-  .links 
-    +grid(6)
-  .social, .newsletter
-    +grid(3)
-  .newsletter
+  background: #353a3e
+  color: white
+  a
+    color: white
+    margin-right: 1em
+  .links
+    +grid(8)
+  .social
+    +grid(4)
     +last
-  .links li
-    font-size: .9em
-    display: inline-block
-    width: 50%
+    .fb-like 
+      margin-top: 1em
 
 .influencers_response
   li.answer
