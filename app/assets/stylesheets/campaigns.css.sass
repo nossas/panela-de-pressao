@@ -535,12 +535,13 @@ body.campaigns#explore, body.campaigns#index
       font-size: 1.1em
       display: inline-block
       margin-bottom: 1em
-  ol.campaigns
-    li.campaign
-      margin-bottom: 1em
-      +grid(4)
-      &:nth-child(3n)
-        +last
+  article.left
+    ol.campaigns
+      li.campaign
+        margin-bottom: 1em
+        +grid(4)
+        &:nth-child(3n)
+          +last
   aside.right
     ol.categories
       margin: 0
