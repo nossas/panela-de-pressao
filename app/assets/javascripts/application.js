@@ -34,16 +34,7 @@
 $(function(){
   $("input.phone").mask('(00) 000000000');
   
-  $(document).foundation({
-    orbit: {
-      variable_height: true,
-      slide_number: false,
-      bullets: true,
-      timer: false,
-      next_class: 'orbit-next', // Class name given to the next button
-      prev_class: 'orbit-prev' // Class name given to the previous button
-    }
-  });
+  $(document).foundation();
   
   // campaigns#show
   $('.show_all_influencers').click(function(e){ $('.targets .user_thumb').slideDown(); $(e.target).remove(); });
