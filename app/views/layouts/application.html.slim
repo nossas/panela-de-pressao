@@ -43,9 +43,9 @@ html
 
     - content_for :current_user_links do
       - if current_user.present?
-        = link_to "Minhas campanhas", user_campaigns_path(current_user), id: :my_campaigns_button
-        = link_to "Moderar campanhas", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
-        = link_to "Campanhas denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
+        = link_to "Minhas mobilizações", user_campaigns_path(current_user), id: :my_campaigns_button
+        = link_to "Selecionar mobilizações", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
+        = link_to "Mobilizações denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
         = link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
 
     = meurio_header_for(:pdp)
