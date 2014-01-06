@@ -68,8 +68,6 @@ section.content
     aside.right.pressure
       - if flash[:poke_notice] || flash[:poke_phone_notice]
         .thanks
-          h3 Obrigado por pressionar!
-          h3.subheader Agora vamos multiplicar essa pressão
         - if @campaign.after_poke_customized?
           .after_poke
             .header
