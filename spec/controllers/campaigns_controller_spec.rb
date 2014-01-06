@@ -12,7 +12,6 @@ describe CampaignsController do
       post :create, :campaign => {}
     end
     it { should redirect_to campaigns_path }
-    it { should set_the_flash.to "Está valendo, campanha no ar!" }
   end
 
   describe "GET show" do
