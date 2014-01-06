@@ -1,11 +1,10 @@
 section.footer
   .row
     .links
-      h4 Campanhas em categorias
-      ol.categories
-        - Category.order(:name).each do |category|
-          li= link_to category.name, category_campaigns_path(category)
+      = link_to "Conheça o Panela de Pressão", about_path
+      = link_to "Descubra as mobilizações", explore_path
+      = link_to "Crie a sua mobilização", new_campaign_path, class: :btn, id: :new_campaign_button
     .social
-      h4 O MeuRio no Facebook
+      h4 Curta o Meu Rio
       .fb-like data-href="http://facebook.com/meurio" data-send="false" data-width="210" data-show-faces="true"
     .newsletter
