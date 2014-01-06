@@ -22,10 +22,13 @@ section.content
     .campaign_warn
       - if @campaign.moderator.nil?
             span
-              | Esta mobilização não foi moderada pelo Meu Rio. 
+              | Se esta mobilização não se adequa à 
+              = link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")
+              |  da Rede Meu Rio, 
               - if can?(:create, Report) && !current_user.reported?(@campaign)
-                | Se não estiver de acordo com os princípios e visão de rede do Meu Rio, 
                 = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
+              - else
+                | denuncie.
       - else
             span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui", about_path}.
 
@@ -84,8 +87,6 @@ section.content
               a href="https://www.facebook.com/sharer/sharer.php?u=#{@campaign.short_url}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
       - elsif !@campaign.finished?
-        .text-center
-          .poke_here Pressione diretamente quem toma essa decisão
         - if @campaign.has_voice_action?
           = render partial: 'poke_by_phone'
         - else
