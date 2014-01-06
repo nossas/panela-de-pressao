@@ -1,11 +1,14 @@
 - content_for :title do
   = t 'site.title'
 
-- content_for :highlight do
+section.institutional
   .row
-    h2 Campanhas em Destaque
-    #featured.featured
-      = render 'featured'
+    p
+
+section.featured_campaigns
+  .row
+    h2 Destaque do dia
+    .featured= render 'featured'
 
 section.successful_campaigns
   .row

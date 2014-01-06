@@ -30,8 +30,6 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
       margin: 0
 
 body.campaigns#unmoderated
-  section.highlight
-    display: none
   ol.campaigns 
     margin: 0
     li.campaign
@@ -41,6 +39,8 @@ body.campaigns#unmoderated
         +last
 
 body.campaigns#index, body.campaigns#unmoderated
+  section.highlight
+    display: none
   h2
     color: #363a3d
     font-weight: bold
@@ -55,6 +55,8 @@ body.campaigns#index, body.campaigns#unmoderated
         +grid(3)
         &:last-child
           +last
+  .institutional
+    background: $institutional
   .successful_campaigns
     background: #e7e8ea
   .campaigns_by_moderator
@@ -67,6 +69,54 @@ body.campaigns#index, body.campaigns#unmoderated
       .user_bio
         margin-top: 1em
         color: #a3a8b4
+  section.featured_campaigns
+    background: $gray
+    .featured
+      border: 1px solid darken($gray, 10%)
+      background: white
+      overflow: hidden
+      padding: 0
+      margin: 0
+      +border-radius(4px)
+      .image
+        height: 32%
+        padding: 0
+        img, iframe
+          width: 100%
+          display: block
+      .about
+        padding: 1em 1.3em
+        +last
+      h1
+        color: $green
+        font-size: 1.6em
+        margin-bottom: .4em !important
+      .user_name
+        color: lighten(gray, 5%)
+        strong
+          color: black
+      .description
+        margin: 1em 0
+        font-size: 1em
+        line-height: 1.4em
+        a
+          color: lighten(gray, 5%)
+      .counter
+        padding-top: 1.5em
+        .count
+          +grid(4)
+          color: lighten(gray, 5%)
+          span
+            font-size: 3em
+            margin-bottom: .3em
+        .poke
+          +grid(8)
+          +last
+        .btn
+          background-color: $orange
+          font-size: 1.3em
+          color: white
+          width: 100%
 
 body.campaigns#show
   article.campaign, aside.right.pressure
