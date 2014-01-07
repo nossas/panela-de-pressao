@@ -14,6 +14,8 @@ def route_to_path route
   return influencer_path(@target.influencer)                              if route == "this target page"
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
   return "/meurio_accounts"                                               if route == "the Meu Rio accounts login page"
+  return reported_campaigns_path                                          if route == "the reported campaigns page"
+  return campaign_path(Campaign.order(:id).last)                          if route == "the created campaign page"
   raise "I don't know the route '#{route}'"
 end
 
@@ -28,16 +30,29 @@ def to_xpath text
 end
 
 def to_button string
-  return "new_poke_phone_submit_button"     if string == "the phone poke button"
-  return "new_poke_email_submit_button"     if string == "the email poke button"
-  return "new_poke_facebook_submit_button"  if string == "the Facebook poke button"
-  return "Aceitar campanha"                 if string == "Aceitar campanha"
-  return "Adicionar alvo"                   if string == "Adicionar alvo"
-  return "Enviar campanha para moderação"   if string == "Enviar campanha para moderação"
-  return "Salvar campanha"                  if string == "Salvar campanha"
-  return "Enviar email agora"               if string == "Enviar email agora"
-  return "Criar Resposta"                   if string == "Criar Resposta"
-  return "new_poke_twitter_submit_button"   if string == "the Twitter poke button"
+  return "new_poke_phone_submit_button" if string == "the phone poke button"
+  return "new_poke_email_submit_button" if string == "the email poke button"
+  return "new_poke_facebook_submit_button" if string == "the Facebook poke button"
+  return "Aceitar campanha" if string == "Aceitar campanha"
+  return "Adicionar alvo" if string == "Adicionar alvo"
+  return "Enviar campanha para moderação" if string == "Enviar campanha para moderação"
+  return "Salvar campanha" if string == "Salvar campanha"
+  return "Criar campanha"                   if string == "Criar campanha"
+  return "Enviar email agora" if string == "Enviar email agora"
+  return "Criar Resposta" if string == "Criar Resposta"
+  return "new_poke_twitter_submit_button" if string == "the Twitter poke button"
+  return "new_campaign_button" if string == "the new campaign button"
+  return "edit_campaign_button" if string == "the edit campaign button"
+  return "victory_campaign_button" if string == "the victory campaign button"
+  return "lose_campaign_button" if string == "the lose campaign button"
+  return "take_on_moderation_button" if string == "the take on moderation button"
+  return "reported_campaigns_button" if string == "the reported campaigns button"
+  return "archive_campaign_button" if string == "the archive campaign button"
+  return "report_campaign_button" if string == "the report campaign button"
+  return "campaign_answers_button" if string == "the campaign answers button"
+  return "unmoderated_campaigns_button" if string == "the unmoderated campaigns button"
+  return "my_campaigns_button" if string == "the my campaigns button"
+  return "feature_campaign_button" if string == "the feature campaign button"
   raise "I don't know button '#{string}'"
 end
 
@@ -51,7 +66,6 @@ def to_element string
   return "#new_campaign" if string == "the new campaign form"
   return "input.phone_with_country_code" if string == "the Plivo integration fields"
   return ".poke_notice" if string == "the thanks for poke message"
-  return ".notice" if string == "Está valendo, campanha no ar!"
   return "form.new_phone_poke" if string == "the phone poke form"
   return "form.new_email_poke" if string == "the email poke form"
   return "form.new_twitter_poke" if string == "the Twitter poke form"
@@ -64,4 +78,26 @@ def to_element string
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
   return "aside.pressure .share" if string == "the campaign share buttons"
+  return ".campaigns_by_moderator .campaign .name" if string == "somebody's moderation list"
+  return ".campaign .name" if string == "the unmoderated campaign"
+  return ".moderator .user_thumb .user_name" if string == "me as the moderator of this campaign"
+  return ".campaign_without_moderator_warn" if string == "the warn of campaign without moderator"
+  return "#reported_campaigns_button" if string == "the reported campaigns button"
+  return ".campaign" if string == "campaigns"
+  return ".empty" if string == "there is no reported campaigns"
+  return ".successful_campaigns .campaign .name a" if string == "this successful campaign"
+  return ".featured .about h1 a" if string == "this featured campaign"
+end
+
+def to_text string
+  return @campaign.name if string == "somebody's moderation list"
+  return @campaign.name if string == "the unmoderated campaign"
+  return @current_user.name if string == "me as the moderator of this campaign"
+  return @campaign.name if string == "this successful campaign"
+  return @campaign.name if string == "this featured campaign"
+end
+
+def to_email_subject string
+  return "Nova denúncia" if string == "report campaign"
+  raise "I don't know email subject '#{string}'"
 end

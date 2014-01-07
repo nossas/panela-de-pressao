@@ -4,14 +4,14 @@ class User < ActiveRecord::Base
   has_many :authorizations
   has_many :campaigns
   has_many :pokes
-  has_many :recomendations
+  has_many :moderations, class_name: "Campaign", foreign_key: "moderator_id"
   has_and_belongs_to_many :collaborations, :class_name => "Campaign"
 
   validates_uniqueness_of :email
 
-  scope :by_campaign_id, ->(campaign_id) { Poke.where(campaign_id: campaign_id).map{|p| p.user} }
-  scope :subscribers, where(:subscriber => true)
-  scope :pokers, where("(SELECT count(*) FROM pokes WHERE pokes.user_id = users.id) > 0")
+  scope :by_campaign_id,  ->(campaign_id) { Poke.where(campaign_id: campaign_id).map{|p| p.user} }
+  scope :subscribers,     where(:subscriber => true)
+  scope :pokers,          where("(SELECT count(*) FROM pokes WHERE pokes.user_id = users.id) > 0")
 
   def self.create_from_hash!(hash)
     create!(
@@ -51,5 +51,9 @@ class User < ActiveRecord::Base
 
   def can_poke? campaign, options = {}
     self.pokes.where("campaign_id = ? AND kind = ? AND created_at >= ?", campaign.id, options[:with], Time.now - 1.day).size == 0
+  end
+
+  def reported? campaign
+    campaign.reports.where(user_id: id).any?
   end
 end

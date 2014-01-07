@@ -19,6 +19,20 @@
 
 section.content
   .row
+    .campaign_warn
+      - if @campaign.moderator.nil?
+            span
+              | Se esta mobilização não se adequa à 
+              = link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")
+              |  da Rede Meu Rio, 
+              - if can?(:create, Report) && !current_user.reported?(@campaign)
+                = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
+              - else
+                | denuncie.
+      - else
+            span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui", about_path(anchor: "campaign_owner")}.
+
+  .row
     = render partial: 'finished_message' if @campaign.finished_at?
     - if @campaign.archived?
       .finished_at
@@ -28,17 +42,20 @@ section.content
     article.campaign
       h1.title= @campaign.name
       .campaign_subtitle
-        span
+        .accepted_at_and_category_name
           | No ar há 
-          strong #{@campaign.accepted_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.accepted_at)}
+          strong #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
-        .campaign_menu
-          = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha" if can?(:edit, @campaign)
-          = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque" if can?(:feature, @campaign)
-          = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória" if can?(:finish, @campaign)
-          = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu" if can?(:finish, @campaign)
-          = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-drawer", title: "Arquivar" if can?(:archive, @campaign)
-          = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-file-excel", title: "Exportar CSV" if can?(:export, User)
+        - if can?(:edit, @campaign) || can?(:feature, @campaign)
+          a.button.dropdown.small href="#" data-dropdown="drop" Menu de mobilização
+          ul.f-dropdown id="drop" data-dropdown-content=true
+            li= link_to "Editar", edit_campaign_path(@campaign), id: :edit_campaign_button if can?(:edit, @campaign)
+            li= link_to (@campaign.featured? ? "Remover destaque do dia" : "Destaque do dia"), campaign_feature_path(@campaign, featured: !@campaign.featured?), method: :put, id: :feature_campaign_button if can?(:feature, @campaign)
+            li= link_to "Vitória", campaign_finish_path(@campaign, :succeed => true), method: :put, id: :victory_campaign_button if can?(:finish, @campaign)
+            li= link_to "Não deu", campaign_finish_path(@campaign, :succeed => false), method: :put, id: :lose_campaign_button if can?(:finish, @campaign)
+            li= link_to "Arquivar", campaign_archive_path(@campaign), method: :put, id: :archive_campaign_button if can?(:archive, @campaign)
+            li= link_to "Exportar CSV", users_path(format: :csv, by_campaign_id: @campaign.id) if can?(:export, User)
+            li= link_to "Assumir seleção da equipe", campaign_moderate_path(@campaign), :method => "put", id: :take_on_moderation_button if can?(:moderate, @campaign)
       .users
         - @campaign.users.each do |user|
           .user_thumb
@@ -56,8 +73,6 @@ section.content
     aside.right.pressure
       - if flash[:poke_notice] || flash[:poke_phone_notice]
         .thanks
-          h3 Obrigado por pressionar!
-          h3.subheader Agora vamos multiplicar essa pressão
         - if @campaign.after_poke_customized?
           .after_poke
             .header
@@ -72,8 +87,6 @@ section.content
               a href="https://www.facebook.com/sharer/sharer.php?u=#{campaign_url(@campaign)}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
       - elsif !@campaign.finished?
-        .text-center
-          .poke_here Pressione diretamente quem toma essa decisão
         - if @campaign.has_voice_action?
           = render partial: 'poke_by_phone'
         - else
