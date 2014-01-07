@@ -17,4 +17,4 @@ section.content.explore
         - Category.order(:name).each do |category|
           li
             = link_to truncate(category.name, length: 30), category_campaigns_path(category), title: category.name
-            span= category.campaigns.accepted.count
+            span= category.campaigns.count

@@ -19,8 +19,10 @@ $dark_gray: #666
 $darker_gray: #333
 
 $campaign_gray: #CFD3DD
+$institutional: #FBCA3F
 
 $primary-color: $yellow
+
 $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
 
 @import compass/reset
@@ -40,21 +42,6 @@ $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'L
 
 .cancel
   background: darken(red, 15%) !important
-span.succeed, span.unsucceed, span.archived
-  background: $victory
-  display: block
-  width: 98%
-  text-align: center
-  padding: .6em
-  color: white
-  +border-radius(4px)
-  margin: 0 auto
-  margin-bottom: 1.5em
-  font-size: 1.1em
-span.unsucceed
-  background: $loss
-span.archived
-  background: #666
 
 section
   +grid-container
@@ -64,7 +51,7 @@ section
   &.visible
     overflow: visible   
 
-.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links, .finished_at
+.logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links
   +grid(12)
   +last
 
@@ -121,6 +108,7 @@ body
   font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
   font-size: .9em
   line-height: 1.4em
+  background: #f4f5f7
 
 h1, h2, h3, h4, h4, h5
   font-weight: 900
@@ -251,18 +239,19 @@ section.footer
   padding: 1.5em 0
 
 section.notice, section.alert
+  padding: .5em
+  text-align: center
+  font-size: 18px
   .message
     color: white
-    &:before
-      padding-right: 1em
 
 section.notice
   background: $green
-  border-bottom: 1px dashed darken($green, 20%)
+  border-bottom: 1px solid darken($green, 20%)
 
 section.alert
   background: $orange
-  border-bottom: 1px dashed darken($orange, 20%)
+  border-bottom: 1px solid darken($orange, 20%)
 
 
 a[href="/auth/facebook"]
@@ -316,68 +305,7 @@ a[href="/auth/facebook"]
   .content
     width: 100%
     padding: 30px
-
-section.highlight
-  margin-top: -.1em
-  background: image-url('bg_highlight.jpg') center top repeat-x
-  .counter
-    span
-      font-size: 3em !important
-      float: left
-      width: 60%
-      line-height: 22px
-      padding-top: 9px
-    .count
-      &:before
-        font-size: 48px !important
-  .featured
-    background: white
-    padding: 1.5em
-    margin: 25px 0
-    overflow: hidden
-    +border-radius(4px)
-    +box-shadow(1px 1px 2px lighten(black, 65%))
-    h1
-      color: $green
-      font-size: 1.6em
-      margin-top: .6em
-      margin-bottom: .4em !important
-    .is_featured
-      background: $orange
-      color: white
-      width: 30%
-      font-size: .8em
-      padding: .3em .4em
-      font-weight: bol
-      +border-radius(4px)
-    .category
-      font-size: .8em
-      &:before
-        color: $orange
-        margin-right: .5em
-    .description
-      margin: 1em 0
-      font-size: 1em
-      line-height: 1.4em
-      a
-        color: lighten(gray, 5%)
-    .count, .poke
-      +grid-subcolumn(6,3)
-    .poke
-      +last
-    .about
-      +grid(6)
-    .image
-      +grid(6)
-      +last
-      height: 32%
-      img, iframe
-        width: 100%
-        display: block
-        +box-shadow(0 0 1px lighten(black, 60%))
-      iframe
-        height: 280px
-
+        
 .meurio_header
   .meurio_logo_and_user_menu
     +grid-container
@@ -390,8 +318,6 @@ section.highlight
     +grid-container
     .meurio_apps
       +grid(4)
-      .other_apps
-        top: 78px
     .application_menu
       +grid(8)
       +last
@@ -400,60 +326,6 @@ section.content
   background: $gray
   ol.campaigns
     margin: 0
-    li.campaign
-      background: white
-      overflow: hidden
-      margin-bottom: 2em
-      +grid(3)
-      +box-shadow(0 1px 3px #c0c0c0)
-      +border-radius(4px)
-      .icon-bullhorn
-        display: none
-      .campaign_moderator
-        padding: 0 5px
-        line-height: 38px
-        text-align: center
-        &.alert
-          color: red
-      .campaign_user_email
-        margin-top: .5em
-      .campaign_user_email, .campaign_created_at
-        text-align: center
-        color: lighten(gray, 20%)
-    p.description
-      margin: .5em 0
-    h3
-      font-size: 1.1em
-      height: 4em 
-      display: block
-    .image, .info
-      padding: .8em
-    .image, .info
-      padding-bottom: 0
-    .image
-      img
-        +box-shadow(0 0 2px darken($gray, 30%))
-    .victory, .loss, .pressure
-      background: $victory 
-      color: white
-      text-align: center
-      font-weight: bold
-      padding: 4px
-      +border-radius(4px)
-      +transition(.4s)
-      &:before
-        vertical-align: middle
-        margin-right: 5px
-    .pressure
-      background: $green
-      a
-        color: white
-      &:hover
-        background: $victory
-    .loss
-      background: $loss
-    .counter
-      padding: 7px
 
 span.category
   font-size: .7em
@@ -595,22 +467,18 @@ body.influencers#new, body.influencers#create
     margin-bottom: 2em
 
 section.footer
-  background: darken($gray, 5%)
-  .links, .newsletter, .social
-    h4
-      text-transform: uppercase
-      color: darken($gray, 55%)
-      margin: 1em 0
-  .links 
-    +grid(6)
-  .social, .newsletter
-    +grid(3)
-  .newsletter
+  background: #353a3e
+  color: white
+  a
+    color: white
+    margin-right: 1em
+  .links
+    +grid(8)
+  .social
+    +grid(4)
     +last
-  .links li
-    font-size: .9em
-    display: inline-block
-    width: 50%
+    .fb-like 
+      margin-top: 1em
 
 .influencers_response
   li.answer
@@ -691,4 +559,5 @@ label
     font-size: 12px
 
 @import campaigns
+@import campaigns/campaign
 @import pages

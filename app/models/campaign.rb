@@ -21,27 +21,27 @@ class Campaign < ActiveRecord::Base
   has_many :posts
   has_many :answers
   has_many :pokes
-  has_many :pokers, through: :pokes, source: :user, uniq: true
   has_many :updates
+  has_many :reports
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
   after_create { self.delay.create_mailchimp_segment }
-  after_create { CampaignMailer.delay.campaign_awaiting_moderation(self) }
   after_create { CampaignMailer.delay.we_received_your_campaign(self) }
 
   accepts_nested_attributes_for :targets, :influencers
 
-  default_scope order("accepted_at DESC")
+  default_scope order("created_at DESC")
 
-  scope :accepted,    where('accepted_at IS NOT NULL')
-  scope :unmoderated, where(accepted_at: nil)
-  scope :featured,    where('featured_at IS NOT NULL AND accepted_at IS NOT NULL').reorder('featured_at DESC')
+  scope :moderated,   where('moderator_id IS NOT NULL')
+  scope :unmoderated, where(moderator_id: nil)
+  scope :featured,    where('featured_at IS NOT NULL').reorder('featured_at DESC')
   scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
   scope :unfinished,  where(finished_at: nil)
   scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
   scope :unarchived,  where(archived_at: nil)
   scope :orphan,      where(moderator_id: nil)
+  scope :reported,    joins(:reports)
 
   validates :name, :user_id, :description, :image, :category, :poke_type, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
@@ -68,16 +68,16 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  def accepted?
-    !accepted_at.nil?
-  end
-
   def pokes_by(opt = :email)
     self.pokes.where(:kind => opt.to_s)
   end
 
   def finished?
     !self.finished_at.nil?
+  end
+
+  def featured?
+    !self.featured_at.nil?
   end
 
   def targets_with_facebook
@@ -94,12 +94,6 @@ class Campaign < ActiveRecord::Base
 
   def generate_short_url!
     self.update_attribute :short_url, Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET']).shorten(Rails.application.routes.url_helpers.campaign_url(self.id)).short_url
-  end
-
-  def accept_now!
-    self.accepted_at = Time.now
-    self.save
-    CampaignMailer.delay.campaign_accepted(self)
   end
 
   def archived?
@@ -139,5 +133,13 @@ class Campaign < ActiveRecord::Base
 
   def users
     @users ||= [self.user].concat(CampaignOwner.where(campaign_id: self.id).map{|co| co.user})
+  end
+
+  def pokers
+    @pokers ||= User.where("id IN (?)", pokes.map{|p| p.user_id})
+  end
+
+  def failed?
+    succeed == false
   end
 end

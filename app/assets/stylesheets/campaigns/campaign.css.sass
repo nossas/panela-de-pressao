@@ -1,0 +1,57 @@
+li.campaign
+  line-height: normal
+  &:hover
+    .name_user_name_and_category
+      .name
+        a
+          color: $victory
+  .image
+    position: relative
+    overflow: hidden
+    .succeed, .failed
+      position: absolute
+      width: 100%
+      text-align: center
+      color: white
+      padding: .5em
+      font-weight: bold
+      top: 0
+      +border-radius(5px 5px 0 0)
+    .succeed
+      background: #8fc547
+    .failed
+      background: #d41e30
+    img
+      +border-radius(5px 5px 0 0)
+  .name_user_name_and_category
+    background: white
+    padding: .5em 1em
+    border-left: 1px solid darken($gray, 10%)
+    border-right: 1px solid darken($gray, 10%)
+    height: 115px
+    .name
+      font-weight: bold
+      line-height: 1em
+      margin-bottom: .4em
+    .user_name
+      color: #81929e
+      font-size: 14px
+      strong
+        color: #353a3d
+    .category
+      font-size: 12px
+      color: #81929e
+      a
+        color: #039046
+  .pokes
+    background: #f7f8fc
+    padding: .5em 1em
+    border: 1px solid darken($gray, 10%)
+    +border-radius(0 0 5px 5px)
+    .count
+      font-size: 24px
+      font-weight: bold
+      margin-bottom: -10px
+    span
+      font-size: 14px
+      color: #a0a0a2

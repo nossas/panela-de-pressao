@@ -1,5 +1,4 @@
-section.content
-  .row.popular
-    h2.popular.icon-fire= t 'home.text.campaigns_waiting_for_moderation' 
-    ol.campaigns
-      = render @campaigns
+section.unmoderated_campaigns
+  .row
+    h2 Campanhas sem curador
+    ol.campaigns= render @campaigns

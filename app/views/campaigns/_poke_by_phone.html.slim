@@ -19,8 +19,8 @@
         small.error Email é obrigatório e precisa ser válido
   
     .phone-field
-      = text_field_tag :phone, nil, required: true, pattern: "[(]{1}[0-9]{2}[)]{1} [0-9]{8,9}", placeholder: "Seu celular:", autocomplete: "off", class: :phone
+      = text_field_tag :phone, nil, required: true, pattern: "[(]{1}[0-9]{2}[)]{1} [0-9]{8,9}", placeholder: "Insira aqui seu celular:", autocomplete: "off", class: :phone
       small.error Celular é obrigatório e precisa estar no formato (21) 99999999
   
-    .footer Aqui a pressão é 0800! A telefonista eletrônica vai te ligar do número 3957-9303 e te conectar com o alvo.
-    = f.submit "Telefonar a sua pressão", id: :new_poke_phone_submit_button
+    .footer Aqui a pressão é 0800! A telefonista eletrônica vai te ligar do número 3957-9303 e completar a sua ligação com o alvo. Quando você for atendido, dê o seu recado.
+    = f.submit "Telefonar para o alvo", id: :new_poke_phone_submit_button

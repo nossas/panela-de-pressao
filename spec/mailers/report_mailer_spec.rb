@@ -1,4 +1,4 @@
 require "spec_helper"
 
-describe UserMailer do
+describe ReportMailer do
 end

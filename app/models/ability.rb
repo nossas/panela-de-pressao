@@ -5,14 +5,7 @@ class Ability
     can :read, User
     can :read, Answer
     can :manage, Poke
-
-    can :read, Campaign do |campaign|
-      campaign.accepted_at
-    end
-
-    can :read, Campaign do |campaign|
-      !campaign.preview_code.nil? and campaign.preview_code == request.params[:preview_code]    
-    end
+    can :read, Campaign
 
     if user && user.admin?
       can :manage, :all
@@ -21,6 +14,7 @@ class Ability
       can :update, Campaign, user_id: user.id
       can :read, Campaign, user_id: user.id
       can :update, User, id: user.id
+      can :create, Report
     end
 
     if request.params[:format] == "json"

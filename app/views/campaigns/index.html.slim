@@ -1,73 +1,44 @@
 - content_for :title do
   = t 'site.title'
 
-- content_for :highlight do
+section.institutional
   .row
-    .featured
-      .about
-        span.is_featured= t 'home.highlight.is_featured'
-        - if @featured
-          h1= link_to truncate(@featured.name, length: 100), @featured
-          span.category.icon-list= link_to @featured.category.name, category_campaigns_path(@featured.category)
-          .description= link_to truncate(strip_tags(@featured.description_html), length: 120), @featured 
-          .counter
-            .count.icon-comments= t "home.highlight.pokes_count_html", count: @featured.pokes.count
-            .poke= link_to t("home.highlight.poke_now"), campaign_path(@featured), class: 'btn'
-      .image
-        - unless @featured.nil?
-          - unless @featured.video.nil?
-            = @featured.video.html_safe
-          - else
-            = link_to image_tag(@featured.image.url), @featured
+    .item.large-3.columns
+      .image= image_tag 'institutional/icon-01.png'
+      h2 Algo que você quer resolver? Crie agora sua mobilização!
+    .item.large-3.columns
+      .image= image_tag 'institutional/icon-02.png'
+      h2 Ganhe acesso a governantes e tomadores de decisão da cidade!
+    .item.large-3.columns
+      .image.icon-03= image_tag 'institutional/icon-03.png'
+      h2 Isso não é um site de petições: aqui a pressão é direta!
+    .item.large-3.columns
+      .image.icon-04= image_tag 'institutional/icon-04.png'
+      h2 Você mobiliza, você pressiona, você é o protagonista!
 
-
-
-section.content
-  .row.popular
-    h2.popular.icon-fire= t "home.text.popular_campaigns"
-    ol.campaigns
-      = render @popular 
-
-section.information
+section.featured_campaigns
   .row
-    .create_your_campaign
-      .content
-        h3
-          | Comece a transformar o Rio! 
-        p
-          | Se você vê algum problema no Rio que pode ser mudado com pressão popular, mãos à obra!
-        = link_to "Criar campanha", new_campaign_path, class: 'btn'
-    .our_victories
-      .content
-        h3
-          | Siga os exemplos
-        p
-          | Descubra as campanhas de sucesso no Panela de Pressão!
-        = link_to "Campanhas vitoriosas!", explore_path(successful: true), class: 'btn'
-    .didnt_find_target
-      .content
-        h3
-          | Não achou seu alvo?
-        p
-          | Você procurou um alvo para pressionar e não o encontrou na nossa lista
-        = mail_to 'contato@paneladepressao.org.br', "Adicionar alvo",  class: 'btn'
+    h2 Destaque do dia
+    .featured= render 'featured'
 
-section.content.index
-  .row.all_campaigns
-    h2.popular Campanhas recentes
-    = form_for :search, html: { class: 'search'} do |f|
-      .block
-        label
-          | Filtre por categoria
-          = f.select :category, Category.all.collect { |p| [p.name, category_campaigns_url(p)] }, {}, class: 'chzn-select explore', id: 'explore_field'
-      .block
-        /label
-          | Ou faça uma busca
-          = f.text_field :campaign
-      .block.last
-      .clear
-    ol.campaigns
-      = render collection.limit(4)
-    
-  /.facebook_widget 
-    .fb-like-box data-href="http://www.facebook.com/meurio" data-border-color="#fafafa" data-width="185" data-height="405" data-show-faces="true" data-stream="false" data-header="false"
+section.successful_campaigns
+  .row
+    h2 As vitórias
+    ol.campaigns= render @successful_campaigns
+
+- if @moderator.present?
+  section.content.campaigns_by_moderator
+    .row
+      h2 Seleção da equipe
+      .moderator
+        .user_thumb
+          = image_tag @moderator.avatar_url
+          .user_name= @moderator.name
+          .user_label= @moderator.profession
+        .user_bio= @moderator.bio
+      ol.campaigns= render @moderator.moderations.limit(3)
+
+section.popular
+  .row
+    h2 As mais populares
+    ol.campaigns= render @popular

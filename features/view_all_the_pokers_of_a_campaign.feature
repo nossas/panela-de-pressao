@@ -11,5 +11,5 @@ Feature: view all the pokers
   Scenario: when there is a poker
     Given there is a campaign called "Guerreiros campeões"
     And there is a poker called "Marcelinho"
-    When I go to this campaign page
+    When I go to "this campaign page"
     Then I should see "Quem pressiona"
