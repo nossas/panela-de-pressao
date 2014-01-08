@@ -7,7 +7,7 @@ li.campaign
       .failed Não deu
   .name_user_name_and_category
     .name= link_to truncate(campaign.name, length: 60), campaign
-    .user_name por #{content_tag :strong, campaign.user.name}
+    .user_name por #{content_tag :strong, truncate(campaign.user.name, length: 20)}
     .category em #{link_to truncate(campaign.category.name, length: 30), category_campaigns_path(campaign.category)}
   .pokes
     .count= campaign.pokes.count
