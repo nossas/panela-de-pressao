@@ -87,6 +87,7 @@ def to_element string
   return ".empty" if string == "there is no reported campaigns"
   return ".successful_campaigns .campaign .name a" if string == "this successful campaign"
   return ".featured .about h1 a" if string == "this featured campaign"
+  return "#report_campaign_button" if string == "the report campaign button"
 end
 
 def to_text string

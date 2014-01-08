@@ -62,10 +62,14 @@ Given /^I'm logged in as admin$/ do
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
-  if arg1 == "Para a divulgação da minha campanha bombar, vou usar essa imagem"
-    attach_file arg1, File.dirname(__FILE__) + "/../support/campaign.png"
+  if arg1 == "Uma imagem que fale por mil palavras: escolha uma no seu computador e suba ela aqui"
+    attach_file arg1, "#{Rails.root}/features/support/campaign.png"
   elsif arg1 == "Avatar"
-    attach_file arg1, File.dirname(__FILE__) + "/../support/influencer.jpg"
+    attach_file arg1, "#{Rails.root}/features/support/influencer.jpg"
+  elsif arg1 == "Escolha uma imagem do seu computador (será publicada junto com o título e o texto)"
+    attach_file arg1, "#{Rails.root}/features/support/campaign.png"
+  else
+    raise "I don't know '#{arg1}'"
   end
 end
 
@@ -561,4 +565,8 @@ end
 
 Given(/^there is a featured campaign$/) do
   @campaign = Campaign.make! featured_at: Time.now
+end
+
+Given(/^I wait (\d+)$/) do |arg1|
+  sleep arg1.to_i
 end

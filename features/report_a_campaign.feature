@@ -5,7 +5,7 @@ Feature: report a campaign
     Given I'm logged in
     And there is an unmoderated campaign
     When I go to "this campaign page"
-    Then I should see "the warn of campaign without moderator"
+    Then I should see "the report campaign button"
     When I click "the report campaign button"
     Then I should be in "this campaign page"
     And the campaign should have now 1 report

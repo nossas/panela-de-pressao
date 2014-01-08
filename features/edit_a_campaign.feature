@@ -11,7 +11,7 @@ Feature: edit a campaign
     And I open the campaign menu
     And I click "the edit campaign button"
     Then I should not see "the accept campaign button"
-    Given I fill "O nome da minha campanha será" with "Fim à Escravidão no Brasil"
+    Given I fill "Escreva o nome da sua mobilização (um título curto é sempre melhor)" with "Fim à Escravidão no Brasil"
     When I press "Salvar campanha"
     Then I should be in "this campaign page"
     And I should see "Fim à Escravidão no Brasil"
@@ -33,7 +33,7 @@ Feature: edit a campaign
     And I open the campaign menu
     And I click "the edit campaign button"
     Then I should not see "the accept campaign button"
-    Given I fill "O nome da minha campanha será" with "Fim à Escravidão no Brasil"
+    Given I fill "Escreva o nome da sua mobilização (um título curto é sempre melhor)" with "Fim à Escravidão no Brasil"
     When I press "Salvar campanha"
     Then I should be in "this campaign page"
     And I should see "Fim à Escravidão no Brasil"
