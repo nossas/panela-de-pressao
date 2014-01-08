@@ -23,7 +23,9 @@ section.featured_campaigns
 
 section.successful_campaigns
   .row
-    h2 As vitórias
+    h2.left As vitórias
+    .right= link_to "Ver todas as vitórias", explore_path(successful: true)
+    .clear
     ol.campaigns= render @successful_campaigns
 
 - if @moderator.present?
