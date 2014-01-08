@@ -233,6 +233,7 @@ end
 
 When /^I open my profile options$/ do
   page.execute_script("$('.current_user_links').show();")
+  sleep 1
 end
 
 Given /^I already poked this campaign$/ do
@@ -536,6 +537,7 @@ end
 
 Given(/^I open the campaign menu$/) do
   page.execute_script("$('.campaign_subtitle a.dropdown').click();")
+  sleep 1
 end
 
 Then(/^I should see (\d+) "(.*?)"$/) do |arg1, arg2|
