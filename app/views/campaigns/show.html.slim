@@ -18,6 +18,15 @@
     meta property="og:description"  content=(@featured_update.lead)
 
 section.content
+  - if @campaign.moderator.nil?
+    .row
+      .campaign_without_moderator_warn
+        span
+          | Esta campanha não foi moderada pelo Meu Rio. 
+          - if can?(:create, Report) && !current_user.reported?(@campaign)
+            | Se não estiver de acordo com os princípios e visão de rede do Meu Rio, 
+            = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
+
   .row
     = render partial: 'finished_message' if @campaign.finished_at?
     - if @campaign.archived?
@@ -33,11 +42,11 @@ section.content
           strong #{@campaign.accepted_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.accepted_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
         .campaign_menu
-          = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha" if can?(:edit, @campaign)
-          = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque" if can?(:feature, @campaign)
-          = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória" if can?(:finish, @campaign)
-          = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu" if can?(:finish, @campaign)
-          = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-drawer", title: "Arquivar" if can?(:archive, @campaign)
+          = link_to "", edit_campaign_path(@campaign), class: "icon-pencil", title: "Editar campanha", id: :edit_campaign_button if can?(:edit, @campaign)
+          = link_to "", campaign_feature_path(@campaign, featured: true), class: "icon-star", method: :put, title: "Destaque", id: :feature_campaign_button if can?(:feature, @campaign)
+          = link_to "", campaign_finish_path(@campaign, :succeed => true), method: :put, class: "icon-thumbs-up", title: "Vitória", id: :victory_campaign_button if can?(:finish, @campaign)
+          = link_to "", campaign_finish_path(@campaign, :succeed => false), method: :put, class: "icon-thumbs-down", title: "Não deu", id: :lose_campaign_button if can?(:finish, @campaign)
+          = link_to "", campaign_archive_path(@campaign), method: :put, class: "icon-drawer", id: "archive_campaign_button", title: "Arquivar" if can?(:archive, @campaign)
           = link_to "", users_path(format: :csv, by_campaign_id: @campaign.id), class: "icon-file-excel", title: "Exportar CSV" if can?(:export, User)
       .users
         - @campaign.users.each do |user|

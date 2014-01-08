@@ -21,8 +21,8 @@ class Campaign < ActiveRecord::Base
   has_many :posts
   has_many :answers
   has_many :pokes
-  has_many :pokers, through: :pokes, source: :user, uniq: true
   has_many :updates
+  has_many :reports
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
@@ -42,6 +42,7 @@ class Campaign < ActiveRecord::Base
   scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
   scope :unarchived,  where(archived_at: nil)
   scope :orphan,      where(moderator_id: nil)
+  scope :reported,    joins(:reports)
 
   validates :name, :user_id, :description, :image, :category, :poke_type, :presence => true  
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
@@ -139,5 +140,9 @@ class Campaign < ActiveRecord::Base
 
   def users
     @users ||= [self.user].concat(CampaignOwner.where(campaign_id: self.id).map{|co| co.user})
+  end
+
+  def pokers
+    @pokers ||= User.where("id IN (?)", pokes.map{|p| p.user_id})
   end
 end

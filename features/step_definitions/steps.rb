@@ -120,6 +120,10 @@ Given /^I check "(.*?)"$/ do |arg1|
   check(arg1)
 end
 
+Given(/^there is (\d+) reported campaigns$/) do |arg1|
+  arg1.to_i.times { Report.make! }
+end
+
 Then /^I should see "([^"]*)"$/ do |arg1|
   if to_element(arg1)
     page.should have_css(to_element(arg1))
@@ -128,7 +132,7 @@ Then /^I should see "([^"]*)"$/ do |arg1|
   end
 end
 
-When /^I go to ([^"]*)$/ do |arg1|
+When /^I go to "([^"]*)"$/ do |arg1|
   step "I'm in #{arg1}"
 end
 
@@ -137,22 +141,7 @@ When /^I press "([^"]*)"$/ do |arg1|
 end
 
 When /^I click "([^"]*)"$/ do |arg1|
-  if arg1 == "Pressionar via email"
-    page.execute_script("$('form:has(input[value=\"email\"])').submit();")
-  elsif arg1 == "Pressionar via Facebook"
-    page.execute_script("$('form:has(input[value=\"facebook\"])').submit();")
-  elsif arg1 == "Pressionar via Twitter"
-    page.execute_script("$('form:has(input[value=\"twitter\"])').submit();")
-  elsif arg1 == "Entrar via Facebook"
-    within("#login") do
-      click_on arg1
-    end
-  else 
-    click_link(arg1)
-  end
-  if arg1 == "ver/personalizar email" || arg1 == "ver/personalizar mensagem"
-    sleep(1)
-  end
+  click_link to_element(arg1)
 end
 
 When /^I click on the "(.*?)" avatar$/ do |arg1|
@@ -187,12 +176,16 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("#new_campaign")
   when "the ownership field"
     page.should_not have_css("select#campaign_user_id", visible: false)
+  when "the reported campaigns button"
+    page.should_not have_css(to_element("the reported campaigns button"))
+  when "the report campaign button"
+    page.should_not have_css("#report_campaign_button")
   else
     page.should_not have_content(arg1)
   end
 end
 
-Then /^I should be in ([^"]*)$/ do |arg1|
+Then /^I should be in "([^"]*)"$/ do |arg1|
   page.current_path.should be_== route_to_path(arg1)
 end
 
@@ -562,4 +555,25 @@ end
 
 Then(/^an email should be sent to "(.*?)"$/) do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.to.index(arg1) != nil}.should_not be_empty
+end
+
+Then(/^I should see (\d+) "(.*?)"$/) do |arg1, arg2|
+  page.should have_css(to_element(arg2), count: arg1)
+end
+
+Then(/^the campaign should have now (\d+) report$/) do |arg1|
+  @campaign.reports.count.should be_== arg1.to_i
+end
+
+Given(/^I already reported this campaign$/) do
+  Report.make! campaign: @campaign, user: @current_user
+end
+
+Given(/^this campaign have a moderator$/) do
+  @campaign.moderator = User.make!
+  @campaign.save
+end
+
+Then(/^the "(.*?)" email should be sent$/) do |arg1|
+  ActionMailer::Base.deliveries.select{|d| d.subject.index(to_email_subject(arg1)) != nil}.should_not be_empty
 end

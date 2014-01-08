@@ -11,7 +11,7 @@ Feature: accept a campaign
     And I'm in this campaign editing page
     Then I should not see "the create campaign button"
     When I press "Aceitar campanha"
-    Then I should be in this campaign page
+    Then I should be in "this campaign page"
     And I should see "Está valendo, campanha no ar!"
     And this campaign should be accepted
     And an email should be sent
@@ -20,5 +20,5 @@ Feature: accept a campaign
   Scenario: when I own a campaign awaiting moderation
     Given I'm logged in
     And I own a campaign called "Salve a praça Nossa Senhora da Paz" awaiting moderation
-    When I go to this campaign editing page
+    When I go to "this campaign editing page"
     Then I should not see "the accept campaign button"

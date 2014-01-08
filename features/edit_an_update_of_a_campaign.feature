@@ -12,7 +12,7 @@ Feature: edit an update of a campaign
     Given I click in the edit button of the update
     And I change the update title to "My update"
     When I submit the edit update form
-    Then I should be in the updates page of the campaign
+    Then I should be in "the updates page of the campaign"
     And I should see the update popup
     And the update title should be "My update"
 

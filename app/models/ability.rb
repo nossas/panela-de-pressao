@@ -21,6 +21,7 @@ class Ability
       can :update, Campaign, user_id: user.id
       can :read, Campaign, user_id: user.id
       can :update, User, id: user.id
+      can :create, Report
     end
 
     if request.params[:format] == "json"
