@@ -4,7 +4,7 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
   .field
     margin-bottom: 20px
   fieldset, .header
-    margin-bottom: 40px
+    margin-bottom: 20px
   .field, fieldset
     &:last-child
       margin-bottom: 0
@@ -28,6 +28,16 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
     .email_text, .facebook_text, .twitter_text
       display: none
       margin: 0
+    #campaign_poke_type
+      margin: 0
+  #policy
+    display: none
+  .popup
+    width: 1000px
+    ul
+      list-style: disc
+      &:last-child
+        margin: 0
 
 body.campaigns#unmoderated
   ol.campaigns 
@@ -574,7 +584,6 @@ body.campaigns#explore, body.campaigns#index
       color: darken($gray, 30%)
       font-size: 1.1em
       display: inline-block
-      margin-bottom: 1em
   article.left
     ol.campaigns
       li.campaign
