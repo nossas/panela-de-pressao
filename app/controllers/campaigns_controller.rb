@@ -17,13 +17,15 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:show] { @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user} }
   before_filter :only => [:show] { @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5) }
   before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
-  before_filter :only => [:index] { @featured = Campaign.featured.first || Campaign.accepted.first }
+  before_filter :only => [:index] { @featured = Campaign.featured.first }
+  before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
+  before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
 
   def create
     @campaign = Campaign.new(params[:campaign])
     if params[:user_phone].nil? || current_user.update_attributes(:phone => params[:user_phone])
       create! do |success, failure|
-        success.html { return redirect_to campaigns_path, :notice => "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..." }
+        success.html { return redirect_to @campaign }
         failure.html { render :new }
       end
     else
@@ -42,23 +44,16 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
-  def accept
-    Campaign.find(params[:campaign_id]).accept_now!
-    params[:id] = params[:campaign_id]
-    show(:notice => "Está valendo, campanha no ar!")
-  end
-
   def finish
     @campaign = Campaign.find(params[:campaign_id])
-    @campaign.update_attributes :finished_at => Time.now, :succeed => params[:succeed]
+    @campaign.update_attributes finished_at: Time.now, succeed: params[:succeed]
     redirect_to @campaign
   end
 
   def feature
     @campaign = Campaign.find(params[:campaign_id])
-    @campaign.featured_at = params[:featured] == "true" ? Time.now : nil 
-    @campaign.save!
-    redirect_to :back and return
+    @campaign.update_attribute :featured_at, params[:featured] == "true" ? Time.now : nil
+    redirect_to @campaign
   end
 
   def index
@@ -81,8 +76,9 @@ class CampaignsController < InheritedResources::Base
   end
 
   def moderate
-    Campaign.find(params[:campaign_id]).update_attributes :moderator_id => current_user.id
-    redirect_to unmoderated_campaigns_path
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.update_attributes :moderator_id => current_user.id
+    redirect_to @campaign
   end
 
   def archive
@@ -100,7 +96,7 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      @campaigns ||= end_of_association_chain.accepted.unarchived
+      @campaigns ||= end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
     end
   end
 end

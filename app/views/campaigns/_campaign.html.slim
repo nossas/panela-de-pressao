@@ -1,22 +1,14 @@
-li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
+li.campaign
   .image
     = link_to image_tag(campaign.image), campaign
-  .info
-    h3.title= link_to truncate(campaign.name, length: 60), campaign
-    span.category.icon-list= link_to truncate(campaign.category.name, length: 25), category_campaigns_path(campaign.category)
-    p.description= link_to truncate(strip_tags(campaign.description_html), length: 75), campaign
-  .counter
-    - if campaign.finished?
-      - if campaign.succeed?
-        .icon-thumbs-up.victory Vitória!
-      - else
-        .icon-thumbs-down.loss Não deu...
-    - elsif campaign.accepted?
-      .icon-comments= t 'home.highlight.pokes_count_html', count: number_with_delimiter(campaign.pokes.count)
-      .icon-bullhorn.pressure= link_to "Pressionar", campaign_path(campaign)
-    - elsif can? :moderate, Campaign
-      .campaign_moderator class="#{'alert' if campaign.moderator.nil?}"
-        strong= campaign.moderator ? campaign.moderator.name : "Sem moderador"
-      = link_to "Assumir moderação", campaign_moderate_path(campaign), :class => "btn", :method => "put", id: :take_on_a_campaign_button
-      .campaign_user_email= campaign.user.email
-      .campaign_created_at= l(campaign.created_at, format: :short)
+    - if campaign.succeed?
+      .succeed Vitória!
+    - elsif campaign.failed?
+      .failed Não deu
+  .name_user_name_and_category
+    .name= link_to truncate(campaign.name, length: 60), campaign
+    .user_name por #{content_tag :strong, campaign.user.name}
+    .category em #{link_to truncate(campaign.category.name, length: 30), category_campaigns_path(campaign.category)}
+  .pokes
+    .count= campaign.pokes.count
+    span pressões feitas

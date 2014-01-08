@@ -19,5 +19,5 @@ Feature: post an answer of a target
     Given I'm logged in
     And there is a campaign called "A Vida das Ariranhas"
     And I'm in this campaign page
-    When I click "Respostas"
+    When I click "the campaign answers button"
     Then I should not see "the answer form"

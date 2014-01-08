@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-
 //= require ./lib/underscore.js
 //= require ./lib/backbone.js
 //= require ./lib/jquery.inputmask.js
@@ -27,7 +26,6 @@
 //= require autocomplete-rails
 //= require meurio_ui
 //= require foundation
-
 //= require_tree ./lib
 //= require ./app.js
 //= require_tree ./app
@@ -35,6 +33,7 @@
 
 $(function(){
   $("input.phone").mask('(00) 000000000');
+  
   $(document).foundation();
   
   // campaigns#show

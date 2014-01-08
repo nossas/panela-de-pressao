@@ -4,7 +4,7 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
   .field
     margin-bottom: 20px
   fieldset, .header
-    margin-bottom: 40px
+    margin-bottom: 20px
   .field, fieldset
     &:last-child
       margin-bottom: 0
@@ -28,60 +28,121 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
     .email_text, .facebook_text, .twitter_text
       display: none
       margin: 0
+    #campaign_poke_type
+      margin: 0
+  #policy
+    display: none
+  .popup
+    width: 1000px
+    ul
+      list-style: disc
+      &:last-child
+        margin: 0
+
+body.campaigns#unmoderated
+  ol.campaigns 
+    margin: 0
+    li.campaign
+      margin-bottom: 1em
+      +grid(3)
+      &:nth-child(4n)
+        +last
 
 body.campaigns#index, body.campaigns#unmoderated
-  article.left
-    +grid(12)
-    +last
-  .featured
-    .description
-      padding: .2em 0 .6em 0
-  h2.popular
-    margin: .6em 0 1.5em 0
-    color: darken(gray, 25%)
+  section.highlight
+    display: none
+  h2
+    color: #363a3d
     font-weight: bold
-    &:before
-      color: darken($orange, 5%)
-      margin-right: .4em
-      top: .2em
-      position: relative
-  section.index, .popular
-    ol.campaigns 
-      li.campaign
-        &:nth-child(4n+0)
-          +last
-  .all_campaigns
-    form.search
-      margin-bottom: 2em
-      display: block
-      input
-        padding: 0
-    .block
-      +grid(4)
-      &.last
-        +last
-    ol.campaigns
-      margin-top: 1em
-  section.information
-    background: darken($gray, 5%)
+    font-size: 1.4em
+    margin-bottom: 1em
+  section
     padding: 2em 0
-    .create_your_campaign, .our_victories, .didnt_find_target
-      +grid(4)
-      .content
-        background: white
-        padding: 1em
-        +border-radius(3px)
-        h3
-          margin: 0
-          font-size: 18px
-        p
-          font-size: 14px
-          height: 60px
-      a.btn
-        width: 100%
-        display: block
-    .didnt_find_target
-      +last
+  .campaigns_by_moderator, .successful_campaigns, .popular
+    ol.campaigns 
+      margin: 0
+      li.campaign
+        overflow: hidden
+        +grid(3)
+        &:last-child
+          +last
+  .institutional
+    background: $institutional
+  .successful_campaigns
+    background: #e7e8ea
+  .campaigns_by_moderator
+    background: #2e3235
+    h2
+      color: white
+    .moderator
+      +grid(3)
+      color: white
+      .user_bio
+        margin-top: 1em
+        color: #a3a8b4
+  section.institutional
+    padding: 4em 0 2em 0
+    .item
+      text-align: center
+      h2
+        font-size: 1.2em
+        margin-top: 1em
+      .image
+        height: 160px
+        &.icon-03
+          padding-top: 10px
+        &.icon-04
+          padding-top: 23px
+  section.featured_campaigns
+    background: $gray
+    .featured
+      border: 1px solid darken($gray, 10%)
+      background: white
+      overflow: hidden
+      padding: 0
+      margin: 0
+      +border-radius(4px)
+      .image
+        height: 32%
+        padding: 0
+        img, iframe
+          width: 100%
+          display: block
+      .about
+        padding: 1em 1.3em
+        +last
+      h1
+        color: $green
+        font-size: 1.6em
+        margin-bottom: .4em !important
+      .user_name
+        color: lighten(gray, 5%)
+        strong
+          color: black
+      .description
+        margin: 1em 0
+        font-size: 1em
+        line-height: 1.4em
+        a
+          color: lighten(gray, 5%)
+      .counter
+        padding-top: 1.5em
+        .count
+          +grid(4)
+          color: lighten(gray, 5%)
+          span
+            display: block
+            font-size: 3em
+            margin-bottom: .3em
+            color: black
+        .poke
+          +grid(8)
+          +last
+        .btn
+          background-color: $orange
+          font-size: 1.3em
+          color: white
+          width: 100%
 
 body.campaigns#show
   article.campaign, aside.right.pressure
@@ -89,7 +150,7 @@ body.campaigns#show
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
-  .finished_at, .campaign_without_moderator_warn
+  .finished_at, .campaign_warn
     +grid(12)
     +last
     a
@@ -115,30 +176,10 @@ body.campaigns#show
     line-height: 100% 
     color: #34393c
   .campaign_subtitle
-    margin-bottom: 1em
-    span
-      margin-right: 1em
+    .accepted_at_and_category_name
+      margin-bottom: 1em
       font-size: 1em
-      display: inline-block
       color: darken($gray, 55%)
-    .campaign_menu
-      display: inline-block
-      a[class^="icon-"]
-        display: inline-block
-        line-height: 0
-        background: lighten(lightgray, 10%)
-        padding: 5px 10px
-        color: gray
-        border-top: 1px lightgray solid
-        border-bottom: 1px lightgray solid
-        border-left: 1px lightgray solid
-        &:hover
-          background: white
-        &:first-child
-          +border-radius(5px 0 0 5px)
-        &:last-child
-          +border-radius(0 5px 5px 0)
-          border-right: 1px lightgray solid
   article.tab, article.share
     background: none
     padding-bottom: .6em
@@ -169,14 +210,6 @@ body.campaigns#show
   article.campaign, aside.pressure
     .thanks
       margin-bottom: 1em
-      h3
-        color: #333b3d
-        font-weight: bold
-        margin: 0
-        &.subheader
-          color: #51626d
-          font-size: 1.25em
-          font-weight: 500
     .after_poke
       +border-radius(3px)
       background: white
@@ -220,24 +253,6 @@ body.campaigns#show
         padding: 1.25em
       .facebook_share
         margin-bottom: 1em
-    .poke_here
-      background: $green
-      color: white
-      display: inline-block
-      padding: 10px 10px 0 10px
-      font-size: 16px
-      margin-bottom: 20px
-      +border-radius(3px)
-      &:after
-        background-color: $green
-        content: "\00a0"
-        display: block
-        height: 10px
-        width:  10px
-        bottom: -5px
-        margin: 0 auto
-        position: relative
-        +rotate(45deg)
     @import campaigns/poke_by_phone
     form.new_poke, form.new_twitter_poke, form.new_email_poke
       border: 1px #b3b3b3 solid
@@ -548,7 +563,7 @@ body.campaigns#show
       a.remove
         color: red
 
-body.campaigns#explore
+body.campaigns#explore, body.campaigns#index
   article.left
     background: $gray
     +grid(9)
@@ -569,36 +584,44 @@ body.campaigns#explore
       color: darken($gray, 30%)
       font-size: 1.1em
       display: inline-block
-      margin-bottom: 1em
-  ol.campaigns
-    li.campaign
-      +grid(4)
-      &:nth-child(3n+0)
-        +last
-  ol.categories
-    margin: 0
-    li
-      padding: .8em 0
-      border-bottom: 1px solid darken($gray, 15%)
-      a
-        color: lighten(gray, 10%)
-        font-size: .9em
-      &:hover
-        border-bottom: 1px solid $yellow
+  article.left
+    ol.campaigns
+      li.campaign
+        margin-bottom: 1em
+        +grid(4)
+        &:nth-child(3n)
+          +last
+  aside.right
+    ol.categories
+      margin: 0
+      li
+        padding: .8em 0
+        border-bottom: 1px solid darken($gray, 15%)
         a
-          color: $orange
-    span
-      float: right
-      background: $yellow
-      color: white
-      padding: .1em .6em
-      font-size: .9em
-      display: inline-block
-      text-align: center
-      +border-radius(4px)
+          color: lighten(gray, 10%)
+          font-size: .9em
+        &:hover
+          border-bottom: 1px solid $yellow
+          a
+            color: $orange
+      span
+        float: right
+        background: $yellow
+        color: white
+        padding: .1em .6em
+        font-size: .9em
+        display: inline-block
+        text-align: center
+        +border-radius(4px)
 
 body.campaigns#reported
   .title, .empty
     +grid(12)
   .title
     margin-bottom: 1em
+  ol.campaigns
+    li.campaign
+      margin-bottom: 1em
+      +grid(3)
+      &:nth-child(4n)
+        +last
