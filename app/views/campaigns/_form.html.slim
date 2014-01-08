@@ -1,11 +1,12 @@
 section.content
   .row
     .header
-      h1 Crie ou Edite sua Campanha
-      h4.subheader= t 'campaign.new.small_html', link: 'https://speakerd.s3.amazonaws.com/presentations/55331d301fb401307ccc12313d145d81/Panela_de_Pressao_-_cookbook.pdf'
+      h1 Crie ou edite sua mobilização
+      h4.subheader Quer mudar algo no Rio? Quer o apoio de muitas pessoas? Quer falar diretamente com os poderosos que tomam as decisões na cidade? Então o seu lugar é aqui no Panela de Pressão. Crie agora a sua mobilização. Seja o protagonista da mudança.
+      h4.subheader Este aplicativo da Rede Meu Rio aceita todas as mobilizações, mas #{link_to "clique aqui", "#policy", rel: "facebox[.policy]"} para saber o que não pode e o que é muito recomendado.
     = form_for @campaign do |f|
       fieldset
-        legend Dados da campanha
+        legend Prepare a panela: informações sobre a sua mobilização
         - if can?(:change_ownership, @campaign) && @campaign.persisted?
           .field
               = f.label :user_id
@@ -33,14 +34,24 @@ section.content
           = f.label :video_url, "Ou esse vídeo"
           = f.text_field :video_url, placeholder: "http://www.youtube.com/watch?v=JFq4_OSqbbM"
 
+        - if current_user.phone.blank?
+          .field
+            label 
+              | Deixe seu telefone celular caso a equipe da Rede Meu Rio precise contatar você
+              = text_field_tag "user_phone", params[:user_phone], class: [:phone]
+            small.inline-errors= @campaign.errors[:user].to_sentence
+
+
       fieldset
-        legend Pressão
+        legend Acenda o fogo: informações sobre a sua pressão
         .field
           = f.label :influencer_ids
           = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: "" }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+          small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
         .field
           = f.label :poke_type
           = f.select :poke_type, [["Por Email", :email], ["Por Facebook", :facebook], ["Por Twitter", :twitter]]
+          small Quer por telefone? Vamos analisar, basta enviar a solicitação pra Fernanda: contato@meurio.org.br
         .field.email_text
           = f.label :email_text
           = f.text_area :email_text
@@ -52,26 +63,7 @@ section.content
           = f.text_field :twitter_text, maxlength: 100
 
       fieldset
-        legend Depois da pressão
-        .field
-          = f.label :pokers_email
-          = f.text_area :pokers_email
-        .field
-          = f.label :after_poke_title
-          = f.text_field :after_poke_title
-        .field
-          = f.label :after_poke_text
-          = f.text_area :after_poke_text
-        .field
-          = f.label :after_poke_link
-          = f.text_field :after_poke_link
-        .field
-          = f.label :after_poke_call_to_action
-          = f.text_field :after_poke_call_to_action
-
-
-      fieldset
-        legend Compartilhamento no Facebook
+        legend Aumente a pressão: informações sobre a sua viralização 
         .field
           = f.label :facebook_share_title
           = f.text_field :facebook_share_title
@@ -82,41 +74,66 @@ section.content
           = f.label :facebook_share_thumb
           = image_tag @campaign.facebook_share_thumb unless @campaign.facebook_share_thumb.blank?
           = f.file_field :facebook_share_thumb
-    
-      - if current_user.phone.blank?
-        fieldset
-          legend Dados do cozinheiro
-          .field
-            label 
-              | Para entrarem em contato comigo, se necessário, podem me contatar no número
-              = text_field_tag "user_phone", params[:user_phone], class: [:phone]
-            small.inline-errors= @campaign.errors[:user].to_sentence
+
+      fieldset
+        legend Agradeça a participação: informações para quem pressionou
+        .field
+          = f.label :pokers_email
+          = f.text_area :pokers_email
 
       - if @current_user.admin?
         fieldset
-          legend Área do admin
+          legend Pós Pressão Customizado (Apenas Admin - quando você preenche essas informações, elas substituem o Pós Pressão padrão com compartilhamento no Face e Twitter)
+          .field
+            = f.label :after_poke_title
+            = f.text_field :after_poke_title
+          .field
+            = f.label :after_poke_text
+            = f.text_area :after_poke_text
+          .field
+            = f.label :after_poke_link
+            = f.text_field :after_poke_link
+          .field
+            = f.label :after_poke_call_to_action
+            = f.text_field :after_poke_call_to_action
+
+        fieldset
+          legend Pressão via telefone (Apenas Admin - quando você preenche essas informações, elas substituem as pressões por Email, Face e Twitter)
           .field
             = f.label :voice_call_number
             = f.text_field :voice_call_number, placeholder: "+55 (21) 9999-9999", class: [:phone_with_country_code]
           .field
             = f.label :voice_call_script
             = f.text_area :voice_call_script
+
+        fieldset
+          legend PDP + MR 2.0 (Apenas Admin - escolha a hashtag que fará este PDP integrar uma mobilização no MR 2.0)
           .field
             = f.label :hashtag
             = f.text_field :hashtag
 
       .field
-        = f.submit (@campaign.new_record? ? t('actions.send_to_moderation') : t('actions.save')), class: 'btn'
-
-    - if @campaign.persisted? && @current_user.admin? && !@campaign.accepted?
-      .field
-        = form_for @campaign, :url => campaign_accept_path(@campaign), :method => :put do |f|
-          p.action
-            = f.submit t('actions.accept'), :class => "btn"
-
+        = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: 'btn'
+    
     .hidden
       #image
         = image_tag(@campaign.image) if @campaign.persisted?
 
 - content_for :title do
   | Crie ou Edite sua Campanha
+
+#policy
+  p Não crie uma mobilização se ela:
+  ul
+    li incita ódio, homofobia, preconceito social, racial ou de gênero.
+    li faz propaganda política partidária.
+    li sugere ações que contradizem a visão de cidade da Rede Meu Rio, a qual defende a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
+    li promove uma causa de caráter privado, e não público.
+    li não possui caráter propositivo.
+  p Assim que você terminar de preencher o formulário abaixo, sua mobilização estará no ar. Ela pode, ainda, ser selecionada e receber apoio da equipe multidisciplinar da Rede Meu Rio. Quanto mais alinhadas com os critérios a seguir, mais chances a sua mobilização tem de ser selecionada:
+  ul
+    li A sua mobilização em muito se alinha à visão de cidade da Rede Meu Rio: a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
+    li A sua mobilização tem caráter urgente, cujo impacto e o alcance de seus objetivos só será alcançado caso haja trabalho extra da equipe da Rede Meu Rio.
+    li A sua mobilização tem grande potencial de atingir sucesso.
+    li A sua mobilização toca em uma temática que está sendo amplamente discutida pela sociedade.
+    li Você, cozinheiro e criador da mobilização, tem disponibilidade de tempo para se dedicar, junto com a equipe, ao desenvolvimento da mobilização.

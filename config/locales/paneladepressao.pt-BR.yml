@@ -21,6 +21,7 @@ pt-BR:
     back_home: "Voltar à página inicial"
     channel: "Escolha um canal para fazer pressão: "
     send_to_moderation: "Enviar campanha para moderação"
+    create_campaign: "Criar campanha"
     save: "Salvar campanha"
     cancel: "Cancelar"
     accept: "Aceitar campanha"
@@ -34,7 +35,7 @@ pt-BR:
   home:
     highlight:
       pokes_count_html: "<span>%{count}</span> pressões feitas"
-      poke_now: "Pressionar agora!"
+      poke_now: "Pressione agora!"
       is_featured: "Campanha em Destaque"
     text:
       popular_campaigns: "Campanhas Populares"
