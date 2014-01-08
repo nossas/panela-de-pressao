@@ -27,7 +27,7 @@ Feature: Enable voice call integration of campaign
     And I attach an image to "Para a divulgação da minha campanha bombar, vou usar essa imagem"
     And I select "Educação" for "E trata do tema"
     When I press "Enviar campanha para moderação"
-    Then I should be in the campaigns page
+    Then I should be in "the campaigns page"
     And I should see "Aí! Recebemos a sua campanha. Em breve entraremos em contato para colocá-la no ar..."
     And an email called "Recebemos a sua campanha" should be sent
     And an email called "Campanha aguardando moderação" should be sent

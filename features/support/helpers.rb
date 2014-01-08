@@ -14,6 +14,7 @@ def route_to_path route
   return influencer_path(@target.influencer)                              if route == "this target page"
   return updates_campaign_path(@campaign, anchor: "update_#{@update.id}") if route == "this update page"
   return "/meurio_accounts"                                               if route == "the Meu Rio accounts login page"
+  return reported_campaigns_path                                          if route == "the reported campaigns page"
   raise "I don't know the route '#{route}'"
 end
 
@@ -64,4 +65,24 @@ def to_element string
   return ".email-field small.error" if string == "the email field error"
   return ".phone-field small.error" if string == "the phone field error"
   return "aside.pressure .share" if string == "the campaign share buttons"
+  return "a[href='/campaigns/reported']" if string == "the reported campaigns button"
+  return ".campaign" if string == "campaigns"
+  return ".empty" if string == "there is no reported campaigns"
+  return ".campaign_without_moderator_warn" if string == "the warn of campaign without moderator"
+  return "report_campaign_button" if string == "the report campaign button"
+  return "archive_campaign_button" if string == "the archive campaign button"
+  return "new_campaign_button" if string == "the new campaign button"
+  return "edit_campaign_button" if string == "the edit campaign button"
+  return "feature_campaign_button" if string == "the feature campaign button"
+  return "unmoderated_campaigns_button" if string == "the unmoderated campaigns button"
+  return "lose_campaign_button" if string == "the lose campaign button"
+  return "victory_campaign_button" if string == "the victory campaign button"
+  return "campaign_answers_button" if string == "the campaign answers button"
+  return "my_campaigns_button" if string == "the my campaigns button"
+  return "take_on_a_campaign_button" if string == "the take on a campaign button"
+end
+
+def to_email_subject string
+  return "Nova denúncia" if string == "report campaign"
+  raise "I don't know email subject '#{string}'"
 end

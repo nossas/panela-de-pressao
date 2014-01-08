@@ -17,6 +17,6 @@ li.campaign[class="#{(campaign.finished_at? ? 'finished' : 'not_finished')}"]
     - elsif can? :moderate, Campaign
       .campaign_moderator class="#{'alert' if campaign.moderator.nil?}"
         strong= campaign.moderator ? campaign.moderator.name : "Sem moderador"
-      = link_to "Assumir moderação", campaign_moderate_path(campaign), :class => "btn", :method => "put"
+      = link_to "Assumir moderação", campaign_moderate_path(campaign), :class => "btn", :method => "put", id: :take_on_a_campaign_button
       .campaign_user_email= campaign.user.email
       .campaign_created_at= l(campaign.created_at, format: :short)
