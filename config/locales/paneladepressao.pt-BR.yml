@@ -6,8 +6,9 @@ pt-BR:
     keywords: "petição, pública, pressão, pressionar, rio de janeiro, política, mobilização, panela de pressão, meu rio, petição, campanha"
     description: "O Panela de Pressão é o único aplicativo de mobilizações que permite contato direto com governantes e outros tomadores de decisão da cidade. Isso não é um site de petições. Aqui não há intermediários. Você pressiona, você é o protagonista da mudança!"
     author: "Meu Rio - contato@meurio.org.br"
+    favicon: "http://i.imgur.com/M4PUy.png"
     image: "http://i.imgur.com/VnpnW1L.jpg"
-    url: "http://paneladepressao.meurio.org.br/"
+    url: "http://paneladepressao.meurio.org.br"
   link:
     click_here: "clique aqui"
     what_is_html: "<span>O que é</span> o panela"
