@@ -51,6 +51,8 @@ body.campaigns#unmoderated
 body.campaigns#index, body.campaigns#unmoderated
   section.highlight
     display: none
+  .title
+    +grid(12)
   h2
     color: #363a3d
     font-weight: bold
@@ -83,7 +85,10 @@ body.campaigns#index, body.campaigns#unmoderated
   section.institutional
     padding: 4em 0 2em 0
     .item
+      +grid(3)
       text-align: center
+      &:last-child
+        +last
       h2
         font-size: 1.2em
         margin-top: 1em
@@ -99,10 +104,9 @@ body.campaigns#index, body.campaigns#unmoderated
       border: 1px solid darken($gray, 10%)
       background: white
       overflow: hidden
-      padding: 0
-      margin: 0
       +border-radius(4px)
       .image
+        +grid(6)
         height: 32%
         padding: 0
         img, iframe
@@ -110,6 +114,7 @@ body.campaigns#index, body.campaigns#unmoderated
           display: block
       .about
         padding: 1em 1.3em
+        +grid(6)
         +last
       h1
         color: $green
