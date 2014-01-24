@@ -1,5 +1,6 @@
 section.content
-  .row.popular
-    h2.popular= t "home.text.user_campaigns", :user_name => current_user.name
-    ol.campaigns
+  .row
+    .title
+      h2= t "home.text.user_campaigns", :user_name => @user.name
+    ol.campaigns.by_user
       = render collection
