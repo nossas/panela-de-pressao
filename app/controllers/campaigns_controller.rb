@@ -4,6 +4,7 @@ class CampaignsController < InheritedResources::Base
   has_scope :popular,     only: [:explore]
   has_scope :successful,  only: [:explore] 
   optional_belongs_to :category
+  optional_belongs_to :user
   
   custom_actions collection: :explore
   
