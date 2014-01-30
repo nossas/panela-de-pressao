@@ -27,4 +27,10 @@ class CampaignMailer < ActionMailer::Base
     @campaign = campaign
     mail(to: campaign.user.email, subject: "Relatório da sua campanha")
   end
+
+  def new_campaign campaign
+    headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"new_campaign\"] }"
+    @campaign = campaign
+    mail(to: "curadoria@paneladepressao.org.br", subject: "Nova campanha")
+  end
 end
