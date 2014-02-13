@@ -51,8 +51,6 @@ body.campaigns#unmoderated
 body.campaigns#index, body.campaigns#unmoderated
   section.highlight
     display: none
-  .title
-    +grid(12)
   h2
     color: #363a3d
     font-weight: bold
@@ -85,10 +83,7 @@ body.campaigns#index, body.campaigns#unmoderated
   section.institutional
     padding: 4em 0 2em 0
     .item
-      +grid(3)
       text-align: center
-      &:last-child
-        +last
       h2
         font-size: 1.2em
         margin-top: 1em
@@ -104,10 +99,10 @@ body.campaigns#index, body.campaigns#unmoderated
       border: 1px solid darken($gray, 10%)
       background: white
       overflow: hidden
+      padding: 0
+      margin: 0
       +border-radius(4px)
       .image
-        +grid(6)
-        height: 32%
         padding: 0
         img, iframe
           width: 100%
@@ -116,7 +111,6 @@ body.campaigns#index, body.campaigns#unmoderated
           height: 340px
       .about
         padding: 1em 1.3em
-        +grid(6)
         +last
       h1
         color: $green
@@ -150,12 +144,6 @@ body.campaigns#index, body.campaigns#unmoderated
           font-size: 1.3em
           color: white
           width: 100%
-  ol.campaigns.by_user
-    li.campaign
-      +grid(3)
-      margin-bottom: 1em
-      &:nth-child(4n)
-        +last
 
 body.campaigns#show
   article.campaign, aside.right.pressure
@@ -163,36 +151,25 @@ body.campaigns#show
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
-  .campaign_with_moderator, .campaign_without_moderator, .campaign_succeed, .campaign_failed, .campaign_archived
-    margin-top: -1.75em
+  .finished_at, .campaign_warn
     +grid(12)
     +last
+    a
+      color: #333
     span
+      background: #c2c8d4
       display: block
       text-align: center
       padding: .6em
       color: white
-      +border-radius(0 0 4px 4px)
+      +border-radius(4px)
       margin: 0 auto
       margin-bottom: 1.5em
       font-size: 1.1em
-  .campaign_with_moderator
-    a
-      color: #006b31
-    span
-      background: #b0d27b
-  .campaign_without_moderator
-    a
-      color: red
-      font-weight: bold
-    span
-      background: #e9bcbd
-  .campaign_succeed
-    span
-      background: $victory
-  .campaign_failed
-    span
+    span.unsucceed
       background: $loss
+    span.succeed
+      background: $victory
   h1.title, .campaign_subtitle span
     color: darken($gray, 75%)
   h1.title
