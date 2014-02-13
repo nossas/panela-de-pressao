@@ -11,7 +11,7 @@ html
 
     link rel="stylesheet" href="http://i.icomoon.io/public/b6dafa29d0/MeuRio/style.css"
     = stylesheet_link_tag "application"
-    = favicon_link_tag t('site.image')
+    = favicon_link_tag t('site.favicon')
     = csrf_meta_tag
     - if content_for?(:meta_tags)
       = yield(:meta_tags)
@@ -20,7 +20,7 @@ html
       meta property="og:title"        content=t('site.title')
       meta property="og:image"        content=t('site.image')
       meta property="og:url"          content=t('site.url')
-      meta property="og:description"  content=t('site.fb_description')
+      meta property="og:description"  content=t('site.description')
     /[if IE] 
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     javascript:
