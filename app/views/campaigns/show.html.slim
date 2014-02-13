@@ -19,24 +19,27 @@
 
 section.content
   .row
-    .campaign_warn
-      - if @campaign.moderator.nil?
-            span
-              | Se esta mobilização não se adequa à 
-              = link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")
-              |  da Rede Meu Rio, 
-              - if can?(:create, Report) && !current_user.reported?(@campaign)
-                = link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post
-              - else
-                | denuncie.
-      - else
-            span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui", about_path(anchor: "campaign_owner")}.
+    - if @campaign.finished? || @campaign.archived?
+      - if @campaign.archived?
+        .campaign_archived
+          span.archived Essa campanha foi arquivada
 
-  .row
-    = render partial: 'finished_message' if @campaign.finished_at?
-    - if @campaign.archived?
-      .finished_at
-        span.archived Essa campanha foi arquivada
+      - if @campaign.succeed?
+        .campaign_succeed
+          span Vitória! Esta campanha foi encerrada há #{distance_of_time_in_words_to_now(@campaign.finished_at)}
+
+      - if @campaign.failed?
+        .campaign_failed
+          span Não foi dessa vez... Esta campanha foi encerrada há #{distance_of_time_in_words_to_now(@campaign.finished_at)}
+
+    - else
+      - if @campaign.moderator.nil? && can?(:create, Report) && !current_user.reported?(@campaign)
+        .campaign_without_moderator
+          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Meu Rio, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
+
+      - if @campaign.moderator.present?
+        .campaign_with_moderator
+          span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui.", about_path(anchor: "campaign_owner")}
 
   .row
     article.campaign

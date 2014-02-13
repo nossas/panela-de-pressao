@@ -4,20 +4,6 @@ require 'open-uri'
 require 'json'
 
 namespace :pdp do
-  desc "Email owners reports"
-  task :email_owners_reports => :environment do
-    Campaign.unfinished.where("(? - created_at::date) % 7 = 0", Time.now).each do |campaign|
-      CampaignMailer.delay.report(campaign)
-    end
-  end
-
-  desc "Email campaigns without moderator"
-  task :email_campaigns_without_moderator => :environment do
-    if Campaign.orphan.unmoderated.unarchived.any?
-      CampaignMailer.delay.campaigns_without_moderator
-    end
-  end
-
   task :migrate_users_database, [:json_url] => :environment do |t, args|
     puts "migrate_users_database"
     users = JSON.parse(open(args[:json_url]).read)

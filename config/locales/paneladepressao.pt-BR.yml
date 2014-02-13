@@ -4,10 +4,10 @@ pt-BR:
   site:
     title: "Panela de Pressão"
     keywords: "petição, pública, pressão, pressionar, rio de janeiro, política, mobilização, panela de pressão, meu rio, petição, campanha"
-    description: "Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. Pressione diretamente os responsáveis pela administração da cidade."
-    fb_description: "Se tem alguma coisa errada no Rio de Janeiro, está na hora de resolver. E na pressão tudo é mais rápido. Nossa receita é simples: você aponta um problema, convoca outras pessoas que desejam a mesma mudança e pressiona diretamente os responsáveis pela administração da cidade, por email, Twitter ou Facebook."
+    description: "O Panela de Pressão é o único aplicativo de mobilizações que permite contato direto com governantes e outros tomadores de decisão da cidade. Isso não é um site de petições. Aqui não há intermediários. Você pressiona, você é o protagonista da mudança!"
     author: "Meu Rio - contato@meurio.org.br"
-    image: "http://i.imgur.com/M4PUy.png"
+    favicon: "http://i.imgur.com/M4PUy.png"
+    image: "http://i.imgur.com/VnpnW1L.jpg"
     url: "http://paneladepressao.meurio.org.br"
   link:
     click_here: "clique aqui"
