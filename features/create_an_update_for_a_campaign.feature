@@ -15,7 +15,6 @@ Feature: create an update for a campaign
     When I submit the new update form
     Then I should be in "the updates page of the campaign"
     And I should see the new update in a facebox
-    And I should see the new update in the Meu Rio Facebook page
 
   @omniauth_test @javascript @ssi
   Scenario: when I'm an admin user and submit the form wrong
