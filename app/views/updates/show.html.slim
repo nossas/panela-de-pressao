@@ -7,5 +7,5 @@ div id="update_#{@update.id}"
     .video= raw @update.video_html
   .body= simple_format @update.body
   .share_buttons
-    = link_to "Compartilhar no Facebook", "https://www.facebook.com/sharer.php?u=#{updates_campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id)}", class: "btn facebook_share"
-    = link_to "Compartilhar no Twitter", "https://twitter.com/share?text=#{@update.title}&url=#{updates_campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id)}", class: "btn twitter_share"
+    = link_to "Compartilhar no Facebook", "https://www.facebook.com/sharer.php?u=#{URI::encode(updates_campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id))}", class: "btn facebook_share"
+    = link_to "Compartilhar no Twitter", "https://twitter.com/share?text=#{URI::encode(@update.title)}&url=#{URI::encode(updates_campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id))}", class: "btn twitter_share"
