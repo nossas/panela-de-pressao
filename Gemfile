@@ -25,6 +25,7 @@ gem 'machinist', '>= 2.0.0.beta2'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'unf'
 
 # Authentication
 gem 'omniauth'
