@@ -14,6 +14,14 @@ test:
   username: seurio
   password:
 
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: seurio_staging
+  pool: 5
+  username: seurio
+  password:
+
 production:
   adapter: postgresql
   encoding: unicode
