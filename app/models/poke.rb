@@ -2,7 +2,7 @@
 require 'httparty'
 
 class Poke < ActiveRecord::Base
-  attr_accessible :campaign_id,         :kind, :user_id, :custom_message
+  attr_accessible :campaign_id, :kind, :user_id, :custom_message
   belongs_to      :campaign
   belongs_to      :user
   has_many        :targets,     :through => :campaign
@@ -19,6 +19,7 @@ class Poke < ActiveRecord::Base
   after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
   after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone } 
   after_create    { self.delay.add_to_mailchimp_segment }
+  after_create    { self.delay.sync_reward }
 
   default_scope order('updated_at DESC') 
 
@@ -62,8 +63,6 @@ class Poke < ActiveRecord::Base
     Poke.where(:user_id => self.user_id, :campaign_id => self.campaign_id).count == 1
   end
 
-
-
   def user_phone
     "55#{self.user.phone.scan(/[0-9]+/).join}"
   end
@@ -80,6 +79,18 @@ class Poke < ActiveRecord::Base
     begin
       Gibbon::API.lists.subscribe(id: ENV["MAILCHIMP_LIST_ID"], email: {email: self.user.email}, merge_vars: {FNAME: self.user.first_name, LNAME: self.user.last_name}, double_optin: false, update_existing: true)
       Gibbon::API.lists.static_segment_members_add(id: ENV["MAILCHIMP_LIST_ID"], seg_id: self.campaign.mailchimp_segment_uid, batch: [{email: self.user.email}])
+    rescue Exception => e
+      Rails.logger.error e
+    end
+  end
+
+  def sync_reward
+    begin
+      url = "#{ENV["MEURIO_HOST"]}/rewards.json"
+      reward = { task_type_id: ENV['POKE_TASK_TYPE_ID'], user_id: self.user_id, points: "15", source_app: "Panela de Pressão", source_model: "Poke", source_id: self.id }
+      body = { token: ENV["MEURIO_API_TOKEN"], reward: reward }
+      response = HTTParty.post(url, body: body)
+      self.update_attribute :rewarded, true if response.code == 201
     rescue Exception => e
       Rails.logger.error e
     end
@@ -135,4 +146,5 @@ class Poke < ActiveRecord::Base
       end
     end
   end
+
 end

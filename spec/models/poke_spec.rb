@@ -47,4 +47,31 @@ describe Poke do
     end
   end
 
+  describe "#sync_reward" do
+    before do
+      subject.stub(:campaign_id).and_return(1)
+      subject.stub(:user_id).and_return(1)
+      Poke.stub(:where).with(:user_id => 1, :campaign_id => 1).and_return([subject])
+    end
+
+    context "when the request returns 201" do
+      before { HTTParty.stub(:post).and_return(Net::HTTPCreated.new('1.1', 201, 'OK')) }
+      
+      it "should update the rewarded flag to true" do
+        expect(subject).to receive(:update_attribute).with(:rewarded, true)
+        subject.sync_reward
+      end
+    end
+
+    context "when the request doesn't returns 201" do
+      before { HTTParty.stub(:post).and_return(Net::HTTPUnauthorized.new('1.1', 403, 'Unauthorized')) }
+
+      it "should not update the rewarded flag to true" do
+        expect(subject).not_to receive(:update_attribute).with(:rewarded, true)
+        subject.sync_reward
+      end
+    end
+  end
+
+
 end
