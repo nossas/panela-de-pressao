@@ -56,10 +56,6 @@ end
 group :test, :development do
   gem 'rake'
   gem 'rspec-rails', '>= 2.0.1'
-end
-
-# We need development here to make rake spec work
-group :test, :development do
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'database_cleaner'
