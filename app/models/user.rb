@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  establish_connection Rails.env.production? ? ENV["ACCOUNTS_DATABASE"] : "accounts_#{Rails.env}"
   attr_accessible :admin, :email, :phone, :first_name, :last_name
   has_many :authorizations
   has_many :campaigns
@@ -27,7 +26,7 @@ class User < ActiveRecord::Base
 
   def avatar_url
     if self.avatar
-      "https://meurio-accounts.s3.amazonaws.com/uploads/user/avatar/#{self.id}/square_#{self.avatar}"
+      "https://#{ENV['ACCOUNTS_BUCKET']}.s3.amazonaws.com/uploads/user/avatar/#{self.id}/square_#{self.avatar}"
     else
       "http://i.imgur.com/lsAFCHL.jpg"
     end
