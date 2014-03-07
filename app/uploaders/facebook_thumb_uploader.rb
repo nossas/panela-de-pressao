@@ -11,9 +11,12 @@ class FacebookThumbUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog if Rails.env.production?
-  storage :file if not Rails.env.production?
-
+  if Rails.env.production? || Rails.env.staging?
+    storage :fog
+  else
+    storage :file
+  end
+  
   # Process files as they are uploaded:
   process :resize_to_fill => [200, 200]
 
