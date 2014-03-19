@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 source 'https://rails-assets.org'
-ruby '1.9.3'
+ruby '2.1.1'
 
 gem 'rails', '~> 3.2.14'
 
