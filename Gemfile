@@ -70,6 +70,7 @@ group :assets do
   gem 'compass-rails'
   gem 'compass-columnal-plugin', '~> 0.1.2'
   gem 'uglifier'
+  gem 'therubyracer'
 end
 
 gem 'facebox-rails'
