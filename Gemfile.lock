@@ -380,6 +380,7 @@ DEPENDENCIES
   dalli
   database_cleaner
   delayed_job_active_record
+  eventmachine
   facebox-rails
   faker
   fog
