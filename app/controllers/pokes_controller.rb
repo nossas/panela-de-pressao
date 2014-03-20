@@ -20,10 +20,22 @@ class PokesController < InheritedResources::Base
   end
 
   def create
-    user_hash = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email]}
-    user = current_user || User.find_by_id(params[:user_id]) || User.find_or_create_by_email(params[:email], user_hash)
-    user.update_attribute(:phone, params[:phone]) if params[:phone]
-    @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
+    begin
+      user = current_user || User.find_by_id(params[:user_id]) || User.find_by_email(params[:email])
+
+      unless user
+        url = "#{ENV["ACCOUNTS_HOST"]}/users.json"
+        user_hash = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email]}
+        body = { token: ENV["ACCOUNTS_API_TOKEN"], user: user_hash }
+        response = HTTParty.post(url, body: body)
+        user = User.find_by_email(params[:email])
+      end
+
+      user.update_attribute(:phone, params[:phone]) if params[:phone]
+      @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
+    rescue Exception => e
+      Rails.logger.error e
+    end
 
     create! do |success, failure|
       success.html do
