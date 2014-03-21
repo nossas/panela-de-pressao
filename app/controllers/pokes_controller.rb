@@ -25,10 +25,10 @@ class PokesController < InheritedResources::Base
 
       unless user
         url = "#{ENV["ACCOUNTS_HOST"]}/users.json"
-        user_hash = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email]}
+        user_hash = { first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: Devise.friendly_token }
         body = { token: ENV["ACCOUNTS_API_TOKEN"], user: user_hash }
-        response = HTTParty.post(url, body: body)
-        user = User.find_by_email(params[:email])
+        response = HTTParty.post(url, body: body, headers: { 'Content-Type' => 'application/json' })
+        user = User.find_by_id(response['id'])
       end
 
       user.update_attribute(:phone, params[:phone]) if params[:phone]
