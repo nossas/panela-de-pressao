@@ -38,4 +38,18 @@ RSpec.configure do |config|
   config.before { ActionMailer::Base.deliveries.clear }
   config.before { Bitly.stub_chain(:new, :shorten, :short_url).and_return("bitly.com/unlockmedia") }
   config.before { load Rails.root + 'db/seeds.rb' }
+
+  # Database cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

@@ -47,7 +47,6 @@ ActionController::Base.allow_rescue = false
 
 begin
   DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner[:active_record, {:connection => :accounts_test}].strategy = :truncation
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
