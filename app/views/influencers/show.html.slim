@@ -9,11 +9,7 @@ section.content.row
     h3= @influencer.name
     = form_for @influencer, multipart: true, html: { class: (can?(:edit, @influencer) ? "" : "not_logged") } do |f|
       - if can?(:edit, @influencer)
-        p
-          = f.label :archived
-          = f.check_box :archived
-        p
-          = f.file_field :avatar
+        p= f.file_field :avatar
       p
         = f.label :name
         = f.text_field :name, disabled: (can?(:edit, @influencer) ? false : "disabled")
@@ -49,8 +45,6 @@ section.content.row
               = f.submit class: "btn submit green", value: t("user.show.save")
       .campaigns
         h2
-          |Campanhas onde #{@influencer.name} foi pressionado 
+          |Campanhas onde #{@influencer.name} foi pressionado
         hr
         .list= render @influencer.campaigns
-
-
