@@ -21,16 +21,7 @@ class PokesController < InheritedResources::Base
 
   def create
     begin
-      user = current_user || User.find_by_id(params[:user_id]) || User.find_by_email(params[:email])
-
-      unless user
-        url = "#{ENV["ACCOUNTS_HOST"]}/users.json"
-        user_hash = { first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: SecureRandom.hex }
-        body = { token: ENV["ACCOUNTS_API_TOKEN"], user: user_hash }
-        response = HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
-        user = User.find_by_id(response['id'])
-      end
-
+      user = current_user || User.find_by_id(params[:user_id]) || User.find_by_email(params[:email]) || User.create(params)
       user.update_attribute(:phone, params[:phone]) if params[:phone]
       @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
     rescue Exception => e
