@@ -46,7 +46,7 @@ section.content
       h1.title= @campaign.name
       .campaign_subtitle
         .accepted_at_and_category_name
-          | No ar há 
+          | No ar há
           strong #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
         - if can?(:edit, @campaign) || can?(:feature, @campaign)
@@ -89,7 +89,7 @@ section.content
             .wrap
               a href="https://www.facebook.com/sharer/sharer.php?u=#{campaign_url(@campaign)}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
-      - elsif !@campaign.finished?
+      - elsif !@campaign.finished? && !@campaign.archived?
         - if @campaign.has_voice_action?
           = render partial: 'poke_by_phone'
         - else
