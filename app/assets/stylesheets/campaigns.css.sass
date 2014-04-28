@@ -40,7 +40,7 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
         margin: 0
 
 body.campaigns#unmoderated
-  ol.campaigns 
+  ol.campaigns
     margin: 0
     li.campaign
       margin-bottom: 1em
@@ -61,7 +61,7 @@ body.campaigns#index, body.campaigns#unmoderated
   section
     padding: 2em 0
   .campaigns_by_moderator, .successful_campaigns, .popular
-    ol.campaigns 
+    ol.campaigns
       margin: 0
       li.campaign
         overflow: hidden
@@ -196,7 +196,7 @@ body.campaigns#show
     color: darken($gray, 75%)
   h1.title
     font-size: 2.5em
-    line-height: 100% 
+    line-height: 100%
     color: #34393c
   .campaign_subtitle
     .accepted_at_and_category_name
@@ -287,8 +287,9 @@ body.campaigns#show
         font-weight: bolder
         font-size: 1.1em
         border-bottom: 1px gray solid
+        text-align: center
         +border-radius(5px 5px 0 0)
-        &.email  
+        &.email
           background: $darker_gray
         &.facebook
           background: $fb_blue
@@ -346,7 +347,7 @@ body.campaigns#show
         input, textarea
           color: #566772
           border: 0
-          +box-shadow(inset 0 0 0)          
+          +box-shadow(inset 0 0 0)
         input
           color: $darker_gray
           border: 0
@@ -468,7 +469,7 @@ body.campaigns#show
       line-height: 1.6em
       strong
         color: #333
-  .counter 
+  .counter
     margin-bottom: 1em
     border-top: none
     margin-top: 1em
