@@ -1,34 +1,34 @@
 = form_for [@campaign, @poke], html: { class: :new_email_poke, "data-abide" => true } do |f|
   = f.hidden_field :kind, value: :email
-  .header.email Pressione por email
-  
+  .header.email Deixe seus dados para enviar um email em seu nome!
+
   .first_name-field.user.field
     = label_tag :first_name, "Seu nome:"
     = current_user ? content_tag(:span, current_user.try(:first_name)) : text_field_tag(:first_name, nil, required: true)
     small.error Nome é obrigatório
-  
+
   .last_name-field.user.field
     = label_tag :last_name, "Seu sobrenome:"
     = current_user ? content_tag(:span, current_user.try(:last_name)) : text_field_tag(:last_name, nil, required: true)
     small.error Sobrenome é obrigatório
-    
+
   .email-field.user.field
     = label_tag :email, "Seu email:"
     = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true)
     small.error Email é obrigatório e precisa ser válido
 
   .field.to
-    | Email para: 
+    | Email para:
     - @campaign.influencers.each do |i|
       span= i.name
-  
+
   .field.subject
-    | Assunto: 
+    | Assunto:
     span= @campaign.name
-  
+
   .custom_message.field
     = f.text_area :custom_message, value: @campaign.email_text, required: true
     small.error O texto da mensagem é obrigatório
-  
+
   .action
     = f.submit "Enviar a sua pressão", id: :new_poke_email_submit_button, class: :email
