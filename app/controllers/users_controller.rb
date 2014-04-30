@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def index
     authorize! :export, @current_user if params[:format] == "csv"
-    @users = User.by_campaign_id(params[:by_campaign_id])
+    campaign = Campaign.find(params[:by_campaign_id])
+    @users = campaign.pokers
     respond_to do |format|
       format.csv { render :layout => false }
     end

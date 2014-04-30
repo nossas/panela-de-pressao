@@ -1,10 +1,10 @@
 class Campaign < ActiveRecord::Base
   include AutoHtml
-  attr_accessible :description, :name, :user_id, :user_ids, :image, 
-    :image_cache, :category_id, :target_ids, :influencer_ids, :short_url, 
-    :email_text, :facebook_text, :twitter_text, :map_embed, :map_description, 
+  attr_accessible :description, :name, :user_id, :user_ids, :image,
+    :image_cache, :category_id, :target_ids, :influencer_ids, :short_url,
+    :email_text, :facebook_text, :twitter_text, :map_embed, :map_description,
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
-    :voice_call_script, :voice_call_number, :hashtag, :poke_type, 
+    :voice_call_script, :voice_call_number, :hashtag, :poke_type,
     :facebook_share_title, :facebook_share_lead, :facebook_share_thumb,
     :after_poke_title, :after_poke_text, :after_poke_link, :after_poke_call_to_action
 
@@ -23,6 +23,7 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :updates
   has_many :reports
+  has_many :pokers, through: :pokes, source: :user
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
@@ -44,7 +45,7 @@ class Campaign < ActiveRecord::Base
   scope :orphan,      where(moderator_id: nil)
   scope :reported,    joins(:reports)
 
-  validates :name, :user_id, :description, :image, :category, :poke_type, :presence => true  
+  validates :name, :user_id, :description, :image, :category, :poke_type, :presence => true
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
@@ -61,11 +62,11 @@ class Campaign < ActiveRecord::Base
     return video.embed_code unless video.nil?
   end
 
-  def convert_html(text) 
+  def convert_html(text)
     auto_html text do
       image
       youtube(width: "100%", height: 300)
-      redcarpet :target => :_blank      
+      redcarpet :target => :_blank
     end
   end
 
@@ -134,10 +135,6 @@ class Campaign < ActiveRecord::Base
 
   def users
     @users ||= [self.user].concat(CampaignOwner.where(campaign_id: self.id).map{|co| co.user})
-  end
-
-  def pokers
-    @pokers ||= User.where("id IN (?)", pokes.map{|p| p.user_id})
   end
 
   def failed?
