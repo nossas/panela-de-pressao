@@ -16,6 +16,7 @@ def route_to_path route
   return "/meurio_accounts"                                               if route == "the Meu Rio accounts login page"
   return reported_campaigns_path                                          if route == "the reported campaigns page"
   return campaign_path(Campaign.order(:id).last)                          if route == "the created campaign page"
+  return users_path(format: 'csv', by_campaign_id: @campaign.id)          if route == "this campaign export users page"
   raise "I don't know the route '#{route}'"
 end
 
@@ -88,6 +89,7 @@ def to_element string
   return ".successful_campaigns .campaign .name a" if string == "this successful campaign"
   return ".featured .about h1 a" if string == "this featured campaign"
   return "#report_campaign_button" if string == "the report campaign button"
+  return "#export_users_button" if string == "the export users button"
 end
 
 def to_text string

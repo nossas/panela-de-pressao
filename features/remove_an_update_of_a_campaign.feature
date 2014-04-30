@@ -3,7 +3,7 @@ Feature: remove an update of a campaign
   As an admin
   I want to remove an update of a campaign
 
-  @koala @omniauth_test
+  @koala @omniauth_test @ssi
   Scenario: when I am an admin
     Given there is an update for a campaign
     And I'm logged in as admin

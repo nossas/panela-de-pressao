@@ -5,3 +5,11 @@ Before('@ssi') do
     end
   end
 end
+
+After('@ssi') do
+  class ApplicationController < ActionController::Base
+    def current_user
+      nil
+    end
+  end
+end
