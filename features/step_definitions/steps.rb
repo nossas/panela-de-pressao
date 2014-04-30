@@ -5,7 +5,7 @@ end
 
 Given /^there is (\d+) pokers for this campaign$/ do |arg1|
   @pokes = []
-  arg1.to_i.times do 
+  arg1.to_i.times do
     @pokes << Poke.make!(campaign: @campaign, user: User.make!)
   end
 end
@@ -39,7 +39,7 @@ Given /^I own an unmoderated campaign called "([^"]*)"$/ do |arg1|
 end
 
 Given /^there is 1 poker called "(.*?)" that poked (\d+) times$/ do |name, quant|
-  @poker = User.make! name: name 
+  @poker = User.make! name: name
   quant.to_i.times do
     Poke.make! campaign: @campaign, user: @poker
   end
@@ -174,6 +174,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css(to_element("the reported campaigns button"))
   when "the report campaign button"
     page.should_not have_css("#report_campaign_button")
+  when "the campaign menu"
+    page.should_not have_css("#campaign_menu")
   else
     page.should_not have_content(arg1)
   end
@@ -191,7 +193,7 @@ Then /^I should see the campaigns' ([^"]*)$/ do |arg|
     page.should have_content(@campaign.description)
   when "image"
     page.should have_xpath("//img[@src='#{@campaign.image.url}']")
-  end  
+  end
 end
 
 Then /^an email should be sent$/ do
@@ -565,4 +567,8 @@ end
 
 Given(/^I wait (\d+)$/) do |arg1|
   sleep arg1.to_i
+end
+
+Then(/^a CSV file should be downloaded$/) do
+  page.response_headers["Content-Type"].should match(/text\/csv/)
 end

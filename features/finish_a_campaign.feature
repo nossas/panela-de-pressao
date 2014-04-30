@@ -3,7 +3,7 @@ Feature: finish a campaign
   As an admin
   I want to finish a campaign
 
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: I'm logged in as admin and the campaign is succeed
     Given I'm logged in as admin
     And there is a campaign called "Save the Whales!"
@@ -13,7 +13,7 @@ Feature: finish a campaign
     And I should see "Vitória!"
     And I should not see "the pokes buttons" in "the right sidebar"
 
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: I'm logged in as admin and the campaign is not succeed
     Given I'm logged in as admin
     And there is a campaign called "Save the Whales!"
@@ -28,7 +28,7 @@ Feature: finish a campaign
     When I go to "this campaign page"
     Then I should not see "Encerrar campanha"
 
-  @omniauth_test
+  @omniauth_test @ssi
   Scenario: I'm the campaigns owner
     Given I'm logged in
     And I own a campaign called "Save the Whales!"
