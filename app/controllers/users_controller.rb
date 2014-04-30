@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   inherit_resources
   load_and_authorize_resource
   before_filter only: [:update] { return render nothing: true, status: :unauthorized unless can?(:update, @user) }
-  has_scope :by_campaign_id
   autocomplete :user, :email
 
   def index
