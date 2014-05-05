@@ -77,3 +77,7 @@ Report.blueprint do
   campaign  { Campaign.make! }
   user      { User.make! }
 end
+
+Accounts.blueprint do
+  # Attributes here
+end
