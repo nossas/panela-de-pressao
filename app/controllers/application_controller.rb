@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
   # This is how you can sign in on the development environment
   before_filter { session[:ssi_user_id] = params[:sign_in] if Rails.env.development? && params[:sign_in] }
 
+  before_filter :require_authentication
+
+  def require_authentication
+    puts session['cas'].inspect
+    render(text: 'You shall not pass!', status: :unauthorized, layout: false) if request.session['cas'].nil?
+  end
+
   protected
   def render_404
     raise ActionController::RoutingError.new('Not Found')
@@ -34,7 +41,7 @@ class ApplicationController < ActionController::Base
   def require_twitter_auth
     return redirect_to "/auth/twitter"
   end
-  
+
   private
   def current_ability
     @current_ability ||= Ability.new(current_user, request)
