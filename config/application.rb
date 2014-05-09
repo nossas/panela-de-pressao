@@ -28,7 +28,7 @@ module ManifesteSe
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    
+
     config.i18n.enforce_available_locales = false
     config.i18n.available_locales = ["pt-BR"]
     config.i18n.default_locale = :'pt-BR'
@@ -42,7 +42,7 @@ module ManifesteSe
     config.generators do |g|
       g.fixture_replacement :machinist
     end
-    
+
     # Enable the asset pipeline
     config.assets.enabled = true
 
@@ -59,5 +59,7 @@ module ManifesteSe
     if Rails.env.production?
       config.middleware.insert_before Rack::Lock, Rack::NoWWW
     end
+
+    config.rack_cas.server_url = ENV["CAS_SERVER_URL"]
   end
 end
