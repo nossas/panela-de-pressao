@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     if Rails.env.production? || Rails.env.staging?
       begin
         url = "#{ENV["ACCOUNTS_HOST"]}/users.json"
-        user_hash = { first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: SecureRandom.hex, application_slug: "pdp" }
+        user_hash = { first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: SecureRandom.hex, application_slug: "pdp", ip: params[:ip] }
         body = { token: ENV["ACCOUNTS_API_TOKEN"], user: user_hash }
         response = HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
         User.find_by_id(response['id'])
