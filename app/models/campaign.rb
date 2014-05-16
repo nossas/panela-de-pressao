@@ -23,7 +23,7 @@ class Campaign < ActiveRecord::Base
   has_many :pokes
   has_many :updates
   has_many :reports
-  has_many :pokers, through: :pokes, source: :user
+  has_many :pokers, through: :pokes, source: :user, uniq: true
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
