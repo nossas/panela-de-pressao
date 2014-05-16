@@ -36,6 +36,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def update_ip ip
+    if Rails.env.production? || Rails.env.staging?
+      begin
+        url = "#{ENV["ACCOUNTS_HOST"]}/users/#{self.id}.json"
+        body = { token: ENV["ACCOUNTS_API_TOKEN"], user: { ip: ip } }
+        HTTParty.patch(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
+      rescue Exception => e
+        logger.error e.message
+      end
+    end
+  end
+
   def name
     "#{self.first_name} #{self.last_name}"
   end
