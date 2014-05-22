@@ -9,7 +9,7 @@ pt-BR:
     - Sex
     - Sáb
     abbr_month_names:
-    - 
+    -
     - Jan
     - Fev
     - Mar
@@ -35,7 +35,7 @@ pt-BR:
       long: ! '%d de %B de %Y'
       short: ! '%d de %B'
     month_names:
-    - 
+    -
     - Janeiro
     - Fevereiro
     - Março
@@ -204,8 +204,8 @@ pt-BR:
       <<: *errors
   activerecord:
     models:
-      answer: 
-        one: "Resposta" 
+      answer:
+        one: "Resposta"
         other: "Respostas"
       update:
         one: "Atualização"
@@ -231,11 +231,12 @@ pt-BR:
               invalid: "URL do vídeo é inválida"
         poke:
           attributes:
-            created_at: 
+            created_at:
               poked_recently: "Você já pressionou recentemente. Aguarde um tempinho para pressionar novamente por este canal :)."
     attributes:
       campaign:
         name: "Escreva o nome da sua mobilização (um título curto é sempre melhor)"
+        organization_id: "Escolha uma cidade para a sua mobilização"
         description: "Descreva o problema e a solução que você quer para ele ('a paz mundial' é coisa de miss - seja específico!)"
         image: "Uma imagem que fale por mil palavras: escolha uma no seu computador e suba ela aqui"
         category_id: "Escolha o tema da sua mobilização (ajude as pessoas encontrarem a sua mobilização)"
