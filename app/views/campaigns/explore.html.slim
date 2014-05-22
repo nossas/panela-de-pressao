@@ -12,9 +12,9 @@ section.content.explore
         = render collection
 
     aside.right
-      h4 Filtre por cidade
-      ol.categories
-        = form_for explore_path, method: :get
+      / h4 Filtre por cidade
+      / ol.categories
+        - form_for explore_path, method: :get
           - Organization.order(:city).each do |organization|
             li
               = check_box_tag 'organizations[]', organization.id
