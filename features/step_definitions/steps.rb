@@ -572,3 +572,11 @@ end
 Then(/^a CSV file should be downloaded$/) do
   page.response_headers["Content-Type"].should match(/text\/csv/)
 end
+
+Given(/^there is an organization in "(.*?)"$/) do |arg1|
+  @organization = Organization.make! city: arg1
+end
+
+Then(/^the organization from "(.*?)" should have (\d+) campaign now$/) do |arg1, arg2|
+  Organization.find_by_city(arg1).campaigns.should have(arg2.to_i).city
+end

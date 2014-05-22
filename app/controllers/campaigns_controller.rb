@@ -2,12 +2,12 @@
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
   has_scope :popular,     only: [:explore]
-  has_scope :successful,  only: [:explore] 
+  has_scope :successful,  only: [:explore]
   optional_belongs_to :category
   optional_belongs_to :user
-  
+
   custom_actions collection: :explore
-  
+
   skip_load_and_authorize_resource :only => [:create, :explore]
 
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
@@ -21,6 +21,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:index] { @featured = Campaign.featured.first }
   before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
   before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
+  before_filter :only => [:new, :edit, :create, :update] { @organizations = Organization.order(:city) }
 
   def create
     @campaign = Campaign.new(params[:campaign])
