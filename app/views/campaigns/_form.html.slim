@@ -17,7 +17,7 @@ section.content
           = f.text_field :name
         .field
           = f.label :organization_id
-          = f.select :organization_id, @organizations.map{|c| [c.city, c.id]}
+          = f.select :organization_id, @organizations.map{|c| [c.city, c.id]}, :include_blank => true
         .field
           = f.label :category_id
           = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true

@@ -21,8 +21,9 @@ describe Campaign do
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }
     it{ should validate_presence_of :image }
-    it{ should validate_presence_of :category }
+    it{ should validate_presence_of :category_id }
     it{ should validate_presence_of :poke_type }
+    it{ should validate_presence_of :organization_id }
   end
 
   describe "Maps integration" do
@@ -50,7 +51,7 @@ describe Campaign do
       its(:targets_with_facebook){ should have(1).target }
     end
   end
-  
+
   describe "#targets_with_twitter" do
     context "when there is no target with Twitter" do
       its(:targets_with_twitter){ should be_empty }
@@ -87,7 +88,7 @@ describe Campaign do
   describe "#description_html" do
     let(:campaign) { Campaign.make! }
     it "should populate the description_html column" do
-      campaign.description_html.should_not == 'nil' 
+      campaign.description_html.should_not == 'nil'
     end
   end
 
@@ -95,17 +96,17 @@ describe Campaign do
   describe "#has_voice_action?" do
     context "when there's a voice script and voice number" do
       let(:campaign) { Campaign.make! }
-      
+
       it "should return true" do
         expect(campaign.has_voice_action?).to eq(true)
       end
     end
 
     context "when there is NOT a voice script and voice number" do
-      let(:campaign) { Campaign.make!(voice_call_script: nil, voice_call_number: nil) }      
+      let(:campaign) { Campaign.make!(voice_call_script: nil, voice_call_number: nil) }
 
       it "should return false" do
-        expect(campaign.has_voice_action?).to eq(false)        
+        expect(campaign.has_voice_action?).to eq(false)
       end
     end
   end
@@ -114,12 +115,12 @@ describe Campaign do
     before { subject.poke_type = 'email' }
     it { should validate_presence_of :email_text }
   end
-  
+
   context "when it's poke type is set to facebook" do
     before { subject.poke_type = 'facebook' }
     it { should validate_presence_of :facebook_text }
   end
-  
+
   context "when it's poke type is set to twitter" do
     before { subject.poke_type = 'twitter' }
     it { should validate_presence_of :twitter_text }

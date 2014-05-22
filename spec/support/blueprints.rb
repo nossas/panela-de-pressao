@@ -5,7 +5,7 @@ User.blueprint do
   first_name    { "Nícolas" }
   last_name     { "Iensen" }
   email         { "foo#{sn}@bar.com" }
-  admin         { false } 
+  admin         { false }
   phone         { "(21) 99999999" }
 end
 
@@ -33,6 +33,7 @@ Campaign.blueprint do
   voice_call_number { "552197137471" }
   poke_type { 'email' }
   moderator { User.make! }
+  organization { Organization.make! }
 end
 
 Campaign.blueprint(:unmoderated) do
