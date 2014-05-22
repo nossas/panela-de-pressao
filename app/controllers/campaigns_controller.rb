@@ -3,6 +3,7 @@ class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
   has_scope :popular,     only: [:explore]
   has_scope :successful,  only: [:explore]
+  optional_belongs_to :organization
   optional_belongs_to :category
   optional_belongs_to :user
 
