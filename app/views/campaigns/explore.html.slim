@@ -14,10 +14,14 @@ section.content.explore
     aside.right
       h4 Filtre por cidade
       ol.categories
-        - Organization.order(:city).each do |organization|
-          li
-            = link_to truncate(organization.city, length: 30), organization_campaigns_path(organization), title: organization.city
-            span= organization.campaigns.count
+        = form_for explore_path, method: :get
+          - Organization.order(:city).each do |organization|
+            li
+              = check_box_tag 'organizations[]', organization.id
+              span= organization.city
+              / = link_to truncate(organization.city, length: 30), organization_campaigns_path(organization), title: organization.city
+              span= organization.campaigns.count
+          = submit_tag 'Filtrar'
 
       h4 Filtre por categorias
       ol.categories
