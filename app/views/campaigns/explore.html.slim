@@ -12,6 +12,13 @@ section.content.explore
         = render collection
 
     aside.right
+      h4 Filtre por cidade
+      ol.categories
+        - Organization.order(:city).each do |organization|
+          li
+            = link_to truncate(organization.city, length: 30), organization_campaigns_path(organization), title: organization.city
+            span= organization.campaigns.count
+
       h4 Filtre por categorias
       ol.categories
         - Category.order(:name).each do |category|
