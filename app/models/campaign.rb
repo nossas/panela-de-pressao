@@ -4,7 +4,7 @@ class Campaign < ActiveRecord::Base
     :image_cache, :category_id, :target_ids, :influencer_ids, :short_url,
     :email_text, :facebook_text, :twitter_text, :map_embed, :map_description,
     :pokers_email, :finished_at, :succeed, :video_url, :moderator_id, :archived_at,
-    :voice_call_script, :voice_call_number, :hashtag, :poke_type, :organization_id, 
+    :voice_call_script, :voice_call_number, :hashtag, :poke_type, :organization_id,
     :facebook_share_title, :facebook_share_lead, :facebook_share_thumb,
     :after_poke_title, :after_poke_text, :after_poke_link, :after_poke_call_to_action
 
@@ -13,6 +13,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   belongs_to :moderator, :class_name => "User"
+  belongs_to :organization
   has_many :targets
   has_many :influencers,          through: :targets
   has_many :twitter_influencers,  through: :targets, source: :influencer, conditions: "COALESCE(influencers.twitter, '') <> ''"
@@ -46,7 +47,7 @@ class Campaign < ActiveRecord::Base
   scope :orphan,      where(moderator_id: nil)
   scope :reported,    joins(:reports)
 
-  validates :name, :user_id, :description, :image, :category, :poke_type, :presence => true
+  validates :name, :user_id, :description, :image, :category_id, :poke_type, :organization_id, :presence => true
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
