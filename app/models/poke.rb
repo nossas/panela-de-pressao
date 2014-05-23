@@ -24,12 +24,20 @@ class Poke < ActiveRecord::Base
 
   default_scope order('updated_at DESC')
 
+  def self.valid_frequency?(user_id, campaign_id)
+    Poke
+    .where(user_id: user_id)
+    .where(campaign_id: campaign_id)
+    .where("created_at >= ?", Time.now - 1.day)
+    .empty?
+  end
+
   def thanks
     PokeMailer.delay.thanks(self) if self.user.email.present?
   end
 
   def frequency_validation
-    if !self.user.can_poke?(self.campaign)
+    unless Poke.valid_frequency?(self.user_id, self.campaign_id)
       errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently'))
     end
   end
