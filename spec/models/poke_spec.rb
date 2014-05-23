@@ -38,7 +38,7 @@ describe Poke do
       before { Poke.stub(:where).with(:user_id => 1, :campaign_id => 1).and_return([subject]) }
       its(:first?){ should be_true }
     end
-    
+
     context "when the user already poked this campaign" do
       before { subject.stub(:campaign_id).and_return(1) }
       before { subject.stub(:user_id).and_return(1) }
@@ -56,7 +56,7 @@ describe Poke do
 
     context "when the request returns 201" do
       before { HTTParty.stub(:post).and_return(Net::HTTPCreated.new('1.1', 201, 'OK')) }
-      
+
       it "should update the rewarded flag to true" do
         expect(subject).to receive(:update_attribute).with(:rewarded, true)
         subject.sync_reward
@@ -73,5 +73,28 @@ describe Poke do
     end
   end
 
+  describe "#frequency_validation" do
+    let(:user) { stub_model(User) }
+    let(:campaign) { stub_model(User) }
+    before { subject.stub(:user).and_return(user) }
+    before { subject.stub(:campaign).and_return(campaign) }
 
+    context "when the user can poke" do
+      before { user.stub(:can_poke?).with(campaign).and_return true }
+
+      it "should not add an error into the created_at attribute" do
+        subject.frequency_validation
+        subject.errors[:created_at].should be_empty
+      end
+    end
+
+    context "when the user can't poke" do
+      before { user.stub(:can_poke?).with(campaign).and_return false }
+
+      it "should add an error into the created_at attribute" do
+        subject.frequency_validation
+        subject.errors[:created_at].should have(1).error
+      end
+    end
+  end
 end
