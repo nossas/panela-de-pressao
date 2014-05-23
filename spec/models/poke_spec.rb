@@ -73,27 +73,38 @@ describe Poke do
     end
   end
 
-  describe "#frequency_validation" do
-    let(:user) { stub_model(User) }
-    let(:campaign) { stub_model(User) }
-    before { subject.stub(:user).and_return(user) }
-    before { subject.stub(:campaign).and_return(campaign) }
-
-    context "when the user can poke" do
-      before { user.stub(:can_poke?).with(campaign).and_return true }
-
-      it "should not add an error into the created_at attribute" do
-        subject.frequency_validation
-        subject.errors[:created_at].should be_empty
+  describe "#valid_frequency?" do
+    context "when there is no poke for the given user id and campaign id for the last 24 hours" do
+      it "should return true" do
+        Poke.valid_frequency?(1, 1).should be_true
       end
     end
 
-    context "when the user can't poke" do
-      before { user.stub(:can_poke?).with(campaign).and_return false }
+    context "when there is at least one poke for the given user id and campaign id for the last 24 hours" do
+      before { @poke = Poke.make! }
+      it "should return false" do
+        Poke.valid_frequency?(@poke.user_id, @poke.campaign_id).should be_false
+      end
+    end
+  end
 
-      it "should add an error into the created_at attribute" do
+  describe "#frequency_validation" do
+    let(:errors) { double('errors') }
+    subject { stub_model(Poke, user_id: 1, campaign_id: 1, errors: errors) }
+
+    context "when it's a valid frequency" do
+      before { Poke.stub(:valid_frequency?).with(1, 1).and_return(true) }
+      it "should not add an error into the created_at attribute" do
+        errors.should_not receive(:add)
         subject.frequency_validation
-        subject.errors[:created_at].should have(1).error
+      end
+    end
+
+    context "when it's not a valid frequency" do
+      before { Poke.stub(:valid_frequency?).with(1, 1).and_return(false) }
+      it "should add an error into the created_at attribute" do
+        errors.should receive(:add)
+        subject.frequency_validation
       end
     end
   end
