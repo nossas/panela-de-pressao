@@ -11,24 +11,27 @@ class Poke < ActiveRecord::Base
   validates_presence_of :campaign
   validates_presence_of :user
   validates_presence_of :kind
+  validate :frequency_validation
 
   before_create   :post_facebook_activity
   after_create    :thanks
   after_create    :send_email,          :if => Proc.new { self.email? }
   after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
   after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
-  after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone } 
+  after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone }
   after_create    { self.delay.add_to_mailchimp_segment }
   after_create    { self.delay.sync_reward }
 
-  default_scope order('updated_at DESC') 
+  default_scope order('updated_at DESC')
 
   def thanks
     PokeMailer.delay.thanks(self) if self.user.email.present?
   end
 
-  def poked_recently?
-    errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently')) if not any_recent_pokes?.blank? 
+  def frequency_validation
+    if !self.user.can_poke?(self.campaign)
+      errors.add(:created_at, I18n.t('activerecord.errors.models.poke.attributes.created_at.poked_recently'))
+    end
   end
 
   def any_recent_pokes?
@@ -47,7 +50,7 @@ class Poke < ActiveRecord::Base
   def email?
     self.kind == "email"
   end
-  
+
   def facebook?
     self.kind == "facebook"
   end
@@ -100,7 +103,7 @@ class Poke < ActiveRecord::Base
   def send_phone
     service = ENV['SERVICE_CALL_URL']
     params = { user: self.user_phone, destination: self.campaign_phone }
-    response = HTTParty.get(service, query: params) 
+    response = HTTParty.get(service, query: params)
     return response
   end
 
@@ -111,7 +114,7 @@ class Poke < ActiveRecord::Base
 
   def send_facebook_post
     campaign_url = Rails.application.routes.url_helpers.campaign_url(campaign)
-    campaign.targets_with_facebook.each do |t| 
+    campaign.targets_with_facebook.each do |t|
       begin
         Koala::Facebook::API.new(user.facebook_authorization.token).delay.put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook_id)
         t.increase_pokes_by_facebook
