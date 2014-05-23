@@ -99,13 +99,13 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      campaigns = end_of_association_chain.unarchived
+      campaigns = end_of_association_chain
 
       if params[:organizations].present?
         campaigns = campaigns.where('organization_id IN (?)', params[:organizations])
       end
 
-      @campaigns ||= campaigns.moderated + campaigns.unmoderated
+      @campaigns ||= campaigns.unarchived.moderated + campaigns.unarchived.unmoderated
     end
   end
 end
