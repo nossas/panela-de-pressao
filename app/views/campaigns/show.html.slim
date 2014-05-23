@@ -46,7 +46,7 @@ section.content
       h1.title= @campaign.name
       .campaign_subtitle
         .accepted_at_and_category_name
-          | No ar há 
+          | No ar há
           strong #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
         - if can?(:edit, @campaign) || can?(:feature, @campaign)
@@ -74,7 +74,7 @@ section.content
       = render partial: 'tabs'
       = render partial: params[:section] || 'description'
     aside.right.pressure
-      - if flash[:poke_notice] || flash[:poke_phone_notice]
+      - if flash[:poke_notice] || flash[:poke_phone_notice] || !Poke.valid_frequency?(current_user.try(:id), @campaign.id)
         .thanks
         - if @campaign.after_poke_customized?
           .after_poke

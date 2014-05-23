@@ -34,6 +34,7 @@ Campaign.blueprint do
   poke_type { 'email' }
   moderator { User.make! }
   organization { Organization.make! }
+  influencers(1)
 end
 
 Campaign.blueprint(:unmoderated) do

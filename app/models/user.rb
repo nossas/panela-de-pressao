@@ -76,10 +76,6 @@ class User < ActiveRecord::Base
     self.pokes.where(:campaign_id => campaign.id).any?
   end
 
-  def can_poke? campaign, options = {}
-    self.pokes.where("campaign_id = ? AND kind = ? AND created_at >= ?", campaign.id, options[:with], Time.now - 1.day).size == 0
-  end
-
   def reported? campaign
     campaign.reports.where(user_id: id).any?
   end

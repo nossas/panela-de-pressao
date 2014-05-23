@@ -176,6 +176,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("#report_campaign_button")
   when "the campaign menu"
     page.should_not have_css("#campaign_menu")
+  when "the campaign poke by email form"
+    page.should_not have_css("form.new_email_poke")
   else
     page.should_not have_content(arg1)
   end
