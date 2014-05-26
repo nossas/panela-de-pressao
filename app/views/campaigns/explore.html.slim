@@ -17,21 +17,23 @@ section.content.explore
             .loader= image_tag('loader.gif')
 
     aside.right
-      section.filter
-        h4 Filtre por cidade
-        ol.categories
-          = form_for explore_path, method: :get
+      = form_for explore_path, method: :get
+        section.filter
+          h4 Filtre por cidade
+          ol.categories
             - Organization.order(:city).each do |organization|
               li
                 .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : true)
-                span.name= organization.city
+                = content_tag :span, organization.city, class: :name, title: organization.city
                 span.number= organization.campaigns.count
             = submit_tag 'Filtrar', class: [:btn, :submit]
 
-      section.filter
-        h4 Filtre por categorias
-        ol.categories
-          - Category.order(:name).each do |category|
-            li
-              = link_to truncate(category.name, length: 30), category_campaigns_path(category), title: category.name
-              span.number= category.campaigns.count
+        section.filter
+          h4 Filtre por categorias
+          ol.categories
+            - Category.order(:name).each do |category|
+              li
+                .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : true)
+                = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
+                span.number= category.campaigns.count
+            = submit_tag 'Filtrar', class: [:btn, :submit]
