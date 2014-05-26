@@ -1,4 +1,5 @@
 $('#campaigns-list').append("<%= j (render @campaigns) %>");
+$('#load_more_campaigns_button').show();
 
 $('.campaigns-load-more .load-more').html("<%= j (
   link_to_next_page @campaigns, '+ Veja mais', remote: true,

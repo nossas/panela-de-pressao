@@ -12,6 +12,7 @@ App.Campaigns = {
   Explore: Backbone.View.extend({
     initialize: function(){
       $('#load_more_campaigns_button').on('click', function() {
+        $('#load_more_campaigns_button').hide();
         $('.campaigns-load-more .loader').show();
       });
     }

@@ -9,7 +9,6 @@ section.content.explore
       span Navegue, descubra e se alie às mobilizações criadas pelos membros da Rede Meu Rio. Uma cidade melhor aguarda ser feita com a sua participação. Pressione agora!
     article.left
       ol.campaigns#campaigns-list
-        .loader= image_tag('loader.gif')
         = render @campaigns
       .row.campaigns-load-more
         - if @campaigns.respond_to? :last_page?
