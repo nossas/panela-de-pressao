@@ -75,13 +75,17 @@ class CampaignsController < InheritedResources::Base
   end
 
   def explore
-    campaigns = end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
-    @campaigns_count = campaigns.size
+    @campaigns = Campaign.unarchived
 
-    if request.xhr?
-      @campaigns = Kaminari.paginate_array(campaigns).page(params[:page]).per(9)
-      render @campaigns
+    if params[:organizations].present?
+      @campaigns = @campaigns.where(organization_id: params[:organizations])
     end
+
+    @campaigns = @campaigns.moderated + @campaigns.unmoderated
+    @campaigns_count = @campaigns.size
+    @campaigns = Kaminari.paginate_array(@campaigns).page(params[:page]).per(9)
+
+    respond_with @campaigns
   end
 
   def unmoderated
@@ -109,10 +113,6 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      # if params[:organizations].present?
-      #   campaigns = campaigns.where('organization_id IN (?)', params[:organizations])
-      # end
-
       @campaigns ||= end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
     end
   end
