@@ -75,10 +75,11 @@ class CampaignsController < InheritedResources::Base
   end
 
   def explore
+    campaigns = end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
+    @campaigns_count = campaigns.size
+
     if request.xhr?
-      @campaigns = end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
-      @campaigns_count = @campaigns.size
-      @campaigns = Kaminari.paginate_array(@campaigns).page(params[:page]).per(9)
+      @campaigns = Kaminari.paginate_array(campaigns).page(params[:page]).per(9)
       render @campaigns
     end
   end
