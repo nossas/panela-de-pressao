@@ -7,8 +7,6 @@ class CampaignsController < InheritedResources::Base
   optional_belongs_to :category
   optional_belongs_to :user
 
-  custom_actions collection: :explore
-
   skip_load_and_authorize_resource :only => [:create, :explore]
 
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
@@ -23,6 +21,8 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
   before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
   before_filter :only => [:new, :edit, :create, :update] { @organizations = Organization.order(:city) }
+
+  respond_to :html, :json, :js
 
   def create
     @campaign = Campaign.new(params[:campaign])
@@ -74,6 +74,15 @@ class CampaignsController < InheritedResources::Base
     end
   end
 
+  def explore
+    if request.xhr?
+      @campaigns = end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
+      @campaigns_count = @campaigns.size
+      @campaigns = Kaminari.paginate_array(@campaigns).page(params[:page]).per(9)
+      render @campaigns
+    end
+  end
+
   def unmoderated
     @campaigns = Campaign.unmoderated.unarchived.order("created_at DESC")
   end
@@ -99,13 +108,11 @@ class CampaignsController < InheritedResources::Base
     if params[:user_id]
       @campaigns ||= end_of_association_chain.where(:user_id => params[:user_id])
     else
-      campaigns = end_of_association_chain
+      # if params[:organizations].present?
+      #   campaigns = campaigns.where('organization_id IN (?)', params[:organizations])
+      # end
 
-      if params[:organizations].present?
-        campaigns = campaigns.where('organization_id IN (?)', params[:organizations])
-      end
-
-      @campaigns ||= campaigns.unarchived.moderated + campaigns.unarchived.unmoderated
+      @campaigns ||= end_of_association_chain.unarchived.moderated + end_of_association_chain.unarchived.unmoderated
     end
   end
 end

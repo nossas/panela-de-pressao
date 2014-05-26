@@ -8,8 +8,12 @@ section.content.explore
       h3 Mobilizações por uma cidade melhor!
       span Navegue, descubra e se alie às mobilizações criadas pelos membros da Rede Meu Rio. Uma cidade melhor aguarda ser feita com a sua participação. Pressione agora!
     article.left
-      ol.campaigns
-        = render collection
+      ol.campaigns#campaigns-list{data-count = @campaigns_count}
+        = render @campaigns if @campaigns
+      .row.campaigns-load-more
+        .load-more
+          a.btn.btn-green#load_more_campaigns_button href="#" + Veja mais
+          .loader= image_tag('loader.gif')
 
     aside.right
       / h4 Filtre por cidade
