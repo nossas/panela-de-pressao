@@ -38,7 +38,7 @@ describe Poke do
       before { Poke.stub(:where).with(:user_id => 1, :campaign_id => 1).and_return([subject]) }
       its(:first?){ should be_true }
     end
-    
+
     context "when the user already poked this campaign" do
       before { subject.stub(:campaign_id).and_return(1) }
       before { subject.stub(:user_id).and_return(1) }
@@ -56,7 +56,7 @@ describe Poke do
 
     context "when the request returns 201" do
       before { HTTParty.stub(:post).and_return(Net::HTTPCreated.new('1.1', 201, 'OK')) }
-      
+
       it "should update the rewarded flag to true" do
         expect(subject).to receive(:update_attribute).with(:rewarded, true)
         subject.sync_reward
@@ -73,5 +73,39 @@ describe Poke do
     end
   end
 
+  describe "#valid_frequency?" do
+    context "when there is no poke for the given user id and campaign id for the last 24 hours" do
+      it "should return true" do
+        Poke.valid_frequency?(1, 1).should be_true
+      end
+    end
 
+    context "when there is at least one poke for the given user id and campaign id for the last 24 hours" do
+      before { @poke = Poke.make! }
+      it "should return false" do
+        Poke.valid_frequency?(@poke.user_id, @poke.campaign_id).should be_false
+      end
+    end
+  end
+
+  describe "#frequency_validation" do
+    let(:errors) { double('errors') }
+    subject { stub_model(Poke, user_id: 1, campaign_id: 1, errors: errors) }
+
+    context "when it's a valid frequency" do
+      before { Poke.stub(:valid_frequency?).with(1, 1).and_return(true) }
+      it "should not add an error into the created_at attribute" do
+        errors.should_not receive(:add)
+        subject.frequency_validation
+      end
+    end
+
+    context "when it's not a valid frequency" do
+      before { Poke.stub(:valid_frequency?).with(1, 1).and_return(false) }
+      it "should add an error into the created_at attribute" do
+        errors.should receive(:add)
+        subject.frequency_validation
+      end
+    end
+  end
 end
