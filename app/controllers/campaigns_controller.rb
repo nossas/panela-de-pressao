@@ -80,6 +80,9 @@ class CampaignsController < InheritedResources::Base
     if params[:organizations].present?
       @campaigns = @campaigns.where(organization_id: params[:organizations])
     end
+    if params[:categories].present?
+      @campaigns = @campaigns.where(category_id: params[:categories])
+    end
 
     @campaigns = @campaigns.moderated + @campaigns.unmoderated
     @campaigns_count = @campaigns.size
