@@ -1,7 +1,7 @@
 CarrierWave.configure do |config|
   if Rails.env.development? or Rails.env.test? or Rails.env.cucumber?
     config.storage = :file
-    config.enable_processing = false
+    config.enable_processing = Rails.env.development?
   else
     config.fog_credentials = {
       :provider               => 'AWS',
