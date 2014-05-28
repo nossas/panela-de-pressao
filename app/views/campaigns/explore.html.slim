@@ -28,7 +28,7 @@ section.content.explore
                 = label_tag do
                   .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : true)
                   = content_tag :span, organization.city, class: :name, title: organization.city
-                  span.number= organization.campaigns.count
+                  span.number= organization.campaigns.unarchived.count
 
         section.filter
           h4 Filtre por categorias
@@ -38,4 +38,4 @@ section.content.explore
                 = label_tag do
                   .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : true)
                   = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
-                  span.number= category.campaigns.count
+                  span.number= category.campaigns.unarchived.count
