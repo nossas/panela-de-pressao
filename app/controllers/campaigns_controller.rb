@@ -2,12 +2,11 @@
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
   has_scope :popular,     only: [:explore]
-  has_scope :successful,  only: [:explore] 
+  has_scope :successful,  only: [:explore]
+  optional_belongs_to :organization
   optional_belongs_to :category
   optional_belongs_to :user
-  
-  custom_actions collection: :explore
-  
+
   skip_load_and_authorize_resource :only => [:create, :explore]
 
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
@@ -21,6 +20,9 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:index] { @featured = Campaign.featured.first }
   before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
   before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
+  before_filter :only => [:new, :edit, :create, :update] { @organizations = Organization.order(:city) }
+
+  respond_to :html, :json, :js
 
   def create
     @campaign = Campaign.new(params[:campaign])
@@ -70,6 +72,23 @@ class CampaignsController < InheritedResources::Base
       end
       format.json { render :json => collection.to_json }
     end
+  end
+
+  def explore
+    @campaigns = Campaign.unarchived
+
+    if params[:organizations].present?
+      @campaigns = @campaigns.where(organization_id: params[:organizations])
+    end
+    if params[:categories].present?
+      @campaigns = @campaigns.where(category_id: params[:categories])
+    end
+
+    @campaigns = @campaigns.moderated + @campaigns.unmoderated
+    @campaigns_count = @campaigns.size
+    @campaigns = Kaminari.paginate_array(@campaigns).page(params[:page]).per(9)
+
+    respond_with @campaigns
   end
 
   def unmoderated

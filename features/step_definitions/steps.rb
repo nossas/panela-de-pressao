@@ -176,6 +176,8 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
     page.should_not have_css("#report_campaign_button")
   when "the campaign menu"
     page.should_not have_css("#campaign_menu")
+  when "the campaign poke by email form"
+    page.should_not have_css("form.new_email_poke")
   else
     page.should_not have_content(arg1)
   end
@@ -571,4 +573,12 @@ end
 
 Then(/^a CSV file should be downloaded$/) do
   page.response_headers["Content-Type"].should match(/text\/csv/)
+end
+
+Given(/^there is an organization in "(.*?)"$/) do |arg1|
+  @organization = Organization.make! city: arg1
+end
+
+Then(/^the organization from "(.*?)" should have (\d+) campaign now$/) do |arg1, arg2|
+  Organization.find_by_city(arg1).campaigns.should have(arg2.to_i).city
 end

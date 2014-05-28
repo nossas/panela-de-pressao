@@ -16,6 +16,9 @@ section.content
           = f.label :name
           = f.text_field :name
         .field
+          = f.label :organization_id
+          = f.select :organization_id, @organizations.map{|c| [c.city, c.id]}, :include_blank => true
+        .field
           = f.label :category_id
           = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
         .field
@@ -25,18 +28,18 @@ section.content
         .field
           - if @campaign.persisted?
             = image_tag(@campaign.image, size: '40x30')
-            = link_to "Expandir imagem da campanha", "#image", rel: 'facebox' 
+            = link_to "Expandir imagem da campanha", "#image", rel: 'facebox'
           = f.label :image
           = f.file_field :image
-          = f.hidden_field :image_cache      
-      
+          = f.hidden_field :image_cache
+
         .field
           = f.label :video_url, "Ou esse vídeo"
           = f.text_field :video_url, placeholder: "http://www.youtube.com/watch?v=JFq4_OSqbbM"
 
         - if current_user.phone.blank?
           .field
-            label 
+            label
               | Deixe seu telefone celular caso a equipe da Rede Meu Rio precise contatar você
               = text_field_tag "user_phone", params[:user_phone], class: [:phone]
             small.inline-errors= @campaign.errors[:user].to_sentence
@@ -63,7 +66,7 @@ section.content
           = f.text_field :twitter_text, maxlength: 100
 
       fieldset
-        legend Aumente a pressão: informações sobre a sua viralização 
+        legend Aumente a pressão: informações sobre a sua viralização
         .field
           = f.label :facebook_share_title
           = f.text_field :facebook_share_title
@@ -114,7 +117,7 @@ section.content
 
       .field
         = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: 'btn'
-    
+
     .hidden
       #image
         = image_tag(@campaign.image) if @campaign.persisted?

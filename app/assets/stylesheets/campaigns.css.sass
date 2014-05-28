@@ -391,6 +391,8 @@ body.campaigns#show
             border: 1px solid #b3b3b3
             color: black
         &.to
+          max-height: 6em
+          overflow: scroll
           span
             background: #ffd9da
             border: 1px solid red
@@ -591,9 +593,19 @@ body.campaigns#show
         color: red
 
 body.campaigns#explore, body.campaigns#index
+  #campaigns-loader
+    padding: .5em 0
+  .loader
+    display: none
+    text-align: center
+  .load-more
+    text-align: center
+    a.btn
+      width: 96%
   article.left
     background: $gray
     +grid(9)
+    margin-right: 1.8%
   aside.right
     +grid(3)
     +last
@@ -619,19 +631,27 @@ body.campaigns#explore, body.campaigns#index
         &:nth-child(3n)
           +last
   aside.right
-    ol.categories
+    section.filter
+      padding: 0
+      margin-bottom: 2em
+    ol.categories, ol.organizations
       margin: 0
       li
         padding: .8em 0
         border-bottom: 1px solid darken($gray, 15%)
-        a
+        label
+          margin-bottom: 0
+        .filter
+          margin-right: .5em
+          display: inline
+        a, span.name
           color: lighten(gray, 10%)
           font-size: .9em
         &:hover
           border-bottom: 1px solid $yellow
-          a
+          a, span.name
             color: $orange
-      span
+      span.number
         float: right
         background: $yellow
         color: white
@@ -640,6 +660,8 @@ body.campaigns#explore, body.campaigns#index
         display: inline-block
         text-align: center
         +border-radius(4px)
+      .submit
+        width: 100%
 
 body.campaigns#reported
   .title, .empty
