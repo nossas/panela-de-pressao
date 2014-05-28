@@ -74,7 +74,7 @@ section.content
       = render partial: 'tabs'
       = render partial: params[:section] || 'description'
     aside.right.pressure
-      - if flash[:poke_notice] || flash[:poke_phone_notice]
+      - if flash[:poke_notice] || flash[:poke_phone_notice] || !Poke.valid_frequency?(current_user.try(:id), @campaign.id)
         .thanks
         - if @campaign.after_poke_customized?
           .after_poke

@@ -8,13 +8,34 @@ section.content.explore
       h3 Mobilizações por uma cidade melhor!
       span Navegue, descubra e se alie às mobilizações criadas pelos membros da Rede Meu Rio. Uma cidade melhor aguarda ser feita com a sua participação. Pressione agora!
     article.left
-      ol.campaigns
-        = render collection
+      #campaigns-loader.loader= image_tag('loader.gif')
+      ol.campaigns#campaigns-list
+        = render @campaigns
+      .row.campaigns-load-more
+        - if @campaigns.respond_to? :last_page?
+          .load-more
+            = link_to_next_page @campaigns, '+ Veja mais', id: :load_more_campaigns_button, class: [:btn, 'btn-green'], remote: true, 'data-type' => 'script'
+            .loader= image_tag('loader.gif')
 
     aside.right
-      h4 Filtre por categorias
-      ol.categories
-        - Category.order(:name).each do |category|
-          li
-            = link_to truncate(category.name, length: 30), category_campaigns_path(category), title: category.name
-            span= category.campaigns.count
+      = form_for explore_path, method: :get, remote: true, html: { id: :filter_form, :'data-type' => 'script' }
+        = hidden_field_tag :filter, true
+        section.filter
+          h4 Filtre por cidade
+          ol.organizations
+            - Organization.order(:city).each do |organization|
+              li
+                = label_tag do
+                  .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : false)
+                  = content_tag :span, organization.city, class: :name, title: organization.city
+                  span.number= organization.campaigns.unarchived.count
+
+        section.filter
+          h4 Filtre por categorias
+          ol.categories
+            - Category.order(:name).each do |category|
+              li
+                = label_tag do
+                  .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : false)
+                  = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
+                  span.number= category.campaigns.unarchived.count
