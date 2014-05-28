@@ -1,8 +1,15 @@
+// clear if it's a new filter
+if("<%= params[:filter] %>" == 'true')
+	$('#campaigns-list').empty();
+
+// include results
 $('#campaigns-list').append("<%= j (render @campaigns) %>");
-$('#load_more_campaigns_button').show();
+
 
 $('.campaigns-load-more .load-more').html("<%= j (
   link_to_next_page @campaigns, '+ Veja mais', remote: true,
     id: :load_more_campaigns_button, class: [:btn, 'btn-green'], 'data-type' => 'script') %>");
 
+$('#load_more_campaigns_button').show();
+$('#campaigns-loader').hide();
 $('.campaigns-load-more .loader').hide();
