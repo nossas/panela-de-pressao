@@ -15,6 +15,11 @@ App.Campaigns = {
         $('#load_more_campaigns_button').hide();
         $('.campaigns-load-more .loader').show();
       });
+
+      $('#filter_form').on('change', function() {
+        $('#campaigns-loader').show();
+        $('#filter_form').submit();
+      });
     }
   }),
 

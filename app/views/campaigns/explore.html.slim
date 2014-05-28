@@ -8,6 +8,7 @@ section.content.explore
       h3 Mobilizações por uma cidade melhor!
       span Navegue, descubra e se alie às mobilizações criadas pelos membros da Rede Meu Rio. Uma cidade melhor aguarda ser feita com a sua participação. Pressione agora!
     article.left
+      #campaigns-loader.loader= image_tag('loader.gif')
       ol.campaigns#campaigns-list
         = render @campaigns
       .row.campaigns-load-more
@@ -17,7 +18,8 @@ section.content.explore
             .loader= image_tag('loader.gif')
 
     aside.right
-      = form_for explore_path, method: :get
+      = form_for explore_path, method: :get, remote: true, html: { id: :filter_form, :'data-type' => 'script' }
+        = hidden_field_tag :filter, true
         section.filter
           h4 Filtre por cidade
           ol.categories
@@ -26,7 +28,6 @@ section.content.explore
                 .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : true)
                 = content_tag :span, organization.city, class: :name, title: organization.city
                 span.number= organization.campaigns.count
-            = submit_tag 'Filtrar', class: [:btn, :submit]
 
         section.filter
           h4 Filtre por categorias
@@ -36,4 +37,3 @@ section.content.explore
                 .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : true)
                 = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
                 span.number= category.campaigns.count
-            = submit_tag 'Filtrar', class: [:btn, :submit]
