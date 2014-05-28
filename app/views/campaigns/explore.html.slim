@@ -22,18 +22,20 @@ section.content.explore
         = hidden_field_tag :filter, true
         section.filter
           h4 Filtre por cidade
-          ol.categories
+          ol.organizations
             - Organization.order(:city).each do |organization|
               li
-                .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : true)
-                = content_tag :span, organization.city, class: :name, title: organization.city
-                span.number= organization.campaigns.count
+                = label_tag do
+                  .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : true)
+                  = content_tag :span, organization.city, class: :name, title: organization.city
+                  span.number= organization.campaigns.count
 
         section.filter
           h4 Filtre por categorias
           ol.categories
             - Category.order(:name).each do |category|
               li
-                .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : true)
-                = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
-                span.number= category.campaigns.count
+                = label_tag do
+                  .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : true)
+                  = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
+                  span.number= category.campaigns.count
