@@ -60,7 +60,7 @@ module ManifesteSe
       config.middleware.insert_before Rack::Lock, Rack::NoWWW
     end
 
-    config.rack_cas.server_url = 'http://accounts.meurio-staging.org.br/casino/'
+    config.rack_cas.server_url = 'http://meurio-accounts-cas-staging.herokuapp.com/'
 
     require 'rack-cas/session_store/active_record'
     config.rack_cas.session_store = RackCAS::ActiveRecordStore
