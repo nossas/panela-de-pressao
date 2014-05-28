@@ -26,7 +26,7 @@ section.content.explore
             - Organization.order(:city).each do |organization|
               li
                 = label_tag do
-                  .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : true)
+                  .filter= check_box_tag 'organizations[]', organization.id, (params[:organizations] ? params[:organizations].include?(organization.id.to_s) : false)
                   = content_tag :span, organization.city, class: :name, title: organization.city
                   span.number= organization.campaigns.unarchived.count
 
@@ -36,6 +36,6 @@ section.content.explore
             - Category.order(:name).each do |category|
               li
                 = label_tag do
-                  .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : true)
+                  .filter= check_box_tag 'categories[]', category.id, (params[:categories] ? params[:categories].include?(category.id.to_s) : false)
                   = content_tag :span, truncate(category.name, length: 27), class: :name, title: category.name
                   span.number= category.campaigns.unarchived.count
