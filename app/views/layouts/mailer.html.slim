@@ -1,1 +1,3 @@
 = yield
+- if @organization.present?
+  = raw @organization.email_signature_html
