@@ -236,7 +236,7 @@ Then /^I should see a list with order "(.*?)", "(.*?)", "(.*?)"$/ do |arg1, arg2
 end
 
 When /^I open my profile options$/ do
-  page.execute_script("$('.current_user_links').show();")
+  page.execute_script("$('ul.dropdown').show();")
   sleep 1
 end
 
@@ -459,7 +459,7 @@ Then /^I should not see the remove update button$/ do
 end
 
 Then(/^the profile panel should have an option to export all users$/) do
-  page.should have_css(".current_user_links a[href='/users.csv']", visible: false)
+  page.should have_css("ul.dropdown a[href='/users.csv']", visible: false)
 end
 
 Then(/^the profile panel should not have an option to export all users$/) do

@@ -21,7 +21,7 @@ html
       meta property="og:image"        content=t('site.image')
       meta property="og:url"          content=t('site.url')
       meta property="og:description"  content=t('site.description')
-    /[if IE] 
+    /[if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     javascript:
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -41,10 +41,10 @@ html
 
     - content_for :current_user_links do
       - if current_user.present?
-        = link_to "Minhas mobilizações", user_campaigns_path(current_user), id: :my_campaigns_button
-        = link_to "Selecionar mobilizações", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
-        = link_to "Mobilizações denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
-        = link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
+        li= link_to "Minhas mobilizações", user_campaigns_path(current_user), id: :my_campaigns_button
+        li= link_to "Selecionar mobilizações", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
+        li= link_to "Mobilizações denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
+        li= link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
 
     = meurio_header_for(:pdp)
 
