@@ -18,7 +18,7 @@ class CampaignsController < InheritedResources::Base
   before_filter :only => [:show] { @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5) }
   before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
   before_filter :only => [:index] { @featured = Campaign.featured.first }
-  before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
+  before_filter :only => [:index] { @moderator_organization = Organization.random_moderator }
   before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
   before_filter :only => [:new, :edit, :create, :update] { @organizations = Organization.order(:city) }
 

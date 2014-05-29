@@ -29,18 +29,17 @@ section.successful_campaigns
       .right= link_to "Ver todas as vitórias", explore_path(successful: true)
     ol.campaigns= render @successful_campaigns
 
-- if @moderator.present?
-  section.content.campaigns_by_moderator
+- if @moderator_organization.present?
+  section.content.campaigns_by_organization
     .row
       .title
-        h2 Seleção da equipe
+        h2 Seleção de Minhas Cidades
       .moderator
         .user_thumb
-          = image_tag @moderator.avatar_url
-          .user_name= @moderator.name
-          .user_label= @moderator.profession
-        .user_bio= @moderator.bio
-      ol.campaigns= render @moderator.moderations.limit(3)
+          = image_tag @moderator_organization.avatar_url
+          .user_name= @moderator_organization.name
+          .user_label= @moderator_organization.city
+      ol.campaigns= render @moderator_organization.moderations.limit(3)
 
 section.popular
   .row
