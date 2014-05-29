@@ -167,7 +167,7 @@ Then /^I should not see "([^"]*)"$/ do |arg1|
   when "the ownership field"
     page.should_not have_css("select#campaign_user_id", visible: false)
   when "any moderation list"
-    page.should_not have_css(".campaigns_by_moderator")
+    page.should_not have_css(".campaigns_by_organization")
   when "the edit campaign button"
     page.should_not have_css("#edit_button")
   when "the reported campaigns button"
@@ -529,8 +529,8 @@ Then(/^an email should be sent to "(.*?)"$/) do |arg1|
   ActionMailer::Base.deliveries.select{|d| d.to.index(arg1) != nil}.should_not be_empty
 end
 
-Given(/^there is a campaign moderated by this user$/) do
-  @campaign = Campaign.make! moderator: @user
+Given(/^there is a campaign of this organization moderated by this user$/) do
+  @campaign = Campaign.make! moderator: @user, organization: @organization
 end
 
 Given(/^I open the campaign menu$/) do
@@ -573,6 +573,10 @@ end
 
 Then(/^a CSV file should be downloaded$/) do
   page.response_headers["Content-Type"].should match(/text\/csv/)
+end
+
+Given(/^there is an organization$/) do
+  @organization = Organization.make!
 end
 
 Given(/^there is an organization in "(.*?)"$/) do |arg1|
