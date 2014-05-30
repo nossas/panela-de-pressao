@@ -7,7 +7,6 @@ class PokeMailer < ActionMailer::Base
   def poke(the_poke)
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"poke\"] }"
     @poke = the_poke
-    @organization = @poke.campaign.organization
     mail(
       :to => @poke.campaign.influencers.map{|i| "'#{i.name}' <#{i.email}>" if i.email.present? }.join(", "),
       :subject => @poke.campaign.name,
