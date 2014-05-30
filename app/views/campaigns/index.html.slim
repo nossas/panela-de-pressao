@@ -35,10 +35,9 @@ section.successful_campaigns
       .title
         h2 Seleção de Minhas Cidades
       .moderator
-        .user_thumb
+        .organization_thumb
           = image_tag @moderator_organization.avatar_url
-          .user_name= @moderator_organization.name
-          .user_label= @moderator_organization.city
+          .organization_name= @moderator_organization.name
       ol.campaigns= render @moderator_organization.moderations.limit(3)
 
 section.popular

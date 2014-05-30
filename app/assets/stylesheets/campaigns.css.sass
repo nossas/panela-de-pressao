@@ -163,38 +163,38 @@ body.campaigns#show
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
   .campaign_with_moderator, .campaign_without_moderator, .campaign_succeed, .campaign_failed, .campaign_archived
-    margin-top: -1.75em
     +grid(12)
     +last
+    +border-radius(0 0 4px 4px)
+    margin: -1.75em 0 1.5em 0 !important
+    text-align: center
+    padding: .6em 0
+    margin: 0 auto
+    .organization_thumb
+      display: inline
+      img
+        float: none
+        width: 40px
+        height: 40px
     span
-      display: block
-      text-align: center
-      padding: .6em
       color: white
-      +border-radius(0 0 4px 4px)
-      margin: 0 auto
-      margin-bottom: 1.5em
       font-size: 1.1em
   .campaign_with_moderator
+    background: #b0d27b
+    padding: .2em 0
     a
       color: #006b31
-    span
-      background: #b0d27b
   .campaign_without_moderator
+    background: #e9bcbd
     a
       color: red
       font-weight: bold
-    span
-      background: #e9bcbd
   .campaign_succeed
-    span
-      background: $victory
+    background: $victory
   .campaign_failed
-    span
-      background: $loss
+    background: $loss
   .campaign_archived
-    span
-      background: #333
+    background: #333
   h1.title, .campaign_subtitle span
     color: darken($gray, 75%)
   h1.title
