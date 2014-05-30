@@ -1,4 +1,4 @@
-li.campaign
+li.campaign class=(moderated_class? campaign)
   .image
     = link_to image_tag(campaign.image), campaign
     - if campaign.succeed?
@@ -12,3 +12,5 @@ li.campaign
   .pokes
     .count= campaign.pokes.count
     span pressões feitas
+  .footer
+    = campaign.organization.try(:name) if campaign.moderated?

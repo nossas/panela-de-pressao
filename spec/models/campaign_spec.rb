@@ -111,6 +111,24 @@ describe Campaign do
     end
   end
 
+  describe '#moderated?' do
+    context 'when the campaign has a moderator' do
+      let(:campaign) { Campaign.make! }
+
+      it 'is true' do
+        expect(campaign.moderated?).to eq(true)
+      end
+    end
+
+    context 'when the campaign does not have a moderator' do
+      let(:unmoderated_campaign) { Campaign.make! :unmoderated }
+
+      it 'is false' do
+        expect(unmoderated_campaign.moderated?).to eq(false)
+      end
+    end
+  end
+
   context "when it's poke type is set to email" do
     before { subject.poke_type = 'email' }
     it { should validate_presence_of :email_text }

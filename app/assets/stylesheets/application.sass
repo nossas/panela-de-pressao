@@ -17,6 +17,7 @@ $picton_blue: #43bde2
 $light_gray: #d1d1d1
 $dark_gray: #666
 $darker_gray: #333
+$dark_bg: #353A3E
 
 $campaign_gray: #CFD3DD
 $institutional: #FBCA3F
@@ -469,7 +470,7 @@ body.influencers#new, body.influencers#create
     margin-bottom: 2em
 
 section.footer
-  background: #353a3e
+  background: $dark_bg
   color: white
   a
     color: white
@@ -544,7 +545,7 @@ fieldset
 label
   cursor: pointer
 
-.user_thumb
+.user_thumb, .organization_thumb
   line-height: normal
   overflow: hidden
   img
@@ -553,10 +554,10 @@ label
     margin-right: 10px
     float: left
     +border-radius(50px)
-  .user_name
+  .user_name, .organization_name
     font-weight: bold
     margin-top: 10px
-  .user_label
+  .user_label, .organization_label
     color: gray
     font-size: 12px
 
