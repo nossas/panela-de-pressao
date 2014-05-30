@@ -33,12 +33,12 @@ section.successful_campaigns
   section.content.campaigns_by_organization
     .row
       .title
-        h2 Seleção de Minhas Cidades
+        h2 Seleção da Minha Cidade
       .moderator
-        .user_thumb
+        .organization_thumb
           = image_tag @moderator_organization.avatar_url
-          .user_name= @moderator_organization.name
-          .user_label= @moderator_organization.city
+          .organization_name= @moderator_organization.name
+        .organization_bio= @moderator_organization.bio        
       ol.campaigns= render @moderator_organization.moderations.limit(3)
 
 section.popular

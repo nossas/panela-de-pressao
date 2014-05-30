@@ -35,11 +35,12 @@ section.content
     - else
       - if @campaign.moderator.nil? && can?(:create, Report) && !current_user.reported?(@campaign)
         .campaign_without_moderator
-          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Meu Rio, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
+          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Minhas Cidades, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
 
       - if @campaign.moderator.present?
         .campaign_with_moderator
-          span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui.", about_path(anchor: "campaign_owner")}
+          .organization_thumb #{image_tag @campaign.organization.avatar_url}
+          span Esta mobilização foi selecionada por #{@campaign.organization.try(:name)}. Saiba mais sobre a seleção, #{link_to "clique aqui.", about_path(anchor: "campaign_owner")}
 
   .row
     article.campaign

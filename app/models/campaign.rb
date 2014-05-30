@@ -151,4 +151,8 @@ class Campaign < ActiveRecord::Base
   def failed?
     succeed == false
   end
+
+  def moderated?
+    !!self.moderator_id
+  end
 end
