@@ -1,3 +1,6 @@
 = yield
+
 - if @organization.present?
-  = raw @organization.email_signature_html
+  p= raw @organization.email_signature_html
+- else
+  p A Rede Minhas Cidades desenvolve e mantém aplicativos e plataformas que facilitam a interação entre cidadãos e poder público, ampliando os espaços de participação democrática em grandes cidades e fomentando a mobilização de cidadãos que querem construir cidades mais inclusivas e participativas.
