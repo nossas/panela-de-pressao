@@ -4,6 +4,6 @@ module CampaignsHelper
   end
 
   def user_path user
-    "#{ENV['MEURIO_ACCOUNTS_URL']}/users/#{user.id}"
+    "http://#{ENV['MEURIO_DOMAIN']}/users/#{user.id}"
   end
 end
