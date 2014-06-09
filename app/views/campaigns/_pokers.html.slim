@@ -3,6 +3,6 @@
   .content
     - @campaign_pokes.each do |poke|
       .user_thumb
-        = image_tag(poke.user.avatar_url, title: poke.user.name)
-        .user_name= poke.user.name
+        = link_to image_tag(poke.user.avatar_url, title: poke.user.name), user_path(poke.user)
+        .user_name= link_to poke.user.name, user_path(poke.user)
         .user_label há #{distance_of_time_in_words_to_now poke.created_at}

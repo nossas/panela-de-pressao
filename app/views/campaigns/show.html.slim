@@ -63,8 +63,8 @@ section.content
       .users
         - @campaign.users.each do |user|
           .user_thumb
-            = image_tag user.avatar_url
-            .user_name= user.name
+            = link_to image_tag(user.avatar_url), user_path(user)
+            .user_name= link_to user.name, user_path(user)
             .user_label Cozinheiro
 
       - unless @campaign.video.nil?
@@ -109,8 +109,8 @@ section.content
           h3 Seleção de:
           .content
             .user_thumb
-              = image_tag(@campaign.moderator.avatar_url, size: "50x50", title: @campaign.moderator.name)
-              .user_name= @campaign.moderator.name
+              = link_to image_tag(@campaign.moderator.avatar_url, size: "50x50", title: @campaign.moderator.name), user_path(@campaign.moderator)
+              .user_name= link_to @campaign.moderator.name, user_path(@campaign.moderator)
               .user_label= @campaign.moderator.profession
 
       = render partial: 'targets'
