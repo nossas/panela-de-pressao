@@ -7,8 +7,9 @@ class CampaignMailer < ActionMailer::Base
   def we_received_your_campaign campaign
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"we_received_your_campaign\"] }"
     @campaign = campaign
-    @organization = @campaign.organization if @campaign.moderated?
-    mail(to: campaign.user.email, subject: "A sua mobilização está no ar!", from: "Fernanda do Meu Rio <contato@meurio.org.br>")
+    @organization = @campaign.organization
+    from = @organization.pdp_sender_email || "Fernanda do Meu Rio <contato@meurio.org.br>"
+    mail(to: campaign.user.email, subject: "A sua mobilização está no ar!", from: from)
   end
 
   def new_campaign campaign
