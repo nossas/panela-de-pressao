@@ -2,6 +2,7 @@
 
 class ReportMailer < ActionMailer::Base
   default from: "Panela de Pressão <contato@paneladepressao.org.br>"
+  layout 'mailer'
 
   def new_report report
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"new_report\"] }"

@@ -20,7 +20,7 @@ class PokeMailer < ActionMailer::Base
     @organization = @poke.campaign.organization if @poke.campaign.moderated?
     mail(
       :to => @poke.user.email,
-      :subject => @poke.campaign.name,
+      :subject => "Obrigado por pressionar",
       :from => "#{@poke.campaign.user.name} <#{@poke.campaign.user.email}>")
   end
 end
