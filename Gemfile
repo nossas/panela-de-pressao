@@ -49,7 +49,6 @@ group :development do
 end
 
 group :production do
-  gem 'dalli'
   gem 'newrelic_rpm'
 end
 
