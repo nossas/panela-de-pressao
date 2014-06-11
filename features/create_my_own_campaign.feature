@@ -22,7 +22,7 @@ Feature: Create my own campaign
     When I press "Criar campanha"
     Then I should be in "the created campaign page"
     And an email called "A sua mobilização está no ar!" should be sent
-    And an email called "Nova campanha" should be sent
+    And an email called "Nova campanha no Panela de Pressão (Rio de Janeiro)" should be sent
     And the organization from "Rio de Janeiro" should have 1 campaign now
 
   @omniauth_test @javascript @bitly
