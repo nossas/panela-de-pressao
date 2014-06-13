@@ -9,8 +9,15 @@ class ApplicationController < ActionController::Base
 
   # This is how you can sign in on the development environment
   before_filter { session[:ssi_user_id] = params[:sign_in] if Rails.env.development? && params[:sign_in] }
+  before_filter :redirect_if_old
 
   protected
+  def redirect_if_old
+    if request.host == ENV['PDP_MR_HOST']
+      redirect_to "http://#{ENV['PDP_MC_HOST']}#{request.request_uri}", :status => :moved_permanently 
+    end
+  end
+
   def render_404
     raise ActionController::RoutingError.new('Not Found')
   end
