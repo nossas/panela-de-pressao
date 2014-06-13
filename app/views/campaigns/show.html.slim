@@ -90,7 +90,7 @@ section.content
             .wrap
               a href="https://www.facebook.com/sharer/sharer.php?u=#{campaign_url(@campaign)}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
-        = render 'edit_your_profile'
+        = render 'create_your_profile'
       - elsif !@campaign.finished? && !@campaign.archived?
         - if @campaign.has_voice_action?
           = render partial: 'poke_by_phone'
