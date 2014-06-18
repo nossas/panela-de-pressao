@@ -17,7 +17,8 @@ describe InfluencersController do
         let(:user) { User.new }
 
         before do
-          User.stub(:find_by_id).and_return(user)
+          subject.stub(:cas_user).and_return({'user' => 'nicolas@meurio.org.br'})
+          User.stub(:find_by_email).and_return(user)
         end
 
         context "and can edit influencers" do
