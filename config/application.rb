@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'rack-cas/session_store/active_record'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -56,7 +57,9 @@ module ManifesteSe
 
     config.sass.preferred_syntax = :sass
 
+    # CAS configuration
     config.rack_cas.server_url = ENV["CAS_SERVER_URL"]
+    config.rack_cas.session_store = RackCAS::ActiveRecordStore
 
     if Rails.env.production?
       config.middleware.insert_before Rack::Lock, Rack::NoWWW
