@@ -32,7 +32,6 @@ html
       ga('send', 'pageview');
 
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
-    = request.session.inspect
     = render partial: 'layouts/alerts'
 
     - content_for :application_menu do
