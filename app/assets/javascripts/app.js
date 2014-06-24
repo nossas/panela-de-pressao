@@ -17,19 +17,19 @@ var App = window.App = {
   // Put other existing namespaces here
   Common: {
     init: function(){
-      var route = new Routes();     
+      var route = new Routes();
       Backbone.history.start();
 
       $(".chzn-select").chosen({no_results_text: "Nenhum resultado"});
       $("select#campaign_user_id").chosen({no_results_text: "Nenhum resultado", width: "300px"});
 
       $('.phone_rj').inputmask("mask", {"mask": "(21) 999999999"});
-      $('.phone_with_country_code').inputmask("mask", { "mask" : "+99 (99) 9999-9999"});
+      $('.phone_with_country_code').inputmask("mask", { "mask" : "+99 (99) 9 9999-9999"});
 
       $('section.index li.campaign:nth-child(4n+0)').css("margin-right", "0");
       $('section.explore li.campaign:nth-child(3n+0)').css("margin-right", "0");
       $('body.users#show li.campaign:nth-child(3n+0)').css("margin-right", "0");
-      
+
       $('ul.current li.me').on('click', function(){ $(this).children('.options').fadeToggle(10); });
 
       // FB share
@@ -65,7 +65,7 @@ var App = window.App = {
 
 
 
-      if($("#poke_notice").length){ 
+      if($("#poke_notice").length){
         $.facebox({ div: '#poke_notice'});
       }
 
