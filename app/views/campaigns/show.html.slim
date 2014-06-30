@@ -47,7 +47,7 @@ section.content
       .campaign_subtitle
         .accepted_at_and_category_name
           | No ar há
-          strong #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
+          strong  #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
         - if can?(:edit, @campaign) || can?(:feature, @campaign)
           a.button.dropdown.small#campaign_menu href="#" data-dropdown="drop" Menu de mobilização
