@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   # This is how you can sign in on the development environment
   before_filter { session[:ssi_user_id] = params[:sign_in] if Rails.env.development? && params[:sign_in] }
 
-  before_filter { puts "Session CAS: #{request.session['cas']}" }
-
   protected
   def render_404
     raise ActionController::RoutingError.new('Not Found')
