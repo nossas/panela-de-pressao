@@ -11,7 +11,7 @@ html
 
     link rel="stylesheet" href="http://i.icomoon.io/public/b6dafa29d0/MeuRio/style.css"
     = stylesheet_link_tag "application"
-    = favicon_link_tag t('site.favicon')
+    = favicon_link_tag 'favicon-pdp.png'
     = csrf_meta_tag
     - if content_for?(:meta_tags)
       = yield(:meta_tags)
