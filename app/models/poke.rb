@@ -19,6 +19,7 @@ class Poke < ActiveRecord::Base
   after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
   after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
   after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone }
+  after_create    { self.delay.create_membership }
   after_create    { self.delay.add_to_mailchimp_segment }
   after_create    { self.delay.sync_reward }
 
@@ -104,6 +105,16 @@ class Poke < ActiveRecord::Base
     end
   end
 
+  def create_membership
+    begin
+      url = "#{ENV["ACCOUNTS_HOST"]}/users/#{self.user_id}/memberships.json"
+      body = { token: ENV["ACCOUNTS_API_TOKEN"], membership: { organization_id: self.campaign.organization_id } }
+      HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
+    rescue Exception => e
+      logger.error e.message
+    end
+  end
+
   def sync_reward
     begin
       url = "#{ENV["MEURIO_HOST"]}/rewards.json"
@@ -166,5 +177,4 @@ class Poke < ActiveRecord::Base
       end
     end
   end
-
 end
