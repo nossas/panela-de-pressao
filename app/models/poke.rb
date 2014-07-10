@@ -19,7 +19,6 @@ class Poke < ActiveRecord::Base
   after_create    :send_facebook_post,  :if => Proc.new { self.facebook? }
   after_create    :if => Proc.new { self.twitter? } { self.delay.send_tweet }
   after_create    :if => Proc.new { self.phone? }   { self.delay.send_phone }
-  after_create    { self.delay.create_membership }
   after_create    { self.delay.add_to_mailchimp_segment }
   after_create    { self.delay.sync_reward }
 
@@ -84,16 +83,7 @@ class Poke < ActiveRecord::Base
 
   def add_to_mailchimp_segment
     begin
-      Gibbon::API.lists.subscribe(
-        id: self.campaign.organization.mailchimp_list_id,
-        email: { email: self.user.email },
-        merge_vars: {
-          FNAME: self.user.first_name,
-          LNAME: self.user.last_name
-        },
-        double_optin: false,
-        update_existing: true
-      )
+      self.create_membership
 
       Gibbon::API.lists.static_segment_members_add(
         id: self.campaign.organization.mailchimp_list_id,
