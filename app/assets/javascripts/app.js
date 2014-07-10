@@ -63,9 +63,9 @@ var App = window.App = {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-      if(window.location.hash){
-        $(window.location.hash).foundation('reveal', 'open');
-      }
+      if(window.location.hash)
+        if(window.location.hash != "#campaign_owner")
+          $(window.location.hash).foundation('reveal', 'open');
 
       if($("#poke_notice").length){
         $.facebox({ div: '#poke_notice'});
