@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
     if self.avatar
       "https://#{ENV['ACCOUNTS_BUCKET']}.s3.amazonaws.com/uploads/user/avatar/#{self.id}/square_#{self.avatar}"
     else
-      "http://i.imgur.com/lsAFCHL.jpg"
+      "http://i.imgur.com/7XqAySb.png"
     end
   end
 
