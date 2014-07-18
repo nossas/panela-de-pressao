@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/meurio/meurio_ui.git
-  revision: 54257160b34057d747176248e315b1676ef72a9f
+  revision: 0d8bdd762324cd122d8097d0ff0203cb5f0f5440
   branch: cas
   specs:
-    meurio_ui (1.4.4)
+    meurio_ui (1.4.5)
 
 GEM
   remote: http://rubygems.org/
