@@ -29,7 +29,7 @@ Feature: Enable voice call integration of campaign
     And I fill "Script que deve ser lido para quem liga" with "Script with"
     And I fill "Número que receberá as ligações" with "2197137471"
     And I attach an image to "Uma imagem que fale por mil palavras: escolha uma no seu computador e suba ela aqui"
-    And I select "Educação" for "Escolha o tema da sua mobilização (ajude as pessoas encontrarem a sua mobilização)"
+    And I select "Educação" for "Escolha a categoria da sua mobilização (ajude as pessoas encontrarem a sua mobilização)"
     When I press "Criar campanha"
     Then I should be in "the created campaign page"
     And an email called "A sua mobilização está no ar!" should be sent
