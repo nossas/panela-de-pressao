@@ -10,19 +10,18 @@ class CampaignsController < InheritedResources::Base
   skip_load_and_authorize_resource :only => [:create, :explore]
 
   before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
-  before_filter :only => [:show] { @poke = Poke.new }
-  before_filter :only => [:show] { @answer = Answer.new }
-  before_filter :only => [:show] { @featured_update = Update.find_by_id(params[:update_id]) }
-  before_filter :only => [:show] { @last_update = @campaign.updates.order("created_at DESC").first }
-  before_filter :only => [:show] { @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user} }
-  before_filter :only => [:show] { @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5) }
-  before_filter :only => [:index] { @popular = Campaign.popular.limit(4).shuffle }
-  before_filter :only => [:index] { @featured = Campaign.featured.first }
-  before_filter :only => [:index] { @moderator = User.where("id IN (?)", Campaign.all.map{|c| c.moderator_id}.compact.uniq).order("random()").first }
-  before_filter :only => [:index] { @successful_campaigns = Campaign.successful.order("random()").limit(4) }
   before_filter :only => [:new, :edit, :create, :update] { @organizations = Organization.order(:city) }
 
   respond_to :html, :json, :js
+
+  def show
+    @poke = Poke.new
+    @answer = Answer.new
+    @featured_update = Update.find_by_id(params[:update_id])
+    @last_update = @campaign.updates.order("created_at DESC").first
+    @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user}
+    @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5)
+  end
 
   def create
     @campaign = Campaign.new(params[:campaign])
@@ -62,6 +61,12 @@ class CampaignsController < InheritedResources::Base
   def index
     respond_to do |format|
       format.html do
+        @popular = Campaign.popular.includes(:user).limit(4).shuffle
+        @featured = Campaign.featured.first
+        @successful_campaigns = Campaign.successful.includes(:user).order("random()").limit(4)
+        @moderator_organization = Organization.random_moderator
+        @moderated_campaigns = @moderator_organization.moderations.includes(:user).limit(3) if @moderator_organization
+
         if params[:user_id]
           render :user_index
         elsif parent?

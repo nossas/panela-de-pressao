@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
 //= require ./lib/underscore.js
 //= require ./lib/backbone.js
 //= require ./lib/jquery.inputmask.js

@@ -83,10 +83,26 @@ class Poke < ActiveRecord::Base
 
   def add_to_mailchimp_segment
     begin
-      Gibbon::API.lists.subscribe(id: ENV["MAILCHIMP_LIST_ID"], email: {email: self.user.email}, merge_vars: {FNAME: self.user.first_name, LNAME: self.user.last_name}, double_optin: false, update_existing: true)
-      Gibbon::API.lists.static_segment_members_add(id: ENV["MAILCHIMP_LIST_ID"], seg_id: self.campaign.mailchimp_segment_uid, batch: [{email: self.user.email}])
+      self.create_membership
+
+      # TODO: move all the MailChimp integration to Accounts
+      Gibbon::API.lists.static_segment_members_add(
+        id: self.campaign.organization.mailchimp_list_id,
+        seg_id: self.campaign.mailchimp_segment_uid,
+        batch: [{ email: self.user.email }]
+      )
     rescue Exception => e
       Rails.logger.error e
+    end
+  end
+
+  def create_membership
+    begin
+      url = "#{ENV["ACCOUNTS_HOST"]}/users/#{self.user_id}/memberships.json"
+      body = { token: ENV["ACCOUNTS_API_TOKEN"], membership: { organization_id: self.campaign.organization_id } }
+      HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
+    rescue Exception => e
+      logger.error e.message
     end
   end
 
@@ -152,5 +168,4 @@ class Poke < ActiveRecord::Base
       end
     end
   end
-
 end

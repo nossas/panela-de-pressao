@@ -2,7 +2,7 @@ p Atenção curadoria,
 
 p
   | A campanha 
-  strong= link_to @report.campaign.name, @report.campaign
+  strong= link_to @report.campaign.name, campaign_url(@report.campaign)
   |  recebeu uma nova denúncia de 
   strong= @report.user.name
   |  (#{@report.user.email}).

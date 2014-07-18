@@ -17,6 +17,7 @@ $picton_blue: #43bde2
 $light_gray: #d1d1d1
 $dark_gray: #666
 $darker_gray: #333
+$dark_bg: #353A3E
 
 $campaign_gray: #CFD3DD
 $institutional: #FBCA3F
@@ -29,7 +30,6 @@ $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'L
 @import columnal/grid
 @import font
 @import foundation
-@import jquery.ui.all
 @import jquery.facebox
 @import chosen
 @import meurio_ui
@@ -49,7 +49,7 @@ section
 .row
   +grid-row
   &.visible
-    overflow: visible   
+    overflow: visible
 
 .logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links
   +grid(12)
@@ -65,7 +65,7 @@ article.right
   +grid(9)
   +last
 
-article.left, .home_link 
+article.left, .home_link
   +grid(8)
 
 .highlight .about, .highlight .campaign, form#new_influencer
@@ -128,7 +128,7 @@ h2
 h3
   font-size: 1.5em
 
-h4 
+h4
   font-size: 1em
 
 strong
@@ -223,7 +223,7 @@ article
   &.left
     background: white
     padding-bottom: 2em
- 
+
 aside
   &.right
     height: 100% !important
@@ -307,16 +307,18 @@ a[href="/auth/facebook"]
   .content
     width: 100%
     padding: 30px
-        
+
 .meurio_header
   .meurio_logo_and_user_menu
     +grid-container
     .meurio_logo
-      +grid(2)
+      +grid(4)
     .user_menu
-      +grid(10)
+      +grid(8)
       +last
   .meurio_apps_and_application_menu
+    .alert
+      display: none
     +grid-container
     .meurio_apps
       +grid(4)
@@ -379,7 +381,7 @@ body.users#unsubscribe
     p
       margin: 0
 
-body.users#show 
+body.users#show
   .content
     padding-bottom: 2em
     overflow: hidden
@@ -434,7 +436,7 @@ body.users#show
         font-size: 2.5em
         color: $orange
         width: 6%
-    h4, li:before 
+    h4, li:before
       display: inline-block
       margin-right: .3em
     span
@@ -469,7 +471,7 @@ body.influencers#new, body.influencers#create
     margin-bottom: 2em
 
 section.footer
-  background: #353a3e
+  background: $dark_bg
   color: white
   a
     color: white
@@ -479,7 +481,7 @@ section.footer
   .social
     +grid(4)
     +last
-    .fb-like 
+    .fb-like
       margin-top: 1em
 
 .influencers_response
@@ -493,7 +495,7 @@ section.footer
     padding: 1em
   .delete
     overflow: hidden
-    a 
+    a
       display: block
       float: right
       color: red
@@ -501,7 +503,7 @@ section.footer
       opacity: .4
       &:hover
         opacity: 1
-      
+
   li.answer .date, .warning
     +border-radius(4px)
   .warning
@@ -510,11 +512,11 @@ section.footer
     text-align: center
   .warning, hr, h3
     margin: 1.5em 0
-  form 
+  form
     a
       display: block
     label
-      display: none 
+      display: none
     textarea
       width: 100%
       height: 200px
@@ -544,7 +546,7 @@ fieldset
 label
   cursor: pointer
 
-.user_thumb
+.user_thumb, .organization_thumb
   line-height: normal
   overflow: hidden
   img
@@ -553,10 +555,10 @@ label
     margin-right: 10px
     float: left
     +border-radius(50px)
-  .user_name
+  .user_name, .organization_name
     font-weight: bold
     margin-top: 10px
-  .user_label
+  .user_label, .organization_label
     color: gray
     font-size: 12px
 

@@ -8,7 +8,7 @@ class PokeMailer < ActionMailer::Base
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"poke\"] }"
     @poke = the_poke
     mail(
-      :to => @poke.campaign.influencers.map{|i| "'#{i.name}' <#{i.email}>" if i.email.present? }.join(", "), 
+      :to => @poke.campaign.influencers.map{|i| "'#{i.name}' <#{i.email}>" if i.email.present? }.join(", "),
       :subject => @poke.campaign.name,
       :from => "\"#{@poke.user.name}\" <#{@poke.user.email}>"
     )
@@ -17,9 +17,10 @@ class PokeMailer < ActionMailer::Base
   def thanks(the_poke)
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"thanks_for_your_poke\"] }"
     @poke = the_poke
+    @organization = @poke.campaign.organization if @poke.campaign.moderated?
     mail(
-      :to => @poke.user.email, 
-      :subject => @poke.campaign.name, 
+      :to => @poke.user.email,
+      :subject => "Obrigado por pressionar",
       :from => "#{@poke.campaign.user.name} <#{@poke.campaign.user.email}>")
   end
 end

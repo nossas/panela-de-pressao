@@ -2,8 +2,8 @@ section.content
   .row
     .header
       h1 Crie ou edite sua mobilização
-      h4.subheader Quer mudar algo no Rio? Quer o apoio de muitas pessoas? Quer falar diretamente com os poderosos que tomam as decisões na cidade? Então o seu lugar é aqui no Panela de Pressão. Crie agora a sua mobilização. Seja o protagonista da mudança.
-      h4.subheader Este aplicativo da Rede Meu Rio aceita todas as mobilizações, mas #{link_to "clique aqui", "#policy", rel: "facebox[.policy]"} para saber o que não pode e o que é muito recomendado.
+      h4.subheader Quer mudar algo na sua cidade? Precisa do apoio de muitas pessoas? Quer falar diretamente com os poderosos que tomam as decisões? Então o seu lugar é aqui no Panela de Pressão. Crie agora a sua mobilização. Seja o protagonista da mudança.
+      h4.subheader Este aplicativo da Rede Minhas Cidades aceita todas as mobilizações, mas #{link_to "clique aqui", "#policy", rel: "facebox[.policy]"} para saber o que não pode e o que é muito recomendado.
     = form_for @campaign do |f|
       fieldset
         legend Prepare a panela: informações sobre a sua mobilização
@@ -40,7 +40,7 @@ section.content
         - if current_user.phone.blank?
           .field
             label
-              | Deixe seu telefone celular caso a equipe da Rede Meu Rio precise contatar você
+              | Deixe seu telefone celular caso as equipes do Meu Rio ou do Minha Sampa precisem contatar você
               = text_field_tag "user_phone", params[:user_phone], class: [:phone]
             small.inline-errors= @campaign.errors[:user].to_sentence
 
@@ -49,7 +49,7 @@ section.content
         legend Acenda o fogo: informações sobre a sua pressão
         .field
           = f.label :influencer_ids
-          = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: "" }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+          = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: "Digite o nome de um alvo" }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
           small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
         .field
           = f.label :poke_type
@@ -104,13 +104,13 @@ section.content
           legend Pressão via telefone (Apenas Admin - quando você preenche essas informações, elas substituem as pressões por Email, Face e Twitter)
           .field
             = f.label :voice_call_number
-            = f.text_field :voice_call_number, placeholder: "+55 (21) 9999-9999", class: [:phone_with_country_code]
+            = f.text_field :voice_call_number, placeholder: "+55 (21) 9 9999-9999", class: [:phone_with_country_code]
           .field
             = f.label :voice_call_script
             = f.text_area :voice_call_script
 
         fieldset
-          legend PDP + MR 2.0 (Apenas Admin - escolha a hashtag que fará este PDP integrar uma mobilização no MR 2.0)
+          legend Tema (Escolha a hashtag que fará esta mobilização integrar um tema do Minhas Cidades)
           .field
             = f.label :hashtag
             = f.text_field :hashtag
@@ -130,13 +130,13 @@ section.content
   ul
     li incita ódio, homofobia, preconceito social, racial ou de gênero.
     li faz propaganda política partidária.
-    li sugere ações que contradizem a visão de cidade da Rede Meu Rio, a qual defende a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
+    li sugere ações que contradizem a visão de cidade da Rede Minhas Cidades.
     li promove uma causa de caráter privado, e não público.
     li não possui caráter propositivo.
-  p Assim que você terminar de preencher o formulário abaixo, sua mobilização estará no ar. Ela pode, ainda, ser selecionada e receber apoio da equipe multidisciplinar da Rede Meu Rio. Quanto mais alinhadas com os critérios a seguir, mais chances a sua mobilização tem de ser selecionada:
+  p Assim que você terminar de preencher o formulário abaixo, sua mobilização estará no ar. Ela pode, ainda, ser selecionada e receber apoio da equipe multidisciplinar da Rede Minhas Cidades. Quanto mais alinhadas com os critérios a seguir, mais chances a sua mobilização tem de ser selecionada:
   ul
-    li A sua mobilização em muito se alinha à visão de cidade da Rede Meu Rio: a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
-    li A sua mobilização tem caráter urgente, cujo impacto e o alcance de seus objetivos só será alcançado caso haja trabalho extra da equipe da Rede Meu Rio.
+    li A sua mobilização em muito se alinha à visão de cidade da Rede Minhas Cidades: a democracia, a participação, o controle social, o uso político do espaço público, e o desenvolvimento de uma cultura política.
+    li A sua mobilização tem caráter urgente, cujo impacto e o alcance de seus objetivos só será alcançado caso haja trabalho extra da equipe da Rede Minhas Cidades.
     li A sua mobilização tem grande potencial de atingir sucesso.
     li A sua mobilização toca em uma temática que está sendo amplamente discutida pela sociedade.
     li Você, cozinheiro e criador da mobilização, tem disponibilidade de tempo para se dedicar, junto com a equipe, ao desenvolvimento da mobilização.

@@ -35,11 +35,12 @@ section.content
     - else
       - if @campaign.moderator.nil? && can?(:create, Report) && !current_user.reported?(@campaign)
         .campaign_without_moderator
-          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Meu Rio, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
+          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Minhas Cidades, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
 
       - if @campaign.moderator.present?
         .campaign_with_moderator
-          span Esta mobilização foi selecionada pela equipe da Rede Meu Rio. Saiba mais sobre a seleção, #{link_to "clique aqui.", about_path(anchor: "campaign_owner")}
+          .organization_thumb #{image_tag @campaign.organization.avatar_url}
+          span Esta mobilização foi selecionada por #{@campaign.organization.try(:name)}. Saiba mais sobre a seleção, #{link_to "clique aqui.", about_path(anchor: "campaign_owner")}
 
   .row
     article.campaign
@@ -47,7 +48,7 @@ section.content
       .campaign_subtitle
         .accepted_at_and_category_name
           | No ar há
-          strong #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
+          strong  #{@campaign.created_at.nil? ? "0 dias" : distance_of_time_in_words_to_now(@campaign.created_at)}
           |  em #{link_to @campaign.category.name, category_campaigns_path(@campaign.category)}
         - if can?(:edit, @campaign) || can?(:feature, @campaign)
           a.button.dropdown.small#campaign_menu href="#" data-dropdown="drop" Menu de mobilização
@@ -62,8 +63,8 @@ section.content
       .users
         - @campaign.users.each do |user|
           .user_thumb
-            = image_tag user.avatar_url
-            .user_name= user.name
+            = link_to image_tag(user.avatar_url), user_path(user)
+            .user_name= link_to user.name, user_path(user)
             .user_label Cozinheiro
 
       - unless @campaign.video.nil?
@@ -89,6 +90,7 @@ section.content
             .wrap
               a href="https://www.facebook.com/sharer/sharer.php?u=#{campaign_url(@campaign)}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
+        = render 'create_your_profile'
       - elsif !@campaign.finished? && !@campaign.archived?
         - if @campaign.has_voice_action?
           = render partial: 'poke_by_phone'
@@ -108,8 +110,8 @@ section.content
           h3 Seleção de:
           .content
             .user_thumb
-              = image_tag(@campaign.moderator.avatar_url, size: "50x50", title: @campaign.moderator.name)
-              .user_name= @campaign.moderator.name
+              = link_to image_tag(@campaign.moderator.avatar_url, size: "50x50", title: @campaign.moderator.name), user_path(@campaign.moderator)
+              .user_name= link_to @campaign.moderator.name, user_path(@campaign.moderator)
               .user_label= @campaign.moderator.profession
 
       = render partial: 'targets'

@@ -226,7 +226,7 @@ pt-BR:
             image:
               blank: "Uma imagem vale mais que mil palavras... e é obrigatória para a campanha :)"
             category:
-              blank: "Escolha o tema da sua campanha"
+              blank: "Escolha a categoria da sua campanha"
             video_url:
               invalid: "URL do vídeo é inválida"
         poke:
@@ -239,7 +239,7 @@ pt-BR:
         organization_id: "Escolha uma cidade para a sua mobilização"
         description: "Descreva o problema e a solução que você quer para ele ('a paz mundial' é coisa de miss - seja específico!)"
         image: "Uma imagem que fale por mil palavras: escolha uma no seu computador e suba ela aqui"
-        category_id: "Escolha o tema da sua mobilização (ajude as pessoas encontrarem a sua mobilização)"
+        category_id: "Escolha a categoria da sua mobilização (ajude as pessoas encontrarem a sua mobilização)"
         influencer_ids: "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"
         email_text: "Escreva o email que será enviado para o(s) alvo(s) cada vez que alguém pressionar "
         facebook_text: "Escreva o texto que será publicado na página pública do(s) alvo(s) cada vez que alguém pressionar"

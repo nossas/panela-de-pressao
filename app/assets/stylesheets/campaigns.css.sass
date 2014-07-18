@@ -9,6 +9,10 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
     &:last-child
       margin-bottom: 0
   form
+    li.search-field
+      input
+        height: auto
+        font-family: $body-font-family
     label
       display: block
       &[for='campaign_poke_type_email'], &[for='campaign_poke_type_facebook'], &[for='campaign_poke_type_twitter']
@@ -60,7 +64,7 @@ body.campaigns#index, body.campaigns#unmoderated
     margin-bottom: 1em
   section
     padding: 2em 0
-  .campaigns_by_moderator, .successful_campaigns, .popular
+  .campaigns_by_organization, .successful_campaigns, .popular
     ol.campaigns
       margin: 0
       li.campaign
@@ -72,14 +76,14 @@ body.campaigns#index, body.campaigns#unmoderated
     background: $institutional
   .successful_campaigns
     background: #e7e8ea
-  .campaigns_by_moderator
-    background: #2e3235
+  .campaigns_by_organization
+    background: $dark_bg
     h2
       color: white
     .moderator
       +grid(3)
       color: white
-      .user_bio
+      .organization_bio
         margin-top: 1em
         color: #a3a8b4
   section.institutional
@@ -123,8 +127,6 @@ body.campaigns#index, body.campaigns#unmoderated
         margin-bottom: .4em !important
       .user_name
         color: lighten(gray, 5%)
-        strong
-          color: black
       .description
         margin: 1em 0
         font-size: 1em
@@ -163,38 +165,38 @@ body.campaigns#show
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
   .campaign_with_moderator, .campaign_without_moderator, .campaign_succeed, .campaign_failed, .campaign_archived
-    margin-top: -1.75em
     +grid(12)
     +last
+    +border-radius(0 0 4px 4px)
+    margin: -1.75em 0 1.5em 0 !important
+    text-align: center
+    padding: .6em 0
+    margin: 0 auto
+    .organization_thumb
+      display: inline
+      img
+        float: none
+        width: 35px
+        height: 35px
     span
-      display: block
-      text-align: center
-      padding: .6em
       color: white
-      +border-radius(0 0 4px 4px)
-      margin: 0 auto
-      margin-bottom: 1.5em
       font-size: 1.1em
   .campaign_with_moderator
+    background: #b0d27b
+    padding: .2em 0
     a
       color: #006b31
-    span
-      background: #b0d27b
   .campaign_without_moderator
+    background: #e9bcbd
     a
       color: red
       font-weight: bold
-    span
-      background: #e9bcbd
   .campaign_succeed
-    span
-      background: $victory
+    background: $victory
   .campaign_failed
-    span
-      background: $loss
+    background: $loss
   .campaign_archived
-    span
-      background: #333
+    background: #333
   h1.title, .campaign_subtitle span
     color: darken($gray, 75%)
   h1.title
@@ -551,6 +553,18 @@ body.campaigns#show
         margin-right: .5em
         padding: .75em 1em .7em 1em
         display: inline-block
+  #create_your_profile
+    text-align: center
+    p
+      font-size: 1.3em
+      line-height: 1.3em
+      color: $blue
+    a.button
+      font-weight: bold !important
+      font-size: 1.8em
+      margin-top: 1em
+      width: 60%
+
   form.new_update, form.edit_update
     label
       font-weight: bold
