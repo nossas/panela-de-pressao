@@ -39,7 +39,7 @@ section.successful_campaigns
           = image_tag @moderator_organization.avatar_url
           .organization_name= @moderator_organization.name
         .organization_bio= @moderator_organization.bio
-      ol.campaigns= render @moderator_organization.moderations.limit(3)
+      ol.campaigns= render @moderated_campaigns
 
 section.popular
   .row
