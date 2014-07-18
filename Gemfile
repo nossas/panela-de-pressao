@@ -74,7 +74,6 @@ end
 
 gem 'facebox-rails'
 gem 'rails3-jquery-autocomplete'
-gem 'jquery-ui-rails'
 gem 'coveralls', require: false
 gem 'rails_12factor'
 gem 'meurio_ui', github: 'meurio/meurio_ui', branch: 'cas'

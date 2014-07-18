@@ -1,4 +1,5 @@
 li.campaign
+  height: 330px
   line-height: normal
   &:hover
     .name_user_name_and_category
@@ -55,3 +56,19 @@ li.campaign
     span
       font-size: 14px
       color: #a0a0a2
+
+  &.moderated
+    .pokes
+      +border-radius(0)
+    .footer
+      +border-radius(0 0 5px 5px)
+      text-align: center
+      padding: .2em 0
+      background: $dark_bg
+      color: white
+      font-size: .9em
+
+.campaigns_by_organization
+  li.campaign.moderated
+    .footer
+      background: $blue

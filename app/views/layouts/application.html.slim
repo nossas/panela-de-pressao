@@ -11,7 +11,7 @@ html
 
     link rel="stylesheet" href="http://i.icomoon.io/public/b6dafa29d0/MeuRio/style.css"
     = stylesheet_link_tag "application"
-    = favicon_link_tag t('site.favicon')
+    = favicon_link_tag 'favicon-pdp.png'
     = csrf_meta_tag
     - if content_for?(:meta_tags)
       = yield(:meta_tags)
@@ -28,7 +28,7 @@ html
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-26278513-6', 'paneladepressao.meurio.org.br');
+      ga('create', 'UA-26278513-6', 'paneladepressao.minhascidades.org.br');
       ga('send', 'pageview');
 
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
@@ -41,10 +41,10 @@ html
 
     - content_for :current_user_links do
       - if current_user.present?
-        = link_to "Minhas mobilizações", user_campaigns_path(current_user), id: :my_campaigns_button
-        = link_to "Selecionar mobilizações", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
-        = link_to "Mobilizações denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
-        = link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
+        li= link_to "Minhas mobilizações", user_campaigns_path(current_user), id: :my_campaigns_button
+        li= link_to "Selecionar mobilizações", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
+        li= link_to "Mobilizações denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
+        li= link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
 
     = meurio_header_for(:pdp)
 
