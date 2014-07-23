@@ -71,6 +71,10 @@ var App = window.App = {
         $.facebox({ div: '#poke_notice'});
       }
 
+      if($("#poke_errors").length){
+        $.facebox({ div: '#poke_errors' }, 'poke_errors');
+      }
+
       $('a[rel*=facebox]').facebox();
       $('a[rel*=facebox_fixed]').facebox();
 
