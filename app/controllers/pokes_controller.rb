@@ -46,7 +46,12 @@ class PokesController < InheritedResources::Base
       end
 
       failure.html do
-        redirect_to @campaign, :alert => "Não foi possível realizar a pressão :("
+        @answer = Answer.new
+        @featured_update = Update.find_by_id(params[:update_id])
+        @last_update = @campaign.updates.order("created_at DESC").first
+        @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user}
+        @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5)
+        render "campaigns/show"
       end
     end
   end

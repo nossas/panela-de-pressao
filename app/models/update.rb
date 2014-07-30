@@ -5,9 +5,17 @@ class Update < ActiveRecord::Base
   validates :body, :campaign_id, :title, :lead, :user_id, presence: true
   mount_uploader :image, UpdateImageUploader
   default_scope order("created_at DESC")
-  
+
   auto_html_for :video do
     youtube(:width => "100%")
+  end
+
+  auto_html_for :body do
+    html_escape
+    image
+    youtube(:width => "100%")
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
   end
 
   def thumb

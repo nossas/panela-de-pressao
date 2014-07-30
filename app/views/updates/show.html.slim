@@ -5,7 +5,7 @@ div id="update_#{@update.id}"
     .image= image_tag @update.image
   - else
     .video= raw @update.video_html
-  .body= simple_format @update.body
+  .body= raw @update.body_html
   .share_buttons
     = link_to "Compartilhar no Facebook", "https://www.facebook.com/sharer.php?u=#{URI::encode(campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id))}", class: "btn facebook_share"
     = link_to "Compartilhar no Twitter", "https://twitter.com/share?text=#{URI::encode(@update.title)}&url=#{URI::encode(campaign_url(@campaign, anchor: "update_#{@update.id}", update_id: @update.id))}", class: "btn twitter_share"

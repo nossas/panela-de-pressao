@@ -232,7 +232,7 @@ pt-BR:
         poke:
           attributes:
             created_at:
-              poked_recently: "Você já pressionou recentemente. Aguarde um tempinho para pressionar novamente por este canal :)."
+              poked_recently: "Identificamos que você já pressionou nessa mobilização nas últimas 24h. Por isso, não foi possível realizar essa pressão."
     attributes:
       campaign:
         name: "Escreva o nome da sua mobilização (um título curto é sempre melhor)"
