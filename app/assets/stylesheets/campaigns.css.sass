@@ -158,7 +158,7 @@ body.campaigns#index, body.campaigns#unmoderated
       &:nth-child(4n)
         +last
 
-body.campaigns#show
+body.campaigns#show, body.pokes#create
   article.campaign, aside.right.pressure
     +grid(6)
   section.header
@@ -605,6 +605,17 @@ body.campaigns#show
         color: $yellow
       a.remove
         color: red
+  .poke_errors
+    text-align: center
+    h2, p
+      color: #333
+    .share
+      a
+        display: inline-block
+        width: auto
+        font-size: 1.1em
+        &:first-child
+          margin-right: 10px
 
 body.campaigns#explore, body.campaigns#index
   #campaigns-loader
