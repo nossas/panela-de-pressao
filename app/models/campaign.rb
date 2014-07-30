@@ -15,16 +15,35 @@ class Campaign < ActiveRecord::Base
   belongs_to :moderator, :class_name => "User"
   belongs_to :organization
   has_many :targets
-  has_many :influencers,          through: :targets
-  has_many :twitter_influencers,  through: :targets, source: :influencer, conditions: "COALESCE(influencers.twitter, '') <> ''"
-  has_many :facebook_influencers, through: :targets, source: :influencer, conditions: "COALESCE(influencers.facebook_id, '') <> ''"
-  has_many :email_influencers,    through: :targets, source: :influencer, conditions: "COALESCE(influencers.email, '') <> ''"
+  has_many :influencers, through: :targets
+
+  has_many(
+    :twitter_influencers,
+    -> { where "COALESCE(influencers.twitter, '') <> ''" },
+    through: :targets,
+    source: :influencer
+  )
+
+  has_many(
+    :facebook_influencers,
+    -> { where "COALESCE(influencers.facebook_id, '') <> ''" },
+    through: :targets,
+    source: :influencer
+  )
+
+  has_many(
+    :email_influencers,
+    -> { where "COALESCE(influencers.email, '') <> ''" },
+    through: :targets,
+    source: :influencer
+  )
+
   has_many :posts
   has_many :answers
   has_many :pokes
   has_many :updates
   has_many :reports
-  has_many :pokers, through: :pokes, source: :user, uniq: true
+  has_many :pokers, -> { uniq }, through: :pokes, source: :user
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
@@ -35,17 +54,33 @@ class Campaign < ActiveRecord::Base
 
   accepts_nested_attributes_for :targets, :influencers
 
-  default_scope order("created_at DESC")
+  default_scope { order("created_at DESC") }
 
-  scope :moderated,   where('moderator_id IS NOT NULL')
-  scope :unmoderated, where(moderator_id: nil)
-  scope :featured,    where('featured_at IS NOT NULL').reorder('featured_at DESC')
-  scope :popular,     joins(:pokes).where(succeed: nil, finished_at: nil).group('campaigns.id').reorder('count(*) desc')
-  scope :unfinished,  where(finished_at: nil)
-  scope :successful,  where('succeed = true AND finished_at IS NOT NULL')
-  scope :unarchived,  where(archived_at: nil)
-  scope :orphan,      where(moderator_id: nil)
-  scope :reported,    joins(:reports)
+  scope(
+    :featured,
+    -> {
+      where('featured_at IS NOT NULL')
+      .reorder('featured_at DESC')
+    }
+  )
+
+  scope(
+    :popular,
+    -> {
+      joins(:pokes)
+      .where(succeed: nil, finished_at: nil)
+      .group('campaigns.id')
+      .reorder('count(*) desc')
+    }
+  )
+
+  scope :moderated, -> { where('moderator_id IS NOT NULL') }
+  scope :unmoderated, -> { where(moderator_id: nil) }
+  scope :unfinished, -> { where(finished_at: nil) }
+  scope :successful, -> { where('succeed = true AND finished_at IS NOT NULL') }
+  scope :unarchived, -> { where(archived_at: nil) }
+  scope :orphan, -> { where(moderator_id: nil) }
+  scope :reported, -> { joins(:reports) }
 
   validates :name, :user_id, :description, :image, :category_id, :poke_type, :organization_id, :presence => true
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true

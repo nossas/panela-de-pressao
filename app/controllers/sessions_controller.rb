@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       @auth.update_attributes :token => auth_data['credentials']['token'], :secret => auth_data['credentials']['secret']
     elsif auth_data['provider'] == 'twitter'
       user_hash = {'email' => session.delete('email'), 'first_name' => session.delete('first_name'), 'last_name' => session.delete('last_name')}
-      user = current_user || User.find_or_create_by_email(user_hash['email'], user_hash)
+      user = current_user || User.create_with(user_hash).find_or_create_by(email: user_hash['email'])
       @auth = Authorization.create_from_hash(auth_data, user)
     else
       @auth = Authorization.create_from_hash(auth_data, current_user)

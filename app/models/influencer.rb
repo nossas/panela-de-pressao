@@ -1,5 +1,5 @@
 class Influencer < ActiveRecord::Base
-  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache, 
+  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache,
     :about, :facebook_url, :archived
 
 	attr_accessor :user_id
@@ -23,9 +23,9 @@ class Influencer < ActiveRecord::Base
 
 	after_save { self.delay.update_facebook(@facebook_url_temp, :by => @user_id) if @facebook_url_temp }
 
-  default_scope order("name")
-  scope :available, where(archived_at: nil)
-  scope :archived, where("archived_at IS NOT NULL")
+  default_scope { order("name") }
+  scope :available, -> { where(archived_at: nil) }
+  scope :archived, -> { where("archived_at IS NOT NULL") }
 
   mount_uploader :avatar, AvatarUploader
 
@@ -33,14 +33,14 @@ class Influencer < ActiveRecord::Base
     if value
       self.archived_at ||= Time.now
     else
-      self.archived_at = nil 
+      self.archived_at = nil
     end
   end
 
   def archived
-    !!archived_at 
+    !!archived_at
   end
-  
+
   alias :archived? :archived
 
   def to_s
@@ -70,4 +70,3 @@ class Influencer < ActiveRecord::Base
     end
   end
 end
-

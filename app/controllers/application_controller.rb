@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   # This is how you can sign in on the development environment
-  before_filter { session[:ssi_user_id] = params[:sign_in] if Rails.env.development? && params[:sign_in] }
+  before_filter { session['cas'] = { "user" => params[:sign_in] } if Rails.env.development? && params[:sign_in] }
 
   protected
   def render_404

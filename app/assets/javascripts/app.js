@@ -79,8 +79,7 @@ var App = window.App = {
       $('a[rel*=facebox_fixed]').facebox();
 
       $(document).bind('reveal.facebox', function() {
-        $("form.new_update").enableClientSideValidations();
-        $("form.edit_update").enableClientSideValidations();
+        $(document).foundation();
         loadShareButtons();
       });
 
