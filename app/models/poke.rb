@@ -22,7 +22,7 @@ class Poke < ActiveRecord::Base
   after_create    { self.delay.add_to_mailchimp_segment }
   after_create    { self.delay.sync_reward }
 
-  default_scope order('updated_at DESC')
+  default_scope { order('updated_at DESC') }
 
   def self.valid_frequency?(user_id, campaign_id)
     Poke

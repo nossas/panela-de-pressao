@@ -1,20 +1,23 @@
-= form_for [@campaign, @update], validate: true do |form|
-  .field
-    = form.label :title
-    = form.text_field :title
-  .field
+= form_for [@campaign, @update], data: { abide: true } do |form|
+  .field.title-field
+    = form.label(:title)
+    = form.text_field(:title, required: true)
+    small.error Título é obrigatório
+  .field.image-field
     = form.label :image
     - if @update.image.file
       = image_tag @update.image
-    = form.file_field :image
-  .field
+    = form.file_field(:image)
+  .field.video-field
     = form.label :video
-    = form.text_field :video
-  .field
+    = form.text_field(:video)
+  .field.body-field
     = form.label :body
-    = form.text_area  :body
-  .field
+    = form.text_area(:body, required: true)
+    small.error Texto é obrigatório
+  .field.lead-field
     = form.label :lead
-    = form.text_area :lead
+    = form.text_area(:lead, required: true)
+    small.error Lead é obrigatório
   .field
     = form.submit class: "btn"

@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 source 'https://rails-assets.org'
 ruby '2.1.1'
 
-gem 'rails', '~> 3.2.14'
+gem 'rails', '~> 4.1.4'
 
 # Tools
 gem 'pg'
@@ -10,14 +10,20 @@ gem 'thin'
 gem 'inherited_resources'
 gem 'slim'
 gem 'slim-rails'
-gem 'formtastic', '~> 2.2.0'
+
+# TODO: get rid of it
+gem 'formtastic'
+
 gem 'auto_html'
 gem 'redcarpet'
+
+# TODO: remove this gem whenever it's possible
+gem 'protected_attributes'
+
 gem 'delayed_job_active_record'
 gem 'rack-no-www'
 gem 'video_info'
 gem 'jquery-validation-rails'
-gem 'client_side_validations'
 gem 'faker'
 gem 'machinist', '>= 2.0.0.beta2'
 

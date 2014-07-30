@@ -365,9 +365,9 @@ end
 
 Then /^I should see the update form errors$/ do
   within "form.new_update" do
-    page.should have_css("label.message[for='update_title']")
-    page.should have_css("label.message[for='update_body']")
-    page.should have_css("label.message[for='update_lead']")
+    page.should have_css(".title-field.error")
+    page.should have_css(".body-field.error")
+    page.should have_css(".lead-field.error")
   end
 end
 
@@ -422,7 +422,7 @@ end
 
 Then /^I should see an error in the title field in the edit update form$/ do
   within "form.edit_update" do
-    page.should have_css("label.message[for='update_title']")
+    page.should have_css(".title-field.error")
   end
 end
 

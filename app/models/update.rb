@@ -4,7 +4,7 @@ class Update < ActiveRecord::Base
   belongs_to :user
   validates :body, :campaign_id, :title, :lead, :user_id, presence: true
   mount_uploader :image, UpdateImageUploader
-  default_scope order("created_at DESC")
+  default_scope { order("created_at DESC") }
 
   auto_html_for :video do
     youtube(:width => "100%")
