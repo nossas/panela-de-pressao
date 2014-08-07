@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   scope :pokers,          where("(SELECT count(*) FROM pokes WHERE pokes.user_id = users.id) > 0")
 
   def self.create_from_hash!(hash)
-    create!(
+    create(
       :email =>       hash['info']['email'],
       :first_name =>  hash['info']['first_name'],
       :last_name =>   hash['info']['last_name']
