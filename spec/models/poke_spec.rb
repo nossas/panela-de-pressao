@@ -74,13 +74,13 @@ describe Poke do
   end
 
   describe "#valid_frequency?" do
-    context "when there is no poke for the given user id and campaign id for the last 24 hours" do
+    context "when there is no poke for the given user and campaign for today" do
       it "should return true" do
         Poke.valid_frequency?(1, 1).should be_true
       end
     end
 
-    context "when there is at least one poke for the given user id and campaign id for the last 24 hours" do
+    context "when there is at least one poke for the given user and campaign for today" do
       before { @poke = Poke.make! }
       it "should return false" do
         Poke.valid_frequency?(@poke.user_id, @poke.campaign_id).should be_false
