@@ -61,6 +61,7 @@ group :test, :development do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'jasmine'
+  gem 'webmock'
 end
 
 group :assets do
@@ -84,4 +85,3 @@ gem 'eventmachine'
 gem 'daemons'
 gem 'kaminari'
 gem 'rack-cas'
-gem 'webmock'
