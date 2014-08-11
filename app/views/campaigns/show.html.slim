@@ -7,13 +7,14 @@
     meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @campaign.image.url)
     meta property="og:url"          content=campaign_url(@campaign)
     meta property="og:description"  content=truncate(@campaign.facebook_share_lead || strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
+
 - else
   - content_for :title do
     = @featured_update.title
   - content_for :meta_tags do
     meta name="description"         content=(@featured_update.lead)
     meta property="og:title"        content=(@featured_update.title)
-    meta property="og:image"        content=(@featured_update.thumb)
+    meta property="og:image"        content=(@featured_update.image)
     meta property="og:url"          content=updates_campaign_url(@campaign, anchor: "update_#{@featured_update.id}", update_id: @featured_update.id)
     meta property="og:description"  content=(@featured_update.lead)
 
