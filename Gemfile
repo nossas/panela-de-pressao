@@ -42,6 +42,7 @@ gem 'bitly'
 gem 'koala'
 gem 'has_scope'
 gem 'simplecov', :require => false, :group => :test
+gem 'webmock', :require => false, :group => :test
 
 group :development do
   gem 'mailcatcher'
@@ -61,7 +62,6 @@ group :test, :development do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'jasmine'
-  gem 'webmock'
 end
 
 group :assets do
@@ -85,3 +85,4 @@ gem 'eventmachine'
 gem 'daemons'
 gem 'kaminari'
 gem 'rack-cas'
+gem 'appsignal'
