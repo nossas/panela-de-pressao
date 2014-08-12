@@ -7,6 +7,7 @@
     meta property="og:image"        content=(@campaign.facebook_share_thumb.url || @campaign.image.url)
     meta property="og:url"          content=campaign_url(@campaign)
     meta property="og:description"  content=truncate(@campaign.facebook_share_lead || strip_tags(AutoHtml.auto_html(@campaign.description) {redcarpet; simple_format;}), length: 200)
+    meta property="og:type"         content="paneladepressao:campaign"
 
 - else
   - content_for :title do
