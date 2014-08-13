@@ -5,7 +5,7 @@ require 'rack-cas/session_store/active_record'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
+Bundler.require(*Rails.groups)
 
 module ManifesteSe
   class Application < Rails::Application

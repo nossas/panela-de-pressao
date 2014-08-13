@@ -23,4 +23,5 @@ ManifesteSe::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   default_url_options[:host] = "paneladepressao.minhascidades.org.br"
+  config.eager_load = false
 end
