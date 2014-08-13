@@ -64,7 +64,7 @@ var App = window.App = {
       })();
 
       if(window.location.hash)
-        if(window.location.hash != "#campaign_owner")
+        if(window.location.hash != "#campaign_owner" || window.location.hash != "#create_your_profile" || window.location.hash != "#comments")
           $(window.location.hash).foundation('reveal', 'open');
 
       if($("#poke_notice").length){
