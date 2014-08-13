@@ -11,7 +11,7 @@ class Poke < ActiveRecord::Base
   validates_presence_of :campaign
   validates_presence_of :user
   validates_presence_of :kind
-  validate :frequency_validation
+  validate :frequency_validation, unless: :phone?
 
   before_create   :post_facebook_activity
   after_create    :thanks
@@ -28,7 +28,7 @@ class Poke < ActiveRecord::Base
     Poke
     .where(user_id: user_id)
     .where(campaign_id: campaign_id)
-    .where("created_at >= ?", Time.now - 1.day)
+    .where("created_at >= ?", Date.today)
     .empty?
   end
 
