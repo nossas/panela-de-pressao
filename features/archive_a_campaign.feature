@@ -1,6 +1,6 @@
 Feature: archive a campaign
 
-  @omniauth_test @ssi
+  @omniauth_test
   Scenario: when I'm an admin
     Given I'm logged in as admin
     And there is a campaign

@@ -3,7 +3,7 @@ Feature: View unmoderated campaigns
   As an admin
   I want to view the unmoderated campaigns
 
-  @omniauth_test @javascript @ssi
+  @omniauth_test @javascript
   Scenario: when I'm an admin
     Given there is an unmoderated campaign called "Save the whales!"
     And I'm logged in as admin
@@ -13,7 +13,7 @@ Feature: View unmoderated campaigns
     Then I should be in "the unmoderated campaigns page"
     And I should see "the unmoderated campaign"
 
-  @omniauth_test @javascript @ssi
+  @omniauth_test @javascript
   Scenario: when the campaign already has a moderator
     Given there is a campaign called "Save the whales!" moderated by "Jack Daniel"
     And I'm logged in as admin

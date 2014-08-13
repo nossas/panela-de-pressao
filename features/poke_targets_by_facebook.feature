@@ -8,7 +8,6 @@ Feature: Poke targets by Facebook
     Given I'm logged in
     And there is a campaign with poke type "facebook"
     And there is a target for this campaign
-    And I already poked this campaign
     And I'm in this campaign page
     When I press "the Facebook poke button"
     Then a facebook poke should be added to the target
@@ -19,11 +18,11 @@ Feature: Poke targets by Facebook
     Given I'm logged in
     And there is a campaign with poke type "facebook"
     And there is a target for this campaign
-    And I already poked this campaign
+    And I already poked this campaign 2 days ago
     And I'm in this campaign page
     When I press "the Facebook poke button"
     Then an email should be sent
-  
+
   @omniauth_test @koala
   Scenario: when I'm not logged in
     Given there is a campaign with poke type "facebook"

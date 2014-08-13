@@ -10,7 +10,6 @@ Feature: share a campaign after poke
     Then I should be in "this campaign page"
     And I should see "the campaign share buttons"
 
-  @ssi
   Scenario: when I poke by email
     Given I'm logged in
     And there is a campaign with poke type "email"
@@ -30,7 +29,6 @@ Feature: share a campaign after poke
     Then I should be in "this campaign page"
     And I should see "the campaign share buttons"
 
-  @ssi
   Scenario: when I poke by phone
     Given I'm logged in
     And there is a campaign

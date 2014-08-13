@@ -6,7 +6,7 @@ Feature: Create my own campaign
   Background:
     Given there is an organization in "Rio de Janeiro"
 
-  @omniauth_test @javascript @bitly @ssi
+  @omniauth_test @javascript @bitly
   Scenario: when I'm smart enough to successfully fill the new campaign form
     Given I'm logged in
     And I'm in the new campaign page
@@ -31,7 +31,7 @@ Feature: Create my own campaign
     When I click "the new campaign button"
     Then I should be in "the Meu Rio accounts login page"
 
-  @omniauth_test @ssi
+  @omniauth_test
   Scenario: when I'm troll enough to let all fields blank
     Given I'm logged in
     And I'm in the new campaign page
@@ -39,7 +39,7 @@ Feature: Create my own campaign
     Then I should see "Queremos saber o que você quer mudar na sua cidade!"
     And I should see "Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?"
 
-  @omniauth_test @javascript @bitly @ssi
+  @omniauth_test @javascript @bitly
   Scenario: when I leave mobile phone empty
     Given I'm logged in
     And I have no phone
@@ -53,13 +53,13 @@ Feature: Create my own campaign
     When I press "Criar campanha"
     Then I should see "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato."
 
-  @omniauth_test @ssi
+  @omniauth_test
   Scenario: when I'm an admin
     Given I'm logged in as admin
     When I click "the new campaign button"
     Then I should see the campaign's hashtag field
 
-  @omniauth_test @ssi
+  @omniauth_test
   Scenario: when I'm not an admin
     Given I'm logged in
     When I click "the new campaign button"

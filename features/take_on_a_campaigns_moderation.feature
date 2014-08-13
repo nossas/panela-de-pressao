@@ -1,6 +1,6 @@
 Feature: take on a campaign's moderation
 
-  @omniauth_test @ssi @javascript
+  @omniauth_test @javascript
   Scenario: when I'm an admin
     Given there is an unmoderated campaign called "Save the whales!"
     And I'm logged in as admin

@@ -1,6 +1,5 @@
 Feature: report a campaign
 
-  @ssi
   Scenario: when I'm logged in
     Given I'm logged in
     And there is an unmoderated campaign
@@ -16,7 +15,6 @@ Feature: report a campaign
     When I go to "this campaign page"
     Then I should not see "the report campaign button"
 
-  @ssi
   Scenario: when I already reported a campaign
     Given I'm logged in
     And there is a campaign
@@ -24,7 +22,6 @@ Feature: report a campaign
     When I go to "this campaign page"
     Then I should not see "the report campaign button"
 
-  @ssi
   Scenario: when the campaign have a moderator
     Given I'm logged in
     And there is a campaign

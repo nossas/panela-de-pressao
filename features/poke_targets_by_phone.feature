@@ -3,7 +3,6 @@ Feature: Poke targets by phone
   As a citizen
   I want to poke targets by phone
 
-  @ssi
   Scenario: when I'm logged in
     Given I'm logged in
     And there is a campaign

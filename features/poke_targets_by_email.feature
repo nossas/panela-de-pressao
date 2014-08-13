@@ -3,7 +3,6 @@ Feature: Poke targets by email
   As a citizen
   I want to poke targets by email
 
-  @ssi
   Scenario: when I'm logged in
     Given I'm logged in
     And there is a campaign with poke type "email"
@@ -34,12 +33,11 @@ Feature: Poke targets by email
     And I should see "the last name field error"
     And I should see "the email field error"
 
-  @ssi
   Scenario: when I already poked less than 24 hours ago
     Given I'm logged in
     And there is a campaign with poke type "email"
     And there is a target for this campaign
-    And I already poked this campaign
+    And I already poked this campaign 0 days ago
     When I go to "this campaign page"
     Then I should not see "the campaign poke by email form"
     And I should see "the campaign share buttons"

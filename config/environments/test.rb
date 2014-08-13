@@ -36,4 +36,5 @@ ManifesteSe::Application.configure do
   default_url_options[:host] = "paneladepressao.minhascidades.org.br"
   config.log_level = :error
   config.eager_load = false
+  config.middleware.use RackSessionAccess::Middleware
 end
