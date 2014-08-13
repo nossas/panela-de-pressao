@@ -35,4 +35,5 @@ ManifesteSe::Application.configure do
   config.active_support.deprecation = :stderr
   default_url_options[:host] = "paneladepressao.minhascidades.org.br"
   config.log_level = :error
+  config.eager_load = false
 end

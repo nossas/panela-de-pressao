@@ -49,6 +49,7 @@ gem 'koala'
 gem 'has_scope'
 gem 'simplecov', :require => false, :group => :test
 gem 'webmock', :require => false, :group => :test
+gem 'minitest'
 
 group :development do
   gem 'mailcatcher'
@@ -70,14 +71,12 @@ group :test, :development do
   gem 'jasmine'
 end
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'compass-rails'
-  gem 'compass-columnal-plugin', '~> 0.1.2'
-  gem 'uglifier'
-  # gem 'therubyracer'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'compass-rails'
+gem 'compass-columnal-plugin', '~> 0.1.2'
+gem 'uglifier'
+# gem 'therubyracer'
 
 gem 'facebox-rails'
 gem 'rails3-jquery-autocomplete'
