@@ -3,7 +3,7 @@ Feature: Add new influencers
   As an admin
   I want to add new influencers
 
-  @omniauth_test @koala @ssi
+  @omniauth_test @koala
   Scenario: when I fill all the required fields
     Given I'm logged in as admin
     And I'm in the new influencer page
@@ -16,7 +16,7 @@ Feature: Add new influencers
     When I press "Adicionar alvo"
     Then I should see "Eduardo Paes"
 
-  @omniauth_test @ssi
+  @omniauth_test
   Scenario: when I leave all fields blank
     Given I'm logged in as admin
     And I'm in the new influencer page

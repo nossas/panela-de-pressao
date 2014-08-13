@@ -3,7 +3,7 @@ Feature: export users by campaign
   As an admin
   I want to export users by campaign
 
-  @omniauth_test @javascript @ssi
+  @omniauth_test @javascript
   Scenario: when I'm admin
     Given I'm logged in as admin
     And there is a campaign called "Salve a Amazônia"
@@ -11,7 +11,6 @@ Feature: export users by campaign
     When I open the campaign menu
     Then I should see "the export users button"
 
-  @ssi
   Scenario: when I'm admin
     Given I'm logged in as admin
     And there is a campaign called "Salve a Amazônia"

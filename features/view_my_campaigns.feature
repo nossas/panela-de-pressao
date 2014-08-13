@@ -3,7 +3,7 @@ Feature: view my campaigns
   As a campaigner
   I want to view my campaigns
 
-  @omniauth_test @koala @javascript @ssi
+  @omniauth_test @koala @javascript
   Scenario: when I have a campaign
     Given I'm logged in
     And I own an unmoderated campaign called "Salve a praça Nossa Senhora da Paz"

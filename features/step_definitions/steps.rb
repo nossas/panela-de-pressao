@@ -52,12 +52,14 @@ end
 Given /^I'm logged in$/ do
   @current_user = User.make! email: "ssi@meurio.org.br"
   Authorization.make! user: @current_user
+  page.set_rack_session('cas' => { 'user' => @current_user.email })
   visit root_path
 end
 
 Given /^I'm logged in as admin$/ do
   @current_user = User.make! admin: true, email: "ssi@meurio.org.br"
   Authorization.make! user: @current_user
+  page.set_rack_session('cas' => { 'user' => @current_user.email })
   visit root_path
 end
 
@@ -240,8 +242,8 @@ When /^I open my profile options$/ do
   sleep 1
 end
 
-Given /^I already poked this campaign$/ do
-  Poke.make! :campaign => @campaign, :user => @current_user
+Given /^I already poked this campaign (\d+) days ago$/ do |arg1|
+  Poke.make! :campaign => @campaign, :user => @current_user, created_at: Time.now - arg1.to_i.days
 end
 
 Given /^I pass over the email poke button$/ do

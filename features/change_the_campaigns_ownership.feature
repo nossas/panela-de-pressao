@@ -3,7 +3,7 @@ Feature: change the campaign's ownership
   As an admin
   I want to change the campaign's ownership
 
-#  @omniauth_test @javascript @ssi
+#  @omniauth_test @javascript
 #  Scenario: when I'm an admin
 #    Given there is a campaign
 #    And there is an user with email "nicolas@paneladepressao.org.br"
@@ -13,7 +13,7 @@ Feature: change the campaign's ownership
 #    When I press "Salvar campanha"
 #    Then the campaign's owner should be "nicolas@paneladepressao.org.br"
 
-  @omniauth_test @ssi
+  @omniauth_test
   Scenario: when I'm not the admin
     Given I'm logged in
     And I own a campaign

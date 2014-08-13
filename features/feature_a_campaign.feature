@@ -3,7 +3,7 @@ Feature: Put a campaign on featured mode
   As an admin
   I want to feature a campaign
 
-  @omniauth_test @javascript @ssi
+  @omniauth_test @javascript
   Scenario: feature campaign
     Given I'm logged in as admin
     And there is a campaign called "Save the Whales!"
@@ -14,7 +14,7 @@ Feature: Put a campaign on featured mode
     And I go to "the campaigns page"
     And I should see "this featured campaign"
 
-  @omniauth_test @javascript @ssi
+  @omniauth_test @javascript
   Scenario: remove featured campaign
     Given I'm logged in as admin
     And there is a featured campaign

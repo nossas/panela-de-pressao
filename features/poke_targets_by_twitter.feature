@@ -3,7 +3,7 @@ Feature: Poke targets by Twitter
   As a citizen
   I want to poke targets by Twitter
 
-  @omniauth_test @twitter @javascript @koala @ssi
+  @omniauth_test @twitter @javascript @koala
   Scenario: when I have a Twitter authorization
     Given I'm logged in
     And there is a campaign with poke type "twitter"
@@ -14,7 +14,7 @@ Feature: Poke targets by Twitter
     Then a twitter poke should be added to the target
     And an email should be sent
 
-  @omniauth_test @twitter @javascript @koala @ssi
+  @omniauth_test @twitter @javascript @koala
   Scenario: when I haven't a Twitter authorization
     Given I'm logged in
     And there is a campaign with poke type "twitter"
