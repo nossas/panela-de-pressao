@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user, request)
+  def initialize(user, request = nil)
     can :read, User
     can :read, Answer
     can :manage, Poke
@@ -17,7 +17,7 @@ class Ability
       can :create, Report
     end
 
-    if request.params[:format] == "json"
+    if request && request.params[:format] == "json"
       if request.params[:token] == ENV['API_TOKEN']
         can :index, Poke
         can :index, Campaign
