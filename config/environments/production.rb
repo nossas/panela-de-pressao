@@ -80,7 +80,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  default_url_options[:host] = ENV["HOST"]
+  default_url_options[:host] = "paneladepressao.minhascidades.org.br"
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
