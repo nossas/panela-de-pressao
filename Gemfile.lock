@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/meurio/meurio_ui.git
-  revision: 3b3a0b057322d8a963c03d82d929f4830ab48e5c
-  branch: cas
-  specs:
-    meurio_ui (1.4.5)
-
 GEM
   remote: http://rubygems.org/
   remote: https://rails-assets.org/
@@ -215,6 +208,7 @@ GEM
       skinny (>= 0.1.2)
       sqlite3-ruby
       thin
+    meurio_ui (1.4.6)
     mime-types (1.25.1)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
@@ -434,7 +428,7 @@ DEPENDENCIES
   launchy
   machinist (>= 2.0.0.beta2)
   mailcatcher
-  meurio_ui!
+  meurio_ui
   mini_magick
   minitest
   newrelic_rpm
