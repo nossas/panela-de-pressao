@@ -21,7 +21,6 @@ gem 'redcarpet'
 gem 'protected_attributes'
 
 gem 'delayed_job_active_record'
-gem 'rack-no-www'
 gem 'video_info'
 gem 'jquery-validation-rails'
 gem 'faker'
