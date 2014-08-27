@@ -92,4 +92,8 @@ ManifesteSe::Application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+
+  config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+    r301 %r{^/(.*)/$}, '/$1', :headers => {'Cache-Control' => 'public, max-age='+2.week.to_s}
+  end
 end
