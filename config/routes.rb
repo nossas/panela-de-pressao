@@ -16,7 +16,6 @@ ManifesteSe::Application.routes.draw do
   resources :sessions, :only => [:destroy]
   resources :campaigns, :except => [:destroy] do
     member do
-      get :comments,    defaults: { section: "comments" },     as: :comments,      to: "campaigns#show"
       get :map,         defaults: { section: "map" },          as: :map,           to: "campaigns#show"
       get :answers,     defaults: { section: "answers" },      as: :answers,       to: "campaigns#show"
       get :updates,     defaults: { section: "updates" },      as: :updates,       to: "campaigns#show"
