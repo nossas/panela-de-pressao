@@ -31,7 +31,7 @@ Feature: Create my own campaign
     When I click "the new campaign button"
     Then I should be in "the Meu Rio accounts login page"
 
-  @omniauth_test
+  @omniauth_test @javascript
   Scenario: when I'm troll enough to let all fields blank
     Given I'm logged in
     And I'm in the new campaign page

@@ -4,7 +4,7 @@ section.content
       h1 Crie ou edite sua mobilização
       h4.subheader Quer mudar algo na sua cidade? Precisa do apoio de muitas pessoas? Quer falar diretamente com os poderosos que tomam as decisões? Então o seu lugar é aqui no Panela de Pressão. Crie agora a sua mobilização. Seja o protagonista da mudança.
       h4.subheader Este aplicativo da Rede Minhas Cidades aceita todas as mobilizações, mas #{link_to "clique aqui", "#policy", rel: "facebox[.policy]"} para saber o que não pode e o que é muito recomendado.
-    = form_for @campaign do |f|
+    = form_for @campaign, data: { abide: true } do |f|
       fieldset
         legend Prepare a panela: informações sobre a sua mobilização
         - if can?(:change_ownership, @campaign) && @campaign.persisted?
@@ -14,7 +14,8 @@ section.content
               = f.hidden_field :user_id
         .field
           = f.label :name
-          = f.text_field :name
+          = f.text_field(:name, required: true)
+          small.error Queremos saber o que você quer mudar na sua cidade!
         .field
           = f.label :organization_id
           = f.select :organization_id, @organizations.map{|c| [c.city, c.id]}, :include_blank => true
@@ -23,7 +24,8 @@ section.content
           = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
         .field
           = f.label :description
-          = f.text_area :description
+          = f.text_area(:description, required: true)
+          small.error Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?
           = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
         .field
           - if @campaign.persisted?
