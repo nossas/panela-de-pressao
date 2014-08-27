@@ -62,7 +62,7 @@ class PokesController < InheritedResources::Base
     @pokes = @pokes.where('created_at >= :from', from: format_date(params[:from])) unless params[:from].blank?
     @pokes = @pokes.where('created_at <= :until', until: format_date(params[:until])) unless params[:until].blank?
 
-    index!
+    render json: @pokes
   end
 
   private
