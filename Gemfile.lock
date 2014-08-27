@@ -260,7 +260,6 @@ GEM
       addressable (~> 2.3)
       nokogiri (~> 1.5)
       rack (~> 1.3)
-    rack-no-www (0.0.2)
     rack-test (0.6.2)
       rack (>= 1.0)
     rack_session_access (0.1.1)
@@ -446,7 +445,6 @@ DEPENDENCIES
   pg
   protected_attributes
   rack-cas
-  rack-no-www
   rack_session_access
   rails (~> 4.1.4)
   rails3-jquery-autocomplete
