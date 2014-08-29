@@ -92,6 +92,7 @@ class Poke < ActiveRecord::Base
         batch: [{ email: self.user.email }]
       )
     rescue Exception => e
+      Appsignal.add_exception e
       Rails.logger.error e
     end
   end
@@ -102,7 +103,8 @@ class Poke < ActiveRecord::Base
       body = { token: ENV["ACCOUNTS_API_TOKEN"], membership: { organization_id: self.campaign.organization_id } }
       HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
     rescue Exception => e
-      logger.error e.message
+      Appsignal.add_exception e
+      Rails.logger.error e
     end
   end
 
@@ -114,6 +116,7 @@ class Poke < ActiveRecord::Base
       response = HTTParty.post(url, body: body)
       self.update_attribute :rewarded, true if response.code == 201
     rescue Exception => e
+      Appsignal.add_exception e
       Rails.logger.error e
     end
   end
@@ -138,7 +141,8 @@ class Poke < ActiveRecord::Base
         Koala::Facebook::API.new(user.facebook_authorization.token).delay.put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook_id)
         t.increase_pokes_by_facebook
       rescue Exception => e
-        puts e.message
+        Appsignal.add_exception e
+        Rails.logger.error e
       end
     end
   end
@@ -153,7 +157,8 @@ class Poke < ActiveRecord::Base
         Twitter.update("#{t.influencer.twitter} #{self.campaign.twitter_text}: #{self.campaign.short_url}")
         t.increase_pokes_by_twitter
       rescue Exception => e
-        puts e.message
+        Appsignal.add_exception e
+        Rails.logger.error e
       end
     end
   end
@@ -164,7 +169,8 @@ class Poke < ActiveRecord::Base
         campaign_url = Rails.application.routes.url_helpers.campaign_url(self.campaign)
         Koala::Facebook::API.new(self.user.facebook_authorization.token).delay.put_connections("me", "paneladepressao:apoiar", :campaign => campaign_url)
       rescue Exception => e
-        puts "Post Facebook activity failed: #{e.message}"
+        Appsignal.add_exception e
+        Rails.logger.error e
       end
     end
   end
