@@ -10,7 +10,8 @@ class PokeMailer < ActionMailer::Base
     mail(
       :to => @poke.campaign.influencers.map{|i| "'#{i.name}' <#{i.email}>" if i.email.present? }.join(", "),
       :subject => @poke.campaign.name,
-      :from => "\"#{@poke.user.name}\" <#{@poke.user.email}>"
+      :from => "\"#{@poke.user.name}\" <#{@poke.user.email}>",
+      :reply_to => @poke.user.email
     )
   end
 
