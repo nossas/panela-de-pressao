@@ -154,7 +154,7 @@ class Poke < ActiveRecord::Base
     end
     self.campaign.targets_with_twitter.each do |t|
       begin
-        Twitter.update("#{t.influencer.twitter} #{self.campaign.twitter_text}: #{self.campaign.short_url}")
+        Twitter.update("#{self.campaign.twitter_text}: #{self.campaign.short_url} #{t.influencer.twitter}")
         t.increase_pokes_by_twitter
       rescue Exception => e
         Appsignal.add_exception e
