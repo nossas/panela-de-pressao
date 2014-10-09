@@ -1,8 +1,6 @@
 # coding: utf-8
 class CampaignsController < InheritedResources::Base
   load_and_authorize_resource
-  has_scope :popular,     only: [:explore]
-  has_scope :successful,  only: [:explore]
   optional_belongs_to :organization
   optional_belongs_to :category
   optional_belongs_to :user
@@ -81,13 +79,9 @@ class CampaignsController < InheritedResources::Base
 
   def explore
     @campaigns = Campaign.unarchived
-
-    if params[:organizations].present?
-      @campaigns = @campaigns.where(organization_id: params[:organizations])
-    end
-    if params[:categories].present?
-      @campaigns = @campaigns.where(category_id: params[:categories])
-    end
+    @campaigns = @campaigns.successful if params[:successful]
+    @campaigns = @campaigns.where(organization_id: params[:organizations]) if params[:organizations].present?
+    @campaigns = @campaigns.where(category_id: params[:categories]) if params[:categories].present?
 
     @campaigns = @campaigns.moderated + @campaigns.unmoderated
     @campaigns_count = @campaigns.size
