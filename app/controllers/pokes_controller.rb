@@ -27,6 +27,7 @@ class PokesController < InheritedResources::Base
       user.update_attribute(:phone, params[:phone]) if params[:phone]
       @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
     rescue Exception => e
+      Appsignal.add_exception e
       Rails.logger.error e
     end
 
