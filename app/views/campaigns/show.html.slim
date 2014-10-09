@@ -37,7 +37,7 @@ section.content
     - else
       - if @campaign.moderator.nil? && can?(:create, Report) && !current_user.reported?(@campaign)
         .campaign_without_moderator
-          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Minhas Cidades, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
+          span Se esta mobilização não se adequa à #{link_to "visão de cidade ou aos princípios", about_path(anchor: "campaign_owner")} da Rede Nossas Cidades, #{link_to "denuncie aqui.", campaign_reports_path(@campaign), id: :report_campaign_button, method: :post}
 
       - if @campaign.moderator.present?
         .campaign_with_moderator

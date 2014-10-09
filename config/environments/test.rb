@@ -33,7 +33,7 @@ ManifesteSe::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  default_url_options[:host] = "paneladepressao.minhascidades.org.br"
+  default_url_options[:host] = "paneladepressao.nossascidades.org"
   config.log_level = :error
   config.eager_load = false
   config.middleware.use RackSessionAccess::Middleware

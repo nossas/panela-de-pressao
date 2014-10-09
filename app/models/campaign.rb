@@ -162,6 +162,7 @@ class Campaign < ActiveRecord::Base
       segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(id: self.organization.mailchimp_list_id, opts: {type: "static", name: segment_name})
       self.update_attribute :mailchimp_segment_uid, segment["id"]
     rescue Exception => e
+      Appsignal.add_exception e
       Rails.logger.error e
     end
   end
@@ -171,6 +172,7 @@ class Campaign < ActiveRecord::Base
       segment_name = "[PdP] #{self.name[0..50]}"
       Gibbon::API.lists.segment_update(id: self.organization.mailchimp_list_id, seg_id: self.mailchimp_segment_uid, opts: { name: segment_name })
     rescue Exception => e
+      Appsignal.add_exception e
       Rails.logger.error e
     end
   end
