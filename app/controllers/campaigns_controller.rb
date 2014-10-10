@@ -78,15 +78,13 @@ class CampaignsController < InheritedResources::Base
   end
 
   def explore
-    @campaigns = Campaign.unarchived
+    @campaigns = Campaign.moderated_first.order(created_at: :desc).unarchived
 
     @campaigns = @campaigns.successful if params[:successful]
     @campaigns = @campaigns.unfinished if params[:unfinished]
 
     @campaigns = @campaigns.where(organization_id: params[:organizations]) if params[:organizations].present?
     @campaigns = @campaigns.where(category_id: params[:categories]) if params[:categories].present?
-
-    @campaigns = @campaigns.moderated_first.order(created_at: :desc)
 
     @campaigns_count = @campaigns.count
     @campaigns = @campaigns.page(params[:page]).per(9)
