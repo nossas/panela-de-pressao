@@ -7,8 +7,8 @@ class CampaignsController < InheritedResources::Base
 
   skip_load_and_authorize_resource :only => [:create, :explore]
 
-  before_filter :only => [:create] { params[:campaign][:user_id] = current_user.id }
-  before_filter :only => [:new, :edit, :create, :update] { @organizations = Organization.order(:city) }
+  before_action(:only => [:create]) { params[:campaign][:user_id] = current_user.id }
+  before_action(:only => [:new, :edit, :create, :update]) { @organizations = Organization.order(:city) }
 
   respond_to :html, :json, :js
 
@@ -85,6 +85,8 @@ class CampaignsController < InheritedResources::Base
 
     @campaigns = @campaigns.where(organization_id: params[:organizations]) if params[:organizations].present?
     @campaigns = @campaigns.where(category_id: params[:categories]) if params[:categories].present?
+
+    @campaigns.moderated_first.order(created_at: :desc)
 
     @campaigns_count = @campaigns.count
     @campaigns = @campaigns.page(params[:page]).per(9)
