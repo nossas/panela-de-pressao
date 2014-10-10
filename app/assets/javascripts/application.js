@@ -21,6 +21,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.facebox
+//= require jquery-infinite-scroll
 //= require autocomplete-rails
 //= require meurio_ui
 //= require foundation

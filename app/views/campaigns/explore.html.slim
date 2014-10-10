@@ -11,11 +11,7 @@ section.content.explore
       #campaigns-loader.loader= image_tag('loader.gif')
       ol.campaigns#campaigns-list
         = render @campaigns
-      .row.campaigns-load-more
-        - if @campaigns.respond_to? :last_page?
-          .load-more
-            = link_to_next_page @campaigns, '+ Veja mais', params: params, id: :load_more_campaigns_button, class: [:btn, 'btn-green'], remote: true, 'data-type' => 'script'
-            .loader= image_tag('loader.gif')
+        = paginate @campaigns
 
     aside.right
       = form_for explore_path, method: :get, remote: true, html: { id: :filter_form, :'data-type' => 'script' }
