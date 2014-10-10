@@ -14,14 +14,27 @@ section.content.explore
       .row.campaigns-load-more
         - if @campaigns.respond_to? :last_page?
           .load-more
-            = link_to_next_page @campaigns, '+ Veja mais', id: :load_more_campaigns_button, class: [:btn, 'btn-green'], remote: true, 'data-type' => 'script'
+            = link_to_next_page @campaigns, '+ Veja mais', params: params, id: :load_more_campaigns_button, class: [:btn, 'btn-green'], remote: true, 'data-type' => 'script'
             .loader= image_tag('loader.gif')
 
     aside.right
       = form_for explore_path, method: :get, remote: true, html: { id: :filter_form, :'data-type' => 'script' }
-        = hidden_field_tag :filter, true
+        = hidden_field_tag(:filter, true)
         section.filter
-          h4 Filtre por cidade
+          h4 Filtre as mobilizações
+          ol.successful
+            li
+              = label_tag do
+                .filter= check_box_tag 'unfinished', true, params[:unfinished]
+                = content_tag :span, "Em aberto", class: :name, title: "Em aberto"
+                span.number= Campaign.unarchived.unfinished.count
+            li
+              = label_tag do
+                .filter= check_box_tag 'successful', true, params[:successful]
+                = content_tag :span, "Vitoriosas", class: :name, title: "Vitoriosas"
+                span.number= Campaign.unarchived.successful.count
+        section.filter
+          h4 Filtre por cidades
           ol.organizations
             - Organization.order(:city).each do |organization|
               li
