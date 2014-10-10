@@ -618,6 +618,12 @@ body.campaigns#show, body.pokes#create
           margin-right: 10px
 
 body.campaigns#explore, body.campaigns#index
+  nav.pagination
+    display: none
+  #infscr-loading
+    text-align: center
+    img
+      display: none
   #campaigns-loader
     padding: .5em 0
   .loader
@@ -652,9 +658,7 @@ body.campaigns#explore, body.campaigns#index
     ol.campaigns
       li.campaign
         margin-bottom: 1em
-        +grid(4)
-        &:nth-child(3n)
-          +last
+        +grid-column(4)
   aside.right
     section.filter
       padding: 0

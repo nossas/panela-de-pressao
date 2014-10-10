@@ -11,16 +11,32 @@ App.Campaigns = {
 
   Explore: Backbone.View.extend({
     initialize: function(){
-      $('#load_more_campaigns_button').on('click', function() {
-        $('#load_more_campaigns_button').hide();
-        $('.campaigns-load-more .loader').show();
+      $('#filter_form').on('change', function() {
+        window.history.pushState("", "", "?" + $('#filter_form').serialize());
+        $('#filter_form').submit();
       });
 
-      $('#filter_form').on('change', function() {
-        $('#campaigns-loader').show();
-        $('#filter_form').submit();
-        window.history.pushState("", "", "?" + $('#filter_form').serialize());
+      $('#filter_form').on('ajax:complete',function(data, status, xhr){
+        $('#campaigns-list').html(status.responseText);
+        initializeCampaignsListScroll();
       });
+
+      initializeCampaignsListScroll();
+
+      function initializeCampaignsListScroll(){
+        $("#campaigns-list").infinitescroll('destroy');
+        $("#campaigns-list").data('infinitescroll', null);
+        $("#campaigns-list").infinitescroll({
+          navSelector: "nav.pagination",
+          nextSelector: "nav.pagination a[rel=next]",
+          path: function(page) { return '?page=' + page + "&" + $("#filter_form").serialize(); },
+          itemSelector: "li.campaign",
+          loading: {
+            finishedMsg: null,
+            msgText: "Carregando..."
+          }
+        });
+      }
     }
   }),
 
