@@ -86,7 +86,7 @@ class CampaignsController < InheritedResources::Base
     @campaigns = @campaigns.where(organization_id: params[:organizations]) if params[:organizations].present?
     @campaigns = @campaigns.where(category_id: params[:categories]) if params[:categories].present?
 
-    @campaigns.moderated_first.order(created_at: :desc)
+    @campaigns = @campaigns.moderated_first.order(created_at: :desc)
 
     @campaigns_count = @campaigns.count
     @campaigns = @campaigns.page(params[:page]).per(9)
