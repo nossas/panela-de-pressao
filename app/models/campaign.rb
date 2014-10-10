@@ -81,6 +81,7 @@ class Campaign < ActiveRecord::Base
   scope :unarchived, -> { where(archived_at: nil) }
   scope :orphan, -> { where(moderator_id: nil) }
   scope :reported, -> { joins(:reports) }
+  scope :moderated_first, -> { unscoped.order('CASE WHEN moderator_id IS NOT NULL THEN 1 ELSE NULL END') }
 
   validates :name, :user_id, :description, :image, :category_id, :poke_type, :organization_id, :presence => true
   validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
