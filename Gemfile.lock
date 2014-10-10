@@ -270,6 +270,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.4)
       sprockets-rails (~> 2.0)
+    rails-assets-jquery-infinite-scroll (2.0.2)
     rails3-jquery-autocomplete (1.0.14)
       rails (>= 3.0)
     rails_12factor (0.0.2)
@@ -446,6 +447,7 @@ DEPENDENCIES
   rack-cas
   rack_session_access
   rails (~> 4.1.4)
+  rails-assets-jquery-infinite-scroll
   rails3-jquery-autocomplete
   rails_12factor
   rake
