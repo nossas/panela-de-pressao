@@ -1,5 +1,5 @@
 // clear if it's a new filter
-if("<%= params[:filter] %>" == 'true')
+if("<%= params[:page].nil? %>" == 'true')
 	$('#campaigns-list').empty();
 
 // include results
@@ -7,7 +7,7 @@ $('#campaigns-list').append("<%= j (render @campaigns) %>");
 
 
 $('.campaigns-load-more .load-more').html("<%= j (
-  link_to_next_page @campaigns, '+ Veja mais', remote: true,
+  link_to_next_page @campaigns, '+ Veja mais', params: params.merge(filter: false), remote: true,
     id: :load_more_campaigns_button, class: [:btn, 'btn-green'], 'data-type' => 'script') %>");
 
 $('#load_more_campaigns_button').show();
