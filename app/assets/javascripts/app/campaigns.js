@@ -19,6 +19,7 @@ App.Campaigns = {
       $('#filter_form').on('change', function() {
         $('#campaigns-loader').show();
         $('#filter_form').submit();
+        window.history.pushState("", "", "?" + $('#filter_form').serialize());
       });
     }
   }),
