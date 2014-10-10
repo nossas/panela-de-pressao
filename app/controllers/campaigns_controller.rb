@@ -86,9 +86,8 @@ class CampaignsController < InheritedResources::Base
     @campaigns = @campaigns.where(organization_id: params[:organizations]) if params[:organizations].present?
     @campaigns = @campaigns.where(category_id: params[:categories]) if params[:categories].present?
 
-    @campaigns = @campaigns.moderated + @campaigns.unmoderated
-    @campaigns_count = @campaigns.size
-    @campaigns = Kaminari.paginate_array(@campaigns).page(params[:page]).per(9)
+    @campaigns_count = @campaigns.count
+    @campaigns = @campaigns.page(params[:page]).per(9)
 
     respond_with @campaigns
   end
