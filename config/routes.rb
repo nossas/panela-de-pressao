@@ -7,12 +7,10 @@ ManifesteSe::Application.routes.draw do
   get "/campaigns/unmoderated", :to => "campaigns#unmoderated", :as => :unmoderated_campaigns
   get "/campaigns/reported", :to => "campaigns#reported", :as => :reported_campaigns
 
-  resources :categories, only: [:index] do
-    resources :campaigns, only: [:index]
-  end
   resources :organizations, only: [:index] do
     resources :campaigns, only: [:index]
   end
+  
   resources :sessions, :only => [:destroy]
   resources :campaigns, :except => [:destroy] do
     member do

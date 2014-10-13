@@ -15,7 +15,6 @@ section.content.explore
 
     aside.right
       = form_for explore_path, method: :get, remote: true, html: { id: :filter_form, :'data-type' => 'script' }
-        = hidden_field_tag(:filter, true)
         section.filter
           h4 Filtre as mobilizações
           ol.successful
