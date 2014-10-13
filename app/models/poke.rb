@@ -110,7 +110,7 @@ class Poke < ActiveRecord::Base
 
   def sync_reward
     begin
-      url = "#{ENV["MEURIO_HOST"]}/rewards.json"
+      url = "#{ENV["MEURIO_HOST"]}/pt/rewards.json"
       reward = { task_type_id: ENV['POKE_TASK_TYPE_ID'], user_id: self.user_id, points: "15", source_app: "Panela de Pressão", source_model: "Poke", source_id: self.id }
       body = { token: ENV["MEURIO_API_TOKEN"], reward: reward }
       response = HTTParty.post(url, body: body)
