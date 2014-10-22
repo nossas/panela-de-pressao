@@ -55,10 +55,6 @@ group :development do
   gem 'taps'
 end
 
-group :production do
-  gem 'newrelic_rpm'
-end
-
 group :test, :development do
   gem 'rake'
   gem 'rspec-rails', '>= 2.0.1'
