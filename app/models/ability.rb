@@ -6,6 +6,7 @@ class Ability
     can :read, Answer
     can :manage, Poke
     can :read, Campaign
+    can :read, Update
 
     if user && user.admin?
       can :manage, :all
@@ -13,6 +14,7 @@ class Ability
       can :create, Campaign
       can :update, Campaign, user_id: user.id
       can :read, Campaign, user_id: user.id
+      can :manage, Update, campaign: { user_id: user.id }
       can :update, User, id: user.id
       can :create, Report
     end
