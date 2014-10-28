@@ -4,7 +4,7 @@
     - @campaign.influencers.each_with_index do |influencer, index|
       .user_thumb[class=('hidden' if index > 4)]
         = image_tag influencer.avatar.square, size: "50x50", :title => influencer.name
-        .user_name= truncate influencer.name, length: 35
+        .user_name= link_to truncate(influencer.name, length: 35), influencer
         .user_label= truncate influencer.role, length: 40
     - if @campaign.influencers.count > 4
       span.show_all_influencers Ver todos
