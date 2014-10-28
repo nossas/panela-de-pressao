@@ -5,7 +5,7 @@ describe InfluencersController do
     let(:influencer) { Influencer.new }
 
     before do
-      Influencer.should_receive(:find).with("1").and_return(influencer)
+      allow(Influencer).to receive(:find).with("1").and_return(influencer)
     end
 
     context "when the influencer is archived" do
