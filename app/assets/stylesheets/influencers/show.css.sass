@@ -1,0 +1,22 @@
+body.influencers#show
+
+.influencer
+  padding: rem-calc(50) 0
+  .influencer-info
+    +grid-column(3)
+    img
+      margin-bottom: rem-calc(10)
+    h3
+      small
+        display: block
+    .icon-mail2
+      &:before
+        font-size: rem-calc(24)
+        margin-right: rem-calc(5)
+        position: relative
+        top: 6px
+        color: $light_gray
+  .influencer-campaigns
+    +grid-column(9)
+    .campaign
+      +grid-column(4)
