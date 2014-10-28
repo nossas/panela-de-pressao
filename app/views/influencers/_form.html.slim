@@ -8,12 +8,12 @@ section.content
         .field
           = f.label :name
           = f.text_field :name, required: true
-          small.error Informe o nome do alvo
+          small.error Nome não pode ficar em branco
 
         .field
           = f.label :role
           = f.text_field :role, required: true
-          small.error Informe a descrição
+          small.error Descrição não pode ficar em branco
         
         .field
           = f.label :email
