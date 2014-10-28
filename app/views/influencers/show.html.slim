@@ -1,6 +1,13 @@
 - content_for :title do
   = @influencer.name
 
+- content_for :meta_tags do
+  meta name="description"         content=@influencer.role
+  meta property="og:title"        content=@influencer.name
+  meta property="og:image"        content=@influencer.avatar.url
+  meta property="og:url"          content=request.url
+  meta property="og:description"  content=@influencer.role
+
 .row.influencer
   .influencer-info
     = image_tag @influencer.avatar
