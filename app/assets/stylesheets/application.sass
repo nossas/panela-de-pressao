@@ -68,7 +68,7 @@ article.right
 article.left, .home_link
   +grid(8)
 
-.highlight .about, .highlight .campaign, form#new_influencer
+.highlight .about, .highlight .campaign
   +grid(6)
 
 aside.right, .new_campaign_btn
@@ -463,13 +463,6 @@ body.influencers#index
       float: left
       margin-right: .5em
 
-body.influencers#new, body.influencers#create
-  input[type='text'], input[type='email'], input[type="url"]
-    +box-sizing("border-box")
-    width: 100%
-  li.input, .btn
-    margin-bottom: 2em
-
 section.footer
   background: $dark_bg
   color: white
@@ -564,5 +557,5 @@ label
 
 @import campaigns
 @import campaigns/campaign
-@import influencers/show
+@import influencers/*
 @import pages

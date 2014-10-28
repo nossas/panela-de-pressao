@@ -35,7 +35,7 @@ def to_button string
   return "new_poke_email_submit_button" if string == "the email poke button"
   return "new_poke_facebook_submit_button" if string == "the Facebook poke button"
   return "Aceitar campanha" if string == "Aceitar campanha"
-  return "Adicionar alvo" if string == "Adicionar alvo"
+  return "Salvar Alvo" if string == "Salvar Alvo"
   return "Enviar campanha para moderação" if string == "Enviar campanha para moderação"
   return "Salvar campanha" if string == "Salvar campanha"
   return "Criar campanha"                   if string == "Criar campanha"
