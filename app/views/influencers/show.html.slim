@@ -17,4 +17,7 @@
     .email.icon-mail2 title=@influencer.email = truncate(@influencer.email, length: 27)
 
   .influencer-campaigns
+    .row
+      .influencer-campaigns-title
+        h2 Campanhas que pressionaram #{@influencer.name}
     .row= render @campaigns
