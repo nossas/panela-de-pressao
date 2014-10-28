@@ -45,6 +45,7 @@ html
         li= link_to "Selecionar mobilizações", unmoderated_campaigns_path, id: :unmoderated_campaigns_button if can? :moderate, Campaign
         li= link_to "Mobilizações denunciadas", reported_campaigns_path, id: :reported_campaigns_button if current_user.admin?
         li= link_to "Exportar todos os usuários", users_path(format: :csv) if can? :export, User
+        li= link_to "Gerenciar alvos", influencers_path, id: :influencers_button if can? :manage, Influencer
 
     = meurio_header_for(:pdp)
 
