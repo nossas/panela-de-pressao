@@ -7,6 +7,7 @@ class Ability
     can :manage, Poke
     can :read, Campaign
     can :read, Update
+    can :read, Influencer
 
     if user && user.admin?
       can :manage, :all
