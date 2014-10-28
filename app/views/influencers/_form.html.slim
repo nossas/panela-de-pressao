@@ -1,0 +1,36 @@
+section.content
+  .row  
+    .header
+      h1 Crie ou edite um alvo
+
+    = form_for @influencer, data: { abide: true } do |f|
+      fieldset
+        .field
+          = f.label :name
+          = f.text_field :name, required: true
+          small.error Informe o nome do alvo
+
+        .field
+          = f.label :role
+          = f.text_field :role, required: true
+          small.error Informe a descrição
+        
+        .field
+          = f.label :email
+          = f.email_field :email
+        
+        .field.half
+          = f.label :twitter
+          = f.text_field :twitter
+        
+        .field.half
+          = f.label :facebook_url
+          = f.text_field :facebook_url
+        
+        .field
+          = f.label :avatar
+          = image_tag @influencer.avatar unless @influencer.avatar.blank?
+          = f.file_field :avatar
+
+      .action
+        = f.submit 'Salvar Alvo', class: 'btn'
