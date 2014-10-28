@@ -1,26 +1,43 @@
 body.influencers#show
+  .influencer
+    padding: rem-calc(50) 0
+    .influencer-info
+      +grid-column(3)
+      img
+        margin-bottom: rem-calc(10)
+      h3
+        line-height: 1em
+        small
+          display: block
+          line-height: normal
+      .icon-mail2
+        &:before
+          font-size: rem-calc(24)
+          margin-right: rem-calc(5)
+          position: relative
+          top: 6px
+          color: $light_gray
+    .influencer-campaigns
+      +grid-column(9)
+      .influencer-campaigns-title
+        +grid-column(12)
+      .campaign
+        +grid-column(4)
 
-.influencer
-  padding: rem-calc(50) 0
-  .influencer-info
-    +grid-column(3)
-    img
-      margin-bottom: rem-calc(10)
-    h3
-      line-height: 1em
-      small
-        display: block
-        line-height: normal
-    .icon-mail2
-      &:before
-        font-size: rem-calc(24)
-        margin-right: rem-calc(5)
-        position: relative
-        top: 6px
-        color: $light_gray
-  .influencer-campaigns
-    +grid-column(9)
-    .influencer-campaigns-title
-      +grid-column(12)
-    .campaign
-      +grid-column(4)
+  @media #{$small-only}
+    .influencer
+      .influencer-info
+        margin-bottom: rem-calc(40)
+      .influencer-info, .influencer-campaigns, .influencer-campaigns .campaign
+        +grid-column(12)
+      .influencer-campaigns .campaign
+        height: 425px
+
+  @media #{$medium-only}
+    .influencer
+      .influencer-info
+        +grid-column(4)
+      .influencer-campaigns
+        +grid-column(8)
+      .influencer-campaigns .campaign
+        +grid-column(6)
