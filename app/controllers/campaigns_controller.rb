@@ -59,7 +59,7 @@ class CampaignsController < InheritedResources::Base
   def index
     respond_to do |format|
       format.html do
-        @popular = Campaign.popular.includes(:user).limit(4).shuffle
+        @popular = Campaign.popular.unarchived.includes(:user).limit(4).shuffle
         @featured = Campaign.featured.first
         @successful_campaigns = Campaign.successful.includes(:user).order("random()").limit(4)
         @moderator_organization = Organization.random_moderator
