@@ -4,10 +4,21 @@ body.influencers#new, body.influencers#create, body.influencers#edit, body.influ
   fieldset, .header
     margin-bottom: 1em
   form
-    .field.half
-      +grid-column(6)
     .field
+      &.half, &.preview
+        +grid-column(6)
       img
         margin-bottom: 1em
     input[type='submit']
       width: auto
+
+  @media #{$medium-only}
+    form .field.half
+      +grid-column(12)
+
+  @media #{$small-only}
+    .application_menu
+      display: none
+    form .field
+      &.half, &.preview
+        +grid-column(12)
