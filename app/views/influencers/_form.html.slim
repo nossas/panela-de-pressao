@@ -27,7 +27,7 @@ section.content
           = f.label :facebook_url
           = f.text_field :facebook_url
         
-        .field
+        .field.preview
           = f.label :avatar
           = image_tag @influencer.avatar unless @influencer.avatar.blank?
           = f.file_field :avatar
