@@ -17,7 +17,9 @@
       small  #{@influencer.role}
     .email.icon-mail2 title=@influencer.email = truncate(@influencer.email, length: 27)
 
-    .edit= link_to 'Editar', edit_influencer_path(@influencer), class: [:button, :radius] if can? :edit, Influencer
+    - if can? :edit, Influencer
+      .action= link_to 'Editar', edit_influencer_path(@influencer), class: [:button, :radius]
+      .action= link_to (@influencer.archived? ? 'Desarquivar' : 'Arquivar'), archive_influencer_path(@influencer), method: :patch, class: [:button, :radius]
 
   .influencer-campaigns
     .row
