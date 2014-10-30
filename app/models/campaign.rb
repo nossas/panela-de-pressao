@@ -84,7 +84,6 @@ class Campaign < ActiveRecord::Base
   scope :moderated_first, -> { unscoped.order('CASE WHEN moderator_id IS NOT NULL THEN 1 ELSE NULL END') }
 
   validates :name, :user_id, :description, :image, :category_id, :poke_type, :organization_id, :presence => true
-  validates_format_of :video_url, with: /\A(?:http:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=([a-zA-Z0-9_-]*))|(?:www\.)?vimeo\.com\/(\d+)\Z/, allow_blank: true
   validates_length_of :twitter_text, :maximum => 100
   validates_format_of :map_embed, with: /\A<iframe(.*)src=\"http(s)?:\/\/(maps.google.com\/maps)|(google.com\/maps).*\Z/i, allow_nil: true, allow_blank: true
   validate :owner_have_mobile_phone, on: :create
