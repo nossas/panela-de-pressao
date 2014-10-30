@@ -35,7 +35,12 @@ ManifesteSe::Application.routes.draw do
     end
     resources :answers, :only => [:create, :destroy]
   end
-  resources :influencers, except: [:destroy]
+
+  resources :influencers, except: [:destroy] do
+    member do
+      patch :archive, to: "influencers#archive"
+    end
+  end
 
   resources :users, only: [:index] do
     resources :campaigns, :only => [:index]

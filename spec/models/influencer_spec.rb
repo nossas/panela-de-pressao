@@ -48,49 +48,47 @@ describe Influencer do
 		end
 	end
 
-	describe "#archived=" do
-	  let(:influencer) { Influencer.new }
+	describe "#archive" do
+	  subject { Influencer.make! }
+    before do
+      @time = Time.now
+      allow(Time).to receive(:now).and_return(@time)
+    end
 
-    context "when archived is true" do
-      subject { influencer.archived = true }
+    context "when it is not archived" do
+      before { subject.archived_at = nil }
 
-      context "and archived_at is null" do
-        it { expect { subject }.to change(influencer, :archived_at) }
-      end
-
-      context "and the archived_at is not null" do
-        before do
-          influencer.archived_at = Time.now
-        end
-
-        it { expect { subject }.to_not change(influencer, :archived_at) }
+      it "should archive the campaign" do
+        expect{ subject.archive }.to change{ subject.archived_at }.from(nil).to(@time)
       end
     end
 
-    context "when archived is false" do
-      subject { influencer.archived = false }
+    context "when it is archived" do
+      before { subject.archived_at = Time.now }
       
-      before do
-        influencer.archived_at = Time.now
+      it "should unarchive the campaign" do
+        expect{ subject.archive }.to change{ subject.archived_at }.from(@time).to(nil)
       end
-
-      it { expect { subject }.to change(influencer, :archived_at) }
     end
   end
 
-  describe "#archived" do
-	  let(:influencer) { Influencer.new }
-    subject { influencer.archived }
+  describe "#archived?" do
+    subject { Influencer.make! }
 
-    context "when archived_at is null" do
-      it { should be_false } 
+    context "when it is not archived" do
+      before { subject.archived_at = nil }
+
+      it "should be false" do
+        expect(subject.archived?).to be_false
+      end
     end
 
-    context "when archived_at is not null" do
-      before do
-        influencer.archived_at = Time.now
+    context "when it is archived" do
+      before { subject.archived_at = Time.now }
+      
+      it "should unarchive the campaign" do
+        expect(subject.archive).to be_true
       end
-      it { should be_true }
     end
   end
 
