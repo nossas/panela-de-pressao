@@ -8,6 +8,12 @@ class InfluencersController < InheritedResources::Base
     @campaigns = @influencer.campaigns.unarchived
   end
 
+  def archive
+    @influencer = Influencer.find(params[:id])
+    @influencer.archive
+    respond_with @influencer
+  end
+
   private
     def redirect_when_archived
       redirect_to influencers_path if resource.archived? && !can?(:edit, Influencer)

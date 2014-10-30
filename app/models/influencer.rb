@@ -1,6 +1,6 @@
 class Influencer < ActiveRecord::Base
   attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache,
-    :about, :facebook_url, :archived
+    :about, :facebook_url, :archived_at
 
 	attr_accessor :user_id
 
@@ -29,19 +29,13 @@ class Influencer < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  def archived=(value)
-    if value
-      self.archived_at ||= Time.now
-    else
-      self.archived_at = nil
-    end
+  def archive
+    update_attribute :archived_at, (archived? ? nil : Time.now)
   end
 
-  def archived
+  def archived?
     !!archived_at
   end
-
-  alias :archived? :archived
 
   def to_s
     "#{self.name}, #{self.role}"
