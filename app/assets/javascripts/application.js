@@ -17,6 +17,7 @@
 //= require ./lib/jquery.inputmask.js
 //= require ./lib/jquery.inputmask.extensions.js
 //= require ./lib/jquery.mask.min
+//= require ./lib/modernizr
 //= require chosen-jquery
 //= require jquery.validate
 //= require jquery.validate.additional-methods
