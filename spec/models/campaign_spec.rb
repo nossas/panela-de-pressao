@@ -62,29 +62,6 @@ describe Campaign do
     end
   end
 
-  describe "#video_url" do
-    let(:campaign) { Campaign.make! }
-
-    it "should throw nothing when video url is null" do
-      campaign.update_attribute(:video_url, '')
-      campaign.should be_valid
-      campaign.should have(0).error_on(:video_url)
-    end
-
-    it "should throw an error when the video url is invalid" do
-      campaign.update_attribute(:video_url, "http://google.com")
-      campaign.should_not be_valid
-      campaign.should have(1).error_on(:video_url)
-    end
-
-    it "should not throw an error when the video url is invalid" do
-      campaign.update_attribute(:video_url, "http://www.youtube.com/watch?v=ZYi5CKjZzCg")
-      campaign.should be_valid
-      campaign.should have(0).error_on(:video_url)
-    end
-  end
-
-
   describe "#description_html" do
     let(:campaign) { Campaign.make! }
     it "should populate the description_html column" do
