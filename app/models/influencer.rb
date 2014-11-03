@@ -29,6 +29,9 @@ class Influencer < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  include PgSearch
+  multisearchable against: [:name, :role]
+
   def archive
     update_attribute :archived_at, (archived? ? nil : Time.now)
   end
