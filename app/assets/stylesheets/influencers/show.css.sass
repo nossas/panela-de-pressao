@@ -3,8 +3,11 @@ body.influencers#show
     padding: rem-calc(50) 0
     .influencer-info
       +grid-column(3)
-      .action a
-        width: 100%
+      .actions
+        margin-top: rem-calc(20)
+        a
+          width: 100%
+          margin-bottom: rem-calc(5)
       img
         margin-bottom: rem-calc(10)
       h3
@@ -12,8 +15,7 @@ body.influencers#show
         small
           display: block
           line-height: normal
-      .icon-mail2
-        margin-bottom: rem-calc(20)
+      .icon-mail2, .icon-twitter2
         &:before
           font-size: rem-calc(24)
           margin-right: rem-calc(5)
