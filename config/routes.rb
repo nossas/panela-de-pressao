@@ -10,7 +10,7 @@ ManifesteSe::Application.routes.draw do
   resources :organizations, only: [:index] do
     resources :campaigns, only: [:index]
   end
-  
+
   resources :sessions, :only => [:destroy]
   resources :campaigns, :except => [:destroy] do
     member do
@@ -39,6 +39,10 @@ ManifesteSe::Application.routes.draw do
   resources :influencers, except: [:destroy] do
     member do
       patch :archive, to: "influencers#archive"
+    end
+
+    collection do
+      get :search, to: "influencers#search"
     end
   end
 
