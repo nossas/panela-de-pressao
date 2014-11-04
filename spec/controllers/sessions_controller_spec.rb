@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SessionsController do
+describe SessionsController, type: :controller do
   subject{ response }
 
   before do
@@ -14,7 +14,7 @@ describe SessionsController do
     let(:poke) { { :user_id => user.id.to_s, :kind => 'email', :campaign_id => Campaign.make!.id } }
     before do
       OmniAuth.config.add_mock(:facebook, {:uid => '12345'})
-      Authorization.stub(:create_from_hash).and_return(stub_model(Authorization, :user => user))
+      Authorization.stub(:create_from_hash).and_return(Authorization.make! :user => user)
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
     end
 

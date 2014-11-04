@@ -1,13 +1,13 @@
 # coding: utf-8
 require 'spec_helper'
 
-describe CampaignsController do
+describe CampaignsController, type: :controller do
   describe "POST create" do
-    before do 
-      controller.stub(:current_user).and_return(stub_model(User))
+    before do
+      controller.stub(:current_user).and_return(User.make!)
       bitly = Bitly.new(ENV['BITLY_ID'], ENV['BITLY_SECRET'])
       Campaign.any_instance.stub(:save)
-      campaign = stub_model(Campaign, :id => 1)
+      campaign = Campaign.make!
       controller.stub(:resource).and_return(campaign)
       post :create, :campaign => {}
     end
@@ -16,8 +16,8 @@ describe CampaignsController do
 
   describe "GET show" do
     context "All campaigns" do
-      before do 
-        Campaign.stub(:find).and_return(stub_model(Campaign))
+      before do
+        allow(Campaign).to receive(:find).and_return(Campaign.make!)
         get :show, :id => "1"
       end
       its(:status) { should == 200 }

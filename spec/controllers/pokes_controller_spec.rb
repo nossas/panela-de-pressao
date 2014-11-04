@@ -1,29 +1,28 @@
 # coding: utf-8
 require 'spec_helper'
 
-describe PokesController do
+describe PokesController, type: :controller do
   before do
     bitly = Bitly.new('bitly id', 'bitly key')
     bitly.stub_chain(:shorten, :short_url).and_return("http://localhost:3000/campaigns")
     Bitly.stub(:new).and_return(bitly)
   end
 
-  before { Campaign.stub(:find).with("1").and_return(mock_model(Campaign, :id => 1, :pokes => double(Object, :build => Poke.new, :all => []))) }
-
   describe "POST create" do
+    let(:campaign) { Campaign.make! }
 
     context "when it's logged in" do
-      before { controller.stub(:current_user).and_return(stub_model(User)) }
-      
+      before { controller.stub(:current_user).and_return(User.make!) }
+
       context "when it's an email poke" do
         before { Poke.any_instance.stub(:save) }
         it "should create a new poke" do
           Poke.any_instance.should_receive(:save)
-          post :create, :poke => {:kind => "email"}, :campaign_id => "1"
+          post :create, :poke => {:kind => "email"}, :campaign_id => campaign.id
         end
         it "should redirect to campaign page" do
-          post :create, :poke => {:kind => "email"}, :campaign_id => "1"
-          should redirect_to "/campaigns/1"
+          post :create, :poke => {:kind => "email"}, :campaign_id => campaign.id
+          should redirect_to "/campaigns/#{campaign.id}"
         end
       end
 
@@ -32,15 +31,15 @@ describe PokesController do
         before { Poke.any_instance.stub(:save) }
         it "should create a new poke" do
           Poke.any_instance.should_receive(:save)
-          post :create, :poke => {:kind => "twitter"}, :campaign_id => "1"
+          post :create, :poke => {:kind => "twitter"}, :campaign_id => campaign.id
         end
         it "should verify twitter authorization" do
           controller.should_receive(:require_twitter_auth)
-          post :create, :poke => {:kind => "twitter"}, :campaign_id => "1"
+          post :create, :poke => {:kind => "twitter"}, :campaign_id => campaign.id
         end
         it "should redirect to campaign page" do
-          post :create, :poke => {:kind => "twitter"}, :campaign_id => "1"
-          should redirect_to "/campaigns/1"
+          post :create, :poke => {:kind => "twitter"}, :campaign_id => campaign.id
+          should redirect_to "/campaigns/#{campaign.id}"
         end
       end
 
@@ -49,15 +48,15 @@ describe PokesController do
         before { Poke.any_instance.stub(:save) }
         it "should create a new poke" do
           Poke.any_instance.should_receive(:save)
-          post :create, :poke => {:kind => "facebook"}, :campaign_id => "1"
+          post :create, :poke => {:kind => "facebook"}, :campaign_id => campaign.id
         end
         it "should verify facebook authorization" do
           controller.should_receive(:require_facebook_auth)
-          post :create, :poke => {:kind => "facebook"}, :campaign_id => "1"
+          post :create, :poke => {:kind => "facebook"}, :campaign_id => campaign.id
         end
         it "should redirect to campaign page" do
-          post :create, :poke => {:kind => "facebook"}, :campaign_id => "1"
-          should redirect_to "/campaigns/1"
+          post :create, :poke => {:kind => "facebook"}, :campaign_id => campaign.id
+          should redirect_to "/campaigns/#{campaign.id}"
         end
       end
     end
@@ -71,16 +70,14 @@ describe PokesController do
   end
 
   describe "GET index" do
-    let (:campaign) { stub_model(Campaign, id: 1) }
-    before { campaign.stub_chain(:pokes, :includes, :order, :limit).and_return(double(Object, :build => Poke.new, :all => [])) }
-    before { Campaign.stub(:find).with("1").and_return(campaign) }
+    let (:campaign) { Campaign.make! }
 
     context "when the token is provided" do
-      before { get :index, token: ENV["API_TOKEN"], format: :json, campaign_id: "1" }
+      before { get :index, token: ENV["API_TOKEN"], format: :json, campaign_id: campaign.id }
       its(:status) { should be_== 200 }
     end
     context "when the token is not provided" do
-      before { get :index, format: :json, campaign_id: "1" }
+      before { get :index, format: :json, campaign_id: campaign.id }
       its(:status) { should be_== 302 }
     end
   end

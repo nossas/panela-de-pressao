@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ApplicationController do
+describe ApplicationController, type: :controller do
 
   describe "#require_facebook_auth" do
     it "should redirect to /auth/facebook" do
@@ -17,4 +17,3 @@ describe ApplicationController do
   end
 
 end
-
