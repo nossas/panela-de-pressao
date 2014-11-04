@@ -17,8 +17,6 @@ require 'cucumber/autocomplete'
 require "rack_session_access/capybara"
 
 require 'rspec/rails'
-require 'rspec/mocks'
-World(RSpec::Rails::Mocks)
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd

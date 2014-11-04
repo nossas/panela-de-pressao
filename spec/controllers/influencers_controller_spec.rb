@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe InfluencersController do
+describe InfluencersController, type: :controller do
   describe "GET show" do
     let(:influencer) { Influencer.new }
 

@@ -57,13 +57,15 @@ end
 
 group :test, :development do
   gem 'rake'
-  gem 'rspec-rails', '>= 2.0.1'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-its'
+  gem 'rspec-collection_matchers'
   gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'shoulda-matchers'
-  gem 'jasmine'
 end
 
 gem 'sass-rails'

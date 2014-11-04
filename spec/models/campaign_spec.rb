@@ -16,7 +16,7 @@ describe Campaign do
   end
 
   describe "validations" do
-    before { Campaign.any_instance.stub(:user).and_return(mock_model(User, phone: "(21) 9999-9999", email: "test@paneladepressao.org.br")) }
+    before { Campaign.any_instance.stub(:user).and_return(User.make! phone: "(21) 9999-9999", email: "test@paneladepressao.org.br") }
     it{ should validate_presence_of :name }
     it{ should validate_presence_of :description }
     it{ should validate_presence_of :user_id }
@@ -32,7 +32,7 @@ describe Campaign do
     it "should throw an error if embed code is wrong" do
       campaign.update_attribute(:map_embed, "wrong")
       campaign.should_not be_valid
-      campaign.should have(1).error_on(:map_embed)
+      expect(campaign.errors[:map_embed].size).to be_eql(1)
     end
 
     it "should not throw errors when embed code is right" do
@@ -47,7 +47,7 @@ describe Campaign do
       its(:targets_with_facebook){ should be_empty }
     end
     context "when there is one target with Facebook" do
-      before { subject.stub(:targets).and_return([stub_model(Target, :influencer => stub_model(Influencer, :facebook_id => "14"))]) }
+      before { subject.stub(:targets).and_return([double('Target', :influencer => double('Influencer', :facebook_id => "14"))]) }
       its(:targets_with_facebook){ should have(1).target }
     end
   end
@@ -57,7 +57,7 @@ describe Campaign do
       its(:targets_with_twitter){ should be_empty }
     end
     context "when there is one target with Twitter" do
-      before { subject.stub(:targets).and_return([stub_model(Target, :influencer => stub_model(Influencer, :twitter => "@nicolasiensen"))]) }
+      before { subject.stub(:targets).and_return([Target.make!(:influencer => Influencer.make!(:twitter => "@nicolasiensen"))]) }
       its(:targets_with_twitter){ should have(1).target }
     end
   end
