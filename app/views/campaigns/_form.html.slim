@@ -51,6 +51,7 @@ section.content
         legend Acenda o fogo: informações sobre a sua pressão
         .field
           = text_field_tag "typeahead", nil, class: "typeahead"
+        #targets
         .field
           = f.label :influencer_ids
           = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: "Digite o nome de um alvo" }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
