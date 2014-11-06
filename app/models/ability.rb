@@ -8,6 +8,7 @@ class Ability
     can :read, Campaign
     can :read, Update
     can :read, Influencer
+    can :search, Influencer
 
     if user && user.admin?
       can :manage, :all
