@@ -16,7 +16,7 @@ class InfluencersController < InheritedResources::Base
   end
 
   def search
-    respond_with PgSearch.multisearch(params[:q])
+    respond_with PgSearch.multisearch(params[:q]).to_json(include: :searchable)
   end
 
   private
