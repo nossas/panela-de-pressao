@@ -34,6 +34,14 @@
 $(function(){
   $("input.phone").mask('(00) 000000000');
 
+  $('.typeahead').typeahead({
+    minLength: 3,
+    highlight: true,
+  }, {
+    name: 'states',
+    displayKey: 'value'
+  });
+
   Foundation.libs.abide.settings.patterns.email = /([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
   $(document).foundation();
 
