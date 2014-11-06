@@ -8,6 +8,16 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
   .field, fieldset
     &:last-child
       margin-bottom: 0
+  #influencers-autocomplete
+    margin-bottom: 3em
+    input
+      margin-bottom: 0
+    .twitter-typeahead, .tt-dropdown-menu
+      +grid(12)
+    .tt-dropdown-menu
+      background: white
+    .item
+      padding: .5em 0 0 1em
   form
     li.search-field
       input

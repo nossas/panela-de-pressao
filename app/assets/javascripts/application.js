@@ -39,18 +39,26 @@ $(function(){
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     // TODO: buscar a url a partir de um atributo data
-    remote: 'http://localhost:3000/influencers/search?q=%QUERY'
+    remote: $("#influencers-autocomplete .typeahead").data("search-url") + '?q=%QUERY'
   });
 
   bestPictures.initialize();
 
-  $('.typeahead').typeahead({
+  $('#influencers-autocomplete .typeahead').typeahead({
     minLength: 1,
     highlight: true,
+    hint: true
   }, {
     name: 'id',
     displayKey: 'content',
-    source: bestPictures.ttAdapter()
+    source: bestPictures.ttAdapter(),
+    templates: {
+      suggestion: function(data){ 
+        return "<p class='item'>" +
+          "<span class='name'>" + data.searchable.name + "</span> | " +
+          "<span class='role'>" + data.searchable.role + "</span></p>";
+      }
+    }
   });
 
   Foundation.libs.abide.settings.patterns.email = /([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
