@@ -34,12 +34,23 @@
 $(function(){
   $("input.phone").mask('(00) 000000000');
 
+  // TODO: separar o Typeahead do application.js
+  var bestPictures = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // TODO: buscar a url a partir de um atributo data
+    remote: 'http://localhost:3000/influencers/search?q=%QUERY'
+  });
+
+  bestPictures.initialize();
+
   $('.typeahead').typeahead({
-    minLength: 3,
+    minLength: 1,
     highlight: true,
   }, {
-    name: 'states',
-    displayKey: 'value'
+    name: 'id',
+    displayKey: 'content',
+    source: bestPictures.ttAdapter()
   });
 
   Foundation.libs.abide.settings.patterns.email = /([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
