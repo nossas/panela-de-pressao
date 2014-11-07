@@ -1,6 +1,6 @@
 .influencer-field
   .influencer-field-image= image_tag influencer.avatar.square
-  .influencer-field-name= influencer.name
+  .influencer-field-name= link_to influencer.name, influencer, target: :blank
   .influencer-field-role= influencer.role
   .influencer-field-remove= link_to "Remover", "#"
   = hidden_field_tag "campaign[influencer_ids][]", influencer.id
