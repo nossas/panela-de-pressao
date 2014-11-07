@@ -46,7 +46,7 @@ $(function(){
   influencers.initialize();
 
   $('#influencers-autocomplete .typeahead').typeahead({
-    hint: true,
+    hint: false,
     minLength: 1,
     highlight: true
   }, {
