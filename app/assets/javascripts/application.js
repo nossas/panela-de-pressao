@@ -62,8 +62,10 @@ $(function(){
   });
 
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
-    $("#influencers-list").append(object.searchable.html);
-    addEventListenerToRemoveTargetLink();
+    if($(".influencer-field[data-influencer-id = " + object.searchable.id + "]").size() == 0){
+      $("#influencers-list").append(object.searchable.html);
+      addEventListenerToRemoveTargetLink();
+    }
   });
 
   function addEventListenerToRemoveTargetLink(){
