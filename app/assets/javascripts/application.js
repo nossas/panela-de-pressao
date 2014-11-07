@@ -54,7 +54,7 @@ $(function(){
     displayKey: 'content',
     source: bestPictures.ttAdapter(),
     templates: {
-      suggestion: function(data){ 
+      suggestion: function(data){
         return "<p class='item'>" +
           "<span class='name'>" + data.searchable.name + "</span> | " +
           "<span class='role'>" + data.searchable.role + "</span></p>";
@@ -63,17 +63,7 @@ $(function(){
   });
 
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
-    console.log(object);
-    $("#targets").append(
-      "<div class='target'>" +
-      "<div class='target-name'>" +
-      object.searchable.name +
-      "</div>" +
-      "<div class='target-role'>" +
-      object.searchable.role +
-      "</div>" +
-      "</div>"
-    );
+    $("#targets").append(object.searchable.html);
   });
 
   Foundation.libs.abide.settings.patterns.email = /([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
