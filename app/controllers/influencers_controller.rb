@@ -2,7 +2,6 @@ class InfluencersController < InheritedResources::Base
   authorize_resource
   before_filter(only: [:create, :update]) { params[:influencer][:user_id] = current_user.id }
   before_filter :redirect_when_archived, only: :show
-  respond_to :json
 
   def show
     @influencer = Influencer.find(params[:id])
@@ -13,10 +12,6 @@ class InfluencersController < InheritedResources::Base
     @influencer = Influencer.find(params[:id])
     @influencer.archive
     respond_with @influencer
-  end
-
-  def search
-    @documents = PgSearch.multisearch(params[:q])
   end
 
   private

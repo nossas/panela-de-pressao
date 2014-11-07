@@ -46,6 +46,7 @@ $(function(){
   influencers.initialize();
 
   $('#influencers-autocomplete .typeahead').typeahead({
+    hint: true,
     minLength: 1,
     highlight: true
   }, {
@@ -63,7 +64,7 @@ $(function(){
 
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
     if($(".influencer-field[data-influencer-id = " + object.searchable.id + "]").size() == 0){
-      $("#influencers-list").append(object.searchable.html);
+      $("#influencers-list").prepend(object.searchable.html);
       addEventListenerToRemoveTargetLink();
     }
   });

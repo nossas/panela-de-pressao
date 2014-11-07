@@ -32,13 +32,4 @@ describe InfluencersController, type: :controller do
       end
     end
   end
-
-  describe "GET search" do
-    before { Influencer.make! name: "George Michael Bluth" }
-
-    it "should return the result of PgSearch.multisearch" do
-      get :search, q: "George Michael Bluth", format: :json
-      expect(response.body).to be_eql(PgSearch.multisearch("George Michael Bluth").to_json)
-    end
-  end
 end

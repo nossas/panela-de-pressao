@@ -51,7 +51,7 @@ section.content
         legend Acenda o fogo: informações sobre a sua pressão
         .field#influencers-autocomplete
           = label_tag "influencer_typeahead", "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"
-          = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_influencers_url }
+          = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_api_v1_influencers_url }
           small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
           #influencers-list
             - @campaign.influencers.each do |influencer|

@@ -1,4 +1,13 @@
 ManifesteSe::Application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :influencers, only: [:none] do
+        collection do
+          get :search, to: "influencers#search"
+        end
+      end
+    end
+  end
 
   get '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/facebook', as: :facebook_connect
@@ -39,10 +48,6 @@ ManifesteSe::Application.routes.draw do
   resources :influencers, except: [:destroy] do
     member do
       patch :archive, to: "influencers#archive"
-    end
-
-    collection do
-      get :search, to: "influencers#search"
     end
   end
 
