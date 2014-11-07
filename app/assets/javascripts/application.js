@@ -55,9 +55,9 @@ $(function(){
     source: bestPictures.ttAdapter(),
     templates: {
       suggestion: function(data){
-        return "<p class='item'>" +
-          "<span class='name'>" + data.searchable.name + "</span> | " +
-          "<span class='role'>" + data.searchable.role + "</span></p>";
+        return "<div>" +
+          "<span class='name'>" + data.searchable.name + "</span>, " +
+          "<span class='role'>" + data.searchable.role + "</span></div>";
       }
     }
   });
