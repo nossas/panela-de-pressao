@@ -1,5 +1,7 @@
 RSpec.configure do |config|
   config.before do
+    WebMock.disable_net_connect!(:allow_localhost => true)
+    
     stub_request(:get, "http://graph.facebook.com/eduardopaesRJ").
       to_return(:status => 200, :body => "{\"can_post\":true}", :headers => {})
 
