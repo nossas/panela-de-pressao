@@ -21,6 +21,23 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
       &:hover
         background: $green-hover
         color: white
+  #influencers-list
+    margin-top: rem-calc(15)
+    overflow: hidden
+    .influencer-field
+      width: 33%
+      float: left
+      margin-bottom: rem-calc(10)
+      height: 80px
+      .influencer-field-image
+        img
+          width: 50px
+          float: left
+          +border-radius(100%)
+      .influencer-field-name
+        font-weight: bold
+      .influencer-field-name, .influencer-field-role, .influencer-field-remove
+        padding-left: 60px
   form
     li.search-field
       input
