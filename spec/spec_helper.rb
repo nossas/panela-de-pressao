@@ -10,6 +10,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'webmock/rspec'
+require "rack_session_access/capybara"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -40,10 +41,16 @@ RSpec.configure do |config|
   config.before { Bitly.stub_chain(:new, :shorten, :short_url).and_return("bitly.com/unlockmedia") }
   config.before { load Rails.root + 'db/seeds.rb' }
 
-  # Database cleaner
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
