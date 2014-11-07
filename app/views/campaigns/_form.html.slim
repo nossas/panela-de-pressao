@@ -50,12 +50,10 @@ section.content
       fieldset
         legend Acenda o fogo: informações sobre a sua pressão
         .field#influencers-autocomplete
-          = text_field_tag "typeahead", nil, class: "typeahead", data: { search_url: search_influencers_url }
-        #targets
-        .field
-          = f.label :influencer_ids
-          = f.select :influencer_ids, Influencer.available.map {|i| [i, i.id] }, {}, data: { placeholder: "Digite o nome de um alvo" }, :multiple => true, :class => "chzn-select", :style => "width: 100%;"
+          = label_tag "influencer_typeahead", "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"
+          = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_influencers_url }
           small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
+        #targets
         .field
           = f.label :poke_type
           = f.select :poke_type, [["Por Email", :email], ["Por Facebook", :facebook], ["Por Twitter", :twitter]]
