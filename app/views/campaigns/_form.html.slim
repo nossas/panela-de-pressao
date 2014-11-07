@@ -54,6 +54,8 @@ section.content
           = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_influencers_url }
           small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
         #targets
+          - @campaign.influencers.each do |influencer|
+            = render partial: "influencers/influencer_field", locals: { influencer: influencer }
         .field
           = f.label :poke_type
           = f.select :poke_type, [["Por Email", :email], ["Por Facebook", :facebook], ["Por Twitter", :twitter]]

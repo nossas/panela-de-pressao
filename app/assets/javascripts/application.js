@@ -64,7 +64,17 @@ $(function(){
 
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
     $("#targets").append(object.searchable.html);
+    addEventListenerToRemoveTargetLink();
   });
+
+  function addEventListenerToRemoveTargetLink(){
+    $(".target .target-remove a").click(function(event){
+      $(event.target).parent().parent().remove();
+      return false;
+    });
+  }
+
+  addEventListenerToRemoveTargetLink();
 
   Foundation.libs.abide.settings.patterns.email = /([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
   $(document).foundation();
