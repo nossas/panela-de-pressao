@@ -63,12 +63,12 @@ $(function(){
   });
 
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
-    $("#targets").append(object.searchable.html);
+    $("#influencers-list").append(object.searchable.html);
     addEventListenerToRemoveTargetLink();
   });
 
   function addEventListenerToRemoveTargetLink(){
-    $(".target .target-remove a").click(function(event){
+    $(".influencer-field .influencer-field-remove a").click(function(event){
       $(event.target).parent().parent().remove();
       return false;
     });
