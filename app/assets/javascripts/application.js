@@ -36,23 +36,22 @@ $(function(){
   $("input.phone").mask('(00) 000000000');
 
   // TODO: separar o Typeahead do application.js
-  var bestPictures = new Bloodhound({
+  var influencers = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     // TODO: buscar a url a partir de um atributo data
     remote: $("#influencers-autocomplete .typeahead").data("search-url") + '?q=%QUERY'
   });
 
-  bestPictures.initialize();
+  influencers.initialize();
 
   $('#influencers-autocomplete .typeahead').typeahead({
     minLength: 1,
-    highlight: true,
-    hint: true
+    highlight: true
   }, {
     name: 'id',
     displayKey: 'content',
-    source: bestPictures.ttAdapter(),
+    source: influencers.ttAdapter(),
     templates: {
       suggestion: function(data){
         return "<div>" +
