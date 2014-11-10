@@ -83,3 +83,7 @@ end
 Organization.blueprint do
   # Attributes here
 end
+
+InfluencersGroup.blueprint do
+  name { "Influencers Group #{sn}" }
+end

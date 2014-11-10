@@ -4,6 +4,13 @@ describe Influencer do
   describe "associations" do
     it { should have_many :targets }
     it { should have_many :campaigns }
+
+    it "should have and belongs to many influencers groups" do
+      group = InfluencersGroup.make!
+      influencer = Influencer.make!
+      group.influencers << influencer
+      expect(influencer.influencers_groups).to include(group)
+    end
   end
 
   describe "validations" do
