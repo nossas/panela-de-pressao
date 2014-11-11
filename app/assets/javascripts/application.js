@@ -39,8 +39,17 @@ $(function(){
   var influencers = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    // TODO: buscar a url a partir de um atributo data
-    remote: $("#influencers-autocomplete .typeahead").data("search-url") + '?q=%QUERY'
+    remote: {
+      url: $("#influencers-autocomplete .typeahead").data("search-url") + '?q=%QUERY',
+      ajax: {
+        beforeSend: function(){ 
+          $("#influencers-autocomplete .tt-dropdown-menu").addClass("loading");
+        },
+        complete: function(){ 
+          $("#influencers-autocomplete .tt-dropdown-menu").removeClass("loading");
+        }
+      }
+    }
   });
 
   influencers.initialize();
