@@ -55,9 +55,14 @@ $(function(){
     source: influencers.ttAdapter(),
     templates: {
       suggestion: function(data){
-        return "<div>" +
-          "<span class='name'>" + data.searchable.name + "</span>, " +
-          "<span class='role'>" + data.searchable.role + "</span></div>";
+        if(data.searchable_type == "Influencer"){
+          return "<div>" +
+            "<span class='name'>" + data.searchable.name + "</span>, " +
+            "<span class='role'>" + data.searchable.role + "</span></div>";
+        } else if(data.searchable_type == "InfluencersGroup"){
+          return "<div>" +
+            "<span class='name'>" + data.searchable.name + "</span>";
+        }
       }
     }
   });

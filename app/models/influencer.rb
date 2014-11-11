@@ -6,7 +6,7 @@ class Influencer < ActiveRecord::Base
 
   has_many :targets
   has_many :campaigns, :through => :targets
-  has_and_belongs_to_many :influencers_groups
+  has_and_belongs_to_many :influencers_groups, -> { uniq }
 
   validates_presence_of :name
   validates_presence_of :role
