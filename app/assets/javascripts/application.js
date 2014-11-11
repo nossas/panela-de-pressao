@@ -43,10 +43,10 @@ $(function(){
       url: $("#influencers-autocomplete .typeahead").data("search-url") + '?q=%QUERY',
       ajax: {
         beforeSend: function(){ 
-          $("#influencers-autocomplete .tt-dropdown-menu").addClass("loading");
+          $("#influencers-autocomplete .tt-hint").addClass("loading");
         },
         complete: function(){ 
-          $("#influencers-autocomplete .tt-dropdown-menu").removeClass("loading");
+          $("#influencers-autocomplete .tt-hint").removeClass("loading");
         }
       }
     }
@@ -55,7 +55,7 @@ $(function(){
   influencers.initialize();
 
   $('#influencers-autocomplete .typeahead').typeahead({
-    hint: false,
+    hint: true,
     minLength: 1,
     highlight: true
   }, {
