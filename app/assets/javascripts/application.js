@@ -54,6 +54,7 @@ $(function(){
     displayKey: 'content',
     source: influencers.ttAdapter(),
     templates: {
+      empty: '<div class="empty-message">Nenhum resultado encontrado</div>',
       suggestion: function(data){
         return "<div>" +
           "<span class='name'>" + data.searchable.name + "</span>, " +
