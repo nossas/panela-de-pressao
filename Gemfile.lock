@@ -206,7 +206,7 @@ GEM
       skinny (>= 0.1.2)
       sqlite3-ruby
       thin
-    meurio_ui (1.4.11)
+    meurio_ui (1.4.12)
     mime-types (1.25.1)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
