@@ -87,7 +87,7 @@ class Poke < ActiveRecord::Base
 
       # TODO: move all the MailChimp integration to Accounts
       Gibbon::API.lists.static_segment_members_add(
-        id: self.campaign.organization.mailchimp_list_id,
+        id: ENV["MAILCHIMP_LIST_ID"],
         seg_id: self.campaign.mailchimp_segment_uid,
         batch: [{ email: self.user.email }]
       )
