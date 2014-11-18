@@ -176,7 +176,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def mailchimp_segment_name
-    "PDP-#{self.id}-#{self.organization.city}-#{self.name}"[0..99]
+    "PDP - #{self.id.to_s.rjust(4, "0")} - #{self.organization.city} - #{self.name}"[0..99]
   end
 
   def poke_type? type
