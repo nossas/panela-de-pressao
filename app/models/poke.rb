@@ -97,6 +97,7 @@ class Poke < ActiveRecord::Base
     end
   end
 
+  # TODO: move it to the acts_as_ourcities gem
   def create_membership
     begin
       url = "#{ENV["ACCOUNTS_HOST"]}/users/#{self.user_id}/memberships.json"

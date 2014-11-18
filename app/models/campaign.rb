@@ -157,7 +157,7 @@ class Campaign < ActiveRecord::Base
 
   def create_mailchimp_segment
     begin
-      segment_name = "[PdP] #{self.name[0..50]}"
+      segment_name = "PDP-#{self.id}-#{self.organization.city}-#{self.name}"[0..99]
       segments = Gibbon::API.lists.segments(id: ENV["MAILCHIMP_LIST_ID"])
       segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: segment_name})
       self.update_attribute :mailchimp_segment_uid, segment["id"]
