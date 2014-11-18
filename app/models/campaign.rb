@@ -157,9 +157,8 @@ class Campaign < ActiveRecord::Base
 
   def create_mailchimp_segment
     begin
-      segment_name = "PDP-#{self.id}-#{self.organization.city}-#{self.name}"[0..99]
       segments = Gibbon::API.lists.segments(id: ENV["MAILCHIMP_LIST_ID"])
-      segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: segment_name})
+      segment = segments["static"].select{|s| s["name"] == mailchimp_segment_name}.first || Gibbon::API.lists.segment_add(id: ENV["MAILCHIMP_LIST_ID"], opts: {type: "static", name: mailchimp_segment_name})
       self.update_attribute :mailchimp_segment_uid, segment["id"]
     rescue Exception => e
       Appsignal.add_exception e
@@ -169,12 +168,15 @@ class Campaign < ActiveRecord::Base
 
   def update_mailchimp_segment
     begin
-      segment_name = "[PdP] #{self.name[0..50]}"
-      Gibbon::API.lists.segment_update(id: ENV["MAILCHIMP_LIST_ID"], seg_id: self.mailchimp_segment_uid, opts: { name: segment_name })
+      Gibbon::API.lists.segment_update(id: ENV["MAILCHIMP_LIST_ID"], seg_id: self.mailchimp_segment_uid, opts: { name: mailchimp_segment_name })
     rescue Exception => e
       Appsignal.add_exception e
       Rails.logger.error e
     end
+  end
+
+  def mailchimp_segment_name
+    "PDP-#{self.id}-#{self.organization.city}-#{self.name}"[0..99]
   end
 
   def poke_type? type
