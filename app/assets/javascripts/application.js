@@ -98,7 +98,7 @@ $(function(){
 
   addEventListenerToRemoveTargetLink();
 
-  Foundation.libs.abide.settings.patterns.email = /([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
+  Foundation.libs.abide.settings.patterns.email = /^([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/;
   $(document).foundation();
 
   // campaigns#show
