@@ -26,7 +26,7 @@ gem 'jquery-validation-rails'
 gem 'faker'
 gem 'machinist', '>= 2.0.0.beta2'
 
-# Image uplaod
+# Image upload
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
@@ -53,6 +53,7 @@ gem 'minitest'
 group :development do
   gem 'mailcatcher'
   gem 'taps'
+  gem 'quiet_assets'
 end
 
 group :test, :development do
