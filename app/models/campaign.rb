@@ -47,9 +47,9 @@ class Campaign < ActiveRecord::Base
 
   before_save  { self.description_html = convert_html(description) }
   after_create { self.delay.generate_short_url! }
-  after_create { self.delay.create_mailchimp_segment }
   after_create { CampaignMailer.delay.we_received_your_campaign(self) }
   after_create { CampaignMailer.delay.new_campaign(self) }
+  after_create { self.delay.create_mailchimp_segment }
   after_update { self.delay.update_mailchimp_segment }
 
   accepts_nested_attributes_for :targets, :influencers
@@ -157,9 +157,13 @@ class Campaign < ActiveRecord::Base
 
   def create_mailchimp_segment
     begin
-      segment_name = "[PdP] #{self.name[0..50]}"
-      segments = Gibbon::API.lists.segments(id: self.organization.mailchimp_list_id)
-      segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(id: self.organization.mailchimp_list_id, opts: {type: "static", name: segment_name})
+      segment = Gibbon::API.lists.segment_add(
+        id: self.organization.mailchimp_list_id,
+        opts: {
+          type: "static",
+          name: self.mailchimp_segment_name
+        }
+      )
       self.update_attribute :mailchimp_segment_uid, segment["id"]
     rescue Exception => e
       Appsignal.add_exception e
@@ -169,12 +173,19 @@ class Campaign < ActiveRecord::Base
 
   def update_mailchimp_segment
     begin
-      segment_name = "[PdP] #{self.name[0..50]}"
-      Gibbon::API.lists.segment_update(id: self.organization.mailchimp_list_id, seg_id: self.mailchimp_segment_uid, opts: { name: segment_name })
+      Gibbon::API.lists.segment_update(
+        id: self.organization.mailchimp_list_id,
+        seg_id: self.mailchimp_segment_uid,
+        opts: { name: mailchimp_segment_name }
+      )
     rescue Exception => e
       Appsignal.add_exception e
       Rails.logger.error e
     end
+  end
+
+  def mailchimp_segment_name
+    "PDP - #{self.id.to_s.rjust(4, "0")} - #{self.organization.city} - #{self.name}"[0..99]
   end
 
   def poke_type? type
