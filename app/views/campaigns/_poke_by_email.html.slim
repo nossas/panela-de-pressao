@@ -1,4 +1,4 @@
-= form_for [@campaign, @poke], html: { class: :new_email_poke, "data-abide" => true } do |f|
+= form_for [@campaign, @poke], html: { class: :new_email_poke, data: { abide: true, "prevent-double-submission" => true }} do |f|
   = f.hidden_field :kind, value: :email
   .header.email Envie um email para quem pode tomar essa decisão!
 

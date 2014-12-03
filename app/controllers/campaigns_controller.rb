@@ -16,9 +16,10 @@ class CampaignsController < InheritedResources::Base
     @poke = Poke.new
     @answer = Answer.new
     @featured_update = Update.find_by_id(params[:update_id])
-    @last_update = @campaign.updates.order("created_at DESC").first
+    @last_update = @campaign.updates.order(created_at: :desc).first
     @campaign_users = CampaignOwner.where(campaign_id: @campaign.id).map{|co| co.user}
-    @campaign_pokes = Poke.where(campaign_id: @campaign.id).includes(:user).limit(5)
+    @campaign_pokes = Poke.where(campaign: @campaign).includes(:user).order(created_at: :desc).limit(5)
+    @pokers_count = Poke.where(campaign: @campaign).distinct.count(:user_id)
   end
 
   def create

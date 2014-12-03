@@ -18,6 +18,7 @@
 //= require ./lib/jquery.inputmask.extensions.js
 //= require ./lib/jquery.mask.min
 //= require ./lib/modernizr
+//= require ./lib/prevent-double-submission.js
 //= require chosen-jquery
 //= require jquery.validate
 //= require jquery.validate.additional-methods
@@ -35,6 +36,8 @@
 $(function(){
   $("input.phone").mask('(00) 000000000');
 
+  $("[data-prevent-double-submission]").preventDoubleSubmission();
+
   // TODO: separar o Typeahead do application.js
   var influencers = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -42,10 +45,10 @@ $(function(){
     remote: {
       url: $("#influencers-autocomplete .typeahead").data("search-url") + '?q=%QUERY',
       ajax: {
-        beforeSend: function(){ 
+        beforeSend: function(){
           $("#influencers-autocomplete .tt-hint").addClass("loading");
         },
-        complete: function(){ 
+        complete: function(){
           $("#influencers-autocomplete .tt-hint").removeClass("loading");
         }
       }

@@ -1,5 +1,5 @@
 .pokers
-  h3= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@campaign.pokers.count)
+  h3= t 'campaign.show.pokers.head_html', count: number_with_delimiter(@pokers_count)
   .content
     - @campaign_pokes.each do |poke|
       .user_thumb
