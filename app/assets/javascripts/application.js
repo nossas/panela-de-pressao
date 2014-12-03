@@ -113,6 +113,8 @@ $(function(){
         var message = "Você quis dizer <strong class='suggestion'>" + suggestion.address + 
           "@<a href='#'>" + suggestion.domain + "</a></strong>?";
         $hint.html(message).fadeIn(150);
+      }, empty: function(element) {
+        $hint.hide();
       }
     });
   });
