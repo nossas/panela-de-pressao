@@ -14,8 +14,9 @@
 
   .email-field.user.field
     = label_tag :email, "Seu email:"
-    = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true)
+    = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true, class: :mailcheck)
     small.error Email é obrigatório e precisa ser válido
+    .mailcheck-hint
 
   .field.to
     | Email para:

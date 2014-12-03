@@ -392,14 +392,27 @@ body.campaigns#show, body.pokes#create
           border: 0
           display: inline-block
           width: 350px
+          &#email
+            width: 390px
         input, textarea
           +box-shadow(none)
           margin: 0
           &:focus
             background: none
-        small.error
-          margin: 0
+        small.error, .mailcheck-hint
           padding: 3px 6px
+          margin: 0
+        .mailcheck-hint
+          display: none
+          background: $green
+          font-size: .75rem
+          color: white
+          a
+            text-decoration: underline
+            color: white
+          strong
+            font-weight: normal
+            font-size: .8rem
         span
           +border-radius(3px)
           margin: 0 5px
