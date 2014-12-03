@@ -123,6 +123,7 @@ $(function(){
     $email = $(this).siblings('input.mailcheck');    
     $email.val($('.mailcheck-hint .suggestion').text());
     $(this).fadeOut(200, function() { $(this).empty(); });
+    $email.focus();
     return false;
   });
 
