@@ -104,6 +104,29 @@ $(function(){
   Foundation.libs.abide.settings.patterns.email = /^([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/;
   $(document).foundation();
 
+  // Mailcheck
+  $('input.mailcheck').on('blur', function() {
+    $hint = $(this).siblings('.mailcheck-hint');
+
+    $(this).mailcheck({
+      suggested: function(element, suggestion) {
+        var message = "Você quis dizer <strong class='suggestion'>" + suggestion.address + 
+          "@<a href='#'>" + suggestion.domain + "</a></strong>?";
+        $hint.html(message).fadeIn(150);
+      }, empty: function(element) {
+        $hint.hide();
+      }
+    });
+  });
+
+  $('.mailcheck-hint').on('click', function() {
+    $email = $(this).siblings('input.mailcheck');    
+    $email.val($('.mailcheck-hint .suggestion').text());
+    $(this).fadeOut(200, function() { $(this).empty(); });
+    $email.focus();
+    return false;
+  });
+
   // campaigns#show
   $('.show_all_influencers').click(function(e){ $('.targets .user_thumb').slideDown(); $(e.target).remove(); });
 
