@@ -2,6 +2,12 @@
   = f.hidden_field :kind, value: :email
   .header.email Envie um email para quem pode tomar essa decisão!
 
+  .email-field.user.field
+    = label_tag :email, "Seu email:"
+    = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true, class: :mailcheck)
+    small.error Email é obrigatório e precisa ser válido
+    .mailcheck-hint
+
   .first_name-field.user.field
     = label_tag :first_name, "Seu nome:"
     = current_user ? content_tag(:span, current_user.try(:first_name)) : text_field_tag(:first_name, nil, required: true)
@@ -11,11 +17,6 @@
     = label_tag :last_name, "Seu sobrenome:"
     = current_user ? content_tag(:span, current_user.try(:last_name)) : text_field_tag(:last_name, nil, required: true)
     small.error Sobrenome é obrigatório
-
-  .email-field.user.field
-    = label_tag :email, "Seu email:"
-    = current_user ? content_tag(:span, current_user.try(:email)) : email_field_tag(:email, nil, required: true)
-    small.error Email é obrigatório e precisa ser válido
 
   .field.to
     | Email para:
