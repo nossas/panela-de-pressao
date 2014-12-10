@@ -1,3 +1,8 @@
 p= raw simple_format(@poke.message)
 p= link_to @poke.campaign.name, campaign_url(@poke.campaign), :style => "color:#219548;"
 p Atenciosamente #{@poke.user.name}
+
+p
+  | -------
+  br
+  | Para responder publicamente a essa #{link_to "mobilização", @poke.campaign}, envie um email para #{link_to "resposta@paneladepressao.org.br", "mailto:resposta@paneladepressao.org.br"}
