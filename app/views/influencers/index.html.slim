@@ -1,11 +1,10 @@
-- content_for :highlight do
-  .row
-    .links= link_to "Adicionar alvo", new_influencer_path, :class => "btn icon-contact"
-
 section.content
-  .row  
-    .influencers_list
+  .row
+    .influencers-title
       h2 Lista de Alvos
+    .influencers-menu= link_to "Adicionar alvo", new_influencer_path, class: :btn
+  .row
+    .influencers-list
       table
         = render partial: "influencer", collection: Influencer.available
         - if can?(:edit, Influencer)
