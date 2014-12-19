@@ -87,7 +87,7 @@ section.content
         legend Agradeça a participação: informações para quem pressionou
         .field
           = f.label :pokers_email
-          = f.text_area :pokers_email
+          = f.text_area :pokers_email, value: "Obrigado por apostar na força da ação coletiva em rede. Sua participação é muito importante e, agora, precisamos da sua ajuda para que mais gente pressione o alvo dessa mobilização. Vamos aumentar o fogo nessa Panela de Pressão!"
 
       - if @current_user.admin?
         fieldset

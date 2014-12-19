@@ -18,6 +18,7 @@ class PokeMailer < ActionMailer::Base
   def thanks(the_poke)
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"thanks_for_your_poke\"] }"
     @poke = the_poke
+    @campaign = @poke.campaign
     @organization = @poke.campaign.organization if @poke.campaign.moderated?
     mail(
       :to => @poke.user.email,
