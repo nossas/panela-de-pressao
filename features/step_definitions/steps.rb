@@ -588,3 +588,14 @@ end
 Then(/^the organization from "(.*?)" should have (\d+) campaign now$/) do |arg1, arg2|
   Organization.find_by_city(arg1).campaigns.should have(arg2.to_i).city
 end
+
+Given(/^there is an influencer called "(.*?)"$/) do |arg1|
+  @influencer = Influencer.make! name: arg1
+end
+
+Given(/^I select "(.*?)" as a target$/) do |arg1|
+  target = Influencer.find_by_name(arg1)
+  fill_in "influencer_typeahead", with: target.name
+  sleep 1
+  execute_script "$('.tt-suggestion').click();"
+end

@@ -22,9 +22,20 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
       background: transparent image-url("loader.gif") no-repeat scroll right center content-box !important
     .tt-suggestion, .empty-message
       padding: .5em 1em
+    .tt-suggestion
+      cursor: pointer
     .tt-cursor
       background: $green-hover
       color: white
+    .twitter-typeahead.error
+      background: none
+      padding: 0
+      margin-bottom: 0
+      color: inherit
+      font-style: normal
+      font-size: inherit
+    small.error
+      width: 100%
   #influencers-list
     margin-top: rem-calc(15)
     overflow: hidden

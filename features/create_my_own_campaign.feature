@@ -5,6 +5,7 @@ Feature: Create my own campaign
 
   Background:
     Given there is an organization in "Rio de Janeiro"
+    And there is an influencer called "Eduardo Paes"
 
   @omniauth_test @javascript @bitly
   Scenario: when I'm smart enough to successfully fill the new campaign form
@@ -19,6 +20,7 @@ Feature: Create my own campaign
     And I fill "Escreva o título do compartilhamento (ele será publicado nas páginas de Face daqueles que compartilharem)" with "Ajude a praça Nossa Senhora da Paz!"
     And I fill "Escreva o texto do compartilhamento (será publicado logo abaixo do título aí de cima)" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I attach an image to "Escolha uma imagem do seu computador (será publicada junto com o título e o texto)"
+    And I select "Eduardo Paes" as a target
     When I press "Criar campanha"
     Then I should be in "the created campaign page"
     And an email called "A sua mobilização está no ar!" should be sent
@@ -50,6 +52,7 @@ Feature: Create my own campaign
     And I fill "Escreva o email que será enviado para o(s) alvo(s) cada vez que alguém pressionar" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I attach an image to "Uma imagem que fale por mil palavras: escolha uma no seu computador e suba ela aqui"
     And I select "Educação" for "Escolha a categoria da sua mobilização (ajude as pessoas encontrarem a sua mobilização)"
+    And I select "Eduardo Paes" as a target
     When I press "Criar campanha"
     Then I should see "Precisamos do seu celular para que a equipe de curadoria possa entrar em contato."
 
