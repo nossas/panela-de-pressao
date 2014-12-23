@@ -82,7 +82,7 @@ gem 'coveralls', require: false
 gem 'rails_12factor'
 gem 'meurio_ui'
 gem 'gibbon'
-gem 'foundation-rails', '5.4.0'
+gem 'foundation-rails', '5.4.5.0'
 gem 'schema_plus'
 gem 'eventmachine'
 gem 'daemons'
