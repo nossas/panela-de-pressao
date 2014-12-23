@@ -101,8 +101,26 @@ $(function(){
 
   addEventListenerToRemoveTargetLink();
 
-  Foundation.libs.abide.settings.patterns.email = /^([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/;
-  $(document).foundation();
+  // Foundation init
+  $(document).foundation({
+    abide: {
+      patterns: {
+        email: /^([0-9a-zA-Z]+[-._+&amp;])*[0-9a-zA-Z\_\-]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/
+      },
+      validators: {
+        influencersList: function(el, required, parent){
+          if($("#influencers-list").find(".influencer-field").size() > 0){
+            // Typeahead encapsulates input and brakes the error message behavior
+            $("#twitter-typeahead-error").css("display", "none");
+            return true;
+          } else {
+            $("#twitter-typeahead-error").css("display", "inline-block");
+            return false;
+          }
+        }
+      }
+    }
+  });
 
   // Mailcheck
   $('input.mailcheck').on('blur', function() {
@@ -110,7 +128,7 @@ $(function(){
 
     $(this).mailcheck({
       suggested: function(element, suggestion) {
-        var message = "Você quis dizer <strong class='suggestion'>" + suggestion.address + 
+        var message = "Você quis dizer <strong class='suggestion'>" + suggestion.address +
           "@<a href='#'>" + suggestion.domain + "</a></strong>?";
         $hint.html(message).fadeIn(150);
       }, empty: function(element) {
@@ -120,7 +138,7 @@ $(function(){
   });
 
   $('.mailcheck-hint').on('click', function() {
-    $email = $(this).siblings('input.mailcheck');    
+    $email = $(this).siblings('input.mailcheck');
     $email.val($('.mailcheck-hint .suggestion').text());
     $(this).fadeOut(200, function() { $(this).empty(); });
     $email.focus();
