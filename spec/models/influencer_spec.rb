@@ -18,43 +18,6 @@ describe Influencer do
     it { should validate_presence_of :role }
   end
 
-	describe "#update_facebook" do
-		subject { Influencer.make! :facebook_url => "http://www.facebook.com/eduardopaesRJ", :facebook_id => "165276720205822" }
-		before do
-  			@public_page = double(:get_object => {
-					"link" => "http://www.facebook.com/coca-cola",
-					"id" => "40796308305",
-					"can_post" => true
-				})
-  			@private_page = double(:get_object => {
-					"link" => "http://www.facebook.com/coca-cola",
-					"id" => "40796308305",
-					"can_post" => false
-				})
-		end
-		context "when the url represents a Facebook public page" do
-			it "should update the facebook_id to the new one" do
-				Koala::Facebook::API.stub(:new).and_return @public_page
-				subject.update_facebook("http://www.facebook.com/coca-cola")
-				subject.facebook_url.should be_== "http://www.facebook.com/coca-cola"
-				subject.facebook_id.should be_== "40796308305"
-			end
-		end
-		context "when the url doesn't represents a Facebook public page" do
-			before { Koala::Facebook::API.stub(:new).and_return @private_page }
-			it "should not update the the facebook_id" do
-				subject.update_facebook("http://www.facebook.com/coca-cola")
-				subject.facebook_url.should be_== "http://www.facebook.com/eduardopaesRJ"
-				subject.facebook_id.should be_== "165276720205822"
-			end
-			it "should send an email warning who tried to change it" do
-				allow(User).to receive(:find).with(1).and_return(User.make! :email => "test@paneladepressao.org.br")
-				subject.update_facebook("http://www.facebook.com/coca-cola", :by => 1)
-				ActionMailer::Base.deliveries.should_not be_empty
-			end
-		end
-	end
-
 	describe "#archive" do
 	  subject { Influencer.make! }
     before do
@@ -106,5 +69,27 @@ describe Influencer do
     subject { Influencer.available }
     it { should include(influencer1) }
     it { should_not include(influencer2) }
+  end
+
+  describe "#set_facebook_id" do
+    context "when the Facebook url is https://www.facebook.com/pages/Deputado-Adilson-Rossi/244989718849989" do
+      subject { Influencer.make! facebook_url: "https://www.facebook.com/pages/Deputado-Adilson-Rossi/244989718849989" }
+      its(:facebook_id){ should be_eql "244989718849989" }
+    end
+
+    context "when the Facebook url is https://www.facebook.com/adrianodiogopt" do
+      subject { Influencer.make! facebook_url: "https://www.facebook.com/adrianodiogopt" }
+      its(:facebook_id){ should be_eql "adrianodiogopt" }
+    end
+
+    context "when the Facebook url is facebook.com/BrinquedosEstrela" do
+      subject { Influencer.make! facebook_url: "facebook.com/BrinquedosEstrela" }
+      its(:facebook_id){ should be_eql "BrinquedosEstrela" }
+    end
+
+    context "when the Facebook url is blank" do
+      subject { Influencer.make! facebook_url: "", facebook_id: nil }
+      its(:facebook_id){ should be_nil }
+    end
   end
 end

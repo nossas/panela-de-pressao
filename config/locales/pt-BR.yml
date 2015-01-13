@@ -261,11 +261,11 @@ pt-BR:
         after_poke_call_to_action: "Texto do botão da pós-pressão"
         hashtag: "Hashtag (não coloque o símbolo #)"
       influencer:
-        name: "Nome (Pode ser uma empresa, orgão público ou até uma pessoa)"
-        role: "Descrição (Ex: Prefeito, ONG, Prestadora de serviços de transporte)"
-        email: "Email (Ex: ouvidoria@meurio.org.br)"
-        twitter: "Usuário no Twitter (Ex: @meurio)"
-        facebook_url: "Página no Facebook (Ex: facebook.com/meurio)"
+        name: "Nome"
+        role: "Descrição"
+        email: "Email"
+        twitter: "Usuário no Twitter"
+        facebook_url: "Página no Facebook"
       user:
         name: "Nome"
         email: "E-mail"
