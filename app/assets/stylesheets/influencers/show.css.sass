@@ -15,12 +15,16 @@ body.influencers#show
         small
           display: block
           line-height: normal
-      .icon-mail2, .icon-twitter2
+      .email, .twitter
+        margin-bottom: .5em
+      .facebook, .twitter, .email
+        font-size: rem-calc(14)
+      .icon-mail2, .icon-twitter2, .icon-facebook
         &:before
-          font-size: rem-calc(24)
+          font-size: rem-calc(18)
           margin-right: rem-calc(5)
           position: relative
-          top: 6px
+          top: 4px
           color: $light_gray
     .influencer-campaigns
       +grid-column(9)

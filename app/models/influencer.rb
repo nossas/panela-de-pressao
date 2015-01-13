@@ -50,6 +50,8 @@ class Influencer < ActiveRecord::Base
   def set_facebook_id
     if self.facebook_url.present?
       self.facebook_id = Influencer::FACEBOOK_PAGE_REGEX.match(self.facebook_url)[1]
+    else
+      self.facebook_id = nil
     end
   end
 end
