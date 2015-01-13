@@ -1,36 +1,33 @@
-section.content
-  .row  
-    .header
-      h1 Crie ou edite um alvo
+.row
+  = form_for @influencer, data: { abide: true } do |f|
+    fieldset
+      .field
+        = f.label :name
+        = f.text_field :name, required: true, placeholder: "Meu Rio"
+        small.error Nome não pode ficar em branco
 
-    = form_for @influencer, data: { abide: true } do |f|
-      fieldset
-        .field
-          = f.label :name
-          = f.text_field :name, required: true
-          small.error Nome não pode ficar em branco
+      .field
+        = f.label :role
+        = f.text_field :role, required: true, placeholder: "ONG"
+        small.error Descrição não pode ficar em branco
 
-        .field
-          = f.label :role
-          = f.text_field :role, required: true
-          small.error Descrição não pode ficar em branco
-        
-        .field
-          = f.label :email
-          = f.email_field :email
-        
-        .field.half
-          = f.label :twitter
-          = f.text_field :twitter
-        
-        .field.half
-          = f.label :facebook_url
-          = f.text_field :facebook_url
-        
-        .field.preview
-          = f.label :avatar
-          = image_tag @influencer.avatar unless @influencer.avatar.blank?
-          = f.file_field :avatar
+      .field
+        = f.label :email
+        = f.email_field :email, placeholder: "contato@meurio.org.br"
 
-      .action
-        = f.submit 'Salvar Alvo', class: 'btn'
+      .field.half
+        = f.label :twitter
+        = f.text_field :twitter, placeholder: "@meurio"
+
+      .field.half
+        = f.label :facebook_url
+        = f.text_field :facebook_url, pattern: "facebook_page", placeholder: "https://www.facebook.com/meurio"
+        small.error O link para a página do Facebook deve ser válido
+
+      .field.preview
+        = f.label :avatar
+        = image_tag @influencer.avatar unless @influencer.avatar.blank?
+        = f.file_field :avatar
+
+    .action
+      = f.submit 'Salvar Alvo', class: [:button, :radius]
