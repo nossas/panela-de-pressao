@@ -138,6 +138,9 @@ class Poke < ActiveRecord::Base
       begin
         Koala::Facebook::API.new(user.facebook_authorization.token).delay.put_wall_post(self.message, {:link => campaign_url}, t.influencer.facebook_id)
         t.increase_pokes_by_facebook
+      rescue Koala::Facebook::ClientError => e
+        Appsignal.add_exception e
+        PokeMailer.delay.facebook_client_error(t, self)
       rescue Exception => e
         Appsignal.add_exception e
         Rails.logger.error e

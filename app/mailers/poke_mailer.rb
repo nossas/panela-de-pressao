@@ -25,4 +25,16 @@ class PokeMailer < ActionMailer::Base
       :subject => "Obrigado por pressionar",
       :from => "#{@poke.campaign.user.name} <#{@poke.campaign.user.email}>")
   end
+
+  def facebook_client_error(target, poke)
+    headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"facebook_client_error\"] }"
+    @influencer = target.influencer
+    @campaign = target.campaign
+    @poker = poke.user
+
+    mail(
+      :to => User.where(admin: true).map{|u| u.email},
+      :subject => "Não foi possível postar em página do Facebook"
+    )
+  end
 end
