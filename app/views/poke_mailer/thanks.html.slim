@@ -6,6 +6,3 @@ p Espalhe essa mobilização e chame seus amigos para se juntarem a nós. Basta 
 
 p= link_to "Compartilhar no Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}"
 p= link_to "Compartilhar no Twitter", "https://twitter.com/share?url=#{campaign_url(@campaign)}&text=#{@campaign.name}"
-
-p Grande abraço,
-p= @campaign.user.name
