@@ -62,5 +62,7 @@ module ManifesteSe
     config.rack_cas.session_store = RackCAS::ActiveRecordStore
 
     # config.quiet_assets = false
+
+    config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
   end
 end
