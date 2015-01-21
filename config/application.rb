@@ -64,5 +64,7 @@ module ManifesteSe
     # config.quiet_assets = false
 
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+
+    config.exceptions_app = self.routes
   end
 end
