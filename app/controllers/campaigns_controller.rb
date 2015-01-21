@@ -5,7 +5,7 @@ class CampaignsController < InheritedResources::Base
   optional_belongs_to :category
   optional_belongs_to :user
 
-  skip_load_and_authorize_resource :only => [:create, :explore]
+  skip_load_and_authorize_resource :only => [:create, :explore, :show]
 
   before_action(:only => [:create]) { params[:campaign][:user_id] = current_user.id }
   before_action(:only => [:new, :edit, :create, :update]) { @organizations = Organization.order(:city) }
@@ -13,6 +13,9 @@ class CampaignsController < InheritedResources::Base
   respond_to :html, :json, :js
 
   def show
+    @campaign = Campaign.find_by_id(params[:id])
+    return redirect_to not_found_path if @campaign.nil?
+
     @poke = Poke.new
     @answer = Answer.new
     @featured_update = Update.find_by_id(params[:update_id])
