@@ -59,7 +59,7 @@ ManifesteSe::Application.routes.draw do
   get '/explore', to: "campaigns#explore", as: :explore
   get '/about', to: "pages#about", as: :about
 
-  match '/404', to: 'errors#not_found', via: :all
+  match '/404', to: 'errors#not_found', via: :all, as: :not_found
 
   root :to => 'campaigns#index'
 end
