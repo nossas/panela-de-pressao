@@ -17,7 +17,7 @@ describe CampaignsController, type: :controller do
   describe "GET show" do
     context "All campaigns" do
       before do
-        allow(Campaign).to receive(:find).and_return(Campaign.make!)
+        allow(Campaign).to receive(:find_by_id).and_return(Campaign.make!)
         get :show, :id => "1"
       end
       its(:status) { should == 200 }
