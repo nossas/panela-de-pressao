@@ -92,4 +92,23 @@ describe Influencer do
       its(:facebook_id){ should be_nil }
     end
   end
+
+  describe "#poke_types" do
+    context "when the influencer has only email" do
+      subject { Influencer.make facebook_url: nil, twitter: nil }
+      
+      it "includes email" do
+        expect(subject.poke_types).to include('email')
+      end
+
+      it "does not include Tacebook" do
+        expect(subject.poke_types).not_to include('facebook')
+      end
+
+      it "does not include Twitter" do
+        expect(subject.poke_types).not_to include('twitter')
+      end
+    end
+
+  end
 end
