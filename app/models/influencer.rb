@@ -1,6 +1,5 @@
 class Influencer < ActiveRecord::Base
-  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache,
-    :about, :facebook_url, :archived_at
+  attr_accessible :email, :name, :twitter, :role, :avatar, :avatar_cache, :about, :facebook_url, :archived_at
 
 	attr_accessor :user_id
 
@@ -53,5 +52,13 @@ class Influencer < ActiveRecord::Base
     else
       self.facebook_id = nil
     end
+  end
+
+  def poke_types
+    types = []
+    types << "email" if self.email.present?
+    types << "facebook" if self.facebook_url.present?
+    types << "twitter" if self.twitter.present?
+    types
   end
 end
