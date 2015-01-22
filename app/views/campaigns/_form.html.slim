@@ -49,18 +49,20 @@ section.content
 
       fieldset
         legend Acenda o fogo: informações sobre a sua pressão
-        .field#influencers-autocomplete
-          = label_tag "influencer_typeahead", "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"
-          = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_api_v1_influencers_url, "abide-validator" => "influencersList" }
-          small.error#twitter-typeahead-error Você precisa selecionar pelo menos um alvo para a sua campanha
-          small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
-          #influencers-list
-            - @campaign.influencers.each do |influencer|
-              = render partial: "influencers/influencer_field", locals: { influencer: influencer }
         .field
           = f.label :poke_type
           = f.select :poke_type, [["Por Email", :email], ["Por Facebook", :facebook], ["Por Twitter", :twitter]]
           small Quer por telefone? Vamos analisar, basta enviar a solicitação pra Fernanda: contato@meurio.org.br
+        .field#influencers-autocomplete
+          = label_tag "influencer_typeahead", "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"
+          = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_api_v1_influencers_url, "abide-validator" => "influencersList" }
+          small.error#twitter-typeahead-error Você precisa selecionar pelo menos um alvo para a sua campanha
+          small.error#influencers-poke-error Alguns alvos não possuem esta forma de pressão e não serão pressionados.
+          small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
+
+          #influencers-list
+            - @campaign.influencers.each do |influencer|
+              = render partial: "influencers/influencer_field", locals: { influencer: influencer }
         .field.email_text
           = f.label :email_text
           = f.text_area :email_text
