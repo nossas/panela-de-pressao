@@ -91,7 +91,7 @@ $(function(){
       validateInfluencers();      
       addEventListenerToRemoveTargetLink();
     }
-    $('#influencers-autocomplete .typeahead.tt-input').val("");    
+    $('#influencers-autocomplete .typeahead').typeahead('val', '');    
   });
 
   $('#campaign_poke_type').on('change', function() {
