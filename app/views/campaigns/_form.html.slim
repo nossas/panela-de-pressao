@@ -51,7 +51,7 @@ section.content
         legend Acenda o fogo: informações sobre a sua pressão
         .field
           = f.label :poke_type
-          = f.select :poke_type, [["Por Email", :email], ["Por Facebook", :facebook], ["Por Twitter", :twitter]]
+          = f.select :poke_type, [["Por Email", :email, data: { error_message: 'Alguns alvos não serão pressionados pois não possuem email cadastrado' }], ["Por Facebook", :facebook, data: { error_message: 'Alguns alvos não possuem página pública no Facebook e não serão pressionados' }], ["Por Twitter", :twitter, data: { error_message: 'Alguns alvos não possuem perfil no Twitter e não serão pressionados' }]]
           small Quer por telefone? Vamos analisar, basta enviar a solicitação pra Fernanda: contato@meurio.org.br
         .field#influencers-autocomplete
           = label_tag "influencer_typeahead", "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"

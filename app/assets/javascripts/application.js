@@ -95,6 +95,7 @@ $(function(){
   });
 
   $('#campaign_poke_type').on('change', function() {
+    $('#influencers-poke-error').text($(this).find(':selected').data('error-message'));
     validateInfluencers();
   });
 
