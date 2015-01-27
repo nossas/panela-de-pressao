@@ -22,7 +22,7 @@ class PokesController < InheritedResources::Base
   def create
     begin
       params[:ip] = request.remote_ip
-      user = current_user || User.find_by_id(params[:user_id]) || User.find_by_email(params[:email]) || User.create(params)
+      user = current_user || User.find_by_id(params[:user_id]) || User.find_by_email(params[:email].downcase) || User.create(params)
       user.update_ip(params[:ip])
       user.update_attribute(:phone, params[:phone]) if params[:phone]
       @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
