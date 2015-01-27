@@ -1,4 +1,4 @@
-.influencer-field data={ "influencer-id" => influencer.id }
+.influencer-field data={ "influencer-id" => influencer.id, "poke-types" => influencer.poke_types }
   .influencer-field-image= image_tag influencer.avatar.square
   .influencer-field-name= link_to influencer.name, influencer, target: :blank
   .influencer-field-role= influencer.role

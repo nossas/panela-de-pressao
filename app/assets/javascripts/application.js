@@ -87,10 +87,37 @@ $(function(){
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
     if($(".influencer-field[data-influencer-id = " + object.searchable.id + "]").size() == 0){
       $("#influencers-list").prepend(object.searchable.html);
+      
+      validateInfluencers();      
       addEventListenerToRemoveTargetLink();
     }
-    $('#influencers-autocomplete .typeahead.tt-input').val("")
+    $('#influencers-autocomplete .typeahead').typeahead('val', '');    
   });
+
+  $('#campaign_poke_type').on('change', function() {
+    $('#influencers-poke-error').text($(this).find(':selected').data('error-message'));
+    validateInfluencers();
+  });
+
+  function validateInfluencers() {
+    if ($("#influencers-list").size() == 0) return;
+
+    var invalidTargets = 0;
+    $("#influencers-list").children().each(function(index, element) {
+      if(jQuery.inArray($("#campaign_poke_type").val(), $(element).data("poke-types")) == -1) {
+        $(element).addClass("invalid");
+        invalidTargets++;
+      } else {
+        $(element).removeClass("invalid");
+      }
+    });
+
+    if(invalidTargets == 0) {
+      $("#influencers-poke-error").css("display", "none");
+    } else {
+      $("#influencers-poke-error").css("display", "inline-block");
+    }
+  }
 
   function addEventListenerToRemoveTargetLink(){
     $(".influencer-field .influencer-field-remove a").click(function(event){
