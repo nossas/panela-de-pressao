@@ -29,7 +29,7 @@ class PokesController < InheritedResources::Base
       poke_params = session[:poke] || params[:poke] || {}
       @poke = Poke.new poke_params
       @poke.user = user
-      session.destroy(:poke) if session[:poke]
+      session[:poke] = nil
     rescue Exception => e
       Appsignal.add_exception e
       Rails.logger.error e
