@@ -25,7 +25,11 @@ class PokesController < InheritedResources::Base
       user = current_user || User.find_by_id(params[:user_id]) || User.find_by_email(params[:email].downcase) || User.create(params)
       user.update_ip(params[:ip])
       user.update_attribute(:phone, params[:phone]) if params[:phone]
-      @poke = Poke.new session.delete(:poke).merge(:user_id => user.id)
+
+      poke_params = session[:poke] || params[:poke] || {}
+      @poke = Poke.new poke_params
+      @poke.user = user
+      session.destroy(:poke)
     rescue Exception => e
       Appsignal.add_exception e
       Rails.logger.error e
