@@ -35,9 +35,12 @@ html
     = render partial: 'layouts/alerts'
 
     - content_for :application_menu do
-      = link_to "Conheça o Panela de Pressão", about_path
-      = link_to "Descubra as mobilizações", explore_path
-      = link_to "Crie a sua mobilização", new_campaign_path, class: :btn, id: :new_campaign_button
+      li= link_to "Conheça o Panela de Pressão", about_path
+      li= link_to "Descubra as mobilizações", explore_path
+      li.active
+        = link_to new_campaign_path, id: :new_campaign_button do
+          span.icon-plus &nbsp;
+          | Crie a sua mobilização
 
     - content_for :current_user_links do
       - if current_user.present?

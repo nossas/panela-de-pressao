@@ -26,13 +26,12 @@ $primary-color: $yellow
 
 $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'Lucida Grande', Verdana, Geneva, sans-serif
 
-@import compass/reset
-@import columnal/grid
+@import compass
 @import font
+@import meurio_ui
 @import foundation_and_overrides
 @import jquery.facebox
 @import chosen
-@import meurio_ui
 
 .clear
   clear: both
@@ -43,17 +42,12 @@ $body-font-family: "Proxima Nova Soft", 'Lucida Sans Unicode', 'Lucida Sans', 'L
 .cancel
   background: darken(red, 15%) !important
 
-section
-  +grid-container
-
 .row
-  +grid-row
   &.visible
     overflow: visible
 
 .logo_and_share, .links_and_social, article.wide, .meurio_and_user, section .message, .influencers_list, .highlight .links
-  +grid(12)
-  +last
+  +grid-column(12)
 
 small
   font-size: 80%
@@ -62,35 +56,30 @@ small a
   text-decoration: underline
 
 article.right
-  +grid(9)
-  +last
+  +grid-column(9)
 
 article.left, .home_link
-  +grid(8)
+  +grid-column(8)
 
 .highlight .about, .highlight .campaign
-  +grid(6)
+  +grid-column(6)
 
 aside.right, .new_campaign_btn
-  +grid(4)
-  +last
+  +grid-column(4)
 aside.left
-  +grid(3)
+  +grid-column(3)
 
 .list .campaign
-  +grid-subcolumn(9, 9)
+  +grid-column(9)
 
 .list .campaign .image
-  +grid-subcolumn(9, 3)
+  +grid-column(3)
 
 .list .campaign .details
-  +grid-subcolumn(9, 6)
+  +grid-column(6)
 
 article.left .poke, article.left .contact
-  +grid-subcolumn(8, 4)
-
-article.right, aside.right, .highlight .campaign, .list .campaign .details, .new_campaign_btn, article.left .contact, .influencers_list
-  +last
+  +grid-column(4)
 
 img
   margin: 0
@@ -307,24 +296,6 @@ a[href="/auth/facebook"]
     width: 100%
     padding: 30px
 
-.meurio_header
-  .meurio_logo_and_user_menu
-    +grid-container
-    .meurio_logo
-      +grid(4)
-    .user_menu
-      +grid(8)
-      +last
-  .meurio_apps_and_application_menu
-    .alert
-      display: none
-    +grid-container
-    .meurio_apps
-      +grid(4)
-    .application_menu
-      +grid(8)
-      +last
-
 section.content
   background: $gray
   ol.campaigns
@@ -415,9 +386,7 @@ body.users#show
     background: none
     +box-shadow(none)
     li.campaign
-      +grid-subcolumn(9, 3)
-      &:nth-child(3n-0)
-        +last
+      +grid-column(3)
     h2
       font-weight: bold
       margin-bottom: 1.2em
@@ -449,10 +418,9 @@ section.footer
     color: white
     margin-right: 1em
   .links
-    +grid(8)
+    +grid-column(8)
   .social
-    +grid(4)
-    +last
+    +grid-column(4)
     .fb-like
       margin-top: 1em
 

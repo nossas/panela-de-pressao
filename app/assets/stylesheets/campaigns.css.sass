@@ -1,6 +1,6 @@
 body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#update
   .header, form
-    +grid(12)
+    +grid-column(12)
   .field
     margin-bottom: 20px
   fieldset, .header
@@ -13,7 +13,7 @@ body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#u
     input
       margin-bottom: 0
     .twitter-typeahead, .tt-dropdown-menu
-      +grid(12)
+      +grid-column(12)
     .tt-dropdown-menu
       background: white
       border: 1px solid #ccc
@@ -97,30 +97,24 @@ body.campaigns#unmoderated
     margin: 0
     li.campaign
       margin-bottom: 1em
-      +grid(3)
-      &:nth-child(4n)
-        +last
+      +grid-column(3)
 
 body.campaigns#index, body.campaigns#unmoderated
   section.highlight
     display: none
   .title
-    +grid(12)
+    +grid-column(12)
   h2
     color: #363a3d
     font-weight: bold
     font-size: 1.4em
     margin-bottom: 1em
-  section
-    padding: 2em 0
   .campaigns_by_organization, .successful_campaigns, .popular
     ol.campaigns
       margin: 0
       li.campaign
         overflow: hidden
-        +grid(3)
-        &:last-child
-          +last
+        +grid-column(3)
   .institutional
     background: $institutional
   .successful_campaigns
@@ -130,7 +124,7 @@ body.campaigns#index, body.campaigns#unmoderated
     h2
       color: white
     .moderator
-      +grid(3)
+      +grid-column(3)
       color: white
       .organization_bio
         margin-top: 1em
@@ -138,10 +132,8 @@ body.campaigns#index, body.campaigns#unmoderated
   section.institutional
     padding: 4em 0 2em 0
     .item
-      +grid(3)
+      +grid-column(3)
       text-align: center
-      &:last-child
-        +last
       h2
         font-size: 1.2em
         margin-top: 1em
@@ -159,7 +151,7 @@ body.campaigns#index, body.campaigns#unmoderated
       overflow: hidden
       +border-radius(4px)
       .image
-        +grid(6)
+        +grid-column(6)
         padding: 0
         img, iframe
           width: 100%
@@ -168,8 +160,7 @@ body.campaigns#index, body.campaigns#unmoderated
           height: 340px
       .about
         padding: 1em 1.3em
-        +grid(6)
-        +last
+        +grid-column(6)
       h1
         color: $green
         font-size: 1.6em
@@ -185,7 +176,7 @@ body.campaigns#index, body.campaigns#unmoderated
       .counter
         padding-top: 1.5em
         .count
-          +grid(4)
+          +grid-column(4)
           color: lighten(gray, 5%)
           span
             display: block
@@ -193,8 +184,7 @@ body.campaigns#index, body.campaigns#unmoderated
             margin-bottom: .3em
             color: black
         .poke
-          +grid(8)
-          +last
+          +grid-column(8)
         .btn
           background-color: $orange
           font-size: 1.3em
@@ -202,20 +192,17 @@ body.campaigns#index, body.campaigns#unmoderated
           width: 100%
   ol.campaigns.by_user
     li.campaign
-      +grid(3)
+      +grid-column(3)
       margin-bottom: 1em
-      &:nth-child(4n)
-        +last
 
 body.campaigns#show, body.pokes#create
   article.campaign, aside.right.pressure
-    +grid(6)
+    +grid-column(6)
   section.header
     +box-shadow(0 1px 6px lighten(black, 75%))
     margin-bottom: .2em
   .campaign_with_moderator, .campaign_without_moderator, .campaign_succeed, .campaign_failed, .campaign_archived
-    +grid(12)
-    +last
+    +grid-column(12)
     +border-radius(0 0 4px 4px)
     margin: -1.75em 0 1.5em 0 !important
     text-align: center
@@ -264,9 +251,7 @@ body.campaigns#show, body.pokes#create
     margin-bottom: 2em
     overflow: hidden
     .user_thumb
-      +grid-subcolumn(6,3)
-      &:nth-child(2n+0)
-        +last
+      +grid-column(6, false, false, 0, 0, 0, true)
   dl.sub-nav
     margin: 0 0 20px 0
     dd
@@ -697,11 +682,9 @@ body.campaigns#explore, body.campaigns#index
       width: 96%
   article.left
     background: $gray
-    +grid(9)
-    margin-right: 1.8%
+    +grid-column(9)
   aside.right
-    +grid(3)
-    +last
+    +grid-column(3)
     h4
       font-weight: bold
       font-size: 1em
@@ -756,12 +739,10 @@ body.campaigns#explore, body.campaigns#index
 
 body.campaigns#reported
   .title, .empty
-    +grid(12)
+    +grid-column(12)
   .title
     margin-bottom: 1em
   ol.campaigns
     li.campaign
       margin-bottom: 1em
-      +grid(3)
-      &:nth-child(4n)
-        +last
+      +grid-column(3)
