@@ -32,6 +32,7 @@
 //= require ./app.js
 //= require_tree ./app
 //= require ./init.js
+//= require event_tracking
 
 $(function(){
   $("input.phone").mask('(00) 000000000');
@@ -87,11 +88,11 @@ $(function(){
   $('.typeahead').bind("typeahead:selected", function(event, object, dataset){
     if($(".influencer-field[data-influencer-id = " + object.searchable.id + "]").size() == 0){
       $("#influencers-list").prepend(object.searchable.html);
-      
-      validateInfluencers();      
+
+      validateInfluencers();
       addEventListenerToRemoveTargetLink();
     }
-    $('#influencers-autocomplete .typeahead').typeahead('val', '');    
+    $('#influencers-autocomplete .typeahead').typeahead('val', '');
   });
 
   $('#campaign_poke_type').on('change', function() {

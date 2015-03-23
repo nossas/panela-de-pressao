@@ -69,6 +69,10 @@ section.content
             .user_name= link_to user.name, user_path(user)
             .user_label Cozinheiro
 
+      .app-buttons
+        = link_to image_tag("bt-googleplay.png"), "#", data: { "reveal-id" => "mobile-app-reveal" }, id: "GooglePlayButton"
+        = link_to image_tag("bt-appstore.png"), "#", data: { "reveal-id" => "mobile-app-reveal" }, id: "AppStoreButton"
+
       - unless @campaign.video.nil?
         .image= @campaign.video.html_safe
       - else
@@ -129,3 +133,7 @@ section.content
       .share
         a href="https://www.facebook.com/sharer/sharer.php?u=#{campaign_url(@campaign)}" class=[:btn, :facebook_share] Compartilhe no Facebook
         a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
+
+#mobile-app-reveal.reveal-modal.medium data={reveal: true}
+  iframe src="https://docs.google.com/a/nossascidades.org/forms/d/1VaTNWA5mLm3Z7ycESjeDKg7EJXOMi3hUDaQ6ycnYo44/viewform?embedded=true" width="750" height="760" frameborder="0" marginheight="0" marginwidth="0" Loading...
+  a.close-reveal-modal aria-label="Close" &#215;
