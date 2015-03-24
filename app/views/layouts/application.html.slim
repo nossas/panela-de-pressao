@@ -38,6 +38,8 @@ html
     - content_for :application_menu do
       li= link_to "Conheça o Panela de Pressão", about_path
       li= link_to "Descubra as mobilizações", explore_path
+
+    - content_for :main_menu do
       li.active
         = link_to new_campaign_path, id: :new_campaign_button do
           span.icon-plus &nbsp;
