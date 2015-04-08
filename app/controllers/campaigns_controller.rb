@@ -6,10 +6,7 @@ class CampaignsController < InheritedResources::Base
   optional_belongs_to :user
 
   skip_load_and_authorize_resource :only => [:create, :explore, :show]
-
-  before_action(:only => [:create]) { params[:campaign][:user_id] = current_user.id }
   before_action(:only => [:new, :edit, :create, :update]) { @organizations = Organization.order(:city) }
-
   respond_to :html, :json, :js
 
   def show
@@ -26,14 +23,15 @@ class CampaignsController < InheritedResources::Base
   end
 
   def create
-    @campaign = Campaign.new(params[:campaign])
-    if params[:user_phone].nil? || current_user.update_attributes(:phone => params[:user_phone])
-      create! do |success, failure|
-        success.html { return redirect_to @campaign }
-        failure.html { render :new }
-      end
+    user = current_user ||
+      User.find_by(email: params[:campaign][:user][:email]) ||
+      User.create(params[:campaign][:user].merge(ip: request.ip))
+    user.update_attributes(phone: params[:user_phone]) if params[:user_phone].present?
+
+    @campaign = Campaign.new(params[:campaign].merge(user_id: user.id))
+    if @campaign.save
+      return redirect_to @campaign
     else
-      @campaign.errors[:user] << current_user.errors.full_messages.join(", ")
       render :new
     end
   end

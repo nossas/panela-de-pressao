@@ -6,6 +6,7 @@ class Ability
     can :read, Answer
     can :manage, Poke
     can :read, Campaign
+    can :create, Campaign
     can :read, Update
     can :read, Influencer
     can :search, Influencer
@@ -13,7 +14,6 @@ class Ability
     if user && user.admin?
       can :manage, :all
     elsif user
-      can :create, Campaign
       can :update, Campaign, user_id: user.id
       can :read, Campaign, user_id: user.id
       can :manage, Update, campaign: { user_id: user.id }

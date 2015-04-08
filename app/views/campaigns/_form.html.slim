@@ -39,7 +39,7 @@ section.content
           = f.label :video_url, "Ou esse vídeo"
           = f.text_field :video_url, placeholder: "http://www.youtube.com/watch?v=JFq4_OSqbbM"
 
-        - if current_user.phone.blank?
+        - if current_user.nil? || current_user.phone.blank?
           .field
             label
               | Deixe seu telefone celular caso as equipes do Meu Rio ou do Minha Sampa precisem contatar você
@@ -90,9 +90,24 @@ section.content
         legend Agradeça a participação: informações para quem pressionou
         .field
           = f.label :pokers_email
-          = f.text_area :pokers_email, value: @campaign.pokers_email || "Obrigado por apostar na força da ação coletiva em rede. Sua participação é muito importante e, agora, precisamos da sua ajuda para que mais gente pressione o alvo dessa mobilização. Compartilhe a mobilização nas suas redes clicando em um dos links abaixo. Vamos aumentar o fogo nessa Panela de Pressão!\n\nUm abraço,\n\n#{current_user.name}"
+          = f.text_area :pokers_email, value: @campaign.pokers_email || "Obrigado por apostar na força da ação coletiva em rede. Sua participação é muito importante e, agora, precisamos da sua ajuda para que mais gente pressione o alvo dessa mobilização. Compartilhe a mobilização nas suas redes clicando em um dos links abaixo. Vamos aumentar o fogo nessa Panela de Pressão!\n\nUm abraço"
 
-      - if @current_user.admin?
+      - if current_user.nil?
+        fieldset
+          legend Identifique-se: informações sobre o autor da campanha
+          = f.fields_for :user do |user_form|
+            .row
+              .columns.large-4
+                = user_form.label(:first_name, t("activerecord.attributes.user.first_name"))
+                = user_form.text_field(:first_name, required: true)
+              .columns.large-4
+                = user_form.label(:last_name, t("activerecord.attributes.user.last_name"))
+                = user_form.text_field(:last_name, required: true)
+              .columns.large-4
+                = user_form.label(:email, t("activerecord.attributes.user.email"))
+                = user_form.email_field(:email, required: true)
+
+      - if current_user && current_user.admin?
         fieldset
           legend Pós Pressão Customizado (Apenas Admin - quando você preenche essas informações, elas substituem o Pós Pressão padrão com compartilhamento no Face e Twitter)
           .field
@@ -124,7 +139,7 @@ section.content
             = f.text_field :hashtag
 
       .field
-        = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: 'btn'
+        = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: [:button, :large, :radius]
 
     .hidden
       #image

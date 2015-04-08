@@ -273,6 +273,9 @@ pt-BR:
         picture: "Imagem"
         file: "Imagem"
         mobile_phone: "Celular"
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        email: "Email"
       poke:
         custom_message: "Mensagem"
       answer:
