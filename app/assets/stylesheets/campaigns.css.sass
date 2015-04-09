@@ -1,19 +1,35 @@
 body.campaigns#new, body.campaigns#edit, body.campaigns#create, body.campaigns#update
-  .header, form
-    +grid-column(12)
+  .button
+    margin: 0
+  .accordion
+    margin-left: 0
+  .accordion-navigation
+    i
+      margin-right: .5em
+      font-size: 1.25em
+      vertical-align: middle
+      width: 30px
+      display: inline-block
+  .header
+    background: #eee
+    margin: 0
+    margin-top: 2em
+    padding: .75em
+    box-shadow: 1px 1px 2px #ccc
+    color: #999
+    font-weight: normal
   .field
     margin-bottom: 20px
-  fieldset, .header
+  fieldset
     margin-bottom: 20px
   .field, fieldset
     &:last-child
       margin-bottom: 0
   #influencers-autocomplete
-    margin-bottom: 3em
     input
       margin-bottom: 0
     .twitter-typeahead, .tt-dropdown-menu
-      +grid-column(12)
+      width: 100%
     .tt-dropdown-menu
       background: white
       border: 1px solid #ccc

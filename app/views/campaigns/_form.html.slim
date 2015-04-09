@@ -1,152 +1,197 @@
-section.content
-  .row
-    .header
-      h1 Crie ou edite sua mobilização
-      h4.subheader Quer mudar algo na sua cidade? Precisa do apoio de muitas pessoas? Quer falar diretamente com os poderosos que tomam as decisões? Então o seu lugar é aqui no Panela de Pressão. Crie agora a sua mobilização. Seja o protagonista da mudança.
-      h4.subheader Este aplicativo da Rede Nossas Cidades aceita todas as mobilizações, mas #{link_to "clique aqui", "#policy", rel: "facebox[.policy]"} para saber o que não pode e o que é muito recomendado.
-    = form_for @campaign, data: { abide: true } do |f|
-      fieldset
-        legend Prepare a panela: informações sobre a sua mobilização
-        - if can?(:change_ownership, @campaign) && @campaign.persisted?
-          .field
-              = f.label :user_id
-              = f.autocomplete_field :user, autocomplete_user_email_users_path, id_element: "#campaign_user_id", value: @campaign.user.email if @campaign.persisted?
-              = f.hidden_field :user_id
-        .field
-          = f.label :name
-          = f.text_field(:name, required: true)
-          small.error Queremos saber o que você quer mudar na sua cidade!
-        .field
-          = f.label :organization_id
-          = f.select :organization_id, @organizations.map{|c| [c.city, c.id]}, :include_blank => true
-        .field
-          = f.label :category_id
-          = f.select :category_id, Category.all.map{|c| [c.name, c.id]}, :include_blank => true
-        .field
-          = f.label :description
-          = f.text_area(:description, required: true)
-          small.error Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?
-          = link_to "Dicas de formatação", "#formatting", :rel => "facebox"
-        .field
-          - if @campaign.persisted?
-            = image_tag(@campaign.image, size: '40x30')
-            = link_to "Expandir imagem da campanha", "#image", rel: 'facebox'
-          = f.label :image
-          = f.file_field :image
-          = f.hidden_field :image_cache
+.row
+  .columns.large-10.large-offset-1
+    h1.header Crie ou edite sua mobilização
+    .panel.panel--white
+      p Quer mudar algo na sua cidade? Precisa do apoio de muitas pessoas? Quer falar diretamente com os poderosos que tomam as decisões? Então o seu lugar é aqui no Panela de Pressão. Crie agora a sua mobilização. Seja o protagonista da mudança.
+      p Este aplicativo da Rede Nossas Cidades aceita todas as mobilizações, mas #{link_to "clique aqui", "#policy", rel: "facebox[.policy]"} para saber o que não pode e o que é muito recomendado.
+      hr
+      = form_for @campaign, data: { abide: true } do |f|
+        dl.accordion data-accordion="true"
+          - if can?(:change_ownership, @campaign) && @campaign.persisted?
+            .field
+                = f.label :user_id
+                = f.autocomplete_field :user, autocomplete_user_email_users_path, id_element: "#campaign_user_id", value: @campaign.user.email if @campaign.persisted?
+                = f.hidden_field(:user_id)
+          .row
+            .columns.large-12
+              = f.label :name do
+                = t("activerecord.attributes.campaign.name")
+                | &nbsp;
+                span.has-tip data-tooltip=true title="Um título curto é sempre melhor" ?
+              = f.text_field(:name, required: true)
+              small.error O título é obrigatório
+          .row
+            .columns.large-6
+              = f.label(:organization_id)
+              = f.select(:organization_id, @organizations.map{|c| [c.city, c.id]}, {include_blank: true}, required: true)
+              small.error A cidade é obrigatória
+            .columns.large-6
+              = f.label :category_id do
+                = t("activerecord.attributes.campaign.category_id")
+                | &nbsp;
+                span.has-tip data-tooltip=true title="Ajude as pessoas encontrarem a sua mobilização" ?
+              = f.select(:category_id, Category.all.map{|c| [c.name, c.id]}, {include_blank: true}, required: true)
+              small.error A categoria é obrigatória
+          .row
+            .columns.large-12
+              = f.label :description do
+                = t("activerecord.attributes.campaign.description")
+                | &nbsp;
+                span.has-tip data-tooltip=true title="Descreva o problema e a solução que você quer para ele ('a paz mundial' é coisa de miss - seja específico!)" ?
+              = f.text_area(:description, required: true)
+              small.error Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?
+          .row
+            .columns.large-4
+              = f.label :image
+              = f.file_field :image
+              = f.hidden_field :image_cache
 
-        .field
-          = f.label :video_url, "Ou esse vídeo"
-          = f.text_field :video_url, placeholder: "http://www.youtube.com/watch?v=JFq4_OSqbbM"
+            .columns.large-4.left
+                = f.label :video_url, "Ou esse vídeo"
+                = f.text_field :video_url, placeholder: "http://www.youtube.com/watch?v=JFq4_OSqbbM"
 
-        - if current_user.nil? || current_user.phone.blank?
-          .field
-            label
-              | Deixe seu telefone celular caso as equipes do Meu Rio ou do Minha Sampa precisem contatar você
-              = text_field_tag "user_phone", params[:user_phone], class: [:phone]
-            small.inline-errors= @campaign.errors[:user].to_sentence
-
-
-      fieldset
-        legend Acenda o fogo: informações sobre a sua pressão
-        .field
-          = f.label :poke_type
-          = f.select :poke_type, [["Por Email", :email, data: { error_message: 'Os alvos em vermelho não poderão ser pressionados pois não possuem email cadastrado' }], ["Por Facebook", :facebook, data: { error_message: 'Os alvos em vermelho não possuem página pública no Facebook e não poderão ser pressionados' }], ["Por Twitter", :twitter, data: { error_message: 'Os alvos em vermelho não possuem perfil no Twitter e não poderão ser pressionados' }]]
-          small Quer por telefone? Vamos analisar, basta enviar a solicitação pra Fernanda: contato@meurio.org.br
-        .field#influencers-autocomplete
-          = label_tag "influencer_typeahead", "Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)"
-          = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_api_v1_influencers_url, "abide-validator" => "influencersList" }
-          small.error#twitter-typeahead-error Você precisa selecionar pelo menos um alvo para a sua campanha
-          small.error#influencers-poke-error Alguns alvos não possuem esta forma de pressão e não serão pressionados.
-          small Não encontrou seu alvo? Fale agora com a Fernanda: contato@meurio.org.br
-
-          #influencers-list
-            - @campaign.influencers.each do |influencer|
-              = render partial: "influencers/influencer_field", locals: { influencer: influencer }
-        .field.email_text
-          = f.label :email_text
-          = f.text_area :email_text
-        .field.facebook_text
-          = f.label :facebook_text
-          = f.text_area :facebook_text
-        .field.twitter_text
-          = f.label :twitter_text
-          = f.text_field :twitter_text, maxlength: 100
-
-      fieldset
-        legend Aumente a pressão: informações sobre a sua viralização
-        .field
-          = f.label :facebook_share_title
-          = f.text_field :facebook_share_title
-        .field
-          = f.label :facebook_share_lead
-          = f.text_area :facebook_share_lead
-        .field
-          = f.label :facebook_share_thumb
-          = image_tag @campaign.facebook_share_thumb unless @campaign.facebook_share_thumb.blank?
-          = f.file_field :facebook_share_thumb
-
-      fieldset
-        legend Agradeça a participação: informações para quem pressionou
-        .field
-          = f.label :pokers_email
-          = f.text_area :pokers_email, value: @campaign.pokers_email || "Obrigado por apostar na força da ação coletiva em rede. Sua participação é muito importante e, agora, precisamos da sua ajuda para que mais gente pressione o alvo dessa mobilização. Compartilhe a mobilização nas suas redes clicando em um dos links abaixo. Vamos aumentar o fogo nessa Panela de Pressão!\n\nUm abraço"
-
-      - if current_user.nil?
-        fieldset
-          legend Identifique-se: informações sobre o autor da campanha
-          = f.fields_for :user do |user_form|
-            .row
+            - if current_user.nil? || current_user.phone.blank?
               .columns.large-4
-                = user_form.label(:first_name, t("activerecord.attributes.user.first_name"))
-                = user_form.text_field(:first_name, required: true)
-              .columns.large-4
-                = user_form.label(:last_name, t("activerecord.attributes.user.last_name"))
-                = user_form.text_field(:last_name, required: true)
-              .columns.large-4
-                = user_form.label(:email, t("activerecord.attributes.user.email"))
-                = user_form.email_field(:email, required: true)
+                label
+                  | Celular
+                  | &nbsp;
+                  span.has-tip data-tooltip=true title="Deixe seu telefone celular caso as equipes do Meu Rio ou da Minha Sampa precisem contatar você" ?
+                  = text_field_tag("user_phone", params[:user_phone], class: [:phone], required: true)
+                small.error Celular é obrigatório
 
-      - if current_user && current_user.admin?
-        fieldset
-          legend Pós Pressão Customizado (Apenas Admin - quando você preenche essas informações, elas substituem o Pós Pressão padrão com compartilhamento no Face e Twitter)
-          .field
-            = f.label :after_poke_title
-            = f.text_field :after_poke_title
-          .field
-            = f.label :after_poke_text
-            = f.text_area :after_poke_text
-          .field
-            = f.label :after_poke_link
-            = f.text_field :after_poke_link
-          .field
-            = f.label :after_poke_call_to_action
-            = f.text_field :after_poke_call_to_action
+          .row
+            .columns.large-4
+              = f.label :poke_type
+              = f.select :poke_type, [["Por Email", :email, data: { error_message: 'Os alvos em vermelho não poderão ser pressionados pois não possuem email cadastrado' }], ["Por Facebook", :facebook, data: { error_message: 'Os alvos em vermelho não possuem página pública no Facebook e não poderão ser pressionados' }], ["Por Twitter", :twitter, data: { error_message: 'Os alvos em vermelho não possuem perfil no Twitter e não poderão ser pressionados' }]]
+              small= link_to "Quer por telefone?", "#", data: { "reveal-id" => "reveal-support" }
+            .columns.large-8#influencers-autocomplete
+              = label_tag "influencer_typeahead" do
+                | Alvos
+                | &nbsp;
+                span.has-tip data-tooltip=true title="Escolha o(s) alvo(s) da sua mobilização (aqueles que tomam a decisão que soluciona o problema)" ?
+              = text_field_tag "influencer_typeahead", nil, class: "typeahead", placeholder: "Digite o nome de um alvo",  data: { search_url: search_api_v1_influencers_url, "abide-validator" => "influencersList" }
+              small.error#twitter-typeahead-error Você precisa selecionar pelo menos um alvo para a sua campanha
+              small.error#influencers-poke-error Alguns alvos não possuem esta forma de pressão e não serão pressionados.
+              small= link_to "Não encontrou seu alvo?", "#", data: { "reveal-id" => "reveal-support" }
+            .columns.large-12
+              #influencers-list
+                - @campaign.influencers.each do |influencer|
+                  = render partial: "influencers/influencer_field", locals: { influencer: influencer }
+            .columns.large-12.email_text
+              = f.label :email_text
+              = f.text_area(:email_text)
+            .columns.large-12.facebook_text
+              = f.label :facebook_text
+              = f.text_area(:facebook_text)
+            .columns.large-12.twitter_text
+              = f.label :twitter_text
+              = f.text_field(:twitter_text, maxlength: 100)
 
-        fieldset
-          legend Pressão via telefone (Apenas Admin - quando você preenche essas informações, elas substituem as pressões por Email, Face e Twitter)
-          .field
-            = f.label :voice_call_number
-            = f.text_field :voice_call_number, placeholder: "+55 (21) 9 9999-9999", class: [:phone_with_country_code]
-          .field
-            = f.label :voice_call_script
-            = f.text_area :voice_call_script
+          dd.accordion-navigation
+            = link_to("#panel1") do
+              i.icon-facebook
+              | Personalizar o compartilhamento do Facebook
+            #panel1.content
+              .field
+                = f.label :facebook_share_title
+                = f.text_field :facebook_share_title
+              .field
+                = f.label :facebook_share_lead
+                = f.text_area :facebook_share_lead
+              .field
+                = f.label :facebook_share_thumb
+                = image_tag @campaign.facebook_share_thumb unless @campaign.facebook_share_thumb.blank?
+                = f.file_field :facebook_share_thumb
 
-        fieldset
-          legend Tema (Escolha a hashtag que fará esta mobilização integrar um tema do Nossas Cidades)
-          .field
-            = f.label :hashtag
-            = f.text_field :hashtag
+          dd.accordion-navigation
+            = link_to("#panel2") do
+              i.icon-mail2
+              | Personalizar o email de agradecimento
+            #panel2.content
+              .field
+                = f.label :pokers_email do
+                  = t("activerecord.attributes.campaign.pokers_email")
+                  | &nbsp;
+                  span.has-tip data-tooltip=true title="Escreva o email que será enviado para cada um que pressionar (agradecer e dar o link da mobilização para a pessoa compartilhar nas redes sociais é chique)" ?
+                = f.text_area :pokers_email, value: @campaign.pokers_email || "Obrigado por apostar na força da ação coletiva em rede. Sua participação é muito importante e, agora, precisamos da sua ajuda para que mais gente pressione o alvo dessa mobilização. Compartilhe a mobilização nas suas redes clicando em um dos links abaixo. Vamos aumentar o fogo nessa Panela de Pressão!\n\nUm abraço"
 
-      .field
-        = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: [:button, :large, :radius]
+          - if current_user.nil?
+            dd.accordion-navigation
+              = link_to("#panel3") do
+                i.icon-user
+                | Identifique-se
+              #panel3.content.active
+                = f.fields_for :user do |user_form|
+                  .row
+                    .columns.large-4
+                      = user_form.label(:first_name, t("activerecord.attributes.user.first_name"))
+                      = user_form.text_field(:first_name, required: true)
+                      small.error Nome é obrigatório
+                    .columns.large-4
+                      = user_form.label(:last_name, t("activerecord.attributes.user.last_name"))
+                      = user_form.text_field(:last_name, required: true)
+                      small.error Sobrenome é obrigatório
+                    .columns.large-4
+                      = user_form.label(:email, t("activerecord.attributes.user.email"))
+                      = user_form.email_field(:email, required: true)
+                      small.error Email é obrigatório e precisa ser válido
 
-    .hidden
-      #image
-        = image_tag(@campaign.image) if @campaign.persisted?
+          - if current_user && current_user.admin?
+            dd.accordion-navigation
+              = link_to("#panel4") do
+                i.icon-share
+                | Personalizar o pós pressão
+              #panel4.content
+                .field
+                  = f.label :after_poke_title
+                  = f.text_field :after_poke_title
+                .field
+                  = f.label :after_poke_text
+                  = f.text_area :after_poke_text
+                .field
+                  = f.label :after_poke_link
+                  = f.text_field :after_poke_link
+                .field
+                  = f.label :after_poke_call_to_action
+                  = f.text_field :after_poke_call_to_action
+
+            dd.accordion-navigation
+              = link_to("#panel5") do
+                i.icon-phone
+                | Adicionar pressão via telefone
+              #panel5.content
+                .field
+                  = f.label :voice_call_number
+                  = f.text_field :voice_call_number, placeholder: "+55 (21) 9 9999-9999", class: [:phone_with_country_code]
+                .field
+                  = f.label :voice_call_script
+                  = f.text_area :voice_call_script
+
+            dd.accordion-navigation
+              = link_to("#panel6") do
+                i.icon-tag
+                | Adicionar um tema para a campanha
+              #panel6.content
+                .field
+                  = f.label :hashtag
+                  = f.text_field :hashtag
+
+        hr
+
+        .text-right
+          = f.submit (@campaign.new_record? ? t('actions.create_campaign') : t('actions.save')), class: [:button, :large, :radius]
+
+      .hidden
+        #image
+          = image_tag(@campaign.image) if @campaign.persisted?
 
 - content_for :title do
   | Crie ou Edite sua Campanha
+
+#reveal-support.reveal-modal.small data-reveal="true" aria-labelledby="Fale com a Fernanda" aria-hidden="true" role="dialog"
+  h2 Suporte
+  p.lead Fale com a Fernanda, a nossa super-heroína do suporte: #{link_to "contato@meurio.org.br", "mailto: contato@meurio.org.br"}
+  a.close-reveal-modal aria-label="Fechar" &#215;
 
 #policy
   p Não crie uma mobilização se ela:

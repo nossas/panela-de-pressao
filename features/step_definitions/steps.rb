@@ -64,11 +64,11 @@ Given /^I'm logged in as admin$/ do
 end
 
 Given /^I attach an image to "([^"]*)"$/ do |arg1|
-  if arg1 == "Uma imagem que fale por mil palavras: escolha uma no seu computador e suba ela aqui"
+  if arg1 == "campaign_image"
     attach_file arg1, "#{Rails.root}/features/support/campaign.png"
   elsif arg1 == "Avatar"
     attach_file arg1, "#{Rails.root}/features/support/influencer.jpg"
-  elsif arg1 == "Escolha uma imagem do seu computador (será publicada junto com o título e o texto)"
+  elsif arg1 == "campaign_facebook_share_thumb"
     attach_file arg1, "#{Rails.root}/features/support/campaign.png"
   else
     raise "I don't know '#{arg1}'"

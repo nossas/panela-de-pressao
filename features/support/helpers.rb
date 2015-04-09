@@ -31,6 +31,8 @@ def to_xpath text
 end
 
 def to_button string
+  return "Adicionar pressão via telefone" if string == "Adicionar pressão via telefone"
+  return "Personalizar o compartilhamento do Facebook" if string == "Personalizar o compartilhamento do Facebook"
   return "new_poke_phone_submit_button" if string == "the phone poke button"
   return "new_poke_email_submit_button" if string == "the email poke button"
   return "new_poke_facebook_submit_button" if string == "the Facebook poke button"
