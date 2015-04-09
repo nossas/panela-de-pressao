@@ -93,13 +93,24 @@
               | Personalizar o compartilhamento do Facebook
             #panel1.content
               .field
-                = f.label :facebook_share_title
-                = f.text_field :facebook_share_title
+                = f.label :facebook_share_title do
+                  = t("activerecord.attributes.campaign.facebook_share_title")
+                  | &nbsp;
+                  span.has-tip data-tooltip=true title="Este título será publicado nas páginas de Face daqueles que compartilharem" ?
+                = f.text_field :facebook_share_title, class: :mb0
+                small Evite utilizar mais de 70 caracteres
               .field
-                = f.label :facebook_share_lead
-                = f.text_area :facebook_share_lead
+                = f.label :facebook_share_lead do
+                  = t("activerecord.attributes.campaign.facebook_share_lead")
+                  | &nbsp;
+                  span.has-tip data-tooltip=true title="Este texto será publicado logo abaixo do título aí de cima" ?
+                = f.text_area :facebook_share_lead, class: :mb0
+                small Evite utilizar mais de 120 caracteres
               .field
-                = f.label :facebook_share_thumb
+                = f.label :facebook_share_thumb do
+                  = t("activerecord.attributes.campaign.facebook_share_thumb")
+                  | &nbsp;
+                  span.has-tip data-tooltip=true title="Esta imagem será publicada junto com o título e o texto" ?
                 = image_tag @campaign.facebook_share_thumb unless @campaign.facebook_share_thumb.blank?
                 = f.file_field :facebook_share_thumb
 
