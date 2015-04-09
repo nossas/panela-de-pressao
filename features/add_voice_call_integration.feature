@@ -33,6 +33,6 @@ Feature: Enable voice call integration of campaign
     And I attach an image to "campaign_image"
     And I select "Educação" for "campaign_category_id"
     And I select "Eduardo Paes" as a target
-    When I press "Criar campanha"
+    When I press "Criar mobilização"
     Then I should be in "the created campaign page"
     And an email called "A sua mobilização está no ar!" should be sent

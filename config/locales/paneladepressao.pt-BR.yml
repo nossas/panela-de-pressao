@@ -39,7 +39,7 @@ pt-BR:
       is_featured: "Mobilização em Destaque"
     text:
       popular_campaigns: "Mobilizações Populares"
-      user_campaigns: "mobilizaçãos criadas por %{user_name}"
+      user_campaigns: "Mobilizações criadas por %{user_name}"
       campaigns_waiting_for_moderation: "Mobilizações aguardando moderação"
       waiting_for_moderation: "Aguardando moderação"
       my_campaigns: "Minhas mobilizações"

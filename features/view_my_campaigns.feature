@@ -9,5 +9,5 @@ Feature: view my campaigns
     And I own an unmoderated campaign called "Salve a praça Nossa Senhora da Paz"
     And I open my profile options
     When I click "the my campaigns button"
-    Then I should see "Campanhas criadas por Nícolas Iensen"
+    Then I should see "Mobilizações criadas por Nícolas Iensen"
     And I should see "Salve a praça Nossa Senhora da Paz"

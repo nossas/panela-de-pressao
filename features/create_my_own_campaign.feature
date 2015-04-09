@@ -22,7 +22,7 @@ Feature: Create my own campaign
     And I fill "campaign_facebook_share_lead" with "A praça é um patrimônio histórico e existem outras soluções para o metro que tomará o seu lugar."
     And I attach an image to "campaign_facebook_share_thumb"
     And I select "Eduardo Paes" as a target
-    When I press "Criar campanha"
+    When I press "Criar mobilização"
     Then I should be in "the created campaign page"
     And an email called "A sua mobilização está no ar!" should be sent
     And an email called "Nova campanha no Panela de Pressão (Rio de Janeiro)" should be sent
@@ -47,16 +47,16 @@ Feature: Create my own campaign
     And I fill "campaign_user_last_name" with "Iensen"
     And I fill "campaign_user_email" with "nicolas1535@nossascidades.org"
     And I fill "user_phone" with "(21) 999999999"
-    When I press "Criar campanha"
+    When I press "Criar mobilização"
     Then I should be in "the created campaign page"
 
   @omniauth_test @javascript
   Scenario: when I'm troll enough to let all fields blank
     Given I'm logged in
     And I'm in the new campaign page
-    When I press "Criar campanha"
+    When I press "Criar mobilização"
     Then I should see "O título é obrigatório"
-    And I should see "Para uma campanha existir ela tem que ter um propósito! Porque essa campanha é importante?"
+    And I should see "Para uma mobilização existir ela tem que ter um propósito! Porque essa mobilização é importante?"
 
   @omniauth_test @javascript @bitly
   Scenario: when I leave mobile phone empty
@@ -70,7 +70,7 @@ Feature: Create my own campaign
     And I attach an image to "campaign_image"
     And I select "Educação" for "campaign_category_id"
     And I select "Eduardo Paes" as a target
-    When I press "Criar campanha"
+    When I press "Criar mobilização"
     Then I should see "Celular é obrigatório"
 
   @omniauth_test
