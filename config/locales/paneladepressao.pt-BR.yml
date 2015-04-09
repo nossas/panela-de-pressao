@@ -12,21 +12,21 @@ pt-BR:
   link:
     click_here: "clique aqui"
     what_is_html: "<span>O que é</span> o panela"
-    discover_it_html: "<span>Descubra</span> as campanhas"
-    create_html: "<span>Crie agora</span> sua campanha"
+    discover_it_html: "<span>Descubra</span> as mobilizações"
+    create_html: "<span>Crie agora</span> sua mobilização"
   actions:
-    create: "Crie sua campanha agora >"
-    edit: "Editar esta campanha"
-    delete: "Excluir esta campanha"
+    create: "Crie sua mobilização agora >"
+    edit: "Editar esta mobilização"
+    delete: "Excluir esta mobilização"
     back_home: "Voltar à página inicial"
     channel: "Escolha um canal para fazer pressão: "
-    send_to_moderation: "Enviar campanha para moderação"
-    create_campaign: "Criar campanha"
-    save: "Salvar campanha"
+    send_to_moderation: "Enviar mobilização para moderação"
+    create_campaign: "Criar mobilização"
+    save: "Salvar mobilização"
     cancel: "Cancelar"
-    accept: "Aceitar campanha"
+    accept: "Aceitar mobilização"
     export: "Exportar pressionadores"
-    finish: "Encerrar campanha"
+    finish: "Encerrar mobilização"
   emails:
     trusteeship: "curadoria@paneladepressao.org.br"
     contact: "contato@paneladepressao.org.br"
@@ -36,13 +36,13 @@ pt-BR:
     highlight:
       pokes_count_html: "<span>%{count}</span> pressões feitas"
       poke_now: "Pressione agora!"
-      is_featured: "Campanha em Destaque"
+      is_featured: "Mobilização em Destaque"
     text:
-      popular_campaigns: "Campanhas Populares"
-      user_campaigns: "Campanhas criadas por %{user_name}"
-      campaigns_waiting_for_moderation: "Campanhas aguardando moderação"
+      popular_campaigns: "Mobilizações Populares"
+      user_campaigns: "mobilizaçãos criadas por %{user_name}"
+      campaigns_waiting_for_moderation: "Mobilizações aguardando moderação"
       waiting_for_moderation: "Aguardando moderação"
-      my_campaigns: "Minhas campanhas"
+      my_campaigns: "Minhas mobilizações"
       who_supports: "Quem pressiona"
       continue_reading: "continue lendo"
       on_facebook: "No facebook"
@@ -51,39 +51,39 @@ pt-BR:
     created_at: "Criado em %{time}"
 
   campaign:
-    new:  
-      title: "Nova campanha"
-      header: "Crie/Edite sua campanha"
-      small_html: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em campanhas. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua. Se você precisa de ajuda, <a href='%{link}' target='_blank'>clique aqui para ver o Livro de Receitas da Panela Perfeita</a>."
+    new:
+      title: "Nova mobilização"
+      header: "Crie/Edite sua mobilização"
+      small_html: "Você quer mudar algo que não está certo no Rio? Comece por aqui. Não precisa ser expert em mobilizações. É só explicar direitinho a sua ideia e a gente te ajuda a botar o bloco na rua. Se você precisa de ajuda, <a href='%{link}' target='_blank'>clique aqui para ver o Livro de Receitas da Panela Perfeita</a>."
       form:
-        choose_targets: "Escreva o nome ou escolha na lista abaixo os alvos da campanha"
+        choose_targets: "Escreva o nome ou escolha na lista abaixo os alvos da mobilizações"
         map:
-          header: "Sua campanha usa um mapa?"
-        tips: 
+          header: "Sua mobilização usa um mapa?"
+        tips:
           title: 'Exemplo: "Salvem as árvores do Centro da Cidade"'
-          why_important_html: "<p>Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa campanha poderia ajudar a resolver esse problema.</p><p>Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.</p>" 
-          image: "Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua campanha."
-          theme: "Escolha o tema principal da sua campanha, mesmo que ela possa ter vários"
-          email_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha."
-          face_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua campanha."
-          tweet_text: " Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua campanha nos tweets."
-          targets_html: "Se você não encontrou o alvo da campanha na lista ao lado, %{link} e cadastre." 
-          video_url: "Esse vídeo ficará em destaque na página da campanha. Ex.: http://youtube.com/?v=1fsdf1"
+          why_important_html: "<p>Conte pra gente qual é o problema que você gostaria de resolver, quem é que pode resolver (se você não souber, nós ajudamos você a descobrir), o que eles poderiam fazer para resolver a questão e como essa mobilização poderia ajudar a resolver esse problema.</p><p>Seja breve, use links e referências para ajudar a galera a entender melhor o que você quer.</p>"
+          image: "Uma imagem vale mais que mil palavras. Escolha uma bem bacana para sua mobilização."
+          theme: "Escolha o tema principal da sua mobilização, mesmo que ela possa ter vários"
+          email_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua mobilização."
+          face_text: "Seja breve, direto e propositivo. Explique qual é a sua causa, o que está acontecendo e o que o seu alvo pode fazer para resolver o problema da sua mobilização."
+          tweet_text: " Seja bem direto e explique o que você quer dos seus alvos, afinal só temos 140 caracteres. Não precisa mencionar os seus alvos: o sistema já faz isso e ainda inclui o link da sua mobilização nos tweets."
+          targets_html: "Se você não encontrou o alvo da mobilização na lista ao lado, %{link} e cadastre."
+          video_url: "Esse vídeo ficará em destaque na página da mobilização. Ex.: http://youtube.com/?v=1fsdf1"
     show:
       quoted_count: "(%{count})"
       your_privacy: "sua privacidade"
       privacy_html: "O Panela protege %{link}."
-      targets_html: "Alvos da campanha <span>(%{count})</span>"
+      targets_html: "Alvos da mobilização <span>(%{count})</span>"
       target:
         head_html: 'Pressionados <span>(%{count})</span>'
-      pokers:  
+      pokers:
         head_html: 'Quem pressiona <span>(%{count})</span>'
-      cooker: 
+      cooker:
         head_html: 'Quem cozinha <span>(%{count})</span>'
       map:
         header: "Sobre o mapa"
       form:
-        headline: "Escolha uma das opções abaixo para pressionar diretamente os responsáveis:" 
+        headline: "Escolha uma das opções abaixo para pressionar diretamente os responsáveis:"
         headline_poked: "Ótimo! Agora que você já pressionou, que tal aumentar essa pressão? Pressione mais!"
         facebook: "Pressionar no facebook"
         facebook_tip: "mensagem será publicada no mural do alvo"
@@ -96,14 +96,14 @@ pt-BR:
         message:
           header: "Mensagem"
       campaign_menu:
-        edit: "Editar Campanha"
+        edit: "Editar mobilização"
         featured: "Destaque"
         win: "Vitória"
         lose: "Não Deu"
         export: "Exportar pressionadores"
       tabs:
         map: "Mapa"
-        campaign: "A Campanha"
+        campaign: "A mobilização"
         answers_html: "Respostas dos Alvos <span class='count'>%{count}</span>"
         comments: "Comentários"
       pokes:
@@ -113,7 +113,7 @@ pt-BR:
       answers:
         header: "Respostas recebidas dos alvos:"
         published: "Publicada em: %{date}"
-        warning_html: "Se você for um dos alvos da campanha, deixe a sua resposta através do email: %{email}"
+        warning_html: "Se você for um dos alvos da mobilização, deixe a sua resposta através do email: %{email}"
         new: "Publicar nova resposta"
         delete: "Excluir resposta"
   user:
@@ -125,5 +125,5 @@ pt-BR:
       save: "Salvar"
   notification:
     campaign:
-      poked_html: "Pressionou a campanha <a href='%{link}'>%{name}</a> via %{through}"
-      created_html: "Criou a campanha <a href='%{link}'>%{name}</a>"
+      poked_html: "Pressionou a mobilização <a href='%{link}'>%{name}</a> via %{through}"
+      created_html: "Criou a mobilização <a href='%{link}'>%{name}</a>"
