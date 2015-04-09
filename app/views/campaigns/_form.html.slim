@@ -127,7 +127,7 @@
                 = f.text_area :pokers_email, value: @campaign.pokers_email || "Obrigado por apostar na força da ação coletiva em rede. Sua participação é muito importante e, agora, precisamos da sua ajuda para que mais gente pressione o alvo dessa mobilização. Compartilhe a mobilização nas suas redes clicando em um dos links abaixo. Vamos aumentar o fogo nessa Panela de Pressão!\n\nUm abraço"
 
           - if current_user.nil?
-            dd.accordion-navigation
+            dd.accordion-navigation.active
               = link_to("#panel3") do
                 i.icon-user
                 | Identifique-se
