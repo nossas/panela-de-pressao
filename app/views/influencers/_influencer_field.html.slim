@@ -1,6 +1,6 @@
 .influencer-field data={ "influencer-id" => influencer.id, "poke-types" => influencer.poke_types }
   .influencer-field-image= image_tag influencer.avatar.square
-  .influencer-field-name= link_to influencer.name, influencer, target: :blank
-  .influencer-field-role= influencer.role
+  .influencer-field-name title=influencer.name = link_to truncate(influencer.name, length: 30), influencer, target: :blank
+  .influencer-field-role title=influencer.role = truncate(influencer.role, length: 30)
   .influencer-field-remove= link_to "Remover", "#", id: "remove-influencer-#{influencer.id}"
   = hidden_field_tag "campaign[influencer_ids][]", influencer.id

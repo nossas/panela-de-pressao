@@ -8,7 +8,7 @@ class CampaignMailer < ActionMailer::Base
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"we_received_your_campaign\"] }"
     @campaign = campaign
     @organization = @campaign.organization
-    from = @organization.pdp_sender_email.present? ? @organization.pdp_sender_email : "Fernanda do Meu Rio <contato@meurio.org.br>"
+    from = @organization.pdp_sender_email.present? ? @organization.pdp_sender_email : "João Mauro do Meu Rio <contato@meurio.org.br>"
     mail(to: campaign.user.email, subject: "A sua mobilização está no ar!", from: from)
   end
 
