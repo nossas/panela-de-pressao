@@ -25,7 +25,11 @@ class CampaignsController < InheritedResources::Base
   def create
     user = current_user ||
       User.find_by(email: params[:campaign][:user][:email]) ||
-      User.create(params[:campaign][:user].merge(ip: request.ip))
+      User.create(params[:campaign][:user].merge(
+        ip: request.ip,
+        organization_id: params[:campaign][:organization_id]
+      ))
+
     user.update_attributes(phone: params[:user_phone]) if params[:user_phone].present?
 
     @campaign = Campaign.new(params[:campaign].merge(user_id: user.id))
