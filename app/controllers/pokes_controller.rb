@@ -27,7 +27,7 @@ class PokesController < InheritedResources::Base
       user = current_user ||
         User.find_by_id(params[:user_id]) ||
         User.find_by_email(params[:email].downcase) ||
-        User.create(params)
+        User.find(User.create(params).id)
 
       user.update_ip(params[:ip])
       user.update_attribute(:phone, params[:phone]) if params[:phone]
