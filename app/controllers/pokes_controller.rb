@@ -23,6 +23,7 @@ class PokesController < InheritedResources::Base
     begin
       params[:ip] = request.remote_ip
       params[:organization_id] = @campaign.organization_id
+      params[:password] = SecureRandom.hex
 
       user = current_user ||
         User.find_by_id(params[:user_id]) ||
