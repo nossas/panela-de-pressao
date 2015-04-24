@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 source 'https://rails-assets.org'
 ruby '2.1.2'
 
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.1.5'
 
 # Tools
 gem 'pg'
@@ -94,3 +94,4 @@ gem 'rails-assets-jquery-infinite-scroll'
 gem 'pg_search'
 gem 'rails-assets-typeahead.js'
 gem 'jbuilder', '~> 1.2'
+gem 'acts_as_our_cities'
