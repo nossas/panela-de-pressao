@@ -22,7 +22,7 @@ class PokesController < InheritedResources::Base
   def create
     begin
       params[:ip] = request.remote_ip
-      params[:organization_id] = campaign.organization_id
+      params[:organization_id] = @campaign.organization_id
 
       user = current_user ||
         User.find_by_id(params[:user_id]) ||
