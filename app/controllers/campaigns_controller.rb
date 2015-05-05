@@ -70,7 +70,11 @@ class CampaignsController < InheritedResources::Base
         @featured = Campaign.featured.first
         @successful_campaigns = Campaign.successful.includes(:user).order("random()").limit(4)
         @moderator_organization = Organization.random_moderator
-        @moderated_campaigns = @moderator_organization.moderations.includes(:user).limit(3) if @moderator_organization
+
+        if @moderator_organization
+          @moderated_campaigns = @moderator_organization.
+            moderations.where("finished_at IS NULL").includes(:user).limit(3)
+        end
 
         if params[:user_id]
           render :user_index
