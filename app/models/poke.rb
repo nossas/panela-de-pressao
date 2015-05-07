@@ -81,24 +81,13 @@ class Poke < ActiveRecord::Base
 
   def add_to_mailchimp_segment
     begin
-      self.create_membership
+      url = "#{ENV["ACCOUNTS_HOST"]}/users/#{self.user_id}/segment_subscriptions.json"
 
-      # TODO: move all the MailChimp integration to Accounts
-      Gibbon::API.lists.static_segment_members_add(
-        id: ENV["MAILCHIMP_LIST_ID"],
-        seg_id: self.campaign.mailchimp_segment_uid,
-        batch: [{ email: self.user.email }]
-      )
-    rescue Exception => e
-      Appsignal.add_exception e
-      Rails.logger.error e
-    end
-  end
+      body = {
+        token: ENV["ACCOUNTS_API_TOKEN"],
+        segment_subscription: { segment_id: self.campaign.mailchimp_segment_uid }
+      }
 
-  def create_membership
-    begin
-      url = "#{ENV["ACCOUNTS_HOST"]}/users/#{self.user_id}/memberships.json"
-      body = { token: ENV["ACCOUNTS_API_TOKEN"], membership: { organization_id: self.campaign.organization_id } }
       HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
     rescue Exception => e
       Appsignal.add_exception e
