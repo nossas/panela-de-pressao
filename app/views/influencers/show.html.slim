@@ -15,11 +15,6 @@
     h3
       = @influencer.name
       small  #{@influencer.role}
-    .email.icon-mail2 title=@influencer.email = truncate(@influencer.email, length: 27)
-    - if @influencer.twitter.present?
-      .twitter.icon-twitter2= truncate "twitter.com/#{@influencer.twitter.delete("@")}"
-    - if @influencer.facebook_url.present?
-      .facebook.icon-facebook= truncate "facebook.com/#{@influencer.facebook_id}"
 
     - if can? :edit, Influencer
       .actions
