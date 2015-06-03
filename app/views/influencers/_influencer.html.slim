@@ -2,7 +2,6 @@ tr class=("archived" if influencer.archived?)
   td= image_tag influencer.avatar.square
   td= link_to influencer.name, influencer
   td= influencer.role
-  td= influencer.email
   td= ("arquivado" if influencer.archived?)
   td
     = link_to "", "http://twitter.com/#{influencer.twitter}", :class => "icon-twitter" if !influencer.twitter.blank?
