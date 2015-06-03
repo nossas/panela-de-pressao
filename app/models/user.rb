@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
   def reported? campaign
     campaign.reports.where(user_id: id).any?
   end
+
+  def female?
+    self.gender == 'female'
+  end
 end
