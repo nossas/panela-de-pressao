@@ -22,7 +22,7 @@ html
       meta property="og:url"          content=t('site.url')
       meta property="og:description"  content=t('site.description')
     /[if IE]
-      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
+      = javascript_include_tag("http://html5shiv.googlecode.com/svn/trunk/html5.js")
     javascript:
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -30,6 +30,23 @@ html
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-26278513-6', 'paneladepressao.nossascidades.org');
       ga('send', 'pageview');
+
+    / Facebook Conversion Code for Registrations - Panela de Pressão
+    - if Rails.env.production?
+      javascript:
+        (function() {
+          var _fbq = window._fbq || (window._fbq = []);
+          if (!_fbq.loaded) {
+            var fbds = document.createElement('script');
+            fbds.async = true;
+            fbds.src = '//connect.facebook.net/en_US/fbds.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(fbds, s);
+            _fbq.loaded = true;
+          }
+        })();
+        window._fbq = window._fbq || [];
+        window._fbq.push(['track', '6030555680463', {'value':'0.00','currency':'BRL'}]);
 
   body data-controller-class=controller.class.name data-controller-name=controller.controller_name.camelize class=controller.controller_name.downcase id=controller.action_name.downcase data-action=controller.action_name.camelize
     = render partial: 'layouts/alerts'
