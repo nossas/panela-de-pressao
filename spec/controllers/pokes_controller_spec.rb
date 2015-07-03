@@ -22,7 +22,7 @@ describe PokesController, type: :controller do
         end
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "email"}, :campaign_id => campaign.id
-          should redirect_to "/campaigns/#{campaign.id}"
+          should redirect_to "/campaigns/#{campaign.id}?success=true"
         end
       end
 
@@ -39,7 +39,7 @@ describe PokesController, type: :controller do
         end
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "twitter"}, :campaign_id => campaign.id
-          should redirect_to "/campaigns/#{campaign.id}"
+          should redirect_to "/campaigns/#{campaign.id}?success=true"
         end
       end
 
@@ -56,7 +56,7 @@ describe PokesController, type: :controller do
         end
         it "should redirect to campaign page" do
           post :create, :poke => {:kind => "facebook"}, :campaign_id => campaign.id
-          should redirect_to "/campaigns/#{campaign.id}"
+          should redirect_to "/campaigns/#{campaign.id}?success=true"
         end
       end
     end
