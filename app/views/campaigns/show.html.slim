@@ -92,13 +92,13 @@ section.content
             .wrap
               a href="https://www.facebook.com/sharer/sharer.php?u=#{campaign_url(@campaign)}" class=[:btn, :facebook_share] Compartilhe no Facebook
               a href="https://twitter.com/share?url=#{@campaign.short_url}&text=#{@campaign.name}&hashtags=#{@campaign.hashtag}" class=[:btn, :twitter_share] Compartilhe no Twitter
-        = render partial: 'campaigns/create_your_profile'
       - elsif !@campaign.finished? && !@campaign.archived?
         - if @campaign.has_voice_action?
           = render partial: 'campaigns/poke_by_phone'
         - else
           = render partial: "campaigns/poke_by_#{@campaign.poke_type}"
 
+      = render partial: 'campaigns/create_your_profile'
       .counter
         .count
           span.number= raw @campaign.pokes.count.to_s.chars.map{|c| content_tag :span, c}.join("")

@@ -158,7 +158,7 @@ $(function(){
     $hint = $(this).siblings('.mailcheck-hint');
 
     $(this).mailcheck({
-      domains: ['globo.com', 'terra.com.br', 'ig.com.br'],
+      domains: ['globo.com', 'terra.com.br', 'ig.com.br', 'yahoo.com', 'yahoo.com.br'],
       suggested: function(element, suggestion) {
         var message = "Você quis dizer <strong class='suggestion'>" + suggestion.address +
           "@<a href='#'>" + suggestion.domain + "</a></strong>?";
