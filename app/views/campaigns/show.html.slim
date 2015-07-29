@@ -66,8 +66,8 @@ section.content
         - @campaign.users.each do |user|
           .user_thumb
             = link_to image_tag(user.avatar_url), user_path(user)
+            .user_label #{user.female? ? 'Cozinheira' : 'Cozinheiro'} da mobilização
             .user_name= link_to user.name, user_path(user)
-            .user_label= user.female? ? 'Cozinheira' : 'Cozinheiro'
 
       - unless @campaign.video.nil?
         .image= @campaign.video.html_safe
