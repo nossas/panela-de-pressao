@@ -486,8 +486,8 @@ DEPENDENCIES
   rack-cas
   rack_session_access
   rails (~> 4.1.5)
-  rails-assets-jquery-infinite-scroll
-  rails-assets-typeahead.js
+  rails-assets-jquery-infinite-scroll!
+  rails-assets-typeahead.js!
   rails3-jquery-autocomplete
   rails_12factor
   rake

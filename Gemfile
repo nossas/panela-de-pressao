@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'https://rails-assets.org'
 ruby '2.2.2'
 
 gem 'rails', '~> 4.1.5'
@@ -90,8 +89,12 @@ gem 'rack-cas'
 gem 'appsignal'
 gem 'rack_session_access'
 gem 'unicorn'
-gem 'rails-assets-jquery-infinite-scroll'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-infinite-scroll'
+  gem 'rails-assets-typeahead.js'
+end
+
 gem 'pg_search'
-gem 'rails-assets-typeahead.js'
 gem 'jbuilder', '~> 1.2'
 gem 'acts_as_our_cities'
