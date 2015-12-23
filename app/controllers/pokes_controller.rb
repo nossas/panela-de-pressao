@@ -50,11 +50,11 @@ class PokesController < InheritedResources::Base
           flash[:poke_notice] = true
         end
 
-        if current_user || flash[:poke_phone_notice]
+        #if current_user || flash[:poke_phone_notice]
           redirect_to campaign_path(@campaign, success: true)
-        else
-          redirect_to campaign_path(@campaign, success: true, anchor: 'create_your_profile')
-        end
+        #else
+          #redirect_to campaign_path(@campaign, success: true, anchor: 'create_your_profile')
+        #end
       end
 
       failure.html do
