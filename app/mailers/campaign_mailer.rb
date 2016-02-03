@@ -16,7 +16,7 @@ class CampaignMailer < ActionMailer::Base
     headers "X-SMTPAPI" => "{ \"category\": [\"pdp\", \"new_campaign\"] }"
     @campaign = campaign
     @organization = @campaign.organization
-    to = @organization.try(:pdp_receiver_email) ? @organization.pdp_receiver_email : "curadoria@paneladepressao.org.br"
+    to = @organization.try(:pdp_receiver_email) ? @organization.pdp_receiver_email : "pdp@meurio.org.br"
     mail(to: to, subject: "Nova campanha no Panela de Pressão (#{@organization.city})")
   end
 end
