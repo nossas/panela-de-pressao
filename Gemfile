@@ -78,6 +78,7 @@ gem 'facebox-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'coveralls', require: false
 gem 'rails_12factor', group: [:staging, :production]
+gem 'newrelic_rpm', group: :production
 gem 'meurio_ui', github: 'meurio/meurio_ui', branch: 'new-header'
 gem 'gibbon'
 gem 'foundation-rails', github: 'zurb/foundation-rails', tag: 'v5.5.1.2'

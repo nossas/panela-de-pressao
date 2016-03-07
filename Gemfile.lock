@@ -244,6 +244,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    newrelic_rpm (3.15.0.314)
     nokogiri (1.6.6.4)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -475,6 +476,7 @@ DEPENDENCIES
   meurio_ui!
   mini_magick
   minitest
+  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-oauth2
