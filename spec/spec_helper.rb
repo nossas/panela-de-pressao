@@ -30,8 +30,14 @@ RSpec.configure do |config|
   config.verbose_retry = true
   # Try twice (retry once)
   config.default_retry_count = 2
+  # show exception that triggers a retry if verbose_retry is set to true
+  config.display_try_failure_messages = true
   # Only retry when Selenium raises Net::ReadTimeout
   config.exceptions_to_retry = [Net::ReadTimeout]
+
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 3
+  end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
