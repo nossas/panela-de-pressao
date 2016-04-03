@@ -45,9 +45,13 @@ gem 'twitter'
 gem 'bitly'
 gem 'koala'
 gem 'has_scope'
-gem 'simplecov', :require => false, :group => :test
-gem 'webmock', :require => false, :group => :test
 gem 'minitest'
+
+group :test do
+  gem 'simplecov', :require => false
+  gem 'webmock', :require => false
+  gem 'rspec-retry', '0.4.5'
+end
 
 group :development do
   gem 'mailcatcher'

@@ -345,6 +345,8 @@ GEM
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
+    rspec-retry (0.4.5)
+      rspec-core
     rspec-support (3.0.4)
     rubyzip (1.1.7)
     safe_yaml (1.0.4)
@@ -497,6 +499,7 @@ DEPENDENCIES
   rspec-collection_matchers
   rspec-its
   rspec-rails (~> 3.0.0)
+  rspec-retry (= 0.4.5)
   sass-rails
   schema_plus
   selenium-webdriver

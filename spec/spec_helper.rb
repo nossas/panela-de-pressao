@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'rspec/retry'
 SimpleCov.start 'rails'
 
 require 'coveralls'
@@ -24,6 +25,13 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+
+  # Shows retry status in spec process
+  config.verbose_retry = true
+  # Try twice (retry once)
+  config.default_retry_count = 2
+  # Only retry when Selenium raises Net::ReadTimeout
+  config.exceptions_to_retry = [Net::ReadTimeout]
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
