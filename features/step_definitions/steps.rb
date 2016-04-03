@@ -132,7 +132,7 @@ When /^I press "([^"]*)"$/ do |arg1|
   click_button to_button(arg1)
 end
 
-When /^I click "([^"]*)"$/ do |arg1|
+When /^I click the "(.*?)"$/ do |arg1|
   click_link to_button(arg1)
 end
 
