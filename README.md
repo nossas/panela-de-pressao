@@ -4,7 +4,7 @@
 
 # Getting Started
 1. We suppose you already have Ruby on Rails and Git installed;
-2. `git clone git://github.com/meurio/panela-de-pressao.git`
+2. `git clone git://github.com/ourcities/panela-de-pressao.git`
 3. `cd panela-de-pressao`
 4. `bundle install`
 5. Copy `config/database.sample.yml` to `config/database.yml` and set your database;
@@ -23,6 +23,6 @@
 10. `rails s`
 11. Now try [http://localhost:3000/](http://localhost:3000/)
 
-Need help? Create an [issue](https://github.com/meurio/panela-de-pressao/issues) and we help you.
+Need help? Create an [issue](https://github.com/ourcities/panela-de-pressao/issues) and we help you.
 
 
