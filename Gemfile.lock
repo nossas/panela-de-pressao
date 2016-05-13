@@ -65,7 +65,8 @@ GEM
       oauth2 (>= 0.5.0, < 0.9)
     builder (3.2.2)
     cancan (1.6.10)
-    capybara (2.5.0)
+    capybara (2.7.1)
+      addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -76,7 +77,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    childprocess (0.5.8)
+    childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     chosen-rails (0.13.2)
       coffee-rails (>= 3.2)
@@ -232,12 +233,12 @@ GEM
       skinny (>= 0.1.2)
       sqlite3-ruby
       thin
-    mime-types (2.99)
+    mime-types (2.99.1)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
-    mini_portile (0.6.2)
+    mini_portile2 (2.0.0)
     minitest (5.8.3)
-    multi_json (1.11.2)
+    multi_json (1.12.0)
     multi_test (0.1.2)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
@@ -245,8 +246,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
     newrelic_rpm (3.15.0.314)
-    nokogiri (1.6.6.4)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -346,7 +347,7 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.4)
-    rubyzip (1.1.7)
+    rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.13)
     sass-rails (5.0.1)
@@ -358,9 +359,8 @@ GEM
     schema_plus (1.5.3)
       activerecord (>= 3.2)
       valuable
-    selenium-webdriver (2.48.1)
+    selenium-webdriver (2.53.0)
       childprocess (~> 0.5)
-      multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     sequel (3.20.0)
@@ -433,7 +433,7 @@ GEM
     webmock (1.15.2)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
-    websocket (1.2.2)
+    websocket (1.2.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -513,5 +513,8 @@ DEPENDENCIES
   video_info
   webmock
 
+RUBY VERSION
+   ruby 2.2.2p95
+
 BUNDLED WITH
-   1.10.6
+   1.12.3
