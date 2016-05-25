@@ -23,6 +23,6 @@
 10. `rails s`
 11. Now try [http://localhost:3000/](http://localhost:3000/)
 
-Need help? Create an [issue](https://github.com/ourcities/panela-de-pressao/issues) and we help you.
+Need help? Create an [issue](https://www.pivotaltracker.com/n/projects/1063622) and we help you.
 
 
