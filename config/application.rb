@@ -68,7 +68,7 @@ module ManifesteSe
     config.exceptions_app = self.routes
 
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-      r301      '/campaigns/974',   'http://naovaitermesada.meurio.org.br'
+      r301      '/campaigns/966',   'http://www.escolainclusiva.meurio.org.br'
     end
   end
 end
