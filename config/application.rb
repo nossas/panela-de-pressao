@@ -66,5 +66,9 @@ module ManifesteSe
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
 
     config.exceptions_app = self.routes
+
+    config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+      r301      '/campaigns/966',   'http://www.escolainclusiva.meurio.org.br'
+    end
   end
 end

@@ -90,6 +90,7 @@ gem 'rack-cas'
 gem 'appsignal'
 gem 'rack_session_access'
 gem 'unicorn'
+gem 'rack-rewrite', '~> 1.5.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-infinite-scroll'
