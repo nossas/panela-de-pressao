@@ -1,0 +1,82 @@
+version: '3'
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  app-gems:
+    driver: local
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      # - ./tools/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 123
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/var/lib/redis
+    command: redis-server --appendonly yes
+
+  web:
+    image: nossas/panela-de-pressao
+    command: bundle exec rails s
+
+    build:
+      context: .
+    #   dockerfile: Dockerfile
+    # entrypoint: ./development-entrypoint
+    # command: bundle exec sidekiq -c 5
+
+    volumes:
+      - app-gems:/usr/local/bundle
+      - ./:/usr/src/app:Z
+
+    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container:
+    tty: true
+
+    links:
+      - postgres:db.devel
+      - redis:keyval.devel
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://postgres:123@db.devel:5432/panela-de-pressao
+      QUEUE: "*"
+      REDIS_URL: redis://keyval.devel:6379
+      RACK_ENV: development
+      RAILS_ENV: development
+      JWT_SECRET: d41d8cd98f00b204e9800998ecf8427e
+      WEB_CONCURRENCY: 1
+      WEB_MEMORY: 256
+
+      FB_ID: "fb id"
+      FB_SECRET: "fb secret"
+      AWS_ID: "aws id"
+      AWS_SECRET: "aws secret"
+      TWITTER_ID: "twitter id"
+      TWITTER_SECRET: "twitter secret"
+      BITLY_ID: "bit.ly id"
+      BITLY_SECRET: "bit.ly secret"
+    ports:
+      - "3000:3000" # Bind our host's port 3000 to the app port 3000:
+
+  # test:
+  #   # We'll copy from &app_base, and override:
+  #   <<: *app_base
+  #   command: bundle exec rspec --color --require spec_helper spec --format progress
+  #   environment:
+  #     <<: *app_environment
+  #     # PostgreSQL Test Database:
+  #     DATABASE_URL: postgres://postgres:3x4mpl3@db.devel:5432/bonde_test
+  #     # Run the app in the 'test' environment, instead of the default 'developent'
+  #     RACK_ENV: test
+  #     RAILS_ENV: test
