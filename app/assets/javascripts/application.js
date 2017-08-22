@@ -34,6 +34,10 @@
 //= require ./init.js
 
 $(function(){
+  var options = {};
+  var instM = $('[data-remodal-id=modal]').remodal(options);
+  instM.open();
+
   $("input.phone").mask('(00) 000000000');
 
   $("[data-prevent-double-submission]").preventDoubleSubmission();
