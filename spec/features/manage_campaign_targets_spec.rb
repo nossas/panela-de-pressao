@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Manage campaign targets', :type => :feature do
-  it 'should add the new target', js: true do
+  xit 'should add the new target', js: true do
     @user = User.make!
     Authorization.make! user: @user
     @influencer = Influencer.make!
@@ -15,7 +15,7 @@ feature 'Manage campaign targets', :type => :feature do
     expect(page).to have_css('.influencer-field-name', text: @influencer.name)
   end
 
-  it 'should remove the target', js: true do
+  xit 'should remove the target', js: true do
     @user = User.make! admin: true
     @campaign = Campaign.make!
     @influencer = @campaign.influencers.first
