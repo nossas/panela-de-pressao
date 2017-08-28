@@ -69,6 +69,7 @@ module ManifesteSe
 
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
       r301      '/campaigns/966',   'http://www.escolainclusiva.meurio.org.br'
+      r301      '/campaigns/969',   'https://www.licencaparamatar.meurio.org.br/'
     end
   end
 end
