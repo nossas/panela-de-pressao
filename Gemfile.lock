@@ -1,16 +1,16 @@
 GIT
-  remote: git://github.com/meurio/meurio_ui.git
-  revision: c045f1f9008c1dc6a4757af2769db703240fa063
+  remote: https://github.com/meurio/meurio_ui.git
+  revision: c0ff556158c68048acc1f987f5458ecf4440ebb8
   branch: new-header
   specs:
-    meurio_ui (1.5.0)
+    meurio_ui (1.5.1)
 
 GIT
-  remote: git://github.com/zurb/foundation-rails.git
-  revision: 6ebd996d1965202bd85bb0aaff4449852f2bc2dd
+  remote: https://github.com/zurb/foundation-rails.git
+  revision: 88af62be9937955caa3980cbea6314305b55cc25
   tag: v5.5.1.2
   specs:
-    foundation-rails (5.5.1.1)
+    foundation-rails (5.5.1.2)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
 
@@ -51,7 +51,8 @@ GEM
     acts_as_our_cities (0.1.2)
       activeresource (~> 4.0, >= 4.0.0)
       rails (~> 4.1, >= 4.1.5)
-    addressable (2.4.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     appsignal (0.10.0)
       rack
       thread_safe
@@ -276,6 +277,7 @@ GEM
       arel
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
+    public_suffix (3.1.1)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.5)
